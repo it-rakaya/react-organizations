@@ -38,5 +38,13 @@
   "I have read all terms and conditions": "لقد قرأت جميع الشروط والأحكام",
   "Save":"حفظ",
   "Chose city":"اختر المدينة",
-  "Download":"تحميل"
+  "Download":"تحميل",
+  "Add Facility":"اضافة منشأه",
+  "Details":"تفاصيل",
+  "Edit":"تعديل",
+  "Delete":"تعديل",
+  "Add Employ":"اضافة موظف",
+  "Not Found Facilities":"لايوجد منشات",
+  "Search facilities...":"البحث في المنشئات"
+  
 }
