@@ -1,8 +1,6 @@
 import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
-import Divider from "@mui/material/Divider";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import { Form, Formik } from "formik";
@@ -10,12 +8,10 @@ import { t } from "i18next";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
-import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { useUser } from "../../context/user provider/UserContext";
 import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import ButtonComp from "../atoms/buttons/ButtonComp";
-import IconifyIcon from "../atoms/icons/IconifyIcon";
 import BaseInputField from "../molecules/Formik/BaseInputField";
 import DatePickerComp from "../molecules/Formik/DatePickerComp";
 import PhoneInput2 from "../molecules/Formik/PhoneInput2";
@@ -27,16 +23,15 @@ export default function RegisterForm() {
     textDecoration: "none",
     color: theme.palette.primary.main,
   }));
-  const { login } = useAuth();
   const { refetch } = useUser();
   const [checked, setChecked] = useState(false);
 
   const { mutate: sendRegister, isPending } = useMutate({
     endpoint: `register`,
     mutationKey: [`register`],
-    onSuccess: (data) => {
+    onSuccess: () => {
       notify("success");
-      login(data.data);
+      // login(data.data);
       refetch();
     },
 
@@ -72,7 +67,6 @@ export default function RegisterForm() {
           national_id: "",
           email: "",
           birthday: Date(),
-          // password: "",
           nationality: "",
           national_id_expired: Date(),
           organization_id: "1",
@@ -146,66 +140,14 @@ export default function RegisterForm() {
             }}
           >
             <Typography sx={{ mr: 2, color: "text.secondary" }}>
-              Already have an account?
+              {t("Already have an account?")}
             </Typography>
             <Link
               to="/login"
               sx={{ color: "primary.main", textDecoration: "none" }}
             >
-              Sign in instead
+             {t("Sign in instead")}
             </Link>
-          </Box>
-          <Divider
-            sx={{
-              "& .MuiDivider-wrapper": { px: 4 },
-              mt: (theme) => `${theme.spacing(5)} !important`,
-              mb: (theme) => `${theme.spacing(7.5)} !important`,
-            }}
-          >
-            or
-          </Divider>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <IconButton
-              href="/"
-              component={Link}
-              sx={{ color: "#497ce2" }}
-              onClick={(e) => e.preventDefault()}
-            >
-              <IconifyIcon icon="mdi:facebook" />
-            </IconButton>
-            <IconButton
-              href="/"
-              component={Link}
-              sx={{ color: "#1da1f2" }}
-              onClick={(e) => e.preventDefault()}
-            >
-              <IconifyIcon icon="mdi:twitter" />
-            </IconButton>
-            <IconButton
-              href="/"
-              component={Link}
-              onClick={(e) => e.preventDefault()}
-              sx={{
-                color: (theme) =>
-                  theme.palette.mode === "light" ? "#272727" : "grey.300",
-              }}
-            >
-              <IconifyIcon icon="mdi:github" />
-            </IconButton>
-            <IconButton
-              href="/"
-              component={Link}
-              sx={{ color: "#db4437" }}
-              onClick={(e) => e.preventDefault()}
-            >
-              <IconifyIcon icon="mdi:google" />
-            </IconButton>
           </Box>
         </Form>
       </Formik>

@@ -7,14 +7,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useLayoutEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-///
-/////////// Types
-///
 
-/////////// HELPER VARIABLES & FUNCTIONS
-///
-
-///
 const App = () => {
   /////////// VARIABLES
   ///

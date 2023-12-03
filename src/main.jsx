@@ -23,7 +23,7 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
     {/* <LoadingContextProvider> */}
-    <LanguageContextProvider>
+    {/* <LanguageContextProvider> */}
       <BrowserRouter>
         <SettingsProvider>
           <SettingsConsumer>
@@ -47,7 +47,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           </SettingsConsumer>
         </SettingsProvider>
       </BrowserRouter>
-    </LanguageContextProvider>
+    {/* </LanguageContextProvider> */}
     {/* </LoadingContextProvider> */}
   </QueryClientProvider>
 );

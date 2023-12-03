@@ -1,7 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useQueryClient } from "@tanstack/react-query";
 import { createContext, useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { useLoadingOverlay } from "../loading";
 import { request } from "../../utils/axios-util";
 import { notify } from "../../utils/toast";
 
@@ -20,9 +20,7 @@ export const LanguageContextProvider = ({
     // const LoadingOverlay = useLoadingOverlay()
 
     const changeLang = async (language) => {
-
         // LoadingOverlay.open()
-
         try {
             const response = await request({
                 url: `/dashboard/change-language?locale=${language}`,
@@ -32,8 +30,7 @@ export const LanguageContextProvider = ({
             const newDir = newLang == "ar" ? "rtl" : "ltr"
 
             await queryClient.invalidateQueries()
-            i18n.changeLanguage(newLang)
-            
+            i18n.changeLanguage(newLang) 
             document.documentElement.dir = newDir
             document.documentElement.lang = newLang
 

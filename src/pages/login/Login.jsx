@@ -1,13 +1,11 @@
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { styled, useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { t } from "i18next";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import imageSource from "../../../src/assets/images/pages/auth-v2-login-illustration-bordered-light.png";
-import IconifyIcon from "../../components/atoms/icons/IconifyIcon";
 import LoginForm from "../../components/templates/LoginForm";
 import { useSettings } from "../../hooks/useSettings";
 import themeConfig from "../../themeConfig";
@@ -206,24 +204,15 @@ const Login = () => {
                   </Typography>
                 </Box>
                 <Box sx={{ mb: 6 }}>
-                  <TypographyStyled variant="h5">{`Welcome to ${themeConfig.templateName}! 👋🏻`}</TypographyStyled>
+                  <TypographyStyled variant="h5">{`${t("Welcome to")} ${themeConfig.templateName}! 👋🏻`}</TypographyStyled>
                   <Typography variant="body2">
-                    Please sign-in to your account and start the adventure
+                    {t("Please sign-in to your account")}
                   </Typography>
                 </Box>
-                {/* <Alert icon={false} sx={{ py: 3, mb: 6, ...bgColors.primaryLight, '& .MuiAlert-message': { p: 0 } }}>
-              <Typography variant='caption' sx={{ mb: 2, display: 'block', color: 'primary.main' }}>
-                Admin: <strong>admin@materialize.com</strong> / Pass: <strong>admin</strong>
-              </Typography>
-              <Typography variant='caption' sx={{ display: 'block', color: 'primary.main' }}>
-                Client: <strong>client@materialize.com</strong> / Pass: <strong>client</strong>
-              </Typography>
-            </Alert> */}
+   
                 <LoginForm />
 
-                {/* <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 7 }}>
-                Login
-              </Button> */}
+         
                 <Box
                   sx={{
                     display: "flex",
@@ -233,67 +222,16 @@ const Login = () => {
                   }}
                 >
                   <Typography sx={{ mr: 2, color: "text.secondary" }}>
-                    New on our platform?
+                  {t("New on our platform?")}
                   </Typography>
                   <Link
                     to="/register"
                     sx={{ color: "primary.main", textDecoration: "none" }}
                   >
-                    Create an account
+                    {t("Create an account")}
                   </Link>
                 </Box>
-                {/* <Divider
-                  sx={{
-                    "& .MuiDivider-wrapper": { px: 4 },
-                    mt: (theme) => `${theme.spacing(5)} !important`,
-                    mb: (theme) => `${theme.spacing(7.5)} !important`,
-                  }}
-                >
-                  or
-                </Divider> */}
-                {/* <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <IconButton
-                    href="/"
-                    component={Link}
-                    sx={{ color: "#497ce2" }}
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <IconifyIcon icon="mdi:facebook" />
-                  </IconButton>
-                  <IconButton
-                    href="/"
-                    component={Link}
-                    sx={{ color: "#1da1f2" }}
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <IconifyIcon icon="mdi:twitter" />
-                  </IconButton>
-                  <IconButton
-                    href="/"
-                    component={Link}
-                    onClick={(e) => e.preventDefault()}
-                    sx={{
-                      color: (theme) =>
-                        theme.palette.mode === "light" ? "#272727" : "grey.300",
-                    }}
-                  >
-                    <IconifyIcon icon="mdi:github" />
-                  </IconButton>
-                  <IconButton
-                    href="/"
-                    component={Link}
-                    sx={{ color: "#db4437" }}
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <IconifyIcon icon="mdi:google" />
-                  </IconButton>
-                </Box> */}
+              
               </BoxWrapper>
             </Box>
           </RightWrapper>
