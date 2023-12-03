@@ -11,7 +11,7 @@
 
 .marquee-content {
 
-  animation: marqueeAnimation 20s linear infinite;
+  animation: marqueeAnimation 40s linear infinite;
 }
 
 @keyframes marqueeAnimation {

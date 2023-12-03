@@ -5,7 +5,7 @@ import Marquee from "../../components/Landing/Marquee";
 import backgroundImage from "../../assets/background.png";
 function Landing() {
   return (
-    <div className="w-screen h-screen overflow-hidden px-5 relative">
+    <div className="w-screen lg:h-screen px-5 relative overflow-hidden">
       <img
         src={backgroundImage}
         alt=""
@@ -39,7 +39,7 @@ function Landing() {
         </div>
       </div>
       <Marquee>
-        <h4 className="text-[#1d1d1d] font-semibold">
+        <h4 className="text-white font-semibold py-3">
           All rights reserved &copy;
         </h4>
       </Marquee>
