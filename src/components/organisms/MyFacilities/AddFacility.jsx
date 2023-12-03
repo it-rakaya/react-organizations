@@ -50,7 +50,7 @@ export default function AddFacility() {
             <SelectCitiesSaudi
               label={"مصدر السجل التجاري "}
               name="registration_source"
-              className="mt-[24px]"
+              // className="mt-[24px]"
             />
           </div>
           <div className="w-1/2 col-span-6">
@@ -76,7 +76,7 @@ export default function AddFacility() {
             />
           </div>
 
-          <div className="flex items-start justify-center w-1/2 mt-[39px]">
+          <div className=" items-start   mt-[15px] w-1/2">
             <BaseInputField
               label="عنوان المنشأة (الحي-الشارع)"
               placeholder="الملك فهد"

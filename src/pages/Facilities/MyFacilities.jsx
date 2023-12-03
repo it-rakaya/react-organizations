@@ -18,6 +18,8 @@ import useFetch from "../../hooks/useFetch";
 import { t } from "i18next";
 import Search from "../../components/molecules/Search";
 import Paginate from "../../components/molecules/Paginate";
+import ShowDetails from "../../components/atoms/icons/ShowDetails";
+import EditIcon from "../../components/atoms/icons/EditIcon";
 
 export default function MyFacilities() {
   const [show, setShow] = useState(false);
@@ -84,6 +86,10 @@ export default function MyFacilities() {
                     className={{ height: "290px" }}
                   >
                     <Card sx={{ position: "relative" }}>
+                      {/* <div className="flex items-center justify-between px-2 py-1 item">
+                        <ShowDetails />
+                        <EditIcon />
+                      </div> */}
                       <OptionsMenu
                         iconButtonProps={{
                           size: "small",
@@ -94,7 +100,6 @@ export default function MyFacilities() {
                             text: t("Details"),
                             details: "Additional details here",
                             function: () => {
-                              // Add your custom function logic here
                               setOpen(true);
                               setDetailsItem(item);
                             },

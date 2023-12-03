@@ -177,9 +177,9 @@ const StepperFacility = ({ setOpenAddFaculty, resetForm, updateData }) => {
         </StepperWrapper>
         <Card
           sx={{ mt: 4 }}
-          className="!overflow-y-scroll scroll_main !shadow-none h-[27rem]  scroll_main m-3"
+          className="!overflow-y-scroll scroll_main !shadow-none h-[27rem]  scroll_main m-3 bg-transparent"
         >
-          <CardContent className="h-full">
+          <CardContent className="h-full pt-0">
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}

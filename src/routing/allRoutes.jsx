@@ -1,15 +1,16 @@
 import { t } from "i18next";
-import { Route, Routes } from "react-router-dom";
 import { lazy } from "react";
-import { ErrorPage } from "./ErrorPage";
-import { Root } from "./Root";
+import { Route, Routes } from "react-router-dom";
+import StepperFacility from "../components/organisms/MyFacilities/StepperFacility";
+import MyEmployees from "../pages/Employees/MyEmployees";
+import MyFacilities from "../pages/Facilities/MyFacilities";
+import Landing from "../pages/landing/Landing";
 import Login from "../pages/login/Login";
 import Orders from "../pages/orders/Orders";
 import Profile from "../pages/profile/Profile";
 import Register from "../pages/register/Register";
-import Landing from "../pages/landing/Landing";
-import MyFacilities from "../pages/Facilities/MyFacilities";
-import MyEmployees from "../pages/Employees/MyEmployees";
+import { ErrorPage } from "./ErrorPage";
+import { Root } from "./Root";
 const Home = lazy(() => import("../pages/home/Home"));
 
 export const AllRoutesProvider = () => {
@@ -19,6 +20,8 @@ export const AllRoutesProvider = () => {
         <Route index element={<Home title={t("home")} />} />
         <Route path="*" element={<ErrorPage />} />
         <Route path="/facilities" element={<MyFacilities />} />
+        <Route path="/facilities/create-facility" element={<StepperFacility />} />
+
         <Route path="/employee" element={<MyEmployees />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/profile" element={<Profile />} />

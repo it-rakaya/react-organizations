@@ -56,5 +56,7 @@
   "Remember Me":"تذكرنى",
   "Please sign-in to your account":"يرجى تسجيل الدخول إلى الحساب الخاص بك",
   "LOGIN":"تسجيل الدخول",
-  "Not Found Employee":"لايوجد موظفيين "
+  "Not Found Employee":"لايوجد موظفيين ",
+  "name":"الاسم"
+
 }

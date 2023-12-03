@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors:{
-        contained:"#5A5FE0"
+        contained:"#5A5FE0",
       }
     },
   },
