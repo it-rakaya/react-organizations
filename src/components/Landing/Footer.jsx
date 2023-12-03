@@ -22,7 +22,7 @@ const FooterComponent = ({ title, children, last=false }) => {
 const textStyle = `text-primaryText font-semibold`;
 const Footer = () => {
   return (
-    <div className="xl:pe-[18%]">
+    <div className="2xl:pe-[18%]">
       <div className="flex flex-col lg:flex-row w-full gap-3">
         <FooterComponent title={"User Manual"}>
           <a href="">
