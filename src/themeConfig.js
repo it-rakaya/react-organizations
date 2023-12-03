@@ -1,3 +1,4 @@
+
 /**
  * Config
  * -------------------------------------------------------------------------------------
@@ -6,7 +7,7 @@
  */
 const themeConfig = {
   // ** Layout Configs
-  templateName: 'Rakaya' /* App Name */,
+  templateName: "Rakaya" /* App Name */,
   layout: 'vertical' /* vertical | horizontal */,
   mode: 'light' /* light | dark | semi-dark /*! Note: semi-dark value will only work for Vertical Layout */,
   direction: 'rtl' /* ltr | rtl */,

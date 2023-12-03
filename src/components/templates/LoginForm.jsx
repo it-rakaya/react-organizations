@@ -23,7 +23,7 @@ export default function LoginForm() {
   console.log("🚀 ~ file: LoginForm.jsx:23 ~ LoginForm ~ valueOTP:", valueOTP)
   const { refetch  } = useUser();
 
-  const { mutate: LoginData, isLoading: loadingLogin } = useMutate({
+  const { mutate: LoginData, isPending: loadingLogin } = useMutate({
     mutationKey: [`login_data`],
     formData: true,
     endpoint: `login`,
@@ -41,7 +41,7 @@ export default function LoginForm() {
     },
   });
 
-  const { mutate: sendOTP } = useMutate({
+  const { mutate: sendOTP  } = useMutate({
     mutationKey: [`send-otp`],
     endpoint: `send-otp`,
     onSuccess: (data) => {
@@ -91,7 +91,7 @@ export default function LoginForm() {
                 }}
               >
                 <FormControlLabel
-                  label={`${"Remember Me"}`}
+                  label={`${t("Remember Me")}`}
                   control={
                     <Checkbox
                       checked={rememberMe}
