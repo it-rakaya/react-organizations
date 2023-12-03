@@ -117,9 +117,9 @@ const AppBarContent = props => {
           </IconButton>
         {/* ) : null} */}
         {/* {auth.user && */}
-        <AutocompleteComponent hidden={hidden} settings={settings}
+        {/* <AutocompleteComponent hidden={hidden} settings={settings}
 
-        />
+        /> */}
 
       </Box>
       <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>

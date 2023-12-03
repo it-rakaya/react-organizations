@@ -59,14 +59,13 @@ export default function MyFacilities() {
 
   return (
     <div>
-      <MainHeader
-        title={t("Facilities")}
-        addTitle={t("Add Facility")}
-        action={() => setOpenAddFaculty(true)}
-      />
+      <MainHeader title={t("Facilities")} />
+
       <Search
         setSearchQuery={setSearchQuery}
         placeholder={t("Search facilities...")}
+        addTitle={t("Add Facility")}
+        action={() => setOpenAddFaculty(true)}
       />
       <div className="flex flex-col items-center justify-between h-[65vh]">
         {isLoading || isRefetching ? (
@@ -157,17 +156,16 @@ export default function MyFacilities() {
               ))}
             </Grid>
             {filteredFacilities?.length > 8 && (
-          <Paginate
-            page={currentPage}
-            totalPages={totalPages}
-            handleChange={handlePageChange}
-          />
-        )}
+              <Paginate
+                page={currentPage}
+                totalPages={totalPages}
+                handleChange={handlePageChange}
+              />
+            )}
           </>
         ) : (
           <DataNotFound title={t("Not Found Facilities")} />
         )}
-      
       </div>
 
       <ModalComp
