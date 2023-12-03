@@ -44,19 +44,14 @@ export default function MyFacilities() {
     },
   });
 
-  const handleEdit = () => {
-    setShow(true);
-  };
   const filteredFacilities = facilities?.user_facilities?.filter((item) =>
     item?.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
-  // Calculate the start and end index for the current page
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
   const paginatedFacilities = filteredFacilities?.slice(startIndex, endIndex);
 
-  const totalPages = Math.ceil(filteredFacilities.length / pageSize);
+  const totalPages = Math.ceil(filteredFacilities?.length / pageSize);
 
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
@@ -73,106 +68,108 @@ export default function MyFacilities() {
         setSearchQuery={setSearchQuery}
         placeholder={t("Search facilities...")}
       />
-
-      {isLoading || isRefetching ? (
-        <Loading />
-      ) : filteredFacilities.length ? (
-        <>
-          <Grid container spacing={6}>
-            {paginatedFacilities?.map((item) => (
-              <>
-                <Grid
-                  item
-                  xs={12}
-                  sm={4}
-                  md={3}
-                  key={item?.id}
-                  marginTop={5}
-                  className={{ height: "290px" }}
-                >
-                  <Card sx={{ position: "relative" }}>
-                    <OptionsMenu
-                      iconButtonProps={{
-                        size: "small",
-                        sx: { top: 12, right: 12, position: "absolute" },
-                      }}
-                      options={[
-                        {
-                          text: t("Details"),
-                          details: "Additional details here",
-                          function: () => {
-                            // Add your custom function logic here
-                            setOpen(true);
-                            setDetailsItem(item);
-                          },
-                        },
-
-                        {
-                          text: t("Edit"),
-                          function: () => {
-                            setOpenAddFaculty(true);
-                            setResetForm(false);
-                          },
-                        },
-                        { divider: true },
-                        {
-                          text: t("Delete"),
-                          menuItemProps: { sx: { color: "error.main" } },
-                        },
-                      ]}
-                    />
-                    <CardContent>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          flexDirection: "column",
+      <div className="flex flex-col items-center justify-between h-[65vh]">
+        {isLoading || isRefetching ? (
+          <Loading />
+        ) : filteredFacilities?.length ? (
+          <>
+            <Grid container spacing={6}>
+              {paginatedFacilities?.map((item) => (
+                <>
+                  <Grid
+                    item
+                    xs={12}
+                    sm={4}
+                    md={3}
+                    key={item?.id}
+                    className={{ height: "290px" }}
+                  >
+                    <Card sx={{ position: "relative" }}>
+                      <OptionsMenu
+                        iconButtonProps={{
+                          size: "small",
+                          sx: { top: 12, right: 12, position: "absolute" },
                         }}
-                      >
-                        {/* <Avatar
+                        options={[
+                          {
+                            text: t("Details"),
+                            details: "Additional details here",
+                            function: () => {
+                              // Add your custom function logic here
+                              setOpen(true);
+                              setDetailsItem(item);
+                            },
+                          },
+
+                          {
+                            text: t("Edit"),
+                            function: () => {
+                              setOpenAddFaculty(true);
+                              setResetForm(false);
+                            },
+                          },
+                          { divider: true },
+                          {
+                            text: t("Delete"),
+                            menuItemProps: { sx: { color: "error.main" } },
+                          },
+                        ]}
+                      />
+                      <CardContent>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            flexDirection: "column",
+                          }}
+                        >
+                          {/* <Avatar
                         src={"/images/icons/project-icons/social-label.png"}
                         sx={{ mb: 4, width: 100, height: 100 }}
                       /> */}
-                        <img
-                          width="60"
-                          height="60"
-                          src="https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/external-company-town-xnimrodx-lineal-xnimrodx-4.png"
-                          alt="external-company-town-xnimrodx-lineal-xnimrodx-4"
-                        />
-                        <Typography
-                          variant="h6"
-                          sx={{ fontWeight: 500, marginTop: 1 }}
-                          className="my-2"
-                        >
-                          {item?.name}
-                        </Typography>
-                        <Button
-                          variant="outlined"
-                          onClick={() => {
-                            setOpenAddEmployee(true);
-                            setFacultyID(item?.id);
-                          }}
-                        >
-                          {t("Add Employ")}
-                        </Button>
-                      </Box>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              </>
-            ))}
-          </Grid>
-        </>
-      ) : (
-        <DataNotFound title={t("Not Found Facilities")} />
-      )}
-      {filteredFacilities.length > 8 && (
-        <Paginate
-          page={currentPage}
-          totalPages={totalPages}
-          handleChange={handlePageChange}
-        />
-      )}
+                          <img
+                            width="60"
+                            height="60"
+                            src="https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/external-company-town-xnimrodx-lineal-xnimrodx-4.png"
+                            alt="external-company-town-xnimrodx-lineal-xnimrodx-4"
+                          />
+                          <Typography
+                            variant="h6"
+                            sx={{ fontWeight: 500, marginTop: 1 }}
+                            className="my-2"
+                          >
+                            {item?.name}
+                          </Typography>
+                          <Button
+                            variant="outlined"
+                            onClick={() => {
+                              setOpenAddEmployee(true);
+                              setFacultyID(item?.id);
+                            }}
+                          >
+                            {t("Add Employ")}
+                          </Button>
+                        </Box>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                </>
+              ))}
+            </Grid>
+            {filteredFacilities?.length > 8 && (
+          <Paginate
+            page={currentPage}
+            totalPages={totalPages}
+            handleChange={handlePageChange}
+          />
+        )}
+          </>
+        ) : (
+          <DataNotFound title={t("Not Found Facilities")} />
+        )}
+      
+      </div>
+
       <ModalComp
         open={open}
         onClose={() => setOpen(false)}
