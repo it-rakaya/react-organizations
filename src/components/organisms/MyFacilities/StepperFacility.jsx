@@ -1,4 +1,10 @@
 /* eslint-disable react/prop-types */
+import {
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
@@ -8,25 +14,18 @@ import Stepper from "@mui/material/Stepper";
 import Typography from "@mui/material/Typography";
 import { useQueryClient } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
+import { t } from "i18next";
 import { Fragment, useState } from "react";
+import * as Yup from "yup";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
+import ModalComp from "../../atoms/ModalComp";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
+import TermsConditionIcon from "../../atoms/icons/TermsConditionIcon";
 import StepperCustomDot from "../../theme/StepperCustomDot";
 import StepperWrapper from "../../theme/stepper";
 import AddFacility from "./AddFacility";
-import Signature from "./Signature";
 import StepTwo from "./add_facility/StepTwo";
-import * as Yup from "yup";
-import { t } from "i18next";
-import ModalComp from "../../atoms/ModalComp";
-import {
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-} from "@mui/material";
-import TermsConditionIcon from "../../atoms/icons/TermsConditionIcon";
 
 const steps = [
   {
@@ -35,9 +34,6 @@ const steps = [
   {
     title: "تحميل المستندات",
   },
-  // {
-  //   title: "التعهد",
-  // },
 ];
 
 const StepperFacility = ({ setOpenAddFaculty, resetForm, updateData }) => {
@@ -49,15 +45,10 @@ const StepperFacility = ({ setOpenAddFaculty, resetForm, updateData }) => {
   };
 
   const [checked, setChecked] = useState(false);
-  console.log("🚀 ~ file: StepperFacility.jsx:52 ~ StepperFacility ~ checked:", checked)
-  // const handleChange = (event) => {
-  //   setValue(event.target.value);
-  // };
 
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
       setOpen(true);
-      //   console.log("Performing form submission logic");
     } else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
@@ -157,12 +148,6 @@ const StepperFacility = ({ setOpenAddFaculty, resetForm, updateData }) => {
             <StepTwo />
           </Fragment>
         );
-      // case 2:
-      //   return (
-      //     <Fragment key={step}>
-      //       <Signature name="signature" />
-      //     </Fragment>
-      //   );
       default:
         return "Unknown Step";
     }
@@ -182,7 +167,6 @@ const StepperFacility = ({ setOpenAddFaculty, resetForm, updateData }) => {
                         <Typography className={`font-bold  `}>
                           {step.title}
                         </Typography>
-                        {/* <Typography className='step-subtitle'>{step.subtitle}</Typography> */}
                       </div>
                     </div>
                   </StepLabel>
@@ -202,13 +186,10 @@ const StepperFacility = ({ setOpenAddFaculty, resetForm, updateData }) => {
               onSubmit={(values) => {
                 console.log("value", {
                   ...values,
-                  // "attachments[registration]": values["registration"],
-                  // "attachments[national_address]": values["national_address"],
                 });
                 addFacility({
                   ...values,
-                  // "attachments[registration]": values["registration"],
-                  // "attachments[national_address]": values["national_address"],
+       
                 });
               }}
             >
@@ -244,7 +225,7 @@ const StepperFacility = ({ setOpenAddFaculty, resetForm, updateData }) => {
                       </ButtonComp>
                       <ButtonComp
                         action={
-                          Object.keys(errors).length < 0
+                          Object.keys(errors).length > 0
                             ? () =>
                                 notify("warning", t("please complete field"))
                             : handleNext
@@ -252,7 +233,7 @@ const StepperFacility = ({ setOpenAddFaculty, resetForm, updateData }) => {
                         type="button"
                         className={"w-auto"}
                         variant="contained"
-                        // disabled={values.name == ""}
+                        disabled={values.name == ""}
                       >
                         {activeStep === steps.length - 1
                           ? "حفظ ومتابعه"
