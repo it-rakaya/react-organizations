@@ -1,0 +1,483 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* arabic */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscQyyS8pg_RWH1vCk.woff2)
+    format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1,
+    U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF,
+    U+FE70-FE74, U+FE76-FEFC;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscSCyS8pg_RWH1vCk.woff2)
+    format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscRiyS8pg_RWH1.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* arabic */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscQyyS8pg_RWH1vCk.woff2)
+    format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1,
+    U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF,
+    U+FE70-FE74, U+FE76-FEFC;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscSCyS8pg_RWH1vCk.woff2)
+    format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscRiyS8pg_RWH1.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* arabic */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscQyyS8pg_RWH1vCk.woff2)
+    format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1,
+    U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF,
+    U+FE70-FE74, U+FE76-FEFC;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscSCyS8pg_RWH1vCk.woff2)
+    format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscRiyS8pg_RWH1.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* arabic */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscQyyS8pg_RWH1vCk.woff2)
+    format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1,
+    U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF,
+    U+FE70-FE74, U+FE76-FEFC;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscSCyS8pg_RWH1vCk.woff2)
+    format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cairo/v28/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscRiyS8pg_RWH1.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+*,
+body,
+html {
+  font-family: "Cairo" !important;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f7f7f9;
+}
+svg {
+  color: #65677a;
+}
+div {
+  scrollbar-width: thin !important;
+  scrollbar-color: #3b3b64 transparent;
+  --scrollbar-space: 0.4rem;
+  --kt-toolbar-height: 55px !important;
+  --kt-toolbar-height-tablet-and-mobile: 55px !important;
+  --scrollbar-space: 0.4rem;
+}
+
+.css-7onajn {
+  height: 100vh;
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  right: 0px !important;
+}
+
+.css-dip3t8 {
+  /* @apply !bg-[#1d2327] dark:!bg-dark-tertiary; */
+  padding: 15px 10px 70px;
+  /* width: 265px; */
+  height: 100vh !important;
+}
+
+/* border-1 border-[rgba(0, 29, 110, 0.4)] focus:!border-1 focus:!border-[rgba(0, 29, 110, 0.7)] */
+
+.text-mainBlack {
+  /* @apply dark:!text-dark-textWhite; */
+  font-family: "Tajawal", sans-serif !important;
+  font-weight: bold;
+}
+.ps-submenu-content {
+  background-color: #f7f7f9 !important;
+}
+
+.ps-submenu-content .ps-menu-button {
+  padding-right: 25px !important;
+}
+
+.PhoneInputInput {
+  direction: inherit;
+}
+.pdf-no-scroll .rpv-core__inner-pages--vertical {
+  overflow-y: hidden;
+}
+.ps-menu-button {
+  height: 40px !important;
+}
+.css-1ytr39x > .ps-menu-button {
+  height: 40px !important;
+}
+
+.css-1ip1oky > .ps-menu-button {
+  padding-right: 30px !important;
+}
+
+.ps-menu-button span:first-child {
+  margin-left: 0;
+}
+
+body[class="dark"] .ps-menu-icon,
+body[class="dark"] .ps-menu-icon.ps-active svg,
+body[class="dark"] .ps-menu-button:hover .ps-menu-icon,
+body[class="dark"] .ps-menu-button:hover .ps-menu-icon svg {
+  fill: #fff !important;
+  color: #fff !important;
+}
+
+body[class="dark"] .ps-menu-button.ps-open .ps-menu-icon {
+  fill: #a7aaad !important;
+  color: #a7aaad !important;
+}
+
+.ps-menu-label {
+  color: #a7aaad !important;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgba(76, 78, 100, 0.87);
+}
+.ps-menu-label.ps-active {
+  color: white !important;
+}
+.ps-menu-icon.ps-active svg {
+  fill: white !important;
+}
+
+li.ps-active {
+  color: white !important;
+}
+.ps-menu-icon {
+  color: rgba(76, 78, 100, 0.87) !important;
+}
+.ps-menu-icon svg {
+  width: 60px;
+  height: 22px;
+}
+
+.ps-menu-button:hover {
+  background-color: rgba(76, 78, 100, 0.05) !important;
+  border-radius: 8px;
+}
+.ps-active {
+  background-color: #787eff !important;
+  border-radius: 8px;
+}
+
+@media (min-width: 1280px) {
+  .cards-home-page div:nth-child(5),
+  .cards-home-page div:nth-child(6),
+  .cards-home-page div:nth-child(7) {
+    grid-column: span 4 / span 4 !important;
+  }
+}
+/* 
+#react-select-2-listbox {
+  background-color: #1c1c2b !important;
+} */
+
+main::-webkit-scrollbar,
+.css-dip3t8::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+main,
+.css-dip3t8 {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scroll_main::-webkit-scrollbar {
+  width: 5px;
+}
+.scroll_main::-webkit-scrollbar-track {
+  background-color: #787eff;
+}
+.scroll_main::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px black;
+}
+
+.react-tel-input {
+  direction: ltr !important;
+}
+.react-tel-input .form-control {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 82% !important;
+  animation-name: mui-auto-fill-cancel;
+  animation-duration: 10ms;
+  /* padding: 16.5px 14px; */
+  padding-left: 50px !important;
+  border-radius: 9px;
+  padding: 16.5px 14px;
+  border: 1px solid #eee;
+}
+.react-tel-input .selected-flag {
+  outline: none;
+  position: relative;
+  width: 46px !important;
+  height: 100%;
+  padding: 0 0 0 8px;
+  border-radius: 3px 0 0 3px;
+}
+
+.react-tel-input .selected-flag .flag {
+  position: absolute;
+  top: 50%;
+  left: 18px !important;
+  transform: scale(1.4);
+  margin-top: -5px;
+}
+.react-tel-input .selected-flag .arrow {
+  position: relative;
+  top: 50%;
+  margin-top: -2px;
+  left: -8px !important;
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 4px solid #555;
+}
+
+.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label {
+  width: 100% !important;
+}
+
+.MuiButtonBase-root.MuiRadio-root {
+  /* display: none ; */
+}
+
+.MuiBox-root {
+  /* padding: 0 !important; ; */
+  backdrop-filter: inherit !important;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////// */
+.light-style .menu .app-brand.demo {
+  height: 64px;
+}
+
+.dark-style .menu .app-brand.demo {
+  height: 64px;
+}
+
+.app-brand-logo.demo svg {
+  width: 38px;
+  height: 20px;
+}
+
+.app-brand-text.demo {
+  font-size: 1.25rem;
+}
+
+/* ! For .layout-navbar-fixed added fix padding top tpo .layout-page */
+.layout-navbar-fixed .layout-wrapper:not(.layout-without-menu) .layout-page {
+  padding-top: 64px !important;
+}
+
+/* Navbar page z-index issue solution */
+.content-wrapper .navbar {
+  z-index: auto;
+}
+
+/*
+* Content
+******************************************************************************/
+
+.demo-blocks > * {
+  display: block !important;
+}
+
+.demo-inline-spacing > * {
+  margin: 1rem 0.375rem 0 0 !important;
+}
+
+/* ? .demo-vertical-spacing class is used to have vertical margins between elements. To remove margin-top from the first-child, use .demo-only-element class with .demo-vertical-spacing class. For example, we have used this class in forms-input-groups.html file. */
+.demo-vertical-spacing > * {
+  margin-top: 1.25rem !important;
+  margin-bottom: 0 !important;
+}
+.demo-vertical-spacing.demo-only-element > :first-child {
+  margin-top: 0 !important;
+}
+
+.demo-vertical-spacing-lg > * {
+  margin-top: 1.875rem !important;
+  margin-bottom: 0 !important;
+}
+.demo-vertical-spacing-lg.demo-only-element > :first-child {
+  margin-top: 0 !important;
+}
+
+.demo-vertical-spacing-xl > * {
+  margin-top: 5rem !important;
+  margin-bottom: 0 !important;
+}
+.demo-vertical-spacing-xl.demo-only-element > :first-child {
+  margin-top: 0 !important;
+}
+
+.rtl-only {
+  display: none !important;
+  text-align: left !important;
+  direction: ltr !important;
+}
+
+[dir="rtl"] .rtl-only {
+  display: block !important;
+}
+
+/* Dropdown buttons going out of small screens */
+@media (max-width: 576px) {
+  #dropdown-variation-demo .btn-group .text-truncate {
+    width: 300px;
+    position: relative;
+  }
+  #dropdown-variation-demo .btn-group .text-truncate::after {
+    position: absolute;
+    top: 45%;
+    right: 0.65rem;
+  }
+}
+/*
+* Layout demo
+******************************************************************************/
+
+.layout-demo-wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-top: 1.25rem;
+}
+.layout-demo-placeholder img {
+  width: 900px;
+}
+.layout-demo-info {
+  text-align: center;
+  margin-top: 1.25rem;
+}
+.fancybox__container {
+  z-index: 9999;
+}
+
+
+.MuiInputBase-input::-webkit-outer-spin-button, .MuiInputBase-input::-webkit-inner-spin-button{
+  -webkit-appearance: none; 
+  margin: 0; 
+}

@@ -1,0 +1,260 @@
+import React, { useState } from "react";
+import MainHeader from "../../atoms/MainHeader";
+import { Tab, Typography } from "@mui/material";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
+
+export default function DetailsOrder({ data }) {
+  console.log(
+    "🚀 ~ file: DetailsFacility.jsx:4 ~ DetailsFacility ~ data:",
+    data
+  );
+  const [value, setValue] = useState("1");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  return (
+    <div>
+      <MainHeader title={` تفاصيل طلب : ${data?.service?.name} `} />
+
+      {/* <div className="grid grid-cols-2 p-4 gap-y-4">
+        <div className="col-span-2">
+          <h2 className="font-bold text-black">تفاصيل الطلب :</h2>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold"> الطلب:</p>
+          <p>{data?.service?.name}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold">السعر:</p>
+          <p>{data?.service?.price}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold">الحاله:</p>
+          <p
+            style={{ backgroundColor: data?.status?.color }}
+            className="px-2 py-1 text-sm font-bold text-white rounded-md"
+          >
+            {data?.status?.name}
+          </p>
+        </div>
+        <div className="col-span-2">
+          <h2 className="font-bold text-black"> الاسئله :</h2>
+        </div>
+
+        {data.answers.length ? (
+          data.answers.map((item) => (
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold">
+                {item?.question?.content}؟
+              </p>
+              <p>{item?.value}</p>
+            </div>
+          ))
+        ) : (
+          <div className="text-xl font-bold"> لايوجد اساله </div>
+        )}
+      </div>
+
+      <div className="grid grid-cols-2 p-4 gap-y-4">
+        <div className="col-span-2">
+          <h2 className="font-bold text-black">تفاصيل المنشاه :</h2>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold">الاسم:</p>
+          <p>{data?.facility?.name}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold">العنوان:</p>
+          <p>{data?.facility?.address}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold">رقم الطهاة:</p>
+          <p>{data?.facility?.chefs_number}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold"> تاريخ الإصدار:</p>
+          <p>{data?.facility?.Version_date}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold"> تاريخ الإصدار بالهجري :</p>
+          <p>{data?.facility?.Version_date_hj}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold"> رقم الموظف:</p>
+          <p>{data?.facility?.employee_number}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold"> تاريخ الانتهاء:</p>
+          <p>{data?.facility?.end_date}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold"> تاريخ الانتهاء بالهجري:</p>
+          <p>{data?.facility?.end_date_hj}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold"> مساحة المطبخ:</p>
+          <p>{data?.facility?.kitchen_space}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold"> الرخصه:</p>
+          <p>{data?.facility?.license}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold"> تاريخ انتهاء الرخصه:</p>
+          <p>{data?.facility?.license_expired}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold">
+            {" "}
+            تاريخ انتهاء الرخصه بالهجري:
+          </p>
+          <p>{data?.facility?.license_expired_hj}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold"> رقم التسجيل:</p>
+          <p>{data?.facility?.registration_number}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold"> مصدر التسجيل:</p>
+          <p>{data?.facility?.source_registration}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-[#787EFF] font-bold"> شهادة الضرائب:</p>
+          <p>{data?.facility?.tax_certificate}</p>
+        </div>
+      </div> */}
+      <TabContext value={value}>
+        <TabList onChange={handleChange} aria-label="nav tabs example">
+          <Tab
+            value="1"
+            component="a"
+            label={<h2 className="font-bold text-black">تفاصيل الطلب </h2>}
+          />
+          <Tab
+            value="2"
+            component="a"
+            label={<h2 className="font-bold text-black"> الاسئله </h2>}
+          />
+          <Tab
+            value="3"
+            component="a"
+            label={<h2 className="font-bold text-black">تفاصيل المنشاه </h2>}
+          />
+        </TabList>
+
+        <TabPanel value="1">
+          <div className="grid grid-cols-2 p-4 gap-y-4">
+            <div className="col-span-2"></div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold"> الطلب:</p>
+              <p>{data?.service?.name}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold">السعر:</p>
+              <p>{data?.service?.price}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold">الحاله:</p>
+              <p
+                style={{ backgroundColor: data?.status?.color }}
+                className="px-2 py-1 text-sm font-bold text-white rounded-md"
+              >
+                {data?.status?.name}
+              </p>
+            </div>
+          </div>
+        </TabPanel>
+        <TabPanel value="2">
+          <div className="grid grid-cols-2 p-4 gap-y-4">
+            {data.answers.length ? (
+              data.answers.map((item) => (
+                <div className="flex gap-2">
+                  <p className="text-[#787EFF] font-bold">
+                    {item?.question?.content}؟
+                  </p>
+                  <p>{item?.value}</p>
+                </div>
+              ))
+            ) : (
+              <div className="text-xl font-bold"> لايوجد اساله </div>
+            )}
+          </div>
+        </TabPanel>
+        <TabPanel value="3">
+          <div className="grid grid-cols-2 p-4 gap-y-4">
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold">الاسم:</p>
+              <p>{data?.facility?.name}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold">العنوان:</p>
+              <p>{data?.facility?.address}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold">رقم الطهاة:</p>
+              <p>{data?.facility?.chefs_number}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold"> تاريخ الإصدار:</p>
+              <p>{data?.facility?.Version_date}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold">
+                {" "}
+                تاريخ الإصدار بالهجري :
+              </p>
+              <p>{data?.facility?.Version_date_hj}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold"> رقم الموظف:</p>
+              <p>{data?.facility?.employee_number}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold"> تاريخ الانتهاء:</p>
+              <p>{data?.facility?.end_date}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold">
+                {" "}
+                تاريخ الانتهاء بالهجري:
+              </p>
+              <p>{data?.facility?.end_date_hj}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold"> مساحة المطبخ:</p>
+              <p>{data?.facility?.kitchen_space}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold"> الرخصه:</p>
+              <p>{data?.facility?.license}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold"> تاريخ انتهاء الرخصه:</p>
+              <p>{data?.facility?.license_expired}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold">
+                {" "}
+                تاريخ انتهاء الرخصه بالهجري:
+              </p>
+              <p>{data?.facility?.license_expired_hj}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold"> رقم التسجيل:</p>
+              <p>{data?.facility?.registration_number}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold"> مصدر التسجيل:</p>
+              <p>{data?.facility?.source_registration}</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="text-[#787EFF] font-bold"> شهادة الضرائب:</p>
+              <p>{data?.facility?.tax_certificate}</p>
+            </div>
+          </div>
+        </TabPanel>
+      </TabContext>
+    </div>
+  );
+}
