@@ -1,27 +1,28 @@
-import { Checkbox, FormControlLabel, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { Form, Formik } from "formik";
 import { t } from "i18next";
 import { useState } from "react";
+import * as Yup from "yup";
+import { useAuth } from "../../context/auth-and-perm/AuthProvider";
+import { useUser } from "../../context/user provider/UserContext";
+import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
+import ButtonComp from "../atoms/buttons/ButtonComp";
 import PhoneInput2 from "../molecules/Formik/PhoneInput2";
 import CheckCode from "../organisms/checkCode";
-import { Link } from "react-router-dom";
-import { useAuth } from "../../context/auth-and-perm/AuthProvider";
-import { useMutate } from "../../hooks/useMutate";
-import ButtonComp from "../atoms/buttons/ButtonComp";
-import * as Yup from "yup";
-import { useUser } from "../../context/user provider/UserContext";
+import { useOrg } from "../../context/organization provider/OrganizationProvider";
 
 export default function LoginForm() {
-  const [rememberMe, setRememberMe] = useState(true);
   const [verifyPhone, setVerifyPhone] = useState(false);
   const [valuesForm, setValuesForm] = useState("");
   const { login } = useAuth();
   const [dataValue, setDataValue] = useState();
   const [valueOTP , setValueOTP] = useState()
-  console.log("🚀 ~ file: LoginForm.jsx:23 ~ LoginForm ~ valueOTP:", valueOTP)
   const { refetch  } = useUser();
+  const { orgData  } = useOrg();
+  console.log("🚀 ~ file: LoginForm.jsx:23 ~ LoginForm ~ orgData:", orgData)
+
+
 
   const { mutate: LoginData, isPending: loadingLogin } = useMutate({
     mutationKey: [`login_data`],

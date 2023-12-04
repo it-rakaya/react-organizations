@@ -13,6 +13,7 @@ import "./query.css";
 import { AuthProvider } from "./context/auth-and-perm/AuthProvider";
 import Loading from "./components/molecules/Loading";
 import { UserProvider } from "./context/user provider/UserContext";
+import { OrganizationProvider } from "./context/organization provider/OrganizationProvider";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: { refetchOnWindowFocus: false },
@@ -30,15 +31,17 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             return (
               <ThemeComponent settings={settings}>
                 <HelmetProvider>
+                  <OrganizationProvider>
                     <UserProvider>
-                  <AuthProvider>
-                      <ProSidebarProvider>
-                        <Suspense fallback={<Loading />}>
-                          <App />
-                        </Suspense>
-                      </ProSidebarProvider>
-                  </AuthProvider>
+                      <AuthProvider>
+                        <ProSidebarProvider>
+                          <Suspense fallback={<Loading />}>
+                            <App />
+                          </Suspense>
+                        </ProSidebarProvider>
+                      </AuthProvider>
                     </UserProvider>
+                  </OrganizationProvider>
                 </HelmetProvider>
               </ThemeComponent>
             );
