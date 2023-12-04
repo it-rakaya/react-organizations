@@ -71,7 +71,7 @@
     "register": "تسجيل",
     "userManual": "دليل المستخدم",
     "remainingTimeToHajj": "المتبقي على الحج",
-    "timeLeftTo": "المتبقي على الصلاة",
+    "timeLeftTo": "المتبقي على صلاة",
     "downloadFile": "تنزيل الملف",
     "year": "سنة",
     "month": "شهر",
@@ -80,6 +80,13 @@
     "hours": "ساعة",
     "hrs": "س",
     "minutes": "د",
-    "seconds": "ث"
+    "seconds": "ث",
+    "prayers":{
+      "Fajr":"الفجر",
+      "Dhuhr":"الظهر",
+      "Asr":"العصر",
+      "Maghrib":"المغرب",
+      "Isha":"العشاء"
+    }
   }
 }

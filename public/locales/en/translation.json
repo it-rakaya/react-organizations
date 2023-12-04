@@ -19,6 +19,13 @@
     "hours":"Hours",
     "hrs":"hrs",
     "minutes":"min",
-    "seconds":"sec"
+    "seconds":"sec",
+    "prayers":{
+      "Fajr":"Fajr",
+      "Dhuhr":"Dhuhr",
+      "Asr":"Asr",
+      "Maghrib":"Maghrib",
+      "Isha":"Isha"
+    }
 }
 }
