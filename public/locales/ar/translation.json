@@ -61,5 +61,23 @@
   "Not Found Employee":"لايوجد موظفيين ",
   "name":"الاسم",
   "preview":"معاينه",
-  "The file was downloaded successfully":"تم تحميل المرفق بنجاح"
+  "The file was downloaded successfully":"تم تحميل المرفق بنجاح",
+  "landing": {
+    "organizationName": "اسم المنظمة",
+    "description": "نص عربي نص عربي نص عربي نص عربي نص عربي نص عربي",
+    "login": "تسجيل الدخول",
+    "register": "تسجيل",
+    "userManual": "دليل المستخدم",
+    "remainingTimeToHajj": "المتبقي على الحج",
+    "timeLeftTo": "المتبقي على الصلاة",
+    "downloadFile": "تنزيل الملف",
+    "year": "سنة",
+    "month": "شهر",
+    "months": "شهور",
+    "days": "يوم",
+    "hours": "ساعة",
+    "hrs": "س",
+    "minutes": "د",
+    "seconds": "ث"
+  }
 }

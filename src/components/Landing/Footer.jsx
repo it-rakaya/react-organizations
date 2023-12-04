@@ -2,41 +2,11 @@ import React, { useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { useTranslation } from "react-i18next";
 
-
-function calculateTimeLeftUntilNextPrayer(prayerTimes) {
-  // Get the current date and time
-  const now = new Date();
-
-  // Parse prayer times into Date objects
-  const prayerDates = Object.entries(prayerTimes).reduce((acc, [prayer, time]) => {
-    const [hours, minutes] = time.split(':');
-    const prayerDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes);
-    acc[prayer] = prayerDate;
-    return acc;
-  }, {});
-
-  // Find the next prayer
-  let nextPrayer = null;
-  for (const [prayer, prayerDate] of Object.entries(prayerDates)) {
-    if (prayerDate > now && (nextPrayer === null || prayerDate < nextPrayer)) {
-      nextPrayer = prayerDate;
-    }
-  }
-
-  // Calculate the time difference
-  const timeDifference = nextPrayer - now;
-  const hours = Math.floor(timeDifference / (1000 * 60 * 60));
-  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-  return { hours, minutes, seconds };
-}
-
-
 const getPrayerTime = async ()=>{
-  const response = await fetch('https://api.aladhan.com/timingsByAddress/04-12-2023?address=Makkah,KSA&method=4', {mode:'no-cors'});
-  const prayer = (response)
-  console.log(prayer);
+  const response = await fetch('https://api.aladhan.com/v1/calendarByCity/2023/12?city=Makkah&country=Saudi%Arabia&method=04');
+  const data =  (await response.json()).data;
+
+  console.log(data[new Date().getDate()-1].timings.Dhuhur);
 }
 
 const FooterComponent = ({ title, children, last = false }) => {
