@@ -74,7 +74,7 @@ export default function BaseInputField({
         </FormControl>
       ) : (
         <>
-          <label className="block my-3"> {label} </label>
+          <label className="block "> {label} </label>
           <TextField
             // autoFocus
             placeholder={placeholder}
@@ -83,12 +83,8 @@ export default function BaseInputField({
             helperText={errors[name]}
             fullWidth
             value={values[name]}
-            // sx={{ mb: 4 }}
+            sx={{ background:"white" , marginTop:"0.75rem" }}
             type={type}
-            // mask="(#00) 000-0000"
-            // definitions={{
-            //   '#': /[1-9]/,
-            // }}
             InputProps={
               type === "number"
                 ? {
@@ -98,15 +94,9 @@ export default function BaseInputField({
                 : { onChange: handleChange }
             }
             name={name}
-            className={`${className} "my-3 code" ${
+            className={`${className} "my-3 code " ${
               !!errors[name] && "border-red-500 "
             }`}
-            // onChange={(e) => {
-            //   // if (values[name] !== undefined) {
-            //   // setFieldValueState(e.target.value)
-            //   setFieldValue(name, e.target.value);
-            //   // }
-            // }}
           />
           <div>{/* <FormikError name={name} /> */}</div>
         </>

@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       colors:{
-        contained:"#5A5FE0",
-        // contained:"#9F9685",
+        // contained:"#5A5FE0",
+        contained:"#9F9685",
         "darkModeColor":"#282a42",
         "primary":"#C5B279",
         "secondary":"#9F9685",

@@ -7,6 +7,8 @@ import MainButton from "../../molecules/Formik/MainButton";
 import OrderMainData from "./OrderMainData";
 import { useQueryClient } from "@tanstack/react-query";
 import { useMutate } from "../../../hooks/useMutate";
+import { Button } from "@mui/material";
+import ButtonComp from "../../atoms/buttons/ButtonComp";
 
 export default function AddOrder({setOpenAddFaculty}) {
   const [show, setShow] = useState(true);
@@ -64,8 +66,8 @@ export default function AddOrder({setOpenAddFaculty}) {
           <OrderMainData setShow={setShow} show={show} />
           {!show && (
             <div className="flex justify-center gap-5 mt-10">
-              <MainButton text={"رجوع"} action={() => setShow(true)} />
-              <MainButton text={"حفظ"} type={"submit"} />
+              <ButtonComp className={'w-auto'}  variant="outlined" action={() => setShow(true)} >رجوع</ButtonComp>
+              <ButtonComp className={'w-auto'} type={"submit"}  >حفظ</ButtonComp>
             </div>
           )}
         </Form>

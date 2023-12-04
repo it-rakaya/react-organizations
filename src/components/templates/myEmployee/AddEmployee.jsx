@@ -20,7 +20,6 @@ export default function AddEmployee({
       setOpenAddEmployee(false);
       refetch();
     },
-
     onError: (err) => {
       console.log("err", err);
       notify("error", err?.response?.data.message);

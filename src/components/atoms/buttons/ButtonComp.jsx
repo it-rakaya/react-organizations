@@ -20,7 +20,7 @@ const ButtonComp = ({
       size="large"
       type={type}
       variant={variant}
-      className={`!${className} ${
+      className={`${className} ${
         variant == "contained"
           ? "!bg-contained"
           : variant == "outlined"

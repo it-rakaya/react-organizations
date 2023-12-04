@@ -10,6 +10,7 @@ import { twMerge } from "tailwind-merge"
   withTouched = true,
 }) => {
   const { errors: formikErrors, touched: formikTouched } = useFormikContext()
+  console.log("🚀 ~ file: FormikError.jsx:13 ~ formikErrors:", formikErrors)
 
   const error = formikErrors[name]
   const isTouched = formikTouched[name]

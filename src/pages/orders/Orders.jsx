@@ -14,6 +14,9 @@ import DataNotFound from "../../components/molecules/NotFound";
 import useFetch from "../../hooks/useFetch";
 import CancelOrder from "../../components/organisms/orders/CancelOrder";
 import { t } from "i18next";
+import OrderIcon from "../../components/atoms/icons/OrderIcon";
+import ButtonComp from "../../components/atoms/buttons/ButtonComp";
+import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 
 export default function Orders() {
   const [openAddFaculty, setOpenAddFaculty] = useState(false);
@@ -48,17 +51,59 @@ export default function Orders() {
         <Loading />
       ) : Orders?.all_user_orders?.length ? (
         <>
-          <Grid container spacing={6}>
+          <Grid container spacing={10}>
             {Orders?.all_user_orders?.map((item) => (
               <Grid
                 item
                 xs={12}
                 sm={4}
                 md={3}
+                xl={2}
                 key={item?.id}
-                className={{ height: "290px" }}
+              
+                // className={{ height: "3500px" }}
               >
-                <Card sx={{ position: "relative" }}>
+                <Card sx={{ position: "relative" }}   style={{
+                  height: "220px",
+                  maxHeight: "220px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}>
+                  <OptionsMenu
+                    iconButtonProps={{
+                      size: "small",
+                      sx: { top: 12, right: 12, position: "absolute" },
+                    }}
+                    options={[
+                      {
+                        text: t("Details"),
+                        details: "Additional details here",
+                        function: () => {
+                          setOpenDetailsOrder(true);
+                          setDetailsOrder(item);
+                        },
+                      },
+
+                      { divider: true },
+                      {
+                        text: t("Cancel"),
+                        menuItemProps: {
+                          sx:
+                            item.status.name !== "تم الالغاء"
+                              ? { color: "error.main" }
+                              : { color: "#ff87878f", cursor: "not-allowed" },
+                        },
+                        function: () => {
+                          if (item.status.name !== "تم الالغاء") {
+                            setOpenCancelOrder(true);
+                            setOrderId(item?.id);
+                          }
+                        },
+                      },
+                    ]}
+                  />
                   <CardContent>
                     <Box
                       sx={{
@@ -67,12 +112,14 @@ export default function Orders() {
                         flexDirection: "column",
                       }}
                     >
-                      <img
+                      {/* <img
                         width="80"
                         height="80"
                         src="https://img.icons8.com/dotty/80/purchase-order.png"
                         alt="purchase-order"
-                      />
+                      /> */}
+
+                      <OrderIcon />
                       <Typography variant="h6" sx={{ fontWeight: 500 }}>
                         {item?.name_ar}
                       </Typography>
@@ -84,23 +131,24 @@ export default function Orders() {
                       </Typography>
                       <Typography
                         sx={{ mb: 4, color: "text.secondary" }}
-                        className={`text-center font-bold px-2 py-1 rounded-md !text-white `}
-                        style={{ backgroundColor: item?.status?.color }}
+                        className={`text-center font-bold px-2 py-1 rounded-md !text-black `}
+                        // style={{ backgroundColor: item?.status?.color }}
                       >
                         {item?.status?.name}
                       </Typography>
                       <Grid xs={12} sm={12} md={12} xl={12}>
-                        <Button
-                          variant="outlined"
-                          className="!mx-2"
-                          onClick={() => {
-                            setOpenDetailsOrder(true);
-                            setDetailsOrder(item);
-                          }}
-                        >
-                          تفاصيل طلب
-                        </Button>
-                        <Button
+                        {item.status.name !== "تم الالغاء" && (
+                          <ButtonComp
+                            variant="contained"
+                            action={() => {
+                              setOpenDetailsOrder(true);
+                              setDetailsOrder(item);
+                            }}
+                          >
+                            تفاصيل طلب
+                          </ButtonComp>
+                        )}
+                        {/* <Button
                           disabled={
                             item.status.name == "تم الالغاء" ||
                             item.status.name == "تم القبول " ||
@@ -119,7 +167,7 @@ export default function Orders() {
                           }}
                         >
                           الغاء طلب
-                        </Button>
+                        </Button> */}
                       </Grid>
                     </Box>
                   </CardContent>
@@ -147,7 +195,7 @@ export default function Orders() {
       />
       <ModalComp
         open={openCancelOrder}
-        className={"  "}
+        className="!max-w-[500px]  "
         onClose={() => setOpenCancelOrder(false)}
         Children={
           <CancelOrder

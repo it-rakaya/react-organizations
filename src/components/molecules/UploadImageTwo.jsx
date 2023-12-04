@@ -7,7 +7,7 @@ import { useFormikContext } from "formik";
 import PreviewImage from "./PreviewImage";
 import PdfIcon from "../atoms/icons/PdfIcon";
 import DownloadIcon from "../atoms/icons/DownloadIcon";
-import { t } from "i18next";
+import CheckIcon from "../atoms/icons/CheckIcon";
 
 const UploadImageTwo = ({ name, label, nameValue }) => {
   const { setFieldValue, values } = useFormikContext();
@@ -42,14 +42,14 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
   const isLargeFile = files?.length && files[0]?.size > 524288000;
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <Box sx={files?.length ? { height: "" } : {}}>
         <div className="relative cursor-pointer">
           <div className="flex flex-col items-center bg-[#F5F5F5] rounded-md">
             <h2 className="bg-[#EFEFEF] w-full text-center px-3 pt-2 rounded-md">
               {label}
             </h2>
-            <div {...getRootProps({ className: "dropzone h-[150px]" })} >
+            <div {...getRootProps({ className: "dropzone h-[150px]" })}>
               {!files?.length ? (
                 <div className="flex flex-col items-center justify-center py-5">
                   <input {...getInputProps()} name={name} />
@@ -57,8 +57,10 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
                 </div>
               ) : (
                 <div className="rounded-md">
-                  {!isLargeFile && files[0]?.type === "image/jpeg" && (
-                    <PreviewImage files={files ? files : []} />
+                  {!isLargeFile && (
+                    <div className="flex flex-col items-center justify-center py-5">
+                      <CheckIcon />
+                    </div>
                   )}
                 </div>
               )}
@@ -67,7 +69,6 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
                   "حجم الملف كبير"
                 ) : files?.length ? (
                   <div className="flex flex-col items-center justify-center ">
-                    {files[0]?.type === "application/pdf" && <PdfIcon />}{" "}
                     <p>تم رفع الملف بنجاح</p>
                   </div>
                 ) : (
@@ -75,21 +76,23 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
                 )}
               </p>
             </div>
-            <div>
-              {files[0]?.type === "application/pdf" && (
-                <a
-                  href={URL.createObjectURL(files[0])}
-                  download={files[0].name}
-                  className="absolute top-0 flex mt-2 left-[5px]"
-                >
-                  {/* <span>{t("Download")}</span> */}
-                  <span>
-                    {" "}
-                    <DownloadIcon />
-                  </span>
-                </a>
-              )}
-            </div>
+          </div>
+          <div className="flex justify-start w-full rounded-md ">
+            {!isLargeFile && files[0]?.type === "image/jpeg" ? (
+              <div className="flex justify-start">
+                <PreviewImage files={files ? files : []} />
+              </div>
+            ) : files[0]?.type === "application/pdf" ? (
+              <a
+                href={URL.createObjectURL(files[0])}
+                download={files[0].name}
+                className=""
+              >
+                <PdfIcon />
+              </a>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </Box>

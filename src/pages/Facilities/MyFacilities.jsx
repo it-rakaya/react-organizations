@@ -1,27 +1,25 @@
 /* eslint-disable no-unused-vars */
-import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import { t } from "i18next";
 import { useState } from "react";
 import MainHeader from "../../components/atoms/MainHeader";
 import ModalComp from "../../components/atoms/ModalComp";
+import ButtonComp from "../../components/atoms/buttons/ButtonComp";
+import FacilityIcon from "../../components/atoms/icons/FaciltyIcon";
 import Loading from "../../components/molecules/Loading";
 import DataNotFound from "../../components/molecules/NotFound";
+import Paginate from "../../components/molecules/Paginate";
+import Search from "../../components/molecules/Search";
 import DetailsFacility from "../../components/organisms/MyFacilities/DetailsFacility";
 import StepperFacility from "../../components/organisms/MyFacilities/StepperFacility";
 import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import useFetch from "../../hooks/useFetch";
-import { t } from "i18next";
-import Search from "../../components/molecules/Search";
-import Paginate from "../../components/molecules/Paginate";
-import ShowDetails from "../../components/atoms/icons/ShowDetails";
-import EditIcon from "../../components/atoms/icons/EditIcon";
-import FacilityIcon from "../../components/atoms/icons/FaciltyIcon";
-import ButtonComp from "../../components/atoms/buttons/ButtonComp";
+import { useNavigate } from "react-router-dom";
 
 export default function MyFacilities() {
   const [show, setShow] = useState(false);
@@ -60,7 +58,7 @@ export default function MyFacilities() {
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
-
+const navigate = useNavigate()
   return (
     <div>
       <MainHeader title={t("Facilities")} />
@@ -69,7 +67,7 @@ export default function MyFacilities() {
         setSearchQuery={setSearchQuery}
         placeholder={t("Search facilities...")}
         addTitle={t("Add Facility")}
-        action={() => setOpenAddFaculty(true)}
+        action={() => navigate('/dashboard/facilities/create-facility')}
       />
       <div className="flex flex-col items-center justify-between h-[65vh]">
         {isLoading || isRefetching ? (

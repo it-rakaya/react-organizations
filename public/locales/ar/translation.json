@@ -43,7 +43,8 @@
   "Add Facility": "اضافة منشأه",
   "Details": "تفاصيل",
   "Edit": "تعديل",
-  "Delete": "تعديل",
+  "Delete": "حذف",
+  "Cancel":"الغاء",
   "Add Employ": "اضافة موظف",
   "Not Found Facilities": "لايوجد منشات",
   "Search facilities...": "البحث في المنشئات",
@@ -58,6 +59,7 @@
   "Please sign-in to your account":"يرجى تسجيل الدخول إلى الحساب الخاص بك",
   "LOGIN":"تسجيل الدخول",
   "Not Found Employee":"لايوجد موظفيين ",
-  "name":"الاسم"
-
+  "name":"الاسم",
+  "preview":"معاينه",
+  "The file was downloaded successfully":"تم تحميل المرفق بنجاح"
 }
