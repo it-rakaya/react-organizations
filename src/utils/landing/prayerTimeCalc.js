@@ -24,10 +24,13 @@ const calculateTimeLeftUntilNextPrayer = (prayerTimes, setPrayer) => {
     prayer.setHours(prayerHour, prayerMin);
     if (prayer >= now) {
       nextPrayer = prayer;
-
       setPrayer(key);
       break;
     }
+  }
+  //   no prayers left today
+  if (nextPrayer == null) {
+    return null;
   }
 
   // Calculate the time difference
@@ -38,17 +41,22 @@ const calculateTimeLeftUntilNextPrayer = (prayerTimes, setPrayer) => {
   return { hours, minutes };
 };
 
-export const getPrayerTime = async (setNextPrayerTime, setPrayer) => {
+export const getPrayerTime = async (setNextPrayerTime, setPrayer, inc=false) => {
   console.log(new Date().getFullYear(), new Date().getDate());
+  const now = new Date();
+  const [month, year] = [new Date().getMonth()+1,now.getFullYear()]
   const response = await fetch(
-    `https://api.aladhan.com/v1/calendarByCity/${new Date().getFullYear()}/${new Date().getMonth()}?city=Makkah&country=KSA&method=4`
+    `https://api.aladhan.com/v1/calendarByCity/${year}/${month}?city=Makkah&country=KSA&method=4`
   );
   const data = (await response.json()).data;
-
-  setNextPrayerTime(
-    calculateTimeLeftUntilNextPrayer(
-      data[new Date().getDate() - 1].timings,
-      setPrayer
-    )
+  const timeLeft = calculateTimeLeftUntilNextPrayer(
+    data[new Date().getDate() + (inc?0:-1)].timings,
+    setPrayer
   );
+
+  if(timeLeft == null){
+    // rerun the method but increase the 
+    getPrayerTime(setNextPrayerTime, setPrayer, true);
+  }
+  setNextPrayerTime(timeLeft);
 };

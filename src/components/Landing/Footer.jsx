@@ -35,11 +35,11 @@ const Footer = () => {
     minutes: null,
   });
   const [prayer, setPrayer] = useState("");
-  const [timeLeft, setTimeLeft] = useState({months:'', days:'', hours:''})
+  const [timeLeft, setTimeLeft] = useState({ months: "", days: "", hours: "" });
   useEffect(() => {
     getPrayerTime(setNextPrayerTime, setPrayer);
-    
-    getTimeLeftToHajj(setTimeLeft)
+
+    getTimeLeftToHajj(setTimeLeft);
   }, []);
   return (
     <div className="2xl:pe-[18%] 3xl:pe-[26%]">
@@ -54,7 +54,8 @@ const Footer = () => {
         </FooterComponent>
         <FooterComponent title={t("landing.remainingTimeToHajj")}>
           <h1 className={`${textStyle} tracking-wider`}>
-            {timeLeft.months+ " "} {t("landing.months")} {timeLeft.days+ " "} {t("landing.days")} {timeLeft.hours+" "}
+            {timeLeft.months + " "} {t("landing.months")} {timeLeft.days + " "}{" "}
+            {t("landing.days")} {timeLeft.hours + " "}
             {t("landing.hours")}
           </h1>
         </FooterComponent>
@@ -65,12 +66,6 @@ const Footer = () => {
           <h1 className={`${textStyle} flex items-center gap-4 tracking-wider`}>
             {nextPrayerTime.hours} {t("landing.hrs")} {nextPrayerTime.minutes}{" "}
             {t("landing.minutes")}
-            <Icon
-              icon="mi:sunrise-alt"
-              color="#CAB272"
-              fontSize={32}
-              fontWeight={1000}
-            />
           </h1>
         </FooterComponent>
       </div>
