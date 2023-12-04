@@ -10,18 +10,14 @@ import { notify } from "../../utils/toast";
 import ButtonComp from "../atoms/buttons/ButtonComp";
 import PhoneInput2 from "../molecules/Formik/PhoneInput2";
 import CheckCode from "../organisms/checkCode";
-import { useOrg } from "../../context/organization provider/OrganizationProvider";
 
 export default function LoginForm() {
   const [verifyPhone, setVerifyPhone] = useState(false);
   const [valuesForm, setValuesForm] = useState("");
   const { login } = useAuth();
   const [dataValue, setDataValue] = useState();
-  const [valueOTP , setValueOTP] = useState()
-  const { refetch  } = useUser();
-  const { orgData  } = useOrg();
-  console.log("🚀 ~ file: LoginForm.jsx:23 ~ LoginForm ~ orgData:", orgData)
-
+  const [valueOTP, setValueOTP] = useState();
+  const { refetch } = useUser();
 
 
   const { mutate: LoginData, isPending: loadingLogin } = useMutate({
@@ -31,9 +27,8 @@ export default function LoginForm() {
     onSuccess: (data) => {
       login(data.data);
       // setToken(data?.data)
-      refetch()
+      refetch();
       notify("success", `مربحا بك يا ${data?.data?.user.name}`);
-
     },
 
     onError: (err) => {
@@ -42,7 +37,7 @@ export default function LoginForm() {
     },
   });
 
-  const { mutate: sendOTP  } = useMutate({
+  const { mutate: sendOTP } = useMutate({
     mutationKey: [`send-otp`],
     endpoint: `send-otp`,
     onSuccess: (data) => {
@@ -58,7 +53,7 @@ export default function LoginForm() {
 
   const ValidationSchema = () =>
     Yup.object({
-      phone:  Yup.string().trim().required(t("phone is required"))
+      phone: Yup.string().trim().required(t("phone is required")),
     });
   return (
     <div>
@@ -90,29 +85,15 @@ export default function LoginForm() {
                   flexWrap: "wrap",
                   justifyContent: "space-between",
                 }}
-              >
-                {/* <FormControlLabel
-                  label={`${t("Remember Me")}`}
-                  control={
-                    <Checkbox
-                      checked={rememberMe}
-                      onChange={(e) => setRememberMe(e.target.checked)}
-                    />
-                  }
-                /> */}
-                {/* <Typography
-                  variant="body2"
-                  component={Link}
-                  href="/forgot-password"
-                  sx={{ color: "primary.main", textDecoration: "none" }}
-                >
-                  {t("Forgot Password ?")}
-                </Typography> */}
-              </Box>
+              ></Box>
             </>
           )}
           {verifyPhone && (
-            <CheckCode number={dataValue?.value} valuesForm={valuesForm}  setValueOTP={setValueOTP}/>
+            <CheckCode
+              number={dataValue?.value}
+              valuesForm={valuesForm}
+              setValueOTP={setValueOTP}
+            />
           )}
 
           <ButtonComp loading={loadingLogin}>{t("LOGIN")}</ButtonComp>

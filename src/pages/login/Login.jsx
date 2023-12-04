@@ -7,8 +7,8 @@ import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import imageSource from "../../../src/assets/images/pages/auth-v2-login-illustration-bordered-light.png";
 import LoginForm from "../../components/templates/LoginForm";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useSettings } from "../../hooks/useSettings";
-import themeConfig from "../../themeConfig";
 
 const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -54,7 +54,8 @@ const TypographyStyled = styled(Typography)(({ theme }) => ({
 
 const Login = () => {
   const navigate = useNavigate();
-
+  const { orgData } = UseOrg();
+  console.log("🚀 ~ file: LoginForm.jsx:23 ~ LoginForm ~ orgData:", orgData);
   const theme = useTheme();
   const { settings } = useSettings();
   const hidden = useMediaQuery(theme.breakpoints.down("md"));
@@ -200,30 +201,31 @@ const Login = () => {
                       fontSize: "1.5rem !important",
                     }}
                   >
-                    {themeConfig.templateName}
+                    {orgData?.organizations?.name_ar}
                   </Typography>
                 </Box>
                 <Box sx={{ mb: 6 }}>
-                  <TypographyStyled variant="h5">{`${t("Welcome to")} ${themeConfig.templateName}! 👋🏻`}</TypographyStyled>
+                  <TypographyStyled variant="h5">{`${t("Welcome to")} ${
+                    orgData?.organizations?.name_ar
+                  }! 👋🏻`}</TypographyStyled>
                   <Typography variant="body2">
                     {t("Please sign-in to your account")}
                   </Typography>
                 </Box>
-   
+
                 <LoginForm />
 
-         
                 <Box
                   sx={{
                     display: "flex",
                     alignItems: "center",
                     flexWrap: "wrap",
                     justifyContent: "center",
-                    marginTop:"20px"
+                    marginTop: "20px",
                   }}
                 >
                   <Typography sx={{ mr: 2, color: "text.secondary" }}>
-                  {t("New on our platform?")}
+                    {t("New on our platform?")}
                   </Typography>
                   <Link
                     to="/register"
@@ -232,7 +234,6 @@ const Login = () => {
                     {t("Create an account")}
                   </Link>
                 </Box>
-              
               </BoxWrapper>
             </Box>
           </RightWrapper>

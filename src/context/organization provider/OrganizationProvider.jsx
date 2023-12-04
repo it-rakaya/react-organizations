@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
-import Cookies from "js-cookie";
 import { createContext, useContext, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 
 const OrgContext = createContext();
 export const OrganizationProvider = ({ children }) => {
-  const user_token = Cookies.get("token");
   const url = window.location.href;
   console.log(
     "🚀 ~ file: OrganizationProvider.jsx:10 ~ OrganizationProvider ~ url:",
@@ -41,7 +39,7 @@ console.log("🚀 ~ file: OrganizationProvider.jsx:17 ~ OrganizationProvider ~ o
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const useOrg = () => {
+export const UseOrg = () => {
   const context = useContext(OrgContext);
   if (!context) {
     throw new Error("useUser must be used within a OrganizationProvider");
