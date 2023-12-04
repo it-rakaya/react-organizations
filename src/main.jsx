@@ -13,7 +13,6 @@ import "./query.css";
 import { AuthProvider } from "./context/auth-and-perm/AuthProvider";
 import Loading from "./components/molecules/Loading";
 import { UserProvider } from "./context/user provider/UserContext";
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: { refetchOnWindowFocus: false },
