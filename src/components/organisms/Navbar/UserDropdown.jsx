@@ -151,7 +151,7 @@ const UserDropdown = (props) => {
           </Box>
         </Box>
         <Divider sx={{ mt: "0 !important" }} />
-        <MenuItem sx={{ p: 0 }} onClick={() => navigate("/profile/")}>
+        <MenuItem sx={{ p: 0 }} onClick={() => navigate("/dashboard/profile/")}>
           <Box sx={styles}>
             <IconifyIcon icon="mdi:account-outline" />
             Profile

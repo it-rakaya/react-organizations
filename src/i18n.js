@@ -17,6 +17,7 @@ i18n
             order: ["localStorage","htmlTag", "cookie", "path"],
             caches: ["localStorage"], // cache user language on
         },
+        
         fallbackLng: "en",
         interpolation: {
             escapeValue: false,

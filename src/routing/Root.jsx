@@ -86,70 +86,74 @@ export const Root = ({ props }) => {
       paddingRight: theme.spacing(4),
     },
   }));
-  const token = Cookies.get("token")
+  const token = Cookies.get("token");
 
   // ** Toggle Functions
   const toggleNavVisibility = () => setNavVisible(!navVisible);
   if (token) {
-  return (
-    <div
-      className={
-        isSidebarCollapsed ? "flex w-full" : "grid grid-cols-12 w-full"
-      }
-    >
-      <div className={isSidebarCollapsed ? "w-[64px]" : "lg:col-span-2  "}>
-        <OutsideClickHandler onOutsideClick={handleClickOutside}>
-          <div className="fixed">
-            <SideBar
-              handleClickItem={handleClickOutside}
-              isSidebarCollapsed={isSidebarCollapsed}
-              handleCollapsedSideBar={handleCollapsedSideBar}
-            />
-          </div>
-        </OutsideClickHandler>
-        {/* {showOverlay && <Overlay zIndex={1100} />} */}
-      </div>
+    return (
+      <div
+        className={
+          isSidebarCollapsed ? "flex w-full" : "grid grid-cols-12 w-full"
+        }
+      >
+        <div className={isSidebarCollapsed ? "w-[64px]" : "lg:col-span-2  "}>
+          <OutsideClickHandler onOutsideClick={handleClickOutside}>
+            <div className="fixed">
+              <SideBar
+                handleClickItem={handleClickOutside}
+                isSidebarCollapsed={isSidebarCollapsed}
+                handleCollapsedSideBar={handleCollapsedSideBar}
+              />
+            </div>
+          </OutsideClickHandler>
+          {/* {showOverlay && <Overlay zIndex={1100} />} */}
+        </div>
 
-      <div className={isSidebarCollapsed ? "w-full" : "col-span-12 lg:col-span-10"}>
-        <VerticalLayoutWrapper className="">
-          <MainContentWrapper className="layout-content-wrapper">
-            <LayoutAppBar
-              toggleNavVisibility={toggleNavVisibility}
-              settings={settings}
-              appBarContent={
-                <AppBarContent
-                  settings={settings}
-                  setSidebarCollapsed={setSidebarCollapsed}
-                  saveSettings={saveSettings}
-                  // appBarContent={verticalLayoutProps.appBar?.content}
-                  {...props}
-                />
-              }
-            />
-            <ContentWrapper
-              className="layout-page-content"
-              sx={{
-                ...(contentWidth === "boxed" && {
-                  mx: "auto",
-                  "@media (min-width:1440px)": { maxWidth: 1440 },
-                  "@media (min-width:1200px)": { maxWidth: "100%" },
-                }),
-              }}
-            >
-              {/* <div className="mt-[0px] bg-[#f7f7f9]  h-screen py-5 m"> */}
-              <Outlet />
-              {/* </div> */}
-            </ContentWrapper>
-          </MainContentWrapper>
-        </VerticalLayoutWrapper>
-      </div>
+        <div
+          className={
+            isSidebarCollapsed ? "w-full" : "col-span-12 lg:col-span-10"
+          }
+        >
+          <VerticalLayoutWrapper className="">
+            <MainContentWrapper className="layout-content-wrapper">
+              <LayoutAppBar
+                toggleNavVisibility={toggleNavVisibility}
+                settings={settings}
+                appBarContent={
+                  <AppBarContent
+                    settings={settings}
+                    setSidebarCollapsed={setSidebarCollapsed}
+                    saveSettings={saveSettings}
+                    // appBarContent={verticalLayoutProps.appBar?.content}
+                    {...props}
+                  />
+                }
+              />
+              <ContentWrapper
+                className="layout-page-content"
+                sx={{
+                  ...(contentWidth === "boxed" && {
+                    mx: "auto",
+                    "@media (min-width:1440px)": { maxWidth: 1440 },
+                    "@media (min-width:1200px)": { maxWidth: "100%" },
+                  }),
+                }}
+              >
+                {/* <div className="mt-[0px] bg-[#f7f7f9]  h-screen py-5 m"> */}
+                <Outlet />
+                {/* </div> */}
+              </ContentWrapper>
+            </MainContentWrapper>
+          </VerticalLayoutWrapper>
+        </div>
 
-      {/* <Footer /> */}
-    </div>
-  );
-} else {
-  navigate('/login');
-}
+        {/* <Footer /> */}
+      </div>
+    );
+  } else {
+    navigate("/");
+  }
 };
 
 // return <Loading mainTitle={t('loading')} />;

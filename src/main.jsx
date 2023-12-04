@@ -24,29 +24,29 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
     {/* <LoadingContextProvider> */}
     {/* <LanguageContextProvider> */}
-      <BrowserRouter>
-        <SettingsProvider>
-          <SettingsConsumer>
-            {({ settings }) => {
-              return (
-                <ThemeComponent settings={settings}>
-                  <HelmetProvider>
+    <BrowserRouter>
+      <SettingsProvider>
+        <SettingsConsumer>
+          {({ settings }) => {
+            return (
+              <ThemeComponent settings={settings}>
+                <HelmetProvider>
                     <UserProvider>
-                      <AuthProvider>
-                        <ProSidebarProvider>
-                          <Suspense fallback={<Loading />}>
-                            <App />
-                          </Suspense>
-                        </ProSidebarProvider>
-                      </AuthProvider>
+                  <AuthProvider>
+                      <ProSidebarProvider>
+                        <Suspense fallback={<Loading />}>
+                          <App />
+                        </Suspense>
+                      </ProSidebarProvider>
+                  </AuthProvider>
                     </UserProvider>
-                  </HelmetProvider>
-                </ThemeComponent>
-              );
-            }}
-          </SettingsConsumer>
-        </SettingsProvider>
-      </BrowserRouter>
+                </HelmetProvider>
+              </ThemeComponent>
+            );
+          }}
+        </SettingsConsumer>
+      </SettingsProvider>
+    </BrowserRouter>
     {/* </LanguageContextProvider> */}
     {/* </LoadingContextProvider> */}
   </QueryClientProvider>

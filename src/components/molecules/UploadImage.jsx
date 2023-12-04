@@ -5,8 +5,9 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
-const UploadImage = ({ name, label }) => {
-  const { setFieldValue } = useFormikContext();
+import { t } from "i18next";
+const UploadImage = ({ name, label , placeholder }) => {
+  const { setFieldValue , errors } = useFormikContext();
   const [files, setFiles] = useState([]);
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -28,7 +29,7 @@ const UploadImage = ({ name, label }) => {
 
           <input {...getInputProps()} className="cursor-pointer" />
 
-          {/* <Box
+          <Box
             sx={{
               display: "flex",
               flexDirection: ["column", "column", "row"],
@@ -50,8 +51,8 @@ const UploadImage = ({ name, label }) => {
                 </div>
               )}
             </div>
-          </Box> */}
-          <div className="flex flex-col items-center gap-1 bg-[#F5F5F5]  rounded-md ">
+          </Box>
+          {/* <div className="flex flex-col items-center gap-1 bg-[#F5F5F5]  rounded-md ">
             <h2 className="bg-[#EFEFEF] w-full text-center p-3 rounded-md">
               {label}
             </h2>
@@ -73,7 +74,7 @@ const UploadImage = ({ name, label }) => {
                 ? "تم رفع الملف بنجاح"
                 : " اختر ملف أو قم باسقاطه هنا "}
             </p>
-          </div>
+          </div> */}
           {/* <div>
             <FormikError name={name} />
           </div> */}

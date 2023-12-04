@@ -13,6 +13,7 @@ import Loading from "../../components/molecules/Loading";
 import DataNotFound from "../../components/molecules/NotFound";
 import useFetch from "../../hooks/useFetch";
 import CancelOrder from "../../components/organisms/orders/CancelOrder";
+import { t } from "i18next";
 
 export default function Orders() {
   const [openAddFaculty, setOpenAddFaculty] = useState(false);
@@ -39,8 +40,8 @@ export default function Orders() {
   return (
     <div>
       <MainHeader
-        title="الطلبات"
-        addTitle="اضافة طلب"
+        title={t("Orders")}
+        addTitle={t("Add order")}
         action={() => setOpenAddFaculty(true)}
       />
       {isLoading || isRefetching ? (
@@ -83,7 +84,7 @@ export default function Orders() {
                       </Typography>
                       <Typography
                         sx={{ mb: 4, color: "text.secondary" }}
-                        className={`text-center font-bold px-2 py-1 rounded-md text-white `}
+                        className={`text-center font-bold px-2 py-1 rounded-md !text-white `}
                         style={{ backgroundColor: item?.status?.color }}
                       >
                         {item?.status?.name}
@@ -91,7 +92,7 @@ export default function Orders() {
                       <Grid xs={12} sm={12} md={12} xl={12}>
                         <Button
                           variant="outlined"
-                          className="mx-2"
+                          className="!mx-2"
                           onClick={() => {
                             setOpenDetailsOrder(true);
                             setDetailsOrder(item);
@@ -110,7 +111,7 @@ export default function Orders() {
                             item.status.name == "تم القبول " ||
                             item.status.name == "تم الرفض"
                               ? "bg-[#bcbcbc] disabled:text-white cursor-not-allowed"
-                              : "bg-red-600 text-white hover:!bg-red-600"
+                              : "!bg-red-600 !text-white hover:!bg-red-600"
                           }`}
                           onClick={() => {
                             setOpenCancelOrder(true);

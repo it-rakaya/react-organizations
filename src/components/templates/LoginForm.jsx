@@ -90,7 +90,7 @@ export default function LoginForm() {
                   justifyContent: "space-between",
                 }}
               >
-                <FormControlLabel
+                {/* <FormControlLabel
                   label={`${t("Remember Me")}`}
                   control={
                     <Checkbox
@@ -98,15 +98,15 @@ export default function LoginForm() {
                       onChange={(e) => setRememberMe(e.target.checked)}
                     />
                   }
-                />
-                <Typography
+                /> */}
+                {/* <Typography
                   variant="body2"
                   component={Link}
                   href="/forgot-password"
                   sx={{ color: "primary.main", textDecoration: "none" }}
                 >
                   {t("Forgot Password ?")}
-                </Typography>
+                </Typography> */}
               </Box>
             </>
           )}

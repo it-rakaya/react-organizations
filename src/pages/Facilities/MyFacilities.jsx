@@ -20,6 +20,8 @@ import Search from "../../components/molecules/Search";
 import Paginate from "../../components/molecules/Paginate";
 import ShowDetails from "../../components/atoms/icons/ShowDetails";
 import EditIcon from "../../components/atoms/icons/EditIcon";
+import FacilityIcon from "../../components/atoms/icons/FaciltyIcon";
+import ButtonComp from "../../components/atoms/buttons/ButtonComp";
 
 export default function MyFacilities() {
   const [show, setShow] = useState(false);
@@ -119,24 +121,26 @@ export default function MyFacilities() {
                           },
                         ]}
                       />
-                      <CardContent>
+                      <CardContent className=" pt-5 !pb-0 !pl-0 !pr-0">
                         <Box
                           sx={{
                             display: "flex",
                             alignItems: "center",
                             flexDirection: "column",
+                            
                           }}
                         >
                           {/* <Avatar
                         src={"/images/icons/project-icons/social-label.png"}
                         sx={{ mb: 4, width: 100, height: 100 }}
                       /> */}
-                          <img
+                          {/* <img
                             width="60"
                             height="60"
                             src="https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/external-company-town-xnimrodx-lineal-xnimrodx-4.png"
                             alt="external-company-town-xnimrodx-lineal-xnimrodx-4"
-                          />
+                          /> */}
+                          <FacilityIcon />
                           <Typography
                             variant="h6"
                             sx={{ fontWeight: 500, marginTop: 1 }}
@@ -144,15 +148,16 @@ export default function MyFacilities() {
                           >
                             {item?.name}
                           </Typography>
-                          <Button
-                            variant="outlined"
-                            onClick={() => {
+                          <ButtonComp
+                            variant="contained"
+                            className={"!m-0 rounded-l-none rounded-r-none"}
+                            action={() => {
                               setOpenAddEmployee(true);
                               setFacultyID(item?.id);
                             }}
                           >
                             {t("Add Employ")}
-                          </Button>
+                          </ButtonComp>
                         </Box>
                       </CardContent>
                     </Card>
