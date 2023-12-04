@@ -28,7 +28,6 @@ function calculateTimeLeftUntilNextPrayer(prayerTimes) {
     prayer.setHours(prayerHour, prayerMin);
     if (prayer >= now) {
       nextPrayer = prayer;
-
       break;
     }
   }

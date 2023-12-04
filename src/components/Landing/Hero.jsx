@@ -1,7 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-
+import { useNavigate } from 'react-router-dom';
 const Hero = () => {
+  const navigate = useNavigate()
   const btnStyles =
     "basis-1/2 py-4 rounded-lg font-bold text-lg 3xl:text-2xl shadow";
   const { i18n, t } = useTranslation();
@@ -24,16 +25,20 @@ const Hero = () => {
         </div>
         {/* btns */}
         <div className="flex flex-col xl:flex-row gap-4 mt-10">
-          <button
+          <button 
+          onClick={()=> navigate('/login')}
             className={`${btnStyles} text-white transition-shadow duration-300 hover:shadow-lg bg-primary`}
           >
             {t('landing.login')}
           </button>
-          <button
+        
+        <button
+        onClick={()=> navigate('/register')}
             className={`${btnStyles} border-2 border-primary text-primary transition-shadow duration-300 hover:shadow-lg`}
           >
             {t('landing.register')}
           </button>
+
         </div>
       </div>
     </div>
