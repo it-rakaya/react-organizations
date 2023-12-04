@@ -16,8 +16,8 @@ export default function EmployeeMainData() {
             <BaseInputField label=' المسمى الوظيفي ' placeholder={`${t("Programming")}`}name='position' />
           </div>
         </div>
-        <div className='flex items-center col-span-12 gap-2 '>
-          <div className='w-1/2'>
+        <div className='flex items-start col-span-12 gap-2 mt-5'>
+          <div className='w-1/2 '>
             <label>صورة بطاقة العمل</label>
             <UploadImage name='work_card_photo' placeholder={t("please upload work card photo")} />
           </div>

@@ -36,7 +36,15 @@ const steps = [
   },
 ];
 
-const StepperFacility = ({ setOpenAddFaculty, resetForm, updateData }) => {
+const StepperFacility = ({
+  setOpenAddFaculty,
+  resetForm = false,
+  updateData,
+}) => {
+  console.log(
+    "🚀 ~ file: StepperFacility.jsx:40 ~ StepperFacility ~ resetForm:",
+    resetForm
+  );
   const [activeStep, setActiveStep] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -71,28 +79,28 @@ const StepperFacility = ({ setOpenAddFaculty, resetForm, updateData }) => {
   });
 
   const initialValues = {
-    name: !resetForm ? updateData?.name : "",
-    registration_number: !resetForm ? updateData?.registration_number : "",
-    version_date: !resetForm ? updateData?.version_date : new Date(),
-    version_date_hj: !resetForm ? updateData?.version_date_hj : "",
-    end_date: !resetForm ? updateData?.end_date : new Date(),
-    end_date_hj: !resetForm ? updateData?.end_date_hj : "",
-    registration_source: !resetForm ? updateData?.registration_source : "",
-    license: !resetForm ? updateData?.license : "",
-    license_expired: !resetForm ? updateData?.license_expired : new Date(),
-    license_expired_hj: !resetForm ? updateData?.license_expired_hj : "",
-    address: !resetForm ? updateData?.address : "",
-    tax_certificate: !resetForm ? updateData?.tax_certificate : "",
-    employee_number: !resetForm ? updateData?.employee_number : "",
-    chefs_number: !resetForm ? updateData?.chefs_number : "",
-    kitchen_space: !resetForm ? updateData?.kitchen_space : "",
-    street_name: !resetForm ? updateData?.street_name : "",
-    neighborhood: !resetForm ? updateData?.neighborhood : "",
-    city: !resetForm ? updateData?.city : "",
-    building_number: !resetForm ? updateData?.building_number : "",
-    postal_code: !resetForm ? updateData?.postal_code : "",
-    sub_number: !resetForm ? updateData?.sub_number : "",
-    signature: !resetForm ? updateData?.signature : "",
+    name: "",
+    registration_number: "",
+    version_date: new Date(),
+    version_date_hj: "",
+    end_date: new Date(),
+    end_date_hj: "",
+    registration_source: "",
+    license: "",
+    license_expired: new Date(),
+    license_expired_hj: "",
+    address: "",
+    tax_certificate: "",
+    employee_number: "",
+    chefs_number: "",
+    kitchen_space: "",
+    street_name: "",
+    neighborhood: "",
+    city: "",
+    building_number: "",
+    postal_code: "",
+    sub_number: "",
+    signature: "",
   };
   const validationSchema = () =>
     Yup.object({
@@ -189,113 +197,118 @@ const StepperFacility = ({ setOpenAddFaculty, resetForm, updateData }) => {
                 });
                 addFacility({
                   ...values,
-       
                 });
               }}
             >
               {({ errors, values }) => (
-                <Form className="h-full">
-                  <div
-                    spacing={5}
-                    className="flex flex-col justify-between h-full"
-                  >
-                    {getStepContent(activeStep)}
-                    <Grid
-                      item
-                      xs={12}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "end",
-                        gap: "5px",
-                      }}
-                      mt={5}
-                      className=""
+                <>
+                  {console.log("values", values)}
+                  <Form className="h-full">
+                    <div
+                      spacing={5}
+                      className="flex flex-col justify-between h-full"
                     >
-                      <ButtonComp
-                        size="large"
-                        type="button"
-                        disabled={activeStep === 0}
-                        action={handleBack}
-                        variant="outlined"
-                        className={`! w-auto !text-contained ${
-                          activeStep === 0 ? "hidden" : "block"
-                        } `}
+                      {getStepContent(activeStep)}
+                      <Grid
+                        item
+                        xs={12}
+                        sx={{
+                          display: "flex",
+                          justifyContent: "end",
+                          gap: "5px",
+                        }}
+                        mt={5}
+                        className=""
                       >
-                        السابق
-                      </ButtonComp>
-                      <ButtonComp
-                        action={
-                          Object.keys(errors).length > 0
-                            ? () =>
-                                notify("warning", t("please complete field"))
-                            : handleNext
-                        }
-                        type="button"
-                        className={"w-auto"}
-                        variant="contained"
-                        disabled={values.name == ""}
-                      >
-                        {activeStep === steps.length - 1
-                          ? "حفظ ومتابعه"
-                          : "التالي"}
-                      </ButtonComp>
-                    </Grid>
-                  </div>
-                  <ModalComp
-                    open={open}
-                    className="!max-w-[500px]  "
-                    onClose={() => setOpen(false)}
-                    Children={
-                      <div className="pt-10 !flex gap-3 !items-center !justify-center !flex-col">
-                        <div>
-                          <TermsConditionIcon />
-                        </div>
-                        <h2>{t("Terms and Conditions")}</h2>
-
-                        <p>
-                          {t(
-                            "I confirm that all data is correct. I confirm that all data is correct"
-                          )}
-                        </p>
-                        <FormControl>
-                          <RadioGroup
-                            aria-labelledby="demo-controlled-radio-buttons-group"
-                            name="controlled-radio-buttons-group"
-                            // value={value}
-                            // onChange={handleChange}
-                          >
-                            <FormControlLabel
-                              value="female"
-                              control={
-                                <Radio
-                                onClick={() => setChecked(!checked)}
-                                  checked={checked}
-                                />
-                              }
-                              label={t("I have read all terms and conditions")}
-                            />
-                          </RadioGroup>
-                        </FormControl>
                         <ButtonComp
-                          type={"submit"}
-                          action={() =>
-                            addFacility({
-                              ...values,
-                              // "attachments[registration]": values["registration"],
-                              // "attachments[national_address]": values["national_address"],
-                            })
-                          }
-                          loading={loadingAddFacility}
-                          className={"w-auto"}
-                          disabled={!checked}
-                          variant="contained"
+                          size="large"
+                          type="button"
+                          disabled={activeStep === 0}
+                          action={handleBack}
+                          variant="outlined"
+                          className={`! w-auto !text-contained ${
+                            activeStep === 0 ? "hidden" : "block"
+                          } `}
                         >
-                          {t("Save")}
+                          السابق
                         </ButtonComp>
-                      </div>
-                    }
-                  />
-                </Form>
+                        <ButtonComp
+                          action={
+                            Object.keys(errors).length > 0
+                              ? () =>
+                                  notify("warning", t("please complete field"))
+                              : handleNext
+                          }
+                          type="button"
+                          className={"!w-auto"}
+                          variant="contained"
+                          disabled={!values.name}
+                        >
+                          {activeStep === steps.length - 1
+                            ? "حفظ ومتابعه"
+                            : "التالي"}
+                        </ButtonComp>
+                      </Grid>
+                    </div>
+                    <ModalComp
+                      open={open}
+                      className="!max-w-[500px]  "
+                      onClose={() => setOpen(false)}
+                      Children={
+                        <div className="pt-10 !flex gap-3 !items-center !justify-center !flex-col">
+                          <div>
+                            <TermsConditionIcon />
+                          </div>
+                          <h2>{t("Terms and Conditions")}</h2>
+
+                          <p>
+                            {t(
+                              "I confirm that all data is correct. I confirm that all data is correct"
+                            )}
+                          </p>
+                          <FormControl>
+                            <RadioGroup
+                              aria-labelledby="demo-controlled-radio-buttons-group"
+                              name="controlled-radio-buttons-group"
+                              // value={value}
+                              // onChange={handleChange}
+                            >
+                              <FormControlLabel
+                                value="female"
+                                control={
+                                  <Radio
+                                    onClick={() => setChecked(!checked)}
+                                    checked={checked}
+                                    className="pt-0 pb-0"
+                                  />
+                                }
+                                label={t(
+                                  "I have read all terms and conditions"
+                                )}
+                              />
+                            </RadioGroup>
+                          </FormControl>
+                          <ButtonComp
+                            type={"submit"}
+                            action={() =>
+                              addFacility({
+                                ...values,
+                                // "attachments[registration]": values["registration"],
+                                // "attachments[national_address]": values["national_address"],
+                              })
+                            }
+                            loading={loadingAddFacility}
+                            className={"w-auto mt-1"}
+                            disabled={!checked}
+                            variant="contained"
+                          >
+                            {t("Save")}
+                          </ButtonComp>
+                        </div>
+                      }
+                    />
+                  </Form>
+                </>
               )}
             </Formik>
           </CardContent>

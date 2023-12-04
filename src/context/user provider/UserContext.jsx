@@ -38,7 +38,12 @@ export const UserProvider = ({ children }) => {
     },
     enabled:user_token ? true : false
   });
-  // Fetch user data on component mount (you can customize this behavior)
+  useEffect(() => {
+    if (isRefetching) {
+
+      console.log("تم تحميل البيانات بنجاح");
+    }
+  }, [isRefetching]);
   useEffect(() => {
     // refetch();
   }, [refetch]);

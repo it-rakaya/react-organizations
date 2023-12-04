@@ -219,6 +219,7 @@ const Login = () => {
                     alignItems: "center",
                     flexWrap: "wrap",
                     justifyContent: "center",
+                    marginTop:"20px"
                   }}
                 >
                   <Typography sx={{ mr: 2, color: "text.secondary" }}>
@@ -239,7 +240,7 @@ const Login = () => {
       </div>
     );
   } else {
-    navigate("/");
+    navigate("/dashboard");
   }
 };
 

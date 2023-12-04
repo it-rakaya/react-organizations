@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
       window.localStorage.setItem("user", JSON.stringify(data.user));
       Cookies.set("role", data.user.role_name);
       Cookies.set("token", data.token);
-      navigate("/", { replace: true });
+      navigate("/dashboard", { replace: true });
     },
     [navigate, refetch, setUser]
   );
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
     Cookies.remove("token");
 
     refetch()
-    navigate("/login", { replace: true });
+    navigate("/", { replace: true });
   }, [setUser, refetch, navigate]);
 
   const value = useMemo(

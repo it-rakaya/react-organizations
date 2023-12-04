@@ -35,8 +35,7 @@ function calculateTimeLeftUntilNextPrayer(prayerTimes) {
 
 const getPrayerTime = async ()=>{
   const response = await fetch('https://api.aladhan.com/timingsByAddress/04-12-2023?address=Makkah,KSA&method=4', {mode:'no-cors'});
-  const data =  await response.json();
-  const prayer = (data)
+  const prayer = (response)
   console.log(prayer);
 }
 

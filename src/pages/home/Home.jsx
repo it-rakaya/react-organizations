@@ -1,7 +1,7 @@
 // ** MUI Imports
 import { Alert, Button } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalComp from "../../components/atoms/ModalComp";
 import IconifyIcon from "../../components/atoms/icons/IconifyIcon";
 import VerifyUser from "../../components/molecules/VerifyUser";
@@ -26,7 +26,9 @@ import { notify } from "../../utils/toast";
 const Home = () => {
   const [open, setOpen] = useState(false);
   const [dataValue, setDataValue] = useState();
-  const { userData   } = useUser();
+  const { userData , refetch , isRefetching   } = useUser();
+  console.log("🚀 ~ file: Home.jsx:30 ~ Home ~ userData:", userData)
+  
   const { mutate: sendOTP } = useMutate({
     mutationKey: [`send-otp`],
     endpoint: `send-otp`,
@@ -40,7 +42,12 @@ const Home = () => {
       notify("error", err?.response?.data.message);
     },
   });
-
+  useEffect(() => {
+    if (!userData ) {
+      refetch();
+    }
+  }, [userData, isRefetching, refetch]);
+  
 
   // if (isRefetching) {
   //   return <p><Loading/></p>; // or any loading indicator you prefer

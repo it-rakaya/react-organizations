@@ -2,6 +2,7 @@
 import { Button, Grid } from "@mui/material";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
+import TermsConditionIcon from "../../atoms/icons/TermsConditionIcon";
 
 export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
   const { mutate: CancelOrder } = useMutate({
@@ -22,6 +23,9 @@ export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-5 p-10 align-middle">
+        <div>
+          <TermsConditionIcon />
+        </div>
         <div>هل انت متاكد من الغاء الطلب</div>
         <div className="flex ">
           <Grid xs={12} sm={12} md={12} xl={12}>
@@ -32,7 +36,9 @@ export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
             >
               موافق
             </Button>
-            <Button className="mx-10 text-white bg-red-600">الغاء</Button>
+            <Button className="mx-10 border-2 border-solid border-contained text-contained">
+              الغاء
+            </Button>
           </Grid>
         </div>
       </div>

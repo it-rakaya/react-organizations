@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 const BASE_CLASS_NAME =
   'form-textarea w-full dark:bg-[#151521] dark:text-white rounded-md base-text-area-style border-1 border-[rgba(0, 29, 110, 0.4)] focus:!border-1 focus:!border-[rgba(0, 29, 110, 0.7)]';

@@ -74,7 +74,7 @@ export default function BaseInputField({
         </FormControl>
       ) : (
         <>
-          <label> {label} </label>
+          <label className="block "> {label} </label>
           <TextField
             // autoFocus
             placeholder={placeholder}
@@ -83,6 +83,7 @@ export default function BaseInputField({
             helperText={errors[name]}
             fullWidth
             value={values[name]}
+            sx={{ background:"white" , marginTop:"0.75rem" }}
             type={type}
             InputProps={
               type === "number"
@@ -93,7 +94,7 @@ export default function BaseInputField({
                 : { onChange: handleChange }
             }
             name={name}
-            className={`${className} "my-3 code bg-white" ${
+            className={`${className} "my-3 code " ${
               !!errors[name] && "border-red-500 "
             }`}
           />

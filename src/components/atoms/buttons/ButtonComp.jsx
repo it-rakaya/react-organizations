@@ -22,12 +22,12 @@ const ButtonComp = ({
       variant={variant}
       className={`${className} ${
         variant == "contained"
-          ? "bg-contained"
+          ? "!bg-contained"
           : variant == "outlined"
-          ? "bg-transparent text-contained hover:!bg-transparent"
+          ? "bg-transparent !text-contained hover:!bg-transparent"
           : ""
       } text-white  hover:!bg-contained disabled:cursor-not-allowed disabled:text-[#bcbcbc]`}
-      sx={{ mb: 7 }}
+      // sx={{ mb: 7 }}
       disabled={disabled}
       onClick={action}
     >

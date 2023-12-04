@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // ** React Imports
 import { createContext, useState, useEffect } from 'react'
 import themeConfig from '../themeConfig'

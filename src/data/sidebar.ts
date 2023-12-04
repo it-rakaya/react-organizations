@@ -26,19 +26,19 @@ export const sideBarItems: MenuItem_TP[] = [
     id: crypto.randomUUID(),
     label: `${"Home"}`,
     icon: BiHome,
-    link: "/",
+    link: "/dashboard",
   },
   {
     id: crypto.randomUUID(),
     label: `${"Facilities"}`,
     icon: BiSolidCube,
-    link: "/facilities",
+    link: "/dashboard/facilities",
   },
   {
     id: crypto.randomUUID(),
     label: `${"Employee"}`,
     icon: BiUser,
-    link: "/employee",
+    link: "/dashboard/employee",
   },
   // {
   //   id: crypto.randomUUID(),
@@ -56,6 +56,6 @@ export const sideBarItems: MenuItem_TP[] = [
     id: crypto.randomUUID(),
     label: `${"Orders"}`,
     icon: BiDetail,
-    link: "/orders",
+    link: "/dashboard/orders",
   },
 ];

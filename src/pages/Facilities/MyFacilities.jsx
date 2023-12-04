@@ -1,25 +1,25 @@
 /* eslint-disable no-unused-vars */
-import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import { t } from "i18next";
 import { useState } from "react";
 import MainHeader from "../../components/atoms/MainHeader";
 import ModalComp from "../../components/atoms/ModalComp";
+import ButtonComp from "../../components/atoms/buttons/ButtonComp";
+import FacilityIcon from "../../components/atoms/icons/FaciltyIcon";
 import Loading from "../../components/molecules/Loading";
 import DataNotFound from "../../components/molecules/NotFound";
+import Paginate from "../../components/molecules/Paginate";
+import Search from "../../components/molecules/Search";
 import DetailsFacility from "../../components/organisms/MyFacilities/DetailsFacility";
 import StepperFacility from "../../components/organisms/MyFacilities/StepperFacility";
 import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import useFetch from "../../hooks/useFetch";
-import { t } from "i18next";
-import Search from "../../components/molecules/Search";
-import Paginate from "../../components/molecules/Paginate";
-import ShowDetails from "../../components/atoms/icons/ShowDetails";
-import EditIcon from "../../components/atoms/icons/EditIcon";
+import { useNavigate } from "react-router-dom";
 
 export default function MyFacilities() {
   const [show, setShow] = useState(false);
@@ -58,7 +58,7 @@ export default function MyFacilities() {
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
-
+const navigate = useNavigate()
   return (
     <div>
       <MainHeader title={t("Facilities")} />
@@ -67,7 +67,7 @@ export default function MyFacilities() {
         setSearchQuery={setSearchQuery}
         placeholder={t("Search facilities...")}
         addTitle={t("Add Facility")}
-        action={() => setOpenAddFaculty(true)}
+        action={() => navigate('/dashboard/facilities/create-facility')}
       />
       <div className="flex flex-col items-center justify-between h-[65vh]">
         {isLoading || isRefetching ? (
@@ -119,24 +119,26 @@ export default function MyFacilities() {
                           },
                         ]}
                       />
-                      <CardContent>
+                      <CardContent className=" pt-5 !pb-0 !pl-0 !pr-0">
                         <Box
                           sx={{
                             display: "flex",
                             alignItems: "center",
                             flexDirection: "column",
+                            
                           }}
                         >
                           {/* <Avatar
                         src={"/images/icons/project-icons/social-label.png"}
                         sx={{ mb: 4, width: 100, height: 100 }}
                       /> */}
-                          <img
+                          {/* <img
                             width="60"
                             height="60"
                             src="https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/external-company-town-xnimrodx-lineal-xnimrodx-4.png"
                             alt="external-company-town-xnimrodx-lineal-xnimrodx-4"
-                          />
+                          /> */}
+                          <FacilityIcon />
                           <Typography
                             variant="h6"
                             sx={{ fontWeight: 500, marginTop: 1 }}
@@ -144,15 +146,16 @@ export default function MyFacilities() {
                           >
                             {item?.name}
                           </Typography>
-                          <Button
-                            variant="outlined"
-                            onClick={() => {
+                          <ButtonComp
+                            variant="contained"
+                            className={"!m-0 rounded-l-none rounded-r-none"}
+                            action={() => {
                               setOpenAddEmployee(true);
                               setFacultyID(item?.id);
                             }}
                           >
                             {t("Add Employ")}
-                          </Button>
+                          </ButtonComp>
                         </Box>
                       </CardContent>
                     </Card>

@@ -56,8 +56,8 @@ const AnalyticsCongratulations = ({ userData }) => {
             <Typography sx={{ mb: 4.5 }} variant="body2">
               Check your new badge in your profile.
             </Typography>
-            <Link to={"/profile"}>
-              <Button variant="contained" className="bg-[#5A5FE0]">
+            <Link to={"/dashboard/profile"}>
+              <Button variant="contained" className="bg-contained">
                 بياناتي الشخصية
               </Button>
             </Link>

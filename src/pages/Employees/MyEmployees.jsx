@@ -50,7 +50,7 @@ export default function MyEmployees() {
 
   return (
     <div>
-      <MainHeader title="الموظفين" />
+      <MainHeader title={t("Employee")} />
       <Search
         setSearchQuery={setSearchQuery}
         placeholder={t("Search Employee...")}

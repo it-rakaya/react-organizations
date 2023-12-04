@@ -29,7 +29,7 @@ const PhoneInput2 = ({ label }) => {
   });
 
   return (
-    <div className="col-span-1 mb-4">
+    <div className="col-span-1 my-4">
       <div className="flex flex-col gap-1 ">
         <label className="mb-3"> {label} </label>
 
