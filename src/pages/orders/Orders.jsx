@@ -23,7 +23,6 @@ export default function Orders() {
   const [openDetailsOrder, setOpenDetailsOrder] = useState(false);
   const [openCancelOrder, setOpenCancelOrder] = useState(false);
   const [orderId, setOrderId] = useState();
-
   const [detailsOrder, setDetailsOrder] = useState("");
 
   const {
