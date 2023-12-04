@@ -5,6 +5,8 @@ import OrganizationServices from "../../molecules/OrganizationServices";
 import SelectFacilities from "../../molecules/SelectFacilities";
 import useFetch from "../../../hooks/useFetch";
 import QuestionBaseInput from "../../molecules/Formik/QuestionBaseInput";
+import { t } from "i18next";
+import ButtonComp from "../../atoms/buttons/ButtonComp";
 
 export default function OrderMainData({ setShow, show }) {
   const { values } = useFormikContext();
@@ -31,7 +33,16 @@ export default function OrderMainData({ setShow, show }) {
             />
           </div>
           <div className="flex justify-end mt-10">
-            <MainButton text={"متابعه"} action={() => setShow(false)} />
+            <ButtonComp
+              variant="contained"
+              className={"w-auto"}
+              action={() => setShow(false)}
+              disabled={
+                values.facility_id == "" || values.organization_service_id == ""
+              }
+            >
+              {t("Continue")}
+            </ButtonComp>
           </div>
         </>
       ) : extra_questions?.questions?.length ? (

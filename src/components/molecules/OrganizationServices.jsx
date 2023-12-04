@@ -14,7 +14,7 @@ export default function OrganizationServices({ name,  label }) {
 })
   return (
     <div>
-      <label>{label}</label>
+      <label className="block mb-3">{label}</label>
 
       <SelectComp
         name={name}

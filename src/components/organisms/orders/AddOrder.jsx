@@ -10,25 +10,24 @@ import { useMutate } from "../../../hooks/useMutate";
 import { Button } from "@mui/material";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 
-export default function AddOrder({setOpenAddFaculty}) {
+export default function AddOrder({ setOpenAddFaculty }) {
   const [show, setShow] = useState(true);
-  const queryClient = useQueryClient()
-
+  const queryClient = useQueryClient();
 
   const { mutate: AddOrder } = useMutate({
     mutationKey: [`create_new_orders`],
     endpoint: `orders`,
     onSuccess: (data) => {
-      queryClient.refetchQueries(["my_orders"])
+      queryClient.refetchQueries(["my_orders"]);
       notify("success");
-      setOpenAddFaculty(false)
+      setOpenAddFaculty(false);
     },
 
     onError: (err) => {
       console.log("err", err);
       notify("error", err?.response?.data.message);
     },
-    formData:true
+    formData: true,
   });
 
   return (
@@ -37,40 +36,52 @@ export default function AddOrder({setOpenAddFaculty}) {
         initialValues={{ facility_id: "", organization_service_id: "" }}
         onSubmit={(values) => {
           const answers = {};
-      
+
           const hasFieldStartingWithAnswers = Object.keys(values).filter(
             (fieldName) => fieldName.startsWith("answers")
           );
-      
+
           if (hasFieldStartingWithAnswers.length > 0) {
             hasFieldStartingWithAnswers.forEach((fieldName) => {
               const answerIndex = fieldName.slice(7); // Get the index from the field name
               answers[`answers[${answerIndex}]`] = values[fieldName];
             });
-      
+
             const formData = {
               facility_id: values.facility_id,
               organization_service_id: values.organization_service_id,
               ...answers,
             };
-      
-            AddOrder(formData);
-            console.log("🚀 ~ file: AddOrder.jsx:30 ~ AddOrder ~ values:", formData)
 
+            AddOrder(formData);
+            console.log(
+              "🚀 ~ file: AddOrder.jsx:30 ~ AddOrder ~ values:",
+              formData
+            );
           } else {
             console.log("No");
           }
         }}
       >
-        <Form>
-          <OrderMainData setShow={setShow} show={show} />
-          {!show && (
-            <div className="flex justify-center gap-5 mt-10">
-              <ButtonComp className={'w-auto'}  variant="outlined" action={() => setShow(true)} >رجوع</ButtonComp>
-              <ButtonComp className={'w-auto'} type={"submit"}  >حفظ</ButtonComp>
-            </div>
-          )}
-        </Form>
+        {({ errors, values }) => (
+          <Form>
+            <OrderMainData setShow={setShow} show={show} />
+            {!show && (
+              <div className="flex justify-center gap-5 mt-10">
+                <ButtonComp
+                  className={"w-auto"}
+                  variant="outlined"
+                  action={() => setShow(true)}
+                >
+                  رجوع
+                </ButtonComp>
+                <ButtonComp className={"w-auto"} type={"submit"}>
+                  حفظ
+                </ButtonComp>
+              </div>
+            )}
+          </Form>
+        )}
       </Formik>
     </div>
   );
