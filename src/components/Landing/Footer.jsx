@@ -1,13 +1,56 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { useTranslation } from "react-i18next";
+const PRAYERS = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
 
-const getPrayerTime = async ()=>{
-  const response = await fetch('https://api.aladhan.com/v1/calendarByCity/2023/12?city=Makkah&country=Saudi%Arabia&method=04');
-  const data =  (await response.json()).data;
+function filterPrayerTimes(prayerTimes) {
+  const filteredPrayers = {};
 
-  console.log(data[new Date().getDate()-1].timings.Dhuhur);
+  for (const prayer of PRAYERS) {
+    if (prayerTimes.hasOwnProperty(prayer)) {
+      filteredPrayers[prayer] = prayerTimes[prayer];
+    }
+  }
+
+  return filteredPrayers;
 }
+
+function calculateTimeLeftUntilNextPrayer(prayerTimes) {
+  prayerTimes = filterPrayerTimes(prayerTimes);
+  // Get the current date and time
+  const now = new Date();
+
+  let nextPrayer = null;
+  for (const key in prayerTimes) {
+    const prayerHour = parseInt(prayerTimes[key].substring(0, 2));
+    const prayerMin = parseInt(prayerTimes[key].substring(3, 5));
+    const prayer = new Date();
+    prayer.setHours(prayerHour, prayerMin);
+    if (prayer >= now) {
+      nextPrayer = prayer;
+
+      break;
+    }
+  }
+
+  // Calculate the time difference
+  const timeDifference = Math.abs(nextPrayer - now);
+  console.log(timeDifference);
+  const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+  return { hours, minutes };
+}
+
+const getPrayerTime = async (setNextPrayerTime) => {
+  console.log(new Date().getFullYear(), new Date().getDate());
+  const response = await fetch(
+    `https://api.aladhan.com/v1/calendarByCity/${new Date().getFullYear()}/${new Date().getMonth()}?city=Makkah&country=KSA&method=4`
+  );
+  const data = (await response.json()).data;
+
+  setNextPrayerTime(calculateTimeLeftUntilNextPrayer(data[new Date().getDate() - 1].timings))
+};
 
 const FooterComponent = ({ title, children, last = false }) => {
   const { t, i18n } = useTranslation();
@@ -35,9 +78,9 @@ const FooterComponent = ({ title, children, last = false }) => {
 const textStyle = `text-primaryText font-semibold`;
 const Footer = () => {
   const { t } = useTranslation();
-  
+  const [nextPrayerTime, setNextPrayerTime] = useState({hours:null, minutes:null})
   useEffect(() => {
-getPrayerTime()
+    getPrayerTime(setNextPrayerTime);
   }, []);
   return (
     <div className="2xl:pe-[18%] 3xl:pe-[26%]">
@@ -58,8 +101,7 @@ getPrayerTime()
         </FooterComponent>
         <FooterComponent title={`${t("landing.timeLeftTo")}`} last>
           <h1 className={`${textStyle} flex items-center gap-4 tracking-wider`}>
-            02 {t("landing.hrs")} 38 {t("landing.minutes")} 30{" "}
-            {t("landing.seconds")}
+            {nextPrayerTime.hours} {t("landing.hrs")} {nextPrayerTime.minutes} {t("landing.minutes")}
             <Icon
               icon="mi:sunrise-alt"
               color="#CAB272"
