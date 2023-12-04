@@ -1,15 +1,24 @@
-import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
+import { useTranslation } from "react-i18next";
 
 function Navbar() {
-
-  const linkStyle = 'text-primaryText transition-all hover:text-primary duration-300'
+  const linkStyle =
+    "text-primaryText transition-all hover:text-primary duration-300";
+    const {i18n} = useTranslation();
+    const language = i18n.language;
   return (
-    <nav className="flex justify-between w-full px-5 py-3 layout-navbar">
+    <nav className="layout-navbar w-full flex justify-between py-3 px-5" dir={i18n.dir(language)}>
       <div className="flex gap-10">
-      <Link to="#" className={linkStyle}>Contact us</Link>
-      <Link href="/" className={linkStyle}>Home</Link>
+        <a href="" className={linkStyle}>
+          Logo
+        </a>
+        <a href="" className={linkStyle}>
+          Contact us
+        </a>
       </div>
-      <Link href="/" >Logo</Link>
+      <button onClick={() => {i18n.changeLanguage(language == 'ar'?'en':'ar')}} className={`text-3xl`}>
+        <Icon icon="icon-park-outline:translate" className="text-primary transition-color hover:text-primaryText duration-300" />
+      </button>
     </nav>
   );
 }

@@ -1,0 +1,21 @@
+{
+    "landing":{
+        "organizationName":"Organization Name",
+        "description":"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis quo excepturi numquam non veritatis explicabo reprehenderit, culpa expedita illum quod?",
+        "login":"Login",
+        "register":"Register",
+        "userManual":"User Manual",
+        "remainingTimeToHajj":"Remaining Time to Hajj",
+        "timeLeftTo":"Time Left To",
+        "prayer":"Prayer",
+        "downloadFile":"Download File",
+        "year":"Year",
+        "months":"Months",
+        "days":"Days",
+        "hours":"Hours",
+        "hrs":"hrs",
+        "minutes":"min",
+        "seconds":"sec"
+    }
+}
+
