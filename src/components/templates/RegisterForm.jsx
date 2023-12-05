@@ -137,6 +137,7 @@ export default function RegisterForm() {
               alignItems: "center",
               flexWrap: "wrap",
               justifyContent: "center",
+              marginTop:"10px"
             }}
           >
             <Typography sx={{ mr: 2, color: "text.secondary" }}>

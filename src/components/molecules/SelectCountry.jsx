@@ -19,7 +19,7 @@ export default function SelectCountry({ name, label, className }) {
   }));
 
   return (
-    <div className={className}>
+    <div className={`${className} mt-2`}>
       <label>{label}</label>
       {/* <SelectComp
         name={name}
@@ -28,7 +28,7 @@ export default function SelectCountry({ name, label, className }) {
         className="w-full mt-3"
         placeholder="الدوله"
       /> */}
-      <div className="mt-3">
+      <div className="mt-[0.5rem]">
         <Select
           options={options}
           name={name}
