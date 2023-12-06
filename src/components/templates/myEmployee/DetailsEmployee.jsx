@@ -17,14 +17,15 @@ export default function DetailsEmployee({ data }) {
           <p className='font-bold text-contained'>المسمى الوظيفي:</p>
           <p>{data.position}</p>
         </div>
-        <div className='flex flex-col gap-2'>
+        {
+          data?.attachmentUrl.map((item)=>
+        <div className='flex flex-col gap-2' key={item?.id}>
           <p className='font-bold text-contained'> صورة بطاقة العمل:</p>
           <p><img className='w-[200px] h-[200px] rounded-xl' src={data?.work_card_photo_url} alt="" /></p>
         </div>
-        <div className='flex flex-col gap-2'>
-          <p className='font-bold text-contained'>   صورة البطاقة الصحية:</p>
-          <p><img className='w-[200px] h-[200px] rounded-xl' src={data?.health_card_photo_url} alt="" /></p>
-        </div>
+          )
+        }
+   
       </div>
     </div>
   )

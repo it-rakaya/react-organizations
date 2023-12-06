@@ -1,27 +1,25 @@
 /* eslint-disable react/prop-types */
 import { Form, Formik } from "formik";
+import { t } from "i18next";
+import * as Yup from "yup";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import EmployeeMainData from "./EmployeeMainData";
-import * as Yup from "yup";
-import { t } from "i18next";
 
 export default function AddEmployee({
   facultyID,
-  setOpenAddEmployee,
-  refetch,
+  setSecundModal,
 }) {
+
   const { mutate: AddEmployee, isPending: loadingEmployee } = useMutate({
     mutationKey: [`facility_employees`],
     endpoint: `facility-employees`,
     onSuccess: () => {
       notify("success");
-      setOpenAddEmployee(false);
-      refetch();
+      setSecundModal(true);
     },
     onError: (err) => {
-      console.log("err", err);
       notify("error", err?.response?.data.message);
     },
     formData: true,
@@ -34,7 +32,9 @@ export default function AddEmployee({
         .trim()
         .required(t("work card photo is required")),
       health_photo: Yup.string().trim().required(t("health photo is required")),
-      national_id:Yup.string().trim().required(t("national number is required"))
+      national_id: Yup.string()
+        .trim()
+        .required(t("national number is required")),
     });
 
   return (
@@ -45,11 +45,24 @@ export default function AddEmployee({
           position: "",
           work_card_photo: File,
           health_photo: File,
-          national_id:""
+          national_id: "",
         }}
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          AddEmployee({ ...values, facility_id: facultyID });
+          const validAttachments = values?.attachments
+            .map((file, index) => ({ index, file }))
+            .filter((item) => typeof item.file !== "undefined");
+          const attachments = validAttachments.map((item) => ({
+            [`attachments[${item?.index}]`]: item?.file,
+          }));
+
+          const combinedObject = {
+            ...values,
+            facility_id: facultyID,
+            ...Object.assign({}, ...attachments),
+          };
+          delete combinedObject.attachments;
+          AddEmployee(combinedObject);
         }}
       >
         <Form>

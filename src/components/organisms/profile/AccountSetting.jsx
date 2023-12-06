@@ -1,15 +1,13 @@
 /* eslint-disable react/prop-types */
 import { Form, Formik } from "formik";
+import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import MainHeader from "../../atoms/MainHeader";
+import ButtonComp from "../../atoms/buttons/ButtonComp";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
 import DatePickerComp from "../../molecules/Formik/DatePickerComp";
 import PhoneInput2 from "../../molecules/Formik/PhoneInput2";
 import SelectCountry from "../../molecules/SelectCountry";
-import SelectOrganizations from "../../molecules/SelectOrganizations";
-import UploadImage from "../../molecules/UploadImage";
-import ButtonComp from "../../atoms/buttons/ButtonComp";
-import { useMutate } from "../../../hooks/useMutate";
 
 export default function AccountSetting({ userData, refetch , setEditUser }) {
   console.log("🚀 ~ file: AccountSetting.jsx:15 ~ AccountSetting ~ userData:", userData)

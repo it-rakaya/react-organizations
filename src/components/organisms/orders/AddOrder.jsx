@@ -14,7 +14,7 @@ export default function AddOrder({ setOpenAddFaculty }) {
   const [show, setShow] = useState(true);
   const queryClient = useQueryClient();
 
-  const { mutate: AddOrder } = useMutate({
+  const { mutate: AddOrder, isPending } = useMutate({
     mutationKey: [`create_new_orders`],
     endpoint: `orders`,
     onSuccess: (data) => {
@@ -22,7 +22,6 @@ export default function AddOrder({ setOpenAddFaculty }) {
       notify("success");
       setOpenAddFaculty(false);
     },
-
     onError: (err) => {
       console.log("err", err);
       notify("error", err?.response?.data.message);
@@ -75,7 +74,11 @@ export default function AddOrder({ setOpenAddFaculty }) {
                 >
                   رجوع
                 </ButtonComp>
-                <ButtonComp className={"w-auto"} type={"submit"}>
+                <ButtonComp
+                  className={"w-auto"}
+                  type={"submit"}
+                  loading={isPending}
+                >
                   حفظ
                 </ButtonComp>
               </div>

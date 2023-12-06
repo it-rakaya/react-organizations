@@ -67,7 +67,6 @@ const StepperFacility = () => {
       // setOpenAddFaculty(false);
     },
     onError: (err) => {
-      console.log("err", err);
       notify("error", err?.response?.data.message);
     },
     formData: true,
@@ -188,9 +187,7 @@ const StepperFacility = () => {
               initialValues={initialValues}
               validationSchema={validationSchema}
               onSubmit={(values) => {
-                console.log("value", {
-                  ...values,
-                });
+        
                 addFacility({
                   ...values,
                 });
@@ -198,7 +195,6 @@ const StepperFacility = () => {
             >
               {({ errors, values }) => (
                 <>
-                  {console.log("values", values)}
                   <Form className="h-full">
                     <div
                       spacing={5}

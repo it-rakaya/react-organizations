@@ -20,6 +20,8 @@ import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMe
 import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
+import CheckIcon from "../../components/atoms/icons/CheckIcon";
+import { Button } from "@mui/material";
 
 export default function MyFacilities() {
   const [show, setShow] = useState(false);
@@ -30,8 +32,9 @@ export default function MyFacilities() {
   const [detailsItem, setDetailsItem] = useState();
   const [resetForm, setResetForm] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1); // New state for current page
-  const pageSize = 8; // Set your desired page size
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 8; 
+  const [openSecundModal, setSecundModal] = useState(false);
 
   const {
     data: facilities,
@@ -41,9 +44,6 @@ export default function MyFacilities() {
   } = useFetch({
     endpoint: `facilities`,
     queryKey: ["facilities"],
-    onError(e) {
-      console.log("e", e);
-    },
   });
 
   const filteredFacilities = facilities?.user_facilities?.filter((item) =>
@@ -58,7 +58,7 @@ export default function MyFacilities() {
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
-const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div>
       <MainHeader title={t("Facilities")} />
@@ -67,7 +67,7 @@ const navigate = useNavigate()
         setSearchQuery={setSearchQuery}
         placeholder={t("Search facilities...")}
         addTitle={t("Add Facility")}
-        action={() => navigate('/dashboard/facilities/create-facility')}
+        action={() => navigate("/dashboard/facilities/create-facility")}
       />
       <div className="flex flex-col items-center justify-between h-[65vh]">
         {isLoading || isRefetching ? (
@@ -125,7 +125,6 @@ const navigate = useNavigate()
                             display: "flex",
                             alignItems: "center",
                             flexDirection: "column",
-                            
                           }}
                         >
                           {/* <Avatar
@@ -202,7 +201,35 @@ const navigate = useNavigate()
             facultyID={facultyID}
             refetch={refetch}
             setOpenAddEmployee={setOpenAddEmployee}
+            setSecundModal={setSecundModal}
           />
+        }
+      />
+      <ModalComp
+        open={openSecundModal}
+        className="!max-w-[500px]  "
+        onClose={() => setSecundModal(true)}
+        Children={
+          <div className="flex flex-col items-center justify-center gap-5 p-3">
+            <CheckIcon className="stroke-contained" />
+            <h1 className="font-bold"> تم إضافة موظف بنجاح</h1>
+
+            <Button
+              className="!w-2/3 !text-white !rounded-md !bg-contained !hover:!bg-gold"
+              onClick={() => navigate("/dashboard/employee")}
+            >
+              الانتقال الى الموظفين
+            </Button>
+            <Button
+              className="!w-2/3 !px-10 !border !border-solid !rounded-md !text-contained !border-contained"
+              onClick={() => {
+                setSecundModal(false);
+                setOpenAddEmployee(false);
+              }}
+            >
+              الرجوع
+            </Button>
+          </div>
         }
       />
     </div>

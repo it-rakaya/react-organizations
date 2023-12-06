@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 
-function CheckIcon({className}) {
+function CheckIcon({ className }) {
   return (
     <div>
       <svg
-      className={className}
+        className={className}
         width="44"
         height="44"
         viewBox="0 0 44 44"
@@ -13,7 +13,7 @@ function CheckIcon({className}) {
       >
         <mask
           id="mask0_3514_32885"
-        //   style="mask-type:luminance"
+          //   style="mask-type:luminance"
           maskUnits="userSpaceOnUse"
           x="0"
           y="0"

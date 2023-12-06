@@ -147,6 +147,7 @@ const StepperFacility = () => {
 
       <ModalComp
         open={open}
+        className="!max-w-[500px]  "
         onClose={() => setOpen(false)}
         Children={
           <div className="flex flex-col items-center justify-center gap-5 p-3">

@@ -4,23 +4,24 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import { t } from "i18next";
 import { useState } from "react";
 import MainHeader from "../../components/atoms/MainHeader";
-import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import ModalComp from "../../components/atoms/ModalComp";
-import DetailsEmployee from "../../components/templates/myEmployee/DetailsEmployee";
 import Loading from "../../components/molecules/Loading";
 import DataNotFound from "../../components/molecules/NotFound";
-import useFetch from "../../hooks/useFetch";
 import Paginate from "../../components/molecules/Paginate";
 import Search from "../../components/molecules/Search";
-import { t } from "i18next";
+import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
+import DetailsEmployee from "../../components/templates/myEmployee/DetailsEmployee";
+import useFetch from "../../hooks/useFetch";
 
 export default function MyEmployees() {
   const [open, setOpen] = useState(false);
   const [detailsItem, setDetailsItem] = useState();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
   const pageSize = 8;
 
   const {
@@ -30,9 +31,6 @@ export default function MyEmployees() {
   } = useFetch({
     endpoint: `facility-employees`,
     queryKey: ["facility_employees"],
-    onError(e) {
-      console.log("e", e);
-    },
   });
 
   const filteredEmployee = employees?.employees?.filter((item) =>
@@ -98,16 +96,18 @@ export default function MyEmployees() {
                       >
                         <Avatar
                           src={"/images/avatars/9.png"}
-                          sx={{ mb: 4, width: 100, height: 100 }}
+                          sx={{ mb: 4, width: 80, height: 80 }}
                         />
-                        <Typography variant="h6" sx={{ fontWeight: 500 }}>
+                        <Typography variant="h6" sx={{ fontWeight: 900 }} className="text-contained">
                           {item?.name}
                         </Typography>
+                        <Typography  sx={{ fontWeight: 500 }} >
+                          {item?.facility_name}
+                        </Typography>
                         <Typography
-                          sx={{ mb: 4, color: "text.secondary" }}
+                          sx={{  color: "text.secondary" }}
                           className="text-center"
                         >
-                          {" "}
                           {item?.position}
                         </Typography>
                       </Box>
@@ -133,6 +133,7 @@ export default function MyEmployees() {
           <DataNotFound title={t("Not Found Employee")} />
         )}
       </div>
+    
     </div>
   );
 }

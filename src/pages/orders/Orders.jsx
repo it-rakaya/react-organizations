@@ -52,12 +52,12 @@ export default function Orders() {
         action={() => setOpenAddFaculty(true)}
       />
       <TabContext value={value}>
-        <TabList onChange={handleChange} aria-label="nav tabs example" >
+        <TabList onChange={handleChange} aria-label="nav tabs example">
           <Tab
             value="1"
             component="a"
             // className="mx-2 bg-contained rounded-t-md"
-            
+
             label={<h2 className="font-bold text-black">{t("All")} </h2>}
           />
           <Tab
@@ -81,116 +81,102 @@ export default function Orders() {
             label={<h2 className="font-bold text-black">{t("Canceled")} </h2>}
           />
         </TabList>
+        {isLoading || isRefetching ? (
+          <Loading />
+        ) : Orders?.all_user_orders?.length ? (
+          <>
+            <Grid container spacing={10}>
+              {Orders?.all_user_orders?.map((item) => (
+                <>
+                  <TabPanel value="1" key={item?.id} className="mt-20">
+                    <Grid
+                      item
+                      xs={12}
+                      sm={12}
+                      md={12}
+                      xl={12}
+                      key={item?.id}
+                      style={{ width: "178px" }}
 
-        <TabPanel value="1">
-          {isLoading || isRefetching ? (
-            <Loading />
-          ) : Orders?.all_user_orders?.length ? (
-            <>
-              <Grid container spacing={10}>
-                {Orders?.all_user_orders?.map((item) => (
-                  <Grid
-                    item
-                    xs={12}
-                    sm={4}
-                    md={3}
-                    xl={2}
-                    key={item?.id}
-
-                    // className={{ height: "3500px" }}
-                  >
-                    <Card
-                      sx={{ position: "relative" }}
-                      style={{
-                        height: "220px",
-                        maxHeight: "220px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
+                      // className={{ height: "3500px" }}
                     >
-                      <OptionsMenu
-                        iconButtonProps={{
-                          size: "small",
-                          sx: { top: 12, right: 12, position: "absolute" },
+                      <Card
+                        sx={{ position: "relative" }}
+                        style={{
+                          height: "220px",
+                          maxHeight: "220px",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          justifyContent: "center",
                         }}
-                        options={[
-                          {
-                            text: t("Details"),
-                            details: "Additional details here",
-                            function: () => {
-                              setOpenDetailsOrder(true);
-                              setDetailsOrder(item);
-                            },
-                          },
-
-                          { divider: true },
-                          {
-                            text: t("Cancel"),
-                            menuItemProps: {
-                              sx:
-                                item.status.name !== "تم الالغاء"
-                                  ? { color: "error.main" }
-                                  : {
-                                      color: "#ff87878f",
-                                      cursor: "not-allowed",
-                                    },
-                            },
-                            function: () => {
-                              if (item.status.name !== "تم الالغاء") {
-                                setOpenCancelOrder(true);
-                                setOrderId(item?.id);
-                              }
-                            },
-                          },
-                        ]}
-                      />
-                      <CardContent>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            flexDirection: "column",
+                      >
+                        <OptionsMenu
+                          iconButtonProps={{
+                            size: "small",
+                            sx: { top: 12, right: 12, position: "absolute" },
                           }}
-                        >
-                          {/* <img
-                        width="80"
-                        height="80"
-                        src="https://img.icons8.com/dotty/80/purchase-order.png"
-                        alt="purchase-order"
-                      /> */}
+                          options={[
+                            {
+                              text: t("Details"),
+                              details: "Additional details here",
+                              function: () => {
+                                setOpenDetailsOrder(true);
+                                setDetailsOrder(item);
+                              },
+                            },
 
-                          <OrderIcon />
-                          <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                            {item?.name_ar}
-                          </Typography>
-                          <Typography
-                            sx={{ mb: 4, color: "text.secondary" }}
-                            className="text-center"
+                            { divider: true },
+                            {
+                              text: t("Cancel"),
+                              menuItemProps: {
+                                sx:
+                                  item.status.name !== "تم الالغاء"
+                                    ? { color: "error.main" }
+                                    : {
+                                        color: "#ff87878f",
+                                        cursor: "not-allowed",
+                                      },
+                              },
+                              function: () => {
+                                if (item.status.name !== "تم الالغاء") {
+                                  setOpenCancelOrder(true);
+                                  setOrderId(item?.id);
+                                }
+                              },
+                            },
+                          ]}
+                        />
+                        <CardContent>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              flexDirection: "column",
+                            }}
                           >
-                            {item?.source_registration}
-                          </Typography>
-                          <Typography
-                            sx={{ mb: 4, color: "text.secondary" }}
-                            className={`text-center font-bold px-2 py-1 rounded-md !text-black `}
-                            // style={{ backgroundColor: item?.status?.color }}
-                          >
-                            {item?.status?.name}
-                          </Typography>
-                          <Grid xs={12} sm={12} md={12} xl={12}>
-                            {item.status.name !== "تم الالغاء" && (
-                              <ButtonComp
-                                variant="contained"
-                                action={() => {
-                                  setOpenDetailsOrder(true);
-                                  setDetailsOrder(item);
-                                }}
-                              >
-                                تفاصيل طلب
-                              </ButtonComp>
-                            )}
-                            {/* <Button
+                            <OrderIcon />
+
+                            <Typography
+                              sx={{ mt: 4, color: "text.secondary" }}
+                              className={`text-center font-bold px-2 py-1 rounded-md !text-black `}
+                              // style={{ backgroundColor: item?.status?.color }}
+                            >
+                              {item?.status?.name}
+                            </Typography>
+                            <Grid xs={12} sm={12} md={12} xl={12} mt={2}>
+                              {item.status.name !== "تم الالغاء" && (
+                                <ButtonComp
+                                  variant="contained"
+                                  action={() => {
+                                    setOpenDetailsOrder(true);
+                                    setDetailsOrder(item);
+                                  }}
+                                >
+                                  تفاصيل طلب
+                                </ButtonComp>
+                              )}
+                              {/* <Button
                           disabled={
                             item.status.name == "تم الالغاء" ||
                             item.status.name == "تم القبول " ||
@@ -210,19 +196,367 @@ export default function Orders() {
                         >
                           الغاء طلب
                         </Button> */}
-                          </Grid>
-                        </Box>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                ))}
-              </Grid>
-            </>
-          ) : (
-            <DataNotFound title={"لايوجد طلبات"} />
-          )}
-        </TabPanel>
-        <TabPanel value="2"></TabPanel>
+                            </Grid>
+                          </Box>
+                        </CardContent>
+                      </Card>
+                    </Grid>
+                  </TabPanel>
+                  {item.status.name == "تم القبول" && (
+                    <TabPanel value="3" className="mt-20">
+                      <Grid
+                        item
+                        xs={12}
+                        sm={12}
+                        md={12}
+                        xl={12}
+                        key={item?.id}
+                        style={{ width: "178px" }}
+
+                        // className={{ height: "3500px" }}
+                      >
+                        <Card
+                          sx={{ position: "relative" }}
+                          style={{
+                            height: "220px",
+                            maxHeight: "220px",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <OptionsMenu
+                            iconButtonProps={{
+                              size: "small",
+                              sx: { top: 12, right: 12, position: "absolute" },
+                            }}
+                            options={[
+                              {
+                                text: t("Details"),
+                                details: "Additional details here",
+                                function: () => {
+                                  setOpenDetailsOrder(true);
+                                  setDetailsOrder(item);
+                                },
+                              },
+
+                              { divider: true },
+                              {
+                                text: t("Cancel"),
+                                menuItemProps: {
+                                  sx:
+                                    item.status.name !== "تم الالغاء"
+                                      ? { color: "error.main" }
+                                      : {
+                                          color: "#ff87878f",
+                                          cursor: "not-allowed",
+                                        },
+                                },
+                                function: () => {
+                                  if (item.status.name !== "تم الالغاء") {
+                                    setOpenCancelOrder(true);
+                                    setOrderId(item?.id);
+                                  }
+                                },
+                              },
+                            ]}
+                          />
+                          <CardContent>
+                            <Box
+                              sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <OrderIcon />
+
+                              <Typography
+                                sx={{ mt: 4, color: "text.secondary" }}
+                                className={`text-center font-bold px-2 py-1 rounded-md !text-black `}
+                                // style={{ backgroundColor: item?.status?.color }}
+                              >
+                                {item?.status?.name}
+                              </Typography>
+                              <Grid xs={12} sm={12} md={12} xl={12} mt={2}>
+                                {item.status.name !== "تم الالغاء" && (
+                                  <ButtonComp
+                                    variant="contained"
+                                    action={() => {
+                                      setOpenDetailsOrder(true);
+                                      setDetailsOrder(item);
+                                    }}
+                                  >
+                                    تفاصيل طلب
+                                  </ButtonComp>
+                                )}
+                                {/* <Button
+                          disabled={
+                            item.status.name == "تم الالغاء" ||
+                            item.status.name == "تم القبول " ||
+                            item.status.name == "تم الرفض"
+                          }
+                          className={`marker:text-white hover:!bg-inherit  ${
+                            item.status.name == "تم الالغاء" ||
+                            item.status.name == "تم القبول " ||
+                            item.status.name == "تم الرفض"
+                              ? "bg-[#bcbcbc] disabled:text-white cursor-not-allowed"
+                              : "!bg-red-600 !text-white hover:!bg-red-600"
+                          }`}
+                          onClick={() => {
+                            setOpenCancelOrder(true);
+                            setOrderId(item?.id);
+                          }}
+                        >
+                          الغاء طلب
+                        </Button> */}
+                              </Grid>
+                            </Box>
+                          </CardContent>
+                        </Card>
+                      </Grid>
+                    </TabPanel>
+                  )}
+                  <TabPanel value="3" className="mt-20">
+                    {item.status.name == "قيد المراجعة" && (
+                      <Grid
+                        item
+                        xs={12}
+                        sm={12}
+                        md={12}
+                        xl={12}
+                        key={item?.id}
+                        style={{ width: "178px" }}
+
+                        // className={{ height: "3500px" }}
+                      >
+                        <Card
+                          sx={{ position: "relative" }}
+                          style={{
+                            height: "220px",
+                            maxHeight: "220px",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <OptionsMenu
+                            iconButtonProps={{
+                              size: "small",
+                              sx: { top: 12, right: 12, position: "absolute" },
+                            }}
+                            options={[
+                              {
+                                text: t("Details"),
+                                details: "Additional details here",
+                                function: () => {
+                                  setOpenDetailsOrder(true);
+                                  setDetailsOrder(item);
+                                },
+                              },
+
+                              { divider: true },
+                              {
+                                text: t("Cancel"),
+                                menuItemProps: {
+                                  sx:
+                                    item.status.name !== "تم الالغاء"
+                                      ? { color: "error.main" }
+                                      : {
+                                          color: "#ff87878f",
+                                          cursor: "not-allowed",
+                                        },
+                                },
+                                function: () => {
+                                  if (item.status.name !== "تم الالغاء") {
+                                    setOpenCancelOrder(true);
+                                    setOrderId(item?.id);
+                                  }
+                                },
+                              },
+                            ]}
+                          />
+                          <CardContent>
+                            <Box
+                              sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <OrderIcon />
+
+                              <Typography
+                                sx={{ mt: 4, color: "text.secondary" }}
+                                className={`text-center font-bold px-2 py-1 rounded-md !text-black `}
+                                // style={{ backgroundColor: item?.status?.color }}
+                              >
+                                {item?.status?.name}
+                              </Typography>
+                              <Grid xs={12} sm={12} md={12} xl={12} mt={2}>
+                                {item.status.name !== "تم الالغاء" && (
+                                  <ButtonComp
+                                    variant="contained"
+                                    action={() => {
+                                      setOpenDetailsOrder(true);
+                                      setDetailsOrder(item);
+                                    }}
+                                  >
+                                    تفاصيل طلب
+                                  </ButtonComp>
+                                )}
+                                {/* <Button
+                          disabled={
+                            item.status.name == "تم الالغاء" ||
+                            item.status.name == "تم القبول " ||
+                            item.status.name == "تم الرفض"
+                          }
+                          className={`marker:text-white hover:!bg-inherit  ${
+                            item.status.name == "تم الالغاء" ||
+                            item.status.name == "تم القبول " ||
+                            item.status.name == "تم الرفض"
+                              ? "bg-[#bcbcbc] disabled:text-white cursor-not-allowed"
+                              : "!bg-red-600 !text-white hover:!bg-red-600"
+                          }`}
+                          onClick={() => {
+                            setOpenCancelOrder(true);
+                            setOrderId(item?.id);
+                          }}
+                        >
+                          الغاء طلب
+                        </Button> */}
+                              </Grid>
+                            </Box>
+                          </CardContent>
+                        </Card>
+                      </Grid>
+                    ) }
+                  </TabPanel>
+                  {item.status.name == "تم الالغاء" && (
+                    <TabPanel value="4" className="mt-20">
+                      <Grid
+                        item
+                        xs={12}
+                        sm={12}
+                        md={12}
+                        xl={12}
+                        key={item?.id}
+                        style={{ width: "178px" }}
+
+                        // className={{ height: "3500px" }}
+                      >
+                        <Card
+                          sx={{ position: "relative" }}
+                          style={{
+                            height: "220px",
+                            maxHeight: "220px",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <OptionsMenu
+                            iconButtonProps={{
+                              size: "small",
+                              sx: { top: 12, right: 12, position: "absolute" },
+                            }}
+                            options={[
+                              {
+                                text: t("Details"),
+                                details: "Additional details here",
+                                function: () => {
+                                  setOpenDetailsOrder(true);
+                                  setDetailsOrder(item);
+                                },
+                              },
+
+                              { divider: true },
+                              {
+                                text: t("Cancel"),
+                                menuItemProps: {
+                                  sx:
+                                    item.status.name !== "تم الالغاء"
+                                      ? { color: "error.main" }
+                                      : {
+                                          color: "#ff87878f",
+                                          cursor: "not-allowed",
+                                        },
+                                },
+                                function: () => {
+                                  if (item.status.name !== "تم الالغاء") {
+                                    setOpenCancelOrder(true);
+                                    setOrderId(item?.id);
+                                  }
+                                },
+                              },
+                            ]}
+                          />
+                          <CardContent>
+                            <Box
+                              sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <OrderIcon />
+
+                              <Typography
+                                sx={{ mt: 4, color: "text.secondary" }}
+                                className={`text-center font-bold px-2 py-1 rounded-md !text-black `}
+                                // style={{ backgroundColor: item?.status?.color }}
+                              >
+                                {item?.status?.name}
+                              </Typography>
+                              <Grid xs={12} sm={12} md={12} xl={12} mt={2}>
+                                {item.status.name !== "تم الالغاء" && (
+                                  <ButtonComp
+                                    variant="contained"
+                                    action={() => {
+                                      setOpenDetailsOrder(true);
+                                      setDetailsOrder(item);
+                                    }}
+                                  >
+                                    تفاصيل طلب
+                                  </ButtonComp>
+                                )}
+                                {/* <Button
+                          disabled={
+                            item.status.name == "تم الالغاء" ||
+                            item.status.name == "تم القبول " ||
+                            item.status.name == "تم الرفض"
+                          }
+                          className={`marker:text-white hover:!bg-inherit  ${
+                            item.status.name == "تم الالغاء" ||
+                            item.status.name == "تم القبول " ||
+                            item.status.name == "تم الرفض"
+                              ? "bg-[#bcbcbc] disabled:text-white cursor-not-allowed"
+                              : "!bg-red-600 !text-white hover:!bg-red-600"
+                          }`}
+                          onClick={() => {
+                            setOpenCancelOrder(true);
+                            setOrderId(item?.id);
+                          }}
+                        >
+                          الغاء طلب
+                        </Button> */}
+                              </Grid>
+                            </Box>
+                          </CardContent>
+                        </Card>
+                      </Grid>
+                    </TabPanel>
+                  )}
+                </>
+              ))}
+            </Grid>
+          </>
+        ) : (
+          <DataNotFound title={"لايوجد طلبات"} />
+        )}
         <TabPanel value="3"></TabPanel>
         <TabPanel value="4"></TabPanel>
       </TabContext>

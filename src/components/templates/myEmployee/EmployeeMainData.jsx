@@ -8,14 +8,8 @@ export default function EmployeeMainData() {
   const { data: attachments_facility_employees } = useFetch({
     endpoint: `attachments-labels/facility_employees`,
     queryKey: ["attachments_facility_employees"],
-    onError(e) {
-      console.log("e", e);
-    },
   });
-  console.log(
-    "🚀 ~ file: EmployeeMainData.jsx:15 ~ EmployeeMainData ~ attachments_facility_employees:",
-    attachments_facility_employees
-  );
+
   return (
     <div className="">
       <MainHeader title="اضافة موظف" />
@@ -48,7 +42,7 @@ export default function EmployeeMainData() {
           </div>
         </div>
         <div className="flex items-start col-span-12 gap-2 ">
-          {attachments_facility_employees.attachment_labels.map((item) => (
+          {attachments_facility_employees?.attachment_labels?.map((item) => (
             <div className="w-1/2 " key={item?.id}>
               <label>{item?.placeholder}</label>
               <UploadImage

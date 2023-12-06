@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import MainHeader from "../../atoms/MainHeader";
 import FacilityIcon from "../../atoms/icons/FaciltyIcon";
 
 export default function DetailsFacility({ data }) {
@@ -80,11 +79,27 @@ export default function DetailsFacility({ data }) {
         </div>
         <div className="flex gap-2 point">
           <p className="font-bold text-contained"> مصدر التسجيل:</p>
-          <p>{data?.source_registration}</p>
+          <p>{data?.city}</p>
         </div>
         <div className="flex gap-2 point">
           <p className="font-bold text-contained"> شهادة الضرائب:</p>
           <p>{data?.tax_certificate}</p>
+        </div>
+        <div className="flex gap-2 point">
+          <p className="font-bold text-contained"> الحي:</p>
+          <p>{data?.neighborhood}</p>
+        </div>
+        <div className="flex gap-2 point">
+          <p className="font-bold text-contained"> الشارع:</p>
+          <p>{data?.street_name}</p>
+        </div>
+        <div className="flex gap-2 point">
+          <p className="font-bold text-contained"> الرقم الفرعي</p>
+          <p>{data?.sub_number}</p>
+        </div>
+        <div className="flex gap-2 point">
+          <p className="font-bold text-contained">رمز البريد </p>
+          <p>{data?.postal_code}</p>
         </div>
       </div>
     </div>
