@@ -42,7 +42,7 @@ const UploadImage = ({ name, placeholder,  }) => {
             <div
               style={{ cursor: "pointer", lineHeight: "46px" }}
               className={` rounded-[10px]  relative
-              cursor-pointer pr-10 h-[50px] border 
+              cursor-pointer pr-10 h-[56px] border 
               text-[#4c4e6478]  border-[#4c4e6478)] bg-[#ebebee73] w-full ${
                 !!errors[name] && "border-red-500 "
               }`}
@@ -56,7 +56,7 @@ const UploadImage = ({ name, placeholder,  }) => {
                 </div>
               ) : (
                 <div className="absolute top-[1px] right-[5px]">
-                  <CheckIcon className={`w-[30px]`} />
+                  <CheckIcon className={`w-[25px]`} />
                 </div>
               )}
             </div>

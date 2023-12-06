@@ -35,7 +35,7 @@ export default function BaseInputField({
     setFieldValue(name, value);
   };
   return (
-    <div className="mt-2">
+    <div >
       {password ? (
         <FormControl fullWidth className="m-0">
           <label> {label} </label>
@@ -83,7 +83,7 @@ export default function BaseInputField({
             helperText={errors[name]}
             fullWidth
             value={values[name]}
-            sx={{ background:"white" , marginTop:"0.5rem" }}
+            sx={{ background:"white" , marginTop:"0.75rem" }}
             type={type}
             InputProps={
               type === "number"

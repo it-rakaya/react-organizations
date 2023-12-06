@@ -3,7 +3,7 @@ import Cookies from "js-cookie"
 import i18n from "../i18n"
 
 export const baseURL =
-  import.meta.env.VITE_BASE_URL || "https://qurancourses.technoraft.com/api/"
+  import.meta.env.VITE_BASE_URL || "https://admin.rmcc.sa/api"
 
 const lang = i18n.language.startsWith("ar") ? "ar" : "en"
 

@@ -46,7 +46,7 @@ const StepperFacility = () => {
   };
 
   const [checked, setChecked] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
@@ -63,7 +63,7 @@ const StepperFacility = () => {
     onSuccess: () => {
       queryClient.refetchQueries(["facilities"]);
       notify("success");
-      navigate('/dashboard/facilities')
+      navigate("/dashboard/facilities");
       // setOpenAddFaculty(false);
     },
     onError: (err) => {

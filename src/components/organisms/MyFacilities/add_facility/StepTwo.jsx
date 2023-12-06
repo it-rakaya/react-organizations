@@ -1,10 +1,7 @@
-import { useFormikContext } from "formik";
 import useFetch from "../../../../hooks/useFetch";
 import UploadImageTwo from "../../../molecules/UploadImageTwo";
 
 export default function StepTwo() {
-  const { values } = useFormikContext();
-  console.log("🚀 ~ file: StepTwo.jsx:7 ~ StepTwo ~ values:", values);
   const { data: attachments_facilities } = useFetch({
     endpoint: `attachments-labels/facilities`,
     queryKey: ["attachments_facilities"],
