@@ -23,7 +23,7 @@ const PhoneInput2 = ({ label }) => {
   const phoneInput = tv({
     variants: {
       error: {
-        true: "border-red-500  !border-2",
+        true: "border-red-500  !border rounded-md",
       },
     },
   });

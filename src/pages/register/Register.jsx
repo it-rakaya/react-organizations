@@ -64,6 +64,7 @@ const Register = () => {
               alignItems: "center",
               justifyContent: "center",
               height: "100vh",
+              overflow: "hidden",
             }}
           >
             <RegisterIllustrationWrapper>
@@ -76,7 +77,7 @@ const Register = () => {
           </Box>
         ) : null}
         <RightWrapper
-          sx={
+        sx={
             skin === "bordered" && !hidden
               ? { borderLeft: `1px solid ${theme.palette.divider}` }
               : {}
@@ -85,12 +86,11 @@ const Register = () => {
           <Box
             sx={{
               p: 7,
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
               backgroundColor: "background.paper",
+              height: "100vh",
+              overflowY: "scroll",
             }}
+            className="scroll_main"
           >
             <BoxWrapper>
               <Box

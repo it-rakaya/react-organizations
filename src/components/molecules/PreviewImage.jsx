@@ -25,7 +25,7 @@ export default function PreviewImage({ files }) {
               className='w-[400px] p-2 rounded-md single-file-image'
               src={url}
             /> */}
-            <div className="flex flex-col items-center justify-center mt-1">
+            <div className="flex flex-col items-center justify-center mt-3">
               {/* <span className="text-[10px] p-0 m-0">{t("preview")}</span> */}
               <div className="bg-[#f6f6f7] rounded-xl">
                 <div className="flex flex-col items-center justify-center p-2 cursor-pointer ">

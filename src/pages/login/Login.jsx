@@ -77,7 +77,8 @@ const Login = () => {
                 position: "relative",
                 alignItems: "center",
                 justifyContent: "center",
-                height:"100vh"
+                height:"100vh",
+                overflow:"hidden"
               }}
             >
               <LoginIllustrationWrapper>

@@ -3,9 +3,10 @@ import { useFormikContext } from "formik";
 import { t } from "i18next";
 import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
+import { FormikError } from "./Formik/FormikError";
 
 export default function SelectCountry({ name, label, className }) {
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue , errors } = useFormikContext();
   const { data: countries } = useFetch({
     endpoint: `countries`,
     queryKey: ["countrie"],
@@ -39,6 +40,7 @@ export default function SelectCountry({ name, label, className }) {
               ...baseStyles,
               padding: "10px",
               borderRadius: " 8px",
+              borderColor:errors[name] ? "red" :'white',
               background: "white",
               margin: "0",
             }),
@@ -59,6 +61,9 @@ export default function SelectCountry({ name, label, className }) {
           })}
           // defaultValue={{ value: values[name] , label:values[name] }}
         />
+        <div>
+          <FormikError name={name} />
+        </div>
       </div>
     </div>
   );

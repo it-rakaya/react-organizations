@@ -36,7 +36,6 @@ export default function RegisterForm() {
     formData: true,
   });
 
-
   const ValidationSchema = () =>
     Yup.object({
       name: Yup.string().trim().required(t("name is required")),
@@ -45,6 +44,7 @@ export default function RegisterForm() {
         .required("This field is required"),
       email: Yup.string().trim().required(t("email is required")),
       birthday: Yup.string().trim().required(t("birthday is required")),
+      phone: Yup.string().trim().required(t("phone is required")),
       nationality: Yup.string().trim().required(t("birthday is required")),
       national_id_expired: Yup.string()
         .trim()
