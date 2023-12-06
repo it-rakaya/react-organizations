@@ -15,9 +15,7 @@ export const Root = ({ props }) => {
   const [, setShowOverlay] = useState(false);
   const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
   const navigate = useNavigate();
-
   const [changeStyle, setChangeStyle] = useState(false);
-  console.log("🚀 ~ file: Root.jsx:14 ~ Root ~ changeStyle:", changeStyle);
 
   useEffect(() => {
     setShowOverlay(openSide);
@@ -87,6 +85,12 @@ export const Root = ({ props }) => {
     },
   }));
   const token = Cookies.get("token");
+  useEffect(() => {
+    if (token == undefined) {
+      navigate("/");
+    }
+  }, [navigate, token]);
+
 
   // ** Toggle Functions
   const toggleNavVisibility = () => setNavVisible(!navVisible);

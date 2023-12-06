@@ -8,15 +8,12 @@ import { t } from "i18next";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { useUser } from "../../context/user provider/UserContext";
 import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import ButtonComp from "../atoms/buttons/ButtonComp";
-import BaseInputField from "../molecules/Formik/BaseInputField";
-import DatePickerComp from "../molecules/Formik/DatePickerComp";
-import PhoneInput2 from "../molecules/Formik/PhoneInput2";
-import SelectCountry from "../molecules/SelectCountry";
-import UploadImage from "../molecules/UploadImage";
+import RegistrationMainData from "./RegistrationMainData";
 
 export default function RegisterForm() {
   const LinkStyled = styled(Link)(({ theme }) => ({
@@ -24,22 +21,25 @@ export default function RegisterForm() {
     color: theme.palette.primary.main,
   }));
   const { refetch } = useUser();
+  const { login } = useAuth();
   const [checked, setChecked] = useState(false);
 
   const { mutate: sendRegister, isPending } = useMutate({
     endpoint: `register`,
     mutationKey: [`register`],
-    onSuccess: () => {
+    onSuccess: (data) => {
       notify("success");
-      // login(data.data);
+      login(data.data);
       refetch();
     },
-
     onError: (err) => {
       console.log("err", err);
       notify("error", err?.response?.data.message);
     },
+    formData: true,
   });
+
+
   const ValidationSchema = () =>
     Yup.object({
       name: Yup.string().trim().required(t("name is required")),
@@ -53,57 +53,40 @@ export default function RegisterForm() {
         .trim()
         .required(t("birthday is required")),
     });
+  const initialValues = {
+    name: "",
+    national_id: "",
+    email: "",
+    birthday: Date(),
+    nationality: "",
+    national_id_expired: Date(),
+    attachments: [],
+    organization_id: "1",
+  };
 
   return (
     <div>
       <Formik
         onSubmit={(values) => {
-          console.log("values", { ...values });
-          sendRegister({ ...values });
+          const validAttachments = values.attachments
+            .map((file, index) => ({ index, file }))
+            .filter((item) => typeof item.file !== "undefined");
+          const attachments = validAttachments.map((item) => ({
+            [`attachments[${item?.index}]`]: item?.file,
+          }));
+
+          const combinedObject = {
+            ...values,
+            ...Object.assign({}, ...attachments),
+          };
+          delete combinedObject.attachments;
+          sendRegister(combinedObject);
         }}
         validationSchema={ValidationSchema}
-        initialValues={{
-          name: "",
-          national_id: "",
-          email: "",
-          birthday: Date(),
-          nationality: "",
-          national_id_expired: Date(),
-          organization_id: "1",
-        }}
+        initialValues={initialValues}
       >
         <Form>
-          <BaseInputField
-            label="الاسم الكامل "
-            placeholder="محمد احمد محمد"
-            name="name"
-          />
-          <BaseInputField
-            label=" رقم الهوية "
-            placeholder="10********"
-            name="national_id"
-            type="number"
-            maxNum={10}
-          />
-          <PhoneInput2 name="phone" label="رقم الهاتف" />
-          <BaseInputField
-            label="البريد الإلكتروني"
-            placeholder="Example@example.com"
-            name="email"
-          />
-
-          <SelectCountry label={"الدوله"} name={"nationality"} />
-          <DatePickerComp name="birthday" label={"تاريخ  الميلاد"} />
-
-          <DatePickerComp
-            name="national_id_expired"
-            label={"تاريخ انتهاء الاقامه"}
-          />
-          <UploadImage
-            name="photo"
-            label={"صورة  الهوية  الوطنية "}
-            placeholder={t("Upload yor photo")}
-          />
+          <RegistrationMainData />
 
           <FormControlLabel
             control={
@@ -137,7 +120,7 @@ export default function RegisterForm() {
               alignItems: "center",
               flexWrap: "wrap",
               justifyContent: "center",
-              marginTop:"10px"
+              marginTop: "10px",
             }}
           >
             <Typography sx={{ mr: 2, color: "text.secondary" }}>
@@ -147,7 +130,7 @@ export default function RegisterForm() {
               to="/login"
               sx={{ color: "primary.main", textDecoration: "none" }}
             >
-             {t("Sign in instead")}
+              {t("Sign in instead")}
             </Link>
           </Box>
         </Form>

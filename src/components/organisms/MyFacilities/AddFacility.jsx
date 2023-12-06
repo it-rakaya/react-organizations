@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
 import DatePickerComp from "../../molecules/Formik/DatePickerComp";
 import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
@@ -12,7 +13,7 @@ export default function AddFacility() {
         <div className="flex items-start col-span-12 gap-2 ">
           <div className="w-1/2">
             <BaseInputField
-              label=" اسم التجاري للمنشأة بموجب السجل التجاري  "
+              label={t("The commercial name of the establishment according to the commercial register")}
               placeholder="محمد احمد محمد"
               name="name"
             />

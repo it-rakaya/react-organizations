@@ -4,10 +4,6 @@ import { Tab, Typography } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 export default function DetailsOrder({ data }) {
-  console.log(
-    "🚀 ~ file: DetailsFacility.jsx:4 ~ DetailsFacility ~ data:",
-    data
-  );
   const [value, setValue] = useState("1");
 
   const handleChange = (event, newValue) => {
