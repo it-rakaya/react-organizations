@@ -8,6 +8,7 @@ import { useSettings } from "../../hooks/useSettings";
 import themeConfig from "../../themeConfig";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import imgLogin from "../../../src/assets/login.png";
 
 const RegisterIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -20,7 +21,7 @@ const RegisterIllustrationWrapper = styled(Box)(({ theme }) => ({
 const RegisterIllustration = styled("img")(({ theme }) => ({
   maxWidth: "48rem",
   [theme.breakpoints.down("xl")]: {
-    maxWidth: "38rem",
+    maxWidth: "50rem",
   },
   [theme.breakpoints.down("lg")]: {
     maxWidth: "30rem",
@@ -63,13 +64,14 @@ const Register = () => {
               position: "relative",
               alignItems: "center",
               justifyContent: "center",
+              height: "100vh",
             }}
           >
             <RegisterIllustrationWrapper>
               <RegisterIllustration
                 alt="register-illustration"
                 // src={`/images/pages/${imageSource}-${theme.palette.mode}.png`}
-                src={imageSource}
+                src={imgLogin}
               />
             </RegisterIllustrationWrapper>
           </Box>

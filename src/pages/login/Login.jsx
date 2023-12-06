@@ -5,7 +5,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { t } from "i18next";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
-import imageSource from "../../../src/assets/images/pages/auth-v2-login-illustration-bordered-light.png";
+import imgLogin from "../../../src/assets/login.png";
+
 import LoginForm from "../../components/templates/LoginForm";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useSettings } from "../../hooks/useSettings";
@@ -19,9 +20,9 @@ const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
 }));
 
 const LoginIllustration = styled("img")(({ theme }) => ({
-  maxWidth: "48rem",
+  maxWidth: "50rem",
   [theme.breakpoints.down("xl")]: {
-    maxWidth: "38rem",
+    maxWidth: "50rem",
   },
   [theme.breakpoints.down("lg")]: {
     maxWidth: "30rem",
@@ -76,13 +77,14 @@ const Login = () => {
                 position: "relative",
                 alignItems: "center",
                 justifyContent: "center",
+                height:"100vh"
               }}
             >
               <LoginIllustrationWrapper>
                 <LoginIllustration
                   alt="login-illustration"
                   // src={`/images/pages/${imageSource}-${theme.palette.mode}.png`}
-                  src={imageSource}
+                  src={imgLogin}
                 />
               </LoginIllustrationWrapper>
               {/* <FooterIllustrationsV2 /> */}
