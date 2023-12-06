@@ -16,7 +16,7 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
   );
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
-    accept: ["image/*", ".pdf", ".doc", ".docx" ,".png"],
+    accept: ["image/*", ".pdf", ".doc", ".docx"],
     onDrop: (acceptedFiles) => {
       const modifiedFiles = acceptedFiles.map((file) => {
         if (file.type === "application/pdf") {
