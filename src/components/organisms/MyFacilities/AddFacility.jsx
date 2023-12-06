@@ -60,7 +60,7 @@ export default function AddFacility() {
               placeholder="10********"
               name="license"
               type="number"
-              maxNum="10"
+              maxNum="7"
 
             />
           </div>
@@ -93,7 +93,7 @@ export default function AddFacility() {
               placeholder="***********34"
               name="tax_certificate"
               type="number"
-              maxNum="10"
+              maxNum="9"
 
             />
           </div>
@@ -159,6 +159,8 @@ export default function AddFacility() {
               placeholder="3654"
               name="building_number"
               type="number"
+              // maxNum="5"
+
 
             />
           </div>
@@ -170,6 +172,8 @@ export default function AddFacility() {
               placeholder="56875"
               name="postal_code"
               type="number"
+              maxNum="5"
+
 
             />
           </div>
@@ -179,6 +183,8 @@ export default function AddFacility() {
               placeholder="0541532515"
               name="sub_number"
               type="number"
+              maxNum="9"
+
 
             />
           </div>
