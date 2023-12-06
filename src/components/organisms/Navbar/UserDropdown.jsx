@@ -1,20 +1,19 @@
 /* eslint-disable react/prop-types */
-import { useState, Fragment } from "react";
-import Box from "@mui/material/Box";
-import Menu from "@mui/material/Menu";
-import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
+import Badge from "@mui/material/Badge";
+import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
+import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
+import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import userAvarar from "../../../assets/avatars/1.png";
 import { useAuth } from "../../../context/auth-and-perm/AuthProvider";
-import { useUser } from "../../../context/user provider/UserContext";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
+import IconifyIcon from "../../atoms/icons/IconifyIcon";
 
 // ** Icon Imports
 
@@ -33,7 +32,7 @@ const UserDropdown = (props) => {
   const { settings } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  const { logout , user } = useAuth();
   const { direction } = settings;
 
   const handleDropdownOpen = (event) => {
@@ -46,7 +45,6 @@ const UserDropdown = (props) => {
     }
     setAnchorEl(null);
   };
-  const { userData } = useUser();
 
   const styles = {
     py: 2,
@@ -139,13 +137,13 @@ const UserDropdown = (props) => {
             >
               <Typography sx={{ fontWeight: 600 }}>
                 {" "}
-                {userData?.user?.name}
+                {user?.user?.name}
               </Typography>
               <Typography
                 variant="body2"
                 sx={{ fontSize: "0.8rem", color: "text.disabled" }}
               >
-                {userData?.user?.role_name || "user"}
+                {user?.user?.role_name || "user"}
               </Typography>
             </Box>
           </Box>

@@ -4,7 +4,6 @@ import { t } from "i18next";
 import { useState } from "react";
 import * as Yup from "yup";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
-import { useUser } from "../../context/user provider/UserContext";
 import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import ButtonComp from "../atoms/buttons/ButtonComp";
@@ -17,7 +16,6 @@ export default function LoginForm() {
   const { login } = useAuth();
   const [dataValue, setDataValue] = useState();
   const [valueOTP, setValueOTP] = useState();
-  const { refetch } = useUser();
 
 
   const { mutate: LoginData, isPending: loadingLogin } = useMutate({
@@ -27,7 +25,6 @@ export default function LoginForm() {
     onSuccess: (data) => {
       login(data.data);
       // setToken(data?.data)
-      refetch();
       notify("success", `مربحا بك يا ${data?.data?.user.name}`);
     },
 

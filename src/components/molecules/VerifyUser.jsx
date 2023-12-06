@@ -2,7 +2,6 @@
 import { Form, Formik } from "formik";
 import { t } from "i18next";
 import { useState } from "react";
-import { useUser } from "../../context/user provider/UserContext";
 import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import ButtonComp from "../atoms/buttons/ButtonComp";
@@ -10,14 +9,12 @@ import CheckCode from "../organisms/checkCode";
 
 export default function VerifyUser({ userData, dataValue, setOpen }) {
   const [valuesForm, setValuesForm] = useState("");
-  const { refetch } = useUser();
 
   const { mutate: verify_user, isLoading: loadingVerify } = useMutate({
     mutationKey: [`verify_user`],
     endpoint: `verify`,
     onSuccess: () => {
       notify("success");
-      refetch();
       setOpen(false);
     },
 

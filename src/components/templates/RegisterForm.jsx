@@ -9,7 +9,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
-import { useUser } from "../../context/user provider/UserContext";
 import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import ButtonComp from "../atoms/buttons/ButtonComp";
@@ -20,7 +19,6 @@ export default function RegisterForm() {
     textDecoration: "none",
     color: theme.palette.primary.main,
   }));
-  const { refetch } = useUser();
   const { login } = useAuth();
   const [checked, setChecked] = useState(false);
 
@@ -30,7 +28,6 @@ export default function RegisterForm() {
     onSuccess: (data) => {
       notify("success");
       login(data.data);
-      refetch();
     },
     onError: (err) => {
       console.log("err", err);

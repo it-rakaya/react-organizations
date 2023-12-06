@@ -3,23 +3,21 @@ import Cookies from "js-cookie";
 import { createContext, useCallback, useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { UseLocalStorage } from "../../hooks/useLocalStorage";
-import { useUser } from "../user provider/UserContext";
 const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = UseLocalStorage();
+  console.log("🚀 ~ file: AuthProvider.jsx:10 ~ AuthProvider ~ user:", user);
   const navigate = useNavigate();
-  const { refetch } = useUser();
 
   const login = useCallback(
     async (data) => {
       if (setUser) setUser(data);
-      refetch()
       window.localStorage.setItem("user", JSON.stringify(data.user));
       Cookies.set("role", data.user.role_name);
       Cookies.set("token", data.token);
       navigate("/dashboard", { replace: true });
     },
-    [navigate, refetch, setUser]
+    [navigate, setUser]
   );
 
   const logout = useCallback(async () => {
@@ -29,17 +27,17 @@ export const AuthProvider = ({ children }) => {
     Cookies.remove("role");
     Cookies.remove("token");
 
-    refetch()
     navigate("/", { replace: true });
-  }, [setUser, refetch, navigate]);
+  }, [setUser, navigate]);
 
   const value = useMemo(
     () => ({
       user,
+      setUser,
       login,
       logout,
     }),
-    [login, logout, user]
+    [login, logout, user , setUser]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -2,11 +2,11 @@ import { useState } from 'react'
 import ModalComp from '../../components/atoms/ModalComp'
 import AccountSetting from '../../components/organisms/profile/AccountSetting'
 import UserProfileHeader from '../../components/organisms/profile/UserProfileHeader'
-import { useUser } from '../../context/user provider/UserContext'
+import { useAuth } from '../../context/auth-and-perm/AuthProvider'
 
 export default function Profile() {
   const [editUser, setEditUser] = useState(false)
-  const { userData , refetch } = useUser();
+  const { user  } = useAuth();
 
   return (
     <div>
@@ -15,7 +15,7 @@ export default function Profile() {
         open={editUser}
         className={'  '}
         onClose={() => setEditUser(false)}
-        Children={<AccountSetting userData={userData}  refetch={refetch} setEditUser={setEditUser}/>}
+        Children={<AccountSetting userData={user}  setEditUser={setEditUser}/>}
       />
     </div>
   )

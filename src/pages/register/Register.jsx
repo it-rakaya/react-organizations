@@ -2,13 +2,12 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { styled, useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import imageSource from "../../../src/assets/images/pages/auth-v2-register-illustration-bordered-light.png";
-import RegisterForm from "../../components/templates/RegisterForm";
-import { useSettings } from "../../hooks/useSettings";
-import themeConfig from "../../themeConfig";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import imgLogin from "../../../src/assets/login.png";
+import RegisterForm from "../../components/templates/RegisterForm";
+import { useSettings } from "../../hooks/useSettings";
+import themeConfig from "../../themeConfig";
 
 const RegisterIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),

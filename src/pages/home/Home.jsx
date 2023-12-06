@@ -1,7 +1,7 @@
 // ** MUI Imports
 import { Alert, Button } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ModalComp from "../../components/atoms/ModalComp";
 import IconifyIcon from "../../components/atoms/icons/IconifyIcon";
 import VerifyUser from "../../components/molecules/VerifyUser";
@@ -19,15 +19,15 @@ import AnalyticsVisitsByDay from "../../components/molecules/analytics/Analytics
 import AnalyticsWeeklySales from "../../components/molecules/analytics/AnalyticsWeeklySales";
 import CardStatsVertical from "../../components/molecules/card-stats-vertical/CardStatsVertical";
 import ApexChartWrapper from "../../components/react-apexcharts/ApexChartWrapper";
-import { useUser } from "../../context/user provider/UserContext";
+import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 
 const Home = () => {
   const [open, setOpen] = useState(false);
   const [dataValue, setDataValue] = useState();
-  const { userData , refetch , isRefetching   } = useUser();
-  console.log("🚀 ~ file: Home.jsx:30 ~ Home ~ userData:", userData)
+  const {user} = useAuth()
+
   
   const { mutate: sendOTP } = useMutate({
     mutationKey: [`send-otp`],
@@ -42,21 +42,12 @@ const Home = () => {
       notify("error", err?.response?.data.message);
     },
   });
-  useEffect(() => {
-    if (!userData ) {
-      refetch();
-    }
-  }, [userData, isRefetching, refetch]);
-  
 
-  // if (isRefetching) {
-  //   return <p><Loading/></p>; // or any loading indicator you prefer
-  // }
 
 
   return (
     <ApexChartWrapper>
-      {!userData?.user?.is_verified && (
+      {!user?.user?.is_verified && (
         <div className="py-3">
           <Alert severity="warning" className="flex items-center ">
             لإضافة منشأة جديدة أو تقديم طلب جديد يرجى تفعيل حسابك !
@@ -67,8 +58,8 @@ const Home = () => {
                 sendOTP({
                   organization_id: "1",
 
-                  phone: userData?.user?.phone,
-                  phone_code: userData?.user?.phone_code,
+                  phone: user?.user?.phone,
+                  phone_code: user?.user?.phone_code,
                 });
               }}
             >
@@ -79,7 +70,7 @@ const Home = () => {
       )}
       <Grid container spacing={6} className="match-height">
         <Grid item xs={12} md={8}>
-          <AnalyticsCongratulations userData={userData} />
+          <AnalyticsCongratulations userData={user} />
         </Grid>
         <Grid item xs={6} md={2}>
           <CardStatsVertical
@@ -154,7 +145,7 @@ const Home = () => {
         onClose={() => setOpen(false)}
         Children={
           <VerifyUser
-            userData={userData}
+            userData={user}
             dataValue={dataValue}
             setOpen={setOpen}
           />
