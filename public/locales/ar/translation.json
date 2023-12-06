@@ -63,6 +63,11 @@
   "preview":"معاينه",
   "The file was downloaded successfully":"تم تحميل المرفق بنجاح",
   "Continue":"متابعه",
+  "All":"الكل",
+  "In progress":"قيد المراجعه",
+  "Canceled":"تم الالغاء",
+  "Accepted":"مقبوله",
+  "The commercial name of the establishment according to the commercial register":"اسم التجاري للمنشأة بموجب السجل التجاري",
 
   "landing": {
     "organizationName": "اسم المنظمة",

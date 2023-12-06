@@ -11,7 +11,6 @@ export default function DatePickerComp({ name,name_hj , label }) {
   const { setFieldValue, values } = useFormikContext();
   const [valueGregorian, setValueGregorian] = useState();
   const [valueHijri, setValueHijri] = useState('');
-  console.log("🚀 ~ file: DatePickerComp.jsx:14 ~ DatePickerComp ~ valueHijri:", valueHijri)
 
 
   useEffect(() => {

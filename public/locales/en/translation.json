@@ -3,6 +3,7 @@
   "settings": "Settings",
   "required": "This field is required",
   "AUTH.INPUT.USERNAME": "User Name",
+  
   "landing":{
     "organizationName":"Organization Name",
     "description":"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis quo excepturi numquam non veritatis explicabo reprehenderit, culpa expedita illum quod?",

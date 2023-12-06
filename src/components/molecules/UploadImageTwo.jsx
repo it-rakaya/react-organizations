@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 import Box from "@mui/material/Box";
-import { useDropzone } from "react-dropzone";
-import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import { useFormikContext } from "formik";
-import PreviewImage from "./PreviewImage";
-import PdfIcon from "../atoms/icons/PdfIcon";
-import DownloadIcon from "../atoms/icons/DownloadIcon";
+import { useState } from "react";
+import { useDropzone } from "react-dropzone";
 import CheckIcon from "../atoms/icons/CheckIcon";
+import PdfIcon from "../atoms/icons/PdfIcon";
+import UploadImageIcon from "../atoms/icons/UploadImageIcon";
+import PreviewImage from "./PreviewImage";
 
 const UploadImageTwo = ({ name, label, nameValue }) => {
   const { setFieldValue, values } = useFormikContext();
@@ -15,14 +14,9 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
   const [files, setFiles] = useState(
     values?.attachments ? [values?.attachments[nameValue]] : []
   );
-  console.log(
-    "🚀 ~ file: UploadImageTwo.jsx:18 ~ UploadImageTwo ~ files:",
-    files
-  );
-
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
-    accept: ["image/*", ".pdf", ".doc", ".docx"],
+    accept: ["image/*", ".pdf", ".doc", ".docx" ,".png"],
     onDrop: (acceptedFiles) => {
       const modifiedFiles = acceptedFiles.map((file) => {
         if (file.type === "application/pdf") {

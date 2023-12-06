@@ -26,7 +26,10 @@ export const AllRoutesProvider = () => {
         <Route index element={<Home title={t("home")} />} />
         <Route path="*" element={<ErrorPage />} />
         <Route path="/dashboard/facilities" element={<MyFacilities />} />
-        <Route path="/dashboard/facilities/create-facility" element={<StepperFacility />} />
+        <Route
+          path="/dashboard/facilities/create-facility"
+          element={<StepperFacility />}
+        />
 
         <Route path="/dashboard/employee" element={<MyEmployees />} />
         <Route path="/dashboard/orders" element={<Orders />} />

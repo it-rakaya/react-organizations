@@ -26,6 +26,7 @@ import StepperCustomDot from "../../theme/StepperCustomDot";
 import StepperWrapper from "../../theme/stepper";
 import AddFacility from "./AddFacility";
 import StepTwo from "./add_facility/StepTwo";
+import { useNavigate } from "react-router-dom";
 
 const steps = [
   {
@@ -36,15 +37,7 @@ const steps = [
   },
 ];
 
-const StepperFacility = ({
-  setOpenAddFaculty,
-  resetForm = false,
-  updateData,
-}) => {
-  console.log(
-    "🚀 ~ file: StepperFacility.jsx:40 ~ StepperFacility ~ resetForm:",
-    resetForm
-  );
+const StepperFacility = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -53,6 +46,7 @@ const StepperFacility = ({
   };
 
   const [checked, setChecked] = useState(false);
+  const navigate = useNavigate()
 
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
@@ -69,7 +63,8 @@ const StepperFacility = ({
     onSuccess: () => {
       queryClient.refetchQueries(["facilities"]);
       notify("success");
-      setOpenAddFaculty(false);
+      navigate('/dashboard/facilities')
+      // setOpenAddFaculty(false);
     },
     onError: (err) => {
       console.log("err", err);
@@ -100,6 +95,7 @@ const StepperFacility = ({
     building_number: "",
     postal_code: "",
     sub_number: "",
+    // attachments: [],
     signature: "",
   };
   const validationSchema = () =>
@@ -290,13 +286,25 @@ const StepperFacility = ({
                           </FormControl>
                           <ButtonComp
                             type={"submit"}
-                            action={() =>
-                              addFacility({
+                            action={() => {
+                              const validAttachments = values?.attachments
+                                .map((file, index) => ({ index, file }))
+                                .filter(
+                                  (item) => typeof item.file !== "undefined"
+                                );
+                              const attachments = validAttachments.map(
+                                (item) => ({
+                                  [`attachments[${item?.index}]`]: item?.file,
+                                })
+                              );
+
+                              const combinedObject = {
                                 ...values,
-                                // "attachments[registration]": values["registration"],
-                                // "attachments[national_address]": values["national_address"],
-                              })
-                            }
+                                ...Object.assign({}, ...attachments),
+                              };
+                              delete combinedObject.attachments;
+                              addFacility(combinedObject);
+                            }}
                             loading={loadingAddFacility}
                             className={"w-auto mt-1"}
                             disabled={!checked}

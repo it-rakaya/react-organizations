@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { useTranslation } from "react-i18next";
@@ -5,7 +6,7 @@ import { getPrayerTime } from "../../utils/landing/prayerTimeCalc";
 import { getTimeLeftToHajj } from "../../utils/landing/HajjTimeCalc";
 
 const FooterComponent = ({ title, children, last = false }) => {
-  const { t, i18n } = useTranslation();
+  const {  i18n } = useTranslation();
   const lang = i18n.language;
   return (
     <>
@@ -13,14 +14,14 @@ const FooterComponent = ({ title, children, last = false }) => {
         className={`w-full h-28 ${!last ? "lg:border-r-2" : ""}`}
         dir={i18n.dir(lang)}
       >
-        <div className="flex flex-col lg:justify-between items-center lg:h-full xl:px-20">
-          <div className="text-center flex flex-col items-center gap-4">
-            <h1 className="text-secondaryText font-bold 2xl:text-2xl">
+        <div className="flex flex-col items-center lg:justify-between lg:h-full xl:px-20">
+          <div className="flex flex-col items-center gap-4 text-center">
+            <h1 className="font-bold text-secondaryText 2xl:text-2xl">
               {title}
             </h1>
             <div className="">{children}</div>
           </div>
-          <hr className="border-secondary border-0 lg:border-2 rounded-xl w-1/5" />
+          <hr className="w-1/5 border-0 border-secondary lg:border-2 rounded-xl" />
         </div>
       </div>
     </>
@@ -43,7 +44,7 @@ const Footer = () => {
   }, []);
   return (
     <div className="2xl:pe-[18%] 3xl:pe-[26%]">
-      <div className="flex flex-col lg:flex-row w-full gap-3">
+      <div className="flex flex-col w-full gap-3 lg:flex-row">
         <FooterComponent title={t("landing.userManual")}>
           <a href="">
             <h1 className={`${textStyle} flex items-center gap-2`}>
@@ -64,7 +65,7 @@ const Footer = () => {
           last
         >
           <h1 className={`${textStyle} flex items-center gap-4 tracking-wider`}>
-            {nextPrayerTime.hours} {t("landing.hrs")} {nextPrayerTime.minutes}{" "}
+            {nextPrayerTime?.hours} {t("landing.hrs")} {nextPrayerTime?.minutes}{" "}
             {t("landing.minutes")}
           </h1>
         </FooterComponent>
