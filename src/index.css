@@ -99,7 +99,7 @@
 *,
 body,
 html {
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
@@ -140,11 +140,6 @@ div {
 
 /* border-1 border-[rgba(0, 29, 110, 0.4)] focus:!border-1 focus:!border-[rgba(0, 29, 110, 0.7)] */
 
-.text-mainBlack {
-  /* @apply dark:!text-dark-textWhite; */
-  font-family: "Tajawal", sans-serif !important;
-  font-weight: bold;
-}
 
 .ps-submenu-content {
   background-color: #f7f7f9 !important;
@@ -269,7 +264,7 @@ main,
 }
 
 .scroll_main::-webkit-scrollbar {
-  width: 5px;
+  width: 0px;
 }
 
 .scroll_main::-webkit-scrollbar-track {

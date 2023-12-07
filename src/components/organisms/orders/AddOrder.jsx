@@ -1,14 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+import { useQueryClient } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
 import { useState } from "react";
-import { notify } from "../../../utils/toast";
-import MainButton from "../../molecules/Formik/MainButton";
-import OrderMainData from "./OrderMainData";
-import { useQueryClient } from "@tanstack/react-query";
 import { useMutate } from "../../../hooks/useMutate";
-import { Button } from "@mui/material";
+import { notify } from "../../../utils/toast";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
+import OrderMainData from "./OrderMainData";
 
 export default function AddOrder({ setOpenAddFaculty }) {
   const [show, setShow] = useState(true);
@@ -35,7 +33,6 @@ export default function AddOrder({ setOpenAddFaculty }) {
         initialValues={{ facility_id: "", organization_service_id: "" }}
         onSubmit={(values) => {
           const answers = {};
-
           const hasFieldStartingWithAnswers = Object.keys(values).filter(
             (fieldName) => fieldName.startsWith("answers")
           );
@@ -45,18 +42,12 @@ export default function AddOrder({ setOpenAddFaculty }) {
               const answerIndex = fieldName.slice(7); // Get the index from the field name
               answers[`answers[${answerIndex}]`] = values[fieldName];
             });
-
             const formData = {
               facility_id: values.facility_id,
               organization_service_id: values.organization_service_id,
               ...answers,
             };
-
             AddOrder(formData);
-            console.log(
-              "🚀 ~ file: AddOrder.jsx:30 ~ AddOrder ~ values:",
-              formData
-            );
           } else {
             console.log("No");
           }

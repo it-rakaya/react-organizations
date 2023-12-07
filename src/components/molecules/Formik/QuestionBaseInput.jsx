@@ -42,12 +42,11 @@ export default function QuestionBaseInput({
 
   ...props
 }) {
-  console.log("🚀 ~ file: QuestionBaseInput.jsx:45 ~ options:", options)
+  console.log("🚀 ~ file: QuestionBaseInput.jsx:45 ~ options:", options);
   const { setFieldValue, values, errors } = useFormikContext();
   const [showPassword, setShowPassword] = useState(false);
   const [personName, setPersonName] = useState([]);
   const [value, setValue] = useState("female");
-
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -164,7 +163,6 @@ export default function QuestionBaseInput({
         </div>
       ) : type == "text" ? (
         <div>
-      
           <TextField
             autoFocus
             // error
@@ -188,8 +186,8 @@ export default function QuestionBaseInput({
           <label> {label} </label>
           <TextareaAutosize
             minRows={4}
-            placeholder="Maximum 4 rows"
-            defaultValue="tetarea"
+            placeholder={label}
+            // defaultValue="tetarea"
             className="w-full p-2 border rounded-md"
             onChange={(e) => {
               // if (values[name] !== undefined) {

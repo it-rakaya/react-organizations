@@ -13,9 +13,8 @@ const UploadImage = ({ name, placeholder,  }) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
-    accept: {
-      "image/*": [".png", ".jpg", ".jpeg", ".gif"],
-    },
+    accept: ["image/*", ".pdf", ".doc", ".docx"],
+
     onDrop: (acceptedFiles) => {
       setFiles(acceptedFiles.map((file) => Object.assign(file)));
       // if (values[name] !== undefined) {

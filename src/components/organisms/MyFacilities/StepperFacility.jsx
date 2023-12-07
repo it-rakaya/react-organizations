@@ -178,16 +178,20 @@ const StepperFacility = () => {
             })}
           </Stepper>
         </StepperWrapper>
+
         <Card
-          sx={{ mt: 4 }}
-          className="!overflow-y-scroll scroll_main !shadow-none h-[27rem]  scroll_main m-3 bg-transparent"
+          sx={{
+            mt: 4,
+            boxShadow: "0 4px 24px -1px #0000001A",
+            height: "calc(100vh - 260px)",
+          }}
+          className="!overflow-y-scroll scroll_main  px-3 py-2  rounded-xl scroll_main m-3 bg-transparent"
         >
           <CardContent className="h-full pt-0">
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
               onSubmit={(values) => {
-        
                 addFacility({
                   ...values,
                 });
@@ -198,7 +202,7 @@ const StepperFacility = () => {
                   <Form className="h-full">
                     <div
                       spacing={5}
-                      className="flex flex-col justify-between h-full"
+                      className="flex flex-col justify-between h-full "
                     >
                       {getStepContent(activeStep)}
                       <Grid
@@ -210,7 +214,7 @@ const StepperFacility = () => {
                           gap: "5px",
                         }}
                         mt={5}
-                        className=""
+                        className="fixed bottom-[10px] left-[35px]"
                       >
                         <ButtonComp
                           size="large"

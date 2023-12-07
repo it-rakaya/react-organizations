@@ -85,14 +85,13 @@ export const Root = ({ props }) => {
     },
   }));
   const token = Cookies.get("token");
+  
   useEffect(() => {
     if (token == undefined) {
       navigate("/");
     }
   }, [navigate, token]);
 
-
-  // ** Toggle Functions
   const toggleNavVisibility = () => setNavVisible(!navVisible);
   if (token) {
     return (

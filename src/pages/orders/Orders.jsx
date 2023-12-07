@@ -51,7 +51,7 @@ export default function Orders() {
         addTitle={t("Add order")}
         action={() => setOpenAddFaculty(true)}
       />
-      <TabContext value={value}>
+      <TabContext value={value} className="mr-0 overflow-hidden">
         <TabList onChange={handleChange} aria-label="nav tabs example">
           <Tab
             value="1"
@@ -85,10 +85,10 @@ export default function Orders() {
           <Loading />
         ) : Orders?.all_user_orders?.length ? (
           <>
-            <Grid container spacing={10}>
+            <Grid container spacing={3} className="overflow-hidden" >
               {Orders?.all_user_orders?.map((item) => (
                 <>
-                  <TabPanel value="1" key={item?.id} className="mt-20">
+                  <TabPanel value="1" key={item?.id} className="mt-20 ">
                     <Grid
                       item
                       xs={12}
@@ -203,7 +203,7 @@ export default function Orders() {
                     </Grid>
                   </TabPanel>
                   {item.status.name == "تم القبول" && (
-                    <TabPanel value="3" className="mt-20">
+                    <TabPanel value="3" className="mt-20 ">
                       <Grid
                         item
                         xs={12}
@@ -318,8 +318,8 @@ export default function Orders() {
                       </Grid>
                     </TabPanel>
                   )}
-                  <TabPanel value="3" className="mt-20">
                     {item.status.name == "قيد المراجعة" && (
+                  <TabPanel value="3" className="mt-20 ">
                       <Grid
                         item
                         xs={12}
@@ -432,10 +432,10 @@ export default function Orders() {
                           </CardContent>
                         </Card>
                       </Grid>
-                    ) }
                   </TabPanel>
+                    ) }
                   {item.status.name == "تم الالغاء" && (
-                    <TabPanel value="4" className="mt-20">
+                    <TabPanel value="4" className="mt-20 ">
                       <Grid
                         item
                         xs={12}
