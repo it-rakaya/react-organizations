@@ -6,14 +6,17 @@ import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import ButtonComp from "../atoms/buttons/ButtonComp";
 import CheckCode from "../organisms/checkCode";
+import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 
 export default function VerifyUser({ userData, dataValue, setOpen }) {
   const [valuesForm, setValuesForm] = useState("");
+  const { setUser } = useAuth();
 
   const { mutate: verify_user, isLoading: loadingVerify } = useMutate({
     mutationKey: [`verify_user`],
     endpoint: `verify`,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      setUser(data?.data);
       notify("success");
       setOpen(false);
     },

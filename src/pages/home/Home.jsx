@@ -57,7 +57,6 @@ const Home = () => {
                 setOpen(true);
                 sendOTP({
                   organization_id: "1",
-
                   phone: user?.user?.phone,
                   phone_code: user?.user?.phone_code,
                 });
