@@ -12,12 +12,12 @@ const Hero = () => {
     <div className="px-3 lg:w-1/2 2xl:ps-56 2xl:px-80 xl:ps-12">
       <div dir={i18n.dir(language)}>
         {/* title */}
-        <div className="flex flex-col items-center justify-between w-full gap-5 xl:flex-row xl:gap-0">
-          <h1 className="text-2xl font-bold text-primaryText 3xl:text-3xl">
-            {orgData?.organizations?.name_ar}
-          </h1>
+        <div className="flex flex-col items-center justify-between w-full gap-5 xl:flex-row-reverse xl:gap-0">
           <h1 className="px-6 py-1 border rounded-lg border-primaryText">
             Logo
+          </h1>
+          <h1 className="text-2xl font-bold text-primaryText 3xl:text-3xl">
+            {orgData?.organizations?.name_ar}
           </h1>
         </div>
         {/* description */}
