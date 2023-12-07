@@ -87,7 +87,7 @@ export const Root = ({ props }) => {
   const token = Cookies.get("token");
   
   useEffect(() => {
-    if (token == undefined) {
+    if (!token) {
       navigate("/");
     }
   }, [navigate, token]);

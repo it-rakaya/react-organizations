@@ -46,7 +46,7 @@ function Landing() {
       {/* page content */}
       <Navbar />
       {/* content */}
-      <div className="mt-[13%]">
+      <div className="pt-[13%]">
         <Hero />
         <div className="my-20">
           <Footer />
