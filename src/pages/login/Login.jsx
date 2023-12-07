@@ -10,6 +10,7 @@ import imgLogin from "../../../src/assets/login.png";
 import LoginForm from "../../components/templates/LoginForm";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useSettings } from "../../hooks/useSettings";
+import { useEffect } from "react";
 
 const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -64,6 +65,11 @@ const Login = () => {
   const { skin } = settings;
   const token = Cookies.get("token");
 
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [navigate, token]);
   // const imageSource = skin === 'bordered' ? 'auth-v2-login-illustration-bordered' : 'auth-v2-login-illustration'
   if (!token) {
     return (

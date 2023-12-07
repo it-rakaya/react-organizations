@@ -34,7 +34,7 @@ export default function LoginForm() {
     },
   });
 
-  const { mutate: sendOTP } = useMutate({
+  const { mutate: sendOTP , isPending } = useMutate({
     mutationKey: [`send-otp`],
     endpoint: `send-otp`,
     onSuccess: (data) => {
@@ -93,7 +93,7 @@ export default function LoginForm() {
             />
           )}
 
-          <ButtonComp loading={loadingLogin}>{t("LOGIN")}</ButtonComp>
+          <ButtonComp loading={loadingLogin || isPending}>{t("LOGIN")}</ButtonComp>
         </Form>
       </Formik>
     </div>
