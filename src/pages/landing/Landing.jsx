@@ -7,7 +7,7 @@ import bg2 from "../../assets/bg2.png";
 
 function Landing() {
   return (
-    <div className="w-screen lg:h-screen overflow-hidden relative" dir="ltr">
+    <div className="relative w-screen overflow-hidden lg:h-screen" dir="ltr">
       <div className="w-screen h-full absolute flex justify-end z-[-10000]">
         <div className="relative w-full h-full">
           {/* big */}
@@ -46,14 +46,14 @@ function Landing() {
       {/* page content */}
       <Navbar />
       {/* content */}
-      <div className="pt-[13%]">
+      <div className="mt-[13%]">
         <Hero />
         <div className="my-20">
           <Footer />
         </div>
       </div>
       <Marquee>
-        <h4 className="text-white font-semibold py-3">
+        <h4 className="py-3 font-semibold text-white">
           All rights reserved &copy;
         </h4>
       </Marquee>
