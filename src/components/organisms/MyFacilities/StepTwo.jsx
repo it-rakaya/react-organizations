@@ -1,5 +1,5 @@
-import useFetch from "../../../../hooks/useFetch";
-import UploadImageTwo from "../../../molecules/UploadImageTwo";
+import useFetch from "../../../hooks/useFetch";
+import UploadImageTwo from "../../molecules/UploadImageTwo";
 
 export default function StepTwo() {
   const { data: attachments_facilities } = useFetch({

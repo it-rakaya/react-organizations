@@ -25,7 +25,7 @@ import TermsConditionIcon from "../../atoms/icons/TermsConditionIcon";
 import StepperCustomDot from "../../theme/StepperCustomDot";
 import StepperWrapper from "../../theme/stepper";
 import AddFacility from "./AddFacility";
-import StepTwo from "./add_facility/StepTwo";
+import StepTwo from "./StepTwo";
 import { useNavigate } from "react-router-dom";
 
 const steps = [
@@ -56,7 +56,7 @@ const StepperFacility = () => {
     }
   };
   const queryClient = useQueryClient();
-
+  
   const { mutate: addFacility, isPending: loadingAddFacility } = useMutate({
     mutationKey: [`add_facilities`],
     endpoint: `facilities`,
@@ -64,7 +64,6 @@ const StepperFacility = () => {
       queryClient.refetchQueries(["facilities"]);
       notify("success");
       navigate("/dashboard/facilities");
-      // setOpenAddFaculty(false);
     },
     onError: (err) => {
       notify("error", err?.response?.data.message);

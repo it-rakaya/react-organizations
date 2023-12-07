@@ -6,9 +6,6 @@ import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
 export default function AddFacility() {
   return (
     <div className="">
-      {/* <MainHeader title='اضافة منشاه' /> */}
-      {/* <Formik onSubmit={values => console.log('values', values)} initialValues={{}}> */}
-      {/* <Form> */}
       <div className="grid items-start grid-cols-2 gap-2 p-5">
         <div className="flex items-start col-span-12 gap-2 ">
           <div className="w-1/2">
