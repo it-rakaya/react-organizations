@@ -26,8 +26,8 @@ jobs:
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
           cd /var/www/html/react/africa-dev.rmcc.sa/react-organizations
+          git pull
           rm -r /node_modules
           rm yarn.lock
-          git pull
           yarn 
           yarn build
