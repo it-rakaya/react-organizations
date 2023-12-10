@@ -5,48 +5,46 @@ import { useTranslation } from "react-i18next";
 import { request } from "../../utils/axios-util";
 import { notify } from "../../utils/toast";
 
-
-
-
 const LanguageContext = createContext();
 
-export const LanguageContextProvider = ({
-    children
-}) => {
+export const LanguageContextProvider = ({ children }) => {
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language;
+  const queryClient = useQueryClient();
+  // const LoadingOverlay = useLoadingOverlay()
 
-    const { i18n } = useTranslation();
-    const currentLang = i18n.language
-    const queryClient = useQueryClient()
-    // const LoadingOverlay = useLoadingOverlay()
+  const changeLang = async (language) => {
+    // LoadingOverlay.open()
+    try {
+      const response = await request({
+        url: `/dashboard/change-language?locale=${language}`,
+        method: "GET",
+      });
+      const newLang = response;
+      const newDir = newLang == "ar" ? "rtl" : "ltr";
 
-    const changeLang = async (language) => {
-        // LoadingOverlay.open()
-        try {
-            const response = await request({
-                url: `/dashboard/change-language?locale=${language}`,
-                method: 'GET'
-            })
-            const newLang = response 
-            const newDir = newLang == "ar" ? "rtl" : "ltr"
-
-            await queryClient.invalidateQueries()
-            i18n.changeLanguage(newLang) 
-            document.documentElement.dir = newDir
-            document.documentElement.lang = newLang
-
-        } catch (error) {
-            notify('error', error.response?.data?.error);
-        } finally {
-            // LoadingOverlay.close()
-        }
+      await queryClient.invalidateQueries();
+      i18n.changeLanguage(newLang);
+      document.documentElement.dir = newDir;
+      document.documentElement.lang = newLang;
+    } catch (error) {
+      notify("error", error.response?.data?.error);
+    } finally {
+      // LoadingOverlay.close()
     }
+  };
 
-    return <LanguageContext.Provider value={{
+  return (
+    <LanguageContext.Provider
+      value={{
         currentLang,
-        changeLang
-    }}>{children}</LanguageContext.Provider>
-}
+        changeLang,
+      }}
+    >
+      {children}
+    </LanguageContext.Provider>
+  );
+};
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const useLanguageContext = () => useContext(LanguageContext)
-
+export const useLanguageContext = () => useContext(LanguageContext);

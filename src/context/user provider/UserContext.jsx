@@ -28,19 +28,21 @@ export const UserProvider = ({ children }) => {
   //     console.error("Error fetching user data:", error);
   //   }
   // };
-  const { data: userData, refetch , isRefetching } = useFetch({
+  const {
+    data: userData,
+    refetch,
+    isRefetching,
+  } = useFetch({
     endpoint: `users/info`,
     queryKey: ["users_info"],
-
 
     onError(e) {
       console.log("e", e);
     },
-    enabled:user_token ? true : false
+    enabled: user_token ? true : false,
   });
   useEffect(() => {
     if (isRefetching) {
-
       console.log("تم تحميل البيانات بنجاح");
     }
   }, [isRefetching]);
@@ -49,7 +51,7 @@ export const UserProvider = ({ children }) => {
   }, [refetch]);
 
   return (
-    <UserContext.Provider value={{ userData, refetch , isRefetching   }}>
+    <UserContext.Provider value={{ userData, refetch, isRefetching }}>
       {children}
     </UserContext.Provider>
   );

@@ -6,7 +6,8 @@ import useFetch from "../../hooks/useFetch";
 import { FormikError } from "./Formik/FormikError";
 
 export default function SelectCountry({ name, label, className }) {
-  const { setFieldValue , errors } = useFormikContext();
+  const { setFieldValue, errors, values } = useFormikContext();
+  console.log("🚀 ~ file: SelectCountry.jsx:10 ~ SelectCountry ~ values:", values)
   const { data: countries } = useFetch({
     endpoint: `countries`,
     queryKey: ["countrie"],
@@ -33,6 +34,7 @@ export default function SelectCountry({ name, label, className }) {
         <Select
           options={options}
           name={name}
+          className="border rounded-md"
           placeholder={t("Chose Country")}
           onChange={(option) => setFieldValue(name, option.value)}
           styles={{
@@ -40,13 +42,15 @@ export default function SelectCountry({ name, label, className }) {
               ...baseStyles,
               padding: "10px",
               borderRadius: " 8px",
-              borderColor:errors[name] ? "red" :'white',
+
+              borderColor: errors[name] ? "red" : "white",
               background: "white",
               margin: "0",
             }),
             option: (baseStyles) => ({
               ...baseStyles,
               // background:"white" ,
+              // borderColor:"#eee",
               color: "black",
             }),
           }}
@@ -57,9 +61,10 @@ export default function SelectCountry({ name, label, className }) {
               ...theme.colors,
               primary25: "#666CFF",
               primary: "#666CFF",
+              borderColor: "red",
             },
           })}
-          // defaultValue={{ value: values[name] , label:values[name] }}
+          defaultValue={{ value: values[name], label: values?.nationality_name }}
         />
         <div>
           <FormikError name={name} />

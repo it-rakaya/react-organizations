@@ -224,7 +224,7 @@ li.ps-active {
 
 .ps-active {
   /* background-color: #787eff !important; */
-  @apply rounded-[8px] bg-contained;
+  /* @apply rounded-[8px] bg-contained; */
 }
 
 @media (min-width: 1280px) {
@@ -487,6 +487,45 @@ main,
 
 }
 
-.MuiTabs-indicator{
+/* .MuiTabs-indicator{
   @apply bg-contained
 }
+
+.rtl-16ohm2w .MuiStepConnector-root.Mui-disabled .MuiStepConnector-line{
+  @apply border-contained
+}
+.rtl-1kb9sjj{
+  @apply border-contained
+
+}
+.rtl-yt6b2j{
+  @apply border-contained
+
+} */
+.rtl-16ohm2w .MuiStepper-alternativeLabel .MuiStepConnector-root {
+  top: 8px !important;
+}
+/* .afterSetting{
+  content: "";
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  animation: spin 9s linear infinite;
+  top: 0;
+  left: 23%;
+} */
+
+.animate-\[spin_2\.5s_linear_infinite\] {
+  animation: spin 2.5s linear infinite
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  to {
+    transform: rotate(1turn)
+  }
+}
+

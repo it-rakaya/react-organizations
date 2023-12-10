@@ -9,6 +9,7 @@ import { notify } from "../../utils/toast";
 import ButtonComp from "../atoms/buttons/ButtonComp";
 import PhoneInput2 from "../molecules/Formik/PhoneInput2";
 import CheckCode from "../organisms/checkCode";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
 export default function LoginForm() {
   const [verifyPhone, setVerifyPhone] = useState(false);
@@ -16,7 +17,7 @@ export default function LoginForm() {
   const { login } = useAuth();
   const [dataValue, setDataValue] = useState();
   const [valueOTP, setValueOTP] = useState();
-
+  const { orgData } = UseOrg();
 
   const { mutate: LoginData, isPending: loadingLogin } = useMutate({
     mutationKey: [`login_data`],
@@ -27,14 +28,13 @@ export default function LoginForm() {
       // setToken(data?.data)
       notify("success", `مربحا بك يا ${data?.data?.user.name}`);
     },
-
     onError: (err) => {
       console.log("err", err);
       notify("error", err?.response?.data.message);
     },
   });
 
-  const { mutate: sendOTP , isPending } = useMutate({
+  const { mutate: sendOTP, isPending } = useMutate({
     mutationKey: [`send-otp`],
     endpoint: `send-otp`,
     onSuccess: (data) => {
@@ -53,18 +53,18 @@ export default function LoginForm() {
       phone: Yup.string().trim().required(t("phone is required")),
     });
   return (
-    <div>
+    <div className="w-full">
       <Formik
         onSubmit={(values) => {
           console.log("xxx:", values);
           setValuesForm(values);
 
           !verifyPhone
-            ? sendOTP({ ...values, organization_id: "1" })
+            ? sendOTP({ ...values, organization_id:orgData?.organization?.id })
             : LoginData({
                 ...values,
                 otp: valueOTP,
-                organization_id: "1",
+                organization_id: orgData?.organization?.id,
               });
         }}
         initialValues={{ phone: "", phone_code: "", otp: "" }}
@@ -90,10 +90,13 @@ export default function LoginForm() {
               number={dataValue?.value}
               valuesForm={valuesForm}
               setValueOTP={setValueOTP}
+              sendOTP={sendOTP}
             />
           )}
 
-          <ButtonComp loading={loadingLogin || isPending}>{t("LOGIN")}</ButtonComp>
+          <ButtonComp loading={loadingLogin || isPending}>
+            {t("LOGIN")}
+          </ButtonComp>
         </Form>
       </Formik>
     </div>

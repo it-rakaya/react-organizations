@@ -16,7 +16,7 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
   );
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
-    accept: ["image/*", ".pdf", ".doc", ".docx"],
+    accept: ["image/*", ".pdf"],
     onDrop: (acceptedFiles) => {
       const modifiedFiles = acceptedFiles.map((file) => {
         if (file.type === "application/pdf") {
@@ -72,11 +72,11 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
             </div>
           </div>
           <div className="flex justify-start w-full rounded-md ">
-            {!isLargeFile && files[0]?.type === "image/jpeg" ? (
+            {!isLargeFile && files[0]?.type.startsWith("image/")? (
               <div className="flex justify-start">
                 <PreviewImage files={files ? files : []} />
               </div>
-            ) : files[0]?.type === "application/pdf" ? (
+            ) : files[0]?.type.startsWith("application/") ? (
               <a
                 href={URL.createObjectURL(files[0])}
                 download={files[0].name}

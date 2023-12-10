@@ -1,9 +1,13 @@
+import { UseOrg } from "../../../context/organization provider/OrganizationProvider"
+
 const DefaultPalette = (mode, skin) => {
   // ** Vars
   const whiteColor = '#FFF'
   const lightColor = '76, 78, 100'
   const darkColor = '234, 234, 255'
   const mainColor = mode === 'light' ? lightColor : darkColor
+  const { orgData } = UseOrg();
+  
 
   const defaultBgColor = () => {
     if (skin === 'bordered' && mode === 'light') {
@@ -35,7 +39,7 @@ const DefaultPalette = (mode, skin) => {
     },
     primary: {
       light: '#787EFF',
-      main: '#666CFF',
+      main: `${orgData?.organizations?.primary_color || "#9F9685"}` ,
       dark: '#5A5FE0',
       contrastText: whiteColor
     },

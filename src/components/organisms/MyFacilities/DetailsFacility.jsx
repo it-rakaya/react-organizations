@@ -101,6 +101,18 @@ export default function DetailsFacility({ data }) {
           <p className="font-bold text-contained">رمز البريد </p>
           <p>{data?.postal_code}</p>
         </div>
+        {/* {data?.attachmentUrl.map((item) => (
+          <div className="flex flex-col gap-2" key={item?.id}>
+            <p className="font-bold text-contained"> صورة بطاقة العمل:</p>
+            <p>
+              <img
+                className="w-[200px] h-[200px] rounded-xl"
+                src={data?.work_card_photo_url}
+                alt=""
+              />
+            </p>
+          </div>
+        ))} */}
       </div>
     </div>
   );

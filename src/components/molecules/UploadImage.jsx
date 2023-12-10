@@ -7,9 +7,11 @@ import { useDropzone } from "react-dropzone";
 import CheckIcon from "../atoms/icons/CheckIcon";
 import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
-const UploadImage = ({ name, placeholder,  }) => {
-  const { setFieldValue, errors  } = useFormikContext();
-  const [files, setFiles] = useState([]);
+const UploadImage = ({ name, placeholder }) => {
+  const { setFieldValue, errors, values } = useFormikContext();
+  const [files, setFiles] = useState(
+    values?.attachments ? [values?.attachments[name]] : []
+  );
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
@@ -18,7 +20,7 @@ const UploadImage = ({ name, placeholder,  }) => {
     onDrop: (acceptedFiles) => {
       setFiles(acceptedFiles.map((file) => Object.assign(file)));
       // if (values[name] !== undefined) {
-        setFieldValue(name, acceptedFiles[0]);
+      setFieldValue(name, acceptedFiles[0]);
       // }
     },
   });

@@ -80,15 +80,33 @@ export default function Orders() {
             // className="bg-[#f31515]  rounded-t-md mx-2"
             label={<h2 className="font-bold text-black">{t("Canceled")} </h2>}
           />
+            <Tab
+            value="5"
+            component="a"
+            // className="bg-[#f31515]  rounded-t-md mx-2"
+            label={<h2 className="font-bold text-black">{t("Waiting")} </h2>}
+          />
+             <Tab
+            value="5"
+            component="a"
+            // className="bg-[#f31515]  rounded-t-md mx-2"
+            label={<h2 className="font-bold text-black">{t("Rejection")} </h2>}
+          />
+             <Tab
+            value="5"
+            component="a"
+            // className="bg-[#f31515]  rounded-t-md mx-2"
+            label={<h2 className="font-bold text-black">{t("New")} </h2>}
+          />
         </TabList>
         {isLoading || isRefetching ? (
           <Loading />
         ) : Orders?.all_user_orders?.length ? (
           <>
-            <Grid container spacing={3} className="overflow-hidden" >
+            <Grid container spacing={3} className="overflow-hidden">
               {Orders?.all_user_orders?.map((item) => (
                 <>
-                  <TabPanel value="1" key={item?.id} className="mt-20 ">
+                  <TabPanel value="1" key={item?.id} className="mt-5 ">
                     <Grid
                       item
                       xs={12}
@@ -96,9 +114,7 @@ export default function Orders() {
                       md={12}
                       xl={12}
                       key={item?.id}
-                      style={{ width: "178px" }}
-
-                      // className={{ height: "3500px" }}
+                      style={{ width: "275px" , height: "290px" }}
                     >
                       <Card
                         sx={{ position: "relative" }}
@@ -202,8 +218,8 @@ export default function Orders() {
                       </Card>
                     </Grid>
                   </TabPanel>
-                  {item.status.name == "تم القبول" && (
-                    <TabPanel value="3" className="mt-20 ">
+                  {item.status.name == " تم القبول" && (
+                    <TabPanel value="3" className="mt-5 ">
                       <Grid
                         item
                         xs={12}
@@ -211,7 +227,7 @@ export default function Orders() {
                         md={12}
                         xl={12}
                         key={item?.id}
-                        style={{ width: "178px" }}
+                        style={{ width: "275px" , height: "290px" }}
 
                         // className={{ height: "3500px" }}
                       >
@@ -318,8 +334,8 @@ export default function Orders() {
                       </Grid>
                     </TabPanel>
                   )}
-                    {item.status.name == "قيد المراجعة" && (
-                  <TabPanel value="3" className="mt-20 ">
+                  {item.status.name == "قيد المراجعة" && (
+                    <TabPanel value="3" className="mt-5 ">
                       <Grid
                         item
                         xs={12}
@@ -327,7 +343,7 @@ export default function Orders() {
                         md={12}
                         xl={12}
                         key={item?.id}
-                        style={{ width: "178px" }}
+                        style={{ width: "275px" , height: "290px" }}
 
                         // className={{ height: "3500px" }}
                       >
@@ -432,10 +448,10 @@ export default function Orders() {
                           </CardContent>
                         </Card>
                       </Grid>
-                  </TabPanel>
-                    ) }
+                    </TabPanel>
+                  )}
                   {item.status.name == "تم الالغاء" && (
-                    <TabPanel value="4" className="mt-20 ">
+                    <TabPanel value="4" className="mt-5 ">
                       <Grid
                         item
                         xs={12}
@@ -443,7 +459,7 @@ export default function Orders() {
                         md={12}
                         xl={12}
                         key={item?.id}
-                        style={{ width: "178px" }}
+                        style={{ width: "275px" , height: "290px" }}
 
                         // className={{ height: "3500px" }}
                       >

@@ -6,9 +6,11 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { t } from "i18next";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MainHeader from "../../components/atoms/MainHeader";
 import ModalComp from "../../components/atoms/ModalComp";
 import ButtonComp from "../../components/atoms/buttons/ButtonComp";
+import CheckIcon from "../../components/atoms/icons/CheckIcon";
 import FacilityIcon from "../../components/atoms/icons/FaciltyIcon";
 import Loading from "../../components/molecules/Loading";
 import DataNotFound from "../../components/molecules/NotFound";
@@ -19,9 +21,6 @@ import StepperFacility from "../../components/organisms/MyFacilities/StepperFaci
 import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import useFetch from "../../hooks/useFetch";
-import { useNavigate } from "react-router-dom";
-import CheckIcon from "../../components/atoms/icons/CheckIcon";
-import { Button } from "@mui/material";
 
 export default function MyFacilities() {
   const [show, setShow] = useState(false);
@@ -33,7 +32,7 @@ export default function MyFacilities() {
   const [resetForm, setResetForm] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 8; 
+  const pageSize = 8;
   const [openSecundModal, setSecundModal] = useState(false);
 
   const {
@@ -83,9 +82,12 @@ export default function MyFacilities() {
                     sm={4}
                     md={3}
                     key={item?.id}
-                    className={{ height: "290px" }}
+                    // style={{ height: "290px" }}
                   >
-                    <Card sx={{ position: "relative" }}>
+                    <Card
+                      sx={{ position: "relative"  }}
+                      // className="flex flex-col items-center justify-end"
+                    >
                       {/* <div className="flex items-center justify-between px-2 py-1 item">
                         <ShowDetails />
                         <EditIcon />
@@ -127,16 +129,6 @@ export default function MyFacilities() {
                             flexDirection: "column",
                           }}
                         >
-                          {/* <Avatar
-                        src={"/images/icons/project-icons/social-label.png"}
-                        sx={{ mb: 4, width: 100, height: 100 }}
-                      /> */}
-                          {/* <img
-                            width="60"
-                            height="60"
-                            src="https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/external-company-town-xnimrodx-lineal-xnimrodx-4.png"
-                            alt="external-company-town-xnimrodx-lineal-xnimrodx-4"
-                          /> */}
                           <FacilityIcon />
                           <Typography
                             variant="h6"
@@ -214,21 +206,23 @@ export default function MyFacilities() {
             <CheckIcon className="stroke-contained" />
             <h1 className="font-bold"> تم إضافة موظف بنجاح</h1>
 
-            <Button
-              className="!w-2/3 !text-white !rounded-md !bg-contained !hover:!bg-gold"
-              onClick={() => navigate("/dashboard/employee")}
+            <ButtonComp
+              className="!w-2/3"
+              variant="contained"
+              action={() => navigate("/dashboard/employee")}
             >
               الانتقال الى الموظفين
-            </Button>
-            <Button
-              className="!w-2/3 !px-10 !border !border-solid !rounded-md !text-contained !border-contained"
-              onClick={() => {
+            </ButtonComp>
+            <ButtonComp
+              className="!w-2/3 !px-10 !"
+              variant="outlined"
+              action={() => {
                 setSecundModal(false);
                 setOpenAddEmployee(false);
               }}
             >
               الرجوع
-            </Button>
+            </ButtonComp>
           </div>
         }
       />

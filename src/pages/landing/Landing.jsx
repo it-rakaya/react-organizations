@@ -1,11 +1,13 @@
-import Hero from "../../components/Landing/Hero";
-import Navbar from "../../components/Landing/Navbar";
-import Footer from "../../components/Landing/Footer";
-import Marquee from "../../components/Landing/Marquee";
-import bg1 from "../../assets/bg1.png";
 import bg2 from "../../assets/bg2.png";
+import Footer from "../../components/Landing/Footer";
+import Hero from "../../components/Landing/Hero";
+import Marquee from "../../components/Landing/Marquee";
+import Navbar from "../../components/Landing/Navbar";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
 function Landing() {
+  const { orgData } = UseOrg();
+
   return (
     <div className="relative w-screen overflow-hidden lg:h-screen" dir="ltr">
       <div className="w-screen h-full absolute flex justify-end z-[-10000]">
@@ -13,13 +15,14 @@ function Landing() {
           {/* big */}
           <img
             alt=""
-            srcset={bg1}
+            srcSet={bg2}
+            // src={orgData?.organizations?.background}
             className="animated-box absolute md:top-[-20%] lg:top-[-40%] xl:top-[-50%] 3xl:top-[-15%] 3xl:right-[-10%] right-[-20%] z-[-10000]"
           />
           {/* small */}
           <img
             alt=""
-            srcset={bg2}
+            srcSet={bg2}
             className="animated-box absolute top-[10%] xl:top-[20%] 3xl:top-[40%] right-8 pe-[10vw] z-[-10000]"
           />
         </div>
@@ -34,8 +37,7 @@ function Landing() {
           <div
             className="w-[200%] h-[200%] rotate-[-45deg] absolute top-[-45%] left-[-45%]"
             style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1565019001609-0e34a6a22189?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+              backgroundImage: `url(${orgData?.organizations?.background_image})`,
               backgroundSize: "cover",
               // backgroundPosition:'center',
               backgroundRepeat: "no-repeat",

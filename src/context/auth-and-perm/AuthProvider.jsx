@@ -5,14 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { UseLocalStorage } from "../../hooks/useLocalStorage";
 const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = UseLocalStorage();
-  console.log("🚀 ~ file: AuthProvider.jsx:10 ~ AuthProvider ~ user:", user);
+  const [user, setUser] = UseLocalStorage("user");
   const navigate = useNavigate();
-
   const login = useCallback(
     async (data) => {
-      if (setUser) setUser(data);
-      window.localStorage.setItem("user", JSON.stringify(data.user));
+      if (setUser) setUser(data.user);
+      // window.localStorage.setItem("user", JSON.stringify(data.user));
       Cookies.set("role", data.user.role_name);
       Cookies.set("token", data.token);
       navigate("/dashboard", { replace: true });

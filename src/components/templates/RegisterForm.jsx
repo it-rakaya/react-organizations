@@ -13,6 +13,7 @@ import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import ButtonComp from "../atoms/buttons/ButtonComp";
 import RegistrationMainData from "./RegistrationMainData";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
 export default function RegisterForm() {
   const LinkStyled = styled(Link)(({ theme }) => ({
@@ -21,6 +22,7 @@ export default function RegisterForm() {
   }));
   const { login } = useAuth();
   const [checked, setChecked] = useState(false);
+  const { orgData } = UseOrg();
 
   const { mutate: sendRegister, isPending } = useMutate({
     endpoint: `register`,
@@ -58,7 +60,7 @@ export default function RegisterForm() {
     nationality: "",
     national_id_expired: Date(),
     attachments: [],
-    organization_id: "1",
+    organization_id:orgData?.organization?.id,
   };
 
   return (
@@ -100,16 +102,16 @@ export default function RegisterForm() {
             label={
               <>
                 <Typography variant="body2" component="span">
-                  I agree to{" "}
+                  {t("I agree to ")}
                 </Typography>
                 <LinkStyled href="/" onClick={(e) => e.preventDefault()}>
-                  privacy policy & terms
+                  {t("privacy policy & terms")}
                 </LinkStyled>
               </>
             }
           />
           <ButtonComp type={"submit"} loading={isPending} disabled={!checked}>
-            Sign up
+            {t("Sign up")}
           </ButtonComp>
           <Box
             sx={{

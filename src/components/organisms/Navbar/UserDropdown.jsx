@@ -14,6 +14,7 @@ import { useAuth } from "../../../context/auth-and-perm/AuthProvider";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
+import { t } from "i18next";
 
 // ** Icon Imports
 
@@ -32,7 +33,7 @@ const UserDropdown = (props) => {
   const { settings } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
-  const { logout , user } = useAuth();
+  const { logout, user } = useAuth();
   const { direction } = settings;
 
   const handleDropdownOpen = (event) => {
@@ -94,7 +95,7 @@ const UserDropdown = (props) => {
           alt="John Doe"
           onClick={handleDropdownOpen}
           sx={{ width: 40, height: 40 }}
-          src={userAvarar}
+          src={user?.attachmentUrl?.length && user?.attachmentUrl[1]?.value}
         />
       </Badge>
       <Menu
@@ -123,7 +124,7 @@ const UserDropdown = (props) => {
             >
               <Avatar
                 alt="John Doe"
-                src="/images/avatars/1.png"
+                src={user?.attachmentUrl?.length ? user?.attachmentUrl[1]?.value : ''}
                 sx={{ width: "2.5rem", height: "2.5rem" }}
               />
             </Badge>
@@ -135,24 +136,27 @@ const UserDropdown = (props) => {
                 flexDirection: "column",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>
-                {" "}
-                {user?.user?.name}
-              </Typography>
+              <Typography sx={{ fontWeight: 600 }}>{user?.name}</Typography>
               <Typography
                 variant="body2"
                 sx={{ fontSize: "0.8rem", color: "text.disabled" }}
               >
-                {user?.user?.role_name || "user"}
+                {user?.role_name || "user"}
               </Typography>
             </Box>
           </Box>
         </Box>
         <Divider sx={{ mt: "0 !important" }} />
+        <MenuItem sx={{ p: 0 }} onClick={() => navigate("/")}>
+          <Box sx={styles}>
+            <IconifyIcon icon="iconoir:page" />
+            {t("Landing")}
+          </Box>
+        </MenuItem>
         <MenuItem sx={{ p: 0 }} onClick={() => navigate("/dashboard/profile/")}>
           <Box sx={styles}>
             <IconifyIcon icon="mdi:account-outline" />
-            Profile
+            {t("Profile")}
           </Box>
         </MenuItem>
         <MenuItem

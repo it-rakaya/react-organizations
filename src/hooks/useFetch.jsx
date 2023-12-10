@@ -1,25 +1,24 @@
-import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
-import Cookies from "js-cookie"
-import { notify } from "../utils/toast"
-import { useNavigate } from "react-router-dom"
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { notify } from "../utils/toast";
+import { useNavigate } from "react-router-dom";
+// import { UseOrg } from "../context/organization provider/OrganizationProvider";
 
+function useFetch({ endpoint, enabled, select, queryKey, onError, onSuccess }) {
+  const user_token = Cookies.get("token");
+  const token = user_token;
+  const authorizationHeader = `Bearer ${token}`;
+  const navigate = useNavigate();
+  // const { orgData } = UseOrg();
+  // console.log("🚀 ~ file: useFetch.jsx:14 ~ useFetch ~ orgData:", orgData)
 
-function useFetch({
-  endpoint,
-  enabled,
-  select,
-  queryKey,
-  onError,
-  onSuccess,
-}) {
-  const user_token = Cookies.get("token")
-  const token = user_token
-  const authorizationHeader = `Bearer ${token}`
-  const navigate = useNavigate()
   const config = {
-    headers: { Authorization: authorizationHeader },
-  }
+    headers: {
+      Authorization: authorizationHeader,
+      domain: "africa.rmcc.sa",
+    },
+  };
 
   const query = useQuery({
     queryKey,
@@ -30,19 +29,19 @@ function useFetch({
     enabled,
     select,
     onError: (error) => {
-      notify("error", error?.response?.data?.message)
+      notify("error", error?.response?.data?.message);
       if (error?.response?.data?.message == "Unauthenticated.") {
-        localStorage.removeItem("user")
-        navigate("/login")
-        Cookies.remove("token")
+        localStorage.removeItem("user");
+        navigate("/login");
+        Cookies.remove("token");
       }
       if (onError) {
-        onError(error)
+        onError(error);
       }
     },
     onSuccess,
-  })
-  return query
+  });
+  return query;
 }
 
-export default useFetch
+export default useFetch;

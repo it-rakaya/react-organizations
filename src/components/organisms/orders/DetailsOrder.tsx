@@ -248,6 +248,18 @@ export default function DetailsOrder({ data }) {
               <p className="font-bold text-contained"> شهادة الضرائب:</p>
               <p>{data?.facility?.tax_certificate}</p>
             </div>
+            {/* {data?.attachmentUrl.map((item) => (
+              <div className="flex flex-col gap-2" key={item?.id}>
+                <p className="font-bold text-contained"> صورة بطاقة العمل:</p>
+                <p>
+                  <img
+                    className="w-[200px] h-[200px] rounded-xl"
+                    src={data?.work_card_photo_url}
+                    alt=""
+                  />
+                </p>
+              </div>
+            ))} */}
           </div>
         </TabPanel>
       </TabContext>

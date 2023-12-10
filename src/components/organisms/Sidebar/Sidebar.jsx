@@ -7,25 +7,29 @@ import {
   MenuItem,
   Sidebar,
   SubMenu,
-  useProSidebar
+  useProSidebar,
 } from "react-pro-sidebar";
 import { useLocation, useNavigate } from "react-router-dom";
 import { sideBarItems } from "../../../data/sidebar";
 import { useIsRTL } from "../../../hooks/useIsRTL";
 import ArrowSideBar_IC from "../../atoms/icons/ArrowSideBar";
+import { useTheme } from "@mui/material/styles";
+import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 
 export const SideBar = ({
   isSidebarCollapsed,
   handleClickItem,
   handleCollapsedSideBar,
 }) => {
-
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const isRTL = useIsRTL();
   const [opened, setOpened] = useState({});
   const { collapseSidebar, collapsed } = useProSidebar();
+  const theme = useTheme();
+  const {orgData} = UseOrg()
+  console.log("🚀 ~ file: Sidebar.jsx:32 ~ orgData:", orgData)
 
   const path = location.pathname;
   // console.log(openSide)
@@ -92,7 +96,6 @@ export const SideBar = ({
         <div className="text-white sidebar-heading">
           {!isSidebarCollapsed && t(Item.heading)}
         </div>
-        
       );
     }
     return Item.items ? (
@@ -101,7 +104,6 @@ export const SideBar = ({
         key={Item.id}
         label={t(Item.label)}
         icon={<Item.icon size={15} />}
-        
       >
         {Item.items.map((innerItem) => generateItem(innerItem))}
       </SubMenu>
@@ -115,10 +117,18 @@ export const SideBar = ({
 
         {/* <Tooltip label={t(Item?.label)} > */}
         <MenuItem
+          rootStyles={{
+            [`.ps-active`]: {
+              backgroundColor: location.pathname === Item.link && `${theme?.palette?.primary?.main} !important`,
+              borderRadius:"8px"
+              // transition: "all 250ms linear",
+              // height: "100vh",
+            },
+          }}
           className={
             location.pathname === Item.link
-              ? "font-bold text-white "
-              : "font-bold text-mainBlack "
+              ? `font-bold text-white rounded-[8px]`
+              : "font-bold rounded-[8px] text-mainBlack "
           }
           key={Item.id}
           onClick={(e) => {
@@ -134,7 +144,6 @@ export const SideBar = ({
       </>
     );
   };
-
   return (
     <Sidebar
       // className="!transition-all"
@@ -143,13 +152,6 @@ export const SideBar = ({
       width="15rem"
       // collapsedWidth="85px"
       transitionDuration={250}
-      rootStyles={{
-        [``]: {
-          backgroundColor: "#f7f7f9",
-          // transition: "all 250ms linear",
-          // height: "100vh",
-        },
-      }}
     >
       <div
         className={`${
@@ -158,15 +160,15 @@ export const SideBar = ({
             : "md:w-[70px] flex justify-center  pb-5 "
         } `}
       >
-          {!isSidebarCollapsed && (
-        <div className="m-auto">
+        {!isSidebarCollapsed && (
+          <div className="m-auto">
             <img
-              src="https://rakaya.co/images/logo/logo.png"
+              src={orgData?.organizations?.logo}
               className="object-contain w-24 h-12 lg:ms-3 image-logo-site"
               alt="logo"
             />
-        </div>
-          )}
+          </div>
+        )}
         <div className="">
           <ArrowSideBar_IC
             className={`cursor-pointer transition-ease collapsed-button-sidebar scale-x-[-1]  ${
@@ -189,9 +191,8 @@ export const SideBar = ({
               }
               key={Item.id}
               label={t(Item.label)}
-              icon={<Item.icon size={15}  />}
+              icon={<Item.icon size={15} />}
               active={location.pathname === Item.link}
-
             >
               {Item.items.map((innerItem) => generateItem(innerItem))}
             </SubMenu>

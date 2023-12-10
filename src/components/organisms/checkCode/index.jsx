@@ -3,12 +3,21 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import { PinInput } from "react-input-pin-code";
 import ResendCode from "../../molecules/Formik/ResendCode";
+import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 
-export default function CheckCode({ number, valuesForm, setValueOTP }) {
-  console.log("🚀 ~ file: index.jsx:12 ~ CheckCode ~ valuesForm:", valuesForm);
+export default function CheckCode({
+  number,
+  valuesForm,
+  setValueOTP,
+  sendOTP,
+}) {
+
   const [values, setValues] = useState(["", "", "", ""]);
   const [availableResetCode, setAvailableResetCode] = useState(false);
   const [timerStarted, setTimerStarted] = useState(true);
+  const [colorPinInput, setColorPinInput] = useState("");
+  const { orgData } = UseOrg();
+
 
   const handleSendTime = () => {
     if (availableResetCode) {
@@ -16,13 +25,15 @@ export default function CheckCode({ number, valuesForm, setValueOTP }) {
       //   email: formData.email,
       //   type: 'FORGET',
       // });
-      valuesForm;
+      sendOTP({ ...valuesForm, organization_id:orgData?.organization?.id });
+
+      // valuesForm;
       setTimerStarted(true);
     } else {
       return;
     }
   };
-
+  console.log("number == values.join()", number == values.join(""));
   return (
     <>
       <div className="lex ">
@@ -36,9 +47,19 @@ export default function CheckCode({ number, valuesForm, setValueOTP }) {
           <div>
             <PinInput
               values={values}
+              validBorderColor={colorPinInput}
+              focusBorderColor={"rgb(159,150,133 ,1)"}
+              borderColor={colorPinInput}
               onChange={(value, index, values) => {
+                console.log("🚀 ~ file: index.jsx:52 ~ values:", values)
                 setValues(values);
-                setValueOTP(values.join(''));
+                if (number == values.join("")) {
+                  setValueOTP(values.join(""));
+                  setColorPinInput("rgb(159,150,133 ,1)");
+                } else {
+                  console.log("false");
+                  setColorPinInput("rgb(220,53,69)");
+                }
               }}
               containerStyle={{ flexDirection: "row-reverse" }}
             />

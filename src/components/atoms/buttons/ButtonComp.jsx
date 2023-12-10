@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { Button } from "@mui/material";
 import Spinner from "../Spinner";
+import { useTheme } from "@mui/material/styles";
 
 const ButtonComp = ({
   variant = "contained" || "outlined",
@@ -14,19 +15,24 @@ const ButtonComp = ({
   bordered = false,
   ...props
 }) => {
+  const theme = useTheme();
+
   return (
     <Button
       fullWidth
       size="large"
       type={type}
+      style={{
+        backgroundColor:
+          variant == "contained"
+            ? theme?.palette?.primary?.main
+            : "transparent",
+        color: variant == "outlined" ? theme?.palette?.primary?.main : "white",
+        opacity: disabled ? "0.6" : "1",
+      }}
       variant={variant}
-      className={`${className} ${
-        variant == "contained"
-          ? "!bg-contained"
-          : variant == "outlined"
-          ? "bg-transparent !text-contained hover:!bg-transparent"
-          : ""
-      } text-white  hover:!bg-contained disabled:cursor-not-allowed disabled:text-[#bcbcbc]`}
+      className={`${className}  text-white  hover:!bg-${theme?.palette?.primary?.main}
+       disabled:cursor-not-allowed disabled:text-[${theme?.palette?.primary?.main}] !disabled:opacity-6`}
       // sx={{ mb: 7 }}
       disabled={disabled}
       onClick={action}

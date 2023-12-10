@@ -1,18 +1,23 @@
 /* eslint-disable react/prop-types */
 
-import { Bars } from "react-loader-spinner";
+import { Oval } from "react-loader-spinner";
+import { useTheme } from '@mui/material/styles'
 
 function Loading({ title }) {
+  const theme = useTheme()
+
   return (
     <div
       className="absolute flex flex-col items-center justify-center "
       style={{ left: "calc(50% - 100px )" , top:"calc(50% - 50px)" }}
     >
       <div>
-        <Bars
+        <Oval
           height="80"
           width="80"
-          color="#5A5FE0"
+          secondaryColor={theme?.palette?.primary?.main ||"#9F9685" }
+          color={theme?.palette?.primary?.main ||"#9F9685" }
+
           ariaLabel="bars-loading"
           wrapperStyle={{}}
           wrapperClass=""

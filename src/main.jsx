@@ -23,33 +23,33 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
     {/* <LoadingContextProvider> */}
-    {/* <LanguageContextProvider> */}
-    <BrowserRouter>
-      <SettingsProvider>
-        <SettingsConsumer>
-          {({ settings }) => {
-            return (
-              <ThemeComponent settings={settings}>
-                <HelmetProvider>
-                  <OrganizationProvider>
-                    <UserProvider>
-                      <AuthProvider>
-                        <ProSidebarProvider>
-                          <Suspense fallback={<Loading />}>
-                            <App />
-                          </Suspense>
-                        </ProSidebarProvider>
-                      </AuthProvider>
-                    </UserProvider>
-                  </OrganizationProvider>
-                </HelmetProvider>
-              </ThemeComponent>
-            );
-          }}
-        </SettingsConsumer>
-      </SettingsProvider>
-    </BrowserRouter>
-    {/* </LanguageContextProvider> */}
+    <LanguageContextProvider>
+      <BrowserRouter>
+        <OrganizationProvider>
+          <SettingsProvider>
+            <SettingsConsumer>
+              {({ settings }) => {
+                return (
+                  <ThemeComponent settings={settings}>
+                    <HelmetProvider>
+                      <UserProvider>
+                        <AuthProvider>
+                          <ProSidebarProvider>
+                            <Suspense fallback={<Loading />}>
+                              <App />
+                            </Suspense>
+                          </ProSidebarProvider>
+                        </AuthProvider>
+                      </UserProvider>
+                    </HelmetProvider>
+                  </ThemeComponent>
+                );
+              }}
+            </SettingsConsumer>
+          </SettingsProvider>
+        </OrganizationProvider>
+      </BrowserRouter>
+    </LanguageContextProvider>
     {/* </LoadingContextProvider> */}
   </QueryClientProvider>
 );

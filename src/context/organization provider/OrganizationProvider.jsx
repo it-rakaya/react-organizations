@@ -1,38 +1,39 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
+import { UseLocalStorage } from "../../hooks/useLocalStorage";
 
 const OrgContext = createContext();
 export const OrganizationProvider = ({ children }) => {
   const url = window.location.href;
-  console.log(
-    "🚀 ~ file: OrganizationProvider.jsx:10 ~ OrganizationProvider ~ url:",
-    url
-  );
+  const [orgData, setOrgData] = UseLocalStorage("organization");
 
   const {
-    data: orgData,
+    data,
     refetch,
     isRefetching,
+    isSuccess
   } = useFetch({
     endpoint: `organizations?organizationDomain=africa.rmcc.sa`,
     queryKey: ["organization_info"],
+
     onError(e) {
       console.log("e", e);
     },
-});
-console.log("🚀 ~ file: OrganizationProvider.jsx:17 ~ OrganizationProvider ~ orgData:", orgData)
+  });
   useEffect(() => {
-    if (isRefetching) {
+    if (isSuccess) {
       console.log("تم تحميل البيانات بنجاح");
+      setOrgData(data)
     }
-  }, [isRefetching]);
+  }, [isSuccess]);
   useEffect(() => {
+
     // refetch();
   }, [refetch]);
 
   return (
-    <OrgContext.Provider value={{ orgData, refetch, isRefetching }}>
+    <OrgContext.Provider value={{ orgData, refetch, isRefetching  }}>
       {children}
     </OrgContext.Provider>
   );
@@ -41,8 +42,10 @@ console.log("🚀 ~ file: OrganizationProvider.jsx:17 ~ OrganizationProvider ~ o
 // eslint-disable-next-line react-refresh/only-export-components
 export const UseOrg = () => {
   const context = useContext(OrgContext);
+  
   if (!context) {
     throw new Error("useUser must be used within a OrganizationProvider");
   }
+
   return context;
 };

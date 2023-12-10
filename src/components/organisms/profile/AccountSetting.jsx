@@ -8,38 +8,44 @@ import BaseInputField from "../../molecules/Formik/BaseInputField";
 import DatePickerComp from "../../molecules/Formik/DatePickerComp";
 import PhoneInput2 from "../../molecules/Formik/PhoneInput2";
 import SelectCountry from "../../molecules/SelectCountry";
+import UploadImage from "../../molecules/UploadImage";
 
-export default function AccountSetting({ userData, refetch , setEditUser }) {
-  console.log("🚀 ~ file: AccountSetting.jsx:15 ~ AccountSetting ~ userData:", userData)
+export default function AccountSetting({
+  userData,
+  refetch,
+  setEditUser,
+  setUser,
+}) {
   const initialValue = {
-    name: userData?.user?.name,
-    national_id: userData?.user?.national_id,
-    phone: userData?.user?.phone,
-    phone_code: userData?.user?.phone_code,
-    email: userData?.user?.email,
-    nationality: userData?.user?.nationality,
-    birthday: userData?.user?.birthday,
-    photo: userData?.user?.photo,
-    national_id_expired: userData?.user?.national_id_expired,
-    favourit_organizations: userData?.user?.favourit_organizations,
+    name: userData?.name,
+    national_id: userData?.national_id,
+    phone: userData?.phone,
+    phone_code: userData?.phone_code,
+    email: userData?.email,
+    nationality: userData?.nationality,
+    nationality_name: userData?.nationality_name,
+    birthday: userData?.birthday,
+    photo: userData?.photo,
+    national_id_expired: userData?.national_id_expired,
+    favourit_organizations: userData?.favourit_organizations,
   };
 
   const { mutate: UpdateUser, isPending } = useMutate({
     mutationKey: [`users_update`],
     endpoint: `users/update`,
-    onSuccess: () => {
+    onSuccess: (data) => {
       notify("success", "تم التعديل بنجاح");
-      setEditUser(false)
-      refetch()
+      setEditUser(false);
+      setUser(data?.data?.user);
+      // refetch()
     },
     onError: (err) => {
       notify("error", err?.response?.data.message);
     },
   });
-  console.log("🚀 ~ file: AccountSetting.jsx:41 ~ AccountSetting ~ isPending:", isPending)
 
   return (
-    <div >
+    <div>
       <MainHeader title={`  تعديل البيانات `} />
       <Formik
         initialValues={initialValue}
@@ -78,7 +84,7 @@ export default function AccountSetting({ userData, refetch , setEditUser }) {
             <div className="flex flex-col col-span-1 gap-3 my-3">
               <DatePickerComp name="birthday" label={"تاريخ  الميلاد"} />
             </div>
-      
+
             {/* <div>
               <UploadImage name="photo" />
             </div> */}
@@ -89,11 +95,28 @@ export default function AccountSetting({ userData, refetch , setEditUser }) {
                 label={"تاريخ انتهاء الاقامه"}
               />
             </div>
+            <div>
+            {userData?.attachments?.map((item) => (
+              <UploadImage
+                key={item.id}
+                name={`attachments[${item?.id}]`}
+                label={item?.attachment_label?.placeholder}
+                // id={item?.id}
+                placeholder={item?.attachment_label?.placeholder}
+              />
+            ))}
+          </div>
             {/* <div>
               <SelectOrganizations name={"favourit_organizations"} />
             </div> */}
             <div className="flex justify-end col-span-2">
-              <ButtonComp className="w-auto" loading={isPending } action={()=>refetch}>تعديل</ButtonComp>
+              <ButtonComp
+                className="w-auto"
+                loading={isPending}
+                // action={() => refetch}
+              >
+                تعديل
+              </ButtonComp>
             </div>
           </div>
         </Form>

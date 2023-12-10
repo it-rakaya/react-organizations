@@ -7,10 +7,13 @@ import { notify } from "../../utils/toast";
 import ButtonComp from "../atoms/buttons/ButtonComp";
 import CheckCode from "../organisms/checkCode";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
 export default function VerifyUser({ userData, dataValue, setOpen }) {
   const [valuesForm, setValuesForm] = useState("");
   const { setUser } = useAuth();
+  const [valueOTP , setValueOTP] = useState('')
+  const { orgData } = UseOrg();
 
   const { mutate: verify_user, isLoading: loadingVerify } = useMutate({
     mutationKey: [`verify_user`],
@@ -31,20 +34,19 @@ export default function VerifyUser({ userData, dataValue, setOpen }) {
     <div>
       <Formik
         onSubmit={(values) => {
-          console.log("xxx:", values);
           setValuesForm(values);
           verify_user({
-            phone: userData?.user?.phone,
-            phone_code: userData?.user?.phone_code,
+            phone: userData?.phone,
+            phone_code: userData?.phone_code,
             otp: dataValue?.value,
-            organization_id: "1",
+            organization_id: orgData?.organization?.id,
           });
         }}
         initialValues={{ phone: "", phone_code: "", otp: "" }}
       >
         <Form>
           <div className="flex flex-col w-1/2 m-auto text-center gap-y-5">
-            <CheckCode number={dataValue?.value} valuesForm={valuesForm} />
+            <CheckCode number={dataValue?.value} valuesForm={valuesForm} setValueOTP={setValueOTP}  />
             <ButtonComp
               loading={!!loadingVerify}
               type="submit"

@@ -7,11 +7,10 @@ import { useFormikContext } from "formik";
 import { useState, useEffect } from "react";
 import { FormikError } from "./FormikError";
 
-export default function DatePickerComp({ name,name_hj , label }) {
+export default function DatePickerComp({ name, name_hj, label }) {
   const { setFieldValue, values } = useFormikContext();
   const [valueGregorian, setValueGregorian] = useState();
-  const [valueHijri, setValueHijri] = useState('');
-
+  const [valueHijri, setValueHijri] = useState(values[name_hj]);
 
   useEffect(() => {
     if (valueGregorian) {
@@ -23,7 +22,9 @@ export default function DatePickerComp({ name,name_hj , label }) {
         day: "2-digit",
       });
       const formattedHijriDate = hijriFormatter.format(gregorianDate);
-      const hijriDateWithoutHeh = formattedHijriDate.replace("هـ", "").replace(/\//g, "-");
+      const hijriDateWithoutHeh = formattedHijriDate
+        .replace("هـ", "")
+        .replace(/\//g, "-");
 
       setValueHijri(hijriDateWithoutHeh);
       setFieldValue(name_hj, hijriDateWithoutHeh);
@@ -35,7 +36,7 @@ export default function DatePickerComp({ name,name_hj , label }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="my-4">
-        <labe>{label}</labe>
+        <label className="  my-[0.75rem]">{label}</label>
         <DatePicker
           className="bg-white rounded-[10px] w-full mt-3"
           name={name}
@@ -52,10 +53,14 @@ export default function DatePickerComp({ name,name_hj , label }) {
             }
           }}
         />
-        {valueHijri && <p >الموافق بالهجري :  <span className="font-bold">{valueHijri} </span></p>}
-        <div><FormikError name={name} /></div>
-
-
+        {valueHijri && (
+          <p className="mt-1">
+            الموافق بالهجري : <span className="font-bold">{valueHijri} </span>
+          </p>
+        )}
+        <div>
+          <FormikError name={name} />
+        </div>
       </div>
     </LocalizationProvider>
   );

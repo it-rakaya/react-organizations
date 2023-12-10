@@ -24,13 +24,20 @@ const ProfilePicture = styled("img")(({ theme }) => ({
 
 const UserProfileHeader = ({ setEditUser }) => {
   const { user } = useAuth();
+  console.log(
+    "🚀 ~ file: UserProfileHeader.jsx:27 ~ UserProfileHeader ~ user:",
+    user
+  );
 
   return (
     <Card>
       <CardMedia
         component="img"
         alt="profile-header"
-        image={user?.user?.coverImg || bannerProfile}
+        image={
+          (user?.attachmentUrl?.length && user?.attachmentUrl[1]?.value) ||
+          bannerProfile
+        }
         sx={{
           height: { xs: 150, md: 250 },
         }}
@@ -46,7 +53,10 @@ const UserProfileHeader = ({ setEditUser }) => {
         }}
       >
         <ProfilePicture
-          src={user?.user?.profileImg || avatarUser}
+          src={
+            (user?.attachmentUrl?.length && user?.attachmentUrl[1]?.value) ||
+            avatarUser
+          }
           alt="profile-picture"
         />
         <Box
@@ -68,7 +78,7 @@ const UserProfileHeader = ({ setEditUser }) => {
             }}
           >
             <Typography variant="h5" sx={{ mb: 4, fontSize: "1.375rem" }}>
-              {user?.user?.name}
+              {user?.name}
             </Typography>
             <Box
               sx={{
@@ -87,7 +97,7 @@ const UserProfileHeader = ({ setEditUser }) => {
               >
                 <IconifyIcon icon={"mdi:briefcase-outline"} />
                 <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-                  {user?.user?.role_name}
+                  {user?.role_name}
                 </Typography>
               </Box>
               <Box
@@ -100,7 +110,7 @@ const UserProfileHeader = ({ setEditUser }) => {
               >
                 <IconifyIcon icon="mdi:map-marker-outline" />
                 <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-                  {user?.user?.location || "egypt"}
+                  {user?.nationality_name || "egypt"}
                 </Typography>
               </Box>
               <Box
@@ -112,7 +122,7 @@ const UserProfileHeader = ({ setEditUser }) => {
               >
                 <IconifyIcon icon="mdi:calendar-blank-outline" />
                 <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-                  Birthday {user?.user?.birthday}
+                  Birthday {user?.birthday}
                 </Typography>
               </Box>
             </Box>

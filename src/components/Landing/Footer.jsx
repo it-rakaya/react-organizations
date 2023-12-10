@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
+import { useTheme } from "@mui/material/styles";
+import  { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getPrayerTime } from "../../utils/landing/prayerTimeCalc";
 import { getTimeLeftToHajj } from "../../utils/landing/HajjTimeCalc";
+import { getPrayerTime } from "../../utils/landing/prayerTimeCalc";
 
 const FooterComponent = ({ title, children, last = false }) => {
   const {  i18n } = useTranslation();
   const lang = i18n.language;
+  const theme = useTheme();
+
   return (
     <>
       <div
@@ -16,7 +19,9 @@ const FooterComponent = ({ title, children, last = false }) => {
       >
         <div className="flex flex-col items-center lg:justify-between lg:h-full xl:px-20">
           <div className="flex flex-col items-center gap-4 text-center">
-            <h1 className="font-bold text-secondaryText 2xl:text-2xl">
+            <h1 
+            style={{color:theme?.palette?.primary?.main}}
+            className="font-bold 2xl:text-2xl">
               {title}
             </h1>
             <div className="">{children}</div>

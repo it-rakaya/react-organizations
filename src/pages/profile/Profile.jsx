@@ -6,7 +6,8 @@ import { useAuth } from '../../context/auth-and-perm/AuthProvider'
 
 export default function Profile() {
   const [editUser, setEditUser] = useState(false)
-  const { user  } = useAuth();
+  const { user , setUser  } = useAuth();
+  console.log("🚀 ~ file: Profile.jsx:10 ~ Profile ~ user:", user)
 
   return (
     <div>
@@ -15,7 +16,7 @@ export default function Profile() {
         open={editUser}
         className={'  '}
         onClose={() => setEditUser(false)}
-        Children={<AccountSetting userData={user}  setEditUser={setEditUser}/>}
+        Children={<AccountSetting userData={user} setUser={setUser}  setEditUser={setEditUser}/>}
       />
     </div>
   )

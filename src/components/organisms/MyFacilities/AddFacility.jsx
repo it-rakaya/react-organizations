@@ -57,7 +57,7 @@ export default function AddFacility() {
               placeholder="10********"
               name="license"
               type="number"
-              maxNum="7"
+              maxNum="10"
 
             />
           </div>
@@ -74,7 +74,7 @@ export default function AddFacility() {
             />
           </div>
 
-          <div className=" items-start   mt-[15px] w-1/2">
+          <div className="items-start w-1/2 ">
             <BaseInputField
               label="عنوان المنشأة (الحي-الشارع)"
               placeholder="الملك فهد"
@@ -156,7 +156,7 @@ export default function AddFacility() {
               placeholder="3654"
               name="building_number"
               type="number"
-              // maxNum="5"
+              maxNum="4"
 
 
             />
@@ -169,7 +169,7 @@ export default function AddFacility() {
               placeholder="56875"
               name="postal_code"
               type="number"
-              maxNum="5"
+              maxNum="6"
 
 
             />
@@ -180,7 +180,7 @@ export default function AddFacility() {
               placeholder="0541532515"
               name="sub_number"
               type="number"
-              maxNum="9"
+              maxNum="6"
 
 
             />

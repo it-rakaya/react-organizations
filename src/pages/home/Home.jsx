@@ -22,11 +22,14 @@ import ApexChartWrapper from "../../components/react-apexcharts/ApexChartWrapper
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
 const Home = () => {
   const [open, setOpen] = useState(false);
   const [dataValue, setDataValue] = useState();
   const {user} = useAuth()
+  console.log("🚀 ~ file: Home.jsx:31 ~ Home ~ user:", user)
+  const { orgData } = UseOrg();
 
   
   const { mutate: sendOTP } = useMutate({
@@ -47,7 +50,7 @@ const Home = () => {
 
   return (
     <ApexChartWrapper>
-      {!user?.user?.is_verified && (
+      {!user?.is_verified && (
         <div className="py-3">
           <Alert severity="warning" className="flex items-center ">
             لإضافة منشأة جديدة أو تقديم طلب جديد يرجى تفعيل حسابك !
@@ -56,9 +59,9 @@ const Home = () => {
               onClick={() => {
                 setOpen(true);
                 sendOTP({
-                  organization_id: "1",
-                  phone: user?.user?.phone,
-                  phone_code: user?.user?.phone_code,
+                  organization_id: orgData?.organization?.id,
+                  phone: user?.phone,
+                  phone_code: user?.phone_code,
                 });
               }}
             >

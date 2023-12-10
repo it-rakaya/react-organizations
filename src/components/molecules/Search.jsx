@@ -13,7 +13,7 @@ function Search({ setSearchQuery, placeholder, addTitle, action }) {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="p-3 w-full rounded-xl border ]"
           />
-          <div className="absolute right-[10px] rtl:left-[10px] top-[12px] ">
+          <div className="absolute left-[10px]  top-[12px] w-[20px] ">
             <SearchIcon />
           </div>
         </div>

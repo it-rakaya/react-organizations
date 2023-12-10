@@ -20,7 +20,7 @@ export default function SelectCitiesSaudi({ name, label, className }) {
 
   return (
     <div className={className}>
-      <label>{label}</label>
+      <label className="block my-[0.75rem]">{label}</label>
       <div className="mt-3">
         <Select
           options={options}
