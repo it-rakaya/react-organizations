@@ -7,6 +7,7 @@ import { useDropzone } from "react-dropzone";
 import CheckIcon from "../atoms/icons/CheckIcon";
 import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
+import PdfIcon from "../atoms/icons/PdfIcon";
 const UploadImage = ({ name, placeholder }) => {
   const { setFieldValue, errors } = useFormikContext();
   const [files, setFiles] = useState([]);
@@ -21,6 +22,7 @@ const UploadImage = ({ name, placeholder }) => {
       // }
     },
   });
+  const isLargeFile = files?.length && files[0]?.size > 524288000;
 
   return (
     <>
@@ -87,8 +89,22 @@ const UploadImage = ({ name, placeholder }) => {
             <FormikError name={name} />
           </div> */}
         </Box>
-        <div className="rounded-[10px] flex justify-start">
-          <PreviewImage files={files ? files : []} />
+        <div className="flex justify-start w-full rounded-md ">
+          {!isLargeFile && files[0]?.type.startsWith("image/") ? (
+            <div className="flex justify-start">
+              <PreviewImage files={files ? files : []} />
+            </div>
+          ) : files[0]?.type.startsWith("application/") ? (
+            <a
+              href={URL.createObjectURL(files[0])}
+              download={files[0].name}
+              className=""
+            >
+              <PdfIcon />
+            </a>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </>

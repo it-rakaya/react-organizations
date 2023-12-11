@@ -13,6 +13,8 @@ const style = {
   boxShadow: "0px 4px 24px -1px rgba(0, 0, 0, 0.10)",
   borderRadius: "10px",
   backdropFilter: "blur(20px)",
+  maxHeight: "90vh",
+  overflowY: 'scroll !important',
   p: 4,
 };
 
@@ -26,7 +28,7 @@ export default function ModalComp({ onClose, open, Children, className }) {
         aria-describedby="modal-modal-description"
         className={`max-w-[950px]   m-auto ${className}`}
       >
-        <Box sx={style} className="">
+        <Box sx={style} className="scroll_main">
           <div
             className="absolute left-[20px] cursor-pointer "
             onClick={onClose}

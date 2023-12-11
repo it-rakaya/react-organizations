@@ -60,7 +60,7 @@ export default function OrderMainData({ setShow, show }) {
           <ul key={item?.id}>
             {item?.is_visible == "1" && (
               <>
-                <li className="font-bold">
+                <li className="my-3 font-bold">
                   {item?.content}{" "}
                   <span className="text-red-500">
                     {item?.is_required == "1" ? "*" : ""}
@@ -70,6 +70,7 @@ export default function OrderMainData({ setShow, show }) {
                 <QuestionBaseInput
                   type={item?.question_type?.name}
                   name={item?.id}
+                  placeholder={item?.placeholder}
                   idQuestion={item?.id}
                   options={item?.options || []}
                 />

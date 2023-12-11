@@ -44,6 +44,7 @@ export default function Orders() {
   });
   const Canceled = 5;
   const approved = 3;
+  console.log("🚀 ~ file: Orders.jsx:35 ~ Orders ~ Orders:", Orders);
 
   return (
     <div>
@@ -180,16 +181,14 @@ export default function Orders() {
                             }}
                           >
                             <OrderIcon />
-
                             <Typography
                               sx={{ mt: 4, color: "text.secondary" }}
                               className={`text-center font-bold px-2 py-1 rounded-md !text-black `}
-                              // style={{ backgroundColor: item?.status?.color }}
                             >
                               {item?.status?.name}
                             </Typography>
                             <Grid xs={12} sm={12} md={12} xl={12} mt={2}>
-                              {item.status.name !== "تم الالغاء" && (
+                              {item.status_id !== Canceled && (
                                 <ButtonComp
                                   variant="contained"
                                   action={() => {
@@ -200,26 +199,6 @@ export default function Orders() {
                                   تفاصيل طلب
                                 </ButtonComp>
                               )}
-                              {/* <Button
-                          disabled={
-                            item.status.name == "تم الالغاء" ||
-                            item.status.name == "تم القبول " ||
-                            item.status.name == "تم الرفض"
-                          }
-                          className={`marker:text-white hover:!bg-inherit  ${
-                            item.status.name == "تم الالغاء" ||
-                            item.status.name == "تم القبول " ||
-                            item.status.name == "تم الرفض"
-                              ? "bg-[#bcbcbc] disabled:text-white cursor-not-allowed"
-                              : "!bg-red-600 !text-white hover:!bg-red-600"
-                          }`}
-                          onClick={() => {
-                            setOpenCancelOrder(true);
-                            setOrderId(item?.id);
-                          }}
-                        >
-                          الغاء طلب
-                        </Button> */}
                             </Grid>
                           </Box>
                         </CardContent>
@@ -314,8 +293,6 @@ export default function Orders() {
                                     تفاصيل طلب
                                   </ButtonComp>
                                 )}
-                      
-
                               </Grid>
                             </Box>
                           </CardContent>
