@@ -117,7 +117,6 @@ const Login = () => {
                 overflowY: "scroll",
               }}
               className="scroll_main"
-
             >
               <Box
                 sx={{
@@ -138,7 +137,7 @@ const Login = () => {
                     fontSize: "1.5rem !important",
                   }}
                 >
-                  {orgData?.organizations?.name_ar}
+                  {/* {orgData?.organizations?.name_ar} */}
                 </Typography>
               </Box>
               <Box
@@ -149,16 +148,16 @@ const Login = () => {
                   // flexDirection: "column",
                   // gap: "50px",
                   justifyContent: "center",
-                  marginTop:"20px"
+                  marginTop: "20px",
                 }}
               >
                 <img
                   src={orgData?.organizations?.logo}
-                  className="w-[300px] h-[300px] rounded-xl  mx-auto"
+                  className=" h-[100px] rounded-xl  mx-auto"
                 />
               </Box>
               <BoxWrapper className="flex flex-col items-center justify-center mt-5 ">
-                <Box sx={{ mb: 6, width: "100%" }}>
+                <Box sx={{ mb: 3, width: "100%" }} className="text-center">
                   <TypographyStyled variant="h5">{`${t("Welcome to")} ${
                     orgData?.organizations?.name_ar
                   }! 👋🏻`}</TypographyStyled>

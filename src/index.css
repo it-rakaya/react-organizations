@@ -545,3 +545,7 @@ main,
     transform: rotate(1turn)
   }
 }
+
+.react-tel-input .selected-flag .flag{
+  left: 15px !important; 
+}

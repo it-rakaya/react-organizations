@@ -7,6 +7,9 @@ import { UseOrg } from "../../context/organization provider/OrganizationProvider
 
 function Landing() {
   const { orgData } = UseOrg();
+  console.log("🚀 ~ file: Landing.jsx:10 ~ Landing ~ orgData:", orgData?.organizations?.background_image)
+  console.log("🚀 ~ file: Landing.jsx:10 ~ Landing ~ orgData:", orgData?.organizations?.logo)
+
 
   return (
     <div className="relative w-screen overflow-hidden lg:h-screen" dir="ltr">
@@ -40,7 +43,7 @@ function Landing() {
               backgroundImage: `url(${orgData?.organizations?.background_image})`,
               backgroundSize: "cover",
               // backgroundPosition:'center',
-              backgroundRepeat: "no-repeat",
+              // backgroundRepeat: "no-repeat",
             }}
           ></div>
         </div>

@@ -13,7 +13,6 @@ export default function VerifyUser({ userData, dataValue, setOpen }) {
   const [valuesForm, setValuesForm] = useState("");
   const { setUser } = useAuth();
   const [valueOTP , setValueOTP] = useState('')
-  console.log("🚀 ~ file: VerifyUser.jsx:16 ~ VerifyUser ~ valueOTP:", valueOTP)
   const { orgData } = UseOrg();
 
   const { mutate: verify_user, isLoading: loadingVerify } = useMutate({

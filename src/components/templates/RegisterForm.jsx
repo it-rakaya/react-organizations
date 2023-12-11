@@ -46,7 +46,9 @@ export default function RegisterForm() {
         .required("This field is required"),
       email: Yup.string().trim().required(t("email is required")),
       birthday: Yup.string().trim().required(t("birthday is required")),
-      phone: Yup.string().trim().required(t("phone is required")),
+      phone: Yup.string()
+      .matches(/^\d{9}$/, t("The phone number must be exactly 10 digits"))
+      .required("This field is required"),
       nationality: Yup.string().trim().required(t("country is required")),
       national_id_expired: Yup.string()
         .trim()

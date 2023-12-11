@@ -38,6 +38,8 @@ export default function SelectCountry({ name, label, className }) {
           name={name}
           className="border rounded-md"
           placeholder={t("Chose Country")}
+          noOptionsMessage={() => t("Not Found Data")}
+        
           onBlur={handleBlur}
           onChange={(option) => setFieldValue(name, option.value)}
           styles={{
