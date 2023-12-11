@@ -2,7 +2,7 @@
 import useFetch from "../../hooks/useFetch"
 import SelectComp from "./Formik/SelectComp"
 
-export default function SelectFacilities({ name,  label }) {
+export default function SelectFacilities({ name,  label , placeholder }) {
   const {
     data: facilities,
   } = useFetch({
@@ -24,7 +24,7 @@ export default function SelectFacilities({ name,  label }) {
         multi={false}
         data={facilities?.user_facilities ? facilities?.user_facilities : []}
         className='w-full'
-        placeholder='الدوله'
+        placeholder={placeholder}
         idValue={true}
       />
     </div>

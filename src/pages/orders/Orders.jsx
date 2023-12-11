@@ -45,7 +45,6 @@ export default function Orders() {
   const Canceled = 5;
   const approved = 3;
 
-  console.log("🚀 ~ file: Orders.jsx:27 ~ Orders ~ Orders:", Orders);
   return (
     <div>
       <MainHeader

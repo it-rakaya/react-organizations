@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import MainHeader from "../../atoms/MainHeader";
-import { Tab, Typography } from "@mui/material";
+/* eslint-disable react/prop-types */
 import { TabContext, TabList, TabPanel } from "@mui/lab";
+import { Tab } from "@mui/material";
+import { useState } from "react";
+import MainHeader from "../../atoms/MainHeader";
 
 export default function DetailsOrder({ data }) {
   const [value, setValue] = useState("1");
@@ -163,9 +164,9 @@ export default function DetailsOrder({ data }) {
         </TabPanel>
         <TabPanel value="2">
           <div className="grid grid-cols-2 p-4 gap-y-4">
-            {data.answers.length ? (
-              data.answers.map((item) => (
-                <div className="flex gap-2">
+            {data?.answers?.length ? (
+              data?.answers?.map((item) => (
+                <div className="flex gap-2" key={item?.id}>
                   <p className="font-bold text-contained">
                     {item?.question?.content}؟
                   </p>

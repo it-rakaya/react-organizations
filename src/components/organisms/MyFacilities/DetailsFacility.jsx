@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import FacilityIcon from "../../atoms/icons/FaciltyIcon";
+import PdfIcon from "../../atoms/icons/PdfIcon";
 
 export default function DetailsFacility({ data }) {
   console.log(
@@ -19,7 +20,7 @@ export default function DetailsFacility({ data }) {
             src="https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/64/external-company-town-xnimrodx-lineal-xnimrodx-4.png"
             alt="external-company-town-xnimrodx-lineal-xnimrodx-4"
           /> */}
-          <FacilityIcon/>
+          <FacilityIcon />
           <p className="mt-2 text-2xl font-bold">{data?.name}</p>
         </div>
         <div className="flex gap-2 point">
@@ -101,18 +102,24 @@ export default function DetailsFacility({ data }) {
           <p className="font-bold text-contained">رمز البريد </p>
           <p>{data?.postal_code}</p>
         </div>
-        {/* {data?.attachmentUrl.map((item) => (
+        {data?.attachmentUrl.map((item) => (
           <div className="flex flex-col gap-2" key={item?.id}>
-            <p className="font-bold text-contained"> صورة بطاقة العمل:</p>
-            <p>
-              <img
-                className="w-[200px] h-[200px] rounded-xl"
-                src={data?.work_card_photo_url}
-                alt=""
-              />
-            </p>
+            <p className="font-bold text-contained"> {item?.label}</p>
+            {!item?.value?.toLowerCase().endsWith(".pdf") ? (
+              <p>
+                <img
+                  className="w-[200px] h-[200px] rounded-xl"
+                  src={item?.value}
+                  alt=""
+                />
+              </p>
+            ) : (
+              <a href={item?.value} download={item?.value} className="">
+                <PdfIcon />
+              </a>
+            )}
           </div>
-        ))} */}
+        ))}
       </div>
     </div>
   );

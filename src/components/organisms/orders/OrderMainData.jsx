@@ -17,19 +17,30 @@ export default function OrderMainData({ setShow, show }) {
     },
     enabled: !!values.organization_service_id,
   });
+  console.log(
+    "🚀 ~ file: OrderMainData.jsx:20 ~ OrderMainData ~ extra_questions:",
+    extra_questions
+  );
 
   return (
     <div className="mt-10">
       {show ? (
         <>
-          <div className="mb-3">
-            <SelectFacilities label={"اختر اسم المنشأة"} name={"facility_id"} />
-          </div>
-          <div className="mb-3">
-            <OrganizationServices
-              label={"اختر نوع الخدمة المقدمة"}
-              name="organization_service_id"
-            />
+          <div className="grid grid-cols-2 gap-2 ">
+            <div className="mb-3">
+              <SelectFacilities
+                label={"اختر اسم المنشأة"}
+                name={"facility_id"}
+                placeholder={"اختر اسم المنشاه"}
+              />
+            </div>
+            <div className="mb-3">
+              <OrganizationServices
+                label={"اختر نوع الخدمة المقدمة"}
+                name="organization_service_id"
+                placeholder={"اختر نوع الخدمة المقدمة"}
+              />
+            </div>
           </div>
           <div className="flex justify-end mt-10">
             <ButtonComp

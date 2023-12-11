@@ -8,13 +8,12 @@ import CheckIcon from "../atoms/icons/CheckIcon";
 import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
 const UploadImage = ({ name, placeholder }) => {
-  const { setFieldValue, errors, values } = useFormikContext();
+  const { setFieldValue, errors } = useFormikContext();
   const [files, setFiles] = useState([]);
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: ["image/*", ".pdf", ".doc", ".docx"],
-
     onDrop: (acceptedFiles) => {
       setFiles(acceptedFiles.map((file) => Object.assign(file)));
       // if (values[name] !== undefined) {

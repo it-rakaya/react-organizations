@@ -168,6 +168,7 @@ export default function MyFacilities() {
       </div>
 
       <ModalComp
+      // className={'max-h-[500px]'}
         open={open}
         onClose={() => setOpen(false)}
         Children={<DetailsFacility data={detailsItem} />}

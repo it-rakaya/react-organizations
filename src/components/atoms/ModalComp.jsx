@@ -27,7 +27,12 @@ export default function ModalComp({ onClose, open, Children, className }) {
         className={`max-w-[950px]   m-auto ${className}`}
       >
         <Box sx={style} className="">
-          <div className="absolute left-[20px] cursor-pointer " onClick={onClose}><GridCloseIcon className="text-contained"/></div>
+          <div
+            className="absolute left-[20px] cursor-pointer "
+            onClick={onClose}
+          >
+            <GridCloseIcon className="text-contained" />
+          </div>
           {Children}
         </Box>
       </Modal>

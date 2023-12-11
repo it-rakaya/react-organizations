@@ -17,6 +17,7 @@ export default function LoginForm() {
   const { login } = useAuth();
   const [dataValue, setDataValue] = useState();
   const [valueOTP, setValueOTP] = useState();
+  console.log("🚀 ~ file: LoginForm.jsx:20 ~ LoginForm ~ valueOTP:", valueOTP)
   const { orgData } = UseOrg();
 
   const { mutate: LoginData, isPending: loadingLogin } = useMutate({
@@ -56,7 +57,7 @@ export default function LoginForm() {
     <div className="w-full">
       <Formik
         onSubmit={(values) => {
-          console.log("xxx:", values);
+          console.log("values:", values);
           setValuesForm(values);
 
           !verifyPhone

@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const login = useCallback(
     async (data) => {
+      console.log("🚀 ~ file: AuthProvider.jsx:12 ~ data:", data.user)
       if (setUser) setUser(data.user);
       // window.localStorage.setItem("user", JSON.stringify(data.user));
       Cookies.set("role", data.user.role_name);
