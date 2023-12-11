@@ -73,31 +73,9 @@ const Login = () => {
   if (!token) {
     return (
       <div className="">
+        
         <Box className="flex content-right">
-          {!hidden ? (
-            <Box
-              sx={{
-                flex: 1,
-                display: "flex",
-                position: "relative",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "100vh",
-                overflow: "hidden",
-              }}
-            >
-              <LoginIllustrationWrapper>
-                {/* <LoginIllustration
-                  alt="login-illustration"
-                  // src={`/images/pages/${imageSource}-${theme.palette.mode}.png`}
-                  src={imgLogin}
-                /> */}
-                <LoginIcon />
-              </LoginIllustrationWrapper>
-              {/* <FooterIllustrationsV2 /> */}
-            </Box>
-          ) : null}
-          <RightWrapper
+                    <RightWrapper
             sx={
               skin === "bordered" && !hidden
                 ? { borderLeft: `1px solid ${theme.palette.divider}` }
@@ -108,10 +86,10 @@ const Login = () => {
               sx={{
                 p: 7,
                 // height: "100%",
-                // display: "flex",
+                display: "flex",
                 alignItems: "center",
                 flexDirection: "column",
-                justifyContent: "space-evenly",
+                justifyContent: "center",
                 backgroundColor: "background.paper",
                 height: "100vh",
                 overflowY: "scroll",
@@ -148,15 +126,17 @@ const Login = () => {
                   // flexDirection: "column",
                   // gap: "50px",
                   justifyContent: "center",
-                  marginTop: "20px",
+                  // marginTop: "20px",
                 }}
+                
               >
                 <img
                   src={orgData?.organizations?.logo}
                   className=" h-[100px] rounded-xl  mx-auto"
+                  onClick={()=>{navigate('/')}}
                 />
               </Box>
-              <BoxWrapper className="flex flex-col items-center justify-center mt-5 ">
+              <BoxWrapper className="flex flex-col items-center justify-center mt-5">
                 <Box sx={{ mb: 3, width: "100%" }} className="text-center">
                   <TypographyStyled variant="h5">{`${t("Welcome to")} ${
                     orgData?.organizations?.name_ar
@@ -169,13 +149,15 @@ const Login = () => {
                 <LoginForm />
 
                 <Box
+                
                   sx={{
                     display: "flex",
                     alignItems: "center",
                     flexWrap: "wrap",
                     justifyContent: "center",
-                    marginTop: "20px",
+                    marginTop: "10px",
                   }}
+                  
                 >
                   <Typography sx={{ mr: 2, color: "text.secondary" }}>
                     {t("New on our platform?")}
@@ -190,6 +172,32 @@ const Login = () => {
               </BoxWrapper>
             </Box>
           </RightWrapper>
+          {!hidden ? (
+            <Box
+              
+              sx={{
+                flex: 1,
+                display: "flex",
+                position: "relative",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100vh",
+                overflow: "hidden",
+              }}
+            >
+              
+              <LoginIllustrationWrapper>
+                {/* <LoginIllustration
+                  alt="login-illustration"
+                  // src={`/images/pages/${imageSource}-${theme.palette.mode}.png`}
+                  src={imgLogin}
+                /> */}
+                <LoginIcon />
+              </LoginIllustrationWrapper>
+              {/* <FooterIllustrationsV2 /> */}
+            </Box>
+          ) : null}
+
         </Box>
       </div>
     );

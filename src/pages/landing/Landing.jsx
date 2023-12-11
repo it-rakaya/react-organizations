@@ -40,7 +40,7 @@ function Landing() {
           <div
             className="w-[200%] h-[200%] rotate-[-45deg] absolute top-[-45%] left-[-45%]"
             style={{
-              backgroundImage: `url(${orgData?.organizations?.background_image})`,
+              backgroundImage: `url('${orgData?.organizations?.background_image}')`,
               backgroundSize: "cover",
               // backgroundPosition:'center',
               // backgroundRepeat: "no-repeat",

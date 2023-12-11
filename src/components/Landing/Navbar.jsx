@@ -15,8 +15,6 @@ function Navbar() {
   const { logout, user } = useAuth();
   const theme = useTheme();
 
-  
-
   const { mutate: LogOut } = useMutate({
     mutationKey: [`Log_out`],
     endpoint: `logout`,
@@ -41,10 +39,13 @@ function Navbar() {
             alt=""
             // srcset={bg2}
             src={orgData?.organizations?.logo}
-            className="animated-box w-[30px] "
+            className="animated-box w-[30px] rounded-xl"
           />
           {/* Logo */}
         </a>
+      </div>
+
+      <div className="flex items-center gap-5">
         {!!user && (
           <Link href="#" onClick={handleLogout} className={linkStyle}>
             Logout
@@ -53,21 +54,21 @@ function Navbar() {
         <Link href="/" className={linkStyle}>
           Contact us
         </Link>
-      </div>
-      <button
-        onClick={() => {
-          i18n.changeLanguage(language == "ar" ? "en" : "ar");
-        }}
-        className={`text-3xl`}
-      >
-        <Icon
-          icon="icon-park-outline:translate"
-          className="duration-300 transition-color hover:text-primaryText"
-          style={{
-            color: theme?.palette?.primary?.main,
+        <button
+          onClick={() => {
+            i18n.changeLanguage(language == "ar" ? "en" : "ar");
           }}
-        />
-      </button>
+          className={`text-3xl`}
+        >
+          <Icon
+            icon="icon-park-outline:translate"
+            className="duration-300 transition-color hover:text-primaryText"
+            style={{
+              color: theme?.palette?.primary?.main,
+            }}
+          />
+        </button>
+      </div>
     </nav>
   );
 }
