@@ -24,7 +24,7 @@ const Hero = () => {
           <img
             alt=""
             src={orgData?.organizations?.logo}
-            className="w-[70px] "
+            className="w-[70px] rounded-xl"
           />
           {/* </h1> */}
           <h1 className="text-2xl font-bold text-primaryText 3xl:text-3xl">
