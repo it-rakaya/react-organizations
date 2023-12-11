@@ -13,6 +13,7 @@ const Hero = () => {
 
   const { orgData } = UseOrg();
   const theme = useTheme();
+  
   const language = i18n.language;
   return (
     <div className="px-3 lg:w-1/2 2xl:ps-56 2xl:px-80 xl:ps-12">

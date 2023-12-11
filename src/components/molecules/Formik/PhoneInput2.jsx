@@ -8,7 +8,8 @@ import { FormikError } from "./FormikError";
 
 const PhoneInput2 = ({ label }) => {
   const [phone, setPhone] = useState("");
-  const { setFieldValue, errors, handleBlur, values } = useFormikContext();
+  const { setFieldValue, errors, handleBlur, values , touched } = useFormikContext();
+  console.log("🚀 ~ file: PhoneInput2.jsx:12 ~ PhoneInput2 ~ touched:", touched)
   const handlePhoneChange = (value, selectedCountry, name, number) => {
     const modifiedPhone = +number
       .slice(selectedCountry?.dialCode.length + 2)
@@ -35,33 +36,21 @@ const PhoneInput2 = ({ label }) => {
 
         <PhoneInput
           country={"sa"}
-          onlyCountries={['sa']}
+          onlyCountries={["sa"]}
           value={values?.phone ? values.phone_code + values.phone : phone}
           onChange={handlePhoneChange}
           // enableSearch
           placeholder="رقم الجوال"
           onBlur={handleBlur}
           countryCodeEditable={false}
-          masks={{sa: '.. ... ....', at: '.. ... ....'}}
+          masks={{ sa: ".. ... ....", at: ".. ... ...." }}
           showDropdown={false}
           disableCountryCode={false}
+          name="phone"
           disableDropdown={true}
-
           className={phoneInput({
-            error: !!errors.phone,
+            error: !!touched.phone  &&!!errors.phone,
           })}
-          // isValid={(value, country ) => {
-          //   console.log("🚀 ~ file: PhoneInput2.jsx:46 ~ PhoneInput2 ~ countries:", countries)
-          //   console.log("🚀 ~ file: PhoneInput2.jsx:46 ~ PhoneInput2 ~ value:", value)
-          //   console.log("🚀 ~ file: PhoneInput2.jsx:46 ~ PhoneInput2 ~ country:", country)
-          //   if (!value || value.length < 5) {
-          //     return 'Invalid phone number: too short';
-          //   } else if (!/^\d+$/.test(value)) {
-          //     return 'Invalid characters: only digits allowed';
-          //   } else {
-          //     return true;
-          //   }
-          // }}
         />
       </div>
 

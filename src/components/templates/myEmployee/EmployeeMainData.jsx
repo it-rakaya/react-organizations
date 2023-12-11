@@ -13,7 +13,7 @@ export default function EmployeeMainData() {
   return (
     <div className="">
       <MainHeader title="اضافة موظف" />
-      <div className="grid items-start grid-cols-2 gap-2 p-5">
+      <div className="grid items-start grid-cols-2 gap-2">
         <div className="flex items-start col-span-12 gap-2 ">
           <div className="w-1/2">
             <BaseInputField

@@ -505,6 +505,7 @@ main,
 .rtl-16ohm2w .MuiStepper-alternativeLabel .MuiStepConnector-root {
   top: 8px !important;
 }
+
 /* .afterSetting{
   content: "";
   position: absolute;
@@ -513,6 +514,22 @@ main,
   animation: spin 9s linear infinite;
   top: 0;
   left: 23%;
+} */
+/* .MuiStepConnector-root.MuiStepConnector-horizontal.MuiStepConnector-alternativeLabel {
+  right: calc(-100% + 20px);
+  left: calc(0px + 20px);
+
+}
+
+.MuiStepLabel-root.MuiStepLabel-horizontal.Mui-disabled.MuiStepLabel-alternativeLabel {
+  justify-content: end;
+  align-items: end;
+}
+.MuiStepLabel-root.MuiStepLabel-horizontal.MuiStepLabel-alternativeLabel{
+  justify-content: start;
+  align-items: start;
+
+
 } */
 
 .animate-\[spin_2\.5s_linear_infinite\] {
@@ -528,4 +545,3 @@ main,
     transform: rotate(1turn)
   }
 }
-

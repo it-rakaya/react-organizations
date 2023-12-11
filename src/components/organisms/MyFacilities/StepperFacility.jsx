@@ -56,7 +56,7 @@ const StepperFacility = () => {
     }
   };
   const queryClient = useQueryClient();
-  
+
   const { mutate: addFacility, isPending: loadingAddFacility } = useMutate({
     mutationKey: [`add_facilities`],
     endpoint: `facilities`,
@@ -101,7 +101,8 @@ const StepperFacility = () => {
       name: Yup.string().trim().required(t("the facility name is required")),
       registration_number: Yup.string()
         .trim()
-        .required(t("the registration number required")),
+        .required(t("the registration number required"))
+        .length(10, "the registration number must be equal 10 digits"),
       version_date: Yup.string()
         .trim()
         .required(t("the registration number required")),
@@ -182,7 +183,7 @@ const StepperFacility = () => {
           sx={{
             mt: 4,
             boxShadow: "0 4px 24px -1px #0000001A",
-            height: "calc(100vh - 260px)",
+            height: "calc(100vh - 280px)",
           }}
           className="!overflow-y-scroll scroll_main  px-3 py-2  rounded-xl scroll_main m-3 bg-transparent"
         >
@@ -212,8 +213,8 @@ const StepperFacility = () => {
                           justifyContent: "end",
                           gap: "5px",
                         }}
-                        mt={5}
-                        className="fixed bottom-[10px] left-[35px]"
+                        mt={10}
+                        className="fixed bottom-[12px] left-[35px]"
                       >
                         <ButtonComp
                           size="large"
@@ -235,7 +236,7 @@ const StepperFacility = () => {
                               : handleNext
                           }
                           type="button"
-                          className={"!w-auto"}
+                          className={"!w-auto text-xl px-10 py-3 "}
                           variant="contained"
                           disabled={!values.name}
                         >

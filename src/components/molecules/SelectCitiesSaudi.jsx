@@ -46,8 +46,8 @@ export default function SelectCitiesSaudi({ name, label, className }) {
             borderRadius: 0,
             colors: {
               ...theme.colors,
-              primary25: "#666CFF",
-              primary: "#666CFF",
+              primary25: `#eee`,
+              primary:'#eee' 
             },
           })}
           // defaultValue={{ value: values[name] , label:values[name] }}

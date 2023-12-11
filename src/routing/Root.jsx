@@ -14,6 +14,7 @@ export const Root = ({ props }) => {
   const [openSide, setOpenSide] = useState(false);
   const [, setShowOverlay] = useState(false);
   const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
+  console.log("🚀 ~ file: Root.jsx:17 ~ Root ~ isSidebarCollapsed:", isSidebarCollapsed)
   const navigate = useNavigate();
   const [changeStyle, setChangeStyle] = useState(false);
 
@@ -126,6 +127,7 @@ export const Root = ({ props }) => {
                 appBarContent={
                   <AppBarContent
                     settings={settings}
+                    isSidebarCollapsed={isSidebarCollapsed}
                     setSidebarCollapsed={setSidebarCollapsed}
                     saveSettings={saveSettings}
                     // appBarContent={verticalLayoutProps.appBar?.content}

@@ -74,15 +74,7 @@ export default function LoginForm() {
           {!verifyPhone && (
             <>
               <PhoneInput2 name="phone" />
-              <Box
-                sx={{
-                  mb: 4,
-                  display: "flex",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  justifyContent: "space-between",
-                }}
-              ></Box>
+              
             </>
           )}
           {verifyPhone && (

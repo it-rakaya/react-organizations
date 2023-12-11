@@ -9,6 +9,7 @@ import {
 import { useFormikContext } from "formik";
 import { useState } from "react";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
+import { FormikError } from "./FormikError";
 
 export default function BaseInputField({
   label,
@@ -20,22 +21,20 @@ export default function BaseInputField({
   maxNum,
   ...props
 }) {
-  const { setFieldValue, values, touched, errors } = useFormikContext();
-
+  const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
+  useFormikContext();
+  console.log("🚀 ~ file: BaseInputField.jsx:25 ~ values:", values)
   const [showPassword, setShowPassword] = useState(false);
-  // const hasError = touched[name] || Boolean(errors[name]);
-  const handleChange = (e) => {
+  const handleChangeNumber = (e) => {
     let value = e.target.value;
-
     if (type === "number" && value.length > maxNum) {
-      // Trim the input to 10 characters for number type
       value = value.slice(0, maxNum);
     }
-
     setFieldValue(name, value);
   };
+
   return (
-    <div >
+    <div>
       {password ? (
         <FormControl fullWidth className="m-0">
           <label> {label} </label>
@@ -79,26 +78,27 @@ export default function BaseInputField({
             // autoFocus
             placeholder={placeholder}
             {...props}
-            error={errors[name]}
-            helperText={errors[name]}
+            error={touched[name] && !!errors[name]}
+            helperText={!!touched[name] && !!errors[name]}
             fullWidth
             value={values[name]}
-            sx={{ background: "white",  }}
+            sx={{ background: "white" }}
             type={type}
+            onBlur={handleBlur}
             InputProps={
               type === "number"
                 ? {
                     inputProps: { maxLength: 10 },
-                    onChange: handleChange,
+                    onChange: handleChangeNumber,
                   }
                 : { onChange: handleChange }
             }
             name={name}
             className={`${className} "my-3 code " ${
-              !!errors[name] && "border-red-500 "
+              !!touched[name] && !!errors[name] && "border-red-500 "
             }`}
           />
-          <div>{/* <FormikError name={name} /> */}</div>
+          <div>{<FormikError name={name} />}</div>
         </>
       )}
     </div>

@@ -74,7 +74,6 @@ const Login = () => {
     return (
       <div className="">
         <Box className="flex content-right">
-    
           {!hidden ? (
             <Box
               sx={{
@@ -83,8 +82,8 @@ const Login = () => {
                 position: "relative",
                 alignItems: "center",
                 justifyContent: "center",
-                height:"100vh",
-                overflow:"hidden"
+                height: "100vh",
+                overflow: "hidden",
               }}
             >
               <LoginIllustrationWrapper>
@@ -93,7 +92,7 @@ const Login = () => {
                   // src={`/images/pages/${imageSource}-${theme.palette.mode}.png`}
                   src={imgLogin}
                 /> */}
-                <LoginIcon/>
+                <LoginIcon />
               </LoginIllustrationWrapper>
               {/* <FooterIllustrationsV2 /> */}
             </Box>
@@ -108,39 +107,58 @@ const Login = () => {
             <Box
               sx={{
                 p: 7,
-                height: "100%",
-                display: "flex",
-                alignItems: "start",
-                flexDirection:"column",
-                justifyContent: "start",
+                // height: "100%",
+                // display: "flex",
+                alignItems: "center",
+                flexDirection: "column",
+                justifyContent: "space-evenly",
                 backgroundColor: "background.paper",
+                height: "100vh",
+                overflowY: "scroll",
               }}
+              className="scroll_main"
+
             >
-                 <Box
+              <Box
+                sx={{
+                  display: "flex",
+                  width: "100%",
+                  alignItems: "start",
+                  // flexDirection: "column",
+                  // gap: "50px",
+                  // justifyContent: "center",
+                }}
+              >
+                <Typography
+                  variant="h6"
                   sx={{
-                   
-                    display: "flex",
-                    width:"100%",
-                    alignItems: "start",
-                    justifyContent: "start",
+                    ml: 2,
+                    lineHeight: 1,
+                    fontWeight: 700,
+                    fontSize: "1.5rem !important",
                   }}
                 >
-                  <img src={orgData?.organizations?.logo} className="w-[30px]"/>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      ml: 2,
-                      lineHeight: 1,
-                      fontWeight: 700,
-                      fontSize: "1.5rem !important",
-                    }}
-                  >
-                    {orgData?.organizations?.name_ar}
-                  </Typography>
-                </Box>
-              <BoxWrapper className="flex flex-col items-center justify-center h-full" >
-                <Box sx={{ mb: 6 , width:"100%" }}>
-             
+                  {orgData?.organizations?.name_ar}
+                </Typography>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  // width: "100%",
+                  // alignItems: "start",
+                  // flexDirection: "column",
+                  // gap: "50px",
+                  justifyContent: "center",
+                  marginTop:"20px"
+                }}
+              >
+                <img
+                  src={orgData?.organizations?.logo}
+                  className="w-[300px] h-[300px] rounded-xl  mx-auto"
+                />
+              </Box>
+              <BoxWrapper className="flex flex-col items-center justify-center mt-5 ">
+                <Box sx={{ mb: 6, width: "100%" }}>
                   <TypographyStyled variant="h5">{`${t("Welcome to")} ${
                     orgData?.organizations?.name_ar
                   }! 👋🏻`}</TypographyStyled>

@@ -35,7 +35,7 @@ export default function DatePickerComp({ name, name_hj, label }) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <div className="my-4">
+      <div className="w-full my-4">
         <label className="  my-[0.75rem]">{label}</label>
         <DatePicker
           className="bg-white rounded-[10px] w-full mt-3"

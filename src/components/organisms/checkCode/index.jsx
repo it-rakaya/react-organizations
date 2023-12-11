@@ -37,7 +37,7 @@ export default function CheckCode({
   return (
     <>
       <div className="lex ">
-        <div className="flex flex-col items-center justify-center   gap-5  shadow-main bg-[#FFF] rounded-xl p-10">
+        <div className="flex flex-col items-center justify-center   gap-5  shadow-main bg-[#FFF] rounded-xl pt-0 p-10">
           <h1 className="font-bold">أدخل رمز التحقق </h1>
           <p className="text-center">
             رقم التحقق مطلوب لإكمال العملية لقد تم إرسال رمز التحقق في رسالة
@@ -51,7 +51,6 @@ export default function CheckCode({
               focusBorderColor={"rgb(159,150,133 ,1)"}
               borderColor={colorPinInput}
               onChange={(value, index, values) => {
-                console.log("🚀 ~ file: index.jsx:52 ~ values:", values)
                 setValues(values);
                 if (number == values.join("")) {
                   setValueOTP(values.join(""));

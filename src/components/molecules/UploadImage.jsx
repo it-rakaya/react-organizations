@@ -9,9 +9,7 @@ import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
 const UploadImage = ({ name, placeholder }) => {
   const { setFieldValue, errors, values } = useFormikContext();
-  const [files, setFiles] = useState(
-    values?.attachments ? [values?.attachments[name]] : []
-  );
+  const [files, setFiles] = useState([]);
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,

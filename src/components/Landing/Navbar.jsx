@@ -4,6 +4,7 @@ import { UseOrg } from "../../context/organization provider/OrganizationProvider
 import { useMutate } from "../../hooks/useMutate";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { Link } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
 
 function Navbar() {
   const linkStyle =
@@ -12,6 +13,9 @@ function Navbar() {
   const language = i18n.language;
   const { orgData } = UseOrg();
   const { logout, user } = useAuth();
+  const theme = useTheme();
+
+  
 
   const { mutate: LogOut } = useMutate({
     mutationKey: [`Log_out`],
@@ -58,7 +62,10 @@ function Navbar() {
       >
         <Icon
           icon="icon-park-outline:translate"
-          className="duration-300 text-primary transition-color hover:text-primaryText"
+          className="duration-300 transition-color hover:text-primaryText"
+          style={{
+            color: theme?.palette?.primary?.main,
+          }}
         />
       </button>
     </nav>

@@ -38,9 +38,9 @@ const DefaultPalette = (mode, skin) => {
       white: whiteColor
     },
     primary: {
-      light: '#787EFF',
+      // light: '#787EFF',
       main: `${orgData?.organizations?.primary_color || "#9F9685"}` ,
-      dark: '#5A5FE0',
+      // dark: '#5A5FE0',
       contrastText: whiteColor
     },
     secondary: {

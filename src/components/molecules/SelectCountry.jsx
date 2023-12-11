@@ -4,10 +4,12 @@ import { t } from "i18next";
 import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
 import { FormikError } from "./Formik/FormikError";
+import { useTheme } from "@mui/material/styles";
 
 export default function SelectCountry({ name, label, className }) {
-  const { setFieldValue, errors, values } = useFormikContext();
-  console.log("🚀 ~ file: SelectCountry.jsx:10 ~ SelectCountry ~ values:", values)
+  const theme = useTheme();
+
+  const { setFieldValue, errors, values, touched , handleBlur } = useFormikContext();
   const { data: countries } = useFetch({
     endpoint: `countries`,
     queryKey: ["countrie"],
@@ -36,14 +38,20 @@ export default function SelectCountry({ name, label, className }) {
           name={name}
           className="border rounded-md"
           placeholder={t("Chose Country")}
+          onBlur={handleBlur}
           onChange={(option) => setFieldValue(name, option.value)}
           styles={{
-            control: (baseStyles) => ({
+            control: (baseStyles, state) => ({
               ...baseStyles,
               padding: "10px",
               borderRadius: " 8px",
 
-              borderColor: errors[name] ? "red" : "white",
+              borderColor:
+                !!touched[name] && !!errors[name]
+                  ? "red"
+                  : state.isFocused
+                  ? "transparent"
+                  : "white",
               background: "white",
               margin: "0",
             }),
@@ -57,14 +65,20 @@ export default function SelectCountry({ name, label, className }) {
           theme={(theme) => ({
             ...theme,
             borderRadius: 0,
+
             colors: {
               ...theme.colors,
-              primary25: "#666CFF",
-              primary: "#666CFF",
-              borderColor: "red",
+              primary25: `#eee`,
+              primary: "#eee",
+              // borderColor: "red",
             },
           })}
-          defaultValue={{ value: values[name], label: values?.nationality_name }}
+          defaultValue={{
+            value: values[name] ? values[name] : "",
+            label: values?.nationality_name
+              ? values?.nationality_name
+              : t("Chose Country"),
+          }}
         />
         <div>
           <FormikError name={name} />

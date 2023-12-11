@@ -8,6 +8,7 @@ import LoginIcon from "../../components/atoms/icons/LoginIcon";
 import RegisterForm from "../../components/templates/RegisterForm";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useSettings } from "../../hooks/useSettings";
+import { useEffect } from "react";
 
 const RegisterIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -52,7 +53,12 @@ const Register = () => {
   const token = Cookies.get("token");
   const navigate = useNavigate();
   const { orgData } = UseOrg();
-
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [navigate, token]);
+  
   if (!token) {
     return (
       <Box className="flex content-right">

@@ -47,7 +47,7 @@ export default function RegisterForm() {
       email: Yup.string().trim().required(t("email is required")),
       birthday: Yup.string().trim().required(t("birthday is required")),
       phone: Yup.string().trim().required(t("phone is required")),
-      nationality: Yup.string().trim().required(t("birthday is required")),
+      nationality: Yup.string().trim().required(t("country is required")),
       national_id_expired: Yup.string()
         .trim()
         .required(t("birthday is required")),
@@ -56,6 +56,7 @@ export default function RegisterForm() {
     name: "",
     national_id: "",
     email: "",
+    phone:"",
     birthday: Date(),
     nationality: "",
     national_id_expired: Date(),
