@@ -506,15 +506,37 @@ main,
   top: 8px !important;
 }
 
-/* .afterSetting{
+.animate {
   content: "";
   position: absolute;
   width: 20%;
   height: 20%;
-  animation: spin 9s linear infinite;
   top: 0;
   left: 23%;
-} */
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.afterSetting {
+  animation: spin 7s linear infinite;
+}
+
+.reverse {
+  animation: spinReverse 5s linear infinite;
+}
+
+.circleLeft {
+  animation: circleLeftAnim 4s linear infinite;
+}
+
+.circleRight {
+  animation: circleRIghtAnim 4s linear infinite;
+}
+
+.settingRight {
+  animation: spinReverse 3s linear infinite;
+}
+
 /* .MuiStepConnector-root.MuiStepConnector-horizontal.MuiStepConnector-alternativeLabel {
   right: calc(-100% + 20px);
   left: calc(0px + 20px);
@@ -533,8 +555,12 @@ main,
 } */
 
 .animate-\[spin_2\.5s_linear_infinite\] {
-  animation: spin 2.5s linear infinite
+  animation: spin 2.5s linear infinite;
+  transform-origin: center;
+  transform-box: fill-box;
 }
+
+
 
 @keyframes spin {
   0% {
@@ -546,6 +572,45 @@ main,
   }
 }
 
-.react-tel-input .selected-flag .flag{
-  left: 15px !important; 
+@keyframes spinReverse {
+  100% {
+    transform: rotate(0deg)
+  }
+
+  to {
+    transform: rotate(-1turn)
+  }
+}
+
+@keyframes circleLeftAnim {
+  0% {
+    transform: translateX(-5px)
+  }
+
+  50% {
+    transform: translateX(0px)
+  }
+
+  100% {
+    transform: translateX(-5px)
+  }
+
+}
+
+@keyframes circleRIghtAnim {
+  0% {
+    transform: translateX(-2px)
+  }
+
+  50% {
+    transform: translateX(0px)
+  }
+
+  100% {
+    transform: translateX(-2px)
+  }
+}
+
+.react-tel-input .selected-flag .flag {
+  left: 15px !important;
 }

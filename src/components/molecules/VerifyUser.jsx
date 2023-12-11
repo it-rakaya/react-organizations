@@ -19,7 +19,6 @@ export default function VerifyUser({ userData, dataValue, setOpen }) {
     mutationKey: [`verify_user`],
     endpoint: `verify`,
     onSuccess: (data) => {
-      console.log("🚀 ~ file: VerifyUser.jsx:22 ~ VerifyUser ~ data:", data?.data)
       setUser(data?.data?.user);
       notify("success");
       setOpen(false);

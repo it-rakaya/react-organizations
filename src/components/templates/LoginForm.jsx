@@ -57,7 +57,7 @@ export default function LoginForm() {
     <div className="w-full">
       <Formik
         onSubmit={(values) => {
-          console.log("values:", values);
+          console.log("values:sssssssssssssssssssssssssssssssssssssssss", values);
           setValuesForm(values);
 
           !verifyPhone

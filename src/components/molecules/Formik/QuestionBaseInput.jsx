@@ -92,7 +92,7 @@ export default function QuestionBaseInput({
   const isLargeFile = files?.length && files[0]?.size > 524288000;
 
   const multiSelectOptions = options?.map((item) => ({
-    value: item?.content,
+    value: item?.id,
     label: item?.content,
   }));
   const selectOptions = options?.map((item) => ({
@@ -326,7 +326,7 @@ export default function QuestionBaseInput({
             <FormControlLabel
               key={option?.id}
               label={option?.content}
-              control={<Checkbox value={option?.content} />}
+              control={<Checkbox value={option?.id} />}
             />
           ))}
         </FormGroup>

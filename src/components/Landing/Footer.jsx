@@ -46,11 +46,11 @@ const Footer = () => {
   });
   const [prayer, setPrayer] = useState("");
   const [timeLeft, setTimeLeft] = useState({ months: "", days: "", hours: "" });
-  useEffect(() => {
-    getPrayerTime(setNextPrayerTime, setPrayer);
+  // useEffect(() => {
+  //   getPrayerTime(setNextPrayerTime, setPrayer);
 
-    getTimeLeftToHajj(setTimeLeft);
-  }, []);
+  //   getTimeLeftToHajj(setTimeLeft);
+  // }, []);
   return (
     <div className="2xl:pe-[18%] 3xl:pe-[26%]">
       <div className="flex flex-col w-full gap-3 lg:flex-row">

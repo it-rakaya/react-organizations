@@ -50,6 +50,7 @@ export default function CheckCode({
               validBorderColor={colorPinInput}
               focusBorderColor={"rgb(159,150,133 ,1)"}
               borderColor={colorPinInput}
+              
               onChange={(value, index, values) => {
                 setValues(values);
                 if (number == values.join("")) {

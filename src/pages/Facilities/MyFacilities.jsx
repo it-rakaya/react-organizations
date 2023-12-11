@@ -82,16 +82,11 @@ export default function MyFacilities() {
                     sm={4}
                     md={3}
                     key={item?.id}
-                    // style={{ height: "290px" }}
                   >
                     <Card
                       sx={{ position: "relative"  }}
-                      // className="flex flex-col items-center justify-end"
                     >
-                      {/* <div className="flex items-center justify-between px-2 py-1 item">
-                        <ShowDetails />
-                        <EditIcon />
-                      </div> */}
+         
                       <OptionsMenu
                         iconButtonProps={{
                           size: "small",

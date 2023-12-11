@@ -73,9 +73,8 @@ const Login = () => {
   if (!token) {
     return (
       <div className="">
-        
         <Box className="flex content-right">
-                    <RightWrapper
+          <RightWrapper
             sx={
               skin === "bordered" && !hidden
                 ? { borderLeft: `1px solid ${theme.palette.divider}` }
@@ -128,12 +127,13 @@ const Login = () => {
                   justifyContent: "center",
                   // marginTop: "20px",
                 }}
-                
               >
                 <img
                   src={orgData?.organizations?.logo}
                   className=" h-[100px] rounded-xl  mx-auto"
-                  onClick={()=>{navigate('/')}}
+                  onClick={() => {
+                    navigate("/");
+                  }}
                 />
               </Box>
               <BoxWrapper className="flex flex-col items-center justify-center mt-5">
@@ -149,7 +149,6 @@ const Login = () => {
                 <LoginForm />
 
                 <Box
-                
                   sx={{
                     display: "flex",
                     alignItems: "center",
@@ -157,7 +156,6 @@ const Login = () => {
                     justifyContent: "center",
                     marginTop: "10px",
                   }}
-                  
                 >
                   <Typography sx={{ mr: 2, color: "text.secondary" }}>
                     {t("New on our platform?")}
@@ -174,7 +172,6 @@ const Login = () => {
           </RightWrapper>
           {!hidden ? (
             <Box
-              
               sx={{
                 flex: 1,
                 display: "flex",
@@ -185,7 +182,6 @@ const Login = () => {
                 overflow: "hidden",
               }}
             >
-              
               <LoginIllustrationWrapper>
                 {/* <LoginIllustration
                   alt="login-illustration"
@@ -197,7 +193,6 @@ const Login = () => {
               {/* <FooterIllustrationsV2 /> */}
             </Box>
           ) : null}
-
         </Box>
       </div>
     );

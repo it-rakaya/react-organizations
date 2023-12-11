@@ -1,4 +1,3 @@
-// ** MUI Imports
 import { Alert, Button } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { useState } from "react";
@@ -28,7 +27,6 @@ const Home = () => {
   const [open, setOpen] = useState(false);
   const [dataValue, setDataValue] = useState();
   const {user} = useAuth()
-  console.log("🚀 ~ file: Home.jsx:31 ~ Home ~ user:", user)
   const { orgData } = UseOrg();
 
   
