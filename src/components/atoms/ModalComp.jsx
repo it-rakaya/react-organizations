@@ -21,6 +21,7 @@ const style = {
 export default function ModalComp({ onClose, open, Children, className }) {
   return (
     <div className="max-h-[350px]">
+      
       <Modal
         open={open}
         onClose={onClose}
