@@ -2,7 +2,8 @@
 import { createContext, useContext, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import { UseLocalStorage } from "../../hooks/useLocalStorage";
-
+import img from '../../assets/refadaLogos/Group-1.png'
+import default_image from '../../assets/refadaLogos/default.jpeg'
 const OrgContext = createContext();
 export const OrganizationProvider = ({ children }) => {
   const url = window.location.href;
@@ -32,6 +33,14 @@ export const OrganizationProvider = ({ children }) => {
     // refetch();
   }, [refetch]);
 
+  useEffect(()=>{
+    console.log(orgData?.organizations?.background_image);
+    if(orgData?.organizations?.background_image == undefined){
+      setOrgData((prev)=>{
+        return {...prev, organizations:{...prev?.organizations, background_image:default_image, logo:img}}
+      })
+    }
+  },[orgData])
   return (
     <OrgContext.Provider value={{ orgData, refetch, isRefetching  }}>
       {children}

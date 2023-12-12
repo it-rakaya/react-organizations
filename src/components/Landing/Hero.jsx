@@ -13,7 +13,7 @@ const Hero = () => {
 
   const { orgData } = UseOrg();
   const theme = useTheme();
-  
+  console.log(orgData?.organizations?.name_ar);
   const language = i18n.language;
   return (
     <div className="px-3 lg:w-1/2 2xl:ps-56 2xl:px-80 xl:ps-12">
@@ -28,6 +28,7 @@ const Hero = () => {
           />
           {/* </h1> */}
           <h1 className="text-2xl font-bold text-primaryText 3xl:text-3xl">
+            {!orgData?.organizations?.name_ar && t('landing.organizationName')}
             {orgData?.organizations?.name_ar}
           </h1>
         </div>
