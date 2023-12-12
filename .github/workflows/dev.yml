@@ -27,11 +27,5 @@ jobs:
           source ~/.nvm/nvm.sh
           cd /var/www/html/react/africa-dev.rmcc.sa/react-organizations
           git pull
-<<<<<<< HEAD
-          rm -r node_modules/
-=======
-          rm -r /node_modules
->>>>>>> 5f3c2606b5a67b5d7ecf1966a4e0e1744788654b
-          rm yarn.lock
           yarn 
           yarn build
