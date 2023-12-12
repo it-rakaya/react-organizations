@@ -6,10 +6,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
-import bannerProfile from "../../../assets/images/pages/profile-banner.png";
-import avatarUser from "../../../assets/avatars/1.png";
+import defaultImage from "../../../../public/profile pic.png";
 
 const ProfilePicture = styled("img")(({ theme }) => ({
   width: 120,
@@ -21,20 +20,24 @@ const ProfilePicture = styled("img")(({ theme }) => ({
   },
 }));
 
-const UserProfileHeader = ({ setEditUser, user, orgData }) => {
-  console.log(
-    "🚀 ~ file: UserProfileHeader.jsx:25 ~ UserProfileHeader ~ user:",
-    user
-  );
+const UserProfileHeader = ({ setEditUser, user }) => {
+  const theme = useTheme();
+  const bgDynamic = theme?.palette?.primary?.main
+    ? theme?.palette?.primary?.main
+    : "#9f9685";
+
   return (
     <>
       <Card>
         <CardMedia
-          component="img"
+          component="div"
           alt="profile-header"
-          image={orgData?.organizations?.background_image || bannerProfile}
+          // image={orgData?.organizations?.background_image || bannerProfile}
           sx={{
             height: { xs: 150, md: 250 },
+          }}
+          style={{
+            background: `linear-gradient(62deg, rgba(32,32,32,1) 0%, ${bgDynamic} 37%, rgba(255,255,255,1) 100%)`,
           }}
         />
         <CardContent
@@ -50,7 +53,7 @@ const UserProfileHeader = ({ setEditUser, user, orgData }) => {
           <ProfilePicture
             src={
               (user?.attachmentUrl?.length && user?.attachmentUrl[1]?.value) ||
-              avatarUser
+              defaultImage
             }
             alt="profile-picture"
           />
@@ -184,7 +187,7 @@ const UserProfileHeader = ({ setEditUser, user, orgData }) => {
           >
             <IconifyIcon icon="entypo:v-card" />
             <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p>  الهوية الوطنية:{user?.national_id}</p>
+              <p> الهوية الوطنية:{user?.national_id}</p>
             </Typography>
           </Box>
           <Box

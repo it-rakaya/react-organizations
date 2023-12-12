@@ -9,12 +9,12 @@ import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import userAvarar from "../../../assets/avatars/1.png";
 import { useAuth } from "../../../context/auth-and-perm/AuthProvider";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import { t } from "i18next";
+import defaultImage from "../../../../public/profile pic.png";
 
 // ** Icon Imports
 
@@ -95,7 +95,11 @@ const UserDropdown = (props) => {
           alt="John Doe"
           onClick={handleDropdownOpen}
           sx={{ width: 40, height: 40 }}
-          src={user?.attachmentUrl?.length && user?.attachmentUrl[1]?.value}
+          src={
+            user?.attachmentUrl?.length
+              ? user?.attachmentUrl[1]?.value
+              : defaultImage
+          }
         />
       </Badge>
       <Menu
@@ -124,7 +128,11 @@ const UserDropdown = (props) => {
             >
               <Avatar
                 alt="John Doe"
-                src={user?.attachmentUrl?.length ? user?.attachmentUrl[1]?.value : ''}
+                src={
+                  user?.attachmentUrl?.length
+                    ? user?.attachmentUrl[1]?.value
+                    : defaultImage
+                }
                 sx={{ width: "2.5rem", height: "2.5rem" }}
               />
             </Badge>

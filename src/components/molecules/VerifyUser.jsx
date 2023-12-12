@@ -39,7 +39,7 @@ export default function VerifyUser({ userData, dataValue, setOpen }) {
             phone: userData?.phone,
             phone_code: userData?.phone_code,
             otp: valueOTP,
-            organization_id: orgData?.organization?.id,
+            organization_id: orgData?.organizations?.id,
           });
         }}
         initialValues={{ phone: "", phone_code: "", otp: "" }}

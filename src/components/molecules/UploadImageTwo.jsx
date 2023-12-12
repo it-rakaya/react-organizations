@@ -1,15 +1,17 @@
 /* eslint-disable react/prop-types */
 import Box from "@mui/material/Box";
+import { useTheme } from "@mui/material/styles";
 import { useFormikContext } from "formik";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import CheckIcon from "../atoms/icons/CheckIcon";
-import PdfIcon from "../atoms/icons/PdfIcon";
+import IconifyIcon from "../atoms/icons/IconifyIcon";
 import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
 
 const UploadImageTwo = ({ name, label, nameValue }) => {
   const { setFieldValue, values } = useFormikContext();
+  const theme = useTheme();
 
   const [files, setFiles] = useState(
     values?.attachments ? [values?.attachments[nameValue]] : []
@@ -33,7 +35,16 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
     },
   });
 
+  const hexToRGBA = (hex, opacity) => {
+    hex = hex.replace("#", "");
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    return `rgba(${r},${g},${b},${opacity})`;
+  };
+
   const isLargeFile = files?.length && files[0]?.size > 524288000;
+  const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
 
   return (
     <div className="relative ">
@@ -43,7 +54,7 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
             <h2 className="bg-[#EFEFEF] w-full text-center px-3 pt-2 rounded-md">
               {label}
             </h2>
-            <div {...getRootProps({ className: "dropzone h-[150px]" })}>
+            <div {...getRootProps({ className: "dropzone h-[150px] flex flex-col items-center justify-center" })}>
               {!files?.length ? (
                 <div className="flex flex-col items-center justify-center py-5">
                   <input {...getInputProps()} name={name} />
@@ -71,18 +82,26 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
               </p>
             </div>
           </div>
-          <div className="flex justify-start w-full rounded-md ">
-            {!isLargeFile && files[0]?.type.startsWith("image/")? (
-              <div className="flex justify-start">
-                <PreviewImage files={files ? files : []} />
+          <div className="flex justify-start w-full rounded-md">
+            {!isLargeFile && files[0]?.type.startsWith("image/") ? (
+              <div className="flex items-center justify-center w-full">
+                <PreviewImage files={files ? files : []} bgMain={bgMain} />
               </div>
             ) : files[0]?.type.startsWith("application/") ? (
               <a
                 href={URL.createObjectURL(files[0])}
                 download={files[0].name}
-                className=""
+                className="w-full"
               >
-                <PdfIcon />
+                <div
+                  className="flex items-center justify-center w-full gap-2 p-2 cursor-pointer"
+                  style={{
+                    backgroundColor: bgMain,
+                  }}
+                >
+                  <IconifyIcon icon={"icons8:pdf"} className="text-xl" />
+                  <span className="text-sm">اضغط هنا لمشاهدة المرفق</span>
+                </div>
               </a>
             ) : (
               ""

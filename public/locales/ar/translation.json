@@ -74,10 +74,18 @@
   "privacy policy & terms": " سياسة الخصوصية والشروط ",
   "Profile": "الملف الشخصي",
   "Waiting": "قيد الانتظار",
-  "New":"جديد",
+  "New": "جديد",
   "Rejection": "تم الرفض",
   "Landing": "الصفحة التعريفية",
-  "Not Found Data":"لم يتم العثور على بيانات",
+  "Not Found Data": "لم يتم العثور على بيانات",
+  "back": "السابق",
+  "Invalid Saudi ID": "رقم هوية غير صحيح",
+  "The ID number must be exactly 10 digits": "يجب أن يتكون رقم الهوية من 10 أرقام بالضبط",
+  "The phone number must be exactly 10 digits": "يجب أن يتكون رقم الهاتف من 10 أرقام بالضبط",
+  "This field is required":"هذا الحقل مطلوب",
+  "country is required":"اسم الدوله مطلوب",
+  "email is required":"البريد الالكتروني مطلوب",
+  "name is required":"الاسم مطلوب",
   "landing": {
     "organizationName": "اسم المنظمة",
     "description": "نص عربي نص عربي نص عربي نص عربي نص عربي نص عربي",
@@ -102,6 +110,9 @@
       "Asr": "العصر",
       "Maghrib": "المغرب",
       "Isha": "العشاء"
-    }
+    },
+    "contactUs":"تواصل معنا",
+    "rights":"جميع الحقوق محفوظة لدى منظمة",
+    "orgEmpty":""
   }
 }

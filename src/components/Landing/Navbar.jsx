@@ -5,6 +5,7 @@ import { useMutate } from "../../hooks/useMutate";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
+import { t } from "i18next";
 
 function Navbar() {
   const linkStyle =
@@ -52,7 +53,7 @@ function Navbar() {
           </Link>
         )}
         <Link href="/" className={linkStyle}>
-          Contact us
+          {t('landing.contactUs')}
         </Link>
         <button
           onClick={() => {

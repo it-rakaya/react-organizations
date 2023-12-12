@@ -51,11 +51,6 @@ export default function QuestionBaseInput({
   const [files, setFiles] = useState([]);
   const [checkboxValue, setCheckboxValue] = useState([]);
 
-  //select
-  const handleChange = (options) => {
-    // setValue(event.target.value);
-    //
-  };
   //radio
   const handleChangeRadio = (event) => {
     setValueRadio(event.target.value);
@@ -92,7 +87,7 @@ export default function QuestionBaseInput({
   const isLargeFile = files?.length && files[0]?.size > 524288000;
 
   const multiSelectOptions = options?.map((item) => ({
-    value: item?.id,
+    value: item?.content,
     label: item?.content,
   }));
   const selectOptions = options?.map((item) => ({
@@ -326,7 +321,7 @@ export default function QuestionBaseInput({
             <FormControlLabel
               key={option?.id}
               label={option?.content}
-              control={<Checkbox value={option?.id} />}
+              control={<Checkbox value={option?.content} />}
             />
           ))}
         </FormGroup>

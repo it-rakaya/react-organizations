@@ -4,7 +4,7 @@ import { useState } from "react";
 import { PinInput } from "react-input-pin-code";
 import ResendCode from "../../molecules/Formik/ResendCode";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
-
+import { useTheme } from "@mui/material/styles";
 export default function CheckCode({
   number,
   valuesForm,
@@ -16,6 +16,9 @@ export default function CheckCode({
   const [availableResetCode, setAvailableResetCode] = useState(false);
   const [timerStarted, setTimerStarted] = useState(true);
   const [colorPinInput, setColorPinInput] = useState("");
+  const theme = useTheme()
+  const [btnBgColor, setBtnBgColor] = useState('transparent');
+
   const { orgData } = UseOrg();
 
 
@@ -25,7 +28,7 @@ export default function CheckCode({
       //   email: formData.email,
       //   type: 'FORGET',
       // });
-      sendOTP({ ...valuesForm, organization_id:orgData?.organization?.id });
+      sendOTP({ ...valuesForm, organization_id:orgData?.organizations?.id });
 
       // valuesForm;
       setTimerStarted(true);
@@ -48,9 +51,10 @@ export default function CheckCode({
             <PinInput
               values={values}
               validBorderColor={colorPinInput}
-              focusBorderColor={"rgb(159,150,133 ,1)"}
+              focusBorderColor={theme?.palette?.primary.main}
               borderColor={colorPinInput}
-              
+              inputStyle={{userSelect:'none'}}
+              placeholder="x"           
               onChange={(value, index, values) => {
                 setValues(values);
                 if (number == values.join("")) {
@@ -62,6 +66,8 @@ export default function CheckCode({
                 }
               }}
               containerStyle={{ flexDirection: "row-reverse" }}
+              inputClassName="focus:border-0 focus:border-red-200 selection:outline-none"
+              
             />
           </div>
           <ResendCode
@@ -72,8 +78,12 @@ export default function CheckCode({
           />
           {availableResetCode && (
             <Button
-              className="!w-2/3 !text-primary !rounded-md !border !border-solid !border-primary hover:!bg-gold"
+              className={`!w-2/3 !rounded-md !border !border-solid hover:shadow-lg hover:!text-white`}
+              style={{borderColor:theme?.palette?.primary.main, color:theme?.palette?.primary.main, backgroundColor:btnBgColor}}
               onClick={handleSendTime}
+              onMouseEnter={()=>{setBtnBgColor(theme?.palette?.primary.main)}}
+              onMouseLeave={()=>{setBtnBgColor('transparent')}}
+
             >
               إعادة الإرسال
             </Button>

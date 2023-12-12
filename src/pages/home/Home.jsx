@@ -57,7 +57,7 @@ const Home = () => {
               onClick={() => {
                 setOpen(true);
                 sendOTP({
-                  organization_id: orgData?.organization?.id,
+                  organization_id: orgData?.organizations?.id,
                   phone: user?.phone,
                   phone_code: user?.phone_code,
                 });
