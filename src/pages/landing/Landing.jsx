@@ -7,7 +7,7 @@ import { UseOrg } from "../../context/organization provider/OrganizationProvider
 
 function Landing() {
   const { orgData } = UseOrg();
-
+  console.log("🚀 ~ file: Landing.jsx:10 ~ Landing ~ orgData:", orgData)
 
   return (
     <div className="relative w-screen overflow-hidden lg:h-screen" dir="ltr">

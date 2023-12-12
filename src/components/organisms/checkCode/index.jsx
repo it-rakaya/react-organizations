@@ -51,11 +51,10 @@ export default function CheckCode({
             <PinInput
               values={values}
               validBorderColor={colorPinInput}
-              // focusBorderColor={"rgba(159,150,133 ,1)"}
               focusBorderColor={theme?.palette?.primary.main}
               borderColor={colorPinInput}
               inputStyle={{userSelect:'none'}}
-              
+              placeholder="x"           
               onChange={(value, index, values) => {
                 setValues(values);
                 if (number == values.join("")) {

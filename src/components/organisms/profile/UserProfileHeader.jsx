@@ -7,8 +7,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { styled, useTheme } from "@mui/material/styles";
-import avatarUser from "../../../assets/avatars/1.png";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
+import defaultImage from "../../../../public/profile pic.png";
 
 const ProfilePicture = styled("img")(({ theme }) => ({
   width: 120,
@@ -21,8 +21,10 @@ const ProfilePicture = styled("img")(({ theme }) => ({
 }));
 
 const UserProfileHeader = ({ setEditUser, user }) => {
-
   const theme = useTheme();
+  const bgDynamic = theme?.palette?.primary?.main
+    ? theme?.palette?.primary?.main
+    : "#9f9685";
 
   return (
     <>
@@ -35,7 +37,7 @@ const UserProfileHeader = ({ setEditUser, user }) => {
             height: { xs: 150, md: 250 },
           }}
           style={{
-            background: `linear-gradient(107deg, ${theme?.palette?.primary?.main} 0%, rgba(0,0,0,0.9295890231092437) 50%, rgba(255,255,255,1) 100%)`,
+            background: `linear-gradient(62deg, rgba(32,32,32,1) 0%, ${bgDynamic} 37%, rgba(255,255,255,1) 100%)`,
           }}
         />
         <CardContent
@@ -51,7 +53,7 @@ const UserProfileHeader = ({ setEditUser, user }) => {
           <ProfilePicture
             src={
               (user?.attachmentUrl?.length && user?.attachmentUrl[1]?.value) ||
-              avatarUser
+              defaultImage
             }
             alt="profile-picture"
           />

@@ -5,16 +5,18 @@ import { UseLocalStorage } from "../../hooks/useLocalStorage";
 
 const OrgContext = createContext();
 export const OrganizationProvider = ({ children }) => {
-  const url = window.location.href;
-  const [orgData, setOrgData] = UseLocalStorage("organization");
+  // const url = window.location.href;
+  // const local = "africa-dev.rmcc.sa"
 
+  const [orgData, setOrgData] = UseLocalStorage("organization");
+  // http://localhost:5173/
   const {
     data,
     refetch,
     isRefetching,
     isSuccess
   } = useFetch({
-    endpoint: `organizations?organizationDomain=africa.rmcc.sa`,
+    endpoint: `organizations?organizationDomain=http://localhost:5173`,
     queryKey: ["organization_info"],
 
     onError(e) {

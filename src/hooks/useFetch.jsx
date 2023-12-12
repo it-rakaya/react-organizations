@@ -16,7 +16,7 @@ function useFetch({ endpoint, enabled, select, queryKey, onError, onSuccess }) {
   const config = {
     headers: {
       Authorization: authorizationHeader,
-      origin: "africa.rmcc.sa",
+      // Origin: "africa.rmcc.sa",
     },
   };
 

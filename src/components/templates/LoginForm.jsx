@@ -1,15 +1,15 @@
-import { Box } from "@mui/system";
 import { Form, Formik } from "formik";
 import { t } from "i18next";
 import { useState } from "react";
 import * as Yup from "yup";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import ButtonComp from "../atoms/buttons/ButtonComp";
 import PhoneInput2 from "../molecules/Formik/PhoneInput2";
 import CheckCode from "../organisms/checkCode";
-import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import { isValidSaudiID } from "saudi-id-validator"
 
 export default function LoginForm() {
   const [verifyPhone, setVerifyPhone] = useState(false);
@@ -19,8 +19,8 @@ export default function LoginForm() {
   const [valueOTP, setValueOTP] = useState();
   console.log("🚀 ~ file: LoginForm.jsx:20 ~ LoginForm ~ valueOTP:", valueOTP);
   const { orgData } = UseOrg();
-  console.log("🚀 ~ file: LoginForm.jsx:22 ~ LoginForm ~ orgData:", orgData)
-
+  console.log("🚀 ~ file: LoginForm.jsx:22 ~ LoginForm ~ orgData:", orgData);
+  console.log(isValidSaudiID(1000000008))   
   const { mutate: LoginData, isPending: loadingLogin } = useMutate({
     mutationKey: [`login_data`],
     formData: true,
@@ -58,14 +58,13 @@ export default function LoginForm() {
     <div className="w-full">
       <Formik
         onSubmit={(values) => {
-          console.log(
-            "values:sssssssssssssssssssssssssssssssssssssssss",
-            { ...values, organization_id: orgData?.organizations?.id }
-          );
           setValuesForm(values);
 
           !verifyPhone
-            ? sendOTP({ ...values, organization_id: orgData?.organizations?.id })
+            ? sendOTP({
+                ...values,
+                organization_id: orgData?.organizations?.id,
+              })
             : LoginData({
                 ...values,
                 otp: valueOTP,
