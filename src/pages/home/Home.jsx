@@ -28,6 +28,7 @@ const Home = () => {
   const [dataValue, setDataValue] = useState();
   const {user} = useAuth()
   const { orgData } = UseOrg();
+  console.log("🚀 ~ file: Home.jsx:31 ~ Home ~ orgData:", orgData)
 
   
   const { mutate: sendOTP } = useMutate({

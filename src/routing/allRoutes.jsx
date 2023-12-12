@@ -10,22 +10,21 @@ import Register from "../pages/register/Register";
 import Landing from "../pages/landing/Landing";
 import MyFacilities from "../pages/Facilities/MyFacilities";
 import MyEmployees from "../pages/Employees/MyEmployees";
-import StepperFacility from "../components/organisms/MyFacilities/StepperFacility";
 import { useTranslation } from "react-i18next";
 import { UseOrg } from "../context/organization provider/OrganizationProvider";
+import AddFacilityPage from "../pages/Facilities/AddFacilityPage";
+import EditFacility from "../pages/Facilities/EditFacility";
 const Home = lazy(() => import("../pages/home/Home"));
 
 export const AllRoutesProvider = () => {
-
-  const {i18n} = useTranslation();  
+  const { i18n } = useTranslation();
   const { orgData } = UseOrg();
 
-  useEffect(()=>{
-    if(!orgData?.organizations?.name_ar)
-    document.title = t('landing.organizationName');
-    else 
-    document.title = orgData?.organizations?.name_ar
-  },[i18n.language])
+  useEffect(() => {
+    if (!orgData?.organizations?.name_ar)
+      document.title = t("landing.organizationName");
+    else document.title = orgData?.organizations?.name_ar;
+  }, [i18n.language]);
   return (
     <Routes>
       <Route path="/" element={<Landing title={t("Landing")} />} />
@@ -40,7 +39,11 @@ export const AllRoutesProvider = () => {
         <Route path="/dashboard/facilities" element={<MyFacilities />} />
         <Route
           path="/dashboard/facilities/create-facility"
-          element={<StepperFacility />}
+          element={<AddFacilityPage />}
+        />
+         <Route
+          path="/dashboard/facilities/edit-facility/:id"
+          element={<EditFacility />}
         />
 
         <Route path="/dashboard/employee" element={<MyEmployees />} />

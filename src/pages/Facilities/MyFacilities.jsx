@@ -17,19 +17,18 @@ import DataNotFound from "../../components/molecules/NotFound";
 import Paginate from "../../components/molecules/Paginate";
 import Search from "../../components/molecules/Search";
 import DetailsFacility from "../../components/organisms/MyFacilities/DetailsFacility";
-import StepperFacility from "../../components/organisms/MyFacilities/StepperFacility";
+import StepperFacility from "./AddFacilityPage";
 import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import useFetch from "../../hooks/useFetch";
 
 export default function MyFacilities() {
-  const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
   const [openAddFaculty, setOpenAddFaculty] = useState(false);
   const [openAddEmployee, setOpenAddEmployee] = useState(false);
   const [facultyID, setFacultyID] = useState("");
   const [detailsItem, setDetailsItem] = useState();
-  const [resetForm, setResetForm] = useState(true);
+  console.log("🚀 ~ file: MyFacilities.jsx:31 ~ MyFacilities ~ detailsItem:", detailsItem)
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 8;
@@ -51,9 +50,7 @@ export default function MyFacilities() {
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
   const paginatedFacilities = filteredFacilities?.slice(startIndex, endIndex);
-
   const totalPages = Math.ceil(filteredFacilities?.length / pageSize);
-
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
@@ -96,8 +93,8 @@ export default function MyFacilities() {
                           {
                             text: t("Edit"),
                             function: () => {
-                              setOpenAddFaculty(true);
-                              setResetForm(false);
+                              navigate(`/dashboard/facilities/edit-facility/${item?.id}`);
+
                             },
                           },
                           { divider: true },
@@ -162,7 +159,6 @@ export default function MyFacilities() {
       </div>
 
       <ModalComp
-        // className={'max-h-[500px]'}
         open={open}
         onClose={() => setOpen(false)}
         Children={<DetailsFacility data={detailsItem} />}
@@ -174,7 +170,6 @@ export default function MyFacilities() {
         Children={
           <StepperFacility
             setOpenAddFaculty={setOpenAddFaculty}
-            resetForm={resetForm}
             updateData={detailsItem}
           />
         }
@@ -200,7 +195,6 @@ export default function MyFacilities() {
           <div className="flex flex-col items-center justify-center gap-5 p-3">
             <CheckIcon className="stroke-contained" />
             <h1 className="font-bold"> تم إضافة موظف بنجاح</h1>
-
             <ButtonComp
               className="!w-2/3"
               variant="contained"

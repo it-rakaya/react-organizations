@@ -12,20 +12,19 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
 import Typography from "@mui/material/Typography";
-import { useQueryClient } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
 import { t } from "i18next";
 import { Fragment, useState } from "react";
 import * as Yup from "yup";
-import { useMutate } from "../../../hooks/useMutate";
-import { notify } from "../../../utils/toast";
-import ModalComp from "../../atoms/ModalComp";
-import ButtonComp from "../../atoms/buttons/ButtonComp";
-import TermsConditionIcon from "../../atoms/icons/TermsConditionIcon";
-import StepperCustomDot from "../../theme/StepperCustomDot";
-import StepperWrapper from "../../theme/stepper";
-import AddFacility from "./AddFacility";
-import StepTwo from "./StepTwo";
+import { useMutate } from "../../hooks/useMutate";
+import { notify } from "../../utils/toast";
+import ModalComp from "../../components/atoms/ModalComp";
+import ButtonComp from "../../components/atoms/buttons/ButtonComp";
+import TermsConditionIcon from "../../components/atoms/icons/TermsConditionIcon";
+import StepperCustomDot from "../../components/theme/StepperCustomDot";
+import StepperWrapper from "../../components/theme/stepper";
+import AddFacility from "../../components/organisms/MyFacilities/AddFacility";
+import StepTwo from "../../components/organisms/MyFacilities/StepTwo";
 import { useNavigate } from "react-router-dom";
 
 const steps = [
@@ -37,17 +36,14 @@ const steps = [
   },
 ];
 
-const StepperFacility = () => {
+const AddFacilityPage = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [open, setOpen] = useState(false);
-
+  const [checked, setChecked] = useState(false);
+  const navigate = useNavigate();
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
-  const [checked, setChecked] = useState(false);
-  const navigate = useNavigate();
-
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
       setOpen(true);
@@ -55,13 +51,10 @@ const StepperFacility = () => {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
   };
-  const queryClient = useQueryClient();
-
   const { mutate: addFacility, isPending: loadingAddFacility } = useMutate({
     mutationKey: [`add_facilities`],
     endpoint: `facilities`,
     onSuccess: () => {
-      queryClient.refetchQueries(["facilities"]);
       notify("success");
       navigate("/dashboard/facilities");
     },
@@ -93,7 +86,6 @@ const StepperFacility = () => {
     building_number: "",
     postal_code: "",
     sub_number: "",
-    // attachments: [],
     signature: "",
   };
   const validationSchema = () =>
@@ -199,9 +191,6 @@ const StepperFacility = () => {
             >
               {({ errors, values }) => (
                 <>
-                  {console.log("errors", Object.keys(errors).length)}
-                  {console.log("errors", values)}
-
                   <Form className="h-full">
                     <div
                       spacing={5}
@@ -241,7 +230,9 @@ const StepperFacility = () => {
                           type="button"
                           className={"!w-auto text-xl px-10 py-3 "}
                           variant="contained"
-                          disabled={ values.name == '' || Object.keys(errors).length}
+                          disabled={
+                            values.name == "" || Object.keys(errors).length
+                          }
                         >
                           {activeStep === steps.length - 1
                             ? "حفظ ومتابعه"
@@ -329,4 +320,4 @@ const StepperFacility = () => {
   );
 };
 
-export default StepperFacility;
+export default AddFacilityPage;
