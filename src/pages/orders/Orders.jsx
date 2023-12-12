@@ -36,6 +36,7 @@ export default function Orders() {
   } = useFetch({
     endpoint: `orders?organization_id=${orgData?.organizations?.id}`,
     queryKey: ["my_orders"],
+    enabled:!!orgData?.organizations?.id
   });
 
   return (
