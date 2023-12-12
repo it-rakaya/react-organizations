@@ -63,7 +63,7 @@ const Login = () => {
 
   const { skin } = settings;
   const token = Cookies.get("token");
-
+  const organizationName = !orgData?.organizations?.name_ar ? t('landing.organizationName') : orgData?.organizations?.name_ar
   useEffect(() => {
     if (token) {
       navigate("/");
@@ -139,7 +139,7 @@ const Login = () => {
               <BoxWrapper className="flex flex-col items-center justify-center mt-5">
                 <Box sx={{ mb: 3, width: "100%" }} className="text-center">
                   <TypographyStyled variant="h5">{`${t("Welcome to")} ${
-                    orgData?.organizations?.name_ar
+                    organizationName
                   }! 👋🏻`}</TypographyStyled>
                   <Typography variant="body2">
                     {t("Please sign-in to your account")}

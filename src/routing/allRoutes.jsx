@@ -1,6 +1,6 @@
 import { t } from "i18next";
 import { Route, Routes } from "react-router-dom";
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import { ErrorPage } from "./ErrorPage";
 import { Root } from "./Root";
 import Login from "../pages/login/Login";
@@ -11,9 +11,21 @@ import Landing from "../pages/landing/Landing";
 import MyFacilities from "../pages/Facilities/MyFacilities";
 import MyEmployees from "../pages/Employees/MyEmployees";
 import StepperFacility from "../components/organisms/MyFacilities/StepperFacility";
+import { useTranslation } from "react-i18next";
+import { UseOrg } from "../context/organization provider/OrganizationProvider";
 const Home = lazy(() => import("../pages/home/Home"));
 
 export const AllRoutesProvider = () => {
+
+  const {i18n} = useTranslation();  
+  const { orgData } = UseOrg();
+
+  useEffect(()=>{
+    if(!orgData?.organizations?.name_ar)
+    document.title = t('landing.organizationName');
+    else 
+    document.title = orgData?.organizations?.name_ar
+  },[i18n.language])
   return (
     <Routes>
       <Route path="/" element={<Landing title={t("Landing")} />} />

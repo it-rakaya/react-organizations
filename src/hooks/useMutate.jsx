@@ -27,13 +27,15 @@ export function useMutate({
             ? {
                 "Content-Type": "multipart/form-data",
                 Authorization: authorizationHeader,
-                // 'Origin': "africa.rmcc.sa",
+                origin: "africa-dev.rmcc.sa",
+                mode:'cors'
 
               }
             : {
                 "Content-Type": "application/json; charset=utf-8",
                 Authorization: authorizationHeader,
-                // 'Origin': "africa.rmcc.sa",
+                origin: "africa-dev.rmcc.sa",
+                mode:'cors'
 
               },
         };
