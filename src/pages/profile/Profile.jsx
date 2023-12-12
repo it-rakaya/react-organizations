@@ -4,7 +4,6 @@ import AccountSetting from "../../components/organisms/profile/AccountSetting";
 import UserProfileHeader from "../../components/organisms/profile/UserProfileHeader";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
-import OrganizationProfile from "../../components/organisms/profile/OrganizationProfile";
 
 export default function Profile() {
   const [editUser, setEditUser] = useState(false);
@@ -14,10 +13,10 @@ export default function Profile() {
 
   return (
     <div className="grid grid-cols-12 gap-5">
-      <div className="col-span-3">
+      {/* <div className="col-span-3">
         <OrganizationProfile setEditUser={setEditUser} orgData={orgData} />
-      </div>
-      <div className="col-span-9">
+      </div> */}
+      <div className="col-span-12">
         <UserProfileHeader
           setEditUser={setEditUser}
           user={user}

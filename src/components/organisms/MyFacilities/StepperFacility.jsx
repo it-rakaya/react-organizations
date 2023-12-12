@@ -241,7 +241,7 @@ const StepperFacility = () => {
                           type="button"
                           className={"!w-auto text-xl px-10 py-3 "}
                           variant="contained"
-                          // disabled={ values.name == '' || Object.keys(errors).length}
+                          disabled={ values.name == '' || Object.keys(errors).length}
                         >
                           {activeStep === steps.length - 1
                             ? "حفظ ومتابعه"

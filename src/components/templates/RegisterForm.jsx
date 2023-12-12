@@ -14,6 +14,8 @@ import { notify } from "../../utils/toast";
 import ButtonComp from "../atoms/buttons/ButtonComp";
 import RegistrationMainData from "./RegistrationMainData";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import ModalComp from "../atoms/ModalComp";
+import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
 
 export default function RegisterForm() {
   const LinkStyled = styled(Link)(({ theme }) => ({
@@ -23,6 +25,7 @@ export default function RegisterForm() {
   const { login } = useAuth();
   const [checked, setChecked] = useState(false);
   const { orgData } = UseOrg();
+  const [open, setOpen] = useState(false);
 
   const { mutate: sendRegister, isPending } = useMutate({
     endpoint: `register`,
@@ -47,8 +50,8 @@ export default function RegisterForm() {
       email: Yup.string().trim().required(t("email is required")),
       birthday: Yup.string().trim().required(t("birthday is required")),
       phone: Yup.string()
-      .matches(/^\d{9}$/, t("The phone number must be exactly 10 digits"))
-      .required("This field is required"),
+        .matches(/^\d{9}$/, t("The phone number must be exactly 10 digits"))
+        .required("This field is required"),
       nationality: Yup.string().trim().required(t("country is required")),
       national_id_expired: Yup.string()
         .trim()
@@ -58,12 +61,12 @@ export default function RegisterForm() {
     name: "",
     national_id: "",
     email: "",
-    phone:"",
+    phone: "",
     birthday: Date(),
     nationality: "",
     national_id_expired: Date(),
     attachments: [],
-    organization_id:orgData?.organizations?.id,
+    organization_id: orgData?.organizations?.id,
   };
 
   return (
@@ -107,7 +110,13 @@ export default function RegisterForm() {
                 <Typography variant="body2" component="span">
                   {t("I agree to ")}
                 </Typography>
-                <LinkStyled href="/" onClick={(e) => e.preventDefault()}>
+                <LinkStyled
+                  href="/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpen(true);
+                  }}
+                >
                   {t("privacy policy & terms")}
                 </LinkStyled>
               </>
@@ -137,6 +146,68 @@ export default function RegisterForm() {
           </Box>
         </Form>
       </Formik>
+      <ModalComp
+        open={open}
+        className="!max-w-[500px]  "
+        onClose={() => setOpen(false)}
+        Children={
+          <div className="pt-10 !flex gap-3 !items-center !justify-center !flex-col">
+            <div>
+              <TermsConditionIcon />
+            </div>
+            <h2>{t("privacy policy & terms")}</h2>
+
+            <p className="text-center">
+              {t(
+                "I confirm that all data is correct. I confirm that all data is correct"
+              )}
+              {t(
+                "I confirm that all data is correct. I confirm that all data is correct"
+              )}
+              {t(
+                "I confirm that all data is correct. I confirm that all data is correct"
+              )}
+                {t(
+                "I confirm that all data is correct. I confirm that all data is correct"
+              )}
+            </p>
+            <FormControlLabel
+            control={
+              <Checkbox
+                checked={checked}
+                onChange={() => setChecked(!checked)}
+              />
+            }
+     
+            label={
+              <>
+                <Typography variant="body2" component="span">
+                  {t("I agree to ")}
+                </Typography>
+                <LinkStyled
+                  href="/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpen(true);
+                  }}
+                >
+                  {t("privacy policy & terms")}
+                </LinkStyled>
+              </>
+            }
+          />
+
+         <ButtonComp
+              type={"submit"}
+              action={() =>   setOpen(false)}
+              className={"w-auto mt-1"}
+              variant="contained"
+            >
+              {t("back")}
+            </ButtonComp> 
+          </div>
+        }
+      />
     </div>
   );
 }
