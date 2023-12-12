@@ -7,9 +7,7 @@ import FacilityIcon from "../../atoms/icons/FaciltyIcon";
 import PdfIcon from "../../atoms/icons/PdfIcon";
 
 export default function DetailsOrder({ data }) {
-  console.log("🚀 ~ file: DetailsOrder.jsx:8 ~ DetailsOrder ~ data:", data);
   const [value, setValue] = useState("1");
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

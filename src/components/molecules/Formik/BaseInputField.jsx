@@ -23,7 +23,6 @@ export default function BaseInputField({
 }) {
   const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
   useFormikContext();
-  console.log("🚀 ~ file: BaseInputField.jsx:25 ~ values:", values)
   const [showPassword, setShowPassword] = useState(false);
   const handleChangeNumber = (e) => {
     let value = e.target.value;

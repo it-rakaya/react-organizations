@@ -3,10 +3,7 @@ import FacilityIcon from "../../atoms/icons/FaciltyIcon";
 import PdfIcon from "../../atoms/icons/PdfIcon";
 
 export default function DetailsFacility({ data }) {
-  console.log(
-    "🚀 ~ file: DetailsFacility.jsx:4 ~ DetailsFacility ~ data:",
-    data
-  );
+
 
   return (
     <div>

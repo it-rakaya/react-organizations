@@ -27,8 +27,7 @@ export default function LoginForm() {
     endpoint: `login`,
     onSuccess: (data) => {
       login(data.data);
-      // setToken(data?.data)
-      notify("success", `مربحا بك يا ${data?.data?.user.name}`);
+      notify("success", `مرحبا بك يا ${data?.data?.user.name}`);
     },
     onError: (err) => {
       console.log("err", err);
