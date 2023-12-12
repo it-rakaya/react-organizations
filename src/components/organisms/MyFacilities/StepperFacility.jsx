@@ -199,8 +199,10 @@ const StepperFacility = () => {
             >
               {({ errors, values }) => (
                 <>
-{                console.log("errors",Object.keys(errors).length = 0)
-}                  <Form className="h-full">
+                  {console.log("errors", Object.keys(errors).length)}
+                  {console.log("errors", values)}
+
+                  <Form className="h-full">
                     <div
                       spacing={5}
                       className="flex flex-col justify-between h-full "
@@ -239,7 +241,7 @@ const StepperFacility = () => {
                           type="button"
                           className={"!w-auto text-xl px-10 py-3 "}
                           variant="contained"
-                          disabled={Object.keys(errors).length}
+                          // disabled={ values.name == '' || Object.keys(errors).length}
                         >
                           {activeStep === steps.length - 1
                             ? "حفظ ومتابعه"

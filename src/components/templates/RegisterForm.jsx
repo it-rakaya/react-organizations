@@ -63,7 +63,7 @@ export default function RegisterForm() {
     nationality: "",
     national_id_expired: Date(),
     attachments: [],
-    organization_id:orgData?.organization?.id,
+    organization_id:orgData?.organizations?.id,
   };
 
   return (

@@ -60,7 +60,7 @@ export default function MyEmployees() {
             <Grid container spacing={6}>
               {paginateEmployee?.map((item) => (
                 <Grid
-                item
+                  item
                   xs={12}
                   sm={4}
                   md={3}
@@ -92,7 +92,13 @@ export default function MyEmployees() {
                         },
                       ]}
                     />
-                    <CardContent>
+                    <CardContent
+                      onClick={() => {
+                        setOpen(true);
+                        setDetailsItem(item);
+                      }}
+                      className="cursor-pointer"
+                    >
                       <Box
                         sx={{
                           display: "flex",
@@ -107,7 +113,7 @@ export default function MyEmployees() {
                         <Typography
                           variant="h6"
                           sx={{ fontWeight: 900 }}
-                          style={{color:theme?.palette?.primary?.main}}
+                          style={{ color: theme?.palette?.primary?.main }}
                           className="text-contained"
                         >
                           {item?.name}

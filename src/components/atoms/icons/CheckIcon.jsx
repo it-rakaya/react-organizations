@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useTheme } from "@mui/material/styles";
 
 function CheckIcon({ className }) {
-  const theme = useTheme();
 
   return (
     <div>
@@ -41,7 +39,7 @@ function CheckIcon({ className }) {
         <g mask="url(#mask0_3514_32885)">
           <path
             d="M-2 -2H46V46H-2V-2Z"
-            fill={theme?.palette?.primary?.main || "#9F9685"}
+            fill="#0DA175"
           />
         </g>
       </svg>

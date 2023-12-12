@@ -76,17 +76,8 @@ export default function MyFacilities() {
             <Grid container spacing={6}>
               {paginatedFacilities?.map((item) => (
                 <>
-                  <Grid
-                    item
-                    xs={12}
-                    sm={4}
-                    md={3}
-                    key={item?.id}
-                  >
-                    <Card
-                      sx={{ position: "relative"  }}
-                    >
-         
+                  <Grid item xs={12} sm={4} md={3} key={item?.id}>
+                    <Card sx={{ position: "relative" }}>
                       <OptionsMenu
                         iconButtonProps={{
                           size: "small",
@@ -116,7 +107,13 @@ export default function MyFacilities() {
                           },
                         ]}
                       />
-                      <CardContent className=" pt-5 !pb-0 !pl-0 !pr-0">
+                      <CardContent
+                        className=" pt-5 !pb-0 !pl-0 !pr-0 cursor-pointer"
+                        onClick={() => {
+                          setOpen(true);
+                          setDetailsItem(item);
+                        }}
+                      >
                         <Box
                           sx={{
                             display: "flex",
@@ -124,26 +121,28 @@ export default function MyFacilities() {
                             flexDirection: "column",
                           }}
                         >
-                          <FacilityIcon />
-                          <Typography
-                            variant="h6"
-                            sx={{ fontWeight: 500, marginTop: 1 }}
-                            className="my-2"
-                          >
-                            {item?.name}
-                          </Typography>
-                          <ButtonComp
-                            variant="contained"
-                            className={"!m-0 rounded-l-none rounded-r-none"}
-                            action={() => {
-                              setOpenAddEmployee(true);
-                              setFacultyID(item?.id);
-                            }}
-                          >
-                            {t("Add Employ")}
-                          </ButtonComp>
+                          <div>
+                            <FacilityIcon />
+                            <Typography
+                              variant="h6"
+                              sx={{ fontWeight: 500, marginTop: 1 }}
+                              className="my-2"
+                            >
+                              {item?.name}
+                            </Typography>
+                          </div>
                         </Box>
                       </CardContent>
+                      <ButtonComp
+                        variant="contained"
+                        className={"!m-0 rounded-l-none rounded-r-none"}
+                        action={() => {
+                          setOpenAddEmployee(true);
+                          setFacultyID(item?.id);
+                        }}
+                      >
+                        {t("Add Employ")}
+                      </ButtonComp>
                     </Card>
                   </Grid>
                 </>
@@ -163,7 +162,7 @@ export default function MyFacilities() {
       </div>
 
       <ModalComp
-      // className={'max-h-[500px]'}
+        // className={'max-h-[500px]'}
         open={open}
         onClose={() => setOpen(false)}
         Children={<DetailsFacility data={detailsItem} />}

@@ -17,8 +17,9 @@ export default function LoginForm() {
   const { login } = useAuth();
   const [dataValue, setDataValue] = useState();
   const [valueOTP, setValueOTP] = useState();
-  console.log("🚀 ~ file: LoginForm.jsx:20 ~ LoginForm ~ valueOTP:", valueOTP)
+  console.log("🚀 ~ file: LoginForm.jsx:20 ~ LoginForm ~ valueOTP:", valueOTP);
   const { orgData } = UseOrg();
+  console.log("🚀 ~ file: LoginForm.jsx:22 ~ LoginForm ~ orgData:", orgData)
 
   const { mutate: LoginData, isPending: loadingLogin } = useMutate({
     mutationKey: [`login_data`],
@@ -57,15 +58,18 @@ export default function LoginForm() {
     <div className="w-full">
       <Formik
         onSubmit={(values) => {
-          console.log("values:sssssssssssssssssssssssssssssssssssssssss", values);
+          console.log(
+            "values:sssssssssssssssssssssssssssssssssssssssss",
+            { ...values, organization_id: orgData?.organizations?.id }
+          );
           setValuesForm(values);
 
           !verifyPhone
-            ? sendOTP({ ...values, organization_id:orgData?.organization?.id })
+            ? sendOTP({ ...values, organization_id: orgData?.organizations?.id })
             : LoginData({
                 ...values,
                 otp: valueOTP,
-                organization_id: orgData?.organization?.id,
+                organization_id: orgData?.organizations?.id,
               });
         }}
         initialValues={{ phone: "", phone_code: "", otp: "" }}
@@ -75,7 +79,6 @@ export default function LoginForm() {
           {!verifyPhone && (
             <>
               <PhoneInput2 name="phone" />
-              
             </>
           )}
           {verifyPhone && (

@@ -25,7 +25,7 @@ export default function CheckCode({
       //   email: formData.email,
       //   type: 'FORGET',
       // });
-      sendOTP({ ...valuesForm, organization_id:orgData?.organization?.id });
+      sendOTP({ ...valuesForm, organization_id:orgData?.organizations?.id });
 
       // valuesForm;
       setTimerStarted(true);
