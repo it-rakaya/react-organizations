@@ -10,8 +10,8 @@ function useFetch({ endpoint, enabled, select, queryKey, onError, onSuccess }) {
   const token = user_token;
   const authorizationHeader = `Bearer ${token}`;
   const navigate = useNavigate();
-  const dataOrg = localStorage.getItem('organization')
-  console.log("🚀 ~ file: useFetch.jsx:14 ~ useFetch ~ dataOrg:", dataOrg)
+  // const dataOrg = localStorage.getItem('organization')
+  // console.log("🚀 ~ file: useFetch.jsx:14 ~ useFetch ~ dataOrg:", dataOrg)
   // const organization = JSON.parse(dataOrg)
   // console.log("🚀 ~ file: useFetch.jsx:14 ~ useFetch ~ organization:", organization)
   const config = {
