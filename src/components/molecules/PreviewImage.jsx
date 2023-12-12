@@ -21,7 +21,7 @@ export default function PreviewImage({ files , bgMain }) {
             <div className="flex flex-col items-center justify-center w-full">
               <div className="w-full rounded-xl">
                 <div
-                  className="flex items-center justify-center w-full gap-2 p-2 cursor-pointer "
+                  className="flex items-center gap-2 p-2 cursor-pointer -full j "
                   style={{
                     backgroundColor: bgMain,
                   }}

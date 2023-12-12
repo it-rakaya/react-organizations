@@ -26,7 +26,6 @@ export default function Orders() {
     setValue(newValue);
   };
   const { orgData } = UseOrg();
-  console.log("🚀 ~ file: Orders.jsx:29 ~ Orders ~ orgData:", orgData)
 
   const {
     data: Orders,
