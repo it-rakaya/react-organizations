@@ -99,7 +99,7 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
                     backgroundColor: bgMain,
                   }}
                 >
-                  <IconifyIcon icon={"icons8:pdf"} className="text-xl" />
+                  <IconifyIcon icon={"mdi:file-pdf-box"} className="text-xl" />
                   <span className="text-sm">اضغط هنا لمشاهدة المرفق</span>
                 </div>
               </a>

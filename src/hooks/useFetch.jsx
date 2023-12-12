@@ -10,13 +10,9 @@ function useFetch({ endpoint, enabled, select, queryKey, onError, onSuccess }) {
   const token = user_token;
   const authorizationHeader = `Bearer ${token}`;
   const navigate = useNavigate();
-  // const { orgData } = UseOrg();
-  // console.log("🚀 ~ file: useFetch.jsx:14 ~ useFetch ~ orgData:", orgData)
-
   const config = {
     headers: {
       Authorization: authorizationHeader,
-      // Origin: "africa.rmcc.sa",
     },
   };
 

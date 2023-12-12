@@ -2,6 +2,7 @@
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import PreviewIcon from "../atoms/icons/PreviewIcon";
 import Fancybox from "./Fancybox";
+import IconifyIcon from "../atoms/icons/IconifyIcon";
 
 export default function PreviewImage({ files , bgMain }) {
   // Extract the URLs from the files array
@@ -26,7 +27,9 @@ export default function PreviewImage({ files , bgMain }) {
                     backgroundColor: bgMain,
                   }}
                 >
-                  <PreviewIcon stroke="#292D32" />
+                  {/* <PreviewIcon stroke="#292D32" /> */}
+                  <IconifyIcon icon={"bi:image-fill"} className="text-xl" />
+
                   <span className="text-sm">اضغط هنا لمشاهدة  المرفق</span>
                 </div>
               </div>

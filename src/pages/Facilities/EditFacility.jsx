@@ -72,7 +72,6 @@ const EditFacility = () => {
     formData: true,
   });
 
-
   const initialValues = {
     name: DetailsFacilities?.facility ? DetailsFacilities?.facility?.name : "",
     registration_number: DetailsFacilities?.facility
@@ -84,9 +83,9 @@ const EditFacility = () => {
     version_date_hj: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.version_date_hj
       : "",
-    end_date:  DetailsFacilities?.facility
-    ? DetailsFacilities?.facility?.end_date
-    : "",
+    end_date: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.end_date
+      : "",
     end_date_hj: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.end_date_hj
       : "",
@@ -97,8 +96,8 @@ const EditFacility = () => {
       ? DetailsFacilities?.facility?.license
       : "",
     license_expired: DetailsFacilities?.facility
-    ? DetailsFacilities?.facility?.license_expired
-    : "",
+      ? DetailsFacilities?.facility?.license_expired
+      : "",
     license_expired_hj: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.license_expired_hj
       : "",
