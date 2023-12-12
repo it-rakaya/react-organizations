@@ -42,7 +42,6 @@ const calculateTimeLeftUntilNextPrayer = (prayerTimes, setPrayer) => {
 };
 
 export const getPrayerTime = async (setNextPrayerTime, setPrayer, inc=false) => {
-  console.log(new Date().getFullYear(), new Date().getDate());
   const now = new Date();
   const [month, year] = [new Date().getMonth()+1,now.getFullYear()]
   const response = await fetch(

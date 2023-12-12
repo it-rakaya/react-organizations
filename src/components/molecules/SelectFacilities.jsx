@@ -1,19 +1,12 @@
 /* eslint-disable react/prop-types */
-import useFetch from "../../hooks/useFetch"
-import SelectComp from "./Formik/SelectComp"
+import useFetch from "../../hooks/useFetch";
+import SelectComp from "./Formik/SelectComp";
 
-export default function SelectFacilities({ name,  label , placeholder }) {
-  const {
-    data: facilities,
-  } = useFetch({
+export default function SelectFacilities({ name, label, placeholder }) {
+  const { data: facilities } = useFetch({
     endpoint: `facilities?select=id,name`,
-    queryKey: ['select_facilities'],
-    onError(e) {
-      console.log('e', e)
-    }
-  })
-
-
+    queryKey: ["select_facilities"],
+  });
 
   return (
     <div>
@@ -23,10 +16,10 @@ export default function SelectFacilities({ name,  label , placeholder }) {
         name={name}
         multi={false}
         data={facilities?.user_facilities ? facilities?.user_facilities : []}
-        className='w-full'
+        className="w-full"
         placeholder={placeholder}
         idValue={true}
       />
     </div>
-  )
+  );
 }

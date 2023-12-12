@@ -4,6 +4,7 @@ import Fancybox from "./Fancybox";
 import IconifyIcon from "../atoms/icons/IconifyIcon";
 
 export default function PreviewImage({ files , bgMain }) {
+  // Extract the URLs from the files array
   const imageUrls = files?.map((file) => URL.createObjectURL(file));
 
   return (
@@ -15,7 +16,7 @@ export default function PreviewImage({ files , bgMain }) {
           },
         }}
       >
-        {imageUrls.map((url, index) => (
+        {imageUrls?.map((url, index) => (
           <a key={index} data-fancybox="gallery" href={url} className="w-full">
             <div className="flex flex-col items-center justify-center w-full">
               <div className="w-full rounded-xl">
@@ -25,9 +26,10 @@ export default function PreviewImage({ files , bgMain }) {
                     backgroundColor: bgMain,
                   }}
                 >
+                  {/* <PreviewIcon stroke="#292D32" /> */}
                   <IconifyIcon icon={"bi:image-fill"} className="text-xl" />
-                  <span className="text-sm">اضغط هنا لمشاهدة  المرفق
-                  </span>
+
+                  <span className="text-sm">اضغط هنا لمشاهدة  المرفق</span>
                 </div>
               </div>
             </div>

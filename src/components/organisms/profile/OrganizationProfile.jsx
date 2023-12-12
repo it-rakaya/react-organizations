@@ -17,10 +17,7 @@ const ProfilePicture = styled("img")(({ theme }) => ({
 }));
 
 const OrganizationProfile = ({ orgData }) => {
-  console.log(
-    "🚀 ~ file: OrganizationProfile.jsx:21 ~ OrganizationProfile ~ orgData:",
-    orgData
-  );
+
   return (
     <Card>
       {/* <CardMedia

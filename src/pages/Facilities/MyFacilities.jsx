@@ -28,7 +28,6 @@ export default function MyFacilities() {
   const [openAddEmployee, setOpenAddEmployee] = useState(false);
   const [facultyID, setFacultyID] = useState("");
   const [detailsItem, setDetailsItem] = useState();
-  console.log("🚀 ~ file: MyFacilities.jsx:31 ~ MyFacilities ~ detailsItem:", detailsItem)
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 8;

@@ -35,11 +35,7 @@ export default function Orders() {
   } = useFetch({
     endpoint: `orders?organization_id=${orgData?.organizations?.id}`,
     queryKey: ["my_orders"],
-    onError(e) {
-      console.log("e", e);
-    },
   });
-  console.log("🚀 ~ file: Orders.jsx:35 ~ Orders ~ Orders:", Orders);
 
   return (
     <div>

@@ -8,7 +8,6 @@ import { UseOrg } from "../../context/organization provider/OrganizationProvider
 export default function Profile() {
   const [editUser, setEditUser] = useState(false);
   const { user, setUser } = useAuth();
-  console.log("🚀 ~ file: Profile.jsx:11 ~ Profile ~ user:", user);
   const { orgData } = UseOrg();
 
   return (

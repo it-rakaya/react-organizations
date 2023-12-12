@@ -15,14 +15,10 @@ import TranslateIcon from "../../atoms/icons/TranslateIcon";
 const NavBar = ({
   setOpenSide,
   openSide,
-  handleCollapsedSideBar,
-  isSidebarCollapsed,
+
   changeStyle,
 }) => {
-  console.log(
-    "🚀 ~ file: index.jsx:24 ~ isSidebarCollapsed:",
-    isSidebarCollapsed
-  );
+
   const [dropDown, setDropDown] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedMode = localStorage.getItem("darkMode");

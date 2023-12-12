@@ -54,11 +54,10 @@ const EditFacility = () => {
     }
   };
 
-  const { data: DetailsFacilities } = useFetch({
+  const { data: DetailsFacilities , isSuccess } = useFetch({
     endpoint: `facilities/${id}`,
     queryKey: ["facilities_update"],
   });
-  console.log("🚀 ~ file: EditFacility.jsx:61 ~ EditFacility ~ DetailsFacilities:", DetailsFacilities)
 
   const { mutate: addFacility, isPending: loadingAddFacility } = useMutate({
     mutationKey: [`add_facilities`],
@@ -196,7 +195,7 @@ const EditFacility = () => {
         return "Unknown Step";
     }
   };
-
+if(isSuccess)
   return (
     <>
       <div className="w-full">

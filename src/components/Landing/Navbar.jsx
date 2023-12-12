@@ -18,9 +18,6 @@ function Navbar() {
   const { mutate: LogOut } = useMutate({
     mutationKey: [`Log_out`],
     endpoint: `logout`,
-    onError: (err) => {
-      console.log("err", err);
-    },
   });
 
   const handleLogout = () => {

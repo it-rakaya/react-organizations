@@ -1,9 +1,8 @@
+import { useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { UseOrg } from "../../context/organization provider/OrganizationProvider";
-import { useTheme } from "@mui/material/styles";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
-import Typography from "@mui/material/Typography";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 const Hero = () => {
   const navigate = useNavigate();
   const btnStyles =
@@ -13,7 +12,6 @@ const Hero = () => {
 
   const { orgData } = UseOrg();
   const theme = useTheme();
-  console.log(orgData?.organizations?.name_ar);
   const language = i18n.language;
   return (
     <div className="px-3 lg:w-1/2 2xl:ps-56 2xl:px-80 xl:ps-12">

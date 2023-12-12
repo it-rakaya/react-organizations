@@ -26,7 +26,6 @@ export default function RegisterForm() {
   const { login } = useAuth();
   const [checked, setChecked] = useState(false);
   const { orgData } = UseOrg();
-  console.log(isValidSaudiID(1000000008))   
   const [open, setOpen] = useState(false);
 
   const { mutate: sendRegister, isPending } = useMutate({
@@ -37,7 +36,6 @@ export default function RegisterForm() {
       login(data.data);
     },
     onError: (err) => {
-      console.log("err", err);
       notify("error", err?.response?.data.message);
     },
     formData: true,

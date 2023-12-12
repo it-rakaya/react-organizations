@@ -9,7 +9,6 @@ import { notify } from "../../utils/toast";
 import ButtonComp from "../atoms/buttons/ButtonComp";
 import PhoneInput2 from "../molecules/Formik/PhoneInput2";
 import CheckCode from "../organisms/checkCode";
-import { isValidSaudiID } from "saudi-id-validator"
 
 export default function LoginForm() {
   const [verifyPhone, setVerifyPhone] = useState(false);
@@ -17,10 +16,7 @@ export default function LoginForm() {
   const { login } = useAuth();
   const [dataValue, setDataValue] = useState();
   const [valueOTP, setValueOTP] = useState();
-  console.log("🚀 ~ file: LoginForm.jsx:20 ~ LoginForm ~ valueOTP:", valueOTP);
   const { orgData } = UseOrg();
-  console.log("🚀 ~ file: LoginForm.jsx:22 ~ LoginForm ~ orgData:", orgData);
-  console.log(isValidSaudiID(1000000008))   
   const { mutate: LoginData, isPending: loadingLogin } = useMutate({
     mutationKey: [`login_data`],
     formData: true,
@@ -30,7 +26,6 @@ export default function LoginForm() {
       notify("success", `مرحبا بك يا ${data?.data?.user.name}`);
     },
     onError: (err) => {
-      console.log("err", err);
       notify("error", err?.response?.data.message);
     },
   });
@@ -44,7 +39,6 @@ export default function LoginForm() {
       setVerifyPhone(true);
     },
     onError: (err) => {
-      console.log("err", err);
       notify("error", err?.response?.data.message);
     },
   });

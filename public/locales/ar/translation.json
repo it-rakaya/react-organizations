@@ -86,6 +86,9 @@
   "country is required":"اسم الدوله مطلوب",
   "email is required":"البريد الالكتروني مطلوب",
   "name is required":"الاسم مطلوب",
+  "Logout":"تسجيل الخروج",
+  "good luck":"نراك قريبا",
+  "Search Employee...":"البحث في الموظفين",
   "landing": {
     "organizationName": "اسم المنظمة",
     "description": "نص عربي نص عربي نص عربي نص عربي نص عربي نص عربي",

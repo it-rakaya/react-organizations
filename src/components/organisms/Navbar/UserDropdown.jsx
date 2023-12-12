@@ -65,10 +65,9 @@ const UserDropdown = (props) => {
     mutationKey: [`Log_out`],
     endpoint: `logout`,
     onSuccess: () => {
-      notify("success", `good luck`);
+      notify("success", t('`good luck`'));
     },
     onError: (err) => {
-      console.log("err", err);
       notify("error", err?.response?.data.message);
     },
   });
@@ -173,7 +172,7 @@ const UserDropdown = (props) => {
           }}
         >
           <IconifyIcon icon="mdi:logout-variant" />
-          Logout
+          {t("Logout")}
         </MenuItem>
       </Menu>
     </Fragment>

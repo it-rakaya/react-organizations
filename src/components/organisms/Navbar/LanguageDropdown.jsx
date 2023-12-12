@@ -3,14 +3,11 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import IconifyIcon from '../../atoms/icons/IconifyIcon'
 import OptionsMenu from './option-menu/OptionsMenu'
-import { useIsRTL } from '../../../hooks/useIsRTL'
 const LanguageDropdown = ({ settings, saveSettings }) => {
   const { i18n } = useTranslation()
   const handleLangItemClick = (lang) => {
     i18n.changeLanguage(lang)
   }
-  const isRTL = useIsRTL()
-  console.log("🚀 ~ file: LanguageDropdown.jsx:13 ~ LanguageDropdown ~ isRTL:", isRTL)
   useEffect(() => {
     document.documentElement.setAttribute('lang', i18n.language)
   }, [i18n.language])

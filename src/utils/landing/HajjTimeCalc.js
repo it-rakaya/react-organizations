@@ -2,10 +2,8 @@
 // we need to know what year in hijri are we
 const getYear = async (inc=false)=>{
     const now = new Date()
-    console.log(`${now.getDate()}-${now.getMonth()+1}-${now.getFullYear()}`);
     const request = await fetch(`http://api.aladhan.com/v1/gToH/${now.getDate()}-${now.getMonth()+1}-${now.getFullYear()}`);
     const response = (await request.json()).data
-    console.log(response.hijri.year);
     return response.hijri.year;
 }
 
@@ -30,11 +28,7 @@ const getHajjDate = async (inc=false)=>{
 export const getTimeLeftToHajj = async (setTimeLeft)=>{
     let hajjDate = await getHajjDate(false);
     const now = new Date();
-    console.log(hajjDate.getFullYear(), hajjDate.getMonth()+1, hajjDate.getDate());
-    console.log(now.getFullYear(), now.getMonth()+1, now.getDate());
-
     let diff = hajjDate - now 
-    console.log(diff)
     if(diff <= 0){
         //increase the year so we can get next year if we e.g. 12-10-144x
         hajjDate = await getHajjDate(true)

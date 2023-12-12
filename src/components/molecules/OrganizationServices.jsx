@@ -9,9 +9,7 @@ export default function OrganizationServices({ name, label }) {
   const { data: Org_services } = useFetch({
     endpoint: `organization-services?organization_id=${orgData?.organizations?.id}`,
     queryKey: ["select_service_organization"],
-    onError(e) {
-      console.log("e", e);
-    },
+
   });
   return (
     <div>

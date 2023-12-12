@@ -1,4 +1,3 @@
-import { useFormikContext } from "formik";
 import useFetch from "../../hooks/useFetch";
 import BaseInputField from "../molecules/Formik/BaseInputField";
 import DatePickerComp from "../molecules/Formik/DatePickerComp";
@@ -7,17 +6,10 @@ import SelectCountry from "../molecules/SelectCountry";
 import UploadImage from "../molecules/UploadImage";
 
 function RegistrationMainData() {
-  const { values } = useFormikContext();
-  console.log(
-    "🚀 ~ file: RegistrationMainData.jsx:11 ~ RegistrationMainData ~ values:",
-    values
-  );
   const { data: attachments_register } = useFetch({
     endpoint: `attachments-labels/users`,
     queryKey: ["attachments_register"],
-    onError(e) {
-      console.log("e", e);
-    },
+
   });
 
   return (

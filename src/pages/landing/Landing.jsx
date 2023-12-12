@@ -17,7 +17,6 @@ function Landing() {
     setNews(["landing.rights"])
     if(orgData?.organizations?.news)
     orgData?.organizations?.news.map((val)=>{
-      console.log(val.new);
       setNews(prev => [...prev, val.new]);
     })
 

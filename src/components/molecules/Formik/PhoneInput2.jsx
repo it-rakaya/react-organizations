@@ -8,16 +8,9 @@ import { FormikError } from "./FormikError";
 
 const PhoneInput2 = ({ label }) => {
   const [phone, setPhone] = useState("");
-  const { setFieldValue, errors, handleBlur, values, touched, validateOnBlur } =
+  const { setFieldValue, errors, handleBlur, values, touched } =
     useFormikContext();
-  console.log(
-    "🚀 ~ file: PhoneInput2.jsx:12 ~ PhoneInput2 ~ validateOnBlur:",
-    validateOnBlur
-  );
-  console.log(
-    "🚀 ~ file: PhoneInput2.jsx:12 ~ PhoneInput2 ~ touched:",
-    touched
-  );
+
   const handlePhoneChange = (value, selectedCountry, name, number) => {
     const modifiedPhone = +number
       .slice(selectedCountry?.dialCode.length + 2)

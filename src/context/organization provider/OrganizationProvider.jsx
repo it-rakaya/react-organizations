@@ -21,9 +21,7 @@ export const OrganizationProvider = ({ children }) => {
     endpoint: `organizations?organizationDomain=${baseUrl}`,
     queryKey: ["organization_info"],
 
-    onError(e) {
-      console.log("e", e);
-    },
+ 
   });
   useEffect(() => {
     if (isSuccess) {
@@ -36,7 +34,6 @@ export const OrganizationProvider = ({ children }) => {
   }, [refetch]);
 
   useEffect(() => {
-    console.log(orgData?.organizations?.background_image);
     if (orgData?.organizations?.background_image == undefined) {
       setOrgData((prev) => {
         return {
@@ -67,7 +64,7 @@ export const UseOrg = () => {
   const context = useContext(OrgContext);
 
   if (!context) {
-    throw new Error("useUser must be used within a OrganizationProvider");
+    throw new Error("organization must be used within a OrganizationProvider");
   }
 
   return context;

@@ -14,7 +14,6 @@ export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
       setOpenCancelOrder(false);
     },
     onError: (err) => {
-      console.log("err", err);
       notify("error", err?.response?.data.message);
     },
     formData: true,

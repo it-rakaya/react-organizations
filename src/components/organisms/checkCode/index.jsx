@@ -36,7 +36,6 @@ export default function CheckCode({
       return;
     }
   };
-  console.log("number == values.join()", number == values.join(""));
   return (
     <>
       <div className="lex ">
@@ -61,7 +60,6 @@ export default function CheckCode({
                   setValueOTP(values.join(""));
                   setColorPinInput("rgb(159,150,133 ,1)");
                 } else {
-                  console.log("false");
                   setColorPinInput("rgb(220,53,69)");
                 }
               }}
