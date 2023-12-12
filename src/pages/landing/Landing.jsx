@@ -6,14 +6,26 @@ import Marquee from "../../components/Landing/Marquee";
 import Navbar from "../../components/Landing/Navbar";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useTheme } from "@mui/material/styles";
+import { useEffect, useState } from "react";
 
 function Landing() {
   const { orgData } = UseOrg();
-
+  const [news, setNews] = useState(["landing.rights"]);
   const theme = useTheme();
+
+  useEffect(()=>{
+    console.log(news);
+    orgData?.organizations?.news.map((val)=>{
+      setNews(prev => [...prev, val.new]);
+    })
+
+  },[])
+
   const marqueeElementStyle =
     "py-3 font-semibold text-white flex flex-row gap-10";
-  const organizationName = !orgData?.organizations?.name_ar ? t('landing.organizationName') : orgData?.organizations?.name_ar
+  const organizationName = !orgData?.organizations?.name_ar
+    ? t("landing.organizationName")
+    : orgData?.organizations?.name_ar;
   return (
     <div className="relative w-screen overflow-hidden lg:h-screen" dir="ltr">
       <div className="w-screen h-full absolute flex justify-end z-[-10000]">
@@ -63,14 +75,18 @@ function Landing() {
       </div>
       {/* > 1 because news is always larger than 1 since it has All rights message */}
       <Marquee disabled={news.length <= 1}>
-        <div className={`flex items-center ${news.length <= 1?'justify-center':'justify-between'} w-screen`}>
+        <div
+          className={`flex items-center ${
+            news.length <= 1 ? "justify-center" : "justify-between"
+          } w-screen`}
+        >
           {news.map((val, index) => {
             return (
-              <h4
-                className={`${marqueeElementStyle} px-2`}
-                key={index}
-              >
-                {index==0 ?`${t('landing.rights')} ${organizationName}`:val} {index==0 && <>&copy;</>}
+              <h4 className={`${marqueeElementStyle} px-2`} key={index}>
+                {index == 0 ? `${t("landing.rights")}` : val}{" "}
+                {index == 0 && <>&copy;</>}{" "}
+                {index == 0 ? `${t("landing.for")}${organizationName} ${new Date().getUTCFullYear()}` : ""}
+                
               </h4>
             );
           })}
@@ -83,8 +99,4 @@ function Landing() {
 export default Landing;
 const news = [
   "landing.rights",
-  // "Hello World",
-  // "Bye World",
-  // "curious",
-  // "Magically",
 ];

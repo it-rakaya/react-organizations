@@ -19,7 +19,6 @@ const queryClient = new QueryClient({
     queries: { refetchOnWindowFocus: false },
   },
 });
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
     {/* <LoadingContextProvider> */}

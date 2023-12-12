@@ -49,6 +49,11 @@ export const OrganizationProvider = ({ children }) => {
         };
       });
     }
+    if(orgData?.organizations?.phone == null){
+      setOrgData((prev)=>{
+        return {...prev, organizations:{...prev?.organizations, phone:'0570044066'}}
+      })
+    }
   }, [orgData]);
   return (
     <OrgContext.Provider value={{ orgData, refetch, isRefetching }}>

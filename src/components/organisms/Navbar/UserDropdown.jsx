@@ -6,7 +6,7 @@ import Divider from "@mui/material/Divider";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/auth-and-perm/AuthProvider";
@@ -14,7 +14,7 @@ import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import { t } from "i18next";
-import defaultImage from "../../../../public/profile pic.png";
+import defaultImage from "../../../../public/profile pic1.png";
 
 // ** Icon Imports
 
@@ -35,7 +35,7 @@ const UserDropdown = (props) => {
   const navigate = useNavigate();
   const { logout, user } = useAuth();
   const { direction } = settings;
-
+  const theme = useTheme();
   const handleDropdownOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -100,6 +100,7 @@ const UserDropdown = (props) => {
               ? user?.attachmentUrl[1]?.value
               : defaultImage
           }
+          style={{backgroundColor:theme?.palette?.primary?.main}}
         />
       </Badge>
       <Menu
@@ -134,6 +135,7 @@ const UserDropdown = (props) => {
                     : defaultImage
                 }
                 sx={{ width: "2.5rem", height: "2.5rem" }}
+                style={{backgroundColor:theme?.palette?.primary?.main}}
               />
             </Badge>
             <Box
@@ -145,12 +147,7 @@ const UserDropdown = (props) => {
               }}
             >
               <Typography sx={{ fontWeight: 600 }}>{user?.name}</Typography>
-              <Typography
-                variant="body2"
-                sx={{ fontSize: "0.8rem", color: "text.disabled" }}
-              >
-                {user?.role_name || "user"}
-              </Typography>
+
             </Box>
           </Box>
         </Box>
@@ -165,52 +162,6 @@ const UserDropdown = (props) => {
           <Box sx={styles}>
             <IconifyIcon icon="mdi:account-outline" />
             {t("Profile")}
-          </Box>
-        </MenuItem>
-        <MenuItem
-          sx={{ p: 0 }}
-          onClick={() => handleDropdownClose("/apps/email")}
-        >
-          <Box sx={styles}>
-            <IconifyIcon icon="mdi:email-outline" />
-            Inbox
-          </Box>
-        </MenuItem>
-        <MenuItem
-          sx={{ p: 0 }}
-          onClick={() => handleDropdownClose("/apps/chat")}
-        >
-          <Box sx={styles}>
-            <IconifyIcon icon="mdi:message-outline" />
-            Chat
-          </Box>
-        </MenuItem>
-        <Divider />
-        <MenuItem
-          sx={{ p: 0 }}
-          onClick={() => handleDropdownClose("/pages/account-settings/account")}
-        >
-          <Box sx={styles}>
-            <IconifyIcon icon="mdi:cog-outline" />
-            Settings
-          </Box>
-        </MenuItem>
-        <MenuItem
-          sx={{ p: 0 }}
-          onClick={() => handleDropdownClose("/pages/pricing")}
-        >
-          <Box sx={styles}>
-            <IconifyIcon icon="mdi:currency-usd" />
-            Pricing
-          </Box>
-        </MenuItem>
-        <MenuItem
-          sx={{ p: 0 }}
-          onClick={() => handleDropdownClose("/pages/faq")}
-        >
-          <Box sx={styles}>
-            <IconifyIcon icon="mdi:help-circle-outline" />
-            FAQ
           </Box>
         </MenuItem>
         <Divider />

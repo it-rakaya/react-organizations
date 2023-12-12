@@ -9,7 +9,7 @@ import { t } from "i18next";
 
 function Navbar() {
   const linkStyle =
-    "text-primaryText transition-all hover:text-primary duration-300";
+    "text-primaryText transition-all duration-300";
   const { i18n } = useTranslation();
   const language = i18n.language;
   const { orgData } = UseOrg();
@@ -52,9 +52,9 @@ function Navbar() {
             Logout
           </Link>
         )}
-        <Link href="/" className={linkStyle}>
+        <a href={`https://wa.me/${orgData?.organizations?.phone}/`} className={linkStyle}>
           {t('landing.contactUs')}
-        </Link>
+        </a>
         <button
           onClick={() => {
             i18n.changeLanguage(language == "ar" ? "en" : "ar");
@@ -63,7 +63,7 @@ function Navbar() {
         >
           <Icon
             icon="icon-park-outline:translate"
-            className="duration-300 transition-color hover:text-primaryText"
+            className="duration-300 transition-all hover:!text-primaryText"
             style={{
               color: theme?.palette?.primary?.main,
             }}

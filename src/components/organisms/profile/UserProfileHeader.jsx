@@ -8,7 +8,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { styled, useTheme } from "@mui/material/styles";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
-import defaultImage from "../../../../public/profile pic.png";
+import defaultImage from "../../../../public/profile pic1.png";
 
 const ProfilePicture = styled("img")(({ theme }) => ({
   width: 120,
@@ -56,6 +56,7 @@ const UserProfileHeader = ({ setEditUser, user }) => {
               defaultImage
             }
             alt="profile-picture"
+            style={{backgroundColor:theme?.palette?.primary?.main,}}
           />
           <Box
             sx={{
