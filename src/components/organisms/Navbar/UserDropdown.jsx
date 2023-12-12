@@ -65,7 +65,7 @@ const UserDropdown = (props) => {
     mutationKey: [`Log_out`],
     endpoint: `logout`,
     onSuccess: () => {
-      notify("success", `good luck `);
+      notify("success", `good luck`);
     },
     onError: (err) => {
       console.log("err", err);

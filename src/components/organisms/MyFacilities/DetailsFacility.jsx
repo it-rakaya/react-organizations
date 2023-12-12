@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 import FacilityIcon from "../../atoms/icons/FaciltyIcon";
+import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import PdfIcon from "../../atoms/icons/PdfIcon";
 
 export default function DetailsFacility({ data }) {
-
-
   return (
     <div>
       {/* <MainHeader title={` تفاصيل المنشأه : ${data?.name} `} /> */}
@@ -112,7 +111,7 @@ export default function DetailsFacility({ data }) {
               </p>
             ) : (
               <a href={item?.value} download={item?.value} className="">
-                <PdfIcon />
+                <IconifyIcon icon={"mdi:file-pdf-box"} className="text-5xl" />
               </a>
             )}
           </div>

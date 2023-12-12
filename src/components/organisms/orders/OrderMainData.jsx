@@ -17,10 +17,7 @@ export default function OrderMainData({ setShow, show }) {
     },
     enabled: !!values.organization_service_id,
   });
-  console.log(
-    "🚀 ~ file: OrderMainData.jsx:20 ~ OrderMainData ~ extra_questions:",
-    extra_questions
-  );
+
 
   return (
     <div className="mt-10">

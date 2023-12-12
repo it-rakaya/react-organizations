@@ -16,6 +16,7 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
   const [files, setFiles] = useState(
     values?.attachments ? [values?.attachments[nameValue]] : []
   );
+  
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: ["image/*", ".pdf"],
@@ -54,7 +55,12 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
             <h2 className="bg-[#EFEFEF] w-full text-center px-3 pt-2 rounded-md">
               {label}
             </h2>
-            <div {...getRootProps({ className: "dropzone h-[150px] flex flex-col items-center justify-center" })}>
+            <div
+              {...getRootProps({
+                className:
+                  "dropzone h-[150px] flex flex-col items-center justify-center",
+              })}
+            >
               {!files?.length ? (
                 <div className="flex flex-col items-center justify-center py-5">
                   <input {...getInputProps()} name={name} />

@@ -89,7 +89,7 @@ function CardOrder({
               },
             ]}
           />
-          <CardContent className=" pt-5 !pb-0 !pl-0 !pr-0">
+          <CardContent className="  !pb-0 !pl-0 !pr-0">
             <Box
               sx={{
                 display: "flex",
@@ -98,25 +98,26 @@ function CardOrder({
               }}
             >
               <OrderIcon />
-              {item?.status_id == New && (
+              {/* {item?.status_id == New && ( */}
                 <div
                   className="absolute left-0 px-1 text-white rounded-r-md top-12 "
                   style={{ backgroundColor: theme?.palette?.primary?.main }}
                 >
-                  {t("new")}
+                  {item?.status?.name}
                 </div>
-              )}
-              <Typography
+              {/* )} */}
+              {/* <Typography
                 sx={{ mt: 4, color: "text.secondary" }}
                 className={`text-center font-bold px-2 py-1 rounded-md !text-black `}
               >
                 {item?.status_id !== New && item?.status?.name}
-              </Typography>
+              </Typography> */}
               <Typography
-                sx={{ color: "text.secondary" }}
-                className={`text-center font-bold px-2 py-1 rounded-md !text-black `}
+                sx={{ color: "text.secondary", marginTop:'5px' }}
+                className={`text-center flex flex-col items-center  font-bold px-2 py-1 rounded-md !text-black `}
               >
-                رقم الطلب : {item?.code}
+                <span> رقم الطلب </span>
+               <span>{item?.code}</span>
               </Typography>
 
               <Grid

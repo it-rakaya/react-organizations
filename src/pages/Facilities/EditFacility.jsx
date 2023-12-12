@@ -58,6 +58,7 @@ const EditFacility = () => {
     endpoint: `facilities/${id}`,
     queryKey: ["facilities_update"],
   });
+  console.log("🚀 ~ file: EditFacility.jsx:61 ~ EditFacility ~ DetailsFacilities:", DetailsFacilities)
 
   const { mutate: addFacility, isPending: loadingAddFacility } = useMutate({
     mutationKey: [`add_facilities`],
