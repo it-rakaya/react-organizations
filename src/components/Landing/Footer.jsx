@@ -37,7 +37,7 @@ const FooterComponent = ({ title, children, last = false }) => {
   );
 };
 
-const textStyle = `text-primaryText font-semibold`;
+const textStyle = `font-semibold`;
 const Footer = () => {
   const { t } = useTranslation();
   const [nextPrayerTime, setNextPrayerTime] = useState({
@@ -59,7 +59,7 @@ const Footer = () => {
           <a href="">
             <h1 className={`${textStyle} flex items-center gap-2`}>
               {t("landing.downloadFile")}
-              <Icon icon="ic:baseline-download" className="text-primaryText" />
+              <Icon icon="ic:baseline-download" className="" />
             </h1>
           </a>
         </FooterComponent>

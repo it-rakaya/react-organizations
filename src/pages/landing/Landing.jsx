@@ -14,12 +14,14 @@ function Landing() {
   const theme = useTheme();
 
   useEffect(()=>{
-    console.log(news);
+    setNews(["landing.rights"])
+    if(orgData?.organizations?.news)
     orgData?.organizations?.news.map((val)=>{
+      console.log(val.new);
       setNews(prev => [...prev, val.new]);
     })
 
-  },[])
+  },[orgData])
 
   const marqueeElementStyle =
     "py-3 font-semibold text-white flex flex-row gap-10";
@@ -82,12 +84,14 @@ function Landing() {
         >
           {news.map((val, index) => {
             return (
+              <>
+              {index != 0 && <h4 className={`${marqueeElementStyle} px-2`}>|</h4>}
               <h4 className={`${marqueeElementStyle} px-2`} key={index}>
                 {index == 0 ? `${t("landing.rights")}` : val}{" "}
                 {index == 0 && <>&copy;</>}{" "}
                 {index == 0 ? `${t("landing.for")}${organizationName} ${new Date().getUTCFullYear()}` : ""}
-                
               </h4>
+              </>
             );
           })}
         </div>

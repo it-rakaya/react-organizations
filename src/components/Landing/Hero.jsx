@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useTheme } from "@mui/material/styles";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
-
+import Typography from "@mui/material/Typography";
 const Hero = () => {
   const navigate = useNavigate();
   const btnStyles =
@@ -27,7 +27,7 @@ const Hero = () => {
             className="w-[70px] rounded-xl"
           />
           {/* </h1> */}
-          <h1 className="text-2xl font-bold text-primaryText 3xl:text-3xl">
+          <h1 className="text-2xl font-bold 3xl:text-3xl">
             {!orgData?.organizations?.name_ar && t('landing.organizationName')}
             {orgData?.organizations?.name_ar}
           </h1>
@@ -35,7 +35,7 @@ const Hero = () => {
         {/* description */}
         <div
           dangerouslySetInnerHTML={{ __html: orgData?.organizations?.about_us }}
-          className="mt-5 text-xl font-bold text-center text-primaryText md:text-start 3xl:text-2xl"
+          className="mt-5 text-xl font-bold text-center md:text-start 3xl:text-2xl"
         ></div>
         <div className="flex flex-col gap-4 mt-10 xl:flex-row">
           {!user ? (
