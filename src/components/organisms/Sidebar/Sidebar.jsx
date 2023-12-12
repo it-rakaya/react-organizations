@@ -151,7 +151,7 @@ export const SideBar = ({
       collapsed={isSidebarCollapsed}
       width="15rem"
       // collapsedWidth="85px"
-      transitionDuration={250}
+      transitionDuration={350}
     >
       <div
         className={`${
@@ -172,7 +172,7 @@ export const SideBar = ({
         <div className="">
           <ArrowSideBar_IC
             className={`cursor-pointer transition-ease collapsed-button-sidebar scale-x-[-1]  ${
-              isSidebarCollapsed && "scale-x-[1] text-[#009ef7]"
+              isSidebarCollapsed && "scale-x-[1]"
             } `}
             onClick={handleCollapsedSideBar}
           />
