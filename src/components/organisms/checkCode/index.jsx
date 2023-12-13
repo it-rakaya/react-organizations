@@ -10,7 +10,9 @@ export default function CheckCode({
   valuesForm,
   setValueOTP,
   sendOTP,
+  userData,
 }) {
+  console.log("🚀 ~ file: index.jsx:14 ~ valuesForm:", valuesForm);
   const [values, setValues] = useState(["", "", "", ""]);
   const [availableResetCode, setAvailableResetCode] = useState(false);
   const [timerStarted, setTimerStarted] = useState(true);
@@ -22,13 +24,13 @@ export default function CheckCode({
 
   const handleSendTime = () => {
     if (availableResetCode) {
-      // CheckCodeAgain({
-      //   email: formData.email,
-      //   type: 'FORGET',
-      // });
-      sendOTP({ ...valuesForm, organization_id: orgData?.organizations?.id });
+  
+      sendOTP({
+        phone: userData?.phone,
+        phone_code: userData?.phone_code,
+        organization_id: orgData?.organizations?.id,
+      });
 
-      // valuesForm;
       setTimerStarted(true);
     } else {
       return;
@@ -96,7 +98,7 @@ export default function CheckCode({
             >
               إعادة الإرسال
             </Button>
-          )}
+          )} 
         </div>
       </div>
     </>

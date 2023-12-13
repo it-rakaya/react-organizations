@@ -35,7 +35,7 @@ const Home = () => {
     endpoint: `send-otp`,
     onSuccess: (data) => {
       setDataValue(data?.data?.verification);
-      notify("success", t('Verification code has been sent successfully'));
+      notify("success", t("Verification code has been sent successfully"));
     },
     onError: (err) => {
       notify("error", err?.response?.data.message);
@@ -145,7 +145,12 @@ const Home = () => {
         hidden
         onClose={() => {}}
         Children={
-          <VerifyUser userData={user} dataValue={dataValue} setOpen={setOpen} sendOTP={sendOTP} />
+          <VerifyUser
+            userData={user}
+            dataValue={dataValue}
+            setOpen={setOpen}
+            sendOTP={sendOTP}
+          />
         }
         className={"w-1/2"}
       />
