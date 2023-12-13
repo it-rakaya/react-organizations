@@ -29,7 +29,7 @@ export default function SelectCitiesSaudi({ name, label, className , required })
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
-              padding: "10px",
+              padding: "10px 0",
               borderRadius: " 8px",
               background: "white",
               margin: "0",
