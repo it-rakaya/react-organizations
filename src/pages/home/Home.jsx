@@ -141,7 +141,8 @@ const Home = () => {
       </Grid>
       <ModalComp
         open={open}
-        onClose={() => setOpen(false)}
+        hidden
+        onClose={() => {}}
         Children={
           <VerifyUser userData={user} dataValue={dataValue} setOpen={setOpen} />
         }

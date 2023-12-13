@@ -44,7 +44,7 @@ export default function VerifyUser({ userData, dataValue, setOpen }) {
         initialValues={{ phone: "", phone_code: "", otp: "" }}
       >
         <Form>
-          <div className="flex flex-col w-1/2 m-auto text-center gap-y-5">
+          <div className="flex flex-col w-1/2 m-auto text-center ">
             <CheckCode number={dataValue?.value} valuesForm={valuesForm} setValueOTP={setValueOTP}  />
             <ButtonComp
               loading={!!loadingVerify}

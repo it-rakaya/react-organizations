@@ -48,6 +48,7 @@ export default function EmployeeMainData() {
               <UploadImage
                 name={`attachments[${item?.id}]`}
                 placeholder={t("please upload photo")}
+                className="mt-1 rounded-md"
               />
             </div>
           ))}

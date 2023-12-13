@@ -14,14 +14,19 @@ const style = {
   borderRadius: "10px",
   backdropFilter: "blur(20px)",
   maxHeight: "90vh",
-  overflowY: 'scroll !important',
+  overflowY: "scroll !important",
   p: 4,
 };
 
-export default function ModalComp({ onClose, open, Children, className }) {
+export default function ModalComp({
+  onClose,
+  open,
+  Children,
+  className,
+  hidden,
+}) {
   return (
     <div className="max-h-[350px]">
-      
       <Modal
         open={open}
         onClose={onClose}
@@ -30,12 +35,16 @@ export default function ModalComp({ onClose, open, Children, className }) {
         className={`max-w-[950px]   m-auto ${className}`}
       >
         <Box sx={style} className="scroll_main">
-          <div
-            className="absolute left-[20px] cursor-pointer "
-            onClick={onClose}
-          >
-            <GridCloseIcon className="text-contained" />
-          </div>
+          {hidden ? (
+            ""
+          ) : (
+            <div
+              className="absolute left-[20px] cursor-pointer "
+              onClick={onClose}
+            >
+              <GridCloseIcon className="text-contained" />
+            </div>
+          )}
           {Children}
         </Box>
       </Modal>

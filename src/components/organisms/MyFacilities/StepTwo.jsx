@@ -17,6 +17,7 @@ export default function StepTwo() {
             name={`attachments[${item?.id}]`}
             label={item?.placeholder}
             nameValue={item?.id}
+            
           />
         </div>
       ))}
