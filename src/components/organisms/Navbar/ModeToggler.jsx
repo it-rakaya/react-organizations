@@ -2,6 +2,7 @@
 import IconButton from "@mui/material/IconButton";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import { useEffect, useState } from "react";
+import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 
 const ModeToggler = (props) => {
 
@@ -35,8 +36,9 @@ const ModeToggler = (props) => {
     const savedMode = localStorage.getItem("darkMode");
     return savedMode === "true";
   });
-
+  const {updateLogo} = UseOrg();
   const handleModeToggle = () => {
+    updateLogo(settings.mode != 'light');
     if (settings.mode === "light") {
       localStorage.setItem("darkMode", "true");
       handleModeChange("dark");
