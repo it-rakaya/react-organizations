@@ -522,23 +522,23 @@ main,
 }
 
 .afterSetting {
-  /* animation: spin 7s linear infinite; */
+  animation: spin 7s linear infinite;
 }
 
 .reverse {
-  /* animation: spinReverse 5s linear infinite; */
+  animation: spinReverse 5s linear infinite;
 }
 
 .circleLeft {
-  /* animation: circleLeftAnim 4s linear infinite; */
+  animation: circleLeftAnim 4s linear infinite;
 }
 
 .circleRight {
-  /* animation: circleRIghtAnim 4s linear infinite; */
+  animation: circleRIghtAnim 4s linear infinite;
 }
 
 .settingRight {
-  /* animation: spinReverse 3s linear infinite; */
+  animation: spinReverse 3s linear infinite;
 }
 
 /* .MuiStepConnector-root.MuiStepConnector-horizontal.MuiStepConnector-alternativeLabel {
@@ -558,15 +558,15 @@ main,
 
 } */
 
-/* .animate-\[spin_2\.5s_linear_infinite\] {
+.animate-\[spin_2\.5s_linear_infinite\] {
   animation: spin 2.5s linear infinite;
   transform-origin: center;
   transform-box: fill-box;
-} */
+}
 
 
 
-/* @keyframes spin {
+@keyframes spin {
   0% {
     transform: rotate(0deg)
   }
@@ -613,7 +613,7 @@ main,
   100% {
     transform: translateX(-2px)
   }
-} */
+}
 
 .react-tel-input .selected-flag .flag {
   left: 15px !important;

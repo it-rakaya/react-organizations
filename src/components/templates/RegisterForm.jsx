@@ -16,7 +16,7 @@ import RegistrationMainData from "./RegistrationMainData";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import ModalComp from "../atoms/ModalComp";
 import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
-import { isValidSaudiID } from "saudi-id-validator"
+import { isValidSaudiID } from "saudi-id-validator";
 
 export default function RegisterForm() {
   const LinkStyled = styled(Link)(({ theme }) => ({
@@ -45,13 +45,13 @@ export default function RegisterForm() {
     Yup.object({
       name: Yup.string().trim().required(t("name is required")),
       national_id: Yup.string()
-      .matches(/^\d{10}$/, t("The ID number must be exactly 10 digits"))
-      .test({
-        name: 'isValidSaudiID',
-        test: (value) => isValidSaudiID(value),
-        message: t('Invalid Saudi ID'),
-      })
-      .required(t("This field is required")),
+        .matches(/^\d{10}$/, t("The ID number must be exactly 10 digits"))
+        .test({
+          name: "isValidSaudiID",
+          test: (value) => isValidSaudiID(value),
+          message: t("Invalid Saudi ID"),
+        })
+        .required(t("This field is required")),
       email: Yup.string().trim().required(t("email is required")),
       birthday: Yup.string().trim().required(t("birthday is required")),
       phone: Yup.string()
@@ -111,7 +111,7 @@ export default function RegisterForm() {
               "& .MuiFormControlLabel-label": { fontSize: "0.875rem" },
             }}
             label={
-              <>
+              <div>
                 <Typography variant="body2" component="span">
                   {t("I agree to ")}
                 </Typography>
@@ -122,9 +122,9 @@ export default function RegisterForm() {
                     setOpen(true);
                   }}
                 >
-                  {t("privacy policy & terms")}
+                  {t("Terms & condition ")}
                 </LinkStyled>
-              </>
+              </div>
             }
           />
           <ButtonComp
@@ -162,10 +162,10 @@ export default function RegisterForm() {
         onClose={() => setOpen(false)}
         Children={
           <>
-            <div className="relative pt-10 ">
+            <div className="relative mt-10 ">
               <div className="flex flex-col items-center justify-center gap-2 mb-3 ">
                 <TermsConditionIcon />
-                <h2>{t("privacy policy & terms")}</h2>
+                <h2> {t("Terms & condition ")}</h2>
               </div>
             </div>
             <div

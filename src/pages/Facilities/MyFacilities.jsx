@@ -188,6 +188,7 @@ export default function MyFacilities() {
       />
       <ModalComp
         open={openSecundModal}
+        hidden
         className="!max-w-[500px]  "
         onClose={() => setSecundModal(true)}
         Children={
