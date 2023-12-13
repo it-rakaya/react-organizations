@@ -10,7 +10,9 @@ export default function AddFacility() {
         <div className="flex items-start col-span-12 gap-2 ">
           <div className="w-1/2">
             <BaseInputField
-              label={t("The commercial name of the establishment according to the commercial register")}
+              label={t(
+                "The commercial name of the establishment according to the commercial register"
+              )}
               placeholder="محمد احمد محمد"
               name="name"
             />
@@ -58,13 +60,12 @@ export default function AddFacility() {
               name="license"
               type="number"
               maxNum="10"
-
             />
           </div>
         </div>
 
         <div className="flex items-start col-span-12 gap-2 ">
-          <div className="flex items-start justify-center w-1/2" >
+          <div className="flex items-start justify-center w-1/2">
             <DatePickerComp
               name="license_expired"
               name_hj="license_expired_hj"
@@ -91,7 +92,6 @@ export default function AddFacility() {
               name="tax_certificate"
               type="number"
               maxNum="9"
-
             />
           </div>
           <div className="w-1/2">
@@ -100,7 +100,6 @@ export default function AddFacility() {
               placeholder="20"
               name="employee_number"
               type="number"
-
             />
           </div>
         </div>
@@ -112,7 +111,6 @@ export default function AddFacility() {
               placeholder="4"
               name="chefs_number"
               type="number"
-
             />
           </div>
           <div className="w-1/2">
@@ -121,7 +119,6 @@ export default function AddFacility() {
               placeholder="500"
               name="kitchen_space"
               type="number"
-
             />
           </div>
         </div>
@@ -157,8 +154,6 @@ export default function AddFacility() {
               name="building_number"
               type="number"
               maxNum="4"
-
-
             />
           </div>
         </div>
@@ -166,23 +161,19 @@ export default function AddFacility() {
           <div className="w-1/2">
             <BaseInputField
               label="الرمز البريدي"
-              placeholder="56875"
+              placeholder="568750"
               name="postal_code"
               type="number"
               maxNum="6"
-
-
             />
           </div>
           <div className="w-1/2">
             <BaseInputField
               label="الرقم الفرعي"
-              placeholder="0541532515"
+              placeholder="698547"
               name="sub_number"
               type="number"
               maxNum="6"
-
-
             />
           </div>
         </div>

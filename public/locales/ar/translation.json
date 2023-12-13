@@ -88,6 +88,10 @@
   "name is required":"الاسم مطلوب",
   "Logout":"تسجيل الخروج",
   "good luck":"نراك قريبا",
+  "the registration number must be equal 10 digits":"يجب أن يكون رقم التسجيل يساوي 10 أرقام",
+  "the tax certificate number must be equal 10 digits":"يجب أن يكون رقم الشهادة الضريبية مساويا لـ 10 أرقام",
+  "the building number number must be equal 4 digits":"رقم المبنى يجب أن يكون مساويا لـ 4 أرقام",
+  "the license number must be equal 10 digits":"يجب أن يكون رقم الترخيص 10 أرقام",
   "Search Employee...":"البحث في الموظفين",
   "landing": {
     "organizationName": "اسم المنظمة",
