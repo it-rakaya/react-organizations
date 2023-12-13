@@ -2,6 +2,7 @@
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import Fancybox from "./Fancybox";
 import IconifyIcon from "../atoms/icons/IconifyIcon";
+import { t } from "i18next";
 
 export default function PreviewImageLink({ bgMain, url }) {
   return (
@@ -25,7 +26,11 @@ export default function PreviewImageLink({ bgMain, url }) {
                 {/* <PreviewIcon stroke="#292D32" /> */}
                 <IconifyIcon icon={"bi:image-fill"} className="text-xl" />
 
-                <span className="text-sm">اضغط هنا لمشاهدة المرفق</span>
+                <span className="text-sm">   
+                {t("Click here to view the attachment")}
+
+                
+                </span>
               </div>
             </div>
           </div>

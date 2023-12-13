@@ -52,8 +52,8 @@ const UploadImage = ({ name, placeholder, className }) => {
             <div
               style={{ cursor: "pointer", lineHeight: "52px" }}
               className={` rounded-[10px]  relative
-              cursor-pointer pr-10 h-[56px] border 
-              text-[#4c4e6478]  border-[#4c4e6478)] bg-[#ebebee73] w-full ${
+              cursor-pointer pr-10 ltr:pl-2 h-[56px] border 
+              text-[#4c4e6478]   border-[#4c4e6478)] bg-[#ebebee73] w-full ${
                 !!errors[name] && "border-red-500 "
               }`}
             >
@@ -90,7 +90,9 @@ const UploadImage = ({ name, placeholder, className }) => {
                 }}
               >
                 <IconifyIcon icon={"prime:file-pdf"} className="text-xl" />
-                <span className="text-sm">اضغط هنا لمشاهدة المرفق</span>
+                <span className="text-sm">
+                  {t("Click here to view the attachment")}
+                  </span>
               </div>
             </a>
           ) : (

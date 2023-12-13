@@ -11,7 +11,7 @@ export default function AddFacility() {
           <div className="w-1/2">
             <BaseInputField
               label={t(
-                "The commercial name of the establishment according to the commercial register"
+                "Trade name"
               )}
               placeholder="محمد احمد محمد"
               name="name"
@@ -123,7 +123,6 @@ export default function AddFacility() {
               name="chefs_number"
               type="number"
               maxNum="3"
-              
               required
             />
           </div>

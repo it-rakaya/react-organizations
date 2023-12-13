@@ -67,9 +67,9 @@ export default function AddEmployee({ facultyID, setSecundModal }) {
               loading={loadingEmployee}
               type="submit"
               variant="contained"
-              className=" !rounded-md  w-auto  mt-5"
+              className=" !rounded-md  !w-auto  mt-5"
             >
-              اضافة
+              {t("Add")}
             </ButtonComp>
           </div>
         </Form>

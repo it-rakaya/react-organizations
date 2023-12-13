@@ -39,7 +39,7 @@ export default function ModalComp({
             ""
           ) : (
             <div
-              className="absolute left-[20px] cursor-pointer "
+              className="absolute ltr:!right-[20px] ltr:left-auto left-[20px] cursor-pointer "
               onClick={onClose}
             >
               <GridCloseIcon className="text-contained" />

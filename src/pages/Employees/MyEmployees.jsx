@@ -75,7 +75,7 @@ export default function MyEmployees() {
                       }}
                       options={[
                         {
-                          text: "تفاصيل",
+                          text: t("Details"),
                           details: "Additional details here",
                           function: () => {
                             // Add your custom function logic here
@@ -84,12 +84,12 @@ export default function MyEmployees() {
                           },
                         },
 
-                        { text: "تعديل", onClick: "" },
-                        { divider: true },
-                        {
-                          text: "حذف",
-                          menuItemProps: { sx: { color: "error.main" } },
-                        },
+                        // { text: "تعديل", onClick: "" },
+                        // { divider: true },
+                        // {
+                        //   text: "حذف",
+                        //   menuItemProps: { sx: { color: "error.main" } },
+                        // },
                       ]}
                     />
                     <CardContent

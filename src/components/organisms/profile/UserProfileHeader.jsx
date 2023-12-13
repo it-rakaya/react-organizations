@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import { styled, useTheme } from "@mui/material/styles";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import defaultImage from "../../../../public/profile pic1.png";
+import { t } from "i18next";
 
 const ProfilePicture = styled("img")(({ theme }) => ({
   width: 120,
@@ -131,7 +132,7 @@ const UserProfileHeader = ({ setEditUser, user }) => {
               variant="outlined"
               startIcon={<IconifyIcon icon="mdi:account-edit" fontSize={20} />}
             >
-              تعديل
+              {t("Edit")}
             </Button>
           </Box>
         </CardContent>

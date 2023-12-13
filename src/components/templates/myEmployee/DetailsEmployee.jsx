@@ -3,13 +3,14 @@ import MainHeader from "../../atoms/MainHeader";
 import { useTheme } from "@mui/material/styles";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import PreviewImageLink from "../../molecules/PreviewImageLink";
+import { t } from "i18next";
 
 export default function DetailsEmployee({ data }) {
   const theme = useTheme();
 
   return (
     <div>
-      <MainHeader title={` تفاصيل الموظف : ${data?.name} `} />
+      <MainHeader title={`  ${t("Details Employee")} : ${data?.name} `} />
 
       <div className="grid grid-cols-2 p-4 gap-y-4">
         <div className="flex gap-2">
@@ -17,7 +18,7 @@ export default function DetailsEmployee({ data }) {
             className="font-bold "
             style={{ color: theme?.palette?.primary?.main }}
           >
-            الاسم:
+            {t("Name")}
           </p>
           <p>{data.name}</p>
         </div>
@@ -26,7 +27,7 @@ export default function DetailsEmployee({ data }) {
             className="font-bold "
             style={{ color: theme?.palette?.primary?.main }}
           >
-            المسمى الوظيفي:
+            {t("Job title")}
           </p>
           <p>{data.position}</p>
         </div>

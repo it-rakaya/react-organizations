@@ -26,12 +26,12 @@ const App = () => {
   const isDark = localStorage.getItem("darkMode");
   console.log("🚀 ~ file: Root.jsx:23 ~ Root ~ isDark:", isDark);
 
-  useEffect(() => {
-    if (isDark) {
-      document.body.classList.add("dark");
-    }
-    // document.body.classList.remove("dark");
-  }, [isDark]);
+  // useEffect(() => {
+  //   if (isDark) {
+  //     document.body.classList.add("dark");
+  //   }
+  //   document.body.classList.remove("dark");
+  // }, [isDark]);
 
   useLayoutEffect(() => {
     document.documentElement.dir = isRTL ? "rtl" : "ltr";
