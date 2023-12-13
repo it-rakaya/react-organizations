@@ -74,7 +74,7 @@ const UploadImage = ({ name, placeholder }) => {
         </Box>
         <div className="flex justify-start w-full rounded-md">
           {!isLargeFile && files[0]?.type.startsWith("image/") ? (
-            <div className="flex items-center w-full">
+            <div className="flex items-center justify-center w-full">
               <PreviewImage files={files ? files : []} bgMain={bgMain} />
             </div>
           ) : files[0]?.type.startsWith("application/") ? (
