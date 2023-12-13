@@ -117,7 +117,7 @@ export default function MyFacilities() {
                             flexDirection: "column",
                           }}
                         >
-                          <div>
+                          <div className="flex flex-col items-center justify-center">
                             <FacilityIcon />
                             <Typography
                               variant="h6"
