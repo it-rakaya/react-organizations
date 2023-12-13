@@ -9,6 +9,7 @@ import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
 import { useTheme } from "@mui/material/styles";
 import IconifyIcon from "../atoms/icons/IconifyIcon";
+import { hexToRGBA } from "../../utils/helpers";
 const UploadImage = ({ name, placeholder, className }) => {
   const { setFieldValue, errors } = useFormikContext();
   const [files, setFiles] = useState([]);
@@ -25,13 +26,7 @@ const UploadImage = ({ name, placeholder, className }) => {
     },
   });
   const isLargeFile = files?.length && files[0]?.size > 524288000;
-  const hexToRGBA = (hex, opacity) => {
-    hex = hex.replace("#", "");
-    const r = parseInt(hex.substring(0, 2), 16);
-    const g = parseInt(hex.substring(2, 4), 16);
-    const b = parseInt(hex.substring(4, 6), 16);
-    return `rgba(${r},${g},${b},${opacity})`;
-  };
+
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
 
   return (
@@ -53,7 +48,7 @@ const UploadImage = ({ name, placeholder, className }) => {
               style={{ cursor: "pointer", lineHeight: "52px" }}
               className={` rounded-[10px]  relative
               cursor-pointer pr-10 ltr:pl-2 h-[56px] border 
-              text-[#4c4e6478]   border-[#4c4e6478)] bg-[#ebebee73] w-full ${
+              text-[#4c4e6478]  border-[#4c4e6478)] bg-[#ebebee73] w-full ${
                 !!errors[name] && "border-red-500 "
               }`}
             >

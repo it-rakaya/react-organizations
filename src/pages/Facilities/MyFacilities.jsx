@@ -73,7 +73,7 @@ export default function MyFacilities() {
               {paginatedFacilities?.map((item) => (
                 <>
                   <Grid item xs={12} sm={4} md={3} key={item?.id}>
-                    <Card sx={{ position: "relative" }}>
+                    <Card sx={{ position: "relative" , height:"190px" }} className="flex flex-col items-center justify-end">
                       <OptionsMenu
                         iconButtonProps={{
                           size: "small",

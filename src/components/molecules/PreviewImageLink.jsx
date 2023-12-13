@@ -3,8 +3,14 @@ import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import Fancybox from "./Fancybox";
 import IconifyIcon from "../atoms/icons/IconifyIcon";
 import { t } from "i18next";
+import { hexToRGBA } from "../../utils/helpers";
+import { useTheme } from "@mui/material/styles";
 
-export default function PreviewImageLink({ bgMain, url }) {
+export default function PreviewImageLink({  url }) {
+  const theme = useTheme();
+
+  const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
+
   return (
     <div className="w-full">
       <Fancybox
@@ -24,7 +30,9 @@ export default function PreviewImageLink({ bgMain, url }) {
                 }}
               >
                 {/* <PreviewIcon stroke="#292D32" /> */}
-                <IconifyIcon icon={"bi:image-fill"} className="text-xl" />
+                <IconifyIcon 
+                    icon={"iconamoon:file-image-light"}
+                    className="text-xl" />
 
                 <span className="text-sm">   
                 {t("Click here to view the attachment")}
