@@ -21,12 +21,11 @@ export default function PreviewImage({ files, bgMain, className }) {
             <div className="flex flex-col items-center justify-center w-full">
               <div className="w-full rounded-xl">
                 <div
-                  className={`${className} flex items-center justify-center gap-2 p-2 cursor-pointer jus -full `}
+                  className={`${className} flex items-center justify-start gap-2 p-2 cursor-pointer jus -full rounded-md  mt-1 `}
                   style={{
                     backgroundColor: bgMain,
                   }}
                 >
-                  {/* <PreviewIcon stroke="#292D32" /> */}
                   <IconifyIcon
                     icon={"iconamoon:file-image-light"}
                     className="text-xl"

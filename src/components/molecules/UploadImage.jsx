@@ -79,7 +79,7 @@ const UploadImage = ({ name, placeholder, className }) => {
               className="w-full"
             >
               <div
-                className={` ${className} flex items-center w-full gap-2 p-2 cursor-pointer`}
+                className={` ${className} flex items-center w-full gap-2 p-2 cursor-pointer rounded-md mt-1`}
                 style={{
                   backgroundColor: bgMain,
                 }}
