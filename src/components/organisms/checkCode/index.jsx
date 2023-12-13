@@ -11,6 +11,7 @@ export default function CheckCode({
   setValueOTP,
   sendOTP,
   userData,
+  login
 }) {
   console.log("🚀 ~ file: index.jsx:14 ~ valuesForm:", valuesForm);
   const [values, setValues] = useState(["", "", "", ""]);
@@ -24,12 +25,19 @@ export default function CheckCode({
 
   const handleSendTime = () => {
     if (availableResetCode) {
-  
-      sendOTP({
-        phone: userData?.phone,
-        phone_code: userData?.phone_code,
-        organization_id: orgData?.organizations?.id,
-      });
+      if(login){
+        sendOTP({
+          ...valuesForm,
+          organization_id: orgData?.organizations?.id,
+        });
+      }else{
+        
+        sendOTP({
+          phone: userData?.phone,
+          phone_code: userData?.phone_code,
+          organization_id: orgData?.organizations?.id,
+        });
+      }
 
       setTimerStarted(true);
     } else {

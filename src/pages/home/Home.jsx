@@ -44,7 +44,7 @@ const Home = () => {
 
   return (
     <ApexChartWrapper>
-      {!user?.is_verified && (
+      {user?.is_verified && (
         <div className="py-3">
           <Alert severity="warning" className="flex items-center ">
             لإضافة منشأة جديدة أو تقديم طلب جديد يرجى تفعيل حسابك !
