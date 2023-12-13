@@ -52,7 +52,7 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
       <Box sx={files?.length ? { height: "" } : {}}>
         <div className="relative cursor-pointer">
           <div className="flex flex-col items-center bg-[#F5F5F5] rounded-md">
-            <h2 className="bg-[#EFEFEF] w-full text-center px-3 pt-2 rounded-md">
+            <h2 className="bg-[#EFEFEF] w-full text-center px-3 py-2 rounded-md">
               {label}
             </h2>
             <div
