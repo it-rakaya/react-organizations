@@ -58,32 +58,10 @@ const Register = () => {
       navigate("/");
     }
   }, [navigate, token]);
-  
+
   if (!token) {
     return (
       <Box className="flex content-right">
-        {!hidden ? (
-          <Box
-            sx={{
-              flex: 1,
-              display: "flex",
-              position: "relative",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "100vh",
-              overflow: "hidden",
-            }}
-          >
-            <RegisterIllustrationWrapper>
-              {/* <RegisterIllustration
-                alt="register-illustration"
-                // src={`/images/pages/${imageSource}-${theme.palette.mode}.png`}
-                src={imgLogin}
-              /> */}
-              <LoginIcon />
-            </RegisterIllustrationWrapper>
-          </Box>
-        ) : null}
         <RightWrapper
           sx={
             skin === "bordered" && !hidden
@@ -126,6 +104,23 @@ const Register = () => {
             </BoxWrapper>
           </Box>
         </RightWrapper>
+        {!hidden ? (
+          <Box
+            sx={{
+              flex: 1,
+              display: "flex",
+              position: "relative",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100vh",
+              overflow: "hidden",
+            }}
+          >
+            <RegisterIllustrationWrapper>
+              <LoginIcon />
+            </RegisterIllustrationWrapper>
+          </Box>
+        ) : null}
       </Box>
     );
   } else {
