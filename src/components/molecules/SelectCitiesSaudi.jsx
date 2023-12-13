@@ -4,7 +4,7 @@ import { t } from "i18next";
 import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
 
-export default function SelectCitiesSaudi({ name, label, className }) {
+export default function SelectCitiesSaudi({ name, label, className , required }) {
   const { setFieldValue } = useFormikContext();
   const { data: cities } = useFetch({
     endpoint: `saudi-cities`,
@@ -17,7 +17,9 @@ export default function SelectCitiesSaudi({ name, label, className }) {
 
   return (
     <div className={className}>
-      <label className="block my-[0.75rem]">{label}</label>
+      <label className="block my-[0.75rem]">{label}
+      <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
+      </label>
       <div className="mt-3">
         <Select
           options={options}

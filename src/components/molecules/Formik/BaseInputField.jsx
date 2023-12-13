@@ -19,6 +19,7 @@ export default function BaseInputField({
   type = "text",
   password,
   maxNum,
+  required,
   ...props
 }) {
   const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
@@ -72,7 +73,10 @@ export default function BaseInputField({
         </FormControl>
       ) : (
         <>
-          <label className="block my-[0.75rem]"> {label} </label>
+          <label className="block my-[0.75rem]">
+            {label}
+            <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
+          </label>
           <TextField
             // autoFocus
             placeholder={placeholder}
@@ -81,7 +85,7 @@ export default function BaseInputField({
             helperText={!!touched[name] && !!errors[name]}
             fullWidth
             value={values[name]}
-            sx={{ background: "white" , borderRadius:"10px" }}
+            sx={{ background: "white", borderRadius: "10px" }}
             type={type}
             onBlur={handleBlur}
             InputProps={

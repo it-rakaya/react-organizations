@@ -7,7 +7,7 @@ import { useFormikContext } from "formik";
 import { useState, useEffect } from "react";
 import { FormikError } from "./FormikError";
 
-export default function DatePickerComp({ name, name_hj, label }) {
+export default function DatePickerComp({ name, name_hj, label, required }) {
   const { setFieldValue, values } = useFormikContext();
   const [valueGregorian, setValueGregorian] = useState();
   const [valueHijri, setValueHijri] = useState(values[name_hj]);
@@ -28,14 +28,18 @@ export default function DatePickerComp({ name, name_hj, label }) {
 
       setValueHijri(hijriDateWithoutHeh);
       setFieldValue(name_hj, hijriDateWithoutHeh);
-
     }
   }, [name_hj, setFieldValue, valueGregorian]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="w-full my-4">
-        <label className="  my-[0.75rem]">{label}</label>
+        <label className="  my-[0.75rem]">
+          {label}
+          <span className="mx-1 text-red-500">
+            {required == "1" ? "*" : ""}
+          </span>
+        </label>
         <DatePicker
           className="bg-white rounded-[10px] w-full mt-3"
           name={name}
