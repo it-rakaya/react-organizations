@@ -27,7 +27,7 @@ export default function PreviewImage({ files , bgMain }) {
                   }}
                 >
                   {/* <PreviewIcon stroke="#292D32" /> */}
-                  <IconifyIcon icon={"bi:image-fill"} className="text-xl" />
+                  <IconifyIcon icon={"iconamoon:file-image-light"} className="text-xl" />
 
                   <span className="text-sm">اضغط هنا لمشاهدة  المرفق</span>
                 </div>

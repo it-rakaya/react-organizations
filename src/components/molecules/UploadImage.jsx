@@ -89,7 +89,7 @@ const UploadImage = ({ name, placeholder }) => {
                   backgroundColor: bgMain,
                 }}
               >
-                <IconifyIcon icon={"mdi:file-pdf-box"} className="text-xl" />
+                <IconifyIcon icon={"prime:file-pdf"} className="text-xl" />
                 <span className="text-sm">اضغط هنا لمشاهدة المرفق</span>
               </div>
             </a>
