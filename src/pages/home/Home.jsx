@@ -26,10 +26,9 @@ import { UseOrg } from "../../context/organization provider/OrganizationProvider
 const Home = () => {
   const [open, setOpen] = useState(false);
   const [dataValue, setDataValue] = useState();
-  const {user} = useAuth()
+  const { user } = useAuth();
   const { orgData } = UseOrg();
 
-  
   const { mutate: sendOTP } = useMutate({
     mutationKey: [`send-otp`],
     endpoint: `send-otp`,
@@ -41,8 +40,6 @@ const Home = () => {
       notify("error", err?.response?.data.message);
     },
   });
-
-
 
   return (
     <ApexChartWrapper>
@@ -67,86 +64,86 @@ const Home = () => {
         </div>
       )}
       <Grid container spacing={6} className="match-height">
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={user?.is_verified ? 8 : 12}>
           <AnalyticsCongratulations userData={user} />
         </Grid>
-        <Grid item xs={6} md={2}>
-          <CardStatsVertical
-            stats="155k"
-            color="primary"
-            trendNumber="+22%"
-            title="Total Orders"
-            chipText="Last 4 Month"
-            icon={<IconifyIcon icon="mdi:cart-plus" />}
-          />
-        </Grid>
-        <Grid item xs={6} md={2}>
-          <AnalyticsSessions />
-        </Grid>
-        <Grid item xs={12} md={8}>
-          <AnalyticsTotalTransactions />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AnalyticsPerformance />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AnalyticsProjectStatistics />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Grid container spacing={6}>
-            <Grid item xs={6}>
-              <AnalyticsTotalRevenue />
-            </Grid>
-            <Grid item xs={6}>
+        {user?.is_verified && (
+          <>
+            <Grid item xs={6} md={2}>
               <CardStatsVertical
-                stats="$13.4k"
-                color="success"
-                trendNumber="+38%"
-                title="Total Sales"
-                chipText="Last Six Month"
-                icon={<IconifyIcon icon="mdi:currency-usd" />}
+                stats="155k"
+                color="primary"
+                trendNumber="+22%"
+                title="Total Orders"
+                chipText="Last 4 Month"
+                icon={<IconifyIcon icon="mdi:cart-plus" />}
               />
             </Grid>
-            <Grid item xs={6}>
-              <CardStatsVertical
-                color="info"
-                stats="142.8k"
-                trendNumber="+62%"
-                chipText="Last One Year"
-                title="Total Impressions"
-                icon={<IconifyIcon icon="mdi:link" />}
-              />
+            <Grid item xs={6} md={2}>
+              <AnalyticsSessions />
             </Grid>
-            <Grid item xs={6}>
-              <AnalyticsOverview />
+            <Grid item xs={12} md={8}>
+              <AnalyticsTotalTransactions />
             </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AnalyticsSalesCountry />
-        </Grid>
-        <Grid item xs={12} md={8}>
-          <AnalyticsTopReferralSources />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AnalyticsWeeklySales />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AnalyticsVisitsByDay />
-        </Grid>
-        <Grid item xs={12} md={8}>
-          <AnalyticsActivityTimeline />
-        </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <AnalyticsPerformance />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <AnalyticsProjectStatistics />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <Grid container spacing={6}>
+                <Grid item xs={6}>
+                  <AnalyticsTotalRevenue />
+                </Grid>
+                <Grid item xs={6}>
+                  <CardStatsVertical
+                    stats="$13.4k"
+                    color="success"
+                    trendNumber="+38%"
+                    title="Total Sales"
+                    chipText="Last Six Month"
+                    icon={<IconifyIcon icon="mdi:currency-usd" />}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <CardStatsVertical
+                    color="info"
+                    stats="142.8k"
+                    trendNumber="+62%"
+                    chipText="Last One Year"
+                    title="Total Impressions"
+                    icon={<IconifyIcon icon="mdi:link" />}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <AnalyticsOverview />
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <AnalyticsSalesCountry />
+            </Grid>
+            <Grid item xs={12} md={8}>
+              <AnalyticsTopReferralSources />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <AnalyticsWeeklySales />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <AnalyticsVisitsByDay />
+            </Grid>
+            <Grid item xs={12} md={8}>
+              <AnalyticsActivityTimeline />
+            </Grid>
+          </>
+        )}
       </Grid>
       <ModalComp
         open={open}
         onClose={() => setOpen(false)}
         Children={
-          <VerifyUser
-            userData={user}
-            dataValue={dataValue}
-            setOpen={setOpen}
-          />
+          <VerifyUser userData={user} dataValue={dataValue} setOpen={setOpen} />
         }
         className={"w-1/2"}
       />

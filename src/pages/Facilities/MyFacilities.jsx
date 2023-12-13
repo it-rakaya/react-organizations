@@ -122,7 +122,7 @@ export default function MyFacilities() {
                             <Typography
                               variant="h6"
                               sx={{ fontWeight: 500, marginTop: 1 }}
-                              className="my-2"
+                              className="!my-2"
                             >
                               {item?.name}
                             </Typography>
@@ -131,7 +131,7 @@ export default function MyFacilities() {
                       </CardContent>
                       <ButtonComp
                         variant="contained"
-                        className={"!m-0 rounded-l-none rounded-r-none"}
+                        className={"!m-0 !rounded-l-none !rounded-r-none"}
                         action={() => {
                           setOpenAddEmployee(true);
                           setFacultyID(item?.id);

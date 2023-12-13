@@ -15,7 +15,6 @@ export default function OrderMainData({ setShow, show }) {
     enabled: !!values.organization_service_id,
   });
 
-
   return (
     <div className="mt-10">
       {show ? (
@@ -23,16 +22,16 @@ export default function OrderMainData({ setShow, show }) {
           <div className="grid grid-cols-2 gap-2 ">
             <div className="mb-3">
               <SelectFacilities
-                label={"اختر اسم المنشأة"}
+                label={t("Choose the facility name")}
                 name={"facility_id"}
-                placeholder={"اختر اسم المنشاه"}
+                placeholder={t("Choose the facility name")}
               />
             </div>
             <div className="mb-3">
               <OrganizationServices
-                label={"اختر نوع الخدمة المقدمة"}
+                label={t("Choose the type of service provided")}
                 name="organization_service_id"
-                placeholder={"اختر نوع الخدمة المقدمة"}
+                placeholder={t("Choose the type of service provided")}
               />
             </div>
           </div>
@@ -69,18 +68,15 @@ export default function OrderMainData({ setShow, show }) {
                   options={item?.options || []}
                 />
               </>
-            ) : item?.is_visible == "0" &&
-              extra_questions?.questions?.length == 1 ? (
-              <div className="my-10 text-3xl font-bold text-center">
-                لايوجد اساله
-              </div>
             ) : (
               ""
             )}
           </ul>
         ))
       ) : (
-        <div className="my-10 text-3xl font-bold text-center">لايوجد اساله</div>
+        <div className="my-10 text-3xl font-bold text-center">
+          {t("There is no question")}
+          </div>
       )}
     </div>
   );

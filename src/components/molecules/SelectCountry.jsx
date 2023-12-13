@@ -39,7 +39,7 @@ export default function SelectCountry({ name, label, className }) {
           styles={{
             control: (baseStyles, state) => ({
               ...baseStyles,
-              padding: "10px",
+              padding: "10px 0",
               borderRadius: " 8px",
 
               borderColor:

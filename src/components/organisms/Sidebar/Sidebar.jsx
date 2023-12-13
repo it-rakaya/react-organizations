@@ -15,6 +15,7 @@ import { useIsRTL } from "../../../hooks/useIsRTL";
 import ArrowSideBar_IC from "../../atoms/icons/ArrowSideBar";
 import { useTheme } from "@mui/material/styles";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
+import { useAuth } from "../../../context/auth-and-perm/AuthProvider";
 
 export const SideBar = ({
   isSidebarCollapsed,
@@ -26,9 +27,12 @@ export const SideBar = ({
   const location = useLocation();
   const isRTL = useIsRTL();
   const [opened, setOpened] = useState({});
-  const { collapseSidebar, collapsed } = useProSidebar();
+  const {  collapsed } = useProSidebar();
   const theme = useTheme();
-  const {orgData} = UseOrg()
+  const { orgData } = UseOrg();
+  const {user} = useAuth()
+
+  console.log("🚀 ~ file: Sidebar.jsx:32 ~ orgData:", orgData)
 
   const path = location.pathname;
 
@@ -117,8 +121,10 @@ export const SideBar = ({
         <MenuItem
           rootStyles={{
             [`.ps-active`]: {
-              backgroundColor: location.pathname === Item.link && `${theme?.palette?.primary?.main} !important`,
-              borderRadius:"8px"
+              backgroundColor:
+                location.pathname === Item.link &&
+                `${theme?.palette?.primary?.main} !important`,
+              borderRadius: "8px",
               // transition: "all 250ms linear",
               // height: "100vh",
             },

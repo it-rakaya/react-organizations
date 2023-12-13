@@ -42,7 +42,7 @@ const PhoneInput2 = ({ label }) => {
           onChange={handlePhoneChange}
           // enableSearch
           placeholder="رقم الجوال"
-          onBlur={handleBlur}          
+          onBlur={handleBlur}
           countryCodeEditable={false}
           masks={{ sa: ".. ... ....", at: ".. ... ...." }}
           showDropdown={false}

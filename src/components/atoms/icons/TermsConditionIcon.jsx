@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useTheme } from "@mui/material/styles";
 
-function TermsConditionIcon() {
+function TermsConditionIcon({className}) {
   const theme = useTheme();
 
   return (
@@ -10,7 +11,7 @@ function TermsConditionIcon() {
         height="57"
         viewBox="0 0 58 57"
         fill="none"
-        // className={theme?.palette?.primary?.main}
+        className={className}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

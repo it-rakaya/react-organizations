@@ -16,7 +16,7 @@ const UploadImage = ({ name, placeholder }) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
-    accept: ["image/*", ".pdf", ".doc", ".docx"],
+    accept: ["image/*", ".pdf"],
     onDrop: (acceptedFiles) => {
       setFiles(acceptedFiles.map((file) => Object.assign(file)));
       // if (values[name] !== undefined) {
@@ -74,7 +74,7 @@ const UploadImage = ({ name, placeholder }) => {
         </Box>
         <div className="flex justify-start w-full rounded-md">
           {!isLargeFile && files[0]?.type.startsWith("image/") ? (
-            <div className="flex items-center w-full">
+            <div className="flex items-center justify-center w-full">
               <PreviewImage files={files ? files : []} bgMain={bgMain} />
             </div>
           ) : files[0]?.type.startsWith("application/") ? (
@@ -89,7 +89,7 @@ const UploadImage = ({ name, placeholder }) => {
                   backgroundColor: bgMain,
                 }}
               >
-                <IconifyIcon icon={"mdi:file-pdf-box"} className="text-xl" />
+                <IconifyIcon icon={"prime:file-pdf"} className="text-xl" />
                 <span className="text-sm">اضغط هنا لمشاهدة المرفق</span>
               </div>
             </a>

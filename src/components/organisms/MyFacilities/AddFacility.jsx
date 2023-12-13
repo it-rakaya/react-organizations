@@ -15,6 +15,7 @@ export default function AddFacility() {
               )}
               placeholder="محمد احمد محمد"
               name="name"
+              required
             />
           </div>
           <div className="w-1/2">
@@ -24,6 +25,7 @@ export default function AddFacility() {
               name="registration_number"
               type="number"
               maxNum="10"
+              required
             />
           </div>
         </div>
@@ -33,6 +35,7 @@ export default function AddFacility() {
               name="version_date"
               name_hj="version_date_hj"
               label={"تاريخ إصدار السجل التجاري  بالميلادي"}
+              required
             />
           </div>
 
@@ -41,6 +44,7 @@ export default function AddFacility() {
               name="end_date"
               name_hj="end_date_hj"
               label={"تاريخ انتهاء السجل التجاري  بالميلادي"}
+              required
             />
           </div>
         </div>
@@ -51,6 +55,7 @@ export default function AddFacility() {
               label={"مصدر السجل التجاري "}
               name="registration_source"
               // className="mt-[24px]"
+              required
             />
           </div>
           <div className="w-1/2 col-span-6">
@@ -60,6 +65,7 @@ export default function AddFacility() {
               name="license"
               type="number"
               maxNum="10"
+              required
             />
           </div>
         </div>
@@ -72,6 +78,7 @@ export default function AddFacility() {
               label={
                 "تاريخ انتهاء رخصة مزاولة المهنة الصادرة من أمانة العاصمة المقدسة بالميلادي"
               }
+              required
             />
           </div>
 
@@ -80,6 +87,7 @@ export default function AddFacility() {
               label="عنوان المنشأة (الحي-الشارع)"
               placeholder="الملك فهد"
               name="address"
+              required
             />
           </div>
         </div>
@@ -92,6 +100,7 @@ export default function AddFacility() {
               name="tax_certificate"
               type="number"
               maxNum="9"
+              required
             />
           </div>
           <div className="w-1/2">
@@ -100,6 +109,7 @@ export default function AddFacility() {
               placeholder="20"
               name="employee_number"
               type="number"
+              required
             />
           </div>
         </div>
@@ -111,6 +121,7 @@ export default function AddFacility() {
               placeholder="4"
               name="chefs_number"
               type="number"
+              required
             />
           </div>
           <div className="w-1/2">
@@ -119,6 +130,7 @@ export default function AddFacility() {
               placeholder="500"
               name="kitchen_space"
               type="number"
+              required
             />
           </div>
         </div>
@@ -128,6 +140,7 @@ export default function AddFacility() {
               label=" اسم الشارع"
               placeholder="شارع الهدى والنور"
               name="street_name"
+              required
             />
           </div>
           <div className="w-1/2">
@@ -135,6 +148,7 @@ export default function AddFacility() {
               label=" اسم الحي"
               placeholder="حي النقع الشرقي"
               name="neighborhood"
+              required
             />
           </div>
         </div>
@@ -145,6 +159,7 @@ export default function AddFacility() {
               label=" اسم المدينة"
               placeholder="بريدة"
               name="city"
+              required
             />
           </div>
           <div className="w-1/2">
@@ -154,6 +169,7 @@ export default function AddFacility() {
               name="building_number"
               type="number"
               maxNum="4"
+              required
             />
           </div>
         </div>
@@ -165,6 +181,7 @@ export default function AddFacility() {
               name="postal_code"
               type="number"
               maxNum="6"
+              required
             />
           </div>
           <div className="w-1/2">
@@ -174,6 +191,7 @@ export default function AddFacility() {
               name="sub_number"
               type="number"
               maxNum="6"
+              required
             />
           </div>
         </div>

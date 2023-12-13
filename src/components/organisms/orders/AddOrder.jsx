@@ -7,6 +7,7 @@ import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import OrderMainData from "./OrderMainData";
+import { t } from "i18next";
 
 export default function AddOrder({ setOpenAddFaculty }) {
   const [show, setShow] = useState(true);
@@ -36,7 +37,7 @@ export default function AddOrder({ setOpenAddFaculty }) {
             (fieldName) => fieldName.startsWith("answers")
           );
 
-          if (hasFieldStartingWithAnswers.length > 0) {
+          // if (hasFieldStartingWithAnswers.length > 0) {
             hasFieldStartingWithAnswers.forEach((fieldName) => {
               const answerIndex = fieldName.slice(7); // Get the index from the field name
               answers[`answers[${answerIndex}]`] = values[fieldName];
@@ -47,9 +48,9 @@ export default function AddOrder({ setOpenAddFaculty }) {
               ...answers,
             };
             AddOrder(formData);
-          } else {
+          // } else {
             console.log("No");
-          }
+          // }
         }}
       >
         {({ errors, values }) => (
@@ -62,14 +63,14 @@ export default function AddOrder({ setOpenAddFaculty }) {
                   variant="outlined"
                   action={() => setShow(true)}
                 >
-                  رجوع
+                  {t("Back")}
                 </ButtonComp>
                 <ButtonComp
                   className={"w-auto"}
                   type={"submit"}
                   loading={isPending}
                 >
-                  حفظ
+                  {t("Save")}
                 </ButtonComp>
               </div>
             )}
