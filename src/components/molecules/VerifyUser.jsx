@@ -20,7 +20,7 @@ export default function VerifyUser({ userData, dataValue, setOpen , sendOTP }) {
     endpoint: `verify`,
     onSuccess: (data) => {
       setUser(data?.data?.user);
-      notify("success");
+      notify("success" , t('Activation completed successfully'));
       setOpen(false);
     },
 
