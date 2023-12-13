@@ -26,6 +26,7 @@ import StepperWrapper from "../../components/theme/stepper";
 import AddFacility from "../../components/organisms/MyFacilities/AddFacility";
 import StepTwo from "../../components/organisms/MyFacilities/StepTwo";
 import { useNavigate } from "react-router-dom";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
 const steps = [
   {
@@ -41,6 +42,8 @@ const AddFacilityPage = () => {
   const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
+  const { orgData } = UseOrg();
+
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -259,15 +262,16 @@ const AddFacilityPage = () => {
                       Children={
                         <div className="pt-10 !flex gap-3 !items-center !justify-center !flex-col">
                           <div>
-                            <TermsConditionIcon />
+                            <TermsConditionIcon className={"!fill-[#F0A44B]"} />
                           </div>
                           <h2>{t("Terms and Conditions")}</h2>
 
-                          <p>
-                            {t(
-                              "I confirm that all data is correct. I confirm that all data is correct"
-                            )}
-                          </p>
+                          <div
+                            className="main_content max-h-[450px] overflow-y-scroll scroll_main"
+                            dangerouslySetInnerHTML={{
+                              __html: orgData?.organizations?.policies,
+                            }}
+                          ></div>
                           <FormControl>
                             <RadioGroup
                               aria-labelledby="demo-controlled-radio-buttons-group"

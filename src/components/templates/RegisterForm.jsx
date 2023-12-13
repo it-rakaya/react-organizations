@@ -169,7 +169,7 @@ export default function RegisterForm() {
               </div>
             </div>
             <div
-              className="main_content h-[450px] overflow-y-scroll scroll_main"
+              className="main_content max-h-[450px] overflow-y-scroll scroll_main"
               dangerouslySetInnerHTML={{
                 __html: orgData?.organizations?.policies,
               }}

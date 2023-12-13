@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useTheme } from "@mui/material/styles";
 
-function TermsConditionIcon({className}) {
+function TermsConditionIcon({ className }) {
   const theme = useTheme();
 
   return (
@@ -16,9 +16,10 @@ function TermsConditionIcon({className}) {
       >
         <path
           d="M29 0C13.268 0 0.5 12.768 0.5 28.5C0.5 44.232 13.268 57 29 57C44.732 57 57.5 44.232 57.5 28.5C57.5 12.768 44.732 0 29 0ZM31.85 42.75H26.15V37.05H31.85V42.75ZM31.85 31.35H26.15V14.25H31.85V31.35Z"
-          fill={theme?.palette?.primary?.main}
-        className={className}
-
+          // fill={theme?.palette?.primary?.main}
+          // fill={theme?.palette?.primary?.main}
+          fill="#F0A44B]"
+          className={className}
         />
       </svg>
     </div>
