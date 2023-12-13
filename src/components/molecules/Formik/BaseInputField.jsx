@@ -82,7 +82,7 @@ export default function BaseInputField({
             placeholder={placeholder}
             {...props}
             error={touched[name] && !!errors[name]}
-            helperText={!!touched[name] && !!errors[name]}
+            // helperText={!!touched[name] && !!errors[name]}
             fullWidth
             value={values[name]}
             sx={{ background: "white", borderRadius: "10px" }}
@@ -97,6 +97,7 @@ export default function BaseInputField({
                 : { onChange: handleChange }
             }
             name={name}
+            style={{borderColor: !!touched[name] && !!errors[name] ? 'red' :'' ,  borderRadius: "10px" }}
             className={`${className} "my-3 code " ${
               !!touched[name] && !!errors[name] && "border-red-500 "
             }`}
