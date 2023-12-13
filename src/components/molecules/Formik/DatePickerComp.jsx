@@ -29,7 +29,6 @@ export default function DatePickerComp({ name, name_hj, label }) {
       setValueHijri(hijriDateWithoutHeh);
       setFieldValue(name_hj, hijriDateWithoutHeh);
 
-      console.log("Hijri Date:", hijriDateWithoutHeh);
     }
   }, [name_hj, setFieldValue, valueGregorian]);
 

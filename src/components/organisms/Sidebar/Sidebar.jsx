@@ -29,10 +29,8 @@ export const SideBar = ({
   const { collapseSidebar, collapsed } = useProSidebar();
   const theme = useTheme();
   const {orgData} = UseOrg()
-  console.log("🚀 ~ file: Sidebar.jsx:32 ~ orgData:", orgData)
 
   const path = location.pathname;
-  // console.log(openSide)
 
   const handleClickItemNavbr = () => {
     handleClickItem();

@@ -6,10 +6,9 @@ import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { t } from "i18next";
+import Typography from "@mui/material/Typography";
 
 function Navbar() {
-  const linkStyle =
-    "text-primaryText transition-all hover:text-primary duration-300";
   const { i18n } = useTranslation();
   const language = i18n.language;
   const { orgData } = UseOrg();
@@ -19,9 +18,6 @@ function Navbar() {
   const { mutate: LogOut } = useMutate({
     mutationKey: [`Log_out`],
     endpoint: `logout`,
-    onError: (err) => {
-      console.log("err", err);
-    },
   });
 
   const handleLogout = () => {
@@ -35,7 +31,7 @@ function Navbar() {
       dir={i18n.dir(language)}
     >
       <div className="flex gap-10">
-        <a href="" className={linkStyle}>
+        <a href="">
           <img
             alt=""
             // srcset={bg2}
@@ -48,13 +44,20 @@ function Navbar() {
 
       <div className="flex items-center gap-5">
         {!!user && (
-          <Link href="#" onClick={handleLogout} className={linkStyle}>
-            Logout
-          </Link>
+          <Typography>
+            <Link href="#" onClick={handleLogout}>
+              Logout
+            </Link>
+          </Typography>
         )}
-        <Link href="/" className={linkStyle}>
-          {t('landing.contactUs')}
-        </Link>
+        <Typography>
+          <a
+            href={`https://wa.me/${orgData?.organizations?.phone}/`}
+           
+          >
+            {t("landing.contactUs")}
+          </a>
+        </Typography>
         <button
           onClick={() => {
             i18n.changeLanguage(language == "ar" ? "en" : "ar");
@@ -63,7 +66,7 @@ function Navbar() {
         >
           <Icon
             icon="icon-park-outline:translate"
-            className="duration-300 transition-color hover:text-primaryText"
+            className="duration-300 transition-all hover:!text-primaryText"
             style={{
               color: theme?.palette?.primary?.main,
             }}

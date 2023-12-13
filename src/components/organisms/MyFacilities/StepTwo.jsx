@@ -5,9 +5,7 @@ export default function StepTwo() {
   const { data: attachments_facilities } = useFetch({
     endpoint: `attachments-labels/facilities`,
     queryKey: ["attachments_facilities"],
-    onError(e) {
-      console.log("e", e);
-    },
+
   });
 
   return (

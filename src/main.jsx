@@ -12,14 +12,12 @@ import "./index.css";
 import "./query.css";
 import { AuthProvider } from "./context/auth-and-perm/AuthProvider";
 import Loading from "./components/molecules/Loading";
-import { UserProvider } from "./context/user provider/UserContext";
 import { OrganizationProvider } from "./context/organization provider/OrganizationProvider";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: { refetchOnWindowFocus: false },
   },
 });
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
     {/* <LoadingContextProvider> */}
@@ -32,7 +30,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 return (
                   <ThemeComponent settings={settings}>
                     <HelmetProvider>
-                      <UserProvider>
                         <AuthProvider>
                           <ProSidebarProvider>
                             <Suspense fallback={<Loading />}>
@@ -40,7 +37,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                             </Suspense>
                           </ProSidebarProvider>
                         </AuthProvider>
-                      </UserProvider>
                     </HelmetProvider>
                   </ThemeComponent>
                 );

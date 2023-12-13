@@ -28,7 +28,6 @@ const Home = () => {
   const [dataValue, setDataValue] = useState();
   const {user} = useAuth()
   const { orgData } = UseOrg();
-  console.log("🚀 ~ file: Home.jsx:31 ~ Home ~ orgData:", orgData)
 
   
   const { mutate: sendOTP } = useMutate({
@@ -38,9 +37,7 @@ const Home = () => {
       setDataValue(data?.data?.verification);
       notify("success", "التحقق من الهاتف ");
     },
-
     onError: (err) => {
-      console.log("err", err);
       notify("error", err?.response?.data.message);
     },
   });

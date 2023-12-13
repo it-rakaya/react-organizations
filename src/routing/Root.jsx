@@ -14,7 +14,6 @@ export const Root = ({ props }) => {
   const [openSide, setOpenSide] = useState(false);
   const [, setShowOverlay] = useState(false);
   const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
-  console.log("🚀 ~ file: Root.jsx:17 ~ Root ~ isSidebarCollapsed:", isSidebarCollapsed)
   const navigate = useNavigate();
   const [changeStyle, setChangeStyle] = useState(false);
 

@@ -22,8 +22,7 @@ export default function BaseInputField({
   ...props
 }) {
   const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
-  useFormikContext();
-  console.log("🚀 ~ file: BaseInputField.jsx:25 ~ values:", values)
+    useFormikContext();
   const [showPassword, setShowPassword] = useState(false);
   const handleChangeNumber = (e) => {
     let value = e.target.value;
@@ -82,7 +81,7 @@ export default function BaseInputField({
             helperText={!!touched[name] && !!errors[name]}
             fullWidth
             value={values[name]}
-            sx={{ background: "white" }}
+            sx={{ background: "white" , borderRadius:"10px" }}
             type={type}
             onBlur={handleBlur}
             InputProps={

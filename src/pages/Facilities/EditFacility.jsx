@@ -42,7 +42,7 @@ const EditFacility = () => {
   const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
-  const {id} = useParams()
+  const { id } = useParams();
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -54,11 +54,11 @@ const EditFacility = () => {
     }
   };
 
-  const { data: DetailsFacilities } = useFetch({
+  const { data: DetailsFacilities , isSuccess } = useFetch({
     endpoint: `facilities/${id}`,
     queryKey: ["facilities_update"],
   });
-  
+
   const { mutate: addFacility, isPending: loadingAddFacility } = useMutate({
     mutationKey: [`add_facilities`],
     endpoint: `facilities`,
@@ -71,34 +71,70 @@ const EditFacility = () => {
     },
     formData: true,
   });
-  console.log(
-    "🚀 ~ file: EditFacility.jsx:58 ~ EditFacility ~ DetailsFacilities:",
-    DetailsFacilities
-  );
 
   const initialValues = {
-    name: "",
-    registration_number: "",
-    version_date: new Date(),
-    version_date_hj: "",
-    end_date: new Date(),
-    end_date_hj: "",
-    registration_source: "",
-    license: "",
-    license_expired: new Date(),
-    license_expired_hj: "",
-    address: "",
-    tax_certificate: "",
-    employee_number: "",
-    chefs_number: "",
-    kitchen_space: "",
-    street_name: "",
-    neighborhood: "",
-    city: "",
-    building_number: "",
-    postal_code: "",
-    sub_number: "",
-    signature: "",
+    name: DetailsFacilities?.facility ? DetailsFacilities?.facility?.name : "",
+    registration_number: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.registration_number
+      : "",
+    version_date: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.version_date
+      : "",
+    version_date_hj: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.version_date_hj
+      : "",
+    end_date: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.end_date
+      : "",
+    end_date_hj: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.end_date_hj
+      : "",
+    registration_source: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.registration_source
+      : "",
+    license: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.license
+      : "",
+    license_expired: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.license_expired
+      : "",
+    license_expired_hj: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.license_expired_hj
+      : "",
+    address: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.address
+      : "",
+    tax_certificate: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.tax_certificate
+      : "",
+    employee_number: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.employee_number
+      : "",
+    chefs_number: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.chefs_number
+      : "",
+    kitchen_space: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.kitchen_space
+      : "",
+    street_name: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.street_name
+      : "",
+    neighborhood: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.neighborhood
+      : "",
+    city: DetailsFacilities?.facility ? DetailsFacilities?.facility?.city : "",
+    building_number: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.building_number
+      : "",
+    postal_code: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.postal_code
+      : "",
+    sub_number: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.sub_number
+      : "",
+    signature: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.signature
+      : "",
   };
   const validationSchema = () =>
     Yup.object({
@@ -159,7 +195,7 @@ const EditFacility = () => {
         return "Unknown Step";
     }
   };
-
+if(isSuccess)
   return (
     <>
       <div className="w-full">

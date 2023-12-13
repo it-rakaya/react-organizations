@@ -94,7 +94,7 @@ const AddFacilityPage = () => {
       registration_number: Yup.string()
         .trim()
         .required(t("the registration number required"))
-        .length(10, "the registration number must be equal 10 digits"),
+        .length(10, t("the registration number must be equal 10 digits")),
       version_date: Yup.string()
         .trim()
         .required(t("the registration number required")),
@@ -107,11 +107,15 @@ const AddFacilityPage = () => {
       registration_source: Yup.string()
         .trim()
         .required(t("the registration source required")),
-      license: Yup.string().trim().required(t("the license number required")),
+      license: Yup.string()
+        .trim()
+        .required(t("the license number required"))
+        .length(10, t("the license number must be equal 10 digits")),
       address: Yup.string().trim().required(t("address is  required")),
       tax_certificate: Yup.string()
         .trim()
         .required(t("tax certificate is required")),
+      // .length(9, t("the tax certificate number must be equal 9 digits")),
       employee_number: Yup.string()
         .trim()
         .required(t("employee number is required")),
@@ -125,7 +129,10 @@ const AddFacilityPage = () => {
       building_number: Yup.string()
         .trim()
         .required(t("building number required")),
+      // .length(4, t("the building number number must be equal 4 digits")),
+
       postal_code: Yup.string().trim().required(t("postal code required")),
+      // .length(4, t("the building number number must be equal 4 digits")),
       sub_number: Yup.string().trim().required(t("sub number required")),
     });
 

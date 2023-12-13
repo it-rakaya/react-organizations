@@ -15,9 +15,6 @@ export default function SelectOrganizations({
     queryKey: ['organizations'],
     onSuccess() {
     },
-    onError(e) {
-      console.log('e', e)
-    }
   })
 
   // const countriesOptions = countries?.map(state => ({

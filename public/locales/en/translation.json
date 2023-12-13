@@ -29,7 +29,8 @@
       "Isha":"Isha"
     },
     "contactUs":"Contact Us",
-    "rights":"All rights reserved to ",
-    "orgEmpty":"Organization"
+    "rights":"All rights reserved",
+    "orgEmpty":"Organization",
+    "for":"to "
 }
 }

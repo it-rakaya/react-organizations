@@ -12,6 +12,7 @@ import CancelOrder from "../../components/organisms/orders/CancelOrder";
 import CardOrder from "../../components/organisms/orders/CardOrder";
 import DetailsOrder from "../../components/organisms/orders/DetailsOrder";
 import useFetch from "../../hooks/useFetch";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
 export default function Orders() {
   const [openAddFaculty, setOpenAddFaculty] = useState(false);
@@ -24,19 +25,18 @@ export default function Orders() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const { orgData } = UseOrg();
+
   const {
     data: Orders,
     isLoading,
     isRefetching,
     refetch,
   } = useFetch({
-    endpoint: `orders`,
+    endpoint: `orders?organization_id=${orgData?.organizations?.id}`,
     queryKey: ["my_orders"],
-    onError(e) {
-      console.log("e", e);
-    },
+    enabled:!!orgData?.organizations?.id
   });
-  console.log("🚀 ~ file: Orders.jsx:35 ~ Orders ~ Orders:", Orders);
 
   return (
     <div>

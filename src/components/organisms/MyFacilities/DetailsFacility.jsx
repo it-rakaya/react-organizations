@@ -1,13 +1,9 @@
 /* eslint-disable react/prop-types */
 import FacilityIcon from "../../atoms/icons/FaciltyIcon";
-import PdfIcon from "../../atoms/icons/PdfIcon";
+import IconifyIcon from "../../atoms/icons/IconifyIcon";
+import PreviewImageLink from "../../molecules/PreviewImageLink";
 
 export default function DetailsFacility({ data }) {
-  console.log(
-    "🚀 ~ file: DetailsFacility.jsx:4 ~ DetailsFacility ~ data:",
-    data
-  );
-
   return (
     <div>
       {/* <MainHeader title={` تفاصيل المنشأه : ${data?.name} `} /> */}
@@ -103,19 +99,20 @@ export default function DetailsFacility({ data }) {
           <p>{data?.postal_code}</p>
         </div>
         {data?.attachmentUrl.map((item) => (
-          <div className="flex flex-col gap-2" key={item?.id}>
-            <p className="font-bold text-contained"> {item?.label}</p>
+          <div className="flex items-center " key={item?.id}>
+            <p className="font-bold text-contained"> {item?.label}:</p>
             {!item?.value?.toLowerCase().endsWith(".pdf") ? (
               <p>
-                <img
+                {/* <img
                   className="w-[200px] h-[200px] rounded-xl"
                   src={item?.value}
                   alt=""
-                />
+                /> */}
+                <PreviewImageLink url={item?.value} />
               </p>
             ) : (
               <a href={item?.value} download={item?.value} className="">
-                <PdfIcon />
+                <IconifyIcon icon={"mdi:file-pdf-box"} className="text-5xl" />
               </a>
             )}
           </div>

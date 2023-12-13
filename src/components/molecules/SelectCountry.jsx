@@ -4,18 +4,13 @@ import { t } from "i18next";
 import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
 import { FormikError } from "./Formik/FormikError";
-import { useTheme } from "@mui/material/styles";
 
 export default function SelectCountry({ name, label, className }) {
-  const theme = useTheme();
-
-  const { setFieldValue, errors, values, touched , handleBlur } = useFormikContext();
+  const { setFieldValue, errors, values, touched, handleBlur } =
+    useFormikContext();
   const { data: countries } = useFetch({
     endpoint: `countries`,
-    queryKey: ["countrie"],
-    onError(e) {
-      console.log("e", e);
-    },
+    queryKey: ["countries"],
   });
   const options = countries?.countries.map((item) => ({
     value: item.id,
@@ -39,7 +34,6 @@ export default function SelectCountry({ name, label, className }) {
           className="border rounded-md"
           placeholder={t("Chose Country")}
           noOptionsMessage={() => t("Not Found Data")}
-        
           onBlur={handleBlur}
           onChange={(option) => setFieldValue(name, option.value)}
           styles={{

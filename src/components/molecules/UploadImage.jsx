@@ -7,10 +7,12 @@ import { useDropzone } from "react-dropzone";
 import CheckIcon from "../atoms/icons/CheckIcon";
 import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
-import PdfIcon from "../atoms/icons/PdfIcon";
+import { useTheme } from "@mui/material/styles";
+import IconifyIcon from "../atoms/icons/IconifyIcon";
 const UploadImage = ({ name, placeholder }) => {
   const { setFieldValue, errors } = useFormikContext();
   const [files, setFiles] = useState([]);
+  const theme = useTheme();
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
@@ -23,6 +25,14 @@ const UploadImage = ({ name, placeholder }) => {
     },
   });
   const isLargeFile = files?.length && files[0]?.size > 524288000;
+  const hexToRGBA = (hex, opacity) => {
+    hex = hex.replace("#", "");
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    return `rgba(${r},${g},${b},${opacity})`;
+  };
+  const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
 
   return (
     <>
@@ -61,46 +71,27 @@ const UploadImage = ({ name, placeholder }) => {
               )}
             </div>
           </Box>
-
-          {/* <div className="flex flex-col items-center gap-1 bg-[#F5F5F5]  rounded-md ">
-            <h2 className="bg-[#EFEFEF] w-full text-center p-3 rounded-md">
-              {label}
-            </h2>
-            {!files?.length ? (
-              <UploadImageIcon />
-            ) : (
-              <img
-                src={CheckUploadImageIcon}
-                width={"40"}
-                height={"40"}
-                alt="check"
-              />
-              <div className="  rounded-[10px]">
-                <PreviewImage files={files ? files : []} />
-              </div>
-            )}
-            <p className="p-2 m-0 text-center">
-              {files?.length
-                ? "تم رفع الملف بنجاح"
-                : " اختر ملف أو قم باسقاطه هنا "}
-            </p>
-          </div> */}
-          {/* <div>
-            <FormikError name={name} />
-          </div> */}
         </Box>
-        <div className="flex justify-start w-full rounded-md ">
+        <div className="flex justify-start w-full rounded-md">
           {!isLargeFile && files[0]?.type.startsWith("image/") ? (
-            <div className="flex justify-start">
-              <PreviewImage files={files ? files : []} />
+            <div className="flex items-center w-full">
+              <PreviewImage files={files ? files : []} bgMain={bgMain} />
             </div>
           ) : files[0]?.type.startsWith("application/") ? (
             <a
               href={URL.createObjectURL(files[0])}
               download={files[0].name}
-              className=""
+              className="w-full"
             >
-              <PdfIcon />
+              <div
+                className="flex items-center w-full gap-2 p-2 cursor-pointer"
+                style={{
+                  backgroundColor: bgMain,
+                }}
+              >
+                <IconifyIcon icon={"mdi:file-pdf-box"} className="text-xl" />
+                <span className="text-sm">اضغط هنا لمشاهدة المرفق</span>
+              </div>
             </a>
           ) : (
             ""

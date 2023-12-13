@@ -12,15 +12,9 @@ export default function OrderMainData({ setShow, show }) {
   const { data: extra_questions } = useFetch({
     endpoint: `orders/create?organization_service_id=${values.organization_service_id}`,
     queryKey: [`extra_questions/${values.organization_service_id}`],
-    onError(e) {
-      console.log("e", e);
-    },
     enabled: !!values.organization_service_id,
   });
-  console.log(
-    "🚀 ~ file: OrderMainData.jsx:20 ~ OrderMainData ~ extra_questions:",
-    extra_questions
-  );
+
 
   return (
     <div className="mt-10">

@@ -16,6 +16,7 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
   const [files, setFiles] = useState(
     values?.attachments ? [values?.attachments[nameValue]] : []
   );
+  
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: ["image/*", ".pdf"],
@@ -51,10 +52,15 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
       <Box sx={files?.length ? { height: "" } : {}}>
         <div className="relative cursor-pointer">
           <div className="flex flex-col items-center bg-[#F5F5F5] rounded-md">
-            <h2 className="bg-[#EFEFEF] w-full text-center px-3 pt-2 rounded-md">
+            <h2 className="bg-[#EFEFEF] w-full text-center px-3 py-2 rounded-md">
               {label}
             </h2>
-            <div {...getRootProps({ className: "dropzone h-[150px] flex flex-col items-center justify-center" })}>
+            <div
+              {...getRootProps({
+                className:
+                  "dropzone h-[150px] flex flex-col items-center justify-center",
+              })}
+            >
               {!files?.length ? (
                 <div className="flex flex-col items-center justify-center py-5">
                   <input {...getInputProps()} name={name} />
@@ -99,7 +105,7 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
                     backgroundColor: bgMain,
                   }}
                 >
-                  <IconifyIcon icon={"icons8:pdf"} className="text-xl" />
+                  <IconifyIcon icon={"mdi:file-pdf-box"} className="text-xl" />
                   <span className="text-sm">اضغط هنا لمشاهدة المرفق</span>
                 </div>
               </a>

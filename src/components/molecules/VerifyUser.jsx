@@ -25,7 +25,6 @@ export default function VerifyUser({ userData, dataValue, setOpen }) {
     },
 
     onError: (err) => {
-      console.log("err", err);
       notify("error", err?.response?.data.message);
     },
   });

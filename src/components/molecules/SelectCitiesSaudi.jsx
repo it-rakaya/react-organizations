@@ -9,9 +9,6 @@ export default function SelectCitiesSaudi({ name, label, className }) {
   const { data: cities } = useFetch({
     endpoint: `saudi-cities`,
     queryKey: ["saudi-cities"],
-    onError(e) {
-      console.log("e", e);
-    },
   });
   const options = cities?.cities.map((item) => ({
     value: item.id,
