@@ -65,7 +65,7 @@ const UserDropdown = (props) => {
     mutationKey: [`Log_out`],
     endpoint: `logout`,
     onSuccess: () => {
-      notify("success", t('good luck'));
+      notify("success", t("good luck"));
     },
     onError: (err) => {
       notify("error", err?.response?.data.message);
@@ -99,7 +99,7 @@ const UserDropdown = (props) => {
               ? user?.attachmentUrl[1]?.value
               : defaultImage
           }
-          style={{backgroundColor:theme?.palette?.primary?.main}}
+          style={{ backgroundColor: theme?.palette?.primary?.main }}
         />
       </Badge>
       <Menu
@@ -134,7 +134,7 @@ const UserDropdown = (props) => {
                     : defaultImage
                 }
                 sx={{ width: "2.5rem", height: "2.5rem" }}
-                style={{backgroundColor:theme?.palette?.primary?.main}}
+                style={{ backgroundColor: theme?.palette?.primary?.main }}
               />
             </Badge>
             <Box
@@ -146,23 +146,29 @@ const UserDropdown = (props) => {
               }}
             >
               <Typography sx={{ fontWeight: 600 }}>{user?.name}</Typography>
-
             </Box>
           </Box>
         </Box>
         <Divider sx={{ mt: "0 !important" }} />
-        <MenuItem sx={{ p: 0 }} onClick={() => navigate("/")}>
-          <Box sx={styles}>
-            <IconifyIcon icon="iconoir:page" />
-            {t("Landing")}
-          </Box>
-        </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => navigate("/dashboard/profile/")}>
-          <Box sx={styles}>
-            <IconifyIcon icon="mdi:account-outline" />
-            {t("Profile")}
-          </Box>
-        </MenuItem>
+        {user?.is_verified && (
+          <>
+            <MenuItem sx={{ p: 0 }} onClick={() => navigate("/")}>
+              <Box sx={styles}>
+                <IconifyIcon icon="uil:home" />
+                {t("Landing")}
+              </Box>
+            </MenuItem>
+            <MenuItem
+              sx={{ p: 0 }}
+              onClick={() => navigate("/dashboard/profile/")}
+            >
+              <Box sx={styles}>
+                <IconifyIcon icon="mdi:account-outline" />
+                {t("Profile")}
+              </Box>
+            </MenuItem>
+          </>
+        )}
         <Divider />
         <MenuItem
           onClick={handleLogout}

@@ -8,6 +8,7 @@ import CheckIcon from "../atoms/icons/CheckIcon";
 import IconifyIcon from "../atoms/icons/IconifyIcon";
 import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
+import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
 
 const UploadImageTwo = ({ name, label, nameValue }) => {
   const { setFieldValue, values } = useFormikContext();
@@ -16,17 +17,25 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
   const [files, setFiles] = useState(
     values?.attachments ? [values?.attachments[nameValue]] : []
   );
-  
+
+  const [invalidFormat, setInvalidFormat] = useState(false);
+
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: ["image/*", ".pdf"],
     onDrop: (acceptedFiles) => {
       const modifiedFiles = acceptedFiles.map((file) => {
-        if (file.type === "application/pdf") {
-          const modifiedFile = new File([file], `PDF_${file.name}`, {
-            type: file.type,
-          });
-          return modifiedFile;
+        if (file.type === "application/pdf" || file.type.startsWith("image/")) {
+          setInvalidFormat(false);
+          if (file.type === "application/pdf") {
+            const modifiedFile = new File([file], `PDF_${file.name}`, {
+              type: file.type,
+            });
+            return modifiedFile;
+          }
+          return file;
+        } else {
+          setInvalidFormat(true);
         }
         return file;
       });
@@ -66,6 +75,8 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
                   <input {...getInputProps()} name={name} />
                   <UploadImageIcon />
                 </div>
+              ) : invalidFormat ? (
+                <TermsConditionIcon className={"w-[50px]"} />
               ) : (
                 <div className="rounded-md">
                   {!isLargeFile && (
@@ -78,6 +89,8 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
               <p className="flex items-end justify-center p-2 m-0 text-center">
                 {isLargeFile ? (
                   "حجم الملف كبير"
+                ) : invalidFormat ? (
+                  "صيغة الملف غير صالحة، يرجى اختيار ملف بصيغة PDF أو صورة"
                 ) : files?.length ? (
                   <div className="flex flex-col items-center justify-center ">
                     <p>تم رفع الملف بنجاح</p>

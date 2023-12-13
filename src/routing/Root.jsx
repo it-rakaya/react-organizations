@@ -9,13 +9,16 @@ import AppBarContent from "../components/organisms/Navbar/AppBarContent";
 import LayoutAppBar from "../components/organisms/Navbar/appBar/LayoutAppBar";
 import { SideBar } from "../components/organisms/Sidebar/Sidebar";
 import { useSettings } from "../hooks/useSettings";
+import { useAuth } from "../context/auth-and-perm/AuthProvider";
 
 export const Root = ({ props }) => {
   const [openSide, setOpenSide] = useState(false);
   const [, setShowOverlay] = useState(false);
   const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
+  console.log("🚀 ~ file: Root.jsx:18 ~ Root ~ isSidebarCollapsed:", isSidebarCollapsed)
   const navigate = useNavigate();
   const [changeStyle, setChangeStyle] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     setShowOverlay(openSide);
@@ -58,6 +61,7 @@ export const Root = ({ props }) => {
       };
     }
   }, []);
+  console.log("user?.is_verified",user?.is_verified)
   const { settings, saveSettings, contentWidth } = useSettings();
 
   const VerticalLayoutWrapper = styled("div")({
@@ -85,7 +89,7 @@ export const Root = ({ props }) => {
     },
   }));
   const token = Cookies.get("token");
-  
+
   useEffect(() => {
     if (!token) {
       navigate("/");
@@ -100,22 +104,24 @@ export const Root = ({ props }) => {
           isSidebarCollapsed ? "flex w-full" : "grid grid-cols-12 w-full"
         }
       >
-        <div className={isSidebarCollapsed ? "w-[64px]" : "lg:col-span-2  "}>
-          <OutsideClickHandler onOutsideClick={handleClickOutside}>
-            <div className="fixed">
-              <SideBar
-                handleClickItem={handleClickOutside}
-                isSidebarCollapsed={isSidebarCollapsed}
-                handleCollapsedSideBar={handleCollapsedSideBar}
-              />
-            </div>
-          </OutsideClickHandler>
-          {/* {showOverlay && <Overlay zIndex={1100} />} */}
-        </div>
+        {user?.is_verified && (
+          <div className={isSidebarCollapsed ? "w-[64px]" : "lg:col-span-2  "}>
+            <OutsideClickHandler onOutsideClick={handleClickOutside}>
+              <div className="fixed">
+                <SideBar
+                  handleClickItem={handleClickOutside}
+                  isSidebarCollapsed={isSidebarCollapsed}
+                  handleCollapsedSideBar={handleCollapsedSideBar}
+                />
+              </div>
+            </OutsideClickHandler>
+            {/* {showOverlay && <Overlay zIndex={1100} />} */}
+          </div>
+        )}
 
         <div
           className={
-            isSidebarCollapsed ? "w-full" : "col-span-12 lg:col-span-10"
+            isSidebarCollapsed ? "w-full" : user?.is_verified ? 'col-span-12 lg:col-span-10' : "col-span-12"
           }
         >
           <VerticalLayoutWrapper className="">

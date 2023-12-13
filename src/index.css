@@ -516,7 +516,8 @@ main,
   transform-origin: center;
   transform-box: fill-box;
 }
-.main_content ul li{
+
+.main_content ul li {
   list-style: inside;
 }
 
@@ -617,6 +618,12 @@ main,
 .react-tel-input .selected-flag .flag {
   left: 15px !important;
 }
-.rtl-1xc3v61-indicatorContainer{
-/* padding-left: 0 !important; */
+
+.rtl-1xc3v61-indicatorContainer {
+  /* padding-left: 0 !important; */
+}
+
+[dir="ltr"] .search_icon {
+  right: 15px !important;
+  left: initial;
 }

@@ -9,7 +9,6 @@ function RegistrationMainData() {
   const { data: attachments_register } = useFetch({
     endpoint: `attachments-labels/users`,
     queryKey: ["attachments_register"],
-
   });
 
   return (
@@ -43,18 +42,18 @@ function RegistrationMainData() {
       />
       {/* <FieldArray name="attachments">
         {() => ( */}
-          <div>
-            {attachments_register?.attachment_labels?.map((item) => (
-              <UploadImage
-                key={item.id}
-                name={`attachments[${item?.id}]`}
-                label={item?.placeholder}
-                // id={item?.id}
-                placeholder={item?.placeholder}
-              />
-            ))}
-          </div>
-        {/* )} */}
+      <div>
+        {attachments_register?.attachment_labels?.map((item) => (
+          <UploadImage
+            key={item.id}
+            name={`attachments[${item?.id}]`}
+            label={item?.placeholder}
+            // id={item?.id}
+            placeholder={item?.placeholder}
+          />
+        ))}
+      </div>
+      {/* )} */}
       {/* </FieldArray> */}
     </div>
   );

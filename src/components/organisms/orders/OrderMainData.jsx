@@ -69,12 +69,7 @@ export default function OrderMainData({ setShow, show }) {
                   options={item?.options || []}
                 />
               </>
-            ) : item?.is_visible == "0" &&
-              extra_questions?.questions?.length == 1 ? (
-              <div className="my-10 text-3xl font-bold text-center">
-                لايوجد اساله
-              </div>
-            ) : (
+            )  : (
               ""
             )}
           </ul>

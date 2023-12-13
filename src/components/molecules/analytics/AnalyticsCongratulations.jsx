@@ -9,6 +9,7 @@ import { t } from "i18next";
 import { Link } from "react-router-dom";
 import AvatarCongruity from "../../../assets/cards/illustration-john-dark.png";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
+import { useAuth } from "../../../context/auth-and-perm/AuthProvider";
 
 // Styled Grid component
 const StyledGrid = styled(Grid)(({ theme }) => ({
@@ -32,6 +33,7 @@ const Img = styled("img")(({ theme }) => ({
 }));
 
 const AnalyticsCongratulations = ({ userData }) => {
+  const { user } = useAuth();
   return (
     <Card sx={{ position: "relative" }}>
       <CardContent
@@ -55,11 +57,16 @@ const AnalyticsCongratulations = ({ userData }) => {
             <Typography sx={{ mb: 4.5 }} variant="body2">
               Check your new badge in your profile.
             </Typography>
-            <Link to={"/dashboard/profile"}>
-              <ButtonComp variant="contained" className={"w-auto"}>
-                بياناتي الشخصية
-              </ButtonComp>
-            </Link>
+            <div className={!user?.is_verified && "my-10"}>
+
+            {user?.is_verified && (
+              <Link to={"/dashboard/profile"}>
+                <ButtonComp variant="contained" className={"w-auto"}>
+                  {t("My profile")}
+                </ButtonComp>
+              </Link>
+            )}
+            </div>
           </Grid>
           <StyledGrid item xs={12} sm={6}>
             {/* ${theme.palette.mode}.png`} */}
