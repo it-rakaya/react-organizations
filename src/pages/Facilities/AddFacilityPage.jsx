@@ -114,8 +114,8 @@ const AddFacilityPage = () => {
       address: Yup.string().trim().required(t("address is  required")),
       tax_certificate: Yup.string()
         .trim()
-        .required(t("tax certificate is required")),
-      // .length(9, t("the tax certificate number must be equal 9 digits")),
+        .required(t("tax certificate is required"))
+        .length(9, t("the tax certificate number must be equal 9 digits")),
       employee_number: Yup.string()
         .trim()
         .required(t("employee number is required")),
@@ -128,12 +128,17 @@ const AddFacilityPage = () => {
       city: Yup.string().trim().required(t("city is required")),
       building_number: Yup.string()
         .trim()
-        .required(t("building number required")),
-      // .length(4, t("the building number number must be equal 4 digits")),
+        .required(t("building number required"))
+        .length(4, t("the building number number must be equal 4 digits")),
 
-      postal_code: Yup.string().trim().required(t("postal code required")),
-      // .length(4, t("the building number number must be equal 4 digits")),
-      sub_number: Yup.string().trim().required(t("sub number required")),
+      postal_code: Yup.string()
+        .trim()
+        .required(t("postal code required"))
+        .length(6, t("the postal code must be equal 6 digits")),
+      sub_number: Yup.string()
+        .trim()
+        .required(t("sub number required"))
+        .length(6, t("the sub number  must be equal 6 digits")),
     });
 
   const getStepContent = (step) => {

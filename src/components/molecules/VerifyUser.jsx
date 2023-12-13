@@ -9,7 +9,7 @@ import CheckCode from "../organisms/checkCode";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
-export default function VerifyUser({ userData, dataValue, setOpen }) {
+export default function VerifyUser({ userData, dataValue, setOpen , sendOTP }) {
   const [valuesForm, setValuesForm] = useState("");
   const { setUser } = useAuth();
   const [valueOTP , setValueOTP] = useState('')
@@ -45,7 +45,7 @@ export default function VerifyUser({ userData, dataValue, setOpen }) {
       >
         <Form>
           <div className="flex flex-col w-1/2 m-auto text-center ">
-            <CheckCode number={dataValue?.value} valuesForm={valuesForm} setValueOTP={setValueOTP}  />
+            <CheckCode number={dataValue?.value} valuesForm={valuesForm} setValueOTP={setValueOTP}  sendOTP={sendOTP} />
             <ButtonComp
               loading={!!loadingVerify}
               type="submit"

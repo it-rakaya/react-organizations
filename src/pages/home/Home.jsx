@@ -144,7 +144,7 @@ const Home = () => {
         hidden
         onClose={() => {}}
         Children={
-          <VerifyUser userData={user} dataValue={dataValue} setOpen={setOpen} />
+          <VerifyUser userData={user} dataValue={dataValue} setOpen={setOpen} sendOTP={sendOTP} />
         }
         className={"w-1/2"}
       />

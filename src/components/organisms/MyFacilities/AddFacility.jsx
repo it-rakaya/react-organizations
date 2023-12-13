@@ -109,6 +109,7 @@ export default function AddFacility() {
               placeholder="20"
               name="employee_number"
               type="number"
+              maxNum="3"
               required
             />
           </div>
@@ -121,6 +122,8 @@ export default function AddFacility() {
               placeholder="4"
               name="chefs_number"
               type="number"
+              maxNum="3"
+              
               required
             />
           </div>

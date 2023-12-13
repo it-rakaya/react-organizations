@@ -76,7 +76,7 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
                   <UploadImageIcon />
                 </div>
               ) : invalidFormat ? (
-                <TermsConditionIcon className={"w-[50px]"} />
+                <TermsConditionIcon className={"w-[50px] !fill-[#F0A44B]"} />
               ) : (
                 <div className="rounded-md">
                   {!isLargeFile && (
