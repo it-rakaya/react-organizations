@@ -46,8 +46,8 @@ export default function SelectCountry({ name, label, className }) {
                 !!touched[name] && !!errors[name]
                   ? "red"
                   : state.isFocused
-                  ? "transparent"
-                  : "white",
+                  ? "#d8d8dd"
+                  : "#d8d8dd",
               background: "white",
               margin: "0",
             }),
