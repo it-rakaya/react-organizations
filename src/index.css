@@ -617,3 +617,6 @@ main,
 .react-tel-input .selected-flag .flag {
   left: 15px !important;
 }
+.rtl-1xc3v61-indicatorContainer{
+padding-left: 0 !important;
+}
