@@ -33,15 +33,15 @@ export default function DatePickerComp({ name, name_hj, label, required }) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <div className="w-full my-4">
-        <label className="  my-[0.75rem]">
+      <div className="w-full">
+        <label className="block  my-[0.75rem]">
           {label}
           <span className="mx-1 text-red-500">
             {required == "1" ? "*" : ""}
           </span>
         </label>
         <DatePicker
-          className="bg-white rounded-[10px] w-full mt-3"
+          className="bg-white rounded-[10px] w-full "
           name={name}
           defaultValue={dayjs(values[name])}
           onChange={(newValue) => {
