@@ -201,6 +201,7 @@ const AddFacilityPage = () => {
               onSubmit={(values) => {
                 addFacility({
                   ...values,
+                  organization_id: orgData?.organizations?.id,
                 });
               }}
             >
