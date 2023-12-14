@@ -58,7 +58,7 @@ const AddFacilityPage = () => {
     mutationKey: [`add_facilities`],
     endpoint: `facilities`,
     onSuccess: () => {
-      notify("success");
+      notify("success", t("A facility has been added successfully"));
       navigate("/dashboard/facilities");
     },
     onError: (err) => {
