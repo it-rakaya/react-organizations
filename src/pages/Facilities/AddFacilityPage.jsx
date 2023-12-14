@@ -192,7 +192,6 @@ const AddFacilityPage = () => {
             boxShadow: "0 4px 24px -1px #0000001A",
             height: "calc(100vh - 280px)",
           }}
-          className="!overflow-y-scroll scroll_main  px-3 py-2  rounded-xl scroll_main m-3 bg-transparent"
         >
           <CardContent className="h-full pt-0">
             <Formik
@@ -246,9 +245,9 @@ const AddFacilityPage = () => {
                           type="button"
                           className={"!w-auto text-xl px-10 py-3 "}
                           variant="contained"
-                          // disabled={
-                          //   values.name == "" || Object.keys(errors).length
-                          // }
+                          disabled={
+                            values.name == "" || Object.keys(errors).length
+                          }
                         >
                           {activeStep === steps.length - 1
                             ? "حفظ ومتابعه"

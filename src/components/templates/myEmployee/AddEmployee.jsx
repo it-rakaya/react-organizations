@@ -6,9 +6,12 @@ import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import EmployeeMainData from "./EmployeeMainData";
-import { isValidSaudiID } from "saudi-id-validator"
+import { isValidSaudiID } from "saudi-id-validator";
+import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 
 export default function AddEmployee({ facultyID, setSecundModal }) {
+  const { orgData } = UseOrg();
+
   const { mutate: AddEmployee, isPending: loadingEmployee } = useMutate({
     mutationKey: [`facility_employees`],
     endpoint: `facility-employees`,
@@ -26,12 +29,12 @@ export default function AddEmployee({ facultyID, setSecundModal }) {
       name: Yup.string().trim().required(t("employee name is required")),
       position: Yup.string().trim().required(t("position name is required")),
       national_id: Yup.string()
-      .matches(/^\d{10}$/, t("The ID number must be exactly 10 digits"))
-      .test({
-        name: 'isValidSaudiID',
-        test: (value) => isValidSaudiID(value),
-        message: t('Invalid Saudi ID'),
-      })
+        .matches(/^\d{10}$/, t("The ID number must be exactly 10 digits"))
+        .test({
+          name: "isValidSaudiID",
+          test: (value) => isValidSaudiID(value),
+          message: t("Invalid Saudi ID"),
+        }),
     });
 
   return (
@@ -54,6 +57,7 @@ export default function AddEmployee({ facultyID, setSecundModal }) {
           const combinedObject = {
             ...values,
             facility_id: facultyID,
+            organization_id: orgData?.organizations?.id,
             ...Object.assign({}, ...attachments),
           };
           delete combinedObject.attachments;
