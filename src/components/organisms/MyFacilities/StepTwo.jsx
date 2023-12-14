@@ -8,7 +8,7 @@ export default function StepTwo({DetailsFacilities}) {
     endpoint: `attachments-labels/facilities`,
     queryKey: ["attachments_facilities"],
   });
-  const detailsFacilitiesData = DetailsFacilities || attachments_facilities.attachment_labels;
+  const detailsFacilitiesData = DetailsFacilities || attachments_facilities?.attachment_labels;
   console.log("🚀 ~ file: StepTwo.jsx:12 ~ StepTwo ~ detailsFacilitiesData:", detailsFacilitiesData)
 
   return (
