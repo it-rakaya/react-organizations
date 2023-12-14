@@ -22,6 +22,7 @@ import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import { t } from "i18next";
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -34,7 +35,7 @@ const Home = () => {
     endpoint: `send-otp`,
     onSuccess: (data) => {
       setDataValue(data?.data?.verification);
-      notify("success", "التحقق من الهاتف ");
+      notify("success", t("Verification code has been sent successfully"));
     },
     onError: (err) => {
       notify("error", err?.response?.data.message);
@@ -141,9 +142,15 @@ const Home = () => {
       </Grid>
       <ModalComp
         open={open}
-        onClose={() => setOpen(false)}
+        hidden
+        onClose={() => {}}
         Children={
-          <VerifyUser userData={user} dataValue={dataValue} setOpen={setOpen} />
+          <VerifyUser
+            userData={user}
+            dataValue={dataValue}
+            setOpen={setOpen}
+            sendOTP={sendOTP}
+          />
         }
         className={"w-1/2"}
       />

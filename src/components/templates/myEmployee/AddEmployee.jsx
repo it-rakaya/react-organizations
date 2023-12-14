@@ -6,6 +6,7 @@ import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import EmployeeMainData from "./EmployeeMainData";
+import { isValidSaudiID } from "saudi-id-validator"
 
 export default function AddEmployee({ facultyID, setSecundModal }) {
   const { mutate: AddEmployee, isPending: loadingEmployee } = useMutate({
@@ -25,8 +26,12 @@ export default function AddEmployee({ facultyID, setSecundModal }) {
       name: Yup.string().trim().required(t("employee name is required")),
       position: Yup.string().trim().required(t("position name is required")),
       national_id: Yup.string()
-        .trim()
-        .required(t("national number is required")),
+      .matches(/^\d{10}$/, t("The ID number must be exactly 10 digits"))
+      .test({
+        name: 'isValidSaudiID',
+        test: (value) => isValidSaudiID(value),
+        message: t('Invalid Saudi ID'),
+      })
     });
 
   return (
@@ -62,9 +67,9 @@ export default function AddEmployee({ facultyID, setSecundModal }) {
               loading={loadingEmployee}
               type="submit"
               variant="contained"
-              className=" !rounded-md  w-auto  mt-5"
+              className=" !rounded-md  !w-auto  mt-5"
             >
-              اضافة
+              {t("Add")}
             </ButtonComp>
           </div>
         </Form>

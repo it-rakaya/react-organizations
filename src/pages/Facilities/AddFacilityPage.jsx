@@ -26,6 +26,7 @@ import StepperWrapper from "../../components/theme/stepper";
 import AddFacility from "../../components/organisms/MyFacilities/AddFacility";
 import StepTwo from "../../components/organisms/MyFacilities/StepTwo";
 import { useNavigate } from "react-router-dom";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
 const steps = [
   {
@@ -41,6 +42,8 @@ const AddFacilityPage = () => {
   const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
+  const { orgData } = UseOrg();
+
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -114,8 +117,8 @@ const AddFacilityPage = () => {
       address: Yup.string().trim().required(t("address is  required")),
       tax_certificate: Yup.string()
         .trim()
-        .required(t("tax certificate is required")),
-      // .length(9, t("the tax certificate number must be equal 9 digits")),
+        .required(t("tax certificate is required"))
+        .length(9, t("the tax certificate number must be equal 9 digits")),
       employee_number: Yup.string()
         .trim()
         .required(t("employee number is required")),
@@ -128,12 +131,17 @@ const AddFacilityPage = () => {
       city: Yup.string().trim().required(t("city is required")),
       building_number: Yup.string()
         .trim()
-        .required(t("building number required")),
-      // .length(4, t("the building number number must be equal 4 digits")),
+        .required(t("building number required"))
+        .length(4, t("the building number number must be equal 4 digits")),
 
-      postal_code: Yup.string().trim().required(t("postal code required")),
-      // .length(4, t("the building number number must be equal 4 digits")),
-      sub_number: Yup.string().trim().required(t("sub number required")),
+      postal_code: Yup.string()
+        .trim()
+        .required(t("postal code required"))
+        .length(6, t("the postal code must be equal 6 digits")),
+      sub_number: Yup.string()
+        .trim()
+        .required(t("sub number required"))
+        .length(6, t("the sub number  must be equal 6 digits")),
     });
 
   const getStepContent = (step) => {
@@ -237,9 +245,9 @@ const AddFacilityPage = () => {
                           type="button"
                           className={"!w-auto text-xl px-10 py-3 "}
                           variant="contained"
-                          disabled={
-                            values.name == "" || Object.keys(errors).length
-                          }
+                          // disabled={
+                          //   values.name == "" || Object.keys(errors).length
+                          // }
                         >
                           {activeStep === steps.length - 1
                             ? "حفظ ومتابعه"
@@ -254,15 +262,16 @@ const AddFacilityPage = () => {
                       Children={
                         <div className="pt-10 !flex gap-3 !items-center !justify-center !flex-col">
                           <div>
-                            <TermsConditionIcon />
+                            <TermsConditionIcon className={"!fill-[#F0A44B]"} />
                           </div>
                           <h2>{t("Terms and Conditions")}</h2>
 
-                          <p>
-                            {t(
-                              "I confirm that all data is correct. I confirm that all data is correct"
-                            )}
-                          </p>
+                          <div
+                            className="main_content max-h-[450px] overflow-y-scroll scroll_main"
+                            dangerouslySetInnerHTML={{
+                              __html: orgData?.organizations?.policies,
+                            }}
+                          ></div>
                           <FormControl>
                             <RadioGroup
                               aria-labelledby="demo-controlled-radio-buttons-group"

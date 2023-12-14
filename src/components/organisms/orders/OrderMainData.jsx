@@ -51,7 +51,7 @@ export default function OrderMainData({ setShow, show }) {
       ) : extra_questions?.questions?.length ? (
         extra_questions?.questions?.map((item) => (
           <ul key={item?.id}>
-            {item?.is_visible == "1" ? (
+            {item?.is_visible == "1" && (
               <>
                 <li className="my-3 font-bold">
                   {item?.content}{" "}
@@ -68,15 +68,13 @@ export default function OrderMainData({ setShow, show }) {
                   options={item?.options || []}
                 />
               </>
-            ) : (
-              ""
             )}
           </ul>
         ))
       ) : (
         <div className="my-10 text-3xl font-bold text-center">
           {t("There is no question")}
-          </div>
+        </div>
       )}
     </div>
   );

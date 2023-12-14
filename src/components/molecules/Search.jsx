@@ -20,7 +20,7 @@ function Search({ setSearchQuery, placeholder, addTitle, action }) {
         </div>
         <div>
           {addTitle && (
-            <ButtonComp variant="contained" className={"m-0"} action={action}>
+            <ButtonComp variant="contained" className={"!m-0"} action={action}>
               {addTitle}
             </ButtonComp>
           )}

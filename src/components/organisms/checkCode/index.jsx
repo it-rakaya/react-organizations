@@ -10,12 +10,14 @@ export default function CheckCode({
   valuesForm,
   setValueOTP,
   sendOTP,
+  userData,
+  login
 }) {
+  console.log("🚀 ~ file: index.jsx:14 ~ valuesForm:", valuesForm);
   const [values, setValues] = useState(["", "", "", ""]);
   const [availableResetCode, setAvailableResetCode] = useState(false);
   const [timerStarted, setTimerStarted] = useState(true);
   const [colorPinInput, setColorPinInput] = useState("");
-  console.log("🚀 ~ file: index.jsx:18 ~ colorPinInput:", colorPinInput)
   const theme = useTheme();
   const [btnBgColor, setBtnBgColor] = useState("transparent");
 
@@ -23,13 +25,20 @@ export default function CheckCode({
 
   const handleSendTime = () => {
     if (availableResetCode) {
-      // CheckCodeAgain({
-      //   email: formData.email,
-      //   type: 'FORGET',
-      // });
-      sendOTP({ ...valuesForm, organization_id: orgData?.organizations?.id });
+      if(login){
+        sendOTP({
+          ...valuesForm,
+          organization_id: orgData?.organizations?.id,
+        });
+      }else{
+        
+        sendOTP({
+          phone: userData?.phone,
+          phone_code: userData?.phone_code,
+          organization_id: orgData?.organizations?.id,
+        });
+      }
 
-      // valuesForm;
       setTimerStarted(true);
     } else {
       return;
@@ -38,7 +47,7 @@ export default function CheckCode({
   return (
     <>
       <div className="lex ">
-        <div className="flex flex-col items-center justify-center   gap-5  shadow-main bg-[#FFF] rounded-xl pt-0 p-10">
+        <div className="flex flex-col items-center justify-center   gap-5  shadow-main bg-[#FFF] rounded-xl pt-0 p-10 dark:bg-inherit">
           <h1 className="font-bold">أدخل رمز التحقق </h1>
           <p className="text-center">
             رقم التحقق مطلوب لإكمال العملية لقد تم إرسال رمز التحقق في رسالة
@@ -57,13 +66,20 @@ export default function CheckCode({
                 setValues(values);
                 if (number == values.join("")) {
                   setValueOTP(values.join(""));
+                  // setColorPinInput(theme?.palette?.primary.main);
+                } else {
+                  // setColorPinInput("rgb(220,53,69)");
+                }
+              }}
+              onComplete={(values) => {
+                if (number == values.join("")) {
                   setColorPinInput(theme?.palette?.primary.main);
                 } else {
                   setColorPinInput("rgb(220,53,69)");
                 }
               }}
               containerStyle={{ flexDirection: "row-reverse" }}
-              inputClassName="focus:border-0 focus:border-red-200 selection:outline-none"
+              inputClassName="focus:border-0 focus:border-red-200 selection:outline-none "
             />
           </div>
           <ResendCode
@@ -90,7 +106,7 @@ export default function CheckCode({
             >
               إعادة الإرسال
             </Button>
-          )}
+          )} 
         </div>
       </div>
     </>

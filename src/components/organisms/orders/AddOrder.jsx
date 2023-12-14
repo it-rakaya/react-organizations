@@ -8,6 +8,8 @@ import { notify } from "../../../utils/toast";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import OrderMainData from "./OrderMainData";
 import { t } from "i18next";
+import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
+const { orgData } = UseOrg();
 
 export default function AddOrder({ setOpenAddFaculty }) {
   const [show, setShow] = useState(true);
@@ -38,18 +40,20 @@ export default function AddOrder({ setOpenAddFaculty }) {
           );
 
           // if (hasFieldStartingWithAnswers.length > 0) {
-            hasFieldStartingWithAnswers.forEach((fieldName) => {
-              const answerIndex = fieldName.slice(7); // Get the index from the field name
-              answers[`answers[${answerIndex}]`] = values[fieldName];
-            });
-            const formData = {
-              facility_id: values.facility_id,
-              organization_service_id: values.organization_service_id,
-              ...answers,
-            };
-            AddOrder(formData);
+          hasFieldStartingWithAnswers.forEach((fieldName) => {
+            const answerIndex = fieldName.slice(7); // Get the index from the field name
+            answers[`answers[${answerIndex}]`] = values[fieldName];
+          });
+          const formData = {
+            facility_id: values.facility_id,
+            organization_id: orgData?.organizations?.id,
+
+            organization_service_id: values.organization_service_id,
+            ...answers,
+          };
+          AddOrder(formData);
           // } else {
-            console.log("No");
+          console.log("No");
           // }
         }}
       >

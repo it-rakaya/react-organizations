@@ -31,7 +31,7 @@ export default function SelectCountry({ name, label, className }) {
         <Select
           options={options}
           name={name}
-          className="border rounded-md"
+          // className="border rounded-xl"
           placeholder={t("Chose Country")}
           noOptionsMessage={() => t("Not Found Data")}
           onBlur={handleBlur}
@@ -40,14 +40,14 @@ export default function SelectCountry({ name, label, className }) {
             control: (baseStyles, state) => ({
               ...baseStyles,
               padding: "10px 0",
-              borderRadius: " 8px",
+              borderRadius: " 12px",
 
               borderColor:
                 !!touched[name] && !!errors[name]
                   ? "red"
                   : state.isFocused
-                  ? "transparent"
-                  : "white",
+                  ? "#d8d8dd"
+                  : "#d8d8dd",
               background: "white",
               margin: "0",
             }),

@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 
 const ResendCode = ({
-  action,
   available,
   timerStart,
   setAvailableResetCode,

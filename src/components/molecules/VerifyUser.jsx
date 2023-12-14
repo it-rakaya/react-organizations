@@ -9,10 +9,10 @@ import CheckCode from "../organisms/checkCode";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
-export default function VerifyUser({ userData, dataValue, setOpen }) {
+export default function VerifyUser({ userData, dataValue, setOpen, sendOTP }) {
   const [valuesForm, setValuesForm] = useState("");
   const { setUser } = useAuth();
-  const [valueOTP , setValueOTP] = useState('')
+  const [valueOTP, setValueOTP] = useState("");
   const { orgData } = UseOrg();
 
   const { mutate: verify_user, isLoading: loadingVerify } = useMutate({
@@ -20,7 +20,7 @@ export default function VerifyUser({ userData, dataValue, setOpen }) {
     endpoint: `verify`,
     onSuccess: (data) => {
       setUser(data?.data?.user);
-      notify("success");
+      notify("success", t("Activation completed successfully"));
       setOpen(false);
     },
 
@@ -32,8 +32,7 @@ export default function VerifyUser({ userData, dataValue, setOpen }) {
   return (
     <div>
       <Formik
-        onSubmit={(values) => {
-          setValuesForm(values);
+        onSubmit={() => {
           verify_user({
             phone: userData?.phone,
             phone_code: userData?.phone_code,
@@ -44,8 +43,15 @@ export default function VerifyUser({ userData, dataValue, setOpen }) {
         initialValues={{ phone: "", phone_code: "", otp: "" }}
       >
         <Form>
-          <div className="flex flex-col w-1/2 m-auto text-center gap-y-5">
-            <CheckCode number={dataValue?.value} valuesForm={valuesForm} setValueOTP={setValueOTP}  />
+          <div className="flex flex-col w-1/2 m-auto text-center ">
+            <CheckCode
+              number={dataValue?.value}
+              valuesForm={valuesForm}
+              setValueOTP={setValueOTP}
+              sendOTP={sendOTP}
+              setValuesForm={setValuesForm}
+              userData={userData}
+            />
             <ButtonComp
               loading={!!loadingVerify}
               type="submit"

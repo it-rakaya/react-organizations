@@ -12,19 +12,19 @@ export default function EmployeeMainData() {
 
   return (
     <div className="">
-      <MainHeader title="اضافة موظف" />
+      <MainHeader title={t('Add Employee')} />
       <div className="grid items-start grid-cols-2 gap-2">
         <div className="flex items-start col-span-12 gap-2 ">
           <div className="w-1/2">
             <BaseInputField
-              label=" اسم الموظف "
+              label={t("Employee Name")}
               placeholder="محمد احمد محمد"
               name="name"
             />
           </div>
           <div className="w-1/2">
             <BaseInputField
-              label=" المسمى الوظيفي "
+              label={t('Job title')}
               placeholder={`${t("Programming")}`}
               name="position"
             />
@@ -33,7 +33,7 @@ export default function EmployeeMainData() {
         <div className="flex items-start col-span-12 gap-2 ">
           <div className="w-full">
             <BaseInputField
-              label=" رقم الهوية "
+              label={t('ID Number')}
               placeholder="10********"
               name="national_id"
               type="number"
@@ -48,6 +48,7 @@ export default function EmployeeMainData() {
               <UploadImage
                 name={`attachments[${item?.id}]`}
                 placeholder={t("please upload photo")}
+                className="!justify-start mt-1 rounded-md text-start"
               />
             </div>
           ))}

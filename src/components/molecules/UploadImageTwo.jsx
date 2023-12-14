@@ -10,7 +10,7 @@ import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
 import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
 
-const UploadImageTwo = ({ name, label, nameValue }) => {
+const UploadImageTwo = ({ name, label, nameValue ,className }) => {
   const { setFieldValue, values } = useFormikContext();
   const theme = useTheme();
 
@@ -76,7 +76,7 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
                   <UploadImageIcon />
                 </div>
               ) : invalidFormat ? (
-                <TermsConditionIcon className={"w-[50px]"} />
+                <TermsConditionIcon className={"w-[50px] !fill-[#F0A44B]"} />
               ) : (
                 <div className="rounded-md">
                   {!isLargeFile && (
@@ -104,7 +104,7 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
           <div className="flex justify-start w-full rounded-md">
             {!isLargeFile && files[0]?.type.startsWith("image/") ? (
               <div className="flex items-center justify-center w-full">
-                <PreviewImage files={files ? files : []} bgMain={bgMain} />
+                <PreviewImage files={files ? files : []} bgMain={bgMain} className={className} />
               </div>
             ) : files[0]?.type.startsWith("application/") ? (
               <a
@@ -113,7 +113,7 @@ const UploadImageTwo = ({ name, label, nameValue }) => {
                 className="w-full"
               >
                 <div
-                  className="flex items-center justify-center w-full gap-2 p-2 cursor-pointer"
+                  className={` ${className} flex items-center justify-center w-full gap-2 p-2 cursor-pointer`}
                   style={{
                     backgroundColor: bgMain,
                   }}

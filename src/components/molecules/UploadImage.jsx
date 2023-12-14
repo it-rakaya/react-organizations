@@ -9,7 +9,8 @@ import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
 import { useTheme } from "@mui/material/styles";
 import IconifyIcon from "../atoms/icons/IconifyIcon";
-const UploadImage = ({ name, placeholder }) => {
+import { hexToRGBA } from "../../utils/helpers";
+const UploadImage = ({ name, placeholder, className }) => {
   const { setFieldValue, errors } = useFormikContext();
   const [files, setFiles] = useState([]);
   const theme = useTheme();
@@ -25,13 +26,7 @@ const UploadImage = ({ name, placeholder }) => {
     },
   });
   const isLargeFile = files?.length && files[0]?.size > 524288000;
-  const hexToRGBA = (hex, opacity) => {
-    hex = hex.replace("#", "");
-    const r = parseInt(hex.substring(0, 2), 16);
-    const g = parseInt(hex.substring(2, 4), 16);
-    const b = parseInt(hex.substring(4, 6), 16);
-    return `rgba(${r},${g},${b},${opacity})`;
-  };
+
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
 
   return (
@@ -52,7 +47,7 @@ const UploadImage = ({ name, placeholder }) => {
             <div
               style={{ cursor: "pointer", lineHeight: "52px" }}
               className={` rounded-[10px]  relative
-              cursor-pointer pr-10 h-[56px] border 
+              cursor-pointer pr-10 ltr:pl-2 h-[56px] border 
               text-[#4c4e6478]  border-[#4c4e6478)] bg-[#ebebee73] w-full ${
                 !!errors[name] && "border-red-500 "
               }`}
@@ -61,11 +56,11 @@ const UploadImage = ({ name, placeholder }) => {
                 ? t("The file was downloaded successfully")
                 : placeholder}
               {!files.length ? (
-                <div className="absolute top-[3px] right-[5px]">
+                <div className="absolute top-[5px] right-[5px]">
                   <UploadImageIcon className={`w-[30px]`} />
                 </div>
               ) : (
-                <div className="absolute top-[3px] right-[5px]">
+                <div className="absolute top-[5px] right-[5px]">
                   <CheckIcon className={`w-[25px]`} />
                 </div>
               )}
@@ -75,7 +70,7 @@ const UploadImage = ({ name, placeholder }) => {
         <div className="flex justify-start w-full rounded-md">
           {!isLargeFile && files[0]?.type.startsWith("image/") ? (
             <div className="flex items-center justify-center w-full">
-              <PreviewImage files={files ? files : []} bgMain={bgMain} />
+              <PreviewImage files={files ? files : []} bgMain={bgMain} className={className} />
             </div>
           ) : files[0]?.type.startsWith("application/") ? (
             <a
@@ -84,13 +79,15 @@ const UploadImage = ({ name, placeholder }) => {
               className="w-full"
             >
               <div
-                className="flex items-center w-full gap-2 p-2 cursor-pointer"
+                className={` ${className} flex items-center w-full gap-2 p-2 cursor-pointer rounded-md mt-1`}
                 style={{
                   backgroundColor: bgMain,
                 }}
               >
                 <IconifyIcon icon={"prime:file-pdf"} className="text-xl" />
-                <span className="text-sm">اضغط هنا لمشاهدة المرفق</span>
+                <span className="text-sm">
+                  {t("Click here to view the attachment")}
+                  </span>
               </div>
             </a>
           ) : (

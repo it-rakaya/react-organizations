@@ -50,39 +50,39 @@ export default function Orders() {
           <Tab
             value="1"
             component="a"
-            label={<h2 className="font-bold text-black">{t("All")} </h2>}
+            label={<h2 className="font-bold !text-black dark:text-white">{t("All")} </h2>}
           />
           <Tab
             value="2"
             component="a"
-            label={<h2 className="font-bold text-black">{t("Accepted")} </h2>}
+            label={<h2 className="font-bold !text-black dark:text-white">{t("Accepted")} </h2>}
           />
           <Tab
             value="3"
             component="a"
             label={
-              <h2 className="font-bold text-black"> {t("In progress")} </h2>
+              <h2 className="font-bold !text-black dark:text-white"> {t("In progress")} </h2>
             }
           />
           <Tab
             value="4"
             component="a"
-            label={<h2 className="font-bold text-black">{t("Canceled")} </h2>}
+            label={<h2 className="font-bold !text-black dark:text-white">{t("Canceled")} </h2>}
           />
           <Tab
             value="5"
             component="a"
-            label={<h2 className="font-bold text-black">{t("Waiting")} </h2>}
+            label={<h2 className="font-bold !text-black dark:text-white">{t("Waiting")} </h2>}
           />
           <Tab
             value="6"
             component="a"
-            label={<h2 className="font-bold text-black">{t("Rejection")} </h2>}
+            label={<h2 className="font-bold !text-black dark:text-white">{t("Rejection")} </h2>}
           />
           <Tab
             value="7"
             component="a"
-            label={<h2 className="font-bold text-black">{t("New")} </h2>}
+            label={<h2 className="font-bold !text-black dark:text-white">{t("New")} </h2>}
           />
         </TabList>
         {isLoading || isRefetching ? (
@@ -185,7 +185,7 @@ export default function Orders() {
             </Grid>
           </>
         ) : (
-          <DataNotFound title={"لايوجد طلبات"} />
+          <DataNotFound title={t("Data not Found")} />
         )}
       </TabContext>
 

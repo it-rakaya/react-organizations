@@ -79,6 +79,7 @@ export default function LoginForm() {
               valuesForm={valuesForm}
               setValueOTP={setValueOTP}
               sendOTP={sendOTP}
+              login={true}
             />
           )}
 

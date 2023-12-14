@@ -73,7 +73,7 @@ export default function MyFacilities() {
               {paginatedFacilities?.map((item) => (
                 <>
                   <Grid item xs={12} sm={4} md={3} key={item?.id}>
-                    <Card sx={{ position: "relative" }}>
+                    <Card sx={{ position: "relative" , height:"190px" }} className="flex flex-col items-center justify-end">
                       <OptionsMenu
                         iconButtonProps={{
                           size: "small",
@@ -188,21 +188,22 @@ export default function MyFacilities() {
       />
       <ModalComp
         open={openSecundModal}
+        hidden
         className="!max-w-[500px]  "
         onClose={() => setSecundModal(true)}
         Children={
-          <div className="flex flex-col items-center justify-center gap-5 p-3">
+          <div className="flex flex-col items-center justify-center gap-4 p-3">
             <CheckIcon className="stroke-contained" />
             <h1 className="font-bold"> تم إضافة موظف بنجاح</h1>
             <ButtonComp
-              className="!w-2/3"
+              className="!w-2/3 !mb-0"
               variant="contained"
               action={() => navigate("/dashboard/employee")}
             >
               الانتقال الى الموظفين
             </ButtonComp>
             <ButtonComp
-              className="!w-2/3 !px-10 !"
+              className="!w-2/3 !px-10 !mt-0"
               variant="outlined"
               action={() => {
                 setSecundModal(false);

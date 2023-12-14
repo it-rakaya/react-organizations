@@ -97,25 +97,7 @@ const Login = () => {
               }}
               className="scroll_main"
             >
-              <Box
-                sx={{
-                  display: "flex",
-                  width: "100%",
-                  alignItems: "start",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{
-                    ml: 2,
-                    lineHeight: 1,
-                    fontWeight: 700,
-                    fontSize: "1.5rem !important",
-                  }}
-                >
-                  {/* {orgData?.organizations?.name_ar} */}
-                </Typography>
-              </Box>
+              
               <Box
                 sx={{
                   display: "flex",

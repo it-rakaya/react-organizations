@@ -8,8 +8,8 @@ import { Outlet } from "react-router-dom";
 import AppBarContent from "../components/organisms/Navbar/AppBarContent";
 import LayoutAppBar from "../components/organisms/Navbar/appBar/LayoutAppBar";
 import { SideBar } from "../components/organisms/Sidebar/Sidebar";
-import { useSettings } from "../hooks/useSettings";
 import { useAuth } from "../context/auth-and-perm/AuthProvider";
+import { useSettings } from "../hooks/useSettings";
 
 export const Root = ({ props }) => {
   const [openSide, setOpenSide] = useState(false);

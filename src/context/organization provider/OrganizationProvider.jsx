@@ -2,19 +2,20 @@
 import { createContext, useContext, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import { UseLocalStorage } from "../../hooks/useLocalStorage";
-import img from "../../assets/refadaLogos/Group-1.png";
+import lightModeLogo from "../../assets/refadaLogos/Group-1.png";
+import darkModeLogo from "../../assets/refadaLogos/Group-2.png";
 import default_image from "../../assets/refadaLogos/default.jpeg";
 const OrgContext = createContext();
 export const OrganizationProvider = ({ children }) => {
   const url = window.location.href;
   // const local = "http://localhost:5173";
   const baseUrl = new URL(url).origin;
-
+  
   // const isDevelopment = true;
   // const origin = isDevelopment ? local : baseUrl;
 
   // const local = "africa-dev.rmcc.sa"
-
+  const savedMode = localStorage.getItem("darkMode");
   const [orgData, setOrgData] = UseLocalStorage("organization");
   // http://localhost:5173/
   const { data, refetch, isRefetching, isSuccess } = useFetch({
@@ -32,8 +33,8 @@ export const OrganizationProvider = ({ children }) => {
   useEffect(() => {
     // refetch();
   }, [refetch]);
-
   useEffect(() => {
+    
     if (orgData?.organizations?.background_image == undefined) {
       setOrgData((prev) => {
         return {
@@ -41,7 +42,7 @@ export const OrganizationProvider = ({ children }) => {
           organizations: {
             ...prev?.organizations,
             background_image: default_image,
-            logo: img,
+            logo: !savedMode ? lightModeLogo : darkModeLogo,
           },
         };
       });
@@ -52,8 +53,16 @@ export const OrganizationProvider = ({ children }) => {
       })
     }
   }, [orgData]);
+
+  const updateLogo = (mode) => {
+    
+    setOrgData((prev)=>{
+      if(orgData.organizations.logo != lightModeLogo && orgData.organizations.logo != darkModeLogo) return prev;
+      return {...prev, organizations:{...prev?.organizations, logo:mode? lightModeLogo : darkModeLogo}}
+    });
+  }
   return (
-    <OrgContext.Provider value={{ orgData, refetch, isRefetching }}>
+    <OrgContext.Provider value={{ orgData, refetch, isRefetching, updateLogo }}>
       {children}
     </OrgContext.Provider>
   );
