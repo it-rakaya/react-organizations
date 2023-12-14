@@ -12,9 +12,6 @@ export default function Profile() {
 
   return (
     <div className="grid grid-cols-12 gap-5">
-      {/* <div className="col-span-3">
-        <OrganizationProfile setEditUser={setEditUser} orgData={orgData} />
-      </div> */}
       <div className="col-span-12">
         <UserProfileHeader
           setEditUser={setEditUser}
