@@ -191,7 +191,10 @@ const AddFacilityPage = () => {
             mt: 4,
             boxShadow: "0 4px 24px -1px #0000001A",
             height: "calc(100vh - 280px)",
+            overflowY:"scroll"
+            
           }}
+          className="scroll_main"
         >
           <CardContent className="h-full pt-0">
             <Formik
@@ -200,7 +203,6 @@ const AddFacilityPage = () => {
               onSubmit={(values) => {
                 addFacility({
                   ...values,
-                  organization_id: orgData?.organizations?.id,
                 });
               }}
             >
@@ -275,7 +277,7 @@ const AddFacilityPage = () => {
                             ></div>
                           ) : (
                             <div className="main_content max-h-[450px] overflow-y-scroll scroll_main">
-                              <p className="text-center ">
+                              <p className="">
                                 بموافقتك على التسجيل بالمنصة فإنك تقر وتقبل
                                 الشروط والأحكام التالية:
                               </p>
@@ -343,6 +345,7 @@ const AddFacilityPage = () => {
 
                               const combinedObject = {
                                 ...values,
+                                organization_id: orgData?.organizations?.id,
                                 ...Object.assign({}, ...attachments),
                               };
                               delete combinedObject.attachments;
