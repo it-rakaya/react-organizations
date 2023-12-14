@@ -23,7 +23,7 @@ export default function AddFacility() {
               label=" رقم السجل التجاري  "
               placeholder="10********"
               name="registration_number"
-              type="number"
+              type="custom"
               maxNum="10"
               required
             />
@@ -54,7 +54,6 @@ export default function AddFacility() {
             <SelectCitiesSaudi
               label={"مصدر السجل التجاري "}
               name="registration_source"
-              // className="mt-[24px]"
               required
             />
           </div>
@@ -63,7 +62,7 @@ export default function AddFacility() {
               label="رقم رخصة مزاولة المهنة الصادرة من أمانة العاصمة المقدسة  "
               placeholder="10********"
               name="license"
-              type="number"
+              type="custom"
               maxNum="10"
               required
             />
@@ -98,7 +97,7 @@ export default function AddFacility() {
               label="شهادة الرقم الضريبي"
               placeholder="***********34"
               name="tax_certificate"
-              type="number"
+              type="custom"
               maxNum="9"
               required
             />
@@ -108,7 +107,7 @@ export default function AddFacility() {
               label="عدد الموظفين بموجب بيانات التامينات الاجتماعية "
               placeholder="20"
               name="employee_number"
-              type="number"
+              type="custom"
               maxNum="3"
               required
             />
@@ -121,7 +120,7 @@ export default function AddFacility() {
               label="عدد الطهاة على راس العمل في المنشاة "
               placeholder="4"
               name="chefs_number"
-              type="number"
+              type="custom"
               maxNum="3"
               required
             />
@@ -131,7 +130,7 @@ export default function AddFacility() {
               label=" مساحة المطبخ ( بالمتر المربع)"
               placeholder="500"
               name="kitchen_space"
-              type="number"
+              type="custom"
               required
             />
           </div>
@@ -169,7 +168,7 @@ export default function AddFacility() {
               label="رقم المبنى"
               placeholder="3654"
               name="building_number"
-              type="number"
+              type="custom"
               maxNum="4"
               required
             />
@@ -181,7 +180,7 @@ export default function AddFacility() {
               label="الرمز البريدي"
               placeholder="568750"
               name="postal_code"
-              type="number"
+              type="custom"
               maxNum="6"
               required
             />
@@ -191,7 +190,7 @@ export default function AddFacility() {
               label="الرقم الفرعي"
               placeholder="698547"
               name="sub_number"
-              type="number"
+              type="custom"
               maxNum="6"
               required
             />

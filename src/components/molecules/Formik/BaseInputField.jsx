@@ -25,14 +25,23 @@ export default function BaseInputField({
   const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
     useFormikContext();
   const [showPassword, setShowPassword] = useState(false);
+
+  // !! type custom == type number ==> but im used this type in other name because in type number is MUI is given is problem
   const handleChangeNumber = (e) => {
     let value = e.target.value;
-    if (type === "number" && value.length > maxNum) {
-      value = value.slice(0, maxNum);
-    }
+    if (type === "custom") {
+      const numericRegex = /^[0-9]+$/;
+      if (!numericRegex.test(value)) {
+        setFieldValue(name, '');
+        return;
+      }
+      if (value.length > maxNum) {
+        value = value.slice(0, maxNum);
+      }
+    }    
     setFieldValue(name, value);
   };
-
+  
   return (
     <div>
       {password ? (
@@ -89,7 +98,7 @@ export default function BaseInputField({
             type={type}
             onBlur={handleBlur}
             InputProps={
-              type === "number"
+              type === "custom"
                 ? {
                     inputProps: { maxLength: 10 },
                     onChange: handleChangeNumber,
