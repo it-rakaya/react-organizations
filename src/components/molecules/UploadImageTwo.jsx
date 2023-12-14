@@ -9,6 +9,7 @@ import IconifyIcon from "../atoms/icons/IconifyIcon";
 import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
 import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
+import { hexToRGBA } from "../../utils/helpers";
 
 const UploadImageTwo = ({ name, label, nameValue ,className }) => {
   const { setFieldValue, values } = useFormikContext();
@@ -45,13 +46,7 @@ const UploadImageTwo = ({ name, label, nameValue ,className }) => {
     },
   });
 
-  const hexToRGBA = (hex, opacity) => {
-    hex = hex.replace("#", "");
-    const r = parseInt(hex.substring(0, 2), 16);
-    const g = parseInt(hex.substring(2, 4), 16);
-    const b = parseInt(hex.substring(4, 6), 16);
-    return `rgba(${r},${g},${b},${opacity})`;
-  };
+
 
   const isLargeFile = files?.length && files[0]?.size > 524288000;
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);

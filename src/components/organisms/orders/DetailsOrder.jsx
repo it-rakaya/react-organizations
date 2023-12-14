@@ -4,8 +4,8 @@ import { Tab } from "@mui/material";
 import { useState } from "react";
 import MainHeader from "../../atoms/MainHeader";
 import FacilityIcon from "../../atoms/icons/FaciltyIcon";
-import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import PreviewImageLink from "../../molecules/PreviewImageLink";
+import PreviewPdf from "../../molecules/PreviewPdf";
 
 export default function DetailsOrder({ data }) {
   const [value, setValue] = useState("1");
@@ -283,22 +283,15 @@ export default function DetailsOrder({ data }) {
             </div>
             {data?.facility?.attachmentUrl?.map((item) => (
               <div className="flex items-center " key={item?.id}>
-              <p className="font-bold text-contained"> {item?.label}:</p>
-              {!item?.value?.toLowerCase().endsWith(".pdf") ? (
-                <p>
-                  {/* <img
-                    className="w-[200px] h-[200px] rounded-xl"
-                    src={item?.value}
-                    alt=""
-                  /> */}
-                  <PreviewImageLink url={item?.value} />
-                </p>
-              ) : (
-                <a href={item?.value} download={item?.value} className="">
-                  <IconifyIcon icon={"mdi:file-pdf-box"} className="text-5xl" />
-                </a>
-              )}
-            </div>
+                <p className="font-bold text-contained"> {item?.label}:</p>
+                {!item?.value?.toLowerCase().endsWith(".pdf") ? (
+                  <p>
+                    <PreviewImageLink url={item?.value} />
+                  </p>
+                ) : (
+                  <PreviewPdf item={item?.value} />
+                )}
+              </div>
             ))}
           </div>
         </TabPanel>
