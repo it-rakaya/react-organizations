@@ -200,7 +200,7 @@ export default function RegisterForm() {
                   </li>
                   <li className="my-2">
                     يخضع المسجل في المنصة لأحكامها وفي حالة تحديثها أو تعديلها
-                    سيتم إشعاركم بذلك.
+                    سيتم إشعارك بذلك.
                   </li>
                 </ul>
               </div>

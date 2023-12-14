@@ -13,7 +13,6 @@ export default function CheckCode({
   userData,
   login
 }) {
-  console.log("🚀 ~ file: index.jsx:14 ~ valuesForm:", valuesForm);
   const [values, setValues] = useState(["", "", "", ""]);
   const [availableResetCode, setAvailableResetCode] = useState(false);
   const [timerStarted, setTimerStarted] = useState(true);

@@ -15,7 +15,6 @@ export const Root = ({ props }) => {
   const [openSide, setOpenSide] = useState(false);
   const [, setShowOverlay] = useState(false);
   const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
-  console.log("🚀 ~ file: Root.jsx:18 ~ Root ~ isSidebarCollapsed:", isSidebarCollapsed)
   const navigate = useNavigate();
   const [changeStyle, setChangeStyle] = useState(false);
   const { user } = useAuth();
@@ -61,7 +60,6 @@ export const Root = ({ props }) => {
       };
     }
   }, []);
-  console.log("user?.is_verified",user?.is_verified)
   const { settings, saveSettings, contentWidth } = useSettings();
 
   const VerticalLayoutWrapper = styled("div")({

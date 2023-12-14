@@ -7,7 +7,6 @@ export default function StepTwo() {
     queryKey: ["attachments_facilities"],
 
   });
-  console.log("🚀 ~ file: StepTwo.jsx:10 ~ StepTwo ~ attachments_facilities:", attachments_facilities)
 
   return (
     <div className="grid grid-cols-1 gap-10 mt-3 md:grid-cols-3 xl:grid-cols-4">

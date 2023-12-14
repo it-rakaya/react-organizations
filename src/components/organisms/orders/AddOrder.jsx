@@ -51,9 +51,7 @@ export default function AddOrder({ setOpenAddFaculty }) {
             ...answers,
           };
           AddOrder(formData);
-          // } else {
-          console.log("No");
-          // }
+        
         }}
       >
         {({ errors, values }) => (
