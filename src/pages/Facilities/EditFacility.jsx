@@ -27,6 +27,7 @@ import AddFacility from "../../components/organisms/MyFacilities/AddFacility";
 import StepTwo from "../../components/organisms/MyFacilities/StepTwo";
 import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
 const steps = [
   {
@@ -43,6 +44,8 @@ const EditFacility = () => {
   const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
+  const { orgData } = UseOrg();
+
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -65,7 +68,7 @@ const EditFacility = () => {
 
   const { mutate: addFacility, isPending: loadingAddFacility } = useMutate({
     mutationKey: [`add_facilities`],
-    endpoint: `facilities`,
+    endpoint: `facilities/${id}`,
     onSuccess: () => {
       notify("success");
       navigate("/dashboard/facilities");
@@ -298,72 +301,109 @@ const EditFacility = () => {
                         </Grid>
                       </div>
                       <ModalComp
-                        open={open}
-                        className="!max-w-[500px]  "
-                        onClose={() => setOpen(false)}
-                        Children={
-                          <div className="pt-10 !flex gap-3 !items-center !justify-center !flex-col">
-                            <div>
-                              <TermsConditionIcon />
-                            </div>
-                            <h2>{t("Terms and Conditions")}</h2>
-
-                            <p>
-                              {t(
-                                "I confirm that all data is correct. I confirm that all data is correct"
-                              )}
-                            </p>
-                            <FormControl>
-                              <RadioGroup
-                                aria-labelledby="demo-controlled-radio-buttons-group"
-                                name="controlled-radio-buttons-group"
-                              >
-                                <FormControlLabel
-                                  value="female"
-                                  control={
-                                    <Radio
-                                      onClick={() => setChecked(!checked)}
-                                      checked={checked}
-                                      className="pt-0 pb-0"
-                                    />
-                                  }
-                                  label={t(
-                                    "I have read all terms and conditions"
-                                  )}
-                                />
-                              </RadioGroup>
-                            </FormControl>
-                            <ButtonComp
-                              type={"submit"}
-                              action={() => {
-                                const validAttachments = values?.attachments
-                                  .map((file, index) => ({ index, file }))
-                                  .filter(
-                                    (item) => typeof item.file !== "undefined"
-                                  );
-                                const attachments = validAttachments.map(
-                                  (item) => ({
-                                    [`attachments[${item?.index}]`]: item?.file,
-                                  })
-                                );
-
-                                const combinedObject = {
-                                  ...values,
-                                  ...Object.assign({}, ...attachments),
-                                };
-                                delete combinedObject.attachments;
-                                addFacility(combinedObject);
-                              }}
-                              loading={loadingAddFacility}
-                              className={"w-auto mt-1"}
-                              disabled={!checked}
-                              variant="contained"
-                            >
-                              {t("Save")}
-                            </ButtonComp>
+                      open={open}
+                      className="!max-w-[500px]  "
+                      onClose={() => setOpen(false)}
+                      Children={
+                        <div className="pt-10 !flex gap-3 !items-center !justify-center !flex-col">
+                          <div>
+                            <TermsConditionIcon className={"!fill-[#F0A44B]"} />
                           </div>
-                        }
-                      />
+                          <h2>{t("Terms and Conditions")}</h2>
+
+                          {orgData?.organizations?.policies ? (
+                            <div
+                              className="main_content max-h-[450px] overflow-y-scroll scroll_main"
+                              dangerouslySetInnerHTML={{
+                                __html: orgData?.organizations?.policies,
+                              }}
+                            ></div>
+                          ) : (
+                            <div className="main_content max-h-[450px] overflow-y-scroll scroll_main">
+                              <p className="">
+                                بموافقتك على التسجيل بالمنصة فإنك تقر وتقبل
+                                الشروط والأحكام التالية:
+                              </p>
+                              <ul className="text-start">
+                                <li className="my-2">
+                                  جميع البيانات والمرفقات المدخلة من قبلكم صحيحة
+                                  ومحدثة ولا تتحمل المنصة أدنى مسؤولية في حالة
+                                  كونها غير صحيحة أو غير مطابقة.
+                                </li>
+                                <li className="my-2">
+                                  في حالة إرفاق ملف في غير محله لغرض مِلء
+                                  المتطلبات لن يتم النظر إليه ولن يتم قبولكم في
+                                  المنصة.
+                                </li>
+                                <li className="my-2">
+                                  يجب أن يكون مستخدم المنصة يقدم خدمات الإعاشة
+                                  ومصرح له بذلك.
+                                </li>
+                                <li className="my-2">
+                                  يحق للمنصة الإطلاع على البيانات المرفقة من
+                                  قبلكم وحفظها لديها لأغراض تطوير المنصة.
+                                </li>
+                                <li className="my-2">
+                                  يخضع المسجل في المنصة لأحكامها وفي حالة
+                                  تحديثها أو تعديلها سيتم إشعارك بذلك.
+                                </li>
+                              </ul>
+                            </div>
+                          )}
+                          <FormControl>
+                            <RadioGroup
+                              aria-labelledby="demo-controlled-radio-buttons-group"
+                              name="controlled-radio-buttons-group"
+                              // value={value}
+                              // onChange={handleChange}
+                            >
+                              <FormControlLabel
+                                value="female"
+                                control={
+                                  <Radio
+                                    onClick={() => setChecked(!checked)}
+                                    checked={checked}
+                                    className="pt-0 pb-0"
+                                  />
+                                }
+                                label={t(
+                                  "I have read all terms and conditions"
+                                )}
+                              />
+                            </RadioGroup>
+                          </FormControl>
+                          <ButtonComp
+                            type={"submit"}
+                            action={() => {
+                              const validAttachments = values?.attachments
+                                .map((file, index) => ({ index, file }))
+                                .filter(
+                                  (item) => typeof item.file !== "undefined"
+                                );
+                              const attachments = validAttachments.map(
+                                (item) => ({
+                                  [`attachments[${item?.index}]`]: item?.file,
+                                })
+                              );
+
+                              const combinedObject = {
+                                ...values,
+                                organization_id: orgData?.organizations?.id,
+                                ...Object.assign({}, ...attachments),
+                              };
+                              delete combinedObject.attachments;
+                              addFacility(combinedObject);
+                            }}
+                            loading={loadingAddFacility}
+                            className={"w-auto mt-1"}
+                            disabled={!checked}
+                            variant="contained"
+                          >
+                            {t("Save")}
+                          </ButtonComp>
+                        </div>
+                      }
+                    />
                     </Form>
                   </>
                 )}

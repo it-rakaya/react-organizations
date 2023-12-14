@@ -10,13 +10,23 @@ import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
 import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
 import { hexToRGBA } from "../../utils/helpers";
+import PreviewImageLink from "./PreviewImageLink";
+import PreviewPdf from "./PreviewPdf";
 
-const UploadImageTwo = ({ name, label, nameValue ,className }) => {
+const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
+  const updateImage = {
+    value: value,
+    type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
+    update: true,
+  };
+
+
+
   const { setFieldValue, values } = useFormikContext();
   const theme = useTheme();
 
   const [files, setFiles] = useState(
-    values?.attachments ? [values?.attachments[nameValue]] : []
+    values?.attachments ? [values?.attachments[nameValue]] : value ? [updateImage] : []
   );
 
   const [invalidFormat, setInvalidFormat] = useState(false);
@@ -46,11 +56,9 @@ const UploadImageTwo = ({ name, label, nameValue ,className }) => {
     },
   });
 
-
-
   const isLargeFile = files?.length && files[0]?.size > 524288000;
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
-
+  console.log("files[0]?.file", files[0]?.file);
   return (
     <div className="relative ">
       <Box sx={files?.length ? { height: "" } : {}}>
@@ -97,11 +105,21 @@ const UploadImageTwo = ({ name, label, nameValue ,className }) => {
             </div>
           </div>
           <div className="flex justify-start w-full rounded-md">
-            {!isLargeFile && files[0]?.type.startsWith("image/") ? (
+            {!isLargeFile &&
+            files[0]?.type?.startsWith("image/") &&
+            files[0]?.path ? (
               <div className="flex items-center justify-center w-full">
-                <PreviewImage files={files ? files : []} bgMain={bgMain} className={className} />
+                <PreviewImage
+                  files={files ? files : []}
+                  bgMain={bgMain}
+                  className={className}
+                />
               </div>
-            ) : files[0]?.type.startsWith("application/") ? (
+            ) : files[0]?.type?.startsWith("image/") && updateImage?.value ? (
+              <PreviewImageLink url={files[0]?.value} />
+            ) : 
+            files[0]?.type?.startsWith("application/") 
+            && files[0]?.name ? (
               <a
                 href={URL.createObjectURL(files[0])}
                 download={files[0].name}
@@ -117,6 +135,10 @@ const UploadImageTwo = ({ name, label, nameValue ,className }) => {
                   <span className="text-sm">اضغط هنا لمشاهدة المرفق</span>
                 </div>
               </a>
+            ) : files[0]?.type?.startsWith("application/") && updateImage?.value ? (
+              <div className="w-full">
+                <PreviewPdf item={files[0]} />
+              </div>
             ) : (
               ""
             )}

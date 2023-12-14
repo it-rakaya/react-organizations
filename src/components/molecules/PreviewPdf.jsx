@@ -11,7 +11,7 @@ function PreviewPdf({ item }) {
 
   return (
     <div>
-      <a href={item?.value} download={item?.value} className="">
+      <a href={item?.value} download={item?.value} className="" target="_blank" rel="noreferrer">
         <div
           className={` flex items-center w-full  p-1  cursor-pointer rounded-md  `}
           style={{
