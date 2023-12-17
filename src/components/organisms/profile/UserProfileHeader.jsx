@@ -2,8 +2,10 @@
 
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import defaultImage from "../../../../public/profile pic1.png";
+import IconifyIcon from "../../atoms/icons/IconifyIcon";
+import { t } from "i18next";
 
 const ProfilePicture = styled("img")(({ theme }) => ({
   width: 150,
@@ -17,75 +19,56 @@ const ProfilePicture = styled("img")(({ theme }) => ({
   borderRadius: "50%",
 }));
 
-const UserProfileHeader = ({ user }) => {
-  const theme = useTheme();
-  const bgDynamic = theme?.palette?.primary?.main
-    ? theme?.palette?.primary?.main
-    : "#9f9685";
+const UserProfileHeader = ({ user , setEditUser }) => {
 
   return (
-    <div style={{ backgroundColor: bgDynamic }}>
-      <Card className="flex justify-center bg-transparent shadow-none">
+    <div>
+      <Card className="flex flex-col items-center justify-center bg-transparent shadow-none">
         <ProfilePicture
           src={
             (user?.attachmentUrl?.length && user?.attachmentUrl[1]?.value) ||
             defaultImage
           }
           alt="profile-picture"
-          style={{ backgroundColor: theme?.palette?.primary?.main }}
         />
+        <div className="flex items-center gap-2 mt-2" >
+          <h1 className="text-3xl font-extrabold ">{user?.name}</h1>
+          <IconifyIcon icon={"bxs:edit"} className='w-[30px] h-[30px] cursor-pointer'  onClick={()=>setEditUser(true)} />
+        </div>
       </Card>
-      <div className="grid grid-cols-2 p-5 m-20 bg-white rounded shadow ">
+      <div className="grid grid-cols-2 p-5 m-20 bg-white shadow-lg rounded-2xl ">
         <div>
           <div className="flex gap-2 mt-4">
-            {/* <IconifyIcon icon="ant-design:phone-outlined" /> */}
             <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p>رقم الهاتف :{user?.phone}</p>
+              <p> {t('phone number')} :{user?.phone}</p>
             </Typography>
           </div>
           <div className="flex gap-2 mt-4">
-            {/* <IconifyIcon icon="ic:outline-email" /> */}
             <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p>البريد الالكتروني :{user?.email}</p>
+              <p>{t("Email")} :{user?.email}</p>
             </Typography>
           </div>
           <div className="flex gap-2 mt-4">
-            {/* <IconifyIcon icon="entypo:v-card" /> */}
             <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p> الهوية الوطنية:{user?.national_id}</p>
-            </Typography>
-          </div>
-          <div className="flex gap-2 mt-4">
-            {/* <IconifyIcon icon="solar:card-2-outline" /> */}
-            <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p> تاريخ انتهاء الهوية الوطنية:{user?.national_id_expired}</p>
+              <p>{t("Birthday")} :{user?.email}</p>
             </Typography>
           </div>
         </div>
 
         <div>
           <div className="flex gap-2 mt-4">
-            {/* <IconifyIcon icon="ant-design:phone-outlined" /> */}
             <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p>رقم الهاتف :{user?.phone}</p>
+              <p> {t("National ID")}:{user?.national_id}</p>
             </Typography>
           </div>
           <div className="flex gap-2 mt-4">
-            {/* <IconifyIcon icon="ic:outline-email" /> */}
             <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p>البريد الالكتروني :{user?.email}</p>
+              <p> {t("National ID Expired")}   :{user?.national_id_expired}</p>
             </Typography>
           </div>
           <div className="flex gap-2 mt-4">
-            {/* <IconifyIcon icon="entypo:v-card" /> */}
             <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p> الهوية الوطنية:{user?.national_id}</p>
-            </Typography>
-          </div>
-          <div className="flex gap-2 mt-4">
-            {/* <IconifyIcon icon="solar:card-2-outline" /> */}
-            <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p> تاريخ انتهاء الهوية الوطنية:{user?.national_id_expired}</p>
+              <p> {t("Country")}   :{user?.nationality_name}</p>
             </Typography>
           </div>
         </div>

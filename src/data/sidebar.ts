@@ -58,4 +58,10 @@ export const sideBarItems: MenuItem_TP[] = [
     icon: BiDetail,
     link: "/dashboard/orders",
   },
+  {
+    id: crypto.randomUUID(),
+    label: `${"Other"}`,
+    icon: BiDetail,
+    link: "/dashboard/other",
+  },
 ];

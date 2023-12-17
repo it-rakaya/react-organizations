@@ -114,6 +114,14 @@
   "Name":"الاسم",
   "Click here to view the attachment":"اضغط هنا لمشاهدة المرفق",
   "ID Number":"رقم الهوية",
+  "phone number":"رقم الجوال",
+  "Email":"البريد الالكتروني",
+  "Birthday":"تاريخ الميلاد",
+  "National ID":"رقم الهوية",
+  "National ID Expired":"تاريخ انتهاء الهوية",
+  "Country":"الدولة",
+  "Facility Name":"اسم المنشأة",
+  "Other":"اخرى",
   
   "landing": {
     "organizationName": "اسم المنظمة",

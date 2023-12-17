@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import { UseOrg } from "../context/organization provider/OrganizationProvider";
 import AddFacilityPage from "../pages/Facilities/AddFacilityPage";
 import EditFacility from "../pages/Facilities/EditFacility";
+import Other from "../pages/other/Other";
 const Home = lazy(() => import("../pages/home/Home"));
 
 export const AllRoutesProvider = () => {
@@ -49,6 +50,8 @@ export const AllRoutesProvider = () => {
         <Route path="/dashboard/employee" element={<MyEmployees />} />
         <Route path="/dashboard/orders" element={<Orders />} />
         <Route path="/dashboard/profile" element={<Profile />} />
+        <Route path="/dashboard/other" element={<Other />} />
+
       </Route>
       <Route
         errorElement={<ErrorPage />}

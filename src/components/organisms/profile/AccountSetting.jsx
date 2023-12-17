@@ -72,7 +72,7 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
               />
             </div>
             <div>
-              <SelectCountry label={"الدوله"} name={"nationality"} />
+              <SelectCountry label={" "} name={"nationality"} />
             </div>
             <div className="flex flex-col col-span-1 gap-3 ">
               <DatePickerComp name="birthday" label={"تاريخ  الميلاد"} />
@@ -96,10 +96,7 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
             </div>
 
             <div className="flex justify-end col-span-2">
-              <ButtonComp
-                className="w-auto"
-                loading={isPending}
-              >
+              <ButtonComp className="w-auto" loading={isPending}>
                 تعديل
               </ButtonComp>
             </div>
