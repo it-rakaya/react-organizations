@@ -72,6 +72,8 @@ export default function AddEmployee({ facultyID, setSecundModal }) {
               type="submit"
               variant="contained"
               className=" !rounded-md  !w-auto  mt-5"
+              // disable 
+              disabled={""}
             >
               {t("Add")}
             </ButtonComp>

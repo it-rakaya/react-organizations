@@ -24,21 +24,21 @@ export default function PreviewImageLink({  url }) {
           <div className="flex flex-col items-center justify-center w-full">
             <div className="w-full rounded-xl">
               <div
-                className="flex items-center justify-center w-full gap-2 p-2 cursor-pointer "
-                style={{
-                  backgroundColor: bgMain,
-                }}
+                className="flex items-center justify-center w-full gap-2 p-2 rounded-md cursor-pointer "
+                // style={{
+                //   backgroundColor: bgMain,
+                // }}
               >
                 {/* <PreviewIcon stroke="#292D32" /> */}
                 <IconifyIcon 
                     icon={"iconamoon:file-image-light"}
-                    className="text-xl" />
-
+                    className="text-[1.6rem]" />
+{/* 
                 <span className="text-sm">   
                 {t("Click here to view the attachment")}
 
                 
-                </span>
+                </span> */}
               </div>
             </div>
           </div>

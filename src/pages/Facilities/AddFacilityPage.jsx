@@ -30,10 +30,13 @@ import { UseOrg } from "../../context/organization provider/OrganizationProvider
 
 const steps = [
   {
-    title: "بيانات المنشأة",
+    title: "1. بيانات المنشأة",
+    subtitle: "ادخل بيانات منشاتك",
   },
   {
     title: "تحميل المستندات",
+    subtitle: "ارفق مستندات منشاتك",
+
   },
 ];
 
@@ -149,6 +152,7 @@ const AddFacilityPage = () => {
       case 0:
         return (
           <Fragment>
+        
             <AddFacility />
           </Fragment>
         );
@@ -177,6 +181,9 @@ const AddFacilityPage = () => {
                         <Typography className={`font-bold  `}>
                           {step.title}
                         </Typography>
+                        <Typography variant="caption" component="p">
+                          {step.subtitle}
+                        </Typography>
                       </div>
                     </div>
                   </StepLabel>
@@ -191,8 +198,7 @@ const AddFacilityPage = () => {
             mt: 4,
             boxShadow: "0 4px 24px -1px #0000001A",
             height: "calc(100vh - 280px)",
-            overflowY:"scroll"
-            
+            overflowY: "scroll",
           }}
           className="scroll_main"
         >
@@ -222,8 +228,8 @@ const AddFacilityPage = () => {
                           justifyContent: "end",
                           gap: "5px",
                         }}
-                        mt={10}
-                        className="fixed bottom-[12px] left-[35px]"
+                        // mt={20}
+                        className="fixed bottom-[5px] left-[23px] "
                       >
                         <ButtonComp
                           size="large"

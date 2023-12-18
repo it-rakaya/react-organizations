@@ -17,7 +17,6 @@ function CardOrder({
 }) {
   const Canceled = 5;
   const approved = 3;
-  const New = 6;
   const rejected = 4;
 
   const theme = useTheme();

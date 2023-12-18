@@ -8,7 +8,7 @@ function Loading({ title }) {
 
   return (
     <div
-      className="absolute flex flex-col items-center justify-center "
+      className="absolute flex flex-col items-center justify-center z-[999999999999]"
       style={{ left: "calc(50% - 100px )" , top:"calc(50% - 50px)" }}
     >
       <div>

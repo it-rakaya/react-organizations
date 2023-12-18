@@ -1,18 +1,15 @@
-// ** React Imports
+/* eslint-disable react/display-name */
+/* eslint-disable react/prop-types */
 import { forwardRef } from 'react'
-
-// ** MUI Imports
 import MuiAvatar from '@mui/material/Avatar'
 import { lighten, useTheme } from '@mui/material/styles'
 import UseBgColor from '../../../../hooks/useBgColor'
 
-// ** Hooks Imports
+
 
 const AvatarComp = forwardRef((props, ref) => {
-  // ** Props
-  const { sx, src, skin, color } = props
+  const { sx, src, skin, color , className } = props
 
-  // ** Hook
   const theme = useTheme()
   const bgColors = UseBgColor()
 
@@ -41,7 +38,7 @@ const AvatarComp = forwardRef((props, ref) => {
     info: getAvatarStyles(skin, 'info')
   }
 
-  return <MuiAvatar ref={ref} {...props} sx={!src && skin && color ? Object.assign(colors[color], sx) : sx} />
+  return <MuiAvatar ref={ref} {...props} sx={!src && skin && color ? Object.assign(colors[color], sx) : sx}  className={className}/>
 })
 AvatarComp.defaultProps = {
   skin: 'filled',

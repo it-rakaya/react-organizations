@@ -1,58 +1,150 @@
-import Avatar from "@mui/material/Avatar";
+import { mdiAccount } from "@mdi/js";
+import Icon from "@mdi/react";
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
 import { t } from "i18next";
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import Table from "../../components/Table/Table";
 import MainHeader from "../../components/atoms/MainHeader";
-import ModalComp from "../../components/atoms/ModalComp";
-import Loading from "../../components/molecules/Loading";
-import DataNotFound from "../../components/molecules/NotFound";
-import Paginate from "../../components/molecules/Paginate";
-import Search from "../../components/molecules/Search";
-import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
-import DetailsEmployee from "../../components/templates/myEmployee/DetailsEmployee";
 import useFetch from "../../hooks/useFetch";
-import { useTheme } from "@mui/material/styles";
+import PreviewImageLink from "../../components/molecules/PreviewImageLink";
+import PreviewPdf from "../../components/molecules/PreviewPdf";
 
 export default function MyEmployees() {
-  const [open, setOpen] = useState(false);
-  const [detailsItem, setDetailsItem] = useState();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const theme = useTheme();
-  const pageSize = 8;
-
-  const {
-    data: employees,
-    isLoading,
-    isRefetching,
-  } = useFetch({
+  const { data: employees } = useFetch({
     endpoint: `facility-employees`,
     queryKey: ["facility_employees"],
   });
 
-  const filteredEmployee = employees?.employees?.filter((item) =>
-    item?.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-  const startIndex = (currentPage - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
-  const paginateEmployee = filteredEmployee?.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(filteredEmployee?.length / pageSize);
-  const handlePageChange = (event, value) => {
-    setCurrentPage(value);
-  };
+  const LinkStyled = styled(Link)(({ theme }) => ({
+    fontWeight: 600,
+    fontSize: "1rem",
+    cursor: "pointer",
+    textDecoration: "none",
+    color: theme.palette.text.secondary,
+    "&:hover": {
+      color: theme.palette.primary.main,
+    },
+  }));
+
+  const columns = [
+    {
+      flex: 0.2,
+      minWidth: 230,
+      field: "name",
+      headerName: t("name"),
+      renderCell: ({ row }) => {
+        const { name } = row;
+
+        return (
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "5px",
+                // flexDirection: "column",
+              }}
+            >
+              <Icon path={mdiAccount} size={1} />
+
+              <LinkStyled href="/apps/user/view/overview/">{name}</LinkStyled>
+              {/* <Typography noWrap variant='caption'>
+              {`@${name}`}
+            </Typography> */}
+            </Box>
+          </Box>
+        );
+      },
+    },
+    {
+      flex: 0.2,
+      minWidth: 250,
+      field: "facility_name",
+      headerName: t("facility name"),
+      renderCell: ({ row }) => {
+        return (
+          <Typography noWrap variant="body2">
+            {row.facility_name}
+          </Typography>
+        );
+      },
+    },
+    {
+      flex: 0.15,
+      field: "national_id",
+      minWidth: 150,
+      headerName: t("national_id"),
+      renderCell: ({ row }) => {
+        return (
+          <>
+            <Typography
+              noWrap
+              sx={{ color: "text.secondary", textTransform: "capitalize" }}
+            >
+              {row.national_id}
+            </Typography>
+          </>
+        );
+      },
+    },
+    {
+      flex: 0.15,
+      minWidth: 120,
+      headerName: t("position"),
+      field: "position",
+      renderCell: ({ row }) => {
+        return (
+          <Typography
+            variant="subtitle1"
+            noWrap
+            sx={{ textTransform: "capitalize" }}
+          >
+            {row.position}
+          </Typography>
+        );
+      },
+    },
+    {
+      flex: 0.15,
+      minWidth: 120,
+      headerName: t("attachment"),
+      field: "",
+      renderCell: ({ row }) => {
+        return (
+          <Typography
+            variant="subtitle1"
+            noWrap
+            sx={{ textTransform: "capitalize", display: "flex", gap: "10px" }}
+          >
+            {row?.attachmentUrl.map((item) => (
+              <div className="flex items-center " key={item?.id}>
+                {!item?.value?.toLowerCase().endsWith(".pdf") ? (
+                  <p>
+                    <PreviewImageLink url={item?.value} />
+                  </p>
+                ) : (
+                  <PreviewPdf item={item} />
+                )}
+              </div>
+            ))}
+          </Typography>
+        );
+      },
+    },
+    // {
+    //   flex: 0.1,
+    //   minWidth: 110,
+    //   field: "status",
+    //   headerName: "Status",
+    // },
+  ];
 
   return (
     <div>
       <MainHeader title={t("Employee")} />
-      <Search
-        setSearchQuery={setSearchQuery}
-        placeholder={t("Search Employee...")}
-      />
-      <div className="flex flex-col items-center justify-between h-[65vh]">
+      {/* <div className="flex flex-col items-center justify-between h-[65vh]">
         {isLoading || isRefetching ? (
           <Loading />
         ) : employees?.employees.length ? (
@@ -149,7 +241,14 @@ export default function MyEmployees() {
         ) : (
           <DataNotFound title={t("Not Found Employee")} />
         )}
-      </div>
+      </div> */}
+      <Table
+        columns={columns || []}
+        rows={employees?.employees || []}
+        placeholderSearch={t("search in employee")}
+        textButton={t("Add Employee")}
+        // actionButton={}
+      />
     </div>
   );
 }
