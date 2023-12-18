@@ -15,7 +15,7 @@ function Landing() {
 
   useEffect(()=>{
     setNews(["landing.rights"])
-    if(orgData?.organizations?.news)
+        if(orgData?.organizations?.news)
     orgData?.organizations?.news.map((val)=>{
       setNews(prev => [...prev, val.new]);
     })
@@ -80,6 +80,7 @@ function Landing() {
           className={`flex items-center ${
             news.length <= 1 ? "justify-center" : "justify-between"
           } w-screen`}
+          
         >
           {news.map((val, index) => {
             return (
@@ -100,6 +101,3 @@ function Landing() {
 }
 
 export default Landing;
-const news = [
-  "landing.rights",
-];

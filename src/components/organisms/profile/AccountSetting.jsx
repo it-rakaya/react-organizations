@@ -10,12 +10,7 @@ import PhoneInput2 from "../../molecules/Formik/PhoneInput2";
 import SelectCountry from "../../molecules/SelectCountry";
 import UploadImage from "../../molecules/UploadImage";
 
-export default function AccountSetting({
-  userData,
-  refetch,
-  setEditUser,
-  setUser,
-}) {
+export default function AccountSetting({ userData, setEditUser, setUser }) {
   const initialValue = {
     name: userData?.name,
     national_id: userData?.national_id,
@@ -23,7 +18,6 @@ export default function AccountSetting({
     phone_code: userData?.phone_code,
     email: userData?.email,
     nationality: userData?.nationality,
-    nationality_name: userData?.nationality_name,
     birthday: userData?.birthday,
     photo: userData?.photo,
     national_id_expired: userData?.national_id_expired,
@@ -37,7 +31,6 @@ export default function AccountSetting({
       notify("success", "تم التعديل بنجاح");
       setEditUser(false);
       setUser(data?.data?.user);
-      // refetch()
     },
     onError: (err) => {
       notify("error", err?.response?.data.message);
@@ -52,7 +45,7 @@ export default function AccountSetting({
         onSubmit={(value) => UpdateUser(value)}
       >
         <Form>
-          <div className="grid items-center grid-cols-2 gap-2 !overflow-y-scroll !shadow-none h-[27rem]  scroll_main m-3 p-5">
+          <div className="grid items-start grid-cols-2 gap-2 !overflow-y-scroll !shadow-none h-[27rem]  scroll_main m-3 p-5">
             <div>
               <BaseInputField
                 label="الاسم الكامل "
@@ -79,42 +72,31 @@ export default function AccountSetting({
               />
             </div>
             <div>
-              <SelectCountry label={"الدوله"} name={"nationality"} />
+              <SelectCountry label={" "} name={"nationality"} />
             </div>
-            <div className="flex flex-col col-span-1 gap-3 my-3">
+            <div className="flex flex-col col-span-1 gap-3 ">
               <DatePickerComp name="birthday" label={"تاريخ  الميلاد"} />
             </div>
 
-            {/* <div>
-              <UploadImage name="photo" />
-            </div> */}
-
-            <div className="flex flex-col col-span-1 gap-3 my-3">
+            <div className="flex flex-col col-span-1 gap-3 ">
               <DatePickerComp
                 name="national_id_expired"
                 label={"تاريخ انتهاء الاقامه"}
               />
             </div>
             <div>
-            {userData?.attachments?.map((item) => (
-              <UploadImage
-                key={item.id}
-                name={`attachments[${item?.id}]`}
-                label={item?.attachment_label?.placeholder}
-                // id={item?.id}
-                placeholder={item?.attachment_label?.placeholder}
-              />
-            ))}
-          </div>
-            {/* <div>
-              <SelectOrganizations name={"favourit_organizations"} />
-            </div> */}
+              {userData?.attachments?.map((item) => (
+                <UploadImage
+                  key={item.id}
+                  name={`attachments[${item?.id}]`}
+                  label={item?.attachment_label?.placeholder}
+                  placeholder={item?.attachment_label?.placeholder}
+                />
+              ))}
+            </div>
+
             <div className="flex justify-end col-span-2">
-              <ButtonComp
-                className="w-auto"
-                loading={isPending}
-                // action={() => refetch}
-              >
+              <ButtonComp className="w-auto" loading={isPending}>
                 تعديل
               </ButtonComp>
             </div>

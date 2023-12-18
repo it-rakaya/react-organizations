@@ -22,7 +22,7 @@ function RegistrationMainData() {
         label=" رقم الهوية "
         placeholder="10********"
         name="national_id"
-        type="number"
+        type="custom"
         maxNum={10}
       />
       <PhoneInput2 name="phone" label="رقم الهاتف" />

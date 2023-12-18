@@ -4,6 +4,7 @@ import Fancybox from "./Fancybox";
 import IconifyIcon from "../atoms/icons/IconifyIcon";
 
 export default function PreviewImage({ files, bgMain, className }) {
+  console.log("🚀 ~ file: PreviewImage.jsx:7 ~ PreviewImage ~ files:", files)
   // Extract the URLs from the files array
   const imageUrls = files?.map((file) => URL.createObjectURL(file));
 

@@ -30,10 +30,13 @@ import { UseOrg } from "../../context/organization provider/OrganizationProvider
 
 const steps = [
   {
-    title: "بيانات المنشأة",
+    title: "1. بيانات المنشأة",
+    subtitle: "ادخل بيانات منشاتك",
   },
   {
     title: "تحميل المستندات",
+    subtitle: "ارفق مستندات منشاتك",
+
   },
 ];
 
@@ -58,7 +61,7 @@ const AddFacilityPage = () => {
     mutationKey: [`add_facilities`],
     endpoint: `facilities`,
     onSuccess: () => {
-      notify("success");
+      notify("success", t("A facility has been added successfully"));
       navigate("/dashboard/facilities");
     },
     onError: (err) => {
@@ -149,6 +152,7 @@ const AddFacilityPage = () => {
       case 0:
         return (
           <Fragment>
+        
             <AddFacility />
           </Fragment>
         );
@@ -177,6 +181,9 @@ const AddFacilityPage = () => {
                         <Typography className={`font-bold  `}>
                           {step.title}
                         </Typography>
+                        <Typography variant="caption" component="p">
+                          {step.subtitle}
+                        </Typography>
                       </div>
                     </div>
                   </StepLabel>
@@ -191,8 +198,9 @@ const AddFacilityPage = () => {
             mt: 4,
             boxShadow: "0 4px 24px -1px #0000001A",
             height: "calc(100vh - 280px)",
+            overflowY: "scroll",
           }}
-          className="!overflow-y-scroll scroll_main  px-3 py-2  rounded-xl scroll_main m-3 bg-transparent"
+          className="scroll_main"
         >
           <CardContent className="h-full pt-0">
             <Formik
@@ -220,8 +228,8 @@ const AddFacilityPage = () => {
                           justifyContent: "end",
                           gap: "5px",
                         }}
-                        mt={10}
-                        className="fixed bottom-[12px] left-[35px]"
+                        // mt={20}
+                        className="fixed bottom-[5px] left-[23px] "
                       >
                         <ButtonComp
                           size="large"
@@ -245,9 +253,9 @@ const AddFacilityPage = () => {
                           type="button"
                           className={"!w-auto text-xl px-10 py-3 "}
                           variant="contained"
-                          // disabled={
-                          //   values.name == "" || Object.keys(errors).length
-                          // }
+                          disabled={
+                            values.name == "" || Object.keys(errors).length
+                          }
                         >
                           {activeStep === steps.length - 1
                             ? "حفظ ومتابعه"
@@ -266,12 +274,45 @@ const AddFacilityPage = () => {
                           </div>
                           <h2>{t("Terms and Conditions")}</h2>
 
-                          <div
-                            className="main_content max-h-[450px] overflow-y-scroll scroll_main"
-                            dangerouslySetInnerHTML={{
-                              __html: orgData?.organizations?.policies,
-                            }}
-                          ></div>
+                          {orgData?.organizations?.policies ? (
+                            <div
+                              className="main_content max-h-[450px] overflow-y-scroll scroll_main"
+                              dangerouslySetInnerHTML={{
+                                __html: orgData?.organizations?.policies,
+                              }}
+                            ></div>
+                          ) : (
+                            <div className="main_content max-h-[450px] overflow-y-scroll scroll_main">
+                              <p className="">
+                                بموافقتك على التسجيل بالمنصة فإنك تقر وتقبل
+                                الشروط والأحكام التالية:
+                              </p>
+                              <ul className="text-start">
+                                <li className="my-2">
+                                  جميع البيانات والمرفقات المدخلة من قبلكم صحيحة
+                                  ومحدثة ولا تتحمل المنصة أدنى مسؤولية في حالة
+                                  كونها غير صحيحة أو غير مطابقة.
+                                </li>
+                                <li className="my-2">
+                                  في حالة إرفاق ملف في غير محله لغرض مِلء
+                                  المتطلبات لن يتم النظر إليه ولن يتم قبولكم في
+                                  المنصة.
+                                </li>
+                                <li className="my-2">
+                                  يجب أن يكون مستخدم المنصة يقدم خدمات الإعاشة
+                                  ومصرح له بذلك.
+                                </li>
+                                <li className="my-2">
+                                  يحق للمنصة الإطلاع على البيانات المرفقة من
+                                  قبلكم وحفظها لديها لأغراض تطوير المنصة.
+                                </li>
+                                <li className="my-2">
+                                  يخضع المسجل في المنصة لأحكامها وفي حالة
+                                  تحديثها أو تعديلها سيتم إشعارك بذلك.
+                                </li>
+                              </ul>
+                            </div>
+                          )}
                           <FormControl>
                             <RadioGroup
                               aria-labelledby="demo-controlled-radio-buttons-group"
@@ -310,6 +351,7 @@ const AddFacilityPage = () => {
 
                               const combinedObject = {
                                 ...values,
+                                organization_id: orgData?.organizations?.id,
                                 ...Object.assign({}, ...attachments),
                               };
                               delete combinedObject.attachments;

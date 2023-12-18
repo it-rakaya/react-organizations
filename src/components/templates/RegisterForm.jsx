@@ -165,15 +165,46 @@ export default function RegisterForm() {
             <div className="relative mt-10 ">
               <div className="flex flex-col items-center justify-center gap-2 mb-3 ">
                 <TermsConditionIcon />
-                <h2> {t("Terms & condition ")}</h2>
+                <h2 className="font-bold"> {t("Terms & condition ")}</h2>
               </div>
             </div>
-            <div
-              className="main_content max-h-[450px] overflow-y-scroll scroll_main"
-              dangerouslySetInnerHTML={{
-                __html: orgData?.organizations?.policies,
-              }}
-            ></div>
+            {orgData?.organizations?.policies ? (
+              <div
+                className="main_content max-h-[450px] overflow-y-scroll scroll_main"
+                dangerouslySetInnerHTML={{
+                  __html: orgData?.organizations?.policies,
+                }}
+              ></div>
+            ) : (
+              <div className="main_content max-h-[450px] overflow-y-scroll scroll_main">
+                <p className="text-center ">
+                  بموافقتك على التسجيل بالمنصة فإنك تقر وتقبل الشروط والأحكام
+                  التالية:
+                </p>
+                <ul className="text-start">
+                  <li className="my-2">
+                    جميع البيانات والمرفقات المدخلة من قبلكم صحيحة ومحدثة ولا
+                    تتحمل المنصة أدنى مسؤولية في حالة كونها غير صحيحة أو غير
+                    مطابقة.
+                  </li>
+                  <li className="my-2">
+                    في حالة إرفاق ملف في غير محله لغرض مِلء المتطلبات لن يتم
+                    النظر إليه ولن يتم قبولكم في المنصة.
+                  </li>
+                  <li className="my-2">
+                    يجب أن يكون مستخدم المنصة يقدم خدمات الإعاشة ومصرح له بذلك.
+                  </li>
+                  <li className="my-2">
+                    يحق للمنصة الإطلاع على البيانات المرفقة من قبلكم وحفظها
+                    لديها لأغراض تطوير المنصة.
+                  </li>
+                  <li className="my-2">
+                    يخضع المسجل في المنصة لأحكامها وفي حالة تحديثها أو تعديلها
+                    سيتم إشعارك بذلك.
+                  </li>
+                </ul>
+              </div>
+            )}
           </>
         }
       />

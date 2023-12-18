@@ -96,11 +96,8 @@ export default function MyFacilities() {
 
                             },
                           },
-                          { divider: true },
-                          {
-                            text: t("Delete"),
-                            menuItemProps: { sx: { color: "error.main" } },
-                          },
+                     
+                         
                         ]}
                       />
                       <CardContent

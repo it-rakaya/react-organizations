@@ -2,17 +2,22 @@ import { t } from "i18next";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
 import DatePickerComp from "../../molecules/Formik/DatePickerComp";
 import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
+import { Divider, Typography } from "@mui/material";
 
 export default function AddFacility() {
   return (
     <div className="">
-      <div className="grid items-start grid-cols-2 gap-2 p-5">
+      <div className="grid items-start grid-cols-2 p-5">
+        <div className="">
+          <Typography className={`font-bold  `}>
+            1. بيانات  المنشاة
+          </Typography>
+        </div>
+
         <div className="flex items-start col-span-12 gap-2 ">
           <div className="w-1/2">
             <BaseInputField
-              label={t(
-                "Trade name"
-              )}
+              label={t("Trade name")}
               placeholder="محمد احمد محمد"
               name="name"
               required
@@ -23,7 +28,7 @@ export default function AddFacility() {
               label=" رقم السجل التجاري  "
               placeholder="10********"
               name="registration_number"
-              type="number"
+              type="custom"
               maxNum="10"
               required
             />
@@ -34,7 +39,7 @@ export default function AddFacility() {
             <DatePickerComp
               name="version_date"
               name_hj="version_date_hj"
-              label={"تاريخ إصدار السجل التجاري  بالميلادي"}
+              label={t("Date of issuance of the commercial register in AD")}
               required
             />
           </div>
@@ -43,18 +48,21 @@ export default function AddFacility() {
             <DatePickerComp
               name="end_date"
               name_hj="end_date_hj"
-              label={"تاريخ انتهاء السجل التجاري  بالميلادي"}
+              label={t("Commercial registration expiration date in Gregorian calendar")}
               required
             />
           </div>
         </div>
+
+        {/* <div className="mt-5">
+          <Typography className={`font-bold  `}> 2. بيانات العنوان الوطني</Typography>
+        </div> */}
 
         <div className="flex items-start col-span-12 gap-2 ">
           <div className="w-1/2 col-span-6">
             <SelectCitiesSaudi
               label={"مصدر السجل التجاري "}
               name="registration_source"
-              // className="mt-[24px]"
               required
             />
           </div>
@@ -63,7 +71,7 @@ export default function AddFacility() {
               label="رقم رخصة مزاولة المهنة الصادرة من أمانة العاصمة المقدسة  "
               placeholder="10********"
               name="license"
-              type="number"
+              type="custom"
               maxNum="10"
               required
             />
@@ -98,43 +106,20 @@ export default function AddFacility() {
               label="شهادة الرقم الضريبي"
               placeholder="***********34"
               name="tax_certificate"
-              type="number"
+              type="custom"
               maxNum="9"
-              required
-            />
-          </div>
-          <div className="w-1/2">
-            <BaseInputField
-              label="عدد الموظفين بموجب بيانات التامينات الاجتماعية "
-              placeholder="20"
-              name="employee_number"
-              type="number"
-              maxNum="3"
               required
             />
           </div>
         </div>
 
-        <div className="flex items-start col-span-12 gap-2 ">
-          <div className="w-1/2">
-            <BaseInputField
-              label="عدد الطهاة على راس العمل في المنشاة "
-              placeholder="4"
-              name="chefs_number"
-              type="number"
-              maxNum="3"
-              required
-            />
-          </div>
-          <div className="w-1/2">
-            <BaseInputField
-              label=" مساحة المطبخ ( بالمتر المربع)"
-              placeholder="500"
-              name="kitchen_space"
-              type="number"
-              required
-            />
-          </div>
+        <div className="col-span-12 my-8">
+          <hr />
+        </div>
+        <div className="">
+          <Typography className={`font-bold  `}>
+            2. بيانات العنوان الوطني
+          </Typography>
         </div>
         <div className="flex items-start col-span-12 gap-2 ">
           <div className="w-1/2">
@@ -169,7 +154,7 @@ export default function AddFacility() {
               label="رقم المبنى"
               placeholder="3654"
               name="building_number"
-              type="number"
+              type="custom"
               maxNum="4"
               required
             />
@@ -181,7 +166,7 @@ export default function AddFacility() {
               label="الرمز البريدي"
               placeholder="568750"
               name="postal_code"
-              type="number"
+              type="custom"
               maxNum="6"
               required
             />
@@ -191,8 +176,49 @@ export default function AddFacility() {
               label="الرقم الفرعي"
               placeholder="698547"
               name="sub_number"
-              type="number"
+              type="custom"
               maxNum="6"
+              required
+            />
+          </div>
+        </div>
+        <div className="col-span-12 my-8">
+        <Divider />
+
+        </div>
+        <div className="">
+          <Typography className={`font-bold  `}>3. بيانات اضافية</Typography>
+        </div>
+        <div className="flex items-start col-span-12 gap-2 ">
+          <div className="w-1/2">
+            <BaseInputField
+              label="عدد الموظفين بموجب بيانات التامينات الاجتماعية "
+              placeholder="20"
+              name="employee_number"
+              type="custom"
+              maxNum="3"
+              required
+            />
+          </div>
+          <div className="w-1/2">
+            <BaseInputField
+              label="عدد الطهاة على راس العمل في المنشاة "
+              placeholder="4"
+              name="chefs_number"
+              type="custom"
+              maxNum="3"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="flex items-start col-span-12 gap-2 ">
+          <div className="w-1/2">
+            <BaseInputField
+              label=" مساحة المطبخ ( بالمتر المربع)"
+              placeholder="500"
+              name="kitchen_space"
+              type="custom"
               required
             />
           </div>

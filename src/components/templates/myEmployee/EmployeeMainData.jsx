@@ -36,7 +36,7 @@ export default function EmployeeMainData() {
               label={t('ID Number')}
               placeholder="10********"
               name="national_id"
-              type="number"
+              type="custom"
               maxNum={10}
             />
           </div>

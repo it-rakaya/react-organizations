@@ -1,3 +1,4 @@
+import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import ModalComp from "../../components/atoms/ModalComp";
 import AccountSetting from "../../components/organisms/profile/AccountSetting";
@@ -9,13 +10,19 @@ export default function Profile() {
   const [editUser, setEditUser] = useState(false);
   const { user, setUser } = useAuth();
   const { orgData } = UseOrg();
-
+  const theme = useTheme();
+  const bgDynamic = theme?.palette?.primary?.main
+    ? theme?.palette?.primary?.main
+    : "#9f9685";
   return (
-    <div className="grid grid-cols-12 gap-5">
-      {/* <div className="col-span-3">
-        <OrganizationProfile setEditUser={setEditUser} orgData={orgData} />
-      </div> */}
-      <div className="col-span-12">
+    <div
+      className="grid grid-cols-12 gap-5"
+      style={{
+        background: `linear-gradient(130deg, ${bgDynamic} 0%, rgba(255,255,255,1) 90%)`,
+        height: "calc(100vh - 88px)",
+      }}
+    >
+      <div className="col-span-12 mt-10">
         <UserProfileHeader
           setEditUser={setEditUser}
           user={user}

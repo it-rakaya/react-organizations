@@ -41,22 +41,25 @@ div {
   bottom: 0 !important;
   right: 0px !important;
 }
-.dark :placeholder-shown{
+
+.dark :placeholder-shown {
   color: #313b3e;
 }
-.dark input{
+
+.dark input {
   color: #313b3e;
   background-color: white;
 }
+
 .css-dip3t8 {
   /* @apply !bg-[#1d2327] dark:!bg-dark-tertiary; */
   padding: 15px 10px 70px;
   /* width: 265px; */
   height: 100vh !important;
 }
-.react-tel-input {
- @apply border  border-solid rounded-md
 
+.react-tel-input {
+  @apply border border-solid rounded-md
 }
 
 /* border-1 border-[rgba(0, 29, 110, 0.4)] focus:!border-1 focus:!border-[rgba(0, 29, 110, 0.7)] */
@@ -222,7 +225,8 @@ main,
   padding: 16.5px 14px;
   /* border: 1px solid #eee; */
 }
-.react-tel-input .flag-dropdown{
+
+.react-tel-input .flag-dropdown {
   border-radius: 5px 0 0 5px;
 }
 
@@ -481,8 +485,8 @@ main,
 
 
 } */
-.MuiInputBase-input{
-border-radius: 10px;
+.MuiInputBase-input {
+  border-radius: 10px;
 }
 
 .animate-\[spin_2\.5s_linear_infinite\] {
@@ -553,4 +557,13 @@ border-radius: 10px;
 [dir="ltr"] .search_icon {
   right: 15px !important;
   left: initial;
+}
+
+.MuiTimelineItem-root.MuiTimelineItem-positionRight.MuiTimelineItem-missingOppositeContent:before {
+  content: none;
+
+}
+.MuiBox-root:focus-visible{
+  outline: 0;
+
 }

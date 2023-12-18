@@ -16,22 +16,18 @@ export default function SelectCountry({ name, label, className }) {
     value: item.id,
     label: item.name_ar,
   }));
+  const selectedCountry = options?.find(
+    (option) => option?.value == values[name]
+  );
 
   return (
     <div className={`${className} mt-2`}>
       <label>{label}</label>
-      {/* <SelectComp
-        name={name}
-        multi={false}
-        data={countries?.countries ? countries?.countries : ["gfv"]}
-        className="w-full mt-3"
-        placeholder="الدوله"
-      /> */}
       <div className="mt-[0.5rem]">
         <Select
           options={options}
           name={name}
-          // className="border rounded-xl"
+          value={selectedCountry}
           placeholder={t("Chose Country")}
           noOptionsMessage={() => t("Not Found Data")}
           onBlur={handleBlur}
@@ -53,28 +49,18 @@ export default function SelectCountry({ name, label, className }) {
             }),
             option: (baseStyles) => ({
               ...baseStyles,
-              // background:"white" ,
-              // borderColor:"#eee",
               color: "black",
             }),
           }}
           theme={(theme) => ({
             ...theme,
             borderRadius: 0,
-
             colors: {
               ...theme.colors,
               primary25: `#eee`,
               primary: "#eee",
-              // borderColor: "red",
             },
           })}
-          defaultValue={{
-            value: values[name] ? values[name] : "",
-            label: values?.nationality_name
-              ? values?.nationality_name
-              : t("Chose Country"),
-          }}
         />
         <div>
           <FormikError name={name} />

@@ -32,7 +32,6 @@ export const SideBar = ({
   const { orgData } = UseOrg();
   const {user} = useAuth()
 
-  console.log("🚀 ~ file: Sidebar.jsx:32 ~ orgData:", orgData)
 
   const path = location.pathname;
 

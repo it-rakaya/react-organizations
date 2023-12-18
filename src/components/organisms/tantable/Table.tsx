@@ -143,7 +143,7 @@ export const Table = <T extends object>({
 
   return (
     <>
-      <div className='grid sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12 gap-2 sm:gap-y-4 md:gap-y-8 gap-y-8 mb-5'>
+      <div className='grid gap-2 mb-5 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12 sm:gap-y-4 md:gap-y-8 gap-y-8'>
         {StatusStudent && (
           <div className='sm:col-span-1 md:col-span-2 lg:col-span-3 '>
             <FilterTable
@@ -205,9 +205,9 @@ export const Table = <T extends object>({
         )}
       </div>
 
-      <div className='flex flex-col gap-4 md:flex-row md:gap-0 justify-between my-2'>
-        <div className='flex align-middle items-center gap-1'>
-          <div className='flex flex-col align-middle items-center gap-1'>
+      <div className='flex flex-col justify-between gap-4 my-2 md:flex-row md:gap-0'>
+        <div className='flex items-center gap-1 align-middle'>
+          <div className='flex flex-col items-center gap-1 align-middle'>
             <input
               id='search'
               name='search'
@@ -216,20 +216,20 @@ export const Table = <T extends object>({
                   false css-1h06qz8-control dark:!bg-[#151521] dark:!text-white dark:!border-dark-borderDark'
               onChange={(e) => {
                 setWord(e.target.value);
-                // console.log(e.target.value)
+            
               }}
               placeholder={`${t('search')}`}
             />
           </div>
         </div>
 
-        <div className='flex sm-b:flex-col flex-row  sm:justify-between gap-4'>
-          <div className='flex gap-2 items-center'>
+        <div className='flex flex-row gap-4 sm-b:flex-col sm:justify-between'>
+          <div className='flex items-center gap-2'>
             <Excel data={currentPageData} />
             <Print />
           </div>
 
-          <div className='col-span-1 flex justify-end'>
+          <div className='flex justify-end col-span-1'>
             <div className='flex flex-col gap-1 w-max'>
               {/* <Label className='mb-3'>العدد</Label> */}
               <select
@@ -264,7 +264,7 @@ export const Table = <T extends object>({
         </div>
       </div>
 
-      <div className='GlobalTable w-full flex flex-col gap-4 mt-8 overflow-x-scroll'>
+      <div className='flex flex-col w-full gap-4 mt-8 overflow-x-scroll GlobalTable'>
         {isLoading && <Loading />}
         {isFetching && <Loading />}
 
@@ -305,10 +305,10 @@ export const Table = <T extends object>({
           {isSuccess && !!data.length && (
             <tbody>
               {table?.getRowModel()?.rows?.map((row) => (
-                <tr key={row.id} className='border-b bg-white'>
+                <tr key={row.id} className='bg-white border-b'>
                   {row?.getVisibleCells()?.map((cell) => (
                     <td
-                      className='whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900 td-col-dark'
+                      className='px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap td-col-dark'
                       key={cell.id}
                     >
                       {flexRender(
@@ -323,41 +323,41 @@ export const Table = <T extends object>({
           )}
         </table>
         {isSuccess && !!!data?.length && !!!isLoading && !!!isFetching && (
-          <div className='mb-5 pr-5'>
+          <div className='pr-5 mb-5'>
             <Header
               header={t('nothing')}
-              className='text-center text-2xl font-bold dark:text-white'
+              className='text-2xl font-bold text-center dark:text-white'
             />
           </div>
         )}
 
         {/* <Loading/>
         } */}
-        <div className='flex items-center gap-2 m-auto flex-col md:flex-row'>
+        <div className='flex flex-col items-center gap-2 m-auto md:flex-row'>
           {/* <div className="pagination-table">
             <button
-              className="border rounded-full p-1"
+              className="p-1 border rounded-full"
               onClick={() => table.setPageIndex(0)}
               disabled={!table.getCanPreviousPage()}
             >
               <MdKeyboardDoubleArrowRight className="!w-[25px] !h-[25px]" />
             </button>
             <button
-              className=" rounded-full p-1"
+              className="p-1 rounded-full "
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
             >
               <BsFillArrowRightCircleFill className="!w-[25px] !h-[25px] text-mainGreen" />
             </button>
             <button
-              className=" rounded-full p-1"
+              className="p-1 rounded-full "
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
             >
               <BsFillArrowLeftCircleFill className="!w-[25px] !h-[25px] text-mainGreen" />
             </button>
             <button
-              className="border rounded-full p-1"
+              className="p-1 border rounded-full"
               onClick={() => table.setPageIndex(table.getPageCount() - 1)}
               disabled={!table.getCanNextPage()}
             >
@@ -382,7 +382,7 @@ export const Table = <T extends object>({
                   const page = e.target.value ? Number(e.target.value) - 1 : 0
                   table.setPageIndex(page)
                 }}
-                className="border p-1 rounded w-16"
+                className="w-16 p-1 border rounded"
               />
             </span>
           </div> */}

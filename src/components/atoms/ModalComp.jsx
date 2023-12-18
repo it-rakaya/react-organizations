@@ -16,6 +16,8 @@ const style = {
   maxHeight: "90vh",
   overflowY: "scroll !important",
   p: 4,
+  border:"0", 
+  borderColor:"red"
 };
 
 export default function ModalComp({

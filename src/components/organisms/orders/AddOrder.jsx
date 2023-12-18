@@ -9,12 +9,12 @@ import ButtonComp from "../../atoms/buttons/ButtonComp";
 import OrderMainData from "./OrderMainData";
 import { t } from "i18next";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
-const { orgData } = UseOrg();
 
 export default function AddOrder({ setOpenAddFaculty }) {
   const [show, setShow] = useState(true);
   const queryClient = useQueryClient();
-
+  const { orgData } = UseOrg();
+  
   const { mutate: AddOrder, isPending } = useMutate({
     mutationKey: [`create_new_orders`],
     endpoint: `orders`,
@@ -47,14 +47,11 @@ export default function AddOrder({ setOpenAddFaculty }) {
           const formData = {
             facility_id: values.facility_id,
             organization_id: orgData?.organizations?.id,
-
             organization_service_id: values.organization_service_id,
             ...answers,
           };
           AddOrder(formData);
-          // } else {
-          console.log("No");
-          // }
+        
         }}
       >
         {({ errors, values }) => (
