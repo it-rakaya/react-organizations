@@ -5,7 +5,7 @@ function DataNotFound({ title }) {
       className="absolute flex items-center justify-center"
       style={{ left: "calc(50% - 100px )", top: "calc(50% - 50px)" }}
     >
-      <div className="text-3xl font-bold ">{title}</div>
+      <div className="mt-20 text-3xl font-bold md:m-0">{title}</div>
     </div>
   );
 }

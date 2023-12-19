@@ -16,10 +16,10 @@ export default function Profile() {
     : "#9f9685";
   return (
     <div
-      className="grid grid-cols-12 gap-5"
+      className="grid grid-cols-12 gap-5 h-[calc(100vh)]"
       style={{
-        background: `linear-gradient(130deg, ${bgDynamic} 0%, rgba(255,255,255,1) 90%)`,
-        height: "calc(100vh - 88px)",
+        // background: `linear-gradient(130deg, ${bgDynamic} 0%, rgba(255,255,255,1) 90%)`,
+        height: "",
       }}
     >
       <div className="col-span-12 mt-10">

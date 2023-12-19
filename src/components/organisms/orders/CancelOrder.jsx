@@ -25,17 +25,20 @@ export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
         <div>
           <TermsConditionIcon />
         </div>
-        <div>هل انت متاكد من الغاء الطلب</div>
-        <div className="flex ">
+        <div className="flex flex-col items-center gap-5">
+          <div>هل انت متاكد من الغاء الطلب</div>
           <Grid xs={12} sm={12} md={12} xl={12}>
             <Button
               variant="contained"
-              className="mx-10 bg-contained "
+              className="mx-5 bg-contained w-[90px]"
               onClick={() => CancelOrder({})}
             >
               موافق
             </Button>
-            <Button className="mx-10 border-2 border-solid border-contained text-contained">
+            <Button
+              className="mx-5 border-2 border-solid border-contained text-contained w-[90px]"
+              onClick={() => setOpenCancelOrder(false)}
+            >
               الغاء
             </Button>
           </Grid>

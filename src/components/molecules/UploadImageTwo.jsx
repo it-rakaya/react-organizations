@@ -12,6 +12,7 @@ import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
 import { hexToRGBA } from "../../utils/helpers";
 import PreviewImageLink from "./PreviewImageLink";
 import PreviewPdf from "./PreviewPdf";
+import { IconButton, Typography } from "@mui/material";
 
 const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
   const updateImage = {
@@ -20,13 +21,15 @@ const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
     update: true,
   };
 
-
-
   const { setFieldValue, values } = useFormikContext();
   const theme = useTheme();
 
   const [files, setFiles] = useState(
-    values?.attachments ? [values?.attachments[nameValue]] : value ? [updateImage] : []
+    values?.attachments
+      ? [values?.attachments[nameValue]]
+      : value
+      ? [updateImage]
+      : []
   );
 
   const [invalidFormat, setInvalidFormat] = useState(false);
@@ -59,18 +62,25 @@ const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
   const isLargeFile = files?.length && files[0]?.size > 524288000;
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
   console.log("files[0]?.file", files[0]?.file);
+
+  const handleRemoveFile = (file) => {
+    const uploadedFiles = files;
+    const filtered = uploadedFiles.filter((i) => i.name !== file.name);
+    setFiles([...filtered]);
+  };
+
   return (
     <div className="relative ">
       <Box sx={files?.length ? { height: "" } : {}}>
-        <div className="relative cursor-pointer">
-          <div className="flex flex-col items-center bg-[#F5F5F5] rounded-md">
-            <h2 className="bg-[#EFEFEF] w-full text-center px-3 py-2 rounded-md">
+            <h2 className="w-full px-3 py-2 text-center rounded-md ">
               {label}
             </h2>
+        <div className="relative cursor-pointer border border-dashed rounded-[20px] border-[#9f968575] w-[250px] h-[125px]">
+          <div className="flex flex-col items-center ">
             <div
               {...getRootProps({
                 className:
-                  "dropzone h-[150px] flex flex-col items-center justify-center",
+                  "dropzone] flex flex-col items-center justify-center",
               })}
             >
               {!files?.length ? (
@@ -113,29 +123,39 @@ const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
                   files={files ? files : []}
                   bgMain={bgMain}
                   className={className}
+                  handleRemoveFile={handleRemoveFile}
                 />
               </div>
             ) : files[0]?.type?.startsWith("image/") && updateImage?.value ? (
               <PreviewImageLink url={files[0]?.value} />
-            ) : 
-            files[0]?.type?.startsWith("application/") 
-            && files[0]?.name ? (
-              <a
-                href={URL.createObjectURL(files[0])}
-                download={files[0].name}
-                className="w-full"
-              >
-                <div
-                  className={` ${className} flex items-center justify-center w-full gap-2 p-2 cursor-pointer`}
-                  style={{
-                    backgroundColor: bgMain,
-                  }}
+            ) : files[0]?.type?.startsWith("application/") && files[0]?.name ? (
+              <div className="mt-4 border border-solid rounded-[12px] border-[#9f968575] w-full flex items-center px-5">
+                <a
+                  href={URL.createObjectURL(files[0])}
+                  download={files[0].name}
+                  className="w-full"
                 >
-                  <IconifyIcon icon={"prime:file-pdf"} className="text-xl" />
-                  <span className="text-sm">اضغط هنا لمشاهدة المرفق</span>
+                  <div
+                    className={` flex items-center  !justify-start gap-2  py-4 cursor-pointer  `}
+                    style={
+                      {
+                        // backgroundColor: bgMain,
+                      }
+                    }
+                  >
+                    <IconifyIcon icon={"prime:file-pdf"} className="text-xl" />
+                    <Typography className="file-name">
+                      {files[0]?.name.slice(0, 15)}
+                    </Typography>
+                    {/* <span className="text-sm">اضغط هنا لمشاهدة المرفق</span> */}
+                  </div>
+                </a>
+                <div onClick={() => handleRemoveFile(files[0])}>
+                  <IconifyIcon icon="mdi:close" fontSize={20} />
                 </div>
-              </a>
-            ) : files[0]?.type?.startsWith("application/") && updateImage?.value ? (
+              </div>
+            ) : files[0]?.type?.startsWith("application/") &&
+              updateImage?.value ? (
               <div className="w-full">
                 <PreviewPdf item={files[0]} />
               </div>

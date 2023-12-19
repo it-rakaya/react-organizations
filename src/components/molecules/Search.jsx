@@ -5,8 +5,8 @@ import SearchIcon from "../atoms/icons/SearchIcon";
 function Search({ setSearchQuery, placeholder, addTitle, action }) {
   return (
     <>
-      <div className="flex items-center justify-between  !mb-[25px] ">
-        <div className="relative w-1/2 ">
+      <div className="flex items-center justify-between flex-wrap  !mb-[25px] ">
+        <div className="relative w-full md:w-1/2 ">
           <input
             type="text"
             placeholder={placeholder}
@@ -18,7 +18,7 @@ function Search({ setSearchQuery, placeholder, addTitle, action }) {
             <SearchIcon />
           </div>
         </div>
-        <div>
+        <div className="w-full mt-5 md:w-auto md:m-0">
           {addTitle && (
             <ButtonComp variant="contained" className={"!m-0"} action={action}>
               {addTitle}

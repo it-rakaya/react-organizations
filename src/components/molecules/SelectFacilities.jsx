@@ -10,14 +10,14 @@ export default function SelectFacilities({ name, label, placeholder }) {
 
   return (
     <div>
-      <label className="block mb-3">{label}</label>
+      <label className="block my-3">{label}</label>
 
       <SelectComp
         name={name}
         multi={false}
         data={facilities?.user_facilities ? facilities?.user_facilities : []}
         className="w-full"
-        placeholder={placeholder}
+        placeholder={"placeholder"}
         idValue={true}
       />
     </div>

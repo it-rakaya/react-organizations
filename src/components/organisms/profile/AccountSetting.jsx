@@ -61,8 +61,7 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
               />
             </div>
             <div>
-              <label> رقم الهاتف </label>
-              <PhoneInput2 name="phone" />
+              <PhoneInput2 name="phone" label={"رقم الهاتف"} />
             </div>
             <div>
               <BaseInputField
@@ -72,7 +71,7 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
               />
             </div>
             <div>
-              <SelectCountry label={" "} name={"nationality"} />
+              <SelectCountry label={"الدولة"} name={"nationality"} />
             </div>
             <div className="flex flex-col col-span-1 gap-3 ">
               <DatePickerComp name="birthday" label={"تاريخ  الميلاد"} />

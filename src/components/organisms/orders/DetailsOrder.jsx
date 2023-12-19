@@ -29,7 +29,7 @@ export default function DetailsOrder({ data }) {
             <p className="font-bold ">نوع الخدمه</p>
             <p>{data?.service?.name}</p>
           </div>
-          <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
+          <div className="flex items-center col-span-2 gap-4 mt-5 md:col-span-1 ">
             <p className="font-bold "> حالة الطلب </p>
             <p
               className="px-2 py-1 text-white rounded-md"
