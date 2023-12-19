@@ -22,7 +22,10 @@ export default function Orders() {
   const [openCancelOrder, setOpenCancelOrder] = useState(false);
   const [orderId, setOrderId] = useState();
   const [detailsOrder, setDetailsOrder] = useState("");
-  console.log("🚀 ~ file: Orders.jsx:25 ~ Orders ~ detailsOrder:", detailsOrder)
+  console.log(
+    "🚀 ~ file: Orders.jsx:25 ~ Orders ~ detailsOrder:",
+    detailsOrder
+  );
   const [value, setValue] = useState("1");
 
   const { orgData } = UseOrg();
@@ -39,6 +42,7 @@ export default function Orders() {
   });
 
   const Canceled = 5;
+
   const columns = [
     {
       flex: 0.2,
@@ -75,23 +79,23 @@ export default function Orders() {
         );
       },
     },
-    {
-      flex: 0.15,
-      field: "national_id",
-      headerName: t("price"),
-      renderCell: ({ row }) => {
-        return (
-          <>
-            <Typography
-              noWrap
-              sx={{ color: "text.secondary", textTransform: "capitalize" }}
-            >
-              {row.service?.price}
-            </Typography>
-          </>
-        );
-      },
-    },
+    // {
+    //   flex: 0.15,
+    //   field: "national_id",
+    //   headerName: t("price"),
+    //   renderCell: ({ row }) => {
+    //     return (
+    //       <>
+    //         <Typography
+    //           noWrap
+    //           sx={{ color: "text.secondary", textTransform: "capitalize" }}
+    //         >
+    //           {row.service?.price}
+    //         </Typography>
+    //       </>
+    //     );
+    //   },
+    // },
     {
       flex: 0.15,
       field: "facility_name",
@@ -157,7 +161,13 @@ export default function Orders() {
           <Typography
             variant="subtitle1"
             noWrap
-            sx={{ textTransform: "capitalize", display: "flex", gap: "10px" }}
+            sx={{
+              textTransform: "capitalize",
+              display: "flex",
+              gap: "20px",
+              justifyContent: "center",
+            }}
+            className="items-center justify-center w-full "
           >
             <div
               className="cursor-pointer"
@@ -165,9 +175,8 @@ export default function Orders() {
                 if (row.status_id == Canceled) {
                   return notify("worning", t("cant Canceled order"));
                 } else {
-                  
                   setOpenDetailsOrder(true);
-                  setDetailsOrder(row)
+                  setDetailsOrder(row);
                 }
               }}
             >
@@ -177,7 +186,7 @@ export default function Orders() {
               className="cursor-pointer"
               onClick={() => {
                 if (row.status_id == Canceled) {
-                  return notify("worning", t("cant Canceled order"));
+                  return console.log("ddd");
                 } else {
                   setOrderId(row.id);
                   setOpenCancelOrder(true);
@@ -365,7 +374,7 @@ export default function Orders() {
       />
       <ModalComp
         open={openCancelOrder}
-        className="!max-w-[500px]  "
+        className="!max-w-[450px]  "
         onClose={() => setOpenCancelOrder(false)}
         Children={
           <CancelOrder

@@ -12,6 +12,7 @@ const SelectComp = ({
   className,
   multi,
   idValue,
+  placeholder
 }) => {
   const { setFieldValue, values, errors } = useFormikContext();
   const [personName, setPersonName] = useState([]);
@@ -37,7 +38,7 @@ const SelectComp = ({
             helperText={errors[name]}
             error={!!errors[name]}
             value={personName}
-            placeholder={"placeholder"}
+            placeholder={placeholder}
             // MenuProps={MenuProps}
             id="demo-multiple-chip"
             onChange={handleChange}
@@ -61,7 +62,7 @@ const SelectComp = ({
         <FormControl className={className}>
           <InputLabel id="controlled-select-label">{label}</InputLabel>
           <Select
-            value={values[name]}
+            value={values[name] || "171"}
             helperText={errors[name]}
             error={!!errors[name]}
             label={label}

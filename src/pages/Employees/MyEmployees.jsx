@@ -10,12 +10,16 @@ import MainHeader from "../../components/atoms/MainHeader";
 import useFetch from "../../hooks/useFetch";
 import PreviewImageLink from "../../components/molecules/PreviewImageLink";
 import PreviewPdf from "../../components/molecules/PreviewPdf";
+import ModalComp from "../../components/atoms/ModalComp";
+import { useState } from "react";
+import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 
 export default function MyEmployees() {
-  const { data: employees } = useFetch({
+  const { data: employees , refetch } = useFetch({
     endpoint: `facility-employees`,
     queryKey: ["facility_employees"],
   });
+  const [openAddEmployee, setOpenAddEmployee] = useState(false);
 
   const LinkStyled = styled(Link)(({ theme }) => ({
     fontWeight: 600,
@@ -142,6 +146,7 @@ export default function MyEmployees() {
   ];
 
   return (
+    <>
     <div>
       <MainHeader title={t("Employee")} />
       {/* <div className="flex flex-col items-center justify-between h-[65vh]">
@@ -247,8 +252,21 @@ export default function MyEmployees() {
         rows={employees?.employees || []}
         placeholderSearch={t("search in employee")}
         textButton={t("Add Employee")}
-        // actionButton={}
+        actionButton={()=>setOpenAddEmployee(true)}
       />
     </div>
+    <ModalComp
+        open={openAddEmployee}
+        className={"  "}
+        onClose={() => setOpenAddEmployee(false)}
+        Children={
+          <AddEmployee
+            refetch={refetch}
+            setOpenAddEmployee={setOpenAddEmployee}
+            showSelectFacility={true}
+          />
+        }
+      />
+    </>
   );
 }

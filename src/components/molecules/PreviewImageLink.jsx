@@ -5,8 +5,9 @@ import IconifyIcon from "../atoms/icons/IconifyIcon";
 import { t } from "i18next";
 import { hexToRGBA } from "../../utils/helpers";
 import { useTheme } from "@mui/material/styles";
+import { Typography } from "@mui/material";
 
-export default function PreviewImageLink({  url }) {
+export default function PreviewImageLink({ url }) {
   const theme = useTheme();
 
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
@@ -30,10 +31,14 @@ export default function PreviewImageLink({  url }) {
                 // }}
               >
                 {/* <PreviewIcon stroke="#292D32" /> */}
-                <IconifyIcon 
-                    icon={"iconamoon:file-image-light"}
-                    className="text-[1.6rem]" />
-{/* 
+                <IconifyIcon
+                  icon={"iconamoon:file-image-light"}
+                  className="text-[1.6rem]"
+                />
+                <Typography className="file-name">
+                  {url?.name?.slice(0, 15)}
+                </Typography>
+                {/* 
                 <span className="text-sm">   
                 {t("Click here to view the attachment")}
 

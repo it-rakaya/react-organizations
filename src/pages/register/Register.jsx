@@ -9,6 +9,7 @@ import RegisterForm from "../../components/templates/RegisterForm";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useSettings } from "../../hooks/useSettings";
 import { useEffect } from "react";
+import { t } from "i18next";
 
 const RegisterIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -53,6 +54,17 @@ const Register = () => {
   const token = Cookies.get("token");
   const navigate = useNavigate();
   const { orgData } = UseOrg();
+  const organizationName = !orgData?.organizations?.name_ar
+    ? t("landing.organizationName")
+    : orgData?.organizations?.name_ar;
+
+  const TypographyStyled = styled(Typography)(({ theme }) => ({
+    fontWeight: 600,
+    letterSpacing: "0.18px",
+    marginBottom: theme.spacing(1.5),
+    [theme.breakpoints.down("md")]: { marginTop: theme.spacing(8) },
+  }));
+
   useEffect(() => {
     if (token) {
       navigate("/");
@@ -82,22 +94,19 @@ const Register = () => {
               sx={{
                 display: "flex",
                 width: "100%",
-                alignItems: "start",
+                alignItems: "center",
                 justifyContent: "start",
+                flexDirection: "column",
+                gap: "10px",
+                marginTop: "20px",
               }}
             >
               <img src={orgData?.organizations?.logo} className="w-[30px]" />
-              <Typography
-                variant="h6"
-                sx={{
-                  ml: 2,
-                  lineHeight: 1,
-                  fontWeight: 700,
-                  fontSize: "1.5rem !important",
-                }}
-              >
-                {orgData?.organizations?.name_ar}
-              </Typography>
+              <Box sx={{ mb: 3, width: "100%" }} className="text-center">
+                <TypographyStyled variant="h5">{`${t(
+                  "Welcome to"
+                )} ${organizationName}! 👋🏻`}</TypographyStyled>
+              </Box>
             </Box>
             <BoxWrapper>
               <RegisterForm />

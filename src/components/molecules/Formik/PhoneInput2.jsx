@@ -31,9 +31,9 @@ const PhoneInput2 = ({ label }) => {
   });
 
   return (
-    <div className="col-span-1 my-2">
+    <div className="col-span-1 ">
       <div className="flex flex-col gap-1 ">
-        <label className="mb-[0.5rem]"> {label} </label>
+        <label className="my-[0.6rem]"> {label} </label>
 
         <PhoneInput
           country={"sa"}

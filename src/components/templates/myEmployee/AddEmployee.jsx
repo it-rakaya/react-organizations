@@ -9,7 +9,7 @@ import EmployeeMainData from "./EmployeeMainData";
 import { isValidSaudiID } from "saudi-id-validator";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 
-export default function AddEmployee({ facultyID, setSecundModal }) {
+export default function AddEmployee({ facultyID, setSecundModal , showSelectFacility }) {
   const { orgData } = UseOrg();
 
   const { mutate: AddEmployee, isPending: loadingEmployee } = useMutate({
@@ -65,7 +65,7 @@ export default function AddEmployee({ facultyID, setSecundModal }) {
         }}
       >
         <Form>
-          <EmployeeMainData />
+          <EmployeeMainData showSelectFacility={showSelectFacility} />
           <div className="flex justify-end">
             <ButtonComp
               loading={loadingEmployee}

@@ -23,6 +23,8 @@ import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { t } from "i18next";
+import UserNotVerifiedIcon from "../../components/atoms/icons/UserNotVerifiedIcon";
+import UserNotVerified from "../../components/molecules/UserNotVerified";
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -44,7 +46,7 @@ const Home = () => {
 
   return (
     <ApexChartWrapper>
-      {!user?.is_verified && (
+      {/* {user?.is_verified && (
         <div className="py-3">
           <Alert severity="warning" className="flex items-center ">
             لإضافة منشأة جديدة أو تقديم طلب جديد يرجى تفعيل حسابك !
@@ -63,12 +65,12 @@ const Home = () => {
             </Button>
           </Alert>
         </div>
-      )}
+      )} */}
       <Grid container spacing={6} className="match-height">
         <Grid item xs={12} md={user?.is_verified ? 8 : 12}>
           <AnalyticsCongratulations userData={user} />
         </Grid>
-        {user?.is_verified && (
+        {user?.is_verified ? (
           <>
             <Grid item xs={6} md={2}>
               <CardStatsVertical
@@ -138,6 +140,13 @@ const Home = () => {
               <AnalyticsActivityTimeline />
             </Grid>
           </>
+        ) : (
+          <UserNotVerified
+            user={user}
+            organization_id={orgData?.organizations?.id}
+            setOpen={setOpen}
+            sendOTP={sendOTP}
+          />
         )}
       </Grid>
       <ModalComp

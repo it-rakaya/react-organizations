@@ -27,6 +27,8 @@ import AddFacility from "../../components/organisms/MyFacilities/AddFacility";
 import StepTwo from "../../components/organisms/MyFacilities/StepTwo";
 import { useNavigate } from "react-router-dom";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import NationalAddressData from "../../components/organisms/MyFacilities/NationalAddressData";
+import AdditionalInfo from "../../components/organisms/MyFacilities/AdditionalInfo";
 
 const steps = [
   {
@@ -34,9 +36,17 @@ const steps = [
     subtitle: "ادخل بيانات منشاتك",
   },
   {
-    title: "تحميل المستندات",
-    subtitle: "ارفق مستندات منشاتك",
+    title: "2. بيانات العنوان الوطني",
+    subtitle: "ادخل بيانات العنوان الوطني",
+  },
+  {
+    title: "3. بيانات  اضافية",
+    // subtitle: "ادخل بيانات العنوان الوطني",
+  },
 
+  {
+    title: "4. تحميل المستندات",
+    subtitle: "ارفق مستندات منشاتك",
   },
 ];
 
@@ -50,11 +60,13 @@ const AddFacilityPage = () => {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+  console.log("steps.length", activeStep)
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
       setOpen(true);
     } else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      checkInCompleteValue()
     }
   };
   const { mutate: addFacility, isPending: loadingAddFacility } = useMutate({
@@ -69,6 +81,20 @@ const AddFacilityPage = () => {
     },
     formData: true,
   });
+  const initialStepOne = {
+    name: "",
+    registration_number: "",
+    version_date: new Date(),
+    version_date_hj: "",
+    end_date: new Date(),
+    end_date_hj: "",
+    registration_source: "",
+    license: "",
+    license_expired: new Date(),
+    license_expired_hj: "",
+    address: "",
+    tax_certificate: "",
+  };
 
   const initialValues = {
     name: "",
@@ -93,6 +119,7 @@ const AddFacilityPage = () => {
     postal_code: "",
     sub_number: "",
     signature: "",
+    capacity:""
   };
   const validationSchema = () =>
     Yup.object({
@@ -103,13 +130,11 @@ const AddFacilityPage = () => {
         .length(10, t("the registration number must be equal 10 digits")),
       version_date: Yup.string()
         .trim()
-        .required(t("the registration number required")),
-      end_date: Yup.string()
-        .trim()
-        .required(t("the registration number required")),
+        .required(t("the version date required")),
+      end_date: Yup.string().trim().required(t("the  end date required")),
       license_expired: Yup.string()
         .trim()
-        .required(t("the registration number required")),
+        .required(t("the  license expired required")),
       registration_source: Yup.string()
         .trim()
         .required(t("the registration source required")),
@@ -145,6 +170,10 @@ const AddFacilityPage = () => {
         .trim()
         .required(t("sub number required"))
         .length(6, t("the sub number  must be equal 6 digits")),
+        capacity: Yup.string()
+        .trim()
+        .required(t("sub number required"))
+        .length(9, t("the sub number  must be equal 6 digits")),
     });
 
   const getStepContent = (step) => {
@@ -152,11 +181,22 @@ const AddFacilityPage = () => {
       case 0:
         return (
           <Fragment>
-        
             <AddFacility />
           </Fragment>
         );
       case 1:
+        return (
+          <Fragment key={step}>
+            <NationalAddressData />
+          </Fragment>
+        );
+      case 2:
+        return (
+          <Fragment key={step}>
+            <AdditionalInfo />
+          </Fragment>
+        );
+      case 3:
         return (
           <Fragment key={step}>
             <StepTwo />
@@ -166,12 +206,23 @@ const AddFacilityPage = () => {
         return "Unknown Step";
     }
   };
+  const checkInCompleteValue = ()=>{
+    if(activeStep == 0){
+      console.log("test")
+      Object.keys(initialStepOne)
+    }
+    
+  }
 
   return (
     <>
       <div className="w-full">
         <StepperWrapper>
-          <Stepper activeStep={activeStep} alternativeLabel className="mt-10">
+          <Stepper
+            activeStep={activeStep}
+            alternativeLabel
+            className="mt-10 !bg-transparent"
+          >
             {steps.map((step, index) => {
               return (
                 <Step key={index}>
@@ -196,13 +247,13 @@ const AddFacilityPage = () => {
         <Card
           sx={{
             mt: 4,
-            boxShadow: "0 4px 24px -1px #0000001A",
+            // boxShadow: "0 4px 24px -1px #0000001A",
             height: "calc(100vh - 280px)",
             overflowY: "scroll",
           }}
-          className="scroll_main"
+          className="bg-transparent shadow-none scroll_main"
         >
-          <CardContent className="h-full pt-0">
+          <CardContent className="h-full pt-0 bg-transparent">
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
@@ -229,7 +280,7 @@ const AddFacilityPage = () => {
                           gap: "5px",
                         }}
                         // mt={20}
-                        className="fixed bottom-[5px] left-[23px] "
+                        className="fixed bottom-[10px] left-[62px] "
                       >
                         <ButtonComp
                           size="large"
@@ -245,17 +296,16 @@ const AddFacilityPage = () => {
                         </ButtonComp>
                         <ButtonComp
                           action={
-                            Object.keys(errors).length > 0
-                              ? () =>
-                                  notify("warning", t("please complete field"))
-                              : handleNext
+                            // Object.keys(errors).length > 0
+                              //  checkInCompleteValue()
+                            handleNext
                           }
                           type="button"
                           className={"!w-auto text-xl px-10 py-3 "}
                           variant="contained"
-                          disabled={
-                            values.name == "" || Object.keys(errors).length
-                          }
+                          // disabled={
+                          //   values.name == "" || Object.keys(errors).length
+                          // }
                         >
                           {activeStep === steps.length - 1
                             ? "حفظ ومتابعه"

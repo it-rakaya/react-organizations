@@ -13,7 +13,7 @@ export default function OrganizationServices({ name, label }) {
   });
   return (
     <div>
-      <label className="block mb-3">{label}</label>
+      <label className="block my-3">{label}</label>
 
       <SelectComp
         name={name}
