@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Box, styled } from "@mui/material";
 import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import { useNavigate } from "react-router";
 import { Outlet } from "react-router-dom";
@@ -15,6 +15,11 @@ export const Root = ({ props }) => {
   const [openSide, setOpenSide] = useState(false);
   const [, setShowOverlay] = useState(false);
   const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = React.useState(false);
+  console.log("🚀 ~ file: Root.jsx:19 ~ Root ~ collapsed:", collapsed);
+  const [toggled, setToggled] = React.useState(false);
+  console.log("🚀 ~ file: Root.jsx:20 ~ Root ~ toggled:", toggled);
+
   const navigate = useNavigate();
   const [changeStyle, setChangeStyle] = useState(false);
   const { user } = useAuth();
@@ -99,17 +104,27 @@ export const Root = ({ props }) => {
     return (
       <div
         className={
-          isSidebarCollapsed ? "flex w-full" : "grid grid-cols-12 w-full"
+          toggled
+            ? "flex"
+            : // : collapsed
+              "flex"
+          // : "grid grid-cols-12 w-full"
         }
       >
         {user?.is_verified && (
-          <div className={isSidebarCollapsed ? "w-[64px]" : "lg:col-span-2  "}>
+          <div
+            className={toggled ? "w-[20%]" : collapsed ? "w-[6%]" : " md:w-[23%]"}
+          >
             <OutsideClickHandler onOutsideClick={handleClickOutside}>
-              <div className="fixed">
+              <div className="fixed z-[99999]">
                 <SideBar
                   handleClickItem={handleClickOutside}
                   isSidebarCollapsed={isSidebarCollapsed}
                   handleCollapsedSideBar={handleCollapsedSideBar}
+                  setCollapsed={setCollapsed}
+                  collapsed={collapsed}
+                  setToggled={setToggled}
+                  toggled={toggled}
                 />
               </div>
             </OutsideClickHandler>
@@ -119,7 +134,7 @@ export const Root = ({ props }) => {
 
         <div
           className={
-            isSidebarCollapsed ? "w-full" : user?.is_verified ? 'col-span-12 lg:col-span-10' : "col-span-12"
+            collapsed ? "w-full" : user?.is_verified ? "w-full" : "col-span-12"
           }
         >
           <VerticalLayoutWrapper className="">
@@ -133,6 +148,8 @@ export const Root = ({ props }) => {
                     isSidebarCollapsed={isSidebarCollapsed}
                     setSidebarCollapsed={setSidebarCollapsed}
                     saveSettings={saveSettings}
+                    setToggled={setToggled}
+                    toggled={toggled}
                     // appBarContent={verticalLayoutProps.appBar?.content}
                     {...props}
                   />

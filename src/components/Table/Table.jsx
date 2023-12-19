@@ -23,9 +23,10 @@ const Table = ({
   }, []);
 
   return (
-    <Grid container spacing={6}>
-      <Grid item xs={12}>
-        <Card>
+    <>
+    {/* // <Grid  spacing={6}> */}
+ <Grid item xs={12}>
+   <Card>
           <TableHeader
             handleFilter={handleFilter}
             value={value}
@@ -41,12 +42,14 @@ const Table = ({
             disableRowSelectionOnClick
             pageSizeOptions={[10, 25, 50]}
             paginationModel={paginationModel}
+            style={{width:"99%"}}
             onPaginationModelChange={setPaginationModel}
-            sx={{ "& .MuiDataGrid-columnHeaders": { borderRadius: 0 } }}
+            sx={{ "& .MuiDataGrid-columnHeaders": { borderRadius: 0  , width:"100%" } }}
           />
         </Card>
       </Grid>
-    </Grid>
+    {/* // </Grid> */}
+    </>
   );
 };
 

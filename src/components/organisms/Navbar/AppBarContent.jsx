@@ -7,7 +7,7 @@ import UserDropdown from "./UserDropdown";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 
 const AppBarContent = (props) => {
-  const { settings, saveSettings, setSidebarCollapsed } = props;
+  const { settings, saveSettings, toggled, setToggled } = props;
   return (
     <Box
       sx={{
@@ -21,12 +21,11 @@ const AppBarContent = (props) => {
         className=" actions-left"
         sx={{ mr: 2, display: "flex", alignItems: "center" }}
       >
-        <div className="block md:hidden"             onClick={() => setSidebarCollapsed(true)}
->
-          <IconButton
-            color="inherit"
-            sx={{ ml: -2.75 }}
-          >
+        <div
+          className="block md:hidden"
+          onClick={() => setToggled(!toggled)}
+        >
+          <IconButton color="inherit" sx={{ ml: -2.75 }}>
             <IconifyIcon icon="mdi:menu" />
           </IconButton>
         </div>
