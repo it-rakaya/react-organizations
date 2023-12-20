@@ -1,18 +1,18 @@
 /* eslint-disable react/prop-types */
+import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
 import { useFormikContext } from "formik";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { hexToRGBA } from "../../utils/helpers";
 import CheckIcon from "../atoms/icons/CheckIcon";
 import IconifyIcon from "../atoms/icons/IconifyIcon";
+import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
 import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
-import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
-import { hexToRGBA } from "../../utils/helpers";
 import PreviewImageLink from "./PreviewImageLink";
 import PreviewPdf from "./PreviewPdf";
-import { IconButton, Typography } from "@mui/material";
 
 const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
   const updateImage = {
@@ -70,11 +70,9 @@ const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
   };
 
   return (
-    <div className="relative ">
+    <div className="relative w-[250px] h-[125px] ">
       <Box sx={files?.length ? { height: "" } : {}}>
-            <h2 className="w-full px-3 py-2 text-center rounded-md ">
-              {label}
-            </h2>
+        <h2 className="w-full px-3 py-2 text-center rounded-md ">{label}</h2>
         <div className="relative cursor-pointer border border-dashed rounded-[20px] border-[#9f968575] w-[250px] h-[125px]">
           <div className="flex flex-col items-center ">
             <div

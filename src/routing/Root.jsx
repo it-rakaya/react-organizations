@@ -116,7 +116,7 @@ export const Root = ({ props }) => {
             className={toggled ? "w-[20%]" : collapsed ? "w-[6%]" : " md:w-[23%]"}
           >
             <OutsideClickHandler onOutsideClick={handleClickOutside}>
-              <div className="fixed z-[99999]">
+              <div className="fixed z-[999]">
                 <SideBar
                   handleClickItem={handleClickOutside}
                   isSidebarCollapsed={isSidebarCollapsed}

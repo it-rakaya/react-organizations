@@ -1,8 +1,8 @@
+import { Typography } from "@mui/material";
 import { t } from "i18next";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
 import DatePickerComp from "../../molecules/Formik/DatePickerComp";
 import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
-import { Divider, Typography } from "@mui/material";
 
 export default function AddFacility() {
   return (
