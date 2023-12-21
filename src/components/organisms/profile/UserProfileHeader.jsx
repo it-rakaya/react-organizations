@@ -12,15 +12,16 @@ const ProfilePicture = styled("img")(({ theme }) => ({
   height: 150,
   display: "flex",
   justifyContent: "center",
-  // border: `5px solid ${theme.palette.common.white}`,
+  border: `4px solid ${theme.palette.primary?.main}`,
   [theme.breakpoints.down("md")]: {
     marginBottom: theme.spacing(4),
   },
   borderRadius: "50%",
-  border:"2px solid black"
+  // border:"2px solid black"
 }));
 
 const UserProfileHeader = ({ user, setEditUser }) => {
+  console.log("🚀 ~ file: UserProfileHeader.jsx:24 ~ UserProfileHeader ~ user:", user)
   return (
     <div>
       <Card className="flex flex-col items-center justify-center bg-transparent shadow-none">
@@ -60,7 +61,7 @@ const UserProfileHeader = ({ user, setEditUser }) => {
           <div className="flex gap-2 mt-4">
             <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
               <p>
-                {t("Birthday")} :{user?.email}
+                {t("Birthday")} :{user?.birthday}
               </p>
             </Typography>
           </div>

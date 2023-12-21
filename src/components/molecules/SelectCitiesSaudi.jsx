@@ -5,7 +5,7 @@ import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
 
 export default function SelectCitiesSaudi({ name, label, className , required }) {
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue , values } = useFormikContext();
   const { data: cities } = useFetch({
     endpoint: `saudi-cities`,
     queryKey: ["saudi-cities"],
@@ -14,6 +14,9 @@ export default function SelectCitiesSaudi({ name, label, className , required })
     value: item.id,
     label: item.name,
   }));
+  const selectedCity = options?.find(
+    (option) => option?.value == values[name]
+  );
 
   return (
     <div className={className}>
@@ -24,6 +27,7 @@ export default function SelectCitiesSaudi({ name, label, className , required })
         <Select
           options={options}
           name={name}
+          value={selectedCity}
           placeholder={t("Chose city")}
           onChange={(option) => setFieldValue(name, option.value)}
           styles={{

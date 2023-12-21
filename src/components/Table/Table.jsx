@@ -21,9 +21,18 @@ const Table = ({
     page: 0,
     pageSize: 10,
   });
+
   const handleFilter = useCallback((val) => {
     setValue(val);
+    setPaginationModel((prevModel) => ({ ...prevModel, page: 0 }));
   }, []);
+
+  // Filter rows based on the "name" property
+  const filteredRows = rows.filter((row) => {
+    const nameValue = String(row.name).toLowerCase();
+    return nameValue.includes(value.toLowerCase());
+  });
+
   const customLocaleText = {
     noRowsLabel: t("Not Found Data"),
     pagination: {
@@ -33,7 +42,6 @@ const Table = ({
 
   return (
     <>
-      {/* // <Grid  spacing={6}> */}
       <Grid item xs={12}>
         <Card>
           <TableHeader
@@ -45,7 +53,7 @@ const Table = ({
           />
           <DataGrid
             autoHeight
-            rows={rows}
+            rows={filteredRows}
             columns={columns}
             checkboxSelection
             disableRowSelectionOnClick
@@ -65,7 +73,6 @@ const Table = ({
           />
         </Card>
       </Grid>
-      {/* // </Grid> */}
     </>
   );
 };

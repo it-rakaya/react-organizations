@@ -7,7 +7,7 @@ import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
 export default function AddFacility() {
   return (
     <div className="">
-      <div className="grid items-start grid-cols-2 p-5">
+      <div className="grid items-start grid-cols-2 px-5">
         <div className="">
           <Typography className={`font-bold  `}>1. بيانات المنشاة</Typography>
         </div>
@@ -112,10 +112,10 @@ export default function AddFacility() {
           <div className="w-1/2 ">
             <BaseInputField
               label="الطاقة الاستيعابية للحجاج"
-              placeholder="***********34"
+              placeholder="36541"
               name="capacity"
               type="custom"
-              maxNum="9"
+              maxNum="5"
               required
             />
           </div>

@@ -3,9 +3,10 @@ import { Button, Grid } from "@mui/material";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import TermsConditionIcon from "../../atoms/icons/TermsConditionIcon";
+import ButtonComp from "../../atoms/buttons/ButtonComp";
 
 export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
-  const { mutate: CancelOrder } = useMutate({
+  const { mutate: CancelOrder  , isPending } = useMutate({
     mutationKey: [`cancel_order${orderId}`],
     endpoint: `orders-cancel/${orderId}`,
     onSuccess: () => {
@@ -25,22 +26,24 @@ export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
         <div>
           <TermsConditionIcon />
         </div>
-        <div className="flex flex-col items-center gap-5">
-          <div>هل انت متاكد من الغاء الطلب</div>
+        <div className="flex flex-col items-center g">
+          <div>هل انت متاكد من الغاء الطلب ؟</div>
           <Grid xs={12} sm={12} md={12} xl={12}>
-            <Button
+            <ButtonComp
               variant="contained"
-              className="mx-5 bg-contained w-[90px]"
-              onClick={() => CancelOrder({})}
+              className="mx-2 bg-contained w-[90px] h-[40px]"
+              action={() => CancelOrder({})}
+              loading={isPending}
             >
               موافق
-            </Button>
-            <Button
-              className="mx-5 border-2 border-solid border-contained text-contained w-[90px]"
-              onClick={() => setOpenCancelOrder(false)}
+            </ButtonComp>
+            <ButtonComp
+              className="mx-2 border-2 border-solid border-contained !text-contained w-[90px] h-[40px]"
+              action={() => setOpenCancelOrder(false)}
+              variant="outlined"
             >
               الغاء
-            </Button>
+            </ButtonComp>
           </Grid>
         </div>
       </div>

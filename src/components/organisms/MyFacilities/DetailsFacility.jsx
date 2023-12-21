@@ -6,6 +6,13 @@ import { t } from "i18next";
 import { useState } from "react";
 import PreviewImageLink from "../../molecules/PreviewImageLink";
 import PreviewPdf from "../../molecules/PreviewPdf";
+import Icon from "@mdi/react";
+import {
+  mdiFileDocumentOutline,
+  mdiFormatListBulleted,
+  mdiMapMarkerOutline,
+  mdiOfficeBuildingOutline,
+} from "@mdi/js";
 
 export default function DetailsFacility({ data }) {
   console.log(
@@ -22,7 +29,7 @@ export default function DetailsFacility({ data }) {
 
   return (
     <div>
-      <div className="px-10 mt-8">
+      <div className="mt-8 px-">
         {/* <div className="col-span-2">
           <h1 className="font-bold " style={{ color: mainColor }}>
             {t("Facility data")}
@@ -155,39 +162,70 @@ export default function DetailsFacility({ data }) {
           </div>
         ))} */}
         <TabContext value={value}>
-          <div className="px-10 mt-5">
-            <TabList onChange={handleChange} aria-label="nav tabs example">
+          <div className="flex mt-5 ">
+            <TabList
+              onChange={handleChange}
+              aria-label="nav tabs example"
+              orientation="vertical"
+            >
               <Tab
                 value="1"
                 component="a"
                 style={{ alignItems: "start" }}
                 label={
-                  <h2 className="font-bold text-black"> بيانات المنشاة </h2>
+                  <div className="flex items-center gap-2">
+                    <Icon path={mdiOfficeBuildingOutline} size={1} />
+                    <h2 className="font-bold text-black text-start">
+                      بيانات المنشاة{" "}
+                    </h2>
+                  </div>
                 }
               />
               <Tab
                 value="2"
                 component="a"
+                style={{ alignItems: "start" }}
                 label={
-                  <h2 className="font-bold text-black">
-                    {" "}
-                    بيانات العنوان الوطني{" "}
-                  </h2>
+                  <div className="flex items-center gap-2">
+                    <Icon path={mdiMapMarkerOutline} size={1} />
+
+                    <h2 className="font-bold text-black text-start">
+                      بيانات العنوان الوطني{" "}
+                    </h2>
+                  </div>
                 }
               />
               <Tab
                 value="3"
+                style={{ alignItems: "start" }}
                 component="a"
-                label={<h2 className="font-bold text-black"> بيانات اضافية</h2>}
+                label={
+                  <div className="flex items-center gap-2">
+                    <Icon path={mdiFormatListBulleted} size={1} />
+
+                    <h2 className="font-bold text-black text-start">
+                      بيانات اضافية
+                    </h2>
+                  </div>
+                }
               />
               <Tab
                 value="4"
                 component="a"
-                label={<h2 className="font-bold text-black"> مرفقات </h2>}
+                style={{ alignItems: "start" }}
+                label={
+                  <div className="flex items-center gap-2">
+                    <Icon path={mdiFileDocumentOutline} size={1} />
+
+                    <h2 className="font-bold text-black text-start">مرفقات </h2>
+                  </div>
+                }
               />
             </TabList>
+            <div className="!overflow-y-scroll !shadow-none h-[19rem]  scroll_main w-full">
+              
             <TabPanel value="1">
-              <div className="grid grid-cols-1 p-4 px-20 md:grid-cols-2 gap-x-28">
+              <div className="grid grid-cols-1 p-4 px-10 md:grid-cols-2 gap-x-28">
                 <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
                   <p className="font-bold ">الاسم</p>
                   <p className="mt-1">{data?.name}</p>
@@ -238,67 +276,71 @@ export default function DetailsFacility({ data }) {
                 </div>
               </div>
             </TabPanel>
+            <TabPanel value="2" className="pt-0">
+              <div className="grid grid-cols-1 p-4 px-20 md:grid-cols-2 gap-x-28">
+                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <p className="font-bold "> الشارع </p>
+                  <p className="mt-1">{data?.street_name}</p>
+                </div>
+                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <p className="font-bold "> الحي </p>
+                  <p className="mt-1">{data?.neighborhood}</p>
+                </div>
+                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <p className="font-bold "> اسم المدينة </p>
+                  <p className="mt-1">{data?.city}</p>
+                </div>
+                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <p className="font-bold "> رقم المبنى </p>
+                  <p className="mt-1">{data?.building_number}</p>
+                </div>
+                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <p className="font-bold ">رمز البريد </p>
+                  <p className="mt-1">{data?.postal_code}</p>
+                </div>
+                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <p className="font-bold "> الرقم الفرعي</p>
+                  <p className="mt-1">{data?.sub_number}</p>
+                </div>
+              </div>
+            </TabPanel>
+            <TabPanel value="3" className="pt-0">
+              <div className="grid grid-cols-1 p-4 px-20 md:grid-cols-2 gap-x-28">
+                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <p className="font-bold ">رقم الطهاة </p>
+                  <p className="mt-1">{data?.chefs_number}</p>
+                </div>
+
+                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <p className="font-bold "> رقم الموظف </p>
+                  <p className="mt-1">{data?.employee_number}</p>
+                </div>
+
+                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <p className="font-bold "> مساحة المطبخ </p>
+                  <p className="mt-1">{data?.kitchen_space}</p>
+                </div>
+              </div>
+            </TabPanel>
+            <TabPanel value="4" className="w-full pt-0">
+              {data?.attachmentUrl?.map((item) => (
+                <div
+                  className="flex items-center justify-start w-full py-1 my-3 border-b border-[#e6e6e991]"
+                  key={item?.id}
+                >
+                  {!item?.value?.toLowerCase()?.endsWith(".pdf") ? (
+                    <p className="mr-[6px]">
+                      <PreviewImageLink url={item?.value} />
+                    </p>
+                  ) : (
+                    <PreviewPdf item={item} />
+                  )}
+                  <p className="font-bold "> {item?.label} </p>
+                </div>
+              ))}
+            </TabPanel>
+            </div>
           </div>
-          <TabPanel value="2" className="pt-0">
-            <div className="grid grid-cols-1 p-4 px-20 md:grid-cols-2 gap-x-28">
-              <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                <p className="font-bold "> الشارع </p>
-                <p className="mt-1">{data?.street_name}</p>
-              </div>
-              <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                <p className="font-bold "> الحي </p>
-                <p className="mt-1">{data?.neighborhood}</p>
-              </div>
-              <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                <p className="font-bold "> اسم المدينة </p>
-                <p className="mt-1">{data?.city}</p>
-              </div>
-              <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                <p className="font-bold "> رقم المبنى </p>
-                <p className="mt-1">{data?.building_number}</p>
-              </div>
-              <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                <p className="font-bold ">رمز البريد </p>
-                <p className="mt-1">{data?.postal_code}</p>
-              </div>
-              <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                <p className="font-bold "> الرقم الفرعي</p>
-                <p className="mt-1">{data?.sub_number}</p>
-              </div>
-            </div>
-          </TabPanel>
-          <TabPanel value="3" className="pt-0">
-            <div className="grid grid-cols-1 p-4 px-20 md:grid-cols-2 gap-x-28">
-              <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                <p className="font-bold ">رقم الطهاة </p>
-                <p className="mt-1">{data?.chefs_number}</p>
-              </div>
-
-              <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                <p className="font-bold "> رقم الموظف </p>
-                <p className="mt-1">{data?.employee_number}</p>
-              </div>
-
-              <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                <p className="font-bold "> مساحة المطبخ </p>
-                <p className="mt-1">{data?.kitchen_space}</p>
-              </div>
-            </div>
-          </TabPanel>
-          <TabPanel value="4" className="pt-0">
-            {data?.attachmentUrl?.map((item) => (
-              <div className="flex items-center " key={item?.id}>
-                <p className="font-bold "> {item?.label} </p>
-                {!item?.value?.toLowerCase()?.endsWith(".pdf") ? (
-                  <p>
-                    <PreviewImageLink url={item?.value} />
-                  </p>
-                ) : (
-                  <PreviewPdf item={item?.value} />
-                )}
-              </div>
-            ))}
-          </TabPanel>
         </TabContext>
       </div>
     </div>

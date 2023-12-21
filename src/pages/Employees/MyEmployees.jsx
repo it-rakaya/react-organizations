@@ -1,25 +1,28 @@
-import { mdiAccount } from "@mdi/js";
+import { mdiAccount, mdiTrashCanOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import { t } from "i18next";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Table from "../../components/Table/Table";
 import MainHeader from "../../components/atoms/MainHeader";
-import useFetch from "../../hooks/useFetch";
+import ModalComp from "../../components/atoms/ModalComp";
 import PreviewImageLink from "../../components/molecules/PreviewImageLink";
 import PreviewPdf from "../../components/molecules/PreviewPdf";
-import ModalComp from "../../components/atoms/ModalComp";
-import { useState } from "react";
 import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
+import DeleteEMployee from "../../components/templates/myEmployee/DeleteEMployee";
+import useFetch from "../../hooks/useFetch";
 
 export default function MyEmployees() {
-  const { data: employees , refetch } = useFetch({
+  const { data: employees, refetch } = useFetch({
     endpoint: `facility-employees`,
     queryKey: ["facility_employees"],
   });
   const [openAddEmployee, setOpenAddEmployee] = useState(false);
+  const [employeeId, setEmployeeId] = useState();
+  const [openModelDeleteEmployee, setModelDeleteEMployee] = useState(false);
 
   const LinkStyled = styled(Link)(({ theme }) => ({
     fontWeight: 600,
@@ -38,6 +41,8 @@ export default function MyEmployees() {
       minWidth: 230,
       field: "name",
       headerName: t("name"),
+      // cellClassName: "flex !px-0 !justify-center",
+      headerAlign: 'center',
       renderCell: ({ row }) => {
         const { name } = row;
 
@@ -52,11 +57,7 @@ export default function MyEmployees() {
               }}
             >
               <Icon path={mdiAccount} size={1} />
-
               <LinkStyled href="/apps/user/view/overview/">{name}</LinkStyled>
-              {/* <Typography noWrap variant='caption'>
-              {`@${name}`}
-            </Typography> */}
             </Box>
           </Box>
         );
@@ -67,6 +68,8 @@ export default function MyEmployees() {
       minWidth: 250,
       field: "facility_name",
       headerName: t("facility name"),
+      cellClassName: "flex !px-0 !justify-center",
+      headerAlign: "center",
       renderCell: ({ row }) => {
         return (
           <Typography noWrap variant="body2">
@@ -80,6 +83,8 @@ export default function MyEmployees() {
       field: "national_id",
       minWidth: 150,
       headerName: t("national_id"),
+      cellClassName: "flex !px-0 !justify-center",
+      headerAlign: "center",
       renderCell: ({ row }) => {
         return (
           <>
@@ -98,6 +103,9 @@ export default function MyEmployees() {
       minWidth: 120,
       headerName: t("position"),
       field: "position",
+      cellClassName: "flex !px-0 !justify-center",
+      headerAlign: "center",
+
       renderCell: ({ row }) => {
         return (
           <Typography
@@ -112,18 +120,25 @@ export default function MyEmployees() {
     },
     {
       flex: 0.15,
-      minWidth: 120,
+      minWidth: 150,
       headerName: t("attachment"),
       field: "",
+      cellClassName: "flex !px-0 !justify-center",
+      headerAlign: "center",
+
       renderCell: ({ row }) => {
         return (
           <Typography
             variant="subtitle1"
             noWrap
-            sx={{ textTransform: "capitalize", display: "flex", gap: "10px" }}
+            sx={{
+              textTransform: "capitalize",
+              display: "flex",
+              justifyContent: "center",
+            }}
           >
             {row?.attachmentUrl.map((item) => (
-              <div className="flex items-center " key={item?.id}>
+              <div className="flex flex-wrap items-center justify-center" key={item?.id}>
                 {!item?.value?.toLowerCase().endsWith(".pdf") ? (
                   <p>
                     <PreviewImageLink url={item?.value} />
@@ -137,125 +152,49 @@ export default function MyEmployees() {
         );
       },
     },
-    // {
-    //   flex: 0.1,
-    //   minWidth: 110,
-    //   field: "status",
-    //   headerName: "Status",
-    // },
+    {
+      flex: 0.15,
+      minWidth: 50,
+      headerName: "الاجراءات",
+      field: "الاجراءات",
+      cellClassName: "!flex !px-0 !justify-center !items-center",
+      headerAlign: "center",
+
+      renderCell: (row) => {
+        return (
+          <Typography
+            variant="subtitle1"
+            noWrap
+            sx={{ textTransform: "capitalize", display: "flex"  , alignItems:"center" }}
+          >
+            <div
+              className="cursor-pointer "
+              onClick={() => {
+                setEmployeeId(row.id);
+                setModelDeleteEMployee(true);
+              }}
+            >
+              <Icon path={mdiTrashCanOutline} size={1} />
+            </div>
+          </Typography>
+        );
+      },
+    },
   ];
 
   return (
     <>
-    <div>
-      <MainHeader title={t("Employee")} />
-      {/* <div className="flex flex-col items-center justify-between h-[65vh]">
-        {isLoading || isRefetching ? (
-          <Loading />
-        ) : employees?.employees.length ? (
-          <>
-            <Grid container spacing={6}>
-              {paginateEmployee?.map((item) => (
-                <Grid
-                  item
-                  xs={12}
-                  sm={4}
-                  md={3}
-                  key={item?.id}
-                  // style={{ height: "290px"}}
-                >
-                  <Card sx={{ position: "relative" }}>
-                    <OptionsMenu
-                      iconButtonProps={{
-                        size: "small",
-                        sx: { top: 12, right: 12, position: "absolute" },
-                      }}
-                      options={[
-                        {
-                          text: t("Details"),
-                          details: "Additional details here",
-                          function: () => {
-                            // Add your custom function logic here
-                            setOpen(true);
-                            setDetailsItem(item);
-                          },
-                        },
-
-                        // { text: "تعديل", onClick: "" },
-                        // { divider: true },
-                        // {
-                        //   text: "حذف",
-                        //   menuItemProps: { sx: { color: "error.main" } },
-                        // },
-                      ]}
-                    />
-                    <CardContent
-                      onClick={() => {
-                        setOpen(true);
-                        setDetailsItem(item);
-                      }}
-                      className="cursor-pointer"
-                    >
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          flexDirection: "column",
-                        }}
-                      >
-                        <Avatar
-                          src={"/images/avatars/9.png"}
-                          sx={{ mb: 4, width: 80, height: 80 }}
-                        />
-                        <Typography
-                          variant="h6"
-                          sx={{ fontWeight: 900 }}
-                          style={{ color: theme?.palette?.primary?.main }}
-                          className="text-contained"
-                        >
-                          {item?.name}
-                        </Typography>
-                        <Typography sx={{ fontWeight: 500 }}>
-                          {item?.facility_name}
-                        </Typography>
-                        <Typography
-                          sx={{ color: "text.secondary" }}
-                          className="text-center"
-                        >
-                          {item?.position}
-                        </Typography>
-                      </Box>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-            <ModalComp
-              open={open}
-              onClose={() => setOpen(false)}
-              Children={<DetailsEmployee data={detailsItem} />}
-            />
-            {filteredEmployee?.length > 8 && (
-              <Paginate
-                page={currentPage}
-                totalPages={totalPages}
-                handleChange={handlePageChange}
-              />
-            )}
-          </>
-        ) : (
-          <DataNotFound title={t("Not Found Employee")} />
-        )}
-      </div> */}
-      <Table
-        columns={columns || []}
-        rows={employees?.employees || []}
-        placeholderSearch={t("search in employee")}
-        textButton={t("Add Employee")}
-        actionButton={()=>setOpenAddEmployee(true)}
-      />
-    </div>
-    <ModalComp
+      <div>
+        <MainHeader title={t("Employee")} />
+        <Table
+          columns={columns || []}
+          rows={employees?.employees || []}
+          placeholderSearch={t("search in employee")}
+          textButton={t("Add Employee")}
+          actionButton={() => setOpenAddEmployee(true)}
+        />
+      </div>
+      <ModalComp
         open={openAddEmployee}
         className={"  "}
         onClose={() => setOpenAddEmployee(false)}
@@ -264,6 +203,18 @@ export default function MyEmployees() {
             refetch={refetch}
             setOpenAddEmployee={setOpenAddEmployee}
             showSelectFacility={true}
+          />
+        }
+      />
+      <ModalComp
+        open={openModelDeleteEmployee}
+        className="!max-w-[450px]  "
+        onClose={() => setModelDeleteEMployee(false)}
+        Children={
+          <DeleteEMployee
+            setModelDeleteEMployee={setModelDeleteEMployee}
+            employeeId={employeeId}
+            refetch={refetch}
           />
         }
       />

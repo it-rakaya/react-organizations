@@ -16,9 +16,9 @@ function TermsAndCondition({checked ,setChecked }) {
     <div className="">
       <div className="flex flex-col items-center justify-center gap-5">
         <div className="">
-          <TermsConditionIcon className={"!fill-[#F0A44B]"} />
+          <TermsConditionIcon className={""} />
         </div>
-        <h1 className="text-xl font-bold">{t("Terms and Conditions")}</h1>
+        <h1 className="text-xl font-bold ">{t("Terms and Conditions")}</h1>
       </div>
 
       {orgData?.organizations?.policies ? (
@@ -30,7 +30,7 @@ function TermsAndCondition({checked ,setChecked }) {
         ></div>
       ) : (
         <div className="main_content max-h-[450px] overflow-y-scroll scroll_main mt-5">
-          <p className="font-semibold">
+          <p className="font-semibold text-center">
             بموافقتك على التسجيل بالمنصة فإنك تقر وتقبل الشروط والأحكام التالية:
           </p>
           <ul className="mx-4 text-start">

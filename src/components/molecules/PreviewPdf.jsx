@@ -14,9 +14,7 @@ function PreviewPdf({ item }) {
       <a href={item?.value} download={item?.value} className="" target="_blank" rel="noreferrer">
         <div
           className={` flex items-center w-full  p-1  cursor-pointer rounded-md  `}
-          // style={{
-          //   backgroundColor: bgMain,
-          // }}
+  
         >
           <IconifyIcon icon={"prime:file-pdf"} className="text-3xl" />
           {/* <span className="text-sm">

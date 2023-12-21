@@ -62,7 +62,7 @@ function FacilityContent({
           capacity: Yup.string()
             .trim()
             .required(t("the license number required"))
-            .length(9, t("the license number must be equal 10 digits")),
+            .length(5, t("the capacity must be equal 5 digits")),
 
           license: Yup.string()
             .trim()

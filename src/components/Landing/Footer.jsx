@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getTimeLeftToHajj } from "../../utils/landing/HajjTimeCalc";
 import { getPrayerTime } from "../../utils/landing/prayerTimeCalc";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
 const FooterComponent = ({ title, children, last = false }) => {
   const { i18n } = useTranslation();
@@ -40,6 +41,9 @@ const FooterComponent = ({ title, children, last = false }) => {
 const textStyle = `font-semibold`;
 const Footer = () => {
   const { t } = useTranslation();
+  const { orgData } = UseOrg();
+  console.log("🚀 ~ file: Footer.jsx:45 ~ Footer ~ orgData:", orgData);
+
   const [nextPrayerTime, setNextPrayerTime] = useState({
     hours: null,
     minutes: null,
@@ -56,7 +60,13 @@ const Footer = () => {
     <div className="2xl:pe-[18%] 3xl:pe-[26%]">
       <div className="flex flex-col w-full gap-3 lg:flex-row">
         <FooterComponent title={t("landing.userManual")}>
-          <a href="">
+          <a
+            href={orgData?.organizations?.profile_file}
+            download={orgData?.organizations?.profile_file}
+            className="cursor-pointer"
+            target="_blank"
+            rel="noreferrer"
+          >
             <h1 className={`${textStyle} flex items-center gap-2`}>
               {t("landing.downloadFile")}
               <Icon icon="ic:baseline-download" className="" />

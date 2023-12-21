@@ -48,6 +48,8 @@ export default function Orders() {
       flex: 0.2,
       field: "name",
       headerName: t("code"),
+      cellClassName: "flex !px-0 !justify-center",
+      headerAlign: "center",
       renderCell: ({ row }) => {
         const { code } = row;
         return (
@@ -71,6 +73,8 @@ export default function Orders() {
       flex: 0.2,
       field: "service_name",
       headerName: t("service name"),
+      cellClassName: "flex !px-0 !justify-center",
+      headerAlign: "center",
       renderCell: ({ row }) => {
         return (
           <Typography noWrap variant="body2">
@@ -79,27 +83,13 @@ export default function Orders() {
         );
       },
     },
-    // {
-    //   flex: 0.15,
-    //   field: "national_id",
-    //   headerName: t("price"),
-    //   renderCell: ({ row }) => {
-    //     return (
-    //       <>
-    //         <Typography
-    //           noWrap
-    //           sx={{ color: "text.secondary", textTransform: "capitalize" }}
-    //         >
-    //           {row.service?.price}
-    //         </Typography>
-    //       </>
-    //     );
-    //   },
-    // },
+
     {
       flex: 0.15,
       field: "facility_name",
       headerName: t("facility name"),
+      cellClassName: "flex !px-0 !justify-center",
+      headerAlign: "center",
       renderCell: ({ row }) => {
         return (
           <>
@@ -117,6 +107,8 @@ export default function Orders() {
       flex: 0.15,
       field: "facility_address",
       headerName: t("facility address"),
+      cellClassName: "flex !px-0 !justify-center",
+      headerAlign: "center",
       renderCell: ({ row }) => {
         return (
           <>
@@ -134,6 +126,8 @@ export default function Orders() {
       flex: 0.15,
       headerName: t("status"),
       field: "status",
+      cellClassName: "flex !px-0 !justify-center",
+      headerAlign: "center",
       renderCell: ({ row }) => {
         return (
           <Typography
@@ -154,8 +148,10 @@ export default function Orders() {
     },
     {
       flex: 0.15,
-      headerName: "",
-      field: "",
+      headerName: "الاجراءات",
+      field: "الاجراءات",
+      cellClassName: "flex !px-0 !justify-center",
+      headerAlign: "center",
       renderCell: ({ row }) => {
         return (
           <Typography
@@ -170,7 +166,11 @@ export default function Orders() {
             className="items-center justify-center w-full "
           >
             <div
-              className="cursor-pointer"
+              className={
+                row.status_id == Canceled
+                  ? "cursor-not-allowed"
+                  : "cursor-pointer"
+              }
               onClick={() => {
                 if (row.status_id == Canceled) {
                   return notify("worning", t("cant Canceled order"));
@@ -180,10 +180,18 @@ export default function Orders() {
                 }
               }}
             >
-              <Icon path={mdiEyeOutline} size={1} />
+              <Icon
+                path={mdiEyeOutline}
+                size={1}
+                className={row.status_id == Canceled && "text-[#d1d1d7]"}
+              />
             </div>
             <div
-              className="cursor-pointer"
+              className={
+                row.status_id == Canceled
+                  ? "cursor-not-allowed"
+                  : "cursor-pointer"
+              }
               onClick={() => {
                 if (row.status_id == Canceled) {
                   return console.log("ddd");
@@ -193,7 +201,11 @@ export default function Orders() {
                 }
               }}
             >
-              <Icon path={mdiTrashCanOutline} size={1} />
+              <Icon
+                path={mdiTrashCanOutline}
+                size={1}
+                className={row.status_id == Canceled && "text-[#d1d1d7]"}
+              />
             </div>
           </Typography>
         );
@@ -366,7 +378,7 @@ export default function Orders() {
       />
       <ModalComp
         open={openDetailsOrder}
-        className={"  "}
+        classNameBox={"!h-full"}
         onClose={() => setOpenDetailsOrder(false)}
         Children={
           <DetailsOrder data={detailsOrder} setDetailsOrder={setDetailsOrder} />

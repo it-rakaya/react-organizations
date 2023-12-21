@@ -2,7 +2,7 @@
 import useFetch from "../../hooks/useFetch";
 import SelectComp from "./Formik/SelectComp";
 
-export default function SelectFacilities({ name, label, placeholder }) {
+export default function SelectFacilities({ name, label }) {
   const { data: facilities } = useFetch({
     endpoint: `facilities?select=id,name`,
     queryKey: ["select_facilities"],

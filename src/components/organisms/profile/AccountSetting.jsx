@@ -77,7 +77,7 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
               <DatePickerComp name="birthday" label={"تاريخ  الميلاد"} />
             </div>
 
-            <div className="flex flex-col col-span-1 gap-3 ">
+            <div className="flex flex-col col-span-2 gap-3 ">
               <DatePickerComp
                 name="national_id_expired"
                 label={"تاريخ انتهاء الاقامه"}
