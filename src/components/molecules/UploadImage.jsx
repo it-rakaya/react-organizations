@@ -29,7 +29,7 @@ const UploadImage = ({ name, label, nameValue, className, value }) => {
   const theme = useTheme();
 
   const [files, setFiles] = useState(
-    values?.attachments.length
+    values?.attachments?.length
       ? [values?.attachments[nameValue]]
       : value
       ? [updateImage]
