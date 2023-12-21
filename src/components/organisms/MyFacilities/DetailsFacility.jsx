@@ -162,11 +162,12 @@ export default function DetailsFacility({ data , className }) {
           </div>
         ))} */}
         <TabContext value={value}>
-          <div className="flex mt-5 ">
+          <div className="flex mt-5 w ">
             <TabList
               onChange={handleChange}
               aria-label="nav tabs example"
               orientation="vertical"
+              className="w-[30%]"
             >
               <Tab
                 value="1"
@@ -222,7 +223,7 @@ export default function DetailsFacility({ data , className }) {
                 }
               />
             </TabList>
-            <div className={`${className} !overflow-y-scroll !shadow-none scroll_main w-full`}>
+            <div className={`${className} !overflow-y-scroll !shadow-none min-h-[19rem]  scroll_main w-full`}>
               
             <TabPanel value="1">
               <div className="grid grid-cols-1 p-4 px-10 md:grid-cols-2 gap-x-28">

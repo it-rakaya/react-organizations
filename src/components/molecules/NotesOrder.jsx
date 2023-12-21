@@ -13,7 +13,7 @@ function NotesOrder({ notes }) {
       </div>
     ))
   ) : (
-    <div className="mt-10 text-3xl font-bold text-center"> لايوجد ملاحظات </div>
+    <div className="mt-10 text-2xl font-bold text-"> لايوجد ملاحظات </div>
   );
 }
 
