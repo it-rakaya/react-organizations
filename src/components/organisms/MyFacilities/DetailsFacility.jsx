@@ -14,7 +14,7 @@ import {
   mdiOfficeBuildingOutline,
 } from "@mdi/js";
 
-export default function DetailsFacility({ data }) {
+export default function DetailsFacility({ data , className }) {
   console.log(
     "🚀 ~ file: DetailsFacility.jsx:15 ~ DetailsFacility ~ data:",
     data
@@ -222,7 +222,7 @@ export default function DetailsFacility({ data }) {
                 }
               />
             </TabList>
-            <div className="!overflow-y-scroll !shadow-none h-[19rem]  scroll_main w-full">
+            <div className={`${className} !overflow-y-scroll !shadow-none scroll_main w-full`}>
               
             <TabPanel value="1">
               <div className="grid grid-cols-1 p-4 px-10 md:grid-cols-2 gap-x-28">

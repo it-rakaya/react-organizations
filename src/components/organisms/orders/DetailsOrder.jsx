@@ -78,7 +78,7 @@ export default function DetailsOrder({ data }) {
             <TabPanel value="1" className="pt-0">
               <div>
                 <div className="">
-                  <DetailsFacility data={data?.facility} />
+                  <DetailsFacility data={data?.facility} className="h-[19rem]" />
                 </div>
               </div>
             </TabPanel>
@@ -102,7 +102,7 @@ export default function DetailsOrder({ data }) {
             <TabPanel value="3" className="pt-0">
               <div>
                 <div className="">
-                  <NotesOrder notes={data?.notes} />
+                  <NotesOrder notes={data?.notes}  />
                 </div>
               </div>
             </TabPanel>
