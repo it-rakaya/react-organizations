@@ -74,11 +74,11 @@ export default function DetailsOrder({ data }) {
               label={<h2 className="font-bold text-black"> ملاحظات الطلب </h2>}
             />
           </TabList>
-          <div className="main_content max-h-[350px] overflow-y-scroll scroll_main">
+          <div className="main_content max-h-[30rem] overflow-y-scroll scroll_main">
             <TabPanel value="1" className="pt-0">
               <div>
                 <div className="">
-                  <DetailsFacility data={data?.facility} className="h-[19rem]" />
+                  <DetailsFacility data={data?.facility} className="h-[27rem]" />
                 </div>
               </div>
             </TabPanel>
