@@ -2,12 +2,12 @@
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Divider, Tab } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { t } from "i18next";
 import { useState } from "react";
 import DetailsFacility from "../MyFacilities/DetailsFacility";
+import NotesOrder from "../../molecules/NotesOrder";
 
 export default function DetailsOrder({ data }) {
-  console.log("🚀 ~ file: DetailsOrder.jsx:22 ~ DetailsOrder ~ data:", data);
+  console.log("🚀 ~ file: DetailsOrder.jsx:9 ~ DetailsOrder ~ data:", data);
   const [value, setValue] = useState("1");
   const theme = useTheme();
 
@@ -18,7 +18,7 @@ export default function DetailsOrder({ data }) {
 
   return (
     <div className="">
-      <div className="px-10 mt-10">
+      <div className="px-10 mt-10 ">
         <div className="col-span-2">
           <h1 className="font-bold " style={{ color: mainColor }}>
             تفاصيل الطلب
@@ -51,48 +51,63 @@ export default function DetailsOrder({ data }) {
       <div className="my-5">
         <Divider />
       </div>
+      <div></div>
 
       <TabContext value={value}>
         <div className="px-10 mt-5">
-          
-        <TabList onChange={handleChange} aria-label="nav tabs example">
-          <Tab
-            value="1"
-            component="a"
-            style={{ alignItems: "start" }}
-            label={<h2 className="font-bold text-black"> الاسئله </h2>}
-          />
-          <Tab
-            value="2"
-            component="a"
-            label={<h2 className="font-bold text-black">تفاصيل المنشاه </h2>}
-          />
-        </TabList>
-        <TabPanel value="1">
-          <div className="grid grid-cols-2 p-4 mt-5 gap-y-4">
-            {data?.answers?.length ? (
-              data?.answers?.map((item) => (
-                <div className="flex gap-2" key={item?.id}>
-                  <p className="font-bold text-contained">
-                    {item?.question?.content}؟
-                  </p>
-                  <p>{item?.value}</p>
+          <TabList onChange={handleChange} aria-label="nav tabs example">
+            <Tab
+              value="1"
+              component="a"
+              label={<h2 className="font-bold text-black">تفاصيل المنشاه </h2>}
+            />
+            <Tab
+              value="2"
+              component="a"
+              style={{ alignItems: "start" }}
+              label={<h2 className="font-bold text-black"> الاسئله </h2>}
+            />
+
+            <Tab
+              value="3"
+              component="a"
+              label={<h2 className="font-bold text-black"> ملاحظات الطلب </h2>}
+            />
+          </TabList>
+          <div className="main_content max-h-[350px] overflow-y-scroll scroll_main">
+            <TabPanel value="1" className="pt-0">
+              <div>
+                <div className="">
+                  <DetailsFacility data={data?.facility} />
                 </div>
-              ))
-            ) : (
-              <div className="text-xl font-bold"> لايوجد اساله </div>
-            )}
+              </div>
+            </TabPanel>
+            <TabPanel value="2">
+              <div className="grid grid-cols-2 p-4 mt-5 gap-y-4">
+                {data?.answers?.length ? (
+                  data?.answers?.map((item) => (
+                    <div className="flex gap-2" key={item?.id}>
+                      <p className="font-bold text-contained">
+                        {item?.question?.content}؟
+                      </p>
+                      <p>{item?.value}</p>
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-xl font-bold"> لايوجد اساله </div>
+                )}
+              </div>
+            </TabPanel>
+
+            <TabPanel value="3" className="pt-0">
+              <div>
+                <div className="">
+                  <NotesOrder notes={data?.notes} />
+                </div>
+              </div>
+            </TabPanel>
           </div>
-        </TabPanel>
-        
         </div>
-        <TabPanel value="2" className="pt-0">
-          <div >
-            <div className="">
-              <DetailsFacility data={data?.facility} />
-            </div>
-          </div>
-        </TabPanel>
       </TabContext>
     </div>
   );

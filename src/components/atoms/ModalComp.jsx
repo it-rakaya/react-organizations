@@ -17,7 +17,8 @@ const style = {
   overflowY: "scroll !important",
   p: 4,
   border:"0", 
-  borderColor:"red"
+  borderColor:"red",
+  // height:"100%"
 };
 
 export default function ModalComp({
@@ -26,6 +27,7 @@ export default function ModalComp({
   Children,
   className,
   hidden,
+  classNameBox
 }) {
   return (
     <div className="max-h-[350px]">
@@ -36,7 +38,7 @@ export default function ModalComp({
         aria-describedby="modal-modal-description"
         className={`max-w-[950px]   m-auto ${className}`}
       >
-        <Box sx={style} className="scroll_main">
+        <Box sx={style} className={`scroll_main ${classNameBox}`}>
           {hidden ? (
             ""
           ) : (

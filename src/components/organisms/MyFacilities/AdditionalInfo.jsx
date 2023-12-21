@@ -31,7 +31,7 @@ function AdditionalInfo() {
       </div>
 
       <div className="flex items-start col-span-12 gap-2 ">
-        <div className="w-1/2">
+        <div className="w-full">
           <BaseInputField
             label=" مساحة المطبخ ( بالمتر المربع)"
             placeholder="500"

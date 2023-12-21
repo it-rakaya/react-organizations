@@ -73,7 +73,10 @@ export default function MyFacilities() {
               {paginatedFacilities?.map((item) => (
                 <>
                   <Grid item xs={12} sm={4} md={3} key={item?.id}>
-                    <Card sx={{ position: "relative" , height:"190px" }} className="flex flex-col items-center justify-end">
+                    <Card
+                      sx={{ position: "relative", height: "190px" }}
+                      className="flex flex-col items-center justify-end"
+                    >
                       <OptionsMenu
                         iconButtonProps={{
                           size: "small",
@@ -92,12 +95,11 @@ export default function MyFacilities() {
                           {
                             text: t("Edit"),
                             function: () => {
-                              navigate(`/dashboard/facilities/edit-facility/${item?.id}`);
-
+                              navigate(
+                                `/dashboard/facilities/edit-facility/${item?.id}`
+                              );
                             },
                           },
-                     
-                         
                         ]}
                       />
                       <CardContent
@@ -156,6 +158,7 @@ export default function MyFacilities() {
 
       <ModalComp
         open={open}
+        classNameBox={"!h-full"}
         onClose={() => setOpen(false)}
         Children={<DetailsFacility data={detailsItem} />}
       />

@@ -58,7 +58,7 @@ export default function OrderMainData({ setShow, show }) {
                   <span className="text-red-500">
                     {item?.is_required == "1" ? "*" : ""}
                   </span>{" "}
-                  ؟
+                  
                 </li>
                 <QuestionBaseInput
                   type={item?.question_type?.name}

@@ -10,7 +10,6 @@ export default function PreviewImage({
   className,
   handleRemoveFile,
 }) {
-  console.log("🚀 ~ file: PreviewImage.jsx:7 ~ PreviewImage ~ files:", files);
   // Extract the URLs from the files array
   const imageUrls = files?.map((file) => URL.createObjectURL(file));
 
