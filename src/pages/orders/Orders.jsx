@@ -1,8 +1,6 @@
 import { mdiEyeOutline, mdiTrashCanOutline } from "@mdi/js";
 import Icon from "@mdi/react";
-import { TabContext } from "@mui/lab";
 import { Box, Typography } from "@mui/material";
-import Grid from "@mui/material/Grid";
 import { t } from "i18next";
 import { useState } from "react";
 import Table from "../../components/Table/Table";
@@ -26,7 +24,6 @@ export default function Orders() {
     "🚀 ~ file: Orders.jsx:25 ~ Orders ~ detailsOrder:",
     detailsOrder
   );
-  const [value, setValue] = useState("1");
 
   const { orgData } = UseOrg();
 
@@ -216,159 +213,21 @@ export default function Orders() {
   return (
     <div>
       <MainHeader title={t("Orders")} />
-      <TabContext value={value} className="mr-0 overflow-hidden">
-        {/* <TabList onChange={handleChange} aria-label="nav tabs example">
-          <Tab
-            value="1"
-            component="a"
-            label={<h2 className="font-bold !text-black dark:text-white">{t("All")} </h2>}
-          />
-          <Tab
-            value="2"
-            component="a"
-            label={<h2 className="font-bold !text-black dark:text-white">{t("Accepted")} </h2>}
-          />
-          <Tab
-            value="3"
-            component="a"
-            label={
-              <h2 className="font-bold !text-black dark:text-white"> {t("In progress")} </h2>
-            }
-          />
-          <Tab
-            value="4"
-            component="a"
-            label={<h2 className="font-bold !text-black dark:text-white">{t("Canceled")} </h2>}
-          />
-          <Tab
-            value="5"
-            component="a"
-            label={<h2 className="font-bold !text-black dark:text-white">{t("Waiting")} </h2>}
-          />
-          <Tab
-            value="6"
-            component="a"
-            label={<h2 className="font-bold !text-black dark:text-white">{t("Rejection")} </h2>}
-          />
-          <Tab
-            value="7"
-            component="a"
-            label={<h2 className="font-bold !text-black dark:text-white">{t("New")} </h2>}
-          />
-        </TabList> */}
-        {isLoading || isRefetching ? (
-          <Loading />
-        ) : Orders?.all_user_orders?.length ? (
-          <>
-            <Grid container spacing={3} className="overflow-hidden">
-              {Orders?.all_user_orders?.map((item) => (
-                <>
-                  {/* All */}
-                  {/* <TabPanel value="1" key={item?.id} className="mt-5 ">
-                    <CardOrder
-                      item={item}
-                      setOpenDetailsOrder={setOpenDetailsOrder}
-                      setDetailsOrder={setDetailsOrder}
-                      setOpenCancelOrder={setOpenCancelOrder}
-                      setOrderId={setOrderId}
-                    />
-                  </TabPanel> */}
+      {isLoading || isRefetching ? (
+        <Loading />
+      ) : (
+        <>
+          <OrderInfo Orders={Orders} />
 
-                  {/* تم القبول */}
-                  {/* <TabPanel value="2" className="mt-5 ">
-                    {item.status_id == 3 && (
-                      <CardOrder
-                        item={item}
-                        setOpenDetailsOrder={setOpenDetailsOrder}
-                        setDetailsOrder={setDetailsOrder}
-                        setOpenCancelOrder={setOpenCancelOrder}
-                        setOrderId={setOrderId}
-                      />
-                    )}
-                  </TabPanel> */}
-
-                  {/* قيد المراجعه */}
-                  {/* <TabPanel value="3" className="mt-5 ">
-                    {item.status_id == 2 && (
-                      <CardOrder
-                        item={item}
-                        setOpenDetailsOrder={setOpenDetailsOrder}
-                        setDetailsOrder={setDetailsOrder}
-                        setOpenCancelOrder={setOpenCancelOrder}
-                        setOrderId={setOrderId}
-                      />
-                    )}
-                  </TabPanel> */}
-
-                  {/* تم الالغاء */}
-                  {/* <TabPanel value="4" className="mt-5 ">
-                    {item.status_id == 5 && (
-                      <CardOrder
-                        item={item}
-                        setOpenDetailsOrder={setOpenDetailsOrder}
-                        setDetailsOrder={setDetailsOrder}
-                        setOpenCancelOrder={setOpenCancelOrder}
-                        setOrderId={setOrderId}
-                      />
-                    )}
-                  </TabPanel> */}
-
-                  {/*  قيد الانتظار */}
-                  {/* <TabPanel value="5" className="mt-5 ">
-                    {item.status_id == 1 && (
-                      <CardOrder
-                        item={item}
-                        setOpenDetailsOrder={setOpenDetailsOrder}
-                        setDetailsOrder={setDetailsOrder}
-                        setOpenCancelOrder={setOpenCancelOrder}
-                        setOrderId={setOrderId}
-                      />
-                    )}
-                  </TabPanel> */}
-
-                  {/* تم الرفض */}
-                  {/* <TabPanel value="6" className="mt-5 ">
-                    {item.status_id == 4 && (
-                      <CardOrder
-                        item={item}
-                        setOpenDetailsOrder={setOpenDetailsOrder}
-                        setDetailsOrder={setDetailsOrder}
-                        setOpenCancelOrder={setOpenCancelOrder}
-                        setOrderId={setOrderId}
-                      />
-                    )}
-                  </TabPanel> */}
-
-                  {/* جديد  */}
-                  {/* <TabPanel value="7" className="mt-5 ">
-                    {item.status_id == 6 && (
-                      <CardOrder
-                        item={item}
-                        setOpenDetailsOrder={setOpenDetailsOrder}
-                        setDetailsOrder={setDetailsOrder}
-                        setOpenCancelOrder={setOpenCancelOrder}
-                        setOrderId={setOrderId}
-                      />
-                    )}
-                  </TabPanel> */}
-                </>
-              ))}
-            </Grid>
-          </>
-        ) : (
-          ""
-          // <DataNotFound title={t("Data not Found")} />
-        )}
-      </TabContext>
-      <OrderInfo Orders={Orders} />
-
-      <Table
-        columns={columns || []}
-        rows={Orders?.all_user_orders || []}
-        textButton={t("Add order")}
-        actionButton={() => setOpenAddFaculty(true)}
-        placeholderSearch={t("Search in orders")}
-      />
+          <Table
+            columns={columns || []}
+            rows={Orders?.all_user_orders || []}
+            textButton={t("Add order")}
+            actionButton={() => setOpenAddFaculty(true)}
+            placeholderSearch={t("Search in orders")}
+          />
+        </>
+      )}
 
       <ModalComp
         open={openAddFaculty}

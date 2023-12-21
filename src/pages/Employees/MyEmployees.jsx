@@ -14,9 +14,15 @@ import PreviewPdf from "../../components/molecules/PreviewPdf";
 import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import DeleteEMployee from "../../components/templates/myEmployee/DeleteEMployee";
 import useFetch from "../../hooks/useFetch";
+import Loading from "../../components/molecules/Loading";
 
 export default function MyEmployees() {
-  const { data: employees, refetch } = useFetch({
+  const {
+    data: employees,
+    refetch,
+    isLoading,
+    isRefetching,
+  } = useFetch({
     endpoint: `facility-employees`,
     queryKey: ["facility_employees"],
   });
@@ -42,7 +48,7 @@ export default function MyEmployees() {
       field: "name",
       headerName: t("name"),
       // cellClassName: "flex !px-0 !justify-center",
-      headerAlign: 'center',
+      headerAlign: "center",
       renderCell: ({ row }) => {
         const { name } = row;
 
@@ -138,7 +144,10 @@ export default function MyEmployees() {
             }}
           >
             {row?.attachmentUrl.map((item) => (
-              <div className="flex flex-wrap items-center justify-center" key={item?.id}>
+              <div
+                className="flex flex-wrap items-center justify-center"
+                key={item?.id}
+              >
                 {!item?.value?.toLowerCase().endsWith(".pdf") ? (
                   <p>
                     <PreviewImageLink url={item?.value} />
@@ -165,7 +174,11 @@ export default function MyEmployees() {
           <Typography
             variant="subtitle1"
             noWrap
-            sx={{ textTransform: "capitalize", display: "flex"  , alignItems:"center" }}
+            sx={{
+              textTransform: "capitalize",
+              display: "flex",
+              alignItems: "center",
+            }}
           >
             <div
               className="cursor-pointer "
@@ -186,13 +199,17 @@ export default function MyEmployees() {
     <>
       <div>
         <MainHeader title={t("Employee")} />
-        <Table
-          columns={columns || []}
-          rows={employees?.employees || []}
-          placeholderSearch={t("search in employee")}
-          textButton={t("Add Employee")}
-          actionButton={() => setOpenAddEmployee(true)}
-        />
+        {isLoading || isRefetching ? (
+          <Loading />
+        ) : (
+          <Table
+            columns={columns || []}
+            rows={employees?.employees || []}
+            placeholderSearch={t("search in employee")}
+            textButton={t("Add Employee")}
+            actionButton={() => setOpenAddEmployee(true)}
+          />
+        )}
       </div>
       <ModalComp
         open={openAddEmployee}
