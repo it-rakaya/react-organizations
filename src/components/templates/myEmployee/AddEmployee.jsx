@@ -24,10 +24,13 @@ export default function AddEmployee({
     endpoint: `facility-employees`,
     onSuccess: () => {
       notify("success");
-      setSecundModal(true);
+      
       if (showSelectFacility) {
         setOpenAddEmployee(false)
         refetch();
+      }else{
+        setSecundModal(true);
+
       }
     },
     onError: (err) => {
