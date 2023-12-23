@@ -64,7 +64,7 @@ const UploadImage = ({ name, label, nameValue, className, value }) => {
     },
   });
 
-  const isLargeFile = files?.length && files[0]?.size > 524288000;
+  const isLargeFile = files?.length && files[0]?.size > 52428800;
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
   console.log("files", files);
 
