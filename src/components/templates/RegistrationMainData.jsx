@@ -4,6 +4,8 @@ import DatePickerComp from "../molecules/Formik/DatePickerComp";
 import PhoneInput2 from "../molecules/Formik/PhoneInput2";
 import SelectCountry from "../molecules/SelectCountry";
 import UploadImage from "../molecules/UploadImage";
+import { t } from "i18next";
+
 
 function RegistrationMainData() {
   const { data: attachments_register } = useFetch({
@@ -14,31 +16,31 @@ function RegistrationMainData() {
   return (
     <div>
       <BaseInputField
-        label="الاسم الكامل "
-        placeholder="محمد احمد محمد"
+        label={t('registration.nameLabel')}
+        placeholder={t('registration.namePleaceholder')}
         name="name"
       />
       <BaseInputField
-        label=" رقم الهوية "
+        label={t('registration.IDNumberLabel')}
         placeholder="10********"
         name="national_id"
         type="custom"
         maxNum={10}
       />
-      <PhoneInput2 name="phone" label="رقم الهاتف" />
+      <PhoneInput2 name="phone" label={t('registration.phoneLabel')} />
       <BaseInputField
-        label="البريد الإلكتروني"
+        label={t('registration.emailLabel')}
         placeholder="Example@example.com"
         name="email"
       />
 
-      <SelectCountry label={"الدوله"} name={"nationality"} />
-      <DatePickerComp name="birthday" label={"تاريخ  الميلاد"} />
+      <SelectCountry label={t('registration.countryLabel')} name={"nationality"} />
+      <DatePickerComp name="birthday" label={t('registration.birthdayDateLabel')} />
 
       <DatePickerComp
         name="national_id_expired"
         name_hj="national_id_expired_hj"
-        label={"تاريخ انتهاء الاقامه"}
+        label={t('registration.IDDateLabel')}
       />
       {/* <FieldArray name="attachments">
         {() => ( */}
