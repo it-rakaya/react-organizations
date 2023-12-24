@@ -19,7 +19,7 @@ export default function OrderMainData({ setShow, show }) {
     <div className="mt-10">
       {show ? (
         <>
-          <div className="grid grid-cols-2 gap-2 ">
+          <div className="grid grid-cols-1 gap-2 md:grid-cols-2 ">
             <div className="mb-3">
               <SelectFacilities
                 label={t("Choose the facility name")}

@@ -20,11 +20,11 @@ export default function EmployeeMainData({
         title={t("Add Employee")}
         styleHead={{ color: theme.palette.primary.main }}
       />
-      <h1 className="flex items-center gap-1 px-5 py-2 text-xl font-bold">
+      <div className="grid items-start grid-cols-2 gap-2 px-5 max-h-[32rem] h-full overflow-y-scroll scroll_main">
+      <h1 className="flex items-center col-span-12 gap-1 py-2 text-xl font-medium">
         <Icon path={mdiAccountBoxOutline} size={1} />
         {t("employee Data")}:
       </h1>
-      <div className="grid items-start grid-cols-2 gap-2 px-5 max-h-[32rem] h-full overflow-y-scroll scroll_main">
         {showSelectFacility && (
           <div className="col-span-12">
             <SelectFacilities
@@ -34,15 +34,15 @@ export default function EmployeeMainData({
             />
           </div>
         )}
-        <div className="flex items-start col-span-12 gap-2 ">
-          <div className="w-1/2">
+        <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap ">
+          <div className="w-full md:w-1/2">
             <BaseInputField
               label={t("Employee Name")}
               placeholder="محمد احمد محمد"
               name="name"
             />
           </div>
-          <div className="w-1/2">
+          <div className="w-full md:w-1/2">
             <BaseInputField
               label={t("Job title")}
               placeholder={`${t("Programming")}`}
@@ -50,7 +50,7 @@ export default function EmployeeMainData({
             />
           </div>
         </div>
-        <div className="flex items-start col-span-12 gap-2 ">
+        <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap ">
           <div className="w-full">
             <BaseInputField
               label={t("ID Number")}
@@ -64,13 +64,13 @@ export default function EmployeeMainData({
         <div className="col-span-12 pb-8 pt-9">
           <Divider />
         </div>
-        <h1 className="flex col-span-12 gap-1 pb-3 text-xl font-bold item-center">
+        <h1 className="flex col-span-12 gap-1 pb-3 text-xl font-medium item-center">
         <Icon path={mdiFileDocumentOutline} size={1} />
 
          {t("attachments")}:
         </h1>
 
-        <div className="grid grid-cols-2 col-span-12 gap-2 ">
+        <div className="grid grid-cols-1 col-span-12 gap-2 md:grid-cols-2 ">
           {attachments_facility_employees?.attachment_labels?.map((item) => (
             // <div className="" >
             <UploadImage

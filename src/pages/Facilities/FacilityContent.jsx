@@ -63,14 +63,14 @@ function FacilityContent({
             .required(t("the registration source required")),
           capacity: Yup.string()
             .trim()
-            .required(t("the license number required"))
+            .required(t("the capacity number required"))
             .length(5, t("the capacity must be equal 5 digits")),
 
           license: Yup.string()
             .trim()
             .required(t("the license number required"))
             .length(10, t("the license number must be equal 10 digits")),
-          address: Yup.string().trim().required(t("address is  required")),
+          // address: Yup.string().trim().required(t("address is  required")),
           tax_certificate: Yup.string()
             .trim()
             .required(t("tax certificate is required"))
@@ -101,13 +101,13 @@ function FacilityContent({
         return Yup.object({
           employee_number: Yup.string()
             .trim()
-            .required(t("tax sub number is required")),
+            .required(t("employee number is required")),
           chefs_number: Yup.string()
             .trim()
-            .required(t("tax sub number is required")),
+            .required(t("chefs number is required")),
           kitchen_space: Yup.string()
             .trim()
-            .required(t("the street name required")),
+            .required(t("kitchen space required")),
         });
       default:
         return Yup.object({});
@@ -121,7 +121,7 @@ function FacilityContent({
         height: "calc(100vh - 280px)",
         overflowY: "scroll",
       }}
-      className="bg-transparent shadow-none scroll_main"
+      className="bg-transparent shadow-none  scroll_main"
     >
       <CardContent className="h-full pt-0 bg-transparent">
         <Formik

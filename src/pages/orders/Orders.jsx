@@ -235,6 +235,7 @@ export default function Orders() {
         open={openDetailsOrder}
         classNameBox={"!h-full"}
         onClose={() => setOpenDetailsOrder(false)}
+        className={"max-w-[1100px]"}
         Children={
           <DetailsOrder data={detailsOrder} setDetailsOrder={setDetailsOrder} />
         }

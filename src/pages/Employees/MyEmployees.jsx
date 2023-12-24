@@ -150,12 +150,12 @@ export default function MyEmployees() {
                 key={item?.id}
               >
                 {!item?.value?.toLowerCase().endsWith(".pdf") ? (
-                  <div className="col-span-1">
+                  <div className="">
                     <PreviewImageLink url={item?.value} />
-                    <span className="">name</span>
                   </div>
                 ) : (
-                  <div className="col-span-1">
+                  <div className="">
+                    
                     <PreviewPdf item={item} />
                   </div>
                 )}

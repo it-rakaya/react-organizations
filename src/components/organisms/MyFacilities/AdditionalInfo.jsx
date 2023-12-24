@@ -7,8 +7,8 @@ function AdditionalInfo() {
       <div className="">
         <Typography className={`font-bold  `}>3. بيانات اضافية</Typography>
       </div>
-      <div className="flex items-start col-span-12 gap-2 ">
-        <div className="w-1/2">
+      <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
+        <div className="w-full md:w-1/2">
           <BaseInputField
             label="عدد الموظفين بموجب بيانات التامينات الاجتماعية "
             placeholder="20"
@@ -18,7 +18,7 @@ function AdditionalInfo() {
             required
           />
         </div>
-        <div className="w-1/2">
+        <div className="w-full md:w-1/2">
           <BaseInputField
             label="عدد الطهاة على راس العمل في المنشاة "
             placeholder="4"
@@ -30,7 +30,7 @@ function AdditionalInfo() {
         </div>
       </div>
 
-      <div className="flex items-start col-span-12 gap-2 ">
+      <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
         <div className="w-full">
           <BaseInputField
             label=" مساحة المطبخ ( بالمتر المربع)"

@@ -15,7 +15,7 @@
   "Programming": "مبرمج",
   "please upload work card photo": "الرجاء ارفاق صورة بطاقة العمل",
   "please upload health photo": "الرجاء ارفاق صورة البطاقة الصحية",
-  "the facility name is required": "الاسم التجاري للمنشئه مطلوب",
+  "the facility name is required": "الاسم التجاري للمنشأة مطلوب",
   "the registration number required": "رقم السجل التجاري مطلوب",
   "the registration source required": "مصدر السجل التجاري مطلوب",
   "the license number required": "رقم الرخصة مطلوب",
@@ -156,7 +156,20 @@
   "Date create": "تاريخ الانشاء",
   "employee deleted successfully": "تم حذف الموظف بنجاح",
   "employee Data":"بيانات الموظف",
+  "the capacity number required":"الطاقة  الاستيعابية للمنشأة مطلوبة",
+  "the neighborhood required":"اسم الحي مطلوب",
+  "tax building number is required":"رقم المبنى مطلوب",
+  "the tax building number must be equal 4 digits":"رقم المبنى يجب ان لا يقل عن 4 ارقام",
+  "tax postal code is required":"الرمز البريدي مطلوب",
   "attachments":"المرفقات",
+  "the tax postal code must be equal 6 digits":"الرمز البريدي يجب ان لايقل عن 6 ارقام",
+  "tax sub number is required":"الرقم الفرعي مطلوب",
+  "the tax sub number must be equal 6 digits":"يجب ان يكون الرقم الفرعي مكون من 6 ارقام",
+  "the street name required":"اسم الشارع مطلوب",
+  "kitchen space required":"مساحة المطبخ مطلوبة",
+  
+  
+
   "landing": {
     "organizationName": "اسم المنظمة",
     "description": "نص عربي نص عربي نص عربي نص عربي نص عربي نص عربي",

@@ -10,7 +10,7 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
   return (
     <div className="grid grid-cols-1 gap-10 mt-3 md:grid-cols-3 xl:grid-cols-4">
       {detailsFacilitiesData?.map((item, index) => (
-        <div key={index}>
+        <div key={index} className="m-auto md:m-0">
           <UploadImageTwo
             name={`attachments[${item?.id ? item?.id : item?.attachment_id}]`}
             label={item?.placeholder ? item?.placeholder : item?.label}

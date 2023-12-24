@@ -13,9 +13,12 @@ import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
 import PreviewImageLink from "./PreviewImageLink";
 import PreviewPdf from "./PreviewPdf";
+import Icon from "@mdi/react";
+import { mdiInformationOutline } from "@mdi/js";
 
 const UploadImage = ({ name, label, nameValue, className, value, accept }) => {
   const modifyAccept = accept.map((item) => `.${item}`);
+  const textAccept = accept.map((item) => ` -${item} `);
 
   const updateImage = {
     value: value,
@@ -119,6 +122,12 @@ const UploadImage = ({ name, label, nameValue, className, value, accept }) => {
               </p>
             </div>
           </div>
+          <div className="flex items-center p-2">
+            <Icon path={mdiInformationOutline} size={0.7} />
+            <p className="text-[14px] px-1 py-0">
+              يرجى رفع الملف بهذه الصيغة {textAccept}
+            </p>
+          </div>
           <div className="flex justify-start w-full rounded-md">
             {!isLargeFile &&
             files[0]?.type?.startsWith("image/") &&
@@ -134,7 +143,7 @@ const UploadImage = ({ name, label, nameValue, className, value, accept }) => {
             ) : files[0]?.type?.startsWith("image/") && updateImage?.value ? (
               <PreviewImageLink url={files[0]?.value} />
             ) : files[0]?.type?.startsWith("application/") && files[0]?.name ? (
-              <div className="mt-1 border border-solid rounded-[12px] border-[#9f968575] w-full flex items-center px-5 mt-4">
+              <div className=" border border-solid rounded-[12px] border-[#9f968575] w-full flex items-center px-5 mt-4">
                 <a
                   href={URL.createObjectURL(files[0])}
                   download={files[0].name}

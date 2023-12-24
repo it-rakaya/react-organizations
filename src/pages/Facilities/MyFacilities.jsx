@@ -158,7 +158,8 @@ export default function MyFacilities() {
 
       <ModalComp
         open={open}
-        classNameBox={"!h-full"}
+        classNameBox={"!h-full "}
+        className={"max-w-[1100px]"}
         onClose={() => setOpen(false)}
         Children={<DetailsFacility data={detailsItem} />}
       />

@@ -3,8 +3,14 @@ import { Grid } from "@mui/material";
 import { useFormikContext } from "formik";
 import ButtonComp from "../../components/atoms/buttons/ButtonComp";
 
-function AfterAndBeforeFacility({ activeStep, setActiveStep, setOpen, steps , attachments_facilities }) {
-  const { values, errors , setFieldError  } = useFormikContext();
+function AfterAndBeforeFacility({
+  activeStep,
+  setActiveStep,
+  setOpen,
+  steps,
+  attachments_facilities,
+}) {
+  const { values, errors, setFieldError } = useFormikContext();
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -25,7 +31,7 @@ function AfterAndBeforeFacility({ activeStep, setActiveStep, setOpen, steps , at
 
     // If there are validation errors, handle them (notify, etc.)
     if (hasValidationErrors) {
-      return
+      return;
     } else {
       // Proceed to the next step
       if (activeStep === steps.length - 1) {
@@ -48,7 +54,7 @@ function AfterAndBeforeFacility({ activeStep, setActiveStep, setOpen, steps , at
     registration_source: "",
     capacity: "",
     license: "",
-    address: "",
+    // address: "",
     tax_certificate: "",
   };
 
@@ -80,15 +86,14 @@ function AfterAndBeforeFacility({ activeStep, setActiveStep, setOpen, steps , at
         return false;
     }
   };
-  const validateImages = () => {
-    // Loop through the images and check if required images have values
-    attachments_facilities?.attachment_labels.forEach((item) => {
-      if (item.is_required && !values[`attachments[${item.id || item.attachment_id}]`]) {
-        setFieldError(`attachments[${item.id || item.attachment_id}]`, "Image is required");
-      }
-    });
-  };
-
+  // const validateImages = () => {
+  //   // Loop through the images and check if required images have values
+  //   attachments_facilities?.attachment_labels.forEach((item) => {
+  //     if (item.is_required && !values[`attachments[${item.id || item.attachment_id}]`]) {
+  //       setFieldError(`attachments[${item.id || item.attachment_id}]`, "Image is required");
+  //     }
+  //   });
+  // };
 
   return (
     <Grid
@@ -99,7 +104,7 @@ function AfterAndBeforeFacility({ activeStep, setActiveStep, setOpen, steps , at
         justifyContent: "end",
         gap: "5px",
       }}
-      className="fixed bottom-[10px] left-[62px] "
+      className="fixed bottom-[5px] md:bottom-[10px] left-[37px] md:left-[62px] "
     >
       <ButtonComp
         size="large"
@@ -107,7 +112,7 @@ function AfterAndBeforeFacility({ activeStep, setActiveStep, setOpen, steps , at
         disabled={activeStep === 0}
         action={handleBack}
         variant="outlined"
-        className={`! w-[100px] px-1 !text-contained ${
+        className={`md:!w-[100px] px-1 !text-contained  !mt-0 ${
           activeStep === 0 ? "hidden" : "block"
         } `}
       >
@@ -116,7 +121,7 @@ function AfterAndBeforeFacility({ activeStep, setActiveStep, setOpen, steps , at
       <ButtonComp
         action={handleNext}
         type="button"
-        className={"! w-[100px] px-1 py-3 "}
+        className={"w-[150px] md:!w-[100px] py-2  px-1 md:py-3 !mt-0 "}
         variant="contained"
         disabled={isSaveDisabled()}
       >

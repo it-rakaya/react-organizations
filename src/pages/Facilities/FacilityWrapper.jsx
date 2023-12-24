@@ -8,7 +8,7 @@ function FacilityWrapper({ activeStep, steps, StepperCustomDot }) {
       <Stepper
         activeStep={activeStep}
         alternativeLabel
-        className="mt-10 !bg-transparent"
+        className="mt-10 !bg-transparent   "
       >
         {steps.map((step, index) => {
           return (
@@ -16,12 +16,10 @@ function FacilityWrapper({ activeStep, steps, StepperCustomDot }) {
               <StepLabel StepIconComponent={StepperCustomDot}>
                 <div className="step-label">
                   <div>
-                    <Typography className={`font-bold  `}>
+                    <Typography className={`font-bold text-[12px] `}>
                       {step.title}
                     </Typography>
-                    <Typography variant="caption" component="p">
-                      {step.subtitle}
-                    </Typography>
+                 
                   </div>
                 </div>
               </StepLabel>

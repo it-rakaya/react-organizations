@@ -18,13 +18,13 @@ export default function DetailsOrder({ data }) {
 
   return (
     <div className="">
-      <div className="px-10 mt-10 ">
+      <div className="mt-10 md:px-10 ">
         <div className="col-span-2">
-          <h1 className="font-bold " style={{ color: mainColor }}>
+          <h1 className="px-10 font-bold" style={{ color: mainColor }}>
             تفاصيل الطلب
           </h1>
         </div>
-        <div className="grid grid-cols-1 px-20 mt-5 md:grid-cols-2 ">
+        <div className="grid grid-cols-1 px-10 mt-5 md:px-20 md:grid-cols-2 ">
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
             <p className="font-bold ">نوع الخدمه</p>
             <p>{data?.service?.name}</p>
@@ -54,7 +54,7 @@ export default function DetailsOrder({ data }) {
       <div></div>
 
       <TabContext value={value}>
-        <div className="px-10 mt-5">
+        <div className="mt-5 md:px-10">
           <TabList onChange={handleChange} aria-label="nav tabs example">
             <Tab
               value="1"

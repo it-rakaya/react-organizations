@@ -10,12 +10,12 @@ function NationalAddressData() {
           2. بيانات العنوان الوطني
         </Typography>
       </div>
-      <div className="flex items-start col-span-12 gap-2 ">
-        <div className="w-1/2">
+      <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
+        <div className="w-full md:w-1/2">
           <SelectCitiesSaudi label={"اسم المدينة "} name="city" required />
         </div>
 
-        <div className="w-1/2">
+        <div className="w-full md:w-1/2">
           <BaseInputField
             label=" اسم الحي"
             placeholder="حي النقع الشرقي"
@@ -25,8 +25,8 @@ function NationalAddressData() {
         </div>
       </div>
 
-      <div className="flex items-start col-span-12 gap-2 ">
-        <div className="w-1/2">
+      <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
+        <div className="w-full md:w-1/2">
           <BaseInputField
             label=" اسم الشارع"
             placeholder="شارع الهدى والنور"
@@ -34,7 +34,7 @@ function NationalAddressData() {
             required
           />
         </div>
-        <div className="w-1/2">
+        <div className="w-full md:w-1/2">
           <BaseInputField
             label="رقم المبنى"
             placeholder="3654"
@@ -45,8 +45,8 @@ function NationalAddressData() {
           />
         </div>
       </div>
-      <div className="flex items-start col-span-12 gap-2 ">
-        <div className="w-1/2">
+      <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
+        <div className="w-full md:w-1/2">
           <BaseInputField
             label="الرمز البريدي"
             placeholder="568750"
@@ -56,7 +56,7 @@ function NationalAddressData() {
             required
           />
         </div>
-        <div className="w-1/2">
+        <div className="w-full md:w-1/2">
           <BaseInputField
             label="الرقم الفرعي"
             placeholder="698547"

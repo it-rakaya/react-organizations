@@ -14,6 +14,8 @@ import { useState } from "react";
 import PreviewImageLink from "../../molecules/PreviewImageLink";
 import PreviewPdf from "../../molecules/PreviewPdf";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
+import { convertArabicToEnglish } from "../../../utils/helpers";
+import { t } from "i18next";
 
 export default function DetailsFacility({ data, className }) {
   console.log(
@@ -243,59 +245,91 @@ export default function DetailsFacility({ data, className }) {
               className={`${className} !overflow-y-scroll !shadow-none max-h-[40rem]  scroll_main w-full`}
             >
               <TabPanel value="1">
-                <div className="grid grid-cols-1 p-4 px-10 md:grid-cols-2 gap-x-28">
+                <div className="grid grid-cols-1 p-4 md:px-10 md:pr-[105px] md:grid-cols-2 md:gap-x-15">
                   <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
                     <p className="font-bold ">الاسم</p>
                     <p className="mt-1">{data?.name}</p>
                   </div>
                   <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                    <p className="font-bold "> رقم التسجيل </p>
+                    <p className="font-bold "> رقم السجل التجاري</p>
                     <p className="mt-1">{data?.registration_number}</p>
                   </div>
                   <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                    <p className="font-bold "> تاريخ الإصدار </p>
-                    <p className="mt-1">{data?.version_date}</p>
-                  </div>
-                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                    <p className="font-bold "> تاريخ الإصدار بالهجري</p>
-                    <p className="mt-1">{data?.version_date_hj}</p>
-                  </div>
-                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                    <p className="font-bold "> تاريخ الانتهاء </p>
-                    <p className="mt-1">{data?.end_date}</p>
-                  </div>
-                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                    <p className="font-bold "> تاريخ الانتهاء بالهجري</p>
-                    <p className="mt-1">{data?.end_date_hj}</p>
-                  </div>
-                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                    <p className="font-bold "> مصدر التسجيل </p>
+                    <p className="font-bold "> مصدر السجل التجاري </p>
                     <p className="mt-1">{data?.registration_source}</p>
                   </div>
                   <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                    <p className="font-bold "> الرخصه </p>
+                    <p className="font-bold "> شهادة الرقم الضريبي </p>
+                    <p className="mt-1">{data?.tax_certificate}</p>
+                  </div>
+                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                    <p className="font-bold ">
+                      {" "}
+                      {t(
+                        "Date of issuance of the commercial register in AD"
+                      )}{" "}
+                    </p>
+                    <p className="mt-1">{data?.version_date}</p>
+                  </div>
+                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                    <p className="font-bold ">
+                      {" "}
+                      تاريخ إصدار السجل التجاري بالهجري
+                    </p>
+                    <p className="mt-1">
+                      {convertArabicToEnglish(data?.version_date_hj)}
+                    </p>
+                  </div>
+                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                    <p className="font-bold ">
+                      {" "}
+                      {t(
+                        "Commercial registration expiration date in Gregorian calendar"
+                      )}{" "}
+                    </p>
+                    <p className="mt-1">{data?.end_date}</p>
+                  </div>
+                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                    <p className="font-bold ">
+                      {" "}
+                      تاريخ انتهاء السجل التجاري بالهجري
+                    </p>
+                    <p className="mt-1">
+                      {convertArabicToEnglish(data?.end_date_hj)}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                    <p className="font-bold ">
+                      {" "}
+                      رقم رخصة مزاولة المهنة     {" "}
+                    </p>
                     <p className="mt-1">{data?.license}</p>
                   </div>
                   <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                    <p className="font-bold "> تاريخ انتهاء الرخصه </p>
+                    <p className="font-bold ">
+                      {" "}
+                      تاريخ انتهاء رخصة مزاولة المهنة بالميلادي
+                    </p>
                     <p className="mt-1">{data?.license_expired}</p>
                   </div>
                   <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                    <p className="font-bold "> تاريخ انتهاء الرخصه بالهجري</p>
-                    <p className="mt-1">{data?.license_expired_hj}</p>
+                    <p className="font-bold ">
+                      {" "}
+                      تاريخ انتهاء رخصة مزاولة المهنة بالهجري
+                    </p>
+                    <p className="mt-1">
+                      {convertArabicToEnglish(data?.license_expired_hj)}
+                    </p>
                   </div>
                   <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                    <p className="font-bold ">العنوان</p>
-                    <p className="mt-1">{data?.address}</p>
-                  </div>
-                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                    <p className="font-bold "> شهادة الضرائب </p>
-                    <p className="mt-1">{data?.tax_certificate}</p>
+                    <p className="font-bold ">الطاقه الاستيعابية للمنشأة</p>
+                    <p className="mt-1">{data?.capacity}</p>
                   </div>
                 </div>
               </TabPanel>
               <TabPanel value="2" className="pt-0">
-                <div className="grid grid-cols-1 p-4 px-10 py-6 md:grid-cols-2 gap-x-28">
+                <div className="grid grid-cols-1 p-4 py-6 md:px-10 md:grid-cols-2 md:gap-x-28">
                   <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
                     <p className="font-bold "> الشارع </p>
                     <p className="mt-1">{data?.street_name}</p>
@@ -323,7 +357,7 @@ export default function DetailsFacility({ data, className }) {
                 </div>
               </TabPanel>
               <TabPanel value="3" className="pt-0">
-                <div className="grid grid-cols-1 p-4 px-10 py-6 md:grid-cols-2 gap-x-28">
+                <div className="grid grid-cols-1 p-4 py-6 md:px-10 md:grid-cols-2 md:gap-x-28">
                   <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
                     <p className="font-bold ">رقم الطهاة </p>
                     <p className="mt-1">{data?.chefs_number}</p>
@@ -355,18 +389,16 @@ export default function DetailsFacility({ data, className }) {
                                 icon={"iconamoon:file-image-light"}
                                 className="text-[1.6rem]  "
                               />
-                              
                             </div>
                           ) : (
-                            <div >
-                              
+                            <div>
                               <IconifyIcon
                                 icon={"prime:file-pdf"}
                                 className="text-3xl"
                               />
                             </div>
                           )}
-                          <p className="font-bold "> {item?.label} </p>
+                          <p className="font-bold text-[12px] "> {item?.label} </p>
                         </div>
 
                         <div>
