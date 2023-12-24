@@ -3,19 +3,9 @@ import { Grid } from "@mui/material";
 import { useFormikContext } from "formik";
 import ButtonComp from "../../components/atoms/buttons/ButtonComp";
 
-function AfterAndBeforeFacility({
-  activeStep,
-  setActiveStep,
-  setOpen,
-  steps,
-  setFormValues,
-}) {
-  const { values, errors } = useFormikContext();
-
-  const hasErrors = Object.keys(errors).length > 0;
-
+function AfterAndBeforeFacility({ activeStep, setActiveStep, setOpen, steps , attachments_facilities }) {
+  const { values, errors , setFieldError  } = useFormikContext();
   const handleBack = () => {
-    // setFormValues(values);
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
@@ -35,8 +25,6 @@ function AfterAndBeforeFacility({
 
     // If there are validation errors, handle them (notify, etc.)
     if (hasValidationErrors) {
-      // Handle validation errors (e.g., show a notification)
-      // notify("Validation errors. Please fill in the required fields.");
       return
     } else {
       // Proceed to the next step
@@ -63,10 +51,7 @@ function AfterAndBeforeFacility({
     address: "",
     tax_certificate: "",
   };
-  console.log(
-    "🚀 ~ file: AfterAndBeforeFacility.jsx:44 ~ AfterAndBeforeFacility ~ initialCase0:",
-    initialCase0
-  );
+
   const initialCase1 = {
     street_name: "",
     neighborhood: "",
@@ -80,11 +65,6 @@ function AfterAndBeforeFacility({
     building_number: "",
     kitchen_space: "",
   };
-
-  console.log(
-    "test",
-    Object.keys(initialCase0).some((key) => values[key] === "" || errors[key])
-  );
   const isSaveDisabled = () => {
     const checkErrorsForKeys = (initialCase) =>
       Object.keys(initialCase).some((key) => values[key] === "" || errors[key]);
@@ -100,12 +80,15 @@ function AfterAndBeforeFacility({
         return false;
     }
   };
+  const validateImages = () => {
+    // Loop through the images and check if required images have values
+    attachments_facilities?.attachment_labels.forEach((item) => {
+      if (item.is_required && !values[`attachments[${item.id || item.attachment_id}]`]) {
+        setFieldError(`attachments[${item.id || item.attachment_id}]`, "Image is required");
+      }
+    });
+  };
 
-  const isButtonDisabled = isSaveDisabled();
-  console.log(
-    "🚀 ~ file: AfterAndBeforeFacility.jsx:118 ~ isButtonDisabled:",
-    isButtonDisabled
-  );
 
   return (
     <Grid
@@ -131,7 +114,7 @@ function AfterAndBeforeFacility({
         السابق
       </ButtonComp>
       <ButtonComp
-        action={ handleNext}
+        action={handleNext}
         type="button"
         className={"! w-[100px] px-1 py-3 "}
         variant="contained"

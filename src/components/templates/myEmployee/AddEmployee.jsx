@@ -87,12 +87,7 @@ export default function AddEmployee({
       >
         {({ errors, values }) => (
           <>
-            {console.log(
-              "testtttttttttt",
-              values?.attachments
-                ?.map((file, index) => ({ index, file }))
-                ?.filter((item) => typeof item?.file !== "undefined")
-            )}
+           
 
             <Form>
               <EmployeeMainData

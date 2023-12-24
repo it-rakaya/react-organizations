@@ -6,13 +6,14 @@ import NationalAddressData from "../../components/organisms/MyFacilities/Nationa
 import StepTwo from "../../components/organisms/MyFacilities/StepTwo";
 import AfterAndBeforeFacility from "./AfterAndBeforeFacility";
 import FacilityControl from "./FacilityControl";
+import useFetch from "../../hooks/useFetch";
 
-function MainContent({
-  activeStep,
-  steps,
-  setActiveStep,
-}) {
+function MainContent({ activeStep, steps, setActiveStep }) {
   const [open, setOpen] = useState(false);
+  const { data: attachments_facilities } = useFetch({
+    endpoint: `attachments-labels/facilities`,
+    queryKey: ["attachments_facilities"],
+  });
 
   const getStepContent = (step) => {
     switch (step) {
@@ -37,7 +38,7 @@ function MainContent({
       case 3:
         return (
           <Fragment key={step}>
-            <StepTwo />
+            <StepTwo attachments_facilities={attachments_facilities} />
           </Fragment>
         );
       default:
@@ -54,7 +55,7 @@ function MainContent({
           setActiveStep={setActiveStep}
           setOpen={setOpen}
           steps={steps}
-          // setFormValues={setFormValues}
+          attachments_facilities={attachments_facilities}
         />
       </div>
       <FacilityControl open={open} setOpen={setOpen} />

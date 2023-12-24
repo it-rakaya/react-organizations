@@ -12,18 +12,17 @@ function FacilityContent({
   setChecked,
   setActiveStep,
 }) {
-  console.log("🚀 ~ file: FacilityContent.jsx:16 ~ activeStep:", activeStep);
   const initialFormValues = 
     {
       name: "",
       registration_number: "",
-      version_date: new Date(),
+      version_date: '',
       version_date_hj: "",
-      end_date: new Date(),
+      end_date: '',
       end_date_hj: "",
       registration_source: "",
       license: "",
-      license_expired: new Date(),
+      license_expired: '',
       license_expired_hj: "",
       address: "",
       tax_certificate: "",

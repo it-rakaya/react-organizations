@@ -12,13 +12,9 @@ function NationalAddressData() {
       </div>
       <div className="flex items-start col-span-12 gap-2 ">
         <div className="w-1/2">
-          <BaseInputField
-            label=" اسم الشارع"
-            placeholder="شارع الهدى والنور"
-            name="street_name"
-            required
-          />
+          <SelectCitiesSaudi label={"اسم المدينة "} name="city" required />
         </div>
+
         <div className="w-1/2">
           <BaseInputField
             label=" اسم الحي"
@@ -31,7 +27,12 @@ function NationalAddressData() {
 
       <div className="flex items-start col-span-12 gap-2 ">
         <div className="w-1/2">
-          <SelectCitiesSaudi label={"اسم المدينة "} name="city" required />
+          <BaseInputField
+            label=" اسم الشارع"
+            placeholder="شارع الهدى والنور"
+            name="street_name"
+            required
+          />
         </div>
         <div className="w-1/2">
           <BaseInputField

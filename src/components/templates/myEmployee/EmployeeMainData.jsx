@@ -6,7 +6,8 @@ import SelectFacilities from "../../molecules/SelectFacilities";
 import UploadImage from "../../molecules/UploadImage";
 import { useTheme } from "@mui/material/styles";
 import { Divider } from "@mui/material";
-
+import Icon from "@mdi/react";
+import { mdiAccountBoxOutline, mdiFileDocumentOutline } from "@mdi/js";
 export default function EmployeeMainData({
   showSelectFacility,
   attachments_facility_employees,
@@ -15,9 +16,15 @@ export default function EmployeeMainData({
 
   return (
     <div className="">
-      <MainHeader title={t("Add Employee")} />
-      <div className="grid items-start grid-cols-2 gap-2 px-5">
-        <h1 className="py-2 text-xl font-bold">1.{t("employee Data")}:</h1>
+      <MainHeader
+        title={t("Add Employee")}
+        styleHead={{ color: theme.palette.primary.main }}
+      />
+      <h1 className="flex items-center gap-1 px-5 py-2 text-xl font-bold">
+        <Icon path={mdiAccountBoxOutline} size={1} />
+        {t("employee Data")}:
+      </h1>
+      <div className="grid items-start grid-cols-2 gap-2 px-5 max-h-[32rem] h-full overflow-y-scroll scroll_main">
         {showSelectFacility && (
           <div className="col-span-12">
             <SelectFacilities
@@ -55,9 +62,13 @@ export default function EmployeeMainData({
           </div>
         </div>
         <div className="col-span-12 pb-8 pt-9">
-          <Divider/>
+          <Divider />
         </div>
-        <h1 className="col-span-12 pb-3 text-xl font-bold">2.{t("attachments")}:</h1>
+        <h1 className="flex col-span-12 gap-1 pb-3 text-xl font-bold item-center">
+        <Icon path={mdiFileDocumentOutline} size={1} />
+
+         {t("attachments")}:
+        </h1>
 
         <div className="grid grid-cols-2 col-span-12 gap-2 ">
           {attachments_facility_employees?.attachment_labels?.map((item) => (
@@ -72,9 +83,9 @@ export default function EmployeeMainData({
             />
             // </div>
           ))}
-          {/* <div className="w-1/2 "></div> */}
         </div>
       </div>
+      <div className="grid items-start grid-cols-2 gap-2 px-5"></div>
     </div>
   );
 }

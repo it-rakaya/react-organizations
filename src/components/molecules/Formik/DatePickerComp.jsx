@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { useFormikContext } from "formik";
 import { useState, useEffect } from "react";
 import { FormikError } from "./FormikError";
+import { convertArabicToEnglish } from "../../../utils/helpers";
 
 export default function DatePickerComp({ name, name_hj, label, required }) {
   const { setFieldValue, values } = useFormikContext();
@@ -43,7 +44,7 @@ export default function DatePickerComp({ name, name_hj, label, required }) {
         <DatePicker
           className="bg-white rounded-[10px] w-full "
           name={name}
-          defaultValue={dayjs(values[name])}
+          defaultValue={values[name] ? dayjs(values[name]) : null}
           onChange={(newValue) => {
             if (values[name] !== undefined) {
               const newDate = dayjs(newValue);
@@ -58,7 +59,7 @@ export default function DatePickerComp({ name, name_hj, label, required }) {
         />
         {valueHijri && (
           <p className="mt-1">
-            الموافق بالهجري : <span className="font-bold">{valueHijri} </span>
+            الموافق بالهجري : <span className="font-bold">{convertArabicToEnglish(valueHijri)} </span>
           </p>
         )}
         <div>

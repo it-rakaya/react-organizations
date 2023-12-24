@@ -14,7 +14,15 @@ import PreviewImage from "./PreviewImage";
 import PreviewImageLink from "./PreviewImageLink";
 import PreviewPdf from "./PreviewPdf";
 
-const UploadImageTwo = ({ name, label, nameValue, className, value , accept }) => {
+const UploadImageTwo = ({
+  name,
+  label,
+  nameValue,
+  className,
+  value,
+  accept,
+  isRequired,
+}) => {
   const modifyAccept = accept?.map((item) => `.${item}`);
 
   const updateImage = {
@@ -38,7 +46,7 @@ const UploadImageTwo = ({ name, label, nameValue, className, value , accept }) =
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
-    accept: ["image/*",modifyAccept],
+    accept: ["image/*", modifyAccept],
     onDrop: (acceptedFiles) => {
       const modifiedFiles = acceptedFiles.map((file) => {
         if (file.type === "application/pdf" || file.type.startsWith("image/")) {
@@ -76,6 +84,7 @@ const UploadImageTwo = ({ name, label, nameValue, className, value , accept }) =
       <Box sx={files?.length ? { height: "" } : {}}>
         <h2 className="w-full px-3 py-2 font-semibold text-center rounded-md ">
           {label}
+          <span className="text-red-500">{isRequired ? "*" : ""}</span>{" "}
         </h2>
         <div className="relative cursor-pointer border border-dashed rounded-[20px] border-[#9f968575] w-[250px] h-[125px]">
           <div className="flex flex-col items-center ">
@@ -88,7 +97,7 @@ const UploadImageTwo = ({ name, label, nameValue, className, value , accept }) =
               {!files?.length ? (
                 <div className="flex flex-col items-center justify-center py-5">
                   <input {...getInputProps()} name={name} />
-                  <UploadImageIcon  />
+                  <UploadImageIcon />
                 </div>
               ) : invalidFormat ? (
                 <div className="flex flex-col items-center justify-center">
