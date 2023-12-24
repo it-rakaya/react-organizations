@@ -15,8 +15,8 @@ function Landing() {
 
   useEffect(()=>{
     setNews(["landing.rights"])
-        if(orgData?.organizations?.news)
-    orgData?.organizations?.news.map((val)=>{
+        if(orgData?.organizations?.organization_news)
+    orgData?.organizations?.organization_news.map((val)=>{
       setNews(prev => [...prev, val.new]);
     })
 
