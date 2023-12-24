@@ -14,7 +14,9 @@ import PreviewImage from "./PreviewImage";
 import PreviewImageLink from "./PreviewImageLink";
 import PreviewPdf from "./PreviewPdf";
 
-const UploadImage = ({ name, label, nameValue, className, value , accept }) => {
+const UploadImage = ({ name, label, nameValue, className, value, accept }) => {
+  const modifyAccept = accept.map((item) => `.${item}`);
+
   const updateImage = {
     value: value,
     type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
@@ -32,14 +34,13 @@ const UploadImage = ({ name, label, nameValue, className, value , accept }) => {
       ? [updateImage]
       : []
   );
-  console.log("🚀 ~ file: UploadImage.jsx:34 ~ UploadImage ~ files:", files);
 
   const [invalidFormat, setInvalidFormat] = useState(false);
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: {
-      "image/*": [".png", ".jpg", ".jpeg", ".gif" ,],
+      "image/*": modifyAccept,
     },
     onDrop: (acceptedFiles) => {
       const modifiedFiles = acceptedFiles.map((file) => {
@@ -65,7 +66,6 @@ const UploadImage = ({ name, label, nameValue, className, value , accept }) => {
 
   const isLargeFile = files?.length && files[0]?.size > 52428800;
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
-  console.log("files", files);
 
   const handleRemoveFile = (file) => {
     const uploadedFiles = files;

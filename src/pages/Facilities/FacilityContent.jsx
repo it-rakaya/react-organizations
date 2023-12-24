@@ -4,6 +4,7 @@ import { Form, Formik } from "formik";
 import { t } from "i18next";
 import MainContent from "./MainContent";
 import * as Yup from "yup";
+import { useState } from "react";
 
 function FacilityContent({
   activeStep,
@@ -12,30 +13,61 @@ function FacilityContent({
   setChecked,
   setActiveStep,
 }) {
-  const initialValues = {
+  console.log("🚀 ~ file: FacilityContent.jsx:16 ~ activeStep:", activeStep);
+  const initialFormValues = 
+    {
+      name: "",
+      registration_number: "",
+      version_date: new Date(),
+      version_date_hj: "",
+      end_date: new Date(),
+      end_date_hj: "",
+      registration_source: "",
+      license: "",
+      license_expired: new Date(),
+      license_expired_hj: "",
+      address: "",
+      tax_certificate: "",
+      employee_number: "",
+      chefs_number: "",
+      kitchen_space: "",
+      street_name: "",
+      neighborhood: "",
+      city: "",
+      building_number: "",
+      postal_code: "",
+      sub_number: "",
+      signature: "",
+      capacity: "",
+    }
+  
+  const initialCase0 = {
     name: "",
     registration_number: "",
     version_date: new Date(),
     version_date_hj: "",
     end_date: new Date(),
     end_date_hj: "",
-    registration_source: "",
-    license: "",
     license_expired: new Date(),
     license_expired_hj: "",
+    registration_source: "",
+    capacity: "",
+    license: "",
     address: "",
     tax_certificate: "",
-    employee_number: "",
-    chefs_number: "",
-    kitchen_space: "",
+  };
+  const initialCase1 = {
     street_name: "",
     neighborhood: "",
-    city: "",
     building_number: "",
     postal_code: "",
     sub_number: "",
-    signature: "",
-    capacity: "",
+  };
+  const initialCase2 = {
+    employee_number: "",
+    chefs_number: "",
+    building_number: "",
+    kitchen_space: "",
   };
 
   const validationSchema = (step) => {
@@ -123,7 +155,7 @@ function FacilityContent({
     >
       <CardContent className="h-full pt-0 bg-transparent">
         <Formik
-          initialValues={initialValues}
+          initialValues={initialFormValues}
           validationSchema={validationSchema(activeStep)}
           onSubmit={() => {}}
         >
@@ -136,6 +168,7 @@ function FacilityContent({
                   checked={checked}
                   setChecked={setChecked}
                   setActiveStep={setActiveStep}
+                  // setFormValues={setFormValues}
                 />
               </Form>
             </>

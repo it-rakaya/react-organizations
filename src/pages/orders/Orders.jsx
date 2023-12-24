@@ -20,10 +20,6 @@ export default function Orders() {
   const [openCancelOrder, setOpenCancelOrder] = useState(false);
   const [orderId, setOrderId] = useState();
   const [detailsOrder, setDetailsOrder] = useState("");
-  console.log(
-    "🚀 ~ file: Orders.jsx:25 ~ Orders ~ detailsOrder:",
-    detailsOrder
-  );
 
   const { orgData } = UseOrg();
 

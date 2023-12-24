@@ -1,19 +1,14 @@
 /* eslint-disable react/prop-types */
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-import Fancybox from "./Fancybox";
-import IconifyIcon from "../atoms/icons/IconifyIcon";
-import { t } from "i18next";
-import { hexToRGBA } from "../../utils/helpers";
-import { useTheme } from "@mui/material/styles";
 import { Typography } from "@mui/material";
+import IconifyIcon from "../atoms/icons/IconifyIcon";
+import Fancybox from "./Fancybox";
+import Icon from "@mdi/react";
+import { mdiEyeOutline } from "@mdi/js";
 
-export default function PreviewImageLink({ url }) {
-  const theme = useTheme();
-
-  const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
-
+export default function PreviewImageLink({ url, eyeIcon }) {
   return (
-    <div className="w-full">
+    <div className="">
       <Fancybox
         options={{
           Carousel: {
@@ -21,29 +16,27 @@ export default function PreviewImageLink({ url }) {
           },
         }}
       >
-        <a data-fancybox="gallery" href={url} className="w-full">
+        <a data-fancybox="gallery" href={url} className="">
           <div className="flex flex-col items-center justify-center w-full">
             <div className="w-full rounded-xl">
-              <div
-                className="flex items-center justify-center w-full gap-2 rounded-md cursor-pointer "
-                // style={{
-                //   backgroundColor: bgMain,
-                // }}
-              >
-                {/* <PreviewIcon stroke="#292D32" /> */}
-                <IconifyIcon
-                  icon={"iconamoon:file-image-light"}
-                  className="text-[1.6rem]"
-                />
-                <Typography className="file-name">
-                  {url?.name?.slice(0, 15)}
-                </Typography>
-                {/* 
-                <span className="text-sm">   
-                {t("Click here to view the attachment")}
-
-                
-                </span> */}
+              <div className="flex items-center w-full p-1 rounded-md cursor-pointer ">
+                {eyeIcon ? (
+                  <Icon
+                    path={mdiEyeOutline}
+                    size={1}
+                    className={"cursor-pointer "}
+                  />
+                ) : (
+                  <IconifyIcon
+                    icon={"iconamoon:file-image-light"}
+                    className="text-[1.6rem] cursor-pointer  "
+                  />
+                )}
+                {!eyeIcon && (
+                  <Typography className="file-name">
+                    {url?.name?.slice(0, 15)}
+                  </Typography>
+                )}
               </div>
             </div>
           </div>

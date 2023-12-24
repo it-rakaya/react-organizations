@@ -10,6 +10,7 @@ import FacilityControl from "./FacilityControl";
 function MainContent({
   activeStep,
   steps,
+  setFormValues,
 
   setActiveStep,
 }) {
@@ -55,6 +56,7 @@ function MainContent({
           setActiveStep={setActiveStep}
           setOpen={setOpen}
           steps={steps}
+          // setFormValues={setFormValues}
         />
       </div>
       <FacilityControl open={open} setOpen={setOpen} />
