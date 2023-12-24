@@ -146,15 +146,18 @@ export default function MyEmployees() {
           >
             {row?.attachmentUrl.map((item) => (
               <div
-                className="flex flex-wrap items-center justify-center"
+                className="grid items-center justify-center grid-cols-2"
                 key={item?.id}
               >
                 {!item?.value?.toLowerCase().endsWith(".pdf") ? (
-                  <p>
+                  <div className="col-span-1">
                     <PreviewImageLink url={item?.value} />
-                  </p>
+                    <span className="">name</span>
+                  </div>
                 ) : (
-                  <PreviewPdf item={item} />
+                  <div className="col-span-1">
+                    <PreviewPdf item={item} />
+                  </div>
                 )}
               </div>
             ))}
