@@ -42,8 +42,9 @@ export default function Orders() {
       flex: 0.2,
       field: "name",
       headerName: t("code"),
-      cellClassName: "flex !px-0 !justify-center",
+      cellClassName: "flex !px-0 !justify-center ",
       headerAlign: "center",
+      
       renderCell: ({ row }) => {
         const { code } = row;
         return (
