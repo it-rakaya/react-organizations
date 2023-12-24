@@ -15,6 +15,7 @@ import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import DeleteEMployee from "../../components/templates/myEmployee/DeleteEMployee";
 import useFetch from "../../hooks/useFetch";
 import Loading from "../../components/molecules/Loading";
+import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 
 export default function MyEmployees() {
   const {
@@ -178,16 +179,26 @@ export default function MyEmployees() {
               textTransform: "capitalize",
               display: "flex",
               alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            <div
-              className="cursor-pointer "
-              onClick={() => {
-                setEmployeeId(row.id);
-                setModelDeleteEMployee(true);
-              }}
-            >
-              <Icon path={mdiTrashCanOutline} size={1} />
+            <div className="flex justify-center cursor-pointer ">
+              <OptionsMenu
+                iconButtonProps={{
+                  size: "small",
+                }}
+                options={[
+                  {
+                    text: t("Delete"),
+                    details: "Additional details here",
+                    function: () => {
+                      setEmployeeId(row.id);
+                      setModelDeleteEMployee(true);
+                    },
+                  },
+                ]}
+              />
+              {/* <Icon path={mdiTrashCanOutline} size={1} /> */}
             </div>
           </Typography>
         );

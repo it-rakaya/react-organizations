@@ -14,6 +14,7 @@ import OrderInfo from "../../components/organisms/orders/OrderInfo";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import useFetch from "../../hooks/useFetch";
 import { notify } from "../../utils/toast";
+import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 export default function Orders() {
   const [openAddFaculty, setOpenAddFaculty] = useState(false);
   const [openDetailsOrder, setOpenDetailsOrder] = useState(false);
@@ -158,47 +159,45 @@ export default function Orders() {
             }}
             className="items-center justify-center w-full "
           >
-            <div
-              className={
-                row.status_id == Canceled
-                  ? "cursor-not-allowed"
-                  : "cursor-pointer"
-              }
-              onClick={() => {
-                if (row.status_id == Canceled) {
-                  return notify("worning", t("cant Canceled order"));
-                } else {
-                  setOpenDetailsOrder(true);
-                  setDetailsOrder(row);
+            <div className="flex justify-center cursor-pointer ">
+              <OptionsMenu
+                iconButtonProps={{
+                  size: "small",
+                }}
+                className={
+                  row.status_id == Canceled
+                    ? "cursor-not-allowed"
+                    : "cursor-pointer"
                 }
-              }}
-            >
-              <Icon
-                path={mdiEyeOutline}
-                size={1}
-                className={row.status_id == Canceled && "text-[#d1d1d7]"}
+                options={[
+                  {
+                    text: t("Details"),
+
+                    details: "Additional details here",
+                    function: () => {
+                      if (row.status_id == Canceled) {
+                        return notify("worning", t("cant Canceled order"));
+                      } else {
+                        setOpenDetailsOrder(true);
+                        setDetailsOrder(row);
+                      }
+                    },
+                  },
+                  {
+                    text: t("Cancel"),
+                    details: "Additional details here",
+                    function: () => {
+                      if (row.status_id == Canceled) {
+                        return console.log("ddd");
+                      } else {
+                        setOrderId(row.id);
+                        setOpenCancelOrder(true);
+                      }
+                    },
+                  },
+                ]}
               />
-            </div>
-            <div
-              className={
-                row.status_id == Canceled
-                  ? "cursor-not-allowed"
-                  : "cursor-pointer"
-              }
-              onClick={() => {
-                if (row.status_id == Canceled) {
-                  return console.log("ddd");
-                } else {
-                  setOrderId(row.id);
-                  setOpenCancelOrder(true);
-                }
-              }}
-            >
-              <Icon
-                path={mdiTrashCanOutline}
-                size={1}
-                className={row.status_id == Canceled && "text-[#d1d1d7]"}
-              />
+              {/* <Icon path={mdiTrashCanOutline} size={1} /> */}
             </div>
           </Typography>
         );
