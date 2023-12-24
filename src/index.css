@@ -592,7 +592,21 @@ input:-webkit-autofill:active {
   display: none;
 }
 
-.info_hover:hover  .content_name_hover {
+.info_hover:hover .content_name_hover {
   display: block;
 
+}
+
+.fyhaFe:focus {
+  border-color: #eee !important;
+  box-shadow: 0 0 0px 1px !important;
+
+}
+
+@media (max-width:900px) {
+
+  .loading {
+    left: calc(50% - 54px) !important;
+    top: calc(50% - -27px) !important;
+  }
 }

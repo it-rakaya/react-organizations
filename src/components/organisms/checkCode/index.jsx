@@ -57,7 +57,7 @@ export default function CheckCode({
             <PinInput
               values={values}
               validBorderColor={colorPinInput}
-              focusBorderColor={theme?.palette?.primary.main}
+              // focusBorderColor={theme?.palette?.primary.main}
               borderColor={colorPinInput}
               inputStyle={{ userSelect: "none" }}
               placeholder="x"
@@ -65,14 +65,14 @@ export default function CheckCode({
                 setValues(values);
                 if (number == values.join("")) {
                   setValueOTP(values.join(""));
-                  // setColorPinInput(theme?.palette?.primary.main);
+                  setColorPinInput('#eee');
                 } else {
-                  // setColorPinInput("rgb(220,53,69)");
+                  setColorPinInput("rgb(220,53,69)");
                 }
               }}
               onComplete={(values) => {
                 if (number == values.join("")) {
-                  setColorPinInput(theme?.palette?.primary.main);
+                  setColorPinInput('#eee');
                 } else {
                   setColorPinInput("rgb(220,53,69)");
                 }
