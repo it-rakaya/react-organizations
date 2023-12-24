@@ -14,7 +14,7 @@ import PreviewImage from "./PreviewImage";
 import PreviewImageLink from "./PreviewImageLink";
 import PreviewPdf from "./PreviewPdf";
 
-const UploadImage = ({ name, label, nameValue, className, value }) => {
+const UploadImage = ({ name, label, nameValue, className, value , accept }) => {
   const updateImage = {
     value: value,
     type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
@@ -22,10 +22,7 @@ const UploadImage = ({ name, label, nameValue, className, value }) => {
   };
 
   const { setFieldValue, values } = useFormikContext();
-  console.log(
-    "🚀 ~ file: UploadImage.jsx:25 ~ UploadImage ~ values:",
-    values?.attachments
-  );
+
   const theme = useTheme();
 
   const [files, setFiles] = useState(
@@ -41,7 +38,9 @@ const UploadImage = ({ name, label, nameValue, className, value }) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
-    accept: ["image/*", ".pdf"],
+    accept: {
+      "image/*": [".png", ".jpg", ".jpeg", ".gif" ,],
+    },
     onDrop: (acceptedFiles) => {
       const modifiedFiles = acceptedFiles.map((file) => {
         if (file.type === "application/pdf" || file.type.startsWith("image/")) {

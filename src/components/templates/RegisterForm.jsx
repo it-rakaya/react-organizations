@@ -165,7 +165,10 @@ export default function RegisterForm() {
             <div className="relative mt-10 ">
               <div className="flex flex-col items-center justify-center gap-2 mb-3 ">
                 <TermsConditionIcon />
-                <h1 className="text-xl font-bold "> {t("Terms & condition ")}</h1>
+                <h1 className="text-xl font-bold ">
+                  {" "}
+                  {t("Terms & condition ")}
+                </h1>
               </div>
             </div>
             {orgData?.organizations?.policies ? (
