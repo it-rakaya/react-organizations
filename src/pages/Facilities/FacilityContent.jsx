@@ -2,9 +2,8 @@
 import { Card, CardContent } from "@mui/material";
 import { Form, Formik } from "formik";
 import { t } from "i18next";
-import MainContent from "./MainContent";
 import * as Yup from "yup";
-import { useState } from "react";
+import MainContent from "./MainContent";
 
 function FacilityContent({
   activeStep,
@@ -40,35 +39,7 @@ function FacilityContent({
       signature: "",
       capacity: "",
     }
-  
-  const initialCase0 = {
-    name: "",
-    registration_number: "",
-    version_date: new Date(),
-    version_date_hj: "",
-    end_date: new Date(),
-    end_date_hj: "",
-    license_expired: new Date(),
-    license_expired_hj: "",
-    registration_source: "",
-    capacity: "",
-    license: "",
-    address: "",
-    tax_certificate: "",
-  };
-  const initialCase1 = {
-    street_name: "",
-    neighborhood: "",
-    building_number: "",
-    postal_code: "",
-    sub_number: "",
-  };
-  const initialCase2 = {
-    employee_number: "",
-    chefs_number: "",
-    building_number: "",
-    kitchen_space: "",
-  };
+
 
   const validationSchema = (step) => {
     switch (step) {

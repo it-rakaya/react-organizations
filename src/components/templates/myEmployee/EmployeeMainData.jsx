@@ -4,15 +4,20 @@ import MainHeader from "../../atoms/MainHeader";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
 import SelectFacilities from "../../molecules/SelectFacilities";
 import UploadImage from "../../molecules/UploadImage";
+import { useTheme } from "@mui/material/styles";
+import { Divider } from "@mui/material";
 
 export default function EmployeeMainData({
   showSelectFacility,
   attachments_facility_employees,
 }) {
+  const theme = useTheme();
+
   return (
     <div className="">
       <MainHeader title={t("Add Employee")} />
-      <div className="grid items-start grid-cols-2 gap-2">
+      <div className="grid items-start grid-cols-2 gap-2 px-5">
+        <h1 className="py-2 text-xl font-bold">1.{t("employee Data")}:</h1>
         {showSelectFacility && (
           <div className="col-span-12">
             <SelectFacilities
@@ -49,7 +54,11 @@ export default function EmployeeMainData({
             />
           </div>
         </div>
-        <div className="flex items-start col-span-12 gap-2 "></div>
+        <div className="col-span-12 pb-8 pt-9">
+          <Divider/>
+        </div>
+        <h1 className="col-span-12 pb-3 text-xl font-bold">2.{t("attachments")}:</h1>
+
         <div className="grid grid-cols-2 col-span-12 gap-2 ">
           {attachments_facility_employees?.attachment_labels?.map((item) => (
             // <div className="" >
@@ -59,6 +68,7 @@ export default function EmployeeMainData({
               name={`attachments[${item?.id}]`}
               placeholder={t("please upload photo")}
               className="!justify-start mt-1 rounded-md text-start"
+              accept={item?.extensions || []}
             />
             // </div>
           ))}

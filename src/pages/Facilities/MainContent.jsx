@@ -10,8 +10,6 @@ import FacilityControl from "./FacilityControl";
 function MainContent({
   activeStep,
   steps,
-  setFormValues,
-
   setActiveStep,
 }) {
   const [open, setOpen] = useState(false);

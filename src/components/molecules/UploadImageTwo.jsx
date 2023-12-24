@@ -14,7 +14,9 @@ import PreviewImage from "./PreviewImage";
 import PreviewImageLink from "./PreviewImageLink";
 import PreviewPdf from "./PreviewPdf";
 
-const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
+const UploadImageTwo = ({ name, label, nameValue, className, value , accept }) => {
+  const modifyAccept = accept?.map((item) => `.${item}`);
+
   const updateImage = {
     value: value,
     type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
@@ -36,7 +38,7 @@ const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
-    accept: ["image/*", ".pdf"],
+    accept: ["image/*",modifyAccept],
     onDrop: (acceptedFiles) => {
       const modifiedFiles = acceptedFiles.map((file) => {
         if (file.type === "application/pdf" || file.type.startsWith("image/")) {

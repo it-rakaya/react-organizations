@@ -3,17 +3,14 @@ import useFetch from "../../../hooks/useFetch";
 import UploadImageTwo from "../../molecules/UploadImageTwo";
 
 export default function StepTwo({ DetailsFacilities }) {
-  console.log(
-    "🚀 ~ file: StepTwo.jsx:6 ~ StepTwo ~ DetailsFacilities:",
-    DetailsFacilities
-  );
+
   const { data: attachments_facilities } = useFetch({
     endpoint: `attachments-labels/facilities`,
     queryKey: ["attachments_facilities"],
   });
   const detailsFacilitiesData =
   DetailsFacilities || attachments_facilities?.attachment_labels;
-
+  
   return (
     <div className="grid grid-cols-1 gap-10 mt-3 md:grid-cols-3 xl:grid-cols-4">
       {detailsFacilitiesData?.map((item, index) => (
@@ -24,6 +21,7 @@ export default function StepTwo({ DetailsFacilities }) {
             nameValue={item?.id ? item?.id : item?.attachment_id}
             className="!justify-center"
             value={item?.value}
+            accept={item?.extensions || []}
           />
         </div>
       ))}

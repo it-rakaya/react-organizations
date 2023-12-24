@@ -28,7 +28,7 @@ export default function DetailsFacility({ data, className }) {
   };
   const handleDownloadClick = (item) => {
     // Create a temporary link element
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = item?.value;
     link.download = item?.value;
 
@@ -40,7 +40,7 @@ export default function DetailsFacility({ data, className }) {
 
     // Remove the link from the document
     document.body.removeChild(link);
-  }
+  };
 
   return (
     <div>
@@ -365,16 +365,15 @@ export default function DetailsFacility({ data, className }) {
                                 url={item?.value}
                                 eyeIcon={true}
                               />
-                              <button
-                                // href={item?.value}
-                                // download={item?.value}
-                                // target="_blank"
-                                // rel="noreferrer"
-                                onKeyUpCapture={handleDownloadClick(item)}
-                                className="cursor-pointer"
+                              <a
+                                href={item?.value}
+                                download={item?.value}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="cursor-pointer "
                               >
                                 <Icon path={mdiTrayArrowDown} size={1} />
-                              </button>
+                              </a>
                             </div>
                           ) : (
                             <div className="flex items-center ">

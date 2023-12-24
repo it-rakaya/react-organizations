@@ -16,7 +16,7 @@ export default function PreviewImageLink({ url, eyeIcon }) {
           },
         }}
       >
-        <a data-fancybox="gallery" href={url} className="">
+        <a data-fancybox="gallery" href={url} className="" >
           <div className="flex flex-col items-center justify-center w-full">
             <div className="w-full rounded-xl">
               <div className="flex items-center w-full p-1 rounded-md cursor-pointer ">

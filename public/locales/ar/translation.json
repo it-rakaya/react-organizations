@@ -155,6 +155,8 @@
   "order status": "حالة الطلب",
   "Date create": "تاريخ الانشاء",
   "employee deleted successfully": "تم حذف الموظف بنجاح",
+  "employee Data":"بيانات الموظف",
+  "attachments":"المرفقات",
   "landing": {
     "organizationName": "اسم المنظمة",
     "description": "نص عربي نص عربي نص عربي نص عربي نص عربي نص عربي",
