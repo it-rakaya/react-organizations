@@ -14,6 +14,7 @@ export default function CheckCode({
   login
 }) {
   const [values, setValues] = useState(["", "", "", ""]);
+  console.log("🚀 ~ file: index.jsx:17 ~ values:", values.join("").length)
   const [availableResetCode, setAvailableResetCode] = useState(false);
   const [timerStarted, setTimerStarted] = useState(true);
   const [colorPinInput, setColorPinInput] = useState("");
@@ -57,21 +58,21 @@ export default function CheckCode({
             <PinInput
               values={values}
               validBorderColor={colorPinInput}
-              // focusBorderColor={theme?.palette?.primary.main}
+              focusBorderColor={theme?.palette?.primary.main}
               borderColor={colorPinInput}
               inputStyle={{ userSelect: "none" }}
               placeholder="x"
               onChange={(value, index, values) => {
                 setValues(values);
-                if (number == values.join("")) {
+                if ( values.join("").length == 4) {
                   setValueOTP(values.join(""));
                   setColorPinInput('#eee');
                 } else {
-                  setColorPinInput("rgb(220,53,69)");
+                  // setColorPinInput("rgb(220,53,69)");
                 }
               }}
               onComplete={(values) => {
-                if (number == values.join("")) {
+                if (values.join("").length === 4) {
                   setColorPinInput('#eee');
                 } else {
                   setColorPinInput("rgb(220,53,69)");

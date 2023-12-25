@@ -185,7 +185,9 @@ export default function DetailsFacility({ data, className }) {
               onChange={handleChange}
               aria-label="nav tabs example"
               orientation="vertical"
-              className="w-[30%]"
+              className="w-[30%] tab_facility"
+            
+              
             >
               <Tab
                 value="1"
@@ -245,24 +247,24 @@ export default function DetailsFacility({ data, className }) {
               className={`${className} !overflow-y-scroll !shadow-none max-h-[40rem]  scroll_main w-full`}
             >
               <TabPanel value="1">
-                <div className="grid grid-cols-1 p-4 md:px-10 md:pr-[105px] md:grid-cols-2 md:gap-x-15">
-                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                <div className="grid grid-cols-1 p-4 md:px-10 md:grid-cols-2 md:gap-x-20">
+                  <div className="flex flex-col col-span-2 gap-5 mt-5 md:col-span-1 ">
                     <p className="font-bold ">الاسم</p>
                     <p className="mt-1">{data?.name}</p>
                   </div>
-                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <div className="flex flex-col col-span-2 gap-5 mt-5 md:col-span-1 ">
                     <p className="font-bold "> رقم السجل التجاري</p>
                     <p className="mt-1">{data?.registration_number}</p>
                   </div>
-                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <div className="flex flex-col col-span-2 gap-5 mt-5 md:col-span-1 ">
                     <p className="font-bold "> مصدر السجل التجاري </p>
                     <p className="mt-1">{data?.registration_source}</p>
                   </div>
-                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <div className="flex flex-col col-span-2 gap-5 mt-5 md:col-span-1 ">
                     <p className="font-bold "> شهادة الرقم الضريبي </p>
                     <p className="mt-1">{data?.tax_certificate}</p>
                   </div>
-                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <div className="flex flex-col col-span-2 gap-5 mt-5 md:col-span-1 ">
                     <p className="font-bold ">
                       {" "}
                       {t(
@@ -271,7 +273,7 @@ export default function DetailsFacility({ data, className }) {
                     </p>
                     <p className="mt-1">{data?.version_date}</p>
                   </div>
-                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <div className="flex flex-col col-span-2 gap-5 mt-5 md:col-span-1 ">
                     <p className="font-bold ">
                       {" "}
                       تاريخ إصدار السجل التجاري بالهجري
@@ -280,7 +282,7 @@ export default function DetailsFacility({ data, className }) {
                       {convertArabicToEnglish(data?.version_date_hj)}
                     </p>
                   </div>
-                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <div className="flex flex-col col-span-2 gap-5 mt-5 md:col-span-1 ">
                     <p className="font-bold ">
                       {" "}
                       {t(
@@ -289,7 +291,7 @@ export default function DetailsFacility({ data, className }) {
                     </p>
                     <p className="mt-1">{data?.end_date}</p>
                   </div>
-                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <div className="flex flex-col col-span-2 gap-5 mt-5 md:col-span-1 ">
                     <p className="font-bold ">
                       {" "}
                       تاريخ انتهاء السجل التجاري بالهجري
@@ -299,7 +301,7 @@ export default function DetailsFacility({ data, className }) {
                     </p>
                   </div>
 
-                  <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
+                  <div className="flex flex-col col-span-2 gap-5 mt-5 md:col-span-1 ">
                     <p className="font-bold ">
                       {" "}
                       رقم رخصة مزاولة المهنة     {" "}

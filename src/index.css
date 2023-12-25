@@ -610,3 +610,17 @@ input:-webkit-autofill:active {
     top: calc(50% - -27px) !important;
   }
 }
+
+/* .MuiTab-root.MuiTab-textColorPrimary.Mui-selected{
+@apply bg-contained
+} */
+.tab_facility .MuiTab-root.MuiTab-textColorPrimary.Mui-selected {
+  @apply bg-contained text-white
+}
+
+.tab_facility .MuiTab-root.MuiTab-textColorPrimary.Mui-selected h2 {
+  @apply text-white
+}
+.tab_facility .MuiTab-root.MuiTab-textColorPrimary.Mui-selected svg {
+  @apply text-white
+}

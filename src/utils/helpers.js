@@ -19,3 +19,18 @@ export function convertArabicToEnglish(arabicNumber) {
 
   return convertedNumber;
 }
+
+export function convertToHijri(valueGregorian) {
+  const gregorianDate = new Date(valueGregorian);
+  const hijriFormatter = new Intl.DateTimeFormat("ar-SA-u-ca-islamic", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+  const formattedHijriDate = hijriFormatter.format(gregorianDate);
+  const hijriDateWithoutHeh = formattedHijriDate
+    .replace("هـ", "")
+    .replace(/\//g, "-");
+
+  return hijriDateWithoutHeh;
+}

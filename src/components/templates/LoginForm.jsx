@@ -83,7 +83,7 @@ export default function LoginForm() {
             />
           )}
 
-          <ButtonComp loading={loadingLogin || isPending}>
+          <ButtonComp loading={loadingLogin || isPending} disabled={valueOTP && valueOTP?.length != 4 ? true : false }>
             {t("LOGIN")}
           </ButtonComp>
         </Form>

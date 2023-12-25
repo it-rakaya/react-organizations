@@ -9,7 +9,6 @@ import { mdiEyeOutline } from "@mdi/js";
 function PreviewPdf({ item, eyeIcon }) {
   const theme = useTheme();
 
-  const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
 
   return (
     <div>

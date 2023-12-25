@@ -1,21 +1,20 @@
-import { mdiAccount, mdiTrashCanOutline } from "@mdi/js";
+import { mdiAccount } from "@mdi/js";
 import Icon from "@mdi/react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import { t } from "i18next";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Table from "../../components/Table/Table";
 import MainHeader from "../../components/atoms/MainHeader";
 import ModalComp from "../../components/atoms/ModalComp";
-import PreviewImageLink from "../../components/molecules/PreviewImageLink";
-import PreviewPdf from "../../components/molecules/PreviewPdf";
+import Loading from "../../components/molecules/Loading";
+import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import DeleteEMployee from "../../components/templates/myEmployee/DeleteEMployee";
 import useFetch from "../../hooks/useFetch";
-import Loading from "../../components/molecules/Loading";
-import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
+import PadgePreview from "../../components/molecules/PadgePreview";
 
 export default function MyEmployees() {
   const {
@@ -27,9 +26,11 @@ export default function MyEmployees() {
     endpoint: `facility-employees`,
     queryKey: ["facility_employees"],
   });
+
   const [openAddEmployee, setOpenAddEmployee] = useState(false);
   const [employeeId, setEmployeeId] = useState();
   const [openModelDeleteEmployee, setModelDeleteEMployee] = useState(false);
+  const theme = useTheme();
 
   const LinkStyled = styled(Link)(({ theme }) => ({
     fontWeight: 600,
@@ -127,7 +128,7 @@ export default function MyEmployees() {
     },
     {
       flex: 0.15,
-      minWidth: 150,
+      minWidth: 180,
       headerName: t("attachment"),
       field: "",
       cellClassName: "flex !px-0 !justify-center",
@@ -142,21 +143,35 @@ export default function MyEmployees() {
               textTransform: "capitalize",
               display: "flex",
               justifyContent: "center",
+              flexWrap: "wrap",
+              gap: "5px",
             }}
           >
             {row?.attachmentUrl.map((item) => (
-              <div
-                className="grid items-center justify-center grid-cols-2"
-                key={item?.id}
-              >
+              <div className="" key={item?.id}>
                 {!item?.value?.toLowerCase().endsWith(".pdf") ? (
-                  <div className="">
-                    <PreviewImageLink url={item?.value} />
+                  <div
+                    className="rounded-sm "
+                    style={{ background: theme?.palette?.primary.main }}
+                  >
+                    <PadgePreview url={item?.value} label={item?.label} />
                   </div>
                 ) : (
-                  <div className="">
-                    
-                    <PreviewPdf item={item} />
+                  <div
+                    className="px-1 bg-red-500 rounded-sm"
+                    style={{ background: theme?.palette?.primary.main }}
+                  >
+                    <a
+                      href={item?.value}
+                      download={item?.value}
+                      className=""
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <p className="text-[10px] text-white px-1">
+                        {item?.label}
+                      </p>
+                    </a>
                   </div>
                 )}
               </div>

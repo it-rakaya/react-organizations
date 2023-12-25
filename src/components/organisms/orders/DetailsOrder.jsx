@@ -5,6 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import DetailsFacility from "../MyFacilities/DetailsFacility";
 import NotesOrder from "../../molecules/NotesOrder";
+import { convertArabicToEnglish, convertToHijri } from "../../../utils/helpers";
 
 export default function DetailsOrder({ data }) {
   console.log("🚀 ~ file: DetailsOrder.jsx:9 ~ DetailsOrder ~ data:", data);
@@ -46,6 +47,14 @@ export default function DetailsOrder({ data }) {
             <p className="font-bold "> تاريخ الانشاء </p>
             <p>{data?.created_at?.slice(0, 10)}</p>
           </div>
+          <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
+            <p className="font-bold "> تاريخ الانشاء بالهجري</p>
+            <p>
+              {convertArabicToEnglish(
+                convertToHijri(data?.created_at?.slice(0, 10))
+              )}
+            </p>
+          </div>
         </div>
       </div>
       <div className="my-5">
@@ -78,12 +87,15 @@ export default function DetailsOrder({ data }) {
             <TabPanel value="1" className="pt-0">
               <div>
                 <div className="">
-                  <DetailsFacility data={data?.facility} className="h-[27rem]" />
+                  <DetailsFacility
+                    data={data?.facility}
+                    className="h-[27rem]"
+                  />
                 </div>
               </div>
             </TabPanel>
             <TabPanel value="2">
-              <div className="grid grid-cols-2 p-4 mt-5 gap-y-4">
+              <div className="grid grid-cols-2 px-4 mt-5 gap-y-4">
                 {data?.answers?.length ? (
                   data?.answers?.map((item) => (
                     <div className="flex gap-2" key={item?.id}>
@@ -94,7 +106,10 @@ export default function DetailsOrder({ data }) {
                     </div>
                   ))
                 ) : (
-                  <div className="text-xl font-bold"> لايوجد اساله </div>
+                  <div className="text-2xl font-bold text-">
+                    {" "}
+                    لايوجد اساله{" "}
+                  </div>
                 )}
               </div>
             </TabPanel>
@@ -102,7 +117,7 @@ export default function DetailsOrder({ data }) {
             <TabPanel value="3" className="pt-0">
               <div>
                 <div className="">
-                  <NotesOrder notes={data?.notes}  />
+                  <NotesOrder notes={data?.notes} />
                 </div>
               </div>
             </TabPanel>
