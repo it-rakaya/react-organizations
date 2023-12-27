@@ -1,14 +1,22 @@
 import { Typography } from "@mui/material";
 import { t } from "i18next";
+import { useState } from "react";
+import ModalComp from "../../atoms/ModalComp";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
 import DatePickerComp from "../../molecules/Formik/DatePickerComp";
 import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
-import Icon from "@mdi/react";
-import { mdiInformationOutline } from "@mdi/js";
 
 export default function AddFacility() {
+  const images = [
+    { path: "/registerMain.png" },
+    { path: "/tax_certificate.png" },
+  ];
+  const [show, setShow] = useState(false);
+  const [index, setIndex] = useState(0);
+  console.log("🚀 ~ file: AddFacility.jsx:17 ~ AddFacility ~ index:", index);
+
   return (
-    <div className="">
+    <div className="relative">
       <div className="grid items-start grid-cols-1 md:px-5 md:grid-cols-2">
         <div className="col-span-2">
           <Typography className={`font-bold  `}>1. بيانات المنشاة</Typography>
@@ -20,15 +28,14 @@ export default function AddFacility() {
               label={t("Trade name")}
               placeholder="محمد احمد محمد"
               name="name"
+              showIcon
               required
+              setShow={setShow}
+              setIndex={setIndex}
+              index={0}
             />
-            <div className="absolute top-[20px] left-[10px] md:top-[18%] md:right-[43%] info_hover">
-              <Icon path={mdiInformationOutline} size={0.7} />
-              <div className="absolute bg-red-500 content_name_hover top-[0%] right-[38%]">
-                test
-              </div>
-            </div>
           </div>
+
           <div className="w-full md:w-1/2">
             <BaseInputField
               label=" رقم السجل التجاري  "
@@ -37,6 +44,10 @@ export default function AddFacility() {
               type="custom"
               maxNum="10"
               required
+              showIcon
+              setShow={setShow}
+              setIndex={setIndex}
+              index={0}
             />
           </div>
         </div>
@@ -46,6 +57,10 @@ export default function AddFacility() {
               label={"مصدر السجل التجاري "}
               name="registration_source"
               required
+              showIcon
+              setShow={setShow}
+              setIndex={setIndex}
+              index={0}
             />
           </div>
           <div className="w-full md:w-1/2">
@@ -56,6 +71,10 @@ export default function AddFacility() {
               type="custom"
               maxNum="9"
               required
+              showIcon
+              index={1}
+              setIndex={setIndex}
+              setShow={setShow}
             />
           </div>
         </div>
@@ -66,6 +85,10 @@ export default function AddFacility() {
               name_hj="version_date_hj"
               label={t("Date of issuance of the commercial register in AD")}
               required
+              showIcon
+              setShow={setShow}
+              setIndex={setIndex}
+              index={0}
             />
           </div>
 
@@ -90,6 +113,10 @@ export default function AddFacility() {
               type="custom"
               maxNum="10"
               required
+              showIcon
+              setShow={setShow}
+              setIndex={setIndex}
+              index={0}
             />
           </div>
           <div className="flex items-start justify-center w-full">
@@ -100,20 +127,15 @@ export default function AddFacility() {
                 "تاريخ انتهاء رخصة مزاولة المهنة الصادرة من أمانة العاصمة المقدسة بالميلادي"
               }
               required
+              showIcon
+              setShow={setShow}
+              setIndex={setIndex}
+              index={0}
             />
           </div>
         </div>
 
-        <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
-          {/* <div className="items-start w-full md:w-1/2 ">
-            <BaseInputField
-              label="عنوان المنشأة (الحي-الشارع)"
-              placeholder="الملك فهد"
-              name="address"
-              required
-            />
-          </div> */}
-        </div>
+
 
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="w-full ">
@@ -124,10 +146,26 @@ export default function AddFacility() {
               type="custom"
               maxNum="5"
               required
+              
             />
           </div>
         </div>
       </div>
+      <ModalComp
+        open={show}
+        className="!max-w-[850px] m-auto    "
+        classNameBox="!bg-transparent shadow-[initial]"
+        onClose={() => setShow(false)}
+        hidden={true}
+        Children={
+          <div className="flex justify-center">
+            <img
+              className="w-full h-[38rem] object-contain"
+              src={images[index].path}
+            />
+          </div>
+        }
+      />
     </div>
   );
 }

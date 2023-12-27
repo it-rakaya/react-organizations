@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 /* eslint-disable react/prop-types */
 import { Grid } from "@mui/material";
 import { useFormikContext } from "formik";
@@ -10,7 +11,8 @@ function AfterAndBeforeFacility({
   steps,
   attachments_facilities,
 }) {
-  const { values, errors, setFieldError } = useFormikContext();
+  const { values, errors } = useFormikContext();
+
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -57,7 +59,6 @@ function AfterAndBeforeFacility({
     // address: "",
     tax_certificate: "",
   };
-
   const initialCase1 = {
     street_name: "",
     neighborhood: "",
@@ -82,12 +83,23 @@ function AfterAndBeforeFacility({
         return checkErrorsForKeys(initialCase1);
       case 2:
         return checkErrorsForKeys(initialCase2);
+      case 3:
+        // Filter out undefined values from attachments_facilities
+        const filteredAttachmentLabels =
+          values?.attachments?.filter(
+            (value) => value !== undefined && value !== null
+          ) || [];
+
+        const attachmentsLength =
+          attachments_facilities?.attachment_labels.length || 0;
+        const actualAttachmentsLength = filteredAttachmentLabels?.length || 0;
+
+        return attachmentsLength !== actualAttachmentsLength;
       default:
         return false;
     }
   };
   // const validateImages = () => {
-  //   // Loop through the images and check if required images have values
   //   attachments_facilities?.attachment_labels.forEach((item) => {
   //     if (item.is_required && !values[`attachments[${item.id || item.attachment_id}]`]) {
   //       setFieldError(`attachments[${item.id || item.attachment_id}]`, "Image is required");

@@ -7,6 +7,8 @@ import { useFormikContext } from "formik";
 import { useState, useEffect } from "react";
 import { FormikError } from "./FormikError";
 import { convertArabicToEnglish } from "../../../utils/helpers";
+import { mdiCalendarMonthOutline } from "@mdi/js";
+import Icon from "@mdi/react";
 
 export default function DatePickerComp({ name, name_hj, label, required }) {
   const { setFieldValue, values } = useFormikContext();
@@ -18,9 +20,9 @@ export default function DatePickerComp({ name, name_hj, label, required }) {
       // Convert the Gregorian date to Hijri
       const gregorianDate = new Date(valueGregorian);
       const hijriFormatter = new Intl.DateTimeFormat("ar-SA-u-ca-islamic", {
+        day: "2-digit",
         year: "numeric",
         month: "2-digit",
-        day: "2-digit",
       });
       const formattedHijriDate = hijriFormatter.format(gregorianDate);
       const hijriDateWithoutHeh = formattedHijriDate
@@ -58,8 +60,12 @@ export default function DatePickerComp({ name, name_hj, label, required }) {
           }}
         />
         {valueHijri && (
-          <p className="mt-1">
-            الموافق بالهجري : <span className="font-bold">{convertArabicToEnglish(valueHijri)} </span>
+          <p className="flex items-center gap-2 mt-1 ">
+            <Icon path={mdiCalendarMonthOutline} size={0.8} />
+            <span className="font- ">
+              {convertArabicToEnglish(valueHijri)}
+            </span>
+            هـ
           </p>
         )}
         <div>

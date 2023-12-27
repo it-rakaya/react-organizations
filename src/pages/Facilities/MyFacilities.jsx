@@ -21,6 +21,7 @@ import StepperFacility from "./AddFacilityPage";
 import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import useFetch from "../../hooks/useFetch";
+import { notify } from "../../utils/toast";
 
 export default function MyFacilities() {
   const [open, setOpen] = useState(false);
@@ -64,6 +65,7 @@ export default function MyFacilities() {
         addTitle={t("Add Facility")}
         action={() => navigate("/dashboard/facilities/create-facility")}
       />
+        {/* <button className="my-5" onClick={()=>notify("success")}>test</button> */}
       <div className="flex flex-col items-center justify-between h-[65vh]">
         {isLoading || isRefetching ? (
           <Loading />
@@ -155,11 +157,12 @@ export default function MyFacilities() {
           <DataNotFound title={t("Not Found Facilities")} />
         )}
       </div>
+    
 
       <ModalComp
         open={open}
         classNameBox={"!h-full "}
-        className={"max-w-[1100px]"}
+        className={"max-w-[900px]"}
         onClose={() => setOpen(false)}
         Children={<DetailsFacility data={detailsItem} />}
       />

@@ -12,7 +12,7 @@ export default function SelectCitiesSaudi({ name, label, className , required })
   });
   const options = cities?.cities.map((item) => ({
     value: item.id,
-    label: item.name,
+    label: item.name_ar,
   }));
   const selectedCity = options?.find(
     (option) => option?.value == values[name]

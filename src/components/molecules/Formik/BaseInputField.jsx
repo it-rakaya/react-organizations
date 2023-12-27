@@ -10,6 +10,8 @@ import { useFormikContext } from "formik";
 import { useState } from "react";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import { FormikError } from "./FormikError";
+import { mdiInformationOutline } from "@mdi/js";
+import Icon from "@mdi/react";
 
 export default function BaseInputField({
   label,
@@ -19,7 +21,11 @@ export default function BaseInputField({
   type = "text",
   password,
   maxNum,
+  setShow,
   required,
+  showIcon,
+  setIndex,
+  index,
   ...props
 }) {
   const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
@@ -32,16 +38,16 @@ export default function BaseInputField({
     if (type === "custom") {
       const numericRegex = /^[0-9]+$/;
       if (!numericRegex.test(value)) {
-        setFieldValue(name, '');
+        setFieldValue(name, "");
         return;
       }
       if (value.length > maxNum) {
         value = value.slice(0, maxNum);
       }
-    }    
+    }
     setFieldValue(name, value);
   };
-  
+
   return (
     <div>
       {password ? (
@@ -82,10 +88,31 @@ export default function BaseInputField({
         </FormControl>
       ) : (
         <>
-          <label className="block my-[0.75rem]">
+          <label className="flex my-[0.75rem] relative">
             {label}
-            <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
+            <span className="mx-1 text-red-500">
+              {required == "1" ? "*" : ""}
+            </span>
           </label>
+          {showIcon && (
+          <div
+            className="my-1 w-fit"
+            onMouseEnter={() => {
+              setShow(true);
+              setIndex(index);
+            }}
+          >
+            <div className="flex items-center gap-1">
+                <>
+                  <span className="text-[10px] text-[#80b3f0]">
+                    {" "}
+                    لمعرفة المرفق اضغط هنا
+                  </span>
+                  <Icon path={mdiInformationOutline} size={0.7} />
+                </>
+            </div>
+          </div>
+              )}
           <TextField
             // autoFocus
             placeholder={placeholder}
@@ -106,7 +133,10 @@ export default function BaseInputField({
                 : { onChange: handleChange }
             }
             name={name}
-            style={{borderColor: !!touched[name] && !!errors[name] ? 'red' :'' ,  borderRadius: "10px" }}
+            style={{
+              borderColor: !!touched[name] && !!errors[name] ? "red" : "",
+              borderRadius: "10px",
+            }}
             className={`${className} "my-3 code " ${
               !!touched[name] && !!errors[name] && "border-red-500 "
             }`}

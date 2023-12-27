@@ -17,6 +17,7 @@ export default function LoginForm() {
   const [dataValue, setDataValue] = useState();
   const [valueOTP, setValueOTP] = useState();
   const { orgData } = UseOrg();
+  console.log("🚀 ~ file: LoginForm.jsx:20 ~ LoginForm ~ orgData:", orgData)
   const { mutate: LoginData, isPending: loadingLogin } = useMutate({
     mutationKey: [`login_data`],
     formData: true,

@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-boolean-cast */
 import { toast } from "react-toastify";
 
 const toastOptions = {

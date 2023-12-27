@@ -5,6 +5,7 @@ import IconifyIcon from "../atoms/icons/IconifyIcon";
 import Fancybox from "./Fancybox";
 import Icon from "@mdi/react";
 import { mdiEyeOutline } from "@mdi/js";
+import ViewICon from "../atoms/icons/ViewICon";
 
 export default function PreviewImageLink({ url, eyeIcon }) {
   return (
@@ -21,11 +22,12 @@ export default function PreviewImageLink({ url, eyeIcon }) {
             <div className="w-full rounded-xl">
               <div className="flex items-center w-full p-1 rounded-md cursor-pointer ">
                 {eyeIcon ? (
-                  <Icon
-                    path={mdiEyeOutline}
-                    size={1}
-                    className={"cursor-pointer "}
-                  />
+                  // <Icon
+                  //   path={mdiEyeOutline}
+                  //   size={1}
+                  //   className={"cursor-pointer "}
+                  // />
+                  <ViewICon/>
                 ) : (
                   <IconifyIcon
                     icon={"iconamoon:file-image-light"}

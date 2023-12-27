@@ -42,6 +42,11 @@ div {
   right: 0px !important;
 }
 
+p,
+h1 {
+  color: black;
+}
+
 .dark :placeholder-shown {
   color: #313b3e;
 }
@@ -589,10 +594,10 @@ input:-webkit-autofill:active {
 }
 
 .content_name_hover {
-  display: none;
+  /* display: none; */
 }
 
-.info_hover:hover .content_name_hover {
+.info_hover:hover+.content_name_hover {
   display: block;
 
 }
@@ -621,6 +626,11 @@ input:-webkit-autofill:active {
 .tab_facility .MuiTab-root.MuiTab-textColorPrimary.Mui-selected h2 {
   @apply text-white
 }
+
 .tab_facility .MuiTab-root.MuiTab-textColorPrimary.Mui-selected svg {
   @apply text-white
+}
+
+.MuiDataGrid-row.MuiDataGrid-row--lastVisible:hover {
+  background-color: transparent;
 }

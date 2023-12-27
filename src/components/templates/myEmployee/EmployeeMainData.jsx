@@ -54,7 +54,7 @@ export default function EmployeeMainData({
           <div className="w-full">
             <BaseInputField
               label={t("ID Number")}
-              placeholder="10********"
+              placeholder="********10"
               name="national_id"
               type="custom"
               maxNum={10}

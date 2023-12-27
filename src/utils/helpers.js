@@ -14,7 +14,7 @@ export function convertArabicToEnglish(arabicNumber) {
   // Replace Arabic numerals with English numerals
   for (let i = 0; i < arabicNumerals.length; i++) {
     const regex = new RegExp(arabicNumerals[i], "g");
-    convertedNumber = convertedNumber.replace(regex, englishNumerals[i]);
+    convertedNumber = convertedNumber?.replace(regex, englishNumerals[i]);
   }
 
   return convertedNumber;

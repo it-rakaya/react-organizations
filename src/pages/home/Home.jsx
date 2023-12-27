@@ -67,11 +67,11 @@ const Home = () => {
         </div>
       )} */}
       <Grid container spacing={6} className="match-height">
-        <Grid item xs={12} md={user?.is_verified ? 8 : 12}>
-          <AnalyticsCongratulations userData={user} />
-        </Grid>
         {user?.is_verified ? (
           <>
+            <Grid item xs={12} md={user?.is_verified ? 8 : 12}>
+              <AnalyticsCongratulations userData={user} />
+            </Grid>
             <Grid item xs={6} md={2}>
               <CardStatsVertical
                 stats="155k"

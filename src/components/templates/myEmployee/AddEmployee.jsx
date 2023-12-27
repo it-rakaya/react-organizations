@@ -94,7 +94,7 @@ export default function AddEmployee({
                 showSelectFacility={showSelectFacility}
                 attachments_facility_employees={attachments_facility_employees}
               />
-              <div className="flex justify-end">
+              <div className="flex justify-end ml-[21px]">
                 <ButtonComp
                   loading={loadingEmployee}
                   type="submit"

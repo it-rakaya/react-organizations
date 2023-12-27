@@ -1,4 +1,4 @@
-import { mdiAccount } from "@mdi/js";
+import { mdiAccountOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -10,11 +10,11 @@ import Table from "../../components/Table/Table";
 import MainHeader from "../../components/atoms/MainHeader";
 import ModalComp from "../../components/atoms/ModalComp";
 import Loading from "../../components/molecules/Loading";
+import PadgePreview from "../../components/molecules/PadgePreview";
 import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import DeleteEMployee from "../../components/templates/myEmployee/DeleteEMployee";
 import useFetch from "../../hooks/useFetch";
-import PadgePreview from "../../components/molecules/PadgePreview";
 
 export default function MyEmployees() {
   const {
@@ -64,7 +64,7 @@ export default function MyEmployees() {
                 // flexDirection: "column",
               }}
             >
-              <Icon path={mdiAccount} size={1} />
+              <Icon path={mdiAccountOutline} size={1} />
               <LinkStyled href="/apps/user/view/overview/">{name}</LinkStyled>
             </Box>
           </Box>
@@ -92,6 +92,7 @@ export default function MyEmployees() {
       minWidth: 150,
       headerName: t("national_id"),
       cellClassName: "flex !px-0 !justify-center",
+
       headerAlign: "center",
       renderCell: ({ row }) => {
         return (
@@ -131,7 +132,7 @@ export default function MyEmployees() {
       minWidth: 180,
       headerName: t("attachment"),
       field: "",
-      cellClassName: "flex !px-0 !justify-center",
+      cellClassName: "flex !px-0 !justify-center !h-[100px]",
       headerAlign: "center",
 
       renderCell: ({ row }) => {
@@ -144,7 +145,7 @@ export default function MyEmployees() {
               display: "flex",
               justifyContent: "center",
               flexWrap: "wrap",
-              gap: "5px",
+              gap: "10px",
             }}
           >
             {row?.attachmentUrl.map((item) => (
@@ -158,8 +159,11 @@ export default function MyEmployees() {
                   </div>
                 ) : (
                   <div
-                    className="px-1 bg-red-500 rounded-sm"
-                    style={{ background: theme?.palette?.primary.main }}
+                    className="px-1 rounded-sm bg-primary"
+                    style={{
+                      background: theme?.palette?.primary.main,
+                      opacity: "0,8",
+                    }}
                   >
                     <a
                       href={item?.value}

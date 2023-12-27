@@ -2,10 +2,12 @@
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Divider, Tab } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { t } from "i18next";
 import { useState } from "react";
-import DetailsFacility from "../MyFacilities/DetailsFacility";
-import NotesOrder from "../../molecules/NotesOrder";
 import { convertArabicToEnglish, convertToHijri } from "../../../utils/helpers";
+import MainHeader from "../../atoms/MainHeader";
+import NotesOrder from "../../molecules/NotesOrder";
+import DetailsFacility from "../MyFacilities/DetailsFacility";
 
 export default function DetailsOrder({ data }) {
   console.log("🚀 ~ file: DetailsOrder.jsx:9 ~ DetailsOrder ~ data:", data);
@@ -15,19 +17,21 @@ export default function DetailsOrder({ data }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const mainColor = theme?.palette?.primary?.main;
+  // const mainColor = theme?.palette?.primary?.main;
 
   return (
     <div className="">
       <div className="mt-10 md:px-10 ">
         <div className="col-span-2">
-          <h1 className="px-10 font-bold" style={{ color: mainColor }}>
-            تفاصيل الطلب
-          </h1>
+        
+          <MainHeader
+            title={t("Details Order")}
+            styleHead={{ color: theme.palette.primary.main }}
+          />
         </div>
         <div className="grid grid-cols-1 px-10 mt-5 md:px-20 md:grid-cols-2 ">
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold ">نوع الخدمه</p>
+            <p className="font-bold ">نوع الخدمة</p>
             <p>{data?.service?.name}</p>
           </div>
           <div className="flex items-center col-span-2 gap-4 mt-5 md:col-span-1 ">
@@ -45,16 +49,17 @@ export default function DetailsOrder({ data }) {
           </div>
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
             <p className="font-bold "> تاريخ الانشاء </p>
-            <p>{data?.created_at?.slice(0, 10)}</p>
+            <div className="flex gap-1">
+              <p>{data?.created_at?.slice(0, 10)}</p>/
+              <p>
+                {convertArabicToEnglish(
+                  convertToHijri(data?.created_at?.slice(0, 10))
+                  )}
+              </p>
+                  هـ
+            </div>
           </div>
-          <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold "> تاريخ الانشاء بالهجري</p>
-            <p>
-              {convertArabicToEnglish(
-                convertToHijri(data?.created_at?.slice(0, 10))
-              )}
-            </p>
-          </div>
+  
         </div>
       </div>
       <div className="my-5">
@@ -68,33 +73,31 @@ export default function DetailsOrder({ data }) {
             <Tab
               value="1"
               component="a"
-              label={<h2 className="font-bold text-black">تفاصيل المنشاه </h2>}
+              label={<h2 className="font-bold text-black"> ملاحظات الطلب </h2>}
             />
             <Tab
               value="2"
               component="a"
-              style={{ alignItems: "start" }}
-              label={<h2 className="font-bold text-black"> الاسئله </h2>}
+              style={{ alignItems: "center" }}
+              label={<h2 className="font-bold text-black"> الاسئلة </h2>}
             />
-
             <Tab
               value="3"
               component="a"
-              label={<h2 className="font-bold text-black"> ملاحظات الطلب </h2>}
+              label={<h2 className="font-bold text-black">تفاصيل المنشأة </h2>}
             />
+
           </TabList>
           <div className="main_content max-h-[30rem] overflow-y-scroll scroll_main">
+          
             <TabPanel value="1" className="pt-0">
               <div>
                 <div className="">
-                  <DetailsFacility
-                    data={data?.facility}
-                    className="h-[27rem]"
-                  />
+                  <NotesOrder notes={data?.notes} />
                 </div>
               </div>
             </TabPanel>
-            <TabPanel value="2">
+           <TabPanel value="2">
               <div className="grid grid-cols-2 px-4 mt-5 gap-y-4">
                 {data?.answers?.length ? (
                   data?.answers?.map((item) => (
@@ -106,21 +109,22 @@ export default function DetailsOrder({ data }) {
                     </div>
                   ))
                 ) : (
-                  <div className="text-2xl font-bold text-">
-                    {" "}
-                    لايوجد اساله{" "}
-                  </div>
+                  <div className="text-2xl font-bold text-"> لايوجد اسئلة </div>
                 )}
               </div>
             </TabPanel>
-
             <TabPanel value="3" className="pt-0">
               <div>
                 <div className="">
-                  <NotesOrder notes={data?.notes} />
+                  <DetailsFacility
+                    data={data?.facility}
+                    className="h-[27rem]"
+                  />
                 </div>
               </div>
             </TabPanel>
+           
+
           </div>
         </div>
       </TabContext>

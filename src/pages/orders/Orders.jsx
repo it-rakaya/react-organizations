@@ -34,6 +34,7 @@ export default function Orders() {
     queryKey: ["my_orders"],
     enabled: !!orgData?.organizations?.id,
   });
+    console.log("🚀 ~ file: Orders.jsx:37 ~ Orders ~ Orders:", Orders)
 
   const Canceled = 5;
 
@@ -98,25 +99,25 @@ export default function Orders() {
         );
       },
     },
-    {
-      flex: 0.15,
-      field: "facility_address",
-      headerName: t("facility address"),
-      cellClassName: "flex !px-0 !justify-center",
-      headerAlign: "center",
-      renderCell: ({ row }) => {
-        return (
-          <>
-            <Typography
-              noWrap
-              sx={{ color: "text.secondary", textTransform: "capitalize" }}
-            >
-              {row.facility?.address}
-            </Typography>
-          </>
-        );
-      },
-    },
+    // {
+    //   flex: 0.15,
+    //   field: "facility_address",
+    //   headerName: t("facility address"),
+    //   cellClassName: "flex !px-0 !justify-center",
+    //   headerAlign: "center",
+    //   renderCell: ({ row }) => {
+    //     return (
+    //       <>
+    //         <Typography
+    //           noWrap
+    //           sx={{ color: "text.secondary", textTransform: "capitalize" }}
+    //         >
+    //           {row.facility?.address}
+    //         </Typography>
+    //       </>
+    //     );
+    //   },
+    // },
     {
       flex: 0.15,
       headerName: t("status"),
@@ -235,7 +236,7 @@ export default function Orders() {
         open={openDetailsOrder}
         classNameBox={"!h-full"}
         onClose={() => setOpenDetailsOrder(false)}
-        className={"max-w-[1100px]"}
+        className={"max-w-[1120px]"}
         Children={
           <DetailsOrder data={detailsOrder} setDetailsOrder={setDetailsOrder} />
         }

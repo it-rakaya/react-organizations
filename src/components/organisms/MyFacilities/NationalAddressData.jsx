@@ -1,6 +1,8 @@
 import { Typography } from "@mui/material";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
 import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
+import SelectDistrict from "../../molecules/SelectDistrict";
+import { t } from "i18next";
 
 function NationalAddressData() {
   return (
@@ -14,15 +16,18 @@ function NationalAddressData() {
         <div className="w-full md:w-1/2">
           <SelectCitiesSaudi label={"اسم المدينة "} name="city" required />
         </div>
-
         <div className="w-full md:w-1/2">
+          <SelectDistrict label={t("District name")} name={"neighborhood"} required />
+        </div>
+
+        {/* <div className="w-full md:w-1/2">
           <BaseInputField
             label=" اسم الحي"
             placeholder="حي النقع الشرقي"
             name="neighborhood"
             required
           />
-        </div>
+        </div> */}
       </div>
 
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
