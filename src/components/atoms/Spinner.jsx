@@ -1,9 +1,9 @@
-import {  ThreeDots } from "react-loader-spinner";
+import { Rings } from "react-loader-spinner";
 
 function Spinner() {
   return (
     <div>
-      <ThreeDots
+      {/* <ThreeDots
         height="40"
         width="40"
         radius="10"
@@ -12,7 +12,15 @@ function Spinner() {
         wrapperStyle={{}}
         wrapperClassName=""
         visible={true}
-      />
+      /> */}
+      <Rings
+           height="30"
+           width="30"
+          color="#fff"
+          ariaLabel="rings-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
     </div>
   );
 }

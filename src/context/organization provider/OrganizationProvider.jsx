@@ -10,7 +10,7 @@ export const OrganizationProvider = ({ children }) => {
   const url = window.location.href;
   // const local = "http://localhost:5173";
   const baseUrl = new URL(url).origin;
-  
+
   // const isDevelopment = true;
   // const origin = isDevelopment ? local : baseUrl;
 
@@ -18,11 +18,9 @@ export const OrganizationProvider = ({ children }) => {
   const savedMode = localStorage.getItem("darkMode");
   const [orgData, setOrgData] = UseLocalStorage("organization");
   // http://localhost:5173/
-  const { data, refetch, isRefetching, isSuccess } = useFetch({
+  const { data, refetch, isRefetching, isSuccess , isLoading } = useFetch({
     endpoint: `organizations?organizationDomain=${baseUrl}`,
     queryKey: ["organization_info"],
-
- 
   });
   useEffect(() => {
     if (isSuccess) {
@@ -34,7 +32,6 @@ export const OrganizationProvider = ({ children }) => {
     // refetch();
   }, [refetch]);
   useEffect(() => {
-    
     if (orgData?.organizations?.background_image == undefined) {
       setOrgData((prev) => {
         return {
@@ -47,22 +44,34 @@ export const OrganizationProvider = ({ children }) => {
         };
       });
     }
-    if(orgData?.organizations?.phone == null){
-      setOrgData((prev)=>{
-        return {...prev, organizations:{...prev?.organizations, phone:'0570044066'}}
-      })
+    if (orgData?.organizations?.phone == null) {
+      setOrgData((prev) => {
+        return {
+          ...prev,
+          organizations: { ...prev?.organizations, phone: "0570044066" },
+        };
+      });
     }
   }, [orgData]);
 
   const updateLogo = (mode) => {
-    
-    setOrgData((prev)=>{
-      if(orgData.organizations.logo != lightModeLogo && orgData.organizations.logo != darkModeLogo) return prev;
-      return {...prev, organizations:{...prev?.organizations, logo:mode? lightModeLogo : darkModeLogo}}
+    setOrgData((prev) => {
+      if (
+        orgData.organizations.logo != lightModeLogo &&
+        orgData.organizations.logo != darkModeLogo
+      )
+        return prev;
+      return {
+        ...prev,
+        organizations: {
+          ...prev?.organizations,
+          logo: mode ? lightModeLogo : darkModeLogo,
+        },
+      };
     });
-  }
+  };
   return (
-    <OrgContext.Provider value={{ orgData, refetch, isRefetching, updateLogo }}>
+    <OrgContext.Provider value={{ orgData, refetch, isRefetching, updateLogo , isLoading }}>
       {children}
     </OrgContext.Provider>
   );

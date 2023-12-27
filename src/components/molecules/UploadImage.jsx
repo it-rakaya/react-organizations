@@ -24,9 +24,10 @@ const UploadImage = ({
   value,
   accept,
   isRequired,
+  dynamic = false,
 }) => {
-  const modifyAccept = accept.map((item) => `.${item}`);
-  const textAccept = accept.map((item) => ` -${item} `);
+  const modifyAccept = accept?.map((item) => `.${item}`);
+  const textAccept = accept?.map((item) => ` -${item} `);
 
   const updateImage = {
     value: value,
@@ -51,7 +52,7 @@ const UploadImage = ({
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: {
-      "image/*": modifyAccept,
+      "image/*": modifyAccept ? modifyAccept :[ ".png" , ".pdf" , ".jpg"]
     },
     onDrop: (acceptedFiles) => {
       const modifiedFiles = acceptedFiles.map((file) => {
@@ -71,7 +72,7 @@ const UploadImage = ({
       });
 
       setFiles(modifiedFiles);
-      setFieldValue(name, modifiedFiles[0]);
+      setFieldValue(dynamic ? `answers${name}` : name, modifiedFiles[0]);
     },
   });
 
@@ -135,9 +136,13 @@ const UploadImage = ({
           </div>
           {!files?.length && (
             <div className="flex items-center p-2">
-              <Icon path={mdiInformationOutline} size={0.7} className="text-[#80b3f0]" />
+              <Icon
+                path={mdiInformationOutline}
+                size={0.7}
+                className="text-[#80b3f0]"
+              />
               <p className="text-[14px] px-1 py-0 text-[#80b3f0]">
-                يرجى رفع الملف بهذه الصيغة {textAccept}
+                يرجى رفع الملف بهذه الصيغة {textAccept ?textAccept : "png - jpg - pdf" }
               </p>
             </div>
           )}

@@ -3,9 +3,20 @@ import { useFormikContext } from "formik";
 import { t } from "i18next";
 import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
+import Icon from "@mdi/react";
+import { mdiInformationOutline } from "@mdi/js";
 
-export default function SelectCitiesSaudi({ name, label, className , required }) {
-  const { setFieldValue , values } = useFormikContext();
+export default function SelectCitiesSaudi({
+  name,
+  label,
+  className,
+  required,
+  showIcon,
+  setShow,
+  setIndex,
+  index,
+}) {
+  const { setFieldValue, values } = useFormikContext();
   const { data: cities } = useFetch({
     endpoint: `saudi-cities`,
     queryKey: ["saudi-cities"],
@@ -14,16 +25,34 @@ export default function SelectCitiesSaudi({ name, label, className , required })
     value: item.id,
     label: item.name_ar,
   }));
-  const selectedCity = options?.find(
-    (option) => option?.value == values[name]
-  );
+  const selectedCity = options?.find((option) => option?.value == values[name]);
 
   return (
     <div className={className}>
-      <label className="block my-[0.75rem]">{label}
-      <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
+      <label className="block my-[0.75rem]">
+        {label}
+        <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
       </label>
-      <div className="mt-3">
+      {showIcon && (
+        <div
+          className="my-1 w-fit cursor-pointer"
+          onClick={() => {
+            setShow(true);
+            setIndex(index);
+          }}
+        >
+          <div className="flex items-center gap-1">
+            <>
+              <span className="text-[10px] text-[#80b3f0]">
+                {" "}
+                لمعرفة المرفق اضغط هنا
+              </span>
+              <Icon path={mdiInformationOutline} size={0.7} />
+            </>
+          </div>
+        </div>
+      )}
+      <div className="">
         <Select
           options={options}
           name={name}
@@ -50,7 +79,7 @@ export default function SelectCitiesSaudi({ name, label, className , required })
             colors: {
               ...theme.colors,
               primary25: `#eee`,
-              primary:'#eee' 
+              primary: "#eee",
             },
           })}
           // defaultValue={{ value: values[name] , label:values[name] }}

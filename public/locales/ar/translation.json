@@ -176,6 +176,7 @@
   "Invalid file format, please choose a PDF or image file":"صيغة الملف غير صالحة، يرجى اختيار ملف بصيغة PDF أو صورة",
   "File size is large":   "حجم الملف كبير",
   "Details Order":"تفاصيل الطلب",
+  "Add orders":"اضافة طلب",
   "landing": {
     "organizationName": "اسم المنظمة",
     "description": "نص عربي نص عربي نص عربي نص عربي نص عربي نص عربي",

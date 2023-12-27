@@ -96,8 +96,8 @@ export default function BaseInputField({
           </label>
           {showIcon && (
           <div
-            className="my-1 w-fit"
-            onMouseEnter={() => {
+            className="my-1 cursor-pointer w-fit"
+            onClick={() => {
               setShow(true);
               setIndex(index);
             }}

@@ -21,7 +21,7 @@ export function useMutate({
       mutationFn: (values) => {
         const requestConfig = {
           method: method.toUpperCase(), // Use the specified method
-          url: `https://admin.rmcc.sa/api/${endpoint}`,
+          url: `https://front-api.rmcc.sa/api/${endpoint}`,
           data: values,
           headers: formData
             ? {

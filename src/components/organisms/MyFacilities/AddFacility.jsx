@@ -13,7 +13,6 @@ export default function AddFacility() {
   ];
   const [show, setShow] = useState(false);
   const [index, setIndex] = useState(0);
-  console.log("🚀 ~ file: AddFacility.jsx:17 ~ AddFacility ~ index:", index);
 
   return (
     <div className="relative">
@@ -100,6 +99,10 @@ export default function AddFacility() {
                 "Commercial registration expiration date in Gregorian calendar"
               )}
               required
+              showIcon
+              setShow={setShow}
+              setIndex={setIndex}
+              index={0}
             />
           </div>
         </div>
@@ -153,12 +156,12 @@ export default function AddFacility() {
       </div>
       <ModalComp
         open={show}
-        className="!max-w-[850px] m-auto    "
-        classNameBox="!bg-transparent shadow-[initial]"
+        className="!max-w-[700px] m-auto    "
+        classNameBox="shadow-none w-full "
         onClose={() => setShow(false)}
         hidden={true}
         Children={
-          <div className="flex justify-center">
+          <div className="flex justify-center w-full">
             <img
               className="w-full h-[38rem] object-contain"
               src={images[index].path}

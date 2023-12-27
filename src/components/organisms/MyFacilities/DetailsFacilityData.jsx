@@ -23,7 +23,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
           {" "}
           مصدر السجل التجاري{" "}
         </p>
-        <p className="mt-1">{data?.registration_source}</p>
+        <p className="mt-1">{data?.registration_source_name}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>

@@ -37,6 +37,8 @@ export default function Orders() {
     console.log("🚀 ~ file: Orders.jsx:37 ~ Orders ~ Orders:", Orders)
 
   const Canceled = 5;
+  const Rejected = 4;
+
 
   const columns = [
     {

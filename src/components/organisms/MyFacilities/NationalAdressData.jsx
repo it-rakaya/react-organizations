@@ -13,13 +13,13 @@ function NationalAdressData({ data, childSection, colorHead, parentSection }) {
         <p className="font-medium " style={{ color: colorHead }}>
           الحي{" "}
         </p>
-        <p className="mt-1">{data?.neighborhood}</p>
+        <p className="mt-1">{data?.neighborhood_name}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           اسم المدينة{" "}
         </p>
-        <p className="mt-1">{data?.city}</p>
+        <p className="mt-1">{data?.city_name}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>

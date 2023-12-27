@@ -5,13 +5,21 @@ import { useEffect } from "react";
 import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
 import Spinner from "../atoms/Spinner";
+import Icon from "@mdi/react";
+import { mdiInformationOutline } from "@mdi/js";
 
-export default function SelectDistrict({ name, label, className, required }) {
+export default function SelectDistrict({
+  name,
+  label,
+  className,
+  required,
+  showIcon,
+  setShow,
+  setIndex,
+  index,
+}) {
   const { setFieldValue, values } = useFormikContext();
-  console.log(
-    "🚀 ~ file: SelectDistrict.jsx:9 ~ SelectDistrict ~ values:",
-    values
-  );
+
   const { data: district, isLoading } = useFetch({
     endpoint: `saudi-districts?city_id=${values?.city}`,
     queryKey: [`district/${values?.city}`],
@@ -22,10 +30,7 @@ export default function SelectDistrict({ name, label, className, required }) {
     label: item.name_ar,
   }));
   const selectedCity = options?.find((option) => option?.value == values[name]);
-  console.log(
-    "🚀 ~ file: SelectDistrict.jsx:24 ~ SelectDistrict ~ selectedCity:",
-    selectedCity
-  );
+
   useEffect(() => {
     setFieldValue(name, "");
   }, [values?.city, name, setFieldValue]);
@@ -36,7 +41,26 @@ export default function SelectDistrict({ name, label, className, required }) {
         {label}
         <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
       </label>
-      <div className="mt-3">
+      {showIcon && (
+        <div
+          className="my-1 cursor-pointer w-fit"
+          onClick={() => {
+            setShow(true);
+            setIndex(index);
+          }}
+        >
+          <div className="flex items-center gap-1">
+            <>
+              <span className="text-[10px] text-[#80b3f0]">
+                {" "}
+                لمعرفة المرفق اضغط هنا
+              </span>
+              <Icon path={mdiInformationOutline} size={0.7} />
+            </>
+          </div>
+        </div>
+      )}
+      <div >
         <Select
           options={options}
           name={name}
@@ -44,15 +68,17 @@ export default function SelectDistrict({ name, label, className, required }) {
           isLoading={!!isLoading}
           isDisabled={!district?.districts?.length}
           placeholder={
-            isLoading
-              ? <Spinner />
-              : district?.districts?.length
-              ? t("chose District")
-              : t("Chose city is first")
+            isLoading ? (
+              <Spinner />
+            ) : district?.districts?.length ? (
+              t("chose District")
+            ) : (
+              t("Chose city is first")
+            )
           }
           onChange={(option) => setFieldValue(name, option.value)}
           styles={{
-            control: (baseStyles , { isDisabled }) => ({
+            control: (baseStyles, { isDisabled }) => ({
               ...baseStyles,
               padding: "10px 0",
               borderRadius: " 8px",

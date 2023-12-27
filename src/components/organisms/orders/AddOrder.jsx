@@ -56,7 +56,7 @@ export default function AddOrder({ setOpenAddFaculty }) {
       >
         {({ errors, values }) => (
           <Form>
-            <OrderMainData setShow={setShow} show={show} />
+            <OrderMainData setShow={setShow} show={show} isPending={isPending} />
             {!show && (
               <div className="flex justify-center gap-5 mt-10">
                 <ButtonComp

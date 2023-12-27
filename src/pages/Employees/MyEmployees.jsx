@@ -145,7 +145,10 @@ export default function MyEmployees() {
               display: "flex",
               justifyContent: "center",
               flexWrap: "wrap",
-              gap: "10px",
+              gap: "2px",
+              // marginTop:"50px",
+              // marginBottom:"50px"
+
             }}
           >
             {row?.attachmentUrl.map((item) => (

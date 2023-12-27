@@ -7,10 +7,19 @@ import { useFormikContext } from "formik";
 import { useState, useEffect } from "react";
 import { FormikError } from "./FormikError";
 import { convertArabicToEnglish } from "../../../utils/helpers";
-import { mdiCalendarMonthOutline } from "@mdi/js";
+import { mdiCalendarMonthOutline, mdiInformationOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 
-export default function DatePickerComp({ name, name_hj, label, required }) {
+export default function DatePickerComp({
+  name,
+  name_hj,
+  label,
+  required,
+  showIcon,
+  setShow,
+  setIndex,
+  index,
+}) {
   const { setFieldValue, values } = useFormikContext();
   const [valueGregorian, setValueGregorian] = useState();
   const [valueHijri, setValueHijri] = useState(values[name_hj]);
@@ -43,6 +52,25 @@ export default function DatePickerComp({ name, name_hj, label, required }) {
             {required == "1" ? "*" : ""}
           </span>
         </label>
+        {showIcon && (
+          <div
+            className="my-1 cursor-pointer w-fit"
+            onClick={() => {
+              setShow(true);
+              setIndex(index);
+            }}
+          >
+            <div className="flex items-center gap-1">
+              <>
+                <span className="text-[10px] text-[#80b3f0]">
+                  {" "}
+                  لمعرفة المرفق اضغط هنا
+                </span>
+                <Icon path={mdiInformationOutline} size={0.7} />
+              </>
+            </div>
+          </div>
+        )}
         <DatePicker
           className="bg-white rounded-[10px] w-full "
           name={name}
@@ -62,9 +90,7 @@ export default function DatePickerComp({ name, name_hj, label, required }) {
         {valueHijri && (
           <p className="flex items-center gap-2 mt-1 ">
             <Icon path={mdiCalendarMonthOutline} size={0.8} />
-            <span className="font- ">
-              {convertArabicToEnglish(valueHijri)}
-            </span>
+            <span className="font- ">{convertArabicToEnglish(valueHijri)}</span>
             هـ
           </p>
         )}
