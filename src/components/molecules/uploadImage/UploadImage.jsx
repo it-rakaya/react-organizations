@@ -49,6 +49,7 @@ const UploadImage = ({
   );
   const isLargeFile = files?.length && files[0]?.size > 5242880;
   const [invalidFormat, setInvalidFormat] = useState(false);
+  console.log("🚀 ~ file: UploadImage.jsx:52 ~ invalidFormat:", invalidFormat)
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: {
