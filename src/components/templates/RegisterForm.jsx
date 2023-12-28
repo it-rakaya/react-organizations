@@ -106,7 +106,7 @@ export default function RegisterForm() {
       >
         {({ errors, values }) => (
           <Form>
-            {console.log("values",  values)}
+            {console.log("values", values)}
             <RegistrationMainData attachments_register={attachments_register} />
 
             <FormControlLabel
@@ -142,8 +142,7 @@ export default function RegisterForm() {
               type={"submit"}
               loading={isPending}
               disabled={
-                !checked ||
-                !!Object.entries(errors).length || values.name == ''
+                !checked || !!Object.entries(errors).length || values.name == ""
               }
               className={"!mt-0"}
             >
