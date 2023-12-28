@@ -11,6 +11,7 @@ export default function OrganizationServices({ name, label }) {
     queryKey: ["select_service_organization"],
 
   });
+  console.log("🚀 ~ file: OrganizationServices.jsx:14 ~ OrganizationServices ~ Org_services:", Org_services)
   return (
     <div>
       <label className="block my-3">{label}</label>
