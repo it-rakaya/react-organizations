@@ -1,4 +1,4 @@
-import { mdiEyeOutline, mdiTrashCanOutline } from "@mdi/js";
+import { mdiDotsVertical, mdiEyeOutline, mdiTrashCanOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import { Box, Typography } from "@mui/material";
 import { t } from "i18next";
@@ -34,11 +34,10 @@ export default function Orders() {
     queryKey: ["my_orders"],
     enabled: !!orgData?.organizations?.id,
   });
-    console.log("🚀 ~ file: Orders.jsx:37 ~ Orders ~ Orders:", Orders)
+  console.log("🚀 ~ file: Orders.jsx:37 ~ Orders ~ Orders:", Orders);
 
   const Canceled = 5;
   const Rejected = 4;
-
 
   const columns = [
     {
@@ -47,7 +46,7 @@ export default function Orders() {
       headerName: t("code"),
       cellClassName: "flex !px-0 !justify-center ",
       headerAlign: "center",
-      
+
       renderCell: ({ row }) => {
         const { code } = row;
         return (
@@ -163,46 +162,51 @@ export default function Orders() {
             }}
             className="items-center justify-center w-full "
           >
-            <div className="flex justify-center cursor-pointer ">
-              <OptionsMenu
-                iconButtonProps={{
-                  size: "small",
-                }}
-                className={
-                  row.status_id == Canceled
-                    ? "cursor-not-allowed"
-                    : "cursor-pointer"
-                }
-                options={[
-                  {
-                    text: t("Details"),
+            {row.status_id == Canceled ? (
+              <Icon path={mdiDotsVertical} size={1} />
+            ) : (
+              <div className="flex justify-center cursor-pointer ">
+                <OptionsMenu
+                  iconButtonProps={{
+                    size: "small",
+                  }}
+                  className={
+                    row.status_id == Canceled
+                      ? "cursor-not-allowed"
+                      : "cursor-pointer"
+                  }
+                  options={[
+                    {
+                      text: t("Details"),
 
-                    details: "Additional details here",
-                    function: () => {
-                      if (row.status_id == Canceled) {
-                        return notify("worning", t("cant Canceled order"));
-                      } else {
-                        setOpenDetailsOrder(true);
-                        setDetailsOrder(row);
-                      }
+                      details: "Additional details here",
+                      function: () => {
+                        if (row.status_id == Canceled) {
+                          return notify("worning", t("cant Canceled order"));
+                        } else {
+                          setOpenDetailsOrder(true);
+                          setDetailsOrder(row);
+                        }
+                      },
                     },
-                  },
-                  {
-                    text: t("Cancel"),
-                    details: "Additional details here",
-                    function: () => {
-                      if (row.status_id == Canceled) {
-                        return console.log("ddd");
-                      } else {
-                        setOrderId(row.id);
-                        setOpenCancelOrder(true);
-                      }
-                    },
-                  },
-                ]}
-              />
-              {/* <Icon path={mdiTrashCanOutline} size={1} /> */}
-            </div>
+                    row.status_id !== Rejected
+                      ? {
+                          text: t("Cancel"),
+                          details: "Additional details here",
+                          function: () => {
+                            if (row.status_id == Canceled) {
+                              return console.log("ddd");
+                            } else {
+                              setOrderId(row.id);
+                              setOpenCancelOrder(true);
+                            }
+                          },
+                        }
+                      : "",
+                  ]}
+                />
+              </div>
+            )}
           </Typography>
         );
       },

@@ -10,6 +10,8 @@ export default function AddFacility() {
   const images = [
     { path: "/registerMain.png" },
     { path: "/tax_certificate.png" },
+    { path: "/license.png" },
+
   ];
   const [show, setShow] = useState(false);
   const [index, setIndex] = useState(0);
@@ -119,7 +121,7 @@ export default function AddFacility() {
               showIcon
               setShow={setShow}
               setIndex={setIndex}
-              index={0}
+              index={2}
             />
           </div>
           <div className="flex items-start justify-center w-full">
@@ -133,7 +135,7 @@ export default function AddFacility() {
               showIcon
               setShow={setShow}
               setIndex={setIndex}
-              index={0}
+              index={2}
             />
           </div>
         </div>

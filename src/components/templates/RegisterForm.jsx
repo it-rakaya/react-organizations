@@ -17,6 +17,7 @@ import { UseOrg } from "../../context/organization provider/OrganizationProvider
 import ModalComp from "../atoms/ModalComp";
 import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
 import { isValidSaudiID } from "saudi-id-validator";
+import useFetch from "../../hooks/useFetch";
 
 export default function RegisterForm() {
   const LinkStyled = styled(Link)(({ theme }) => ({
@@ -40,6 +41,14 @@ export default function RegisterForm() {
     },
     formData: true,
   });
+  const { data: attachments_register } = useFetch({
+    endpoint: `attachments-labels/users`,
+    queryKey: ["attachments_register"],
+  });
+  console.log(
+    "🚀 ~ file: RegisterForm.jsx:48 ~ RegisterForm ~ attachments_register:",
+    attachments_register
+  );
 
   const ValidationSchema = () =>
     Yup.object({
@@ -67,7 +76,7 @@ export default function RegisterForm() {
     national_id: "",
     email: "",
     phone: "",
-    birthday:"",
+    birthday: "",
     nationality: "",
     national_id_expired: "",
     attachments: [],
@@ -95,66 +104,72 @@ export default function RegisterForm() {
         validationSchema={ValidationSchema}
         initialValues={initialValues}
       >
-        <Form>
-          <RegistrationMainData />
+        {({ errors, values }) => (
+          <Form>
+            {console.log("values",  values)}
+            <RegistrationMainData attachments_register={attachments_register} />
 
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={checked}
-                onChange={() => setChecked(!checked)}
-              />
-            }
-            sx={{
-              mb: 4,
-              mt: 1.5,
-              "& .MuiFormControlLabel-label": { fontSize: "0.875rem" },
-            }}
-            label={
-              <div>
-                <Typography variant="body2" component="span">
-                  {t("I agree to ")}
-                </Typography>
-                <LinkStyled
-                  href="/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setOpen(true);
-                  }}
-                >
-                  {t("Terms & condition ")}
-                </LinkStyled>
-              </div>
-            }
-          />
-          <ButtonComp
-            type={"submit"}
-            loading={isPending}
-            disabled={!checked}
-            className={"!mt-0"}
-          >
-            {t("Sign up")}
-          </ButtonComp>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              marginTop: "10px",
-            }}
-          >
-            <Typography sx={{ mr: 2, color: "text.secondary" }}>
-              {t("Already have an account?")}
-            </Typography>
-            <Link
-              to="/login"
-              sx={{ color: "primary.main", textDecoration: "none" }}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={checked}
+                  onChange={() => setChecked(!checked)}
+                />
+              }
+              sx={{
+                mb: 4,
+                mt: 1.5,
+                "& .MuiFormControlLabel-label": { fontSize: "0.875rem" },
+              }}
+              label={
+                <div>
+                  <Typography variant="body2" component="span">
+                    {t("I agree to ")}
+                  </Typography>
+                  <LinkStyled
+                    href="/"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setOpen(true);
+                    }}
+                  >
+                    {t("Terms & condition ")}
+                  </LinkStyled>
+                </div>
+              }
+            />
+            <ButtonComp
+              type={"submit"}
+              loading={isPending}
+              disabled={
+                !checked ||
+                !!Object.entries(errors).length 
+              }
+              className={"!mt-0"}
             >
-              {t("Sign in instead")}
-            </Link>
-          </Box>
-        </Form>
+              {t("Sign up")}
+            </ButtonComp>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                marginTop: "10px",
+              }}
+            >
+              <Typography sx={{ mr: 2, color: "text.secondary" }}>
+                {t("Already have an account?")}
+              </Typography>
+              <Link
+                to="/login"
+                sx={{ color: "primary.main", textDecoration: "none" }}
+              >
+                {t("Sign in instead")}
+              </Link>
+            </Box>
+          </Form>
+        )}
       </Formik>
       <ModalComp
         open={open}

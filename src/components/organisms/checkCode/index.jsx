@@ -11,10 +11,10 @@ export default function CheckCode({
   setValueOTP,
   sendOTP,
   userData,
-  login
+  login,
 }) {
   const [values, setValues] = useState(["", "", "", ""]);
-  console.log("🚀 ~ file: index.jsx:17 ~ values:", values.join("").length)
+  console.log("🚀 ~ file: index.jsx:17 ~ values:", values.join("").length);
   const [availableResetCode, setAvailableResetCode] = useState(false);
   const [timerStarted, setTimerStarted] = useState(true);
   const [colorPinInput, setColorPinInput] = useState("");
@@ -25,13 +25,12 @@ export default function CheckCode({
 
   const handleSendTime = () => {
     if (availableResetCode) {
-      if(login){
+      if (login) {
         sendOTP({
           ...valuesForm,
           organization_id: orgData?.organizations?.id,
         });
-      }else{
-        
+      } else {
         sendOTP({
           phone: userData?.phone,
           phone_code: userData?.phone_code,
@@ -64,16 +63,16 @@ export default function CheckCode({
               placeholder="x"
               onChange={(value, index, values) => {
                 setValues(values);
-                if ( values.join("").length == 4) {
+                if (values.join("").length == 4) {
                   setValueOTP(values.join(""));
-                  setColorPinInput('#eee');
+                  setColorPinInput("#eee");
                 } else {
                   // setColorPinInput("rgb(220,53,69)");
                 }
               }}
               onComplete={(values) => {
                 if (values.join("").length === 4) {
-                  setColorPinInput('#eee');
+                  setColorPinInput("#eee");
                 } else {
                   setColorPinInput("rgb(220,53,69)");
                 }
@@ -106,7 +105,7 @@ export default function CheckCode({
             >
               إعادة الإرسال
             </Button>
-          )} 
+          )}
         </div>
       </div>
     </>
