@@ -143,7 +143,7 @@ export default function RegisterForm() {
               loading={isPending}
               disabled={
                 !checked ||
-                !!Object.entries(errors).length 
+                !!Object.entries(errors).length || values.name == ''
               }
               className={"!mt-0"}
             >

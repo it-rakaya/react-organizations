@@ -10,15 +10,17 @@ import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import { useNavigate } from "react-router-dom";
 
-function FacilityControl({ setOpen , open }) {
+function FacilityControl({ setOpen, open, update, idFacility }) {
   const [checked, setChecked] = useState(false);
   const { values } = useFormikContext();
   const { orgData } = UseOrg();
   const navigate = useNavigate();
+  const endpoint = `facilities`;
+  const updateEndpoint = `facilities/${idFacility}`;
 
   const { mutate: addFacility, isPending: loadingAddFacility } = useMutate({
     mutationKey: [`add_facilities`],
-    endpoint: `facilities`,
+    endpoint: update ? updateEndpoint : endpoint,
     onSuccess: () => {
       notify("success", t("A facility has been added successfully"));
       navigate("/dashboard/facilities");
@@ -41,20 +43,22 @@ function FacilityControl({ setOpen , open }) {
             <ButtonComp
               type={"submit"}
               action={() => {
-                const validAttachments = values?.attachments
-                  .map((file, index) => ({ index, file }))
-                  .filter((item) => typeof item.file !== "undefined");
-                const attachments = validAttachments.map((item) => ({
+                const validAttachments = values?.attachments?.map((file, index) => ({ index, file }))
+                  .filter((item) => typeof item?.file !== "undefined");
+                const attachments = validAttachments?.map((item) => ({
                   [`attachments[${item?.index}]`]: item?.file,
                 }));
 
                 const combinedObject = {
-                    ...values,
-                    organization_id: orgData?.organizations?.id,
-                  ...Object.assign({}, ...attachments),
+                  ...values,
+                  organization_id: orgData?.organizations?.id,
+                  ...Object?.assign({}, ...attachments),
                 };
-                delete combinedObject.attachments;
-                console.log("🚀 ~ file: FacilityControl.jsx:52 ~ FacilityControl ~ combinedObject:", combinedObject)
+                delete combinedObject?.attachments;
+                console.log(
+                  "🚀 ~ file: FacilityControl.jsx:52 ~ FacilityControl ~ combinedObject:",
+                  combinedObject
+                );
                 addFacility(combinedObject);
               }}
               loading={loadingAddFacility}

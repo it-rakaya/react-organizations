@@ -35,6 +35,7 @@ const UploadImage = ({
     type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
     update: true,
   };
+  console.log("🚀 ~ file: UploadImage.jsx:38 ~ updateImage:", updateImage)
 
   const { setFieldValue, values } = useFormikContext();
 

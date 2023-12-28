@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useFormikContext } from "formik";
-import UploadImageTwo from "../../molecules/UploadImageTwo";
-import ModalComp from "../../atoms/ModalComp";
 import { useState } from "react";
+import ModalComp from "../../atoms/ModalComp";
 import UploadImage from "../../molecules/uploadImage/UploadImage";
 
 export default function StepTwo({ DetailsFacilities, attachments_facilities }) {

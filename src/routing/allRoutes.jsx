@@ -13,8 +13,8 @@ import MyEmployees from "../pages/Employees/MyEmployees";
 import { useTranslation } from "react-i18next";
 import { UseOrg } from "../context/organization provider/OrganizationProvider";
 import AddFacilityPage from "../pages/Facilities/AddFacilityPage";
-import EditFacility from "../pages/Facilities/EditFacility";
 import Other from "../pages/other/Other";
+import EditFacilityPage from "../pages/Facilities/EditFacilityPage";
 const Home = lazy(() => import("../pages/home/Home"));
 
 export const AllRoutesProvider = () => {
@@ -44,7 +44,7 @@ export const AllRoutesProvider = () => {
         />
          <Route
           path="/dashboard/facilities/edit-facility/:id"
-          element={<EditFacility />}
+          element={<EditFacilityPage />}
         />
 
         <Route path="/dashboard/employee" element={<MyEmployees />} />

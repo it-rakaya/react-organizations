@@ -10,6 +10,7 @@ function AfterAndBeforeFacility({
   setOpen,
   steps,
   attachments_facilities,
+  update
 }) {
   const { values, errors } = useFormikContext();
 
@@ -95,7 +96,7 @@ function AfterAndBeforeFacility({
           attachments_facilities?.attachment_labels.length || 0;
         const actualAttachmentsLength = filteredAttachmentLabels?.length || 0;
 
-        return attachmentsLength !== actualAttachmentsLength;
+        return update ? '' : attachmentsLength !== actualAttachmentsLength;
       default:
         return false;
     }
