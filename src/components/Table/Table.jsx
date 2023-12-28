@@ -36,7 +36,7 @@ const Table = ({
   const customLocaleText = {
     noRowsLabel: t("Not Found Data"),
     pagination: {
-      rowsPerPage: "ssssssssssssssssssssssssss Rows per page:", // Add your custom "Rows per page" label here
+      rowsPerPage: "ssssssssssssssssssssssssss Rows pesdsdcsdfwesfwefr page:", // Add your custom "Rows per page" label here
     },
   };
 
@@ -62,6 +62,7 @@ const Table = ({
             style={{ width: "99%" }}
             onPaginationModelChange={setPaginationModel}
             disableColumnFilter={true}
+            disableColumnMenu={true}
             i18nIsDynamicList={isRTL}
             localeText={customLocaleText}
             sx={{

@@ -20,7 +20,7 @@ function useFetch({ endpoint, enabled, select, queryKey, onError, onSuccess }) {
     queryKey,
     queryFn: () =>
       axios
-        .get(`https://admin.rmcc.sa/api/${endpoint}`, config)
+        .get(`https://front-api.rmcc.sa/api/${endpoint}`, config)
         .then((res) => res.data),
     enabled,
     select,

@@ -1,24 +1,22 @@
 /* eslint-disable react/prop-types */
-import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { Divider, Tab } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { t } from "i18next";
-import { useState } from "react";
-import PreviewImageLink from "../../molecules/PreviewImageLink";
-import PreviewPdf from "../../molecules/PreviewPdf";
-import Icon from "@mdi/react";
 import {
   mdiFileDocumentOutline,
   mdiFormatListBulleted,
   mdiMapMarkerOutline,
   mdiOfficeBuildingOutline,
 } from "@mdi/js";
+import Icon from "@mdi/react";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
+import { Tab } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { useState } from "react";
+import AdditionalInformationData from "./AditionalInformationData";
+import AttachmentsData from "./AttachmentsData";
+import DetailsFacilityData from "./DetailsFacilityData";
+import NationalAdressData from "./NationalAdressData";
 
-export default function DetailsFacility({ data }) {
-  console.log(
-    "🚀 ~ file: DetailsFacility.jsx:15 ~ DetailsFacility ~ data:",
-    data
-  );
+export default function DetailsFacility({ data, className }) {
+  console.log("🚀 ~ file: DetailsFacility.jsx:19 ~ DetailsFacility ~ data:", data)
   const theme = useTheme();
   const mainColor = theme?.palette?.primary?.main;
   const [value, setValue] = useState("1");
@@ -26,147 +24,23 @@ export default function DetailsFacility({ data }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const parentSection =
+    "grid grid-cols-1 p-4 md:px-5 md:grid-cols-2 md:gap-x-20";
+  const childSection =
+    "flex flex-col col-span-2 py-2 mt-5 border-b gap-2 md:col-span-1";
+
+  const colorHead = mainColor;
 
   return (
     <div>
       <div className="mt-8 px-">
-        {/* <div className="col-span-2">
-          <h1 className="font-bold " style={{ color: mainColor }}>
-            {t("Facility data")}
-          </h1>
-        </div>
-        <div className="grid grid-cols-1 p-4 px-20 md:grid-cols-2 gap-x-28">
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold ">الاسم</p>
-            <p className="mt-1">{data?.name}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> رقم التسجيل </p>
-            <p className="mt-1">{data?.registration_number}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> تاريخ الإصدار </p>
-            <p className="mt-1">{data?.version_date}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> تاريخ الإصدار بالهجري</p>
-            <p className="mt-1">{data?.version_date_hj}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> تاريخ الانتهاء </p>
-            <p className="mt-1">{data?.end_date}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> تاريخ الانتهاء بالهجري</p>
-            <p className="mt-1">{data?.end_date_hj}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> مصدر التسجيل </p>
-            <p className="mt-1">{data?.registration_source}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> الرخصه </p>
-            <p className="mt-1">{data?.license}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> تاريخ انتهاء الرخصه </p>
-            <p className="mt-1">{data?.license_expired}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> تاريخ انتهاء الرخصه بالهجري</p>
-            <p className="mt-1">{data?.license_expired_hj}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold ">العنوان</p>
-            <p className="mt-1">{data?.address}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> شهادة الضرائب </p>
-            <p className="mt-1">{data?.tax_certificate}</p>
-          </div>
-        </div>
-
-        <div className="col-span-2">
-          <Divider />
-        </div>
-
-        <div className="col-span-2 mt-5">
-          <h1 className="font-bold " style={{ color: mainColor }}>
-            {t("National address data")}
-          </h1>
-        </div>
-        <div className="grid grid-cols-1 p-4 px-20 md:grid-cols-2 gap-x-28">
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> الشارع </p>
-            <p className="mt-1">{data?.street_name}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> الحي </p>
-            <p className="mt-1">{data?.neighborhood}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> اسم المدينة </p>
-            <p className="mt-1">{data?.city}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> رقم المبنى </p>
-            <p className="mt-1">{data?.building_number}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold ">رمز البريد </p>
-            <p className="mt-1">{data?.postal_code}</p>
-          </div>
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> الرقم الفرعي</p>
-            <p className="mt-1">{data?.sub_number}</p>
-          </div>
-        </div>
-
-        <div className="col-span-2">
-          <Divider />
-        </div>
-
-        <div className="col-span-2 mt-5">
-          <h1 className="font-bold " style={{ color: mainColor }}>
-            {t("Additional data")}
-          </h1>
-        </div>
-
-        <div className="grid grid-cols-1 p-4 px-20 md:grid-cols-2 gap-x-28">
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold ">رقم الطهاة </p>
-            <p className="mt-1">{data?.chefs_number}</p>
-          </div>
-
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> رقم الموظف </p>
-            <p className="mt-1">{data?.employee_number}</p>
-          </div>
-
-          <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-            <p className="font-bold "> مساحة المطبخ </p>
-            <p className="mt-1">{data?.kitchen_space}</p>
-          </div>
-        </div> */}
-
-        {/* {data?.attachmentUrl.map((item) => (
-          <div className="flex items-center " key={item?.id}>
-            <p className="font-bold "> {item?.label} </p>
-            {!item?.value?.toLowerCase().endsWith(".pdf") ? (
-              <p>
-                <PreviewImageLink url={item?.value} />
-              </p>
-            ) : (
-              <PreviewPdf item={item?.value} />
-            )}
-          </div>
-        ))} */}
         <TabContext value={value}>
           <div className="flex mt-5 ">
             <TabList
               onChange={handleChange}
               aria-label="nav tabs example"
               orientation="vertical"
+              className="w-[30%] tab_facility"
             >
               <Tab
                 value="1"
@@ -175,7 +49,7 @@ export default function DetailsFacility({ data }) {
                 label={
                   <div className="flex items-center gap-2">
                     <Icon path={mdiOfficeBuildingOutline} size={1} />
-                    <h2 className="font-bold text-black text-start">
+                    <h2 className="text-font-mediumblack font- text-start">
                       بيانات المنشاة{" "}
                     </h2>
                   </div>
@@ -189,7 +63,7 @@ export default function DetailsFacility({ data }) {
                   <div className="flex items-center gap-2">
                     <Icon path={mdiMapMarkerOutline} size={1} />
 
-                    <h2 className="font-bold text-black text-start">
+                    <h2 className="text-font-mediumblack font- text-start">
                       بيانات العنوان الوطني{" "}
                     </h2>
                   </div>
@@ -203,7 +77,7 @@ export default function DetailsFacility({ data }) {
                   <div className="flex items-center gap-2">
                     <Icon path={mdiFormatListBulleted} size={1} />
 
-                    <h2 className="font-bold text-black text-start">
+                    <h2 className="text-font-mediumblack font- text-start">
                       بيانات اضافية
                     </h2>
                   </div>
@@ -217,128 +91,48 @@ export default function DetailsFacility({ data }) {
                   <div className="flex items-center gap-2">
                     <Icon path={mdiFileDocumentOutline} size={1} />
 
-                    <h2 className="font-bold text-black text-start">مرفقات </h2>
+                    <h2 className="text-font-mediumblack font- text-start">
+                      مرفقات
+                    </h2>
                   </div>
                 }
               />
             </TabList>
-            <div className="!overflow-y-scroll !shadow-none h-[19rem]  scroll_main w-full">
-              
-            <TabPanel value="1">
-              <div className="grid grid-cols-1 p-4 px-10 md:grid-cols-2 gap-x-28">
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold ">الاسم</p>
-                  <p className="mt-1">{data?.name}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> رقم التسجيل </p>
-                  <p className="mt-1">{data?.registration_number}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> تاريخ الإصدار </p>
-                  <p className="mt-1">{data?.version_date}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> تاريخ الإصدار بالهجري</p>
-                  <p className="mt-1">{data?.version_date_hj}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> تاريخ الانتهاء </p>
-                  <p className="mt-1">{data?.end_date}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> تاريخ الانتهاء بالهجري</p>
-                  <p className="mt-1">{data?.end_date_hj}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> مصدر التسجيل </p>
-                  <p className="mt-1">{data?.registration_source}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> الرخصه </p>
-                  <p className="mt-1">{data?.license}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> تاريخ انتهاء الرخصه </p>
-                  <p className="mt-1">{data?.license_expired}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> تاريخ انتهاء الرخصه بالهجري</p>
-                  <p className="mt-1">{data?.license_expired_hj}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold ">العنوان</p>
-                  <p className="mt-1">{data?.address}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> شهادة الضرائب </p>
-                  <p className="mt-1">{data?.tax_certificate}</p>
-                </div>
-              </div>
-            </TabPanel>
-            <TabPanel value="2" className="pt-0">
-              <div className="grid grid-cols-1 p-4 px-20 md:grid-cols-2 gap-x-28">
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> الشارع </p>
-                  <p className="mt-1">{data?.street_name}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> الحي </p>
-                  <p className="mt-1">{data?.neighborhood}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> اسم المدينة </p>
-                  <p className="mt-1">{data?.city}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> رقم المبنى </p>
-                  <p className="mt-1">{data?.building_number}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold ">رمز البريد </p>
-                  <p className="mt-1">{data?.postal_code}</p>
-                </div>
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> الرقم الفرعي</p>
-                  <p className="mt-1">{data?.sub_number}</p>
-                </div>
-              </div>
-            </TabPanel>
-            <TabPanel value="3" className="pt-0">
-              <div className="grid grid-cols-1 p-4 px-20 md:grid-cols-2 gap-x-28">
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold ">رقم الطهاة </p>
-                  <p className="mt-1">{data?.chefs_number}</p>
-                </div>
-
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> رقم الموظف </p>
-                  <p className="mt-1">{data?.employee_number}</p>
-                </div>
-
-                <div className="flex flex-col col-span-2 mt-5 ga md:col-span-1 ">
-                  <p className="font-bold "> مساحة المطبخ </p>
-                  <p className="mt-1">{data?.kitchen_space}</p>
-                </div>
-              </div>
-            </TabPanel>
-            <TabPanel value="4" className="w-full pt-0">
-              {data?.attachmentUrl?.map((item) => (
-                <div
-                  className="flex items-center justify-start w-full py-1 my-3 border-b border-[#e6e6e991]"
-                  key={item?.id}
-                >
-                  {!item?.value?.toLowerCase()?.endsWith(".pdf") ? (
-                    <p className="mr-[6px]">
-                      <PreviewImageLink url={item?.value} />
-                    </p>
-                  ) : (
-                    <PreviewPdf item={item} />
-                  )}
-                  <p className="font-bold "> {item?.label} </p>
-                </div>
-              ))}
-            </TabPanel>
+            <div
+              className={`${className} !overflow-y-scroll !shadow-none max-h-[40rem]  scroll_main w-full`}
+            >
+              <TabPanel value="1" className="pt-0">
+                <DetailsFacilityData
+                  data={data}
+                  childSection={childSection}
+                  colorHead={colorHead}
+                  parentSection={parentSection}
+                />
+              </TabPanel>
+              <TabPanel value="2" className="pt-0">
+                <NationalAdressData
+                  data={data}
+                  childSection={childSection}
+                  colorHead={colorHead}
+                  parentSection={parentSection}
+                />
+              </TabPanel>
+              <TabPanel value="3" className="pt-0">
+                <AdditionalInformationData
+                  data={data}
+                  childSection={childSection}
+                  colorHead={colorHead}
+                  parentSection={parentSection}
+                />
+              </TabPanel>
+              <TabPanel value="4" className="w-full pt-0">
+                <AttachmentsData
+                  data={data}
+                  childSection={childSection}
+                  colorHead={colorHead}
+                  parentSection={parentSection}
+                />
+              </TabPanel>
             </div>
           </div>
         </TabContext>

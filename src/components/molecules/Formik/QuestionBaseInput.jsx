@@ -24,6 +24,7 @@ import PreviewImage from "../PreviewImage";
 import UploadImageIcon from "../../atoms/icons/UploadImageIcon";
 import CheckIcon from "../../atoms/icons/CheckIcon";
 import PdfIcon from "../../atoms/icons/PdfIcon";
+import UploadImage from "../UploadImage";
 
 export default function QuestionBaseInput({
   label,
@@ -41,7 +42,6 @@ export default function QuestionBaseInput({
   idQuestion,
   options,
   required = true,
-
   ...props
 }) {
   const { setFieldValue, values, errors } = useFormikContext();
@@ -80,7 +80,7 @@ export default function QuestionBaseInput({
 
     onDrop: (acceptedFiles) => {
       setFiles(acceptedFiles.map((file) => Object.assign(file)));
-      setFieldValue(`answers${name}`, acceptedFiles[0]); // استخدم acceptedFiles بدلاً من files[0]
+      setFieldValue(`answers${name}`, acceptedFiles[0]);
     },
   });
   const isLargeFile = files?.length && files[0]?.size > 524288000;
@@ -259,61 +259,7 @@ export default function QuestionBaseInput({
           />
         </div>
       ) : type == "file" ? (
-        <div className="relative my-4">
-          <div className="relative items-center gap-1 mt-3 cursor-pointer">
-            <Box {...getRootProps({ className: "dropzone" })} cl>
-              {/* <label> {label} </label> */}
-
-              <input {...getInputProps()} className="cursor-pointer" />
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: ["column", "column", "row"],
-                  alignItems: "center",
-                }}
-              >
-                <div
-                  style={{ cursor: "pointer", lineHeight: "52px" }}
-                  className={` rounded-[10px]  relative
-              cursor-pointer pr-10 h-[56px] border 
-              text-[#4c4e6478]  border-[#4c4e6478)] bg-[#ebebee73] w-full ${
-                !!errors[name] && "border-red-500 "
-              }`}
-                >
-                  {files.length
-                    ? t("The file was downloaded successfully")
-                    : placeholder}
-                  {!files.length ? (
-                    <div className="absolute top-[3px] right-[5px]">
-                      <UploadImageIcon className={`w-[30px]`} />
-                    </div>
-                  ) : (
-                    <div className="absolute top-[3px] right-[5px]">
-                      <CheckIcon className={`w-[25px]`} />
-                    </div>
-                  )}
-                </div>
-              </Box>
-            </Box>
-            <div className="flex justify-start w-full rounded-md ">
-              {!isLargeFile && files[0]?.type.startsWith("image/") ? (
-                <div className="flex justify-start">
-                  <PreviewImage files={files ? files : []} />
-                </div>
-              ) : files[0]?.type.startsWith("application/") ? (
-                <a
-                  href={URL.createObjectURL(files[0])}
-                  download={files[0].name}
-                  className=""
-                >
-                  <PdfIcon />
-                </a>
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
-        </div>
+        <UploadImage dynamic={true} name={name} />
       ) : type == "checkbox" ? (
         <FormGroup row onChange={handleChangeCheckbox}>
           {options?.map((option) => (

@@ -376,11 +376,11 @@ const EditFacility = () => {
                             type={"submit"}
                             action={() => {
                               const validAttachments = values?.attachments
-                                .map((file, index) => ({ index, file }))
+                                ?.map((file, index) => ({ index, file }))
                                 .filter(
                                   (item) => typeof item.file !== "undefined"
                                 );
-                              const attachments = validAttachments.map(
+                              const attachments = validAttachments?.map(
                                 (item) => ({
                                   [`attachments[${item?.index}]`]: item?.file,
                                 })
@@ -389,7 +389,7 @@ const EditFacility = () => {
                               const combinedObject = {
                                 ...values,
                                 organization_id: orgData?.organizations?.id,
-                                ...Object.assign({}, ...attachments),
+                                ...Object?.assign({}, ...attachments),
                               };
                               delete combinedObject.attachments;
                               addFacility(combinedObject);

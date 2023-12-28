@@ -24,10 +24,13 @@ export default function AddEmployee({
     endpoint: `facility-employees`,
     onSuccess: () => {
       notify("success");
-      setSecundModal(true);
+      
       if (showSelectFacility) {
         setOpenAddEmployee(false)
         refetch();
+      }else{
+        setSecundModal(true);
+
       }
     },
     onError: (err) => {
@@ -84,19 +87,14 @@ export default function AddEmployee({
       >
         {({ errors, values }) => (
           <>
-            {console.log(
-              "testtttttttttt",
-              values?.attachments
-                ?.map((file, index) => ({ index, file }))
-                ?.filter((item) => typeof item?.file !== "undefined")
-            )}
+           
 
             <Form>
               <EmployeeMainData
                 showSelectFacility={showSelectFacility}
                 attachments_facility_employees={attachments_facility_employees}
               />
-              <div className="flex justify-end">
+              <div className="flex justify-end ml-[21px]">
                 <ButtonComp
                   loading={loadingEmployee}
                   type="submit"

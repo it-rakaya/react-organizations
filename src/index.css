@@ -42,6 +42,11 @@ div {
   right: 0px !important;
 }
 
+p,
+h1 {
+  color: black;
+}
+
 .dark :placeholder-shown {
   color: #313b3e;
 }
@@ -563,17 +568,69 @@ main,
   content: none;
 
 }
-.MuiBox-root:focus-visible{
+
+.MuiBox-root:focus-visible {
   outline: 0;
 
 }
+
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
-.TermsAndCondition span{
-@apply font-semibold
+.TermsAndCondition span {
+  @apply font-semibold
+}
+
+.MuiDataGrid-columnHeader {
+  background-color: white !important;
+}
+
+.dark .MuiDataGrid-columnHeader {
+  background-color: #2c3639 !important;
+}
+
+.content_name_hover {
+  /* display: none; */
+}
+
+.info_hover:hover+.content_name_hover {
+  display: block;
+
+}
+
+.fyhaFe:focus {
+  border-color: #eee !important;
+  box-shadow: 0 0 0px 1px !important;
+
+}
+
+@media (max-width:900px) {
+
+  .loading {
+    left: calc(50% - 54px) !important;
+    top: calc(50% - -27px) !important;
+  }
+}
+
+/* .MuiTab-root.MuiTab-textColorPrimary.Mui-selected{
+@apply bg-contained
+} */
+.tab_facility .MuiTab-root.MuiTab-textColorPrimary.Mui-selected {
+  @apply bg-contained text-white
+}
+
+.tab_facility .MuiTab-root.MuiTab-textColorPrimary.Mui-selected h2 {
+  @apply text-white
+}
+
+.tab_facility .MuiTab-root.MuiTab-textColorPrimary.Mui-selected svg {
+  @apply text-white
+}
+
+.MuiDataGrid-row.MuiDataGrid-row--lastVisible:hover {
+  background-color: transparent;
 }

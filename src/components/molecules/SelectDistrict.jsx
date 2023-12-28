@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useFormikContext } from "formik";
 import { t } from "i18next";
+import { useEffect } from "react";
 import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
+import Spinner from "../atoms/Spinner";
 import Icon from "@mdi/react";
 import { mdiInformationOutline } from "@mdi/js";
 
-export default function SelectCitiesSaudi({
+export default function SelectDistrict({
   name,
   label,
   className,
@@ -17,15 +19,21 @@ export default function SelectCitiesSaudi({
   index,
 }) {
   const { setFieldValue, values } = useFormikContext();
-  const { data: cities } = useFetch({
-    endpoint: `saudi-cities`,
-    queryKey: ["saudi-cities"],
+
+  const { data: district, isLoading } = useFetch({
+    endpoint: `saudi-districts?city_id=${values?.city}`,
+    queryKey: [`district/${values?.city}`],
+    enabled: !!values?.city,
   });
-  const options = cities?.cities.map((item) => ({
+  const options = district?.districts?.map((item) => ({
     value: item.id,
     label: item.name_ar,
   }));
   const selectedCity = options?.find((option) => option?.value == values[name]);
+
+  useEffect(() => {
+    setFieldValue(name, "");
+  }, [values?.city, name, setFieldValue]);
 
   return (
     <div className={className}>
@@ -35,7 +43,7 @@ export default function SelectCitiesSaudi({
       </label>
       {showIcon && (
         <div
-          className="my-1 w-fit cursor-pointer"
+          className="my-1 cursor-pointer w-fit"
           onClick={() => {
             setShow(true);
             setIndex(index);
@@ -52,19 +60,30 @@ export default function SelectCitiesSaudi({
           </div>
         </div>
       )}
-      <div className="">
+      <div >
         <Select
           options={options}
           name={name}
-          value={selectedCity}
-          placeholder={t("Chose city")}
+          value={selectedCity ? selectedCity : ""}
+          isLoading={!!isLoading}
+          isDisabled={!district?.districts?.length}
+          placeholder={
+            isLoading ? (
+              <Spinner />
+            ) : district?.districts?.length ? (
+              t("chose District")
+            ) : (
+              t("Chose city is first")
+            )
+          }
           onChange={(option) => setFieldValue(name, option.value)}
           styles={{
-            control: (baseStyles) => ({
+            control: (baseStyles, { isDisabled }) => ({
               ...baseStyles,
               padding: "10px 0",
               borderRadius: " 8px",
-              background: "white",
+              background: isDisabled ? "#cfcece" : "white", // Set red background when disabled
+
               margin: "0",
             }),
             option: (baseStyles) => ({
@@ -82,7 +101,6 @@ export default function SelectCitiesSaudi({
               primary: "#eee",
             },
           })}
-          // defaultValue={{ value: values[name] , label:values[name] }}
         />
       </div>
     </div>

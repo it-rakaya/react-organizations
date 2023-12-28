@@ -11,6 +11,7 @@ const Hero = () => {
   const { user } = useAuth();
 
   const { orgData } = UseOrg();
+  console.log("🚀 ~ file: Hero.jsx:14 ~ Hero ~ orgData:", orgData)
   const theme = useTheme();
   const language = i18n.language;
   return (

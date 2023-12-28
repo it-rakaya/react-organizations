@@ -134,7 +134,7 @@ export const Root = ({ props }) => {
 
         <div
           className={
-            collapsed ? "w-full" : user?.is_verified ? "w-full" : "col-span-12"
+            collapsed ? "w-full" : user?.is_verified ? "w-full" : "w-full"
           }
         >
           <VerticalLayoutWrapper className="">

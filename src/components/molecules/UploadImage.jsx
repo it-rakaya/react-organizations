@@ -13,8 +13,23 @@ import UploadImageIcon from "../atoms/icons/UploadImageIcon";
 import PreviewImage from "./PreviewImage";
 import PreviewImageLink from "./PreviewImageLink";
 import PreviewPdf from "./PreviewPdf";
+import Icon from "@mdi/react";
+import { mdiInformationOutline } from "@mdi/js";
+import { t } from "i18next";
 
-const UploadImage = ({ name, label, nameValue, className, value }) => {
+const UploadImage = ({
+  name,
+  label,
+  nameValue,
+  className,
+  value,
+  accept,
+  isRequired,
+  dynamic = false,
+}) => {
+  const modifyAccept = accept?.map((item) => `.${item}`);
+  const textAccept = accept?.map((item) => ` -${item} `);
+
   const updateImage = {
     value: value,
     type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
@@ -22,26 +37,24 @@ const UploadImage = ({ name, label, nameValue, className, value }) => {
   };
 
   const { setFieldValue, values } = useFormikContext();
-  console.log(
-    "🚀 ~ file: UploadImage.jsx:25 ~ UploadImage ~ values:",
-    values?.attachments
-  );
+
   const theme = useTheme();
 
   const [files, setFiles] = useState(
-    values?.attachments.length
+    values?.attachments?.length
       ? [values?.attachments[nameValue]]
       : value
       ? [updateImage]
       : []
   );
-  console.log("🚀 ~ file: UploadImage.jsx:34 ~ UploadImage ~ files:", files);
 
   const [invalidFormat, setInvalidFormat] = useState(false);
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
-    accept: ["image/*", ".pdf"],
+    accept: {
+      "image/*": modifyAccept ? modifyAccept : [".png", ".pdf", ".jpg"],
+    },
     onDrop: (acceptedFiles) => {
       const modifiedFiles = acceptedFiles.map((file) => {
         if (file.type === "application/pdf" || file.type.startsWith("image/")) {
@@ -60,13 +73,12 @@ const UploadImage = ({ name, label, nameValue, className, value }) => {
       });
 
       setFiles(modifiedFiles);
-      setFieldValue(name, modifiedFiles[0]);
+      setFieldValue(dynamic ? `answers${name}` : name, modifiedFiles[0]);
     },
   });
 
-  const isLargeFile = files?.length && files[0]?.size > 524288000;
+  const isLargeFile = files?.length && files[0]?.size > 5242880;
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
-  console.log("files", files);
 
   const handleRemoveFile = (file) => {
     const uploadedFiles = files;
@@ -78,15 +90,18 @@ const UploadImage = ({ name, label, nameValue, className, value }) => {
   };
 
   return (
-    <div className="relative w-full mt-2">
+    <div className="relative w-full mt-5">
       <Box sx={files?.length ? { height: "" } : {}}>
-        <h2 className="w-full px-3 mb-2 rounded-md text-start ">{label}</h2>
+        <h2 className="w-full px-3 mb-2 text-center rounded-md ">
+          {label}
+          <span className="text-red-500">{isRequired ? "*" : ""}</span>{" "}
+        </h2>
         <div className="relative w-full cursor-pointer">
           <div className="flex flex-col items-center ">
             <div
               {...getRootProps({
                 className:
-                  "dropzone] flex flex-col items-center justify-center w-full h-[80px] border border-dashed rounded-[20px] border-[#9f968575]",
+                  "dropzone] flex flex-col items-center justify-center w-full h-[90px] gap-2 border border-dashed rounded-[20px] border-[#9f968575]",
               })}
             >
               {!files?.length ? (
@@ -98,28 +113,46 @@ const UploadImage = ({ name, label, nameValue, className, value }) => {
                 <TermsConditionIcon className={"w-[35px] !fill-[#F0A44B]"} />
               ) : (
                 <div className="rounded-md">
-                  {!isLargeFile && (
+                  {!isLargeFile ? (
                     <div className="flex flex-col items-center justify-center ">
-                      <CheckIcon className="w-[35px]" />
+                      <CheckIcon />
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center ">
+                      <TermsConditionIcon className={"w-[47px] h-[47px] "} />
                     </div>
                   )}
                 </div>
               )}
-              <p className="flex items-end justify-center m-0 text-center text-[14px]">
+              <p className="flex items-end justify-center m-0 text-center text-[14px] ">
                 {isLargeFile ? (
-                  "حجم الملف كبير"
+                  t("File size is large")
                 ) : invalidFormat ? (
-                  "صيغة الملف غير صالحة، يرجى اختيار ملف بصيغة PDF أو صورة"
+                  t("Invalid file format, please choose a PDF or image file")
                 ) : files?.length ? (
                   <div className="flex flex-col items-center justify-center ">
-                    <p>تم رفع الملف بنجاح</p>
+                    <p> {t("The file has been uploaded successfully")}</p>
                   </div>
                 ) : (
-                  " اختر ملف أو قم باسقاطه هنا "
+                  t("Choose a file or drop it here")
                 )}
               </p>
             </div>
           </div>
+
+          {!files?.length && (
+            <div className="flex items-center p-2">
+              <Icon
+                path={mdiInformationOutline}
+                size={0.7}
+                className="text-[#80b3f0]"
+              />
+              <p className="text-[14px] px-1 py-0 text-[#80b3f0]">
+                يرجى رفع الملف بهذه الصيغة{" "}
+                {textAccept ? textAccept : "png - jpg - pdf"}
+              </p>
+            </div>
+          )}
           <div className="flex justify-start w-full rounded-md">
             {!isLargeFile &&
             files[0]?.type?.startsWith("image/") &&
@@ -132,10 +165,14 @@ const UploadImage = ({ name, label, nameValue, className, value }) => {
                   handleRemoveFile={handleRemoveFile}
                 />
               </div>
-            ) : files[0]?.type?.startsWith("image/") && updateImage?.value ? (
+            ) : !isLargeFile &&
+              files[0]?.type?.startsWith("image/") &&
+              updateImage?.value ? (
               <PreviewImageLink url={files[0]?.value} />
-            ) : files[0]?.type?.startsWith("application/") && files[0]?.name ? (
-              <div className="mt-1 border border-solid rounded-[12px] border-[#9f968575] w-full flex items-center px-5 mt-4">
+            ) : !isLargeFile &&
+              files[0]?.type?.startsWith("application/") &&
+              files[0]?.name ? (
+              <div className=" border border-solid rounded-[12px] border-[#9f968575] w-full flex items-center px-5 mt-4">
                 <a
                   href={URL.createObjectURL(files[0])}
                   download={files[0].name}
@@ -155,7 +192,8 @@ const UploadImage = ({ name, label, nameValue, className, value }) => {
                   <IconifyIcon icon="mdi:close" fontSize={20} />
                 </div>
               </div>
-            ) : files[0]?.type?.startsWith("application/") &&
+            ) : !isLargeFile &&
+              files[0]?.type?.startsWith("application/") &&
               updateImage?.value ? (
               <div className="w-full">
                 <PreviewPdf item={files[0]} />

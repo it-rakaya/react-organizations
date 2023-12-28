@@ -165,7 +165,10 @@ export default function RegisterForm() {
             <div className="relative mt-10 ">
               <div className="flex flex-col items-center justify-center gap-2 mb-3 ">
                 <TermsConditionIcon />
-                <h2 className="font-bold"> {t("Terms & condition ")}</h2>
+                <h1 className="text-xl font-bold ">
+                  {" "}
+                  {t("Terms & condition ")}
+                </h1>
               </div>
             </div>
             {orgData?.organizations?.policies ? (
@@ -177,28 +180,28 @@ export default function RegisterForm() {
               ></div>
             ) : (
               <div className="main_content max-h-[450px] overflow-y-scroll scroll_main">
-                <p className="text-center ">
+                <p className="font-semibold text-center">
                   بموافقتك على التسجيل بالمنصة فإنك تقر وتقبل الشروط والأحكام
                   التالية:
                 </p>
-                <ul className="text-start">
-                  <li className="my-2">
+                <ul className="mx-4 text-start">
+                  <li className="my-2 text-[15px]">
                     جميع البيانات والمرفقات المدخلة من قبلكم صحيحة ومحدثة ولا
                     تتحمل المنصة أدنى مسؤولية في حالة كونها غير صحيحة أو غير
                     مطابقة.
                   </li>
-                  <li className="my-2">
+                  <li className="my-2 text-[15px]">
                     في حالة إرفاق ملف في غير محله لغرض مِلء المتطلبات لن يتم
                     النظر إليه ولن يتم قبولكم في المنصة.
                   </li>
-                  <li className="my-2">
+                  <li className="my-2 text-[15px]">
                     يجب أن يكون مستخدم المنصة يقدم خدمات الإعاشة ومصرح له بذلك.
                   </li>
-                  <li className="my-2">
+                  <li className="my-2 text-[15px]">
                     يحق للمنصة الإطلاع على البيانات المرفقة من قبلكم وحفظها
                     لديها لأغراض تطوير المنصة.
                   </li>
-                  <li className="my-2">
+                  <li className="my-2 text-[15px]">
                     يخضع المسجل في المنصة لأحكامها وفي حالة تحديثها أو تعديلها
                     سيتم إشعارك بذلك.
                   </li>

@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
+import { mdiInformationOutline } from "@mdi/js";
+import Icon from "@mdi/react";
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
 import { useFormikContext } from "formik";
+import { t } from "i18next";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { hexToRGBA } from "../../utils/helpers";
@@ -14,7 +17,21 @@ import PreviewImage from "./PreviewImage";
 import PreviewImageLink from "./PreviewImageLink";
 import PreviewPdf from "./PreviewPdf";
 
-const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
+const UploadImageTwo = ({
+  name,
+  label,
+  nameValue,
+  className,
+  value,
+  accept,
+  isRequired,
+  setShow,
+  showIcon,
+  setIndex,
+  index,
+}) => {
+  const modifyAccept = accept?.map((item) => `.${item}`);
+
   const updateImage = {
     value: value,
     type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
@@ -33,10 +50,12 @@ const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
   );
 
   const [invalidFormat, setInvalidFormat] = useState(false);
+  const isLargeFile = files?.length && files[0]?.size > 5242880;
+  console.log("🚀 ~ file: UploadImageTwo.jsx:54 ~ isLargeFile:", isLargeFile);
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
-    accept: ["image/*", ".pdf"],
+    accept: ["image/*", modifyAccept],
     onDrop: (acceptedFiles) => {
       const modifiedFiles = acceptedFiles.map((file) => {
         if (file.type === "application/pdf" || file.type.startsWith("image/")) {
@@ -53,29 +72,43 @@ const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
         }
         return file;
       });
-
       setFiles(modifiedFiles);
-      setFieldValue(name, modifiedFiles[0]);
+      if (isLargeFile) {
+        setFieldValue(name, null);
+      } else {
+        setFieldValue(name, modifiedFiles[0]);
+      }
     },
   });
 
-  const isLargeFile = files?.length && files[0]?.size > 524288000;
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
-  console.log("files[0]?.file", files[0]?.file);
 
   const handleRemoveFile = (file) => {
     const uploadedFiles = files;
     const filtered = uploadedFiles.filter((i) => i.name !== file.name);
     setFiles([...filtered]);
+    setFieldValue(name, null);
   };
 
   return (
     <div className="relative w-[250px] h-[125px] ">
       <Box sx={files?.length ? { height: "" } : {}}>
-        <h2 className="w-full px-3 py-2 font-semibold text-center rounded-md ">
+        <h2 className="w-full px-3 mb-2 text-center rounded-md">
           {label}
+          <span className="text-red-500">{isRequired ? "*" : ""}</span>{" "}
+          {showIcon && !files?.length &&  (
+            <div
+              className="mr-2 w-fit"
+              onMouseEnter={() => {
+                setShow(true);
+                setIndex(index);
+              }}
+            >
+              <Icon path={mdiInformationOutline} size={0.7} />
+            </div>
+          )}
         </h2>
-        <div className="relative cursor-pointer border border-dashed rounded-[20px] border-[#9f968575] w-[250px] h-[125px]">
+        <div className="relative  cursor-pointer  w-full  border border-dashed rounded-[20px] border-[#9f968575]  h-[125px]">
           <div className="flex flex-col items-center ">
             <div
               {...getRootProps({
@@ -86,7 +119,7 @@ const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
               {!files?.length ? (
                 <div className="flex flex-col items-center justify-center py-5">
                   <input {...getInputProps()} name={name} />
-                  <UploadImageIcon  />
+                  <UploadImageIcon />
                 </div>
               ) : invalidFormat ? (
                 <div className="flex flex-col items-center justify-center">
@@ -94,28 +127,33 @@ const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
                 </div>
               ) : (
                 <div className="rounded-md">
-                  {!isLargeFile && (
+                  {!isLargeFile ? (
                     <div className="flex flex-col items-center justify-center py-5">
                       <CheckIcon />
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center py-5">
+                      <TermsConditionIcon className={"w-[47px] h-[47px] "} />
                     </div>
                   )}
                 </div>
               )}
-              <p className="flex items-end justify-center p-2 m-0 text-center text-[14px]">
+              <p className="flex items-end justify-center p-2 m-0 text-center text-[14px] ">
                 {isLargeFile ? (
-                  "حجم الملف كبير"
+                  t("File size is large")
                 ) : invalidFormat ? (
-                  "صيغة الملف غير صالحة، يرجى اختيار ملف بصيغة PDF أو صورة"
+                  t("Invalid file format, please choose a PDF or image file")
                 ) : files?.length ? (
                   <div className="flex flex-col items-center justify-center ">
-                    <p>تم رفع الملف بنجاح</p>
+                    <p> {t("The file has been uploaded successfully")}</p>
                   </div>
                 ) : (
-                  " اختر ملف أو قم باسقاطه هنا "
+                  t("Choose a file or drop it here")
                 )}
               </p>
             </div>
           </div>
+          
           <div className="flex justify-start w-full rounded-md">
             {!isLargeFile &&
             files[0]?.type?.startsWith("image/") &&
@@ -128,9 +166,13 @@ const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
                   handleRemoveFile={handleRemoveFile}
                 />
               </div>
-            ) : files[0]?.type?.startsWith("image/") && updateImage?.value ? (
+            ) : !isLargeFile &&
+              files[0]?.type?.startsWith("image/") &&
+              updateImage?.value ? (
               <PreviewImageLink url={files[0]?.value} />
-            ) : files[0]?.type?.startsWith("application/") && files[0]?.name ? (
+            ) : !isLargeFile &&
+              files[0]?.type?.startsWith("application/") &&
+              files[0]?.name ? (
               <div className="mt-4 border border-solid rounded-[12px] border-[#9f968575] w-full flex items-center px-5">
                 <a
                   href={URL.createObjectURL(files[0])}
@@ -144,17 +186,23 @@ const UploadImageTwo = ({ name, label, nameValue, className, value }) => {
                     <Typography className="file-name">
                       {files[0]?.name.slice(0, 15)}
                     </Typography>
-                    {/* <span className="text-sm">اضغط هنا لمشاهدة المرفق</span> */}
                   </div>
                 </a>
                 <div onClick={() => handleRemoveFile(files[0])}>
                   <IconifyIcon icon="mdi:close" fontSize={20} />
                 </div>
               </div>
-            ) : files[0]?.type?.startsWith("application/") &&
+            ) : !isLargeFile &&
+              files[0]?.type?.startsWith("application/") &&
               updateImage?.value ? (
               <div className="w-full">
                 <PreviewPdf item={files[0]} />
+              </div>
+            ) : isLargeFile ? (
+              <div>
+                <p className="text-[14px] p-2">
+                  {t("Please upload a file no larger than 5 MP")}
+                </p>
               </div>
             ) : (
               ""

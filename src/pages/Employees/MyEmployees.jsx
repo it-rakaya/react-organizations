@@ -1,28 +1,36 @@
-import { mdiAccount, mdiTrashCanOutline } from "@mdi/js";
+import { mdiAccountOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import { t } from "i18next";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Table from "../../components/Table/Table";
 import MainHeader from "../../components/atoms/MainHeader";
 import ModalComp from "../../components/atoms/ModalComp";
-import PreviewImageLink from "../../components/molecules/PreviewImageLink";
-import PreviewPdf from "../../components/molecules/PreviewPdf";
+import Loading from "../../components/molecules/Loading";
+import PadgePreview from "../../components/molecules/PadgePreview";
+import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import DeleteEMployee from "../../components/templates/myEmployee/DeleteEMployee";
 import useFetch from "../../hooks/useFetch";
 
 export default function MyEmployees() {
-  const { data: employees, refetch } = useFetch({
+  const {
+    data: employees,
+    refetch,
+    isLoading,
+    isRefetching,
+  } = useFetch({
     endpoint: `facility-employees`,
     queryKey: ["facility_employees"],
   });
+
   const [openAddEmployee, setOpenAddEmployee] = useState(false);
   const [employeeId, setEmployeeId] = useState();
   const [openModelDeleteEmployee, setModelDeleteEMployee] = useState(false);
+  const theme = useTheme();
 
   const LinkStyled = styled(Link)(({ theme }) => ({
     fontWeight: 600,
@@ -42,7 +50,7 @@ export default function MyEmployees() {
       field: "name",
       headerName: t("name"),
       // cellClassName: "flex !px-0 !justify-center",
-      headerAlign: 'center',
+      headerAlign: "center",
       renderCell: ({ row }) => {
         const { name } = row;
 
@@ -56,7 +64,7 @@ export default function MyEmployees() {
                 // flexDirection: "column",
               }}
             >
-              <Icon path={mdiAccount} size={1} />
+              <Icon path={mdiAccountOutline} size={1} />
               <LinkStyled href="/apps/user/view/overview/">{name}</LinkStyled>
             </Box>
           </Box>
@@ -84,6 +92,7 @@ export default function MyEmployees() {
       minWidth: 150,
       headerName: t("national_id"),
       cellClassName: "flex !px-0 !justify-center",
+
       headerAlign: "center",
       renderCell: ({ row }) => {
         return (
@@ -120,10 +129,10 @@ export default function MyEmployees() {
     },
     {
       flex: 0.15,
-      minWidth: 150,
+      minWidth: 180,
       headerName: t("attachment"),
       field: "",
-      cellClassName: "flex !px-0 !justify-center",
+      cellClassName: "flex !px-0 !justify-center !h-[100px]",
       headerAlign: "center",
 
       renderCell: ({ row }) => {
@@ -135,16 +144,42 @@ export default function MyEmployees() {
               textTransform: "capitalize",
               display: "flex",
               justifyContent: "center",
+              flexWrap: "wrap",
+              gap: "2px",
+              // marginTop:"50px",
+              // marginBottom:"50px"
+
             }}
           >
             {row?.attachmentUrl.map((item) => (
-              <div className="flex flex-wrap items-center justify-center" key={item?.id}>
+              <div className="" key={item?.id}>
                 {!item?.value?.toLowerCase().endsWith(".pdf") ? (
-                  <p>
-                    <PreviewImageLink url={item?.value} />
-                  </p>
+                  <div
+                    className="rounded-sm "
+                    style={{ background: theme?.palette?.primary.main }}
+                  >
+                    <PadgePreview url={item?.value} label={item?.label} />
+                  </div>
                 ) : (
-                  <PreviewPdf item={item} />
+                  <div
+                    className="px-1 rounded-sm bg-primary"
+                    style={{
+                      background: theme?.palette?.primary.main,
+                      opacity: "0,8",
+                    }}
+                  >
+                    <a
+                      href={item?.value}
+                      download={item?.value}
+                      className=""
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <p className="text-[10px] text-white px-1">
+                        {item?.label}
+                      </p>
+                    </a>
+                  </div>
                 )}
               </div>
             ))}
@@ -165,16 +200,30 @@ export default function MyEmployees() {
           <Typography
             variant="subtitle1"
             noWrap
-            sx={{ textTransform: "capitalize", display: "flex"  , alignItems:"center" }}
+            sx={{
+              textTransform: "capitalize",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            <div
-              className="cursor-pointer "
-              onClick={() => {
-                setEmployeeId(row.id);
-                setModelDeleteEMployee(true);
-              }}
-            >
-              <Icon path={mdiTrashCanOutline} size={1} />
+            <div className="flex justify-center cursor-pointer ">
+              <OptionsMenu
+                iconButtonProps={{
+                  size: "small",
+                }}
+                options={[
+                  {
+                    text: t("Delete"),
+                    details: "Additional details here",
+                    function: () => {
+                      setEmployeeId(row.id);
+                      setModelDeleteEMployee(true);
+                    },
+                  },
+                ]}
+              />
+              {/* <Icon path={mdiTrashCanOutline} size={1} /> */}
             </div>
           </Typography>
         );
@@ -186,13 +235,17 @@ export default function MyEmployees() {
     <>
       <div>
         <MainHeader title={t("Employee")} />
-        <Table
-          columns={columns || []}
-          rows={employees?.employees || []}
-          placeholderSearch={t("search in employee")}
-          textButton={t("Add Employee")}
-          actionButton={() => setOpenAddEmployee(true)}
-        />
+        {isLoading || isRefetching ? (
+          <Loading />
+        ) : (
+          <Table
+            columns={columns || []}
+            rows={employees?.employees || []}
+            placeholderSearch={t("search in employee")}
+            textButton={t("Add Employee")}
+            actionButton={() => setOpenAddEmployee(true)}
+          />
+        )}
       </div>
       <ModalComp
         open={openAddEmployee}

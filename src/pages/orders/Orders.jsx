@@ -1,8 +1,6 @@
 import { mdiEyeOutline, mdiTrashCanOutline } from "@mdi/js";
 import Icon from "@mdi/react";
-import { TabContext } from "@mui/lab";
 import { Box, Typography } from "@mui/material";
-import Grid from "@mui/material/Grid";
 import { t } from "i18next";
 import { useState } from "react";
 import Table from "../../components/Table/Table";
@@ -16,17 +14,13 @@ import OrderInfo from "../../components/organisms/orders/OrderInfo";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import useFetch from "../../hooks/useFetch";
 import { notify } from "../../utils/toast";
+import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 export default function Orders() {
   const [openAddFaculty, setOpenAddFaculty] = useState(false);
   const [openDetailsOrder, setOpenDetailsOrder] = useState(false);
   const [openCancelOrder, setOpenCancelOrder] = useState(false);
   const [orderId, setOrderId] = useState();
   const [detailsOrder, setDetailsOrder] = useState("");
-  console.log(
-    "🚀 ~ file: Orders.jsx:25 ~ Orders ~ detailsOrder:",
-    detailsOrder
-  );
-  const [value, setValue] = useState("1");
 
   const { orgData } = UseOrg();
 
@@ -40,16 +34,20 @@ export default function Orders() {
     queryKey: ["my_orders"],
     enabled: !!orgData?.organizations?.id,
   });
+    console.log("🚀 ~ file: Orders.jsx:37 ~ Orders ~ Orders:", Orders)
 
   const Canceled = 5;
+  const Rejected = 4;
+
 
   const columns = [
     {
       flex: 0.2,
       field: "name",
       headerName: t("code"),
-      cellClassName: "flex !px-0 !justify-center",
+      cellClassName: "flex !px-0 !justify-center ",
       headerAlign: "center",
+      
       renderCell: ({ row }) => {
         const { code } = row;
         return (
@@ -103,25 +101,25 @@ export default function Orders() {
         );
       },
     },
-    {
-      flex: 0.15,
-      field: "facility_address",
-      headerName: t("facility address"),
-      cellClassName: "flex !px-0 !justify-center",
-      headerAlign: "center",
-      renderCell: ({ row }) => {
-        return (
-          <>
-            <Typography
-              noWrap
-              sx={{ color: "text.secondary", textTransform: "capitalize" }}
-            >
-              {row.facility?.address}
-            </Typography>
-          </>
-        );
-      },
-    },
+    // {
+    //   flex: 0.15,
+    //   field: "facility_address",
+    //   headerName: t("facility address"),
+    //   cellClassName: "flex !px-0 !justify-center",
+    //   headerAlign: "center",
+    //   renderCell: ({ row }) => {
+    //     return (
+    //       <>
+    //         <Typography
+    //           noWrap
+    //           sx={{ color: "text.secondary", textTransform: "capitalize" }}
+    //         >
+    //           {row.facility?.address}
+    //         </Typography>
+    //       </>
+    //     );
+    //   },
+    // },
     {
       flex: 0.15,
       headerName: t("status"),
@@ -165,47 +163,45 @@ export default function Orders() {
             }}
             className="items-center justify-center w-full "
           >
-            <div
-              className={
-                row.status_id == Canceled
-                  ? "cursor-not-allowed"
-                  : "cursor-pointer"
-              }
-              onClick={() => {
-                if (row.status_id == Canceled) {
-                  return notify("worning", t("cant Canceled order"));
-                } else {
-                  setOpenDetailsOrder(true);
-                  setDetailsOrder(row);
+            <div className="flex justify-center cursor-pointer ">
+              <OptionsMenu
+                iconButtonProps={{
+                  size: "small",
+                }}
+                className={
+                  row.status_id == Canceled
+                    ? "cursor-not-allowed"
+                    : "cursor-pointer"
                 }
-              }}
-            >
-              <Icon
-                path={mdiEyeOutline}
-                size={1}
-                className={row.status_id == Canceled && "text-[#d1d1d7]"}
+                options={[
+                  {
+                    text: t("Details"),
+
+                    details: "Additional details here",
+                    function: () => {
+                      if (row.status_id == Canceled) {
+                        return notify("worning", t("cant Canceled order"));
+                      } else {
+                        setOpenDetailsOrder(true);
+                        setDetailsOrder(row);
+                      }
+                    },
+                  },
+                  {
+                    text: t("Cancel"),
+                    details: "Additional details here",
+                    function: () => {
+                      if (row.status_id == Canceled) {
+                        return console.log("ddd");
+                      } else {
+                        setOrderId(row.id);
+                        setOpenCancelOrder(true);
+                      }
+                    },
+                  },
+                ]}
               />
-            </div>
-            <div
-              className={
-                row.status_id == Canceled
-                  ? "cursor-not-allowed"
-                  : "cursor-pointer"
-              }
-              onClick={() => {
-                if (row.status_id == Canceled) {
-                  return console.log("ddd");
-                } else {
-                  setOrderId(row.id);
-                  setOpenCancelOrder(true);
-                }
-              }}
-            >
-              <Icon
-                path={mdiTrashCanOutline}
-                size={1}
-                className={row.status_id == Canceled && "text-[#d1d1d7]"}
-              />
+              {/* <Icon path={mdiTrashCanOutline} size={1} /> */}
             </div>
           </Typography>
         );
@@ -216,159 +212,21 @@ export default function Orders() {
   return (
     <div>
       <MainHeader title={t("Orders")} />
-      <TabContext value={value} className="mr-0 overflow-hidden">
-        {/* <TabList onChange={handleChange} aria-label="nav tabs example">
-          <Tab
-            value="1"
-            component="a"
-            label={<h2 className="font-bold !text-black dark:text-white">{t("All")} </h2>}
-          />
-          <Tab
-            value="2"
-            component="a"
-            label={<h2 className="font-bold !text-black dark:text-white">{t("Accepted")} </h2>}
-          />
-          <Tab
-            value="3"
-            component="a"
-            label={
-              <h2 className="font-bold !text-black dark:text-white"> {t("In progress")} </h2>
-            }
-          />
-          <Tab
-            value="4"
-            component="a"
-            label={<h2 className="font-bold !text-black dark:text-white">{t("Canceled")} </h2>}
-          />
-          <Tab
-            value="5"
-            component="a"
-            label={<h2 className="font-bold !text-black dark:text-white">{t("Waiting")} </h2>}
-          />
-          <Tab
-            value="6"
-            component="a"
-            label={<h2 className="font-bold !text-black dark:text-white">{t("Rejection")} </h2>}
-          />
-          <Tab
-            value="7"
-            component="a"
-            label={<h2 className="font-bold !text-black dark:text-white">{t("New")} </h2>}
-          />
-        </TabList> */}
-        {isLoading || isRefetching ? (
-          <Loading />
-        ) : Orders?.all_user_orders?.length ? (
-          <>
-            <Grid container spacing={3} className="overflow-hidden">
-              {Orders?.all_user_orders?.map((item) => (
-                <>
-                  {/* All */}
-                  {/* <TabPanel value="1" key={item?.id} className="mt-5 ">
-                    <CardOrder
-                      item={item}
-                      setOpenDetailsOrder={setOpenDetailsOrder}
-                      setDetailsOrder={setDetailsOrder}
-                      setOpenCancelOrder={setOpenCancelOrder}
-                      setOrderId={setOrderId}
-                    />
-                  </TabPanel> */}
+      {isLoading || isRefetching ? (
+        <Loading />
+      ) : (
+        <>
+          <OrderInfo Orders={Orders} />
 
-                  {/* تم القبول */}
-                  {/* <TabPanel value="2" className="mt-5 ">
-                    {item.status_id == 3 && (
-                      <CardOrder
-                        item={item}
-                        setOpenDetailsOrder={setOpenDetailsOrder}
-                        setDetailsOrder={setDetailsOrder}
-                        setOpenCancelOrder={setOpenCancelOrder}
-                        setOrderId={setOrderId}
-                      />
-                    )}
-                  </TabPanel> */}
-
-                  {/* قيد المراجعه */}
-                  {/* <TabPanel value="3" className="mt-5 ">
-                    {item.status_id == 2 && (
-                      <CardOrder
-                        item={item}
-                        setOpenDetailsOrder={setOpenDetailsOrder}
-                        setDetailsOrder={setDetailsOrder}
-                        setOpenCancelOrder={setOpenCancelOrder}
-                        setOrderId={setOrderId}
-                      />
-                    )}
-                  </TabPanel> */}
-
-                  {/* تم الالغاء */}
-                  {/* <TabPanel value="4" className="mt-5 ">
-                    {item.status_id == 5 && (
-                      <CardOrder
-                        item={item}
-                        setOpenDetailsOrder={setOpenDetailsOrder}
-                        setDetailsOrder={setDetailsOrder}
-                        setOpenCancelOrder={setOpenCancelOrder}
-                        setOrderId={setOrderId}
-                      />
-                    )}
-                  </TabPanel> */}
-
-                  {/*  قيد الانتظار */}
-                  {/* <TabPanel value="5" className="mt-5 ">
-                    {item.status_id == 1 && (
-                      <CardOrder
-                        item={item}
-                        setOpenDetailsOrder={setOpenDetailsOrder}
-                        setDetailsOrder={setDetailsOrder}
-                        setOpenCancelOrder={setOpenCancelOrder}
-                        setOrderId={setOrderId}
-                      />
-                    )}
-                  </TabPanel> */}
-
-                  {/* تم الرفض */}
-                  {/* <TabPanel value="6" className="mt-5 ">
-                    {item.status_id == 4 && (
-                      <CardOrder
-                        item={item}
-                        setOpenDetailsOrder={setOpenDetailsOrder}
-                        setDetailsOrder={setDetailsOrder}
-                        setOpenCancelOrder={setOpenCancelOrder}
-                        setOrderId={setOrderId}
-                      />
-                    )}
-                  </TabPanel> */}
-
-                  {/* جديد  */}
-                  {/* <TabPanel value="7" className="mt-5 ">
-                    {item.status_id == 6 && (
-                      <CardOrder
-                        item={item}
-                        setOpenDetailsOrder={setOpenDetailsOrder}
-                        setDetailsOrder={setDetailsOrder}
-                        setOpenCancelOrder={setOpenCancelOrder}
-                        setOrderId={setOrderId}
-                      />
-                    )}
-                  </TabPanel> */}
-                </>
-              ))}
-            </Grid>
-          </>
-        ) : (
-          ""
-          // <DataNotFound title={t("Data not Found")} />
-        )}
-      </TabContext>
-      <OrderInfo Orders={Orders} />
-
-      <Table
-        columns={columns || []}
-        rows={Orders?.all_user_orders || []}
-        textButton={t("Add order")}
-        actionButton={() => setOpenAddFaculty(true)}
-        placeholderSearch={t("Search in orders")}
-      />
+          <Table
+            columns={columns || []}
+            rows={Orders?.all_user_orders || []}
+            textButton={t("Add order")}
+            actionButton={() => setOpenAddFaculty(true)}
+            placeholderSearch={t("Search in orders")}
+          />
+        </>
+      )}
 
       <ModalComp
         open={openAddFaculty}
@@ -380,6 +238,7 @@ export default function Orders() {
         open={openDetailsOrder}
         classNameBox={"!h-full"}
         onClose={() => setOpenDetailsOrder(false)}
+        className={"max-w-[1120px]"}
         Children={
           <DetailsOrder data={detailsOrder} setDetailsOrder={setDetailsOrder} />
         }
