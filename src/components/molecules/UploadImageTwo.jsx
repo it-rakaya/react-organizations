@@ -93,7 +93,7 @@ const UploadImageTwo = ({
   return (
     <div className="relative w-[250px] h-[125px] ">
       <Box sx={files?.length ? { height: "" } : {}}>
-        <h2 className="flex justify-center w-full px-3 py-2 m-auto font-semibold text-center rounded-md ">
+        <h2 className="w-full px-3 mb-2 text-center rounded-md">
           {label}
           <span className="text-red-500">{isRequired ? "*" : ""}</span>{" "}
           {showIcon && !files?.length &&  (
@@ -108,7 +108,7 @@ const UploadImageTwo = ({
             </div>
           )}
         </h2>
-        <div className="relative cursor-pointer border border-dashed rounded-[20px] border-[#9f968575] w-[250px] h-[125px]">
+        <div className="relative  cursor-pointer  w-full  border border-dashed rounded-[20px] border-[#9f968575]  h-[125px]">
           <div className="flex flex-col items-center ">
             <div
               {...getRootProps({
@@ -138,7 +138,7 @@ const UploadImageTwo = ({
                   )}
                 </div>
               )}
-              <p className="flex items-end justify-center p-2 m-0 text-center text-[14px]">
+              <p className="flex items-end justify-center p-2 m-0 text-center text-[14px] ">
                 {isLargeFile ? (
                   t("File size is large")
                 ) : invalidFormat ? (
@@ -153,6 +153,7 @@ const UploadImageTwo = ({
               </p>
             </div>
           </div>
+          
           <div className="flex justify-start w-full rounded-md">
             {!isLargeFile &&
             files[0]?.type?.startsWith("image/") &&
