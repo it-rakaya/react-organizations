@@ -3,11 +3,11 @@ import { t } from "i18next";
 import MainHeader from "../../atoms/MainHeader";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
 import SelectFacilities from "../../molecules/SelectFacilities";
-import UploadImage from "../../molecules/UploadImage";
 import { useTheme } from "@mui/material/styles";
 import { Divider } from "@mui/material";
 import Icon from "@mdi/react";
 import { mdiAccountBoxOutline, mdiFileDocumentOutline } from "@mdi/js";
+import UploadImage from "../../molecules/uploadImage/UploadImage";
 export default function EmployeeMainData({
   showSelectFacility,
   attachments_facility_employees,

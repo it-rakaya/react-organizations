@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import {
-  Box,
   Checkbox,
   FormControl,
   FormControlLabel,
@@ -12,7 +11,7 @@ import {
   Radio,
   RadioGroup,
   TextField,
-  TextareaAutosize,
+  TextareaAutosize
 } from "@mui/material";
 import { useFormikContext } from "formik";
 import { t } from "i18next";
@@ -20,11 +19,7 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Select from "react-select";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
-import PreviewImage from "../PreviewImage";
-import UploadImageIcon from "../../atoms/icons/UploadImageIcon";
-import CheckIcon from "../../atoms/icons/CheckIcon";
-import PdfIcon from "../../atoms/icons/PdfIcon";
-import UploadImage from "../UploadImage";
+import UploadImage from "../uploadImage/UploadImage";
 
 export default function QuestionBaseInput({
   label,

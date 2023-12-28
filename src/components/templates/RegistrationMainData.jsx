@@ -3,8 +3,8 @@ import BaseInputField from "../molecules/Formik/BaseInputField";
 import DatePickerComp from "../molecules/Formik/DatePickerComp";
 import PhoneInput2 from "../molecules/Formik/PhoneInput2";
 import SelectCountry from "../molecules/SelectCountry";
-import UploadImage from "../molecules/UploadImage";
 import { t } from "i18next";
+import UploadImage from "../molecules/uploadImage/UploadImage";
 
 function RegistrationMainData() {
   

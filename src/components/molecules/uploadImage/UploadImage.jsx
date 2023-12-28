@@ -5,14 +5,14 @@ import { useTheme } from "@mui/material/styles";
 import { useFormikContext } from "formik";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { hexToRGBA } from "../../utils/helpers";
-import CheckIcon from "../atoms/icons/CheckIcon";
-import IconifyIcon from "../atoms/icons/IconifyIcon";
-import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
-import UploadImageIcon from "../atoms/icons/UploadImageIcon";
-import PreviewImage from "./PreviewImage";
-import PreviewImageLink from "./PreviewImageLink";
-import PreviewPdf from "./PreviewPdf";
+import { hexToRGBA } from "../../../utils/helpers";
+import CheckIcon from "../../atoms/icons/CheckIcon";
+import IconifyIcon from "../../atoms/icons/IconifyIcon";
+import TermsConditionIcon from "../../atoms/icons/TermsConditionIcon";
+import UploadImageIcon from "../../atoms/icons/UploadImageIcon";
+import PreviewImage from "../PreviewImage";
+import PreviewImageLink from "../PreviewImageLink";
+import PreviewPdf from "../PreviewPdf";
 import Icon from "@mdi/react";
 import { mdiInformationOutline } from "@mdi/js";
 import { t } from "i18next";
@@ -47,9 +47,8 @@ const UploadImage = ({
       ? [updateImage]
       : []
   );
-
+  const isLargeFile = files?.length && files[0]?.size > 5242880;
   const [invalidFormat, setInvalidFormat] = useState(false);
-
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: {
@@ -71,21 +70,22 @@ const UploadImage = ({
         }
         return file;
       });
+      const isLarge = modifiedFiles[0]?.size > 5242880;
 
       setFiles(modifiedFiles);
-      setFieldValue(dynamic ? `answers${name}` : name, modifiedFiles[0]);
+      setFieldValue(
+        dynamic ? `answers${name}` : name,
+        isLarge ? null : modifiedFiles[0]
+      );
     },
   });
 
-  const isLargeFile = files?.length && files[0]?.size > 5242880;
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
 
   const handleRemoveFile = (file) => {
     const uploadedFiles = files;
     const filtered = uploadedFiles.filter((i) => i.name !== file.name);
     setFiles([...filtered]);
-
-    // Remove the image from Formik context by setting the field value to null
     setFieldValue(name, null);
   };
 

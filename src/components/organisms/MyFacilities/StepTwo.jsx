@@ -3,7 +3,7 @@ import { useFormikContext } from "formik";
 import UploadImageTwo from "../../molecules/UploadImageTwo";
 import ModalComp from "../../atoms/ModalComp";
 import { useState } from "react";
-import UploadImage from "../../molecules/UploadImage";
+import UploadImage from "../../molecules/uploadImage/UploadImage";
 
 export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
   const detailsFacilitiesData =

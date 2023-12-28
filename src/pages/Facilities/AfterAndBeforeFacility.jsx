@@ -59,6 +59,7 @@ function AfterAndBeforeFacility({
     // address: "",
     tax_certificate: "",
   };
+
   const initialCase1 = {
     street_name: "",
     neighborhood: "",
@@ -100,6 +101,7 @@ function AfterAndBeforeFacility({
     }
   };
   // const validateImages = () => {
+  //   // Loop through the images and check if required images have values
   //   attachments_facilities?.attachment_labels.forEach((item) => {
   //     if (item.is_required && !values[`attachments[${item.id || item.attachment_id}]`]) {
   //       setFieldError(`attachments[${item.id || item.attachment_id}]`, "Image is required");

@@ -8,7 +8,7 @@ import BaseInputField from "../../molecules/Formik/BaseInputField";
 import DatePickerComp from "../../molecules/Formik/DatePickerComp";
 import PhoneInput2 from "../../molecules/Formik/PhoneInput2";
 import SelectCountry from "../../molecules/SelectCountry";
-import UploadImage from "../../molecules/UploadImage";
+import UploadImage from "../../molecules/uploadImage/UploadImage";
 
 export default function AccountSetting({ userData, setEditUser, setUser }) {
   console.log("🚀 ~ file: AccountSetting.jsx:14 ~ AccountSetting ~ userData:", userData)
