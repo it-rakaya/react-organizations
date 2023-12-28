@@ -67,9 +67,9 @@ export default function RegisterForm() {
     national_id: "",
     email: "",
     phone: "",
-    birthday: Date(),
+    birthday:"",
     nationality: "",
-    national_id_expired: Date(),
+    national_id_expired: "",
     attachments: [],
     organization_id: orgData?.organizations?.id,
   };

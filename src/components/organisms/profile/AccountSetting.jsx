@@ -11,6 +11,7 @@ import SelectCountry from "../../molecules/SelectCountry";
 import UploadImage from "../../molecules/UploadImage";
 
 export default function AccountSetting({ userData, setEditUser, setUser }) {
+  console.log("🚀 ~ file: AccountSetting.jsx:14 ~ AccountSetting ~ userData:", userData)
   const initialValue = {
     name: userData?.name,
     national_id: userData?.national_id,
@@ -80,6 +81,7 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
             <div className="flex flex-col col-span-2 gap-3 ">
               <DatePickerComp
                 name="national_id_expired"
+                
                 label={"تاريخ انتهاء الاقامه"}
               />
             </div>
