@@ -136,8 +136,8 @@ export const SideBar = ({
           key={Item.id}
           onClick={(e) => {
             goTo(e, Item.link);
-            if(toggled){
-              setToggled(!toggled)
+            if (toggled) {
+              setToggled(!toggled);
             }
           }}
           icon={<Item.icon size={15} />}
@@ -150,6 +150,7 @@ export const SideBar = ({
   };
   return (
     <div
+    
       style={{
         display: "flex",
         height: "100vh",
@@ -160,6 +161,8 @@ export const SideBar = ({
           ? "rgb(249 249 249)"
           : "rgba(249, 249, 249, 0.7)",
       }}
+      className="dark:!bg-[#2c3639]"
+
     >
       <Sidebar
         rtl
@@ -170,9 +173,11 @@ export const SideBar = ({
         }
         onBreakPoint={setBroken}
         transitionDuration={500}
+
         collapsed={collapsed}
         onBackdropClick={() => setToggled(false)}
         // rootStyles={{ paddingTop: !toggled && "20px" }}
+        
       >
         <div
           className={`${
@@ -190,20 +195,20 @@ export const SideBar = ({
               />
             </div>
           )}
-          {
-            !toggled ?
-          <div className="">
-            <ArrowSideBar_IC
-              className={`cursor-pointer transition-ease collapsed-button-sidebar scale-x-[-1]  ${
-                collapsed && "scale-x-[1]"
-              } `}
-              onClick={() => setCollapsed(!collapsed)}
-            />
-          </div>
-          : <div onClick={()=>setToggled(!toggled)} className="ml-5">
-            <IconifyIcon icon={"iconoir:cancel"}/>
-          </div>
-          }
+          {!toggled ? (
+            <div className="">
+              <ArrowSideBar_IC
+                className={`cursor-pointer transition-ease collapsed-button-sidebar scale-x-[-1]  ${
+                  collapsed && "scale-x-[1]"
+                } `}
+                onClick={() => setCollapsed(!collapsed)}
+              />
+            </div>
+          ) : (
+            <div onClick={() => setToggled(!toggled)} className="ml-5">
+              <IconifyIcon icon={"iconoir:cancel"} />
+            </div>
+          )}
         </div>
         <Menu>
           {sideBarItems.map((Item) =>

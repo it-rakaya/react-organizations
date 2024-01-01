@@ -130,14 +130,14 @@ const UploadImage = ({
                   )}
                 </div>
               )}
-              <p className="flex items-end justify-center m-0 text-center text-[14px] ">
+              <p className="flex items-end justify-center m-0 text-center text-[14px] dark:text-white ">
                 {isLargeFile ? (
                   t("File size is large")
                 ) : invalidFormat ? (
                   t("Invalid file format, please choose a PDF or image file")
                 ) : files?.length ? (
                   <div className="flex flex-col items-center justify-center ">
-                    <p> {t("The file has been uploaded successfully")}</p>
+                    <p className=" dark:text-white"> {t("The file has been uploaded successfully")}</p>
                   </div>
                 ) : (
                   t("Choose a file or drop it here")

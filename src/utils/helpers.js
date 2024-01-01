@@ -27,7 +27,7 @@ export function convertToHijri(valueGregorian) {
     month: "2-digit",
     day: "2-digit",
   });
-  const formattedHijriDate = hijriFormatter.format(gregorianDate);
+  const formattedHijriDate = hijriFormatter?.format(gregorianDate);
   const hijriDateWithoutHeh = formattedHijriDate
     .replace("هـ", "")
     .replace(/\//g, "-");

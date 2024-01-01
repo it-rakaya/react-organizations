@@ -33,7 +33,7 @@ const UserProfileHeader = ({ user, setEditUser }) => {
           alt="profile-picture"
         />
         <div className="flex items-center gap-2 mt-2">
-          <h1 className="text-3xl font-extrabold ">{user?.name}</h1>
+          <h1 className="text-3xl font-extrabold dark:text-white">{user?.name}</h1>
           <IconifyIcon
             icon={"bxs:edit"}
             className="w-[20px] md:w-[30px] h-[20px] md:h-[30px] cursor-pointer"
@@ -41,29 +41,33 @@ const UserProfileHeader = ({ user, setEditUser }) => {
           />
         </div>
       </Card>
-      <div className="grid grid-cols-1 p-5 m-2 bg-white shadow-lg md:m-20 md:grid-cols-2 rounded-2xl ">
+      <div className="grid grid-cols-1 p-5 m-2 bg-white shadow-lg md:m-20 md:grid-cols-2 rounded-2xl dark:bg-dark-primary">
         <div>
           <div className="flex gap-2 mt-4">
-            <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p>
+            <Typography sx={{ color: "text.secondary", fontWeight: 600 }} className="dark:text-white">
+              <p className="dark:text-white">
                 {" "}
                 {t("phone number")} :{user?.phone}
               </p>
             </Typography>
           </div>
           <div className="flex gap-2 mt-4">
-            <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p>
+            <Typography sx={{ color: "text.secondary", fontWeight: 600 }} className="dark:text-white">
+              <p className="dark:text-white">
                 {t("Email")} :{user?.email}
               </p>
             </Typography>
           </div>
           <div className="flex gap-2 mt-4">
-            <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
+            <Typography sx={{ color: "text.secondary", fontWeight: 600 }} className="dark:text-white">
               <div className="flex gap-1">
-                <p>{t("Birthday")} :</p>
-                <p>{user?.birthday}</p>/
-                <p>{convertArabicToEnglish(convertToHijri(user?.birthday))}</p>
+                <p className="dark:text-white">{t("Birthday")} :</p>
+                <p className="dark:text-white">{user?.birthday}</p>/
+                <p className="dark:text-white">
+                  {user?.birthday
+                    ? convertArabicToEnglish(convertToHijri(user?.birthday))
+                    : ""}
+                </p>
                 هـ
               </div>
             </Typography>
@@ -72,22 +76,24 @@ const UserProfileHeader = ({ user, setEditUser }) => {
 
         <div>
           <div className="flex gap-2 mt-4">
-            <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p>
+            <Typography sx={{ color: "text.secondary", fontWeight: 600 }} className="dark:text-white">
+              <p className="dark:text-white">
                 {" "}
                 {t("National ID")}:{user?.national_id}
               </p>
             </Typography>
           </div>
           <div className="flex gap-2 mt-4">
-            <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p>
+            <Typography sx={{ color: "text.secondary", fontWeight: 600 }} className="dark:text-white">
+              <p className="dark:text-white">
                 <div className="flex gap-1">
-                  {t("National ID Expired")} :<p>{user?.national_id_expired}</p>
+                  {t("National ID Expired")} :<p className="dark:text-white">{user?.national_id_expired}</p>
                   /
-                  <p>
+                  <p className="dark:text-white">
                     {convertArabicToEnglish(
-                      convertToHijri(user?.national_id_expired)
+                      user?.national_id_expired !== "0000-00-00"
+                        ? convertToHijri(user?.national_id_expired)
+                        : ""
                     )}
                   </p>
                   هـ
@@ -96,8 +102,8 @@ const UserProfileHeader = ({ user, setEditUser }) => {
             </Typography>
           </div>
           <div className="flex gap-2 mt-4">
-            <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p>
+            <Typography sx={{ color: "text.secondary", fontWeight: 600 }} className="dark:text-white">
+              <p className="dark:text-white">
                 {" "}
                 {t("Country")} :{user?.nationality_name}
               </p>

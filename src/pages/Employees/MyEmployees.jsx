@@ -148,7 +148,6 @@ export default function MyEmployees() {
               gap: "2px",
               // marginTop:"50px",
               // marginBottom:"50px"
-
             }}
           >
             {row?.attachmentUrl.map((item) => (

@@ -80,12 +80,13 @@ export default function SelectDistrict({
           }
           onChange={(option) => setFieldValue(name, option.value)}
           styles={{
-            control: (baseStyles, { isDisabled }) => ({
+            control: (baseStyles) => ({
               ...baseStyles,
               padding: "10px 0",
               borderRadius: " 8px",
-              background: isDisabled ? "#cfcece" : "white", // Set red background when disabled
-
+              borderWidth:"1px",
+              borderColor:"#555d64",
+              background: "white",
               margin: "0",
             }),
             option: (baseStyles) => ({
@@ -103,6 +104,10 @@ export default function SelectDistrict({
               primary: "#eee",
             },
           })}
+          classNames={{
+            control: () => "dark:bg-dark-primary",
+            option: () => "dark:bg-dark-primary dark:text-white  ",
+          }}
         />
       </div>
     </div>

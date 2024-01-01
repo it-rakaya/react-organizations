@@ -5,29 +5,7 @@ import { useEffect, useState } from "react";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 
 const ModeToggler = (props) => {
-
-
-
-
-
   const { settings, saveSettings } = props;
-
-
-
- 
-  // const handleDarkMode = () => {
-  //   const newMode = !isDarkMode;
-  //   setIsDarkMode(newMode);
-  //   if (newMode) {
-  //     document.body.classList.add("dark");
-  //   } else {
-  //     document.body.classList.remove("dark");
-  //   }
-
-  //   localStorage.setItem("darkMode", newMode);
-  // };
-
-
 
   const handleModeChange = (mode) => {
     saveSettings({ ...settings, mode: mode });
@@ -36,14 +14,13 @@ const ModeToggler = (props) => {
     const savedMode = localStorage.getItem("darkMode");
     return savedMode === "true";
   });
-  const {updateLogo} = UseOrg();
+  const { updateLogo } = UseOrg();
   const handleModeToggle = () => {
-    updateLogo(settings.mode != 'light');
+    updateLogo(settings.mode != "light");
     if (settings.mode === "light") {
       localStorage.setItem("darkMode", "true");
       handleModeChange("dark");
       document.body.classList.add("dark");
-
     } else {
       localStorage.setItem("darkMode", "false");
 
@@ -66,7 +43,6 @@ const ModeToggler = (props) => {
       document.body.classList.add("dark");
     }
   }, []);
-
 
   return (
     <IconButton color="inherit" aria-haspopup="true" onClick={handleModeToggle}>

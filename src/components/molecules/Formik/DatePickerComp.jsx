@@ -73,7 +73,7 @@ export default function DatePickerComp({
           </div>
         )}
         <DatePicker
-          className="bg-white rounded-[10px] w-full "
+          className="bg-white dark:bg-dark-primary rounded-[10px] w-full "
           name={name}
           defaultValue={values[name] ? dayjs(values[name]) : null}
           onChange={(newValue) => {
@@ -89,9 +89,9 @@ export default function DatePickerComp({
           }}
         />
         {valueHijri && (
-          <p className="flex items-center gap-2 mt-1 ">
+          <p className="flex items-center gap-2 mt-1 dark:text-white">
             <Icon path={mdiCalendarMonthOutline} size={0.8} />
-            <span className="font- ">{convertArabicToEnglish(valueHijri)}</span>
+            <span className="dark:text-white ">{convertArabicToEnglish(valueHijri)}</span>
             هـ
           </p>
         )}

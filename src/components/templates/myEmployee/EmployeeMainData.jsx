@@ -20,8 +20,8 @@ export default function EmployeeMainData({
         title={t("Add Employee")}
         styleHead={{ color: theme.palette.primary.main }}
       />
-      <div className="grid items-start grid-cols-2 gap-2 px-5 max-h-[32rem] h-full overflow-y-scroll scroll_main">
-      <h1 className="flex items-center col-span-12 gap-1 py-2 text-xl font-medium">
+      <div className="grid items-start grid-cols-2 gap-2 px-5 max-h-[32rem] h-full overflow-y-scroll scroll_main ">
+      <h1 className="flex items-center col-span-12 gap-1 py-2 text-xl font-medium dark:text-white">
         <Icon path={mdiAccountBoxOutline} size={1} />
         {t("employee Data")}:
       </h1>
@@ -64,7 +64,7 @@ export default function EmployeeMainData({
         <div className="col-span-12 pb-8 pt-9">
           <Divider />
         </div>
-        <h1 className="flex col-span-12 gap-1 pb-3 text-xl font-medium item-center">
+        <h1 className="flex col-span-12 gap-1 pb-3 text-xl font-medium item-center dark:text-white">
         <Icon path={mdiFileDocumentOutline} size={1} />
 
          {t("attachments")}:
