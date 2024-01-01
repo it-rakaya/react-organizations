@@ -1,4 +1,3 @@
-import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import ModalComp from "../../components/atoms/ModalComp";
 import AccountSetting from "../../components/organisms/profile/AccountSetting";
