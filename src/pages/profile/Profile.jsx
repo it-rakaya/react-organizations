@@ -10,10 +10,10 @@ export default function Profile() {
   const [editUser, setEditUser] = useState(false);
   const { user, setUser } = useAuth();
   const { orgData } = UseOrg();
-  const theme = useTheme();
-  const bgDynamic = theme?.palette?.primary?.main
-    ? theme?.palette?.primary?.main
-    : "#9f9685";
+  // const theme = useTheme();
+  // const bgDynamic = theme?.palette?.primary?.main
+  //   ? theme?.palette?.primary?.main
+  //   : "#9f9685";
   return (
     <div
       className="grid grid-cols-12 gap-5 h-[calc(100vh)]"

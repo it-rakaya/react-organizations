@@ -8,7 +8,7 @@ import AfterAndBeforeFacility from "./AfterAndBeforeFacility";
 import FacilityControl from "./FacilityControl";
 import useFetch from "../../hooks/useFetch";
 
-function MainContent({ activeStep, steps, setActiveStep }) {
+function MainContent({ activeStep, steps, setActiveStep, DetailsFacilities , update , idFacility }) {
   const [open, setOpen] = useState(false);
   const { data: attachments_facilities } = useFetch({
     endpoint: `attachments-labels/facilities`,
@@ -38,7 +38,10 @@ function MainContent({ activeStep, steps, setActiveStep }) {
       case 3:
         return (
           <Fragment key={step}>
-            <StepTwo attachments_facilities={attachments_facilities} />
+            <StepTwo
+              attachments_facilities={attachments_facilities}
+              DetailsFacilities={DetailsFacilities}
+            />
           </Fragment>
         );
       default:
@@ -56,9 +59,10 @@ function MainContent({ activeStep, steps, setActiveStep }) {
           setOpen={setOpen}
           steps={steps}
           attachments_facilities={attachments_facilities}
+          update={update}
         />
       </div>
-      <FacilityControl open={open} setOpen={setOpen} />
+      <FacilityControl open={open} setOpen={setOpen}  update={update} idFacility={idFacility}/>
     </div>
   );
 }

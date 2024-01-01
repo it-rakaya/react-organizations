@@ -1,52 +1,61 @@
-import useFetch from "../../hooks/useFetch";
+/* eslint-disable react/prop-types */
+import { t } from "i18next";
 import BaseInputField from "../molecules/Formik/BaseInputField";
 import DatePickerComp from "../molecules/Formik/DatePickerComp";
 import PhoneInput2 from "../molecules/Formik/PhoneInput2";
 import SelectCountry from "../molecules/SelectCountry";
-import UploadImage from "../molecules/UploadImage";
-import { t } from "i18next";
+import UploadImage from "../molecules/uploadImage/UploadImage";
+import { useEffect } from "react";
+import { useFormikContext } from "formik";
 
-function RegistrationMainData() {
-  
-  const { data: attachments_register } = useFetch({
-    endpoint: `attachments-labels/users`,
-    queryKey: ["attachments_register"],
-  });
-  console.log("🚀 ~ file: RegistrationMainData.jsx:15 ~ RegistrationMainData ~ attachments_register:", attachments_register)
-
+function RegistrationMainData({ attachments_register }) {
+  const { setFieldValue, values } = useFormikContext();
+  useEffect(() => {
+    if (values.national_id.startsWith("1")) {
+      setFieldValue("nationality", "192");
+    } else {
+      setFieldValue("nationality", "");
+    }
+  }, [values.national_id, setFieldValue]);
   return (
     <div>
       <BaseInputField
         label={t("registration.nameLabel")}
         placeholder={t("registration.namePleaceholder")}
         name="name"
+        required
       />
       <BaseInputField
         label={t("registration.IDNumberLabel")}
-        placeholder="10********"
+        placeholder="********10"
         name="national_id"
         type="custom"
         maxNum={10}
+        required
       />
-      <PhoneInput2 name="phone" label={t("registration.phoneLabel")} />
+      <PhoneInput2 name="phone" label={t("registration.phoneLabel")} required />
       <BaseInputField
         label={t("registration.emailLabel")}
         placeholder="Example@example.com"
         name="email"
+        required
       />
 
       <SelectCountry
         label={t("registration.countryLabel")}
         name={"nationality"}
+        required
       />
       <DatePickerComp
         name="birthday"
         label={t("registration.birthdayDateLabel")}
+        required
       />
       <DatePickerComp
         name="national_id_expired"
         name_hj="national_id_expired_hj"
         label={t("registration.IDDateLabel")}
+        required
       />
       <div>
         {attachments_register?.attachment_labels?.map((item) => (
@@ -57,6 +66,7 @@ function RegistrationMainData() {
             // id={item?.id}
             accept={item?.extensions}
             placeholder={item?.placeholder}
+            isRequired={item?.is_required == 1 ? true : false}
           />
         ))}
       </div>

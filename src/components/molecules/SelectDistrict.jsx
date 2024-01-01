@@ -19,6 +19,7 @@ export default function SelectDistrict({
   index,
 }) {
   const { setFieldValue, values } = useFormikContext();
+  console.log("🚀 ~ file: SelectDistrict.jsx:22 ~ values:", values)
 
   const { data: district, isLoading } = useFetch({
     endpoint: `saudi-districts?city_id=${values?.city}`,
@@ -29,11 +30,12 @@ export default function SelectDistrict({
     value: item.id,
     label: item.name_ar,
   }));
-  const selectedCity = options?.find((option) => option?.value == values[name]);
+  const selectedDistrict = options?.find((option) => option?.value == values[name]);
+  console.log("🚀 ~ file: SelectDistrict.jsx:34 ~ selectedDistrict:bbbbbbbbbbbbbbb", selectedDistrict)
 
-  useEffect(() => {
-    setFieldValue(name, "");
-  }, [values?.city, name, setFieldValue]);
+  // useEffect(() => {
+  //   setFieldValue(name, "");
+  // }, [values?.city, name, setFieldValue]);
 
   return (
     <div className={className}>
@@ -64,7 +66,7 @@ export default function SelectDistrict({
         <Select
           options={options}
           name={name}
-          value={selectedCity ? selectedCity : ""}
+          value={selectedDistrict ? selectedDistrict :""}
           isLoading={!!isLoading}
           isDisabled={!district?.districts?.length}
           placeholder={

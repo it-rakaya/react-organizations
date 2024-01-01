@@ -10,6 +10,7 @@ function AfterAndBeforeFacility({
   setOpen,
   steps,
   attachments_facilities,
+  update
 }) {
   const { values, errors } = useFormikContext();
 
@@ -59,6 +60,7 @@ function AfterAndBeforeFacility({
     // address: "",
     tax_certificate: "",
   };
+
   const initialCase1 = {
     street_name: "",
     neighborhood: "",
@@ -94,12 +96,13 @@ function AfterAndBeforeFacility({
           attachments_facilities?.attachment_labels.length || 0;
         const actualAttachmentsLength = filteredAttachmentLabels?.length || 0;
 
-        return attachmentsLength !== actualAttachmentsLength;
+        return update ? '' : attachmentsLength !== actualAttachmentsLength;
       default:
         return false;
     }
   };
   // const validateImages = () => {
+  //   // Loop through the images and check if required images have values
   //   attachments_facilities?.attachment_labels.forEach((item) => {
   //     if (item.is_required && !values[`attachments[${item.id || item.attachment_id}]`]) {
   //       setFieldError(`attachments[${item.id || item.attachment_id}]`, "Image is required");

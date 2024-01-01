@@ -6,6 +6,7 @@ import { styled } from "@mui/material/styles";
 import defaultImage from "../../../../public/profile pic1.png";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import { t } from "i18next";
+import { convertArabicToEnglish, convertToHijri } from "../../../utils/helpers";
 
 const ProfilePicture = styled("img")(({ theme }) => ({
   width: 150,
@@ -21,7 +22,6 @@ const ProfilePicture = styled("img")(({ theme }) => ({
 }));
 
 const UserProfileHeader = ({ user, setEditUser }) => {
-  console.log("🚀 ~ file: UserProfileHeader.jsx:24 ~ UserProfileHeader ~ user:", user)
   return (
     <div>
       <Card className="flex flex-col items-center justify-center bg-transparent shadow-none">
@@ -60,9 +60,12 @@ const UserProfileHeader = ({ user, setEditUser }) => {
           </div>
           <div className="flex gap-2 mt-4">
             <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
-              <p>
-                {t("Birthday")} :{user?.birthday}
-              </p>
+              <div className="flex gap-1">
+                <p>{t("Birthday")} :</p>
+                <p>{user?.birthday}</p>/
+                <p>{convertArabicToEnglish(convertToHijri(user?.birthday))}</p>
+                هـ
+              </div>
             </Typography>
           </div>
         </div>
@@ -79,8 +82,16 @@ const UserProfileHeader = ({ user, setEditUser }) => {
           <div className="flex gap-2 mt-4">
             <Typography sx={{ color: "text.secondary", fontWeight: 600 }}>
               <p>
-                {" "}
-                {t("National ID Expired")} :{user?.national_id_expired}
+                <div className="flex gap-1">
+                  {t("National ID Expired")} :<p>{user?.national_id_expired}</p>
+                  /
+                  <p>
+                    {convertArabicToEnglish(
+                      convertToHijri(user?.national_id_expired)
+                    )}
+                  </p>
+                  هـ
+                </div>
               </p>
             </Typography>
           </div>

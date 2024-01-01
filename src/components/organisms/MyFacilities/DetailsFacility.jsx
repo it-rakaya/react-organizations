@@ -16,7 +16,6 @@ import DetailsFacilityData from "./DetailsFacilityData";
 import NationalAdressData from "./NationalAdressData";
 
 export default function DetailsFacility({ data, className }) {
-  console.log("🚀 ~ file: DetailsFacility.jsx:19 ~ DetailsFacility ~ data:", data)
   const theme = useTheme();
   const mainColor = theme?.palette?.primary?.main;
   const [value, setValue] = useState("1");
@@ -40,7 +39,7 @@ export default function DetailsFacility({ data, className }) {
               onChange={handleChange}
               aria-label="nav tabs example"
               orientation="vertical"
-              className="w-[30%] tab_facility"
+              className="w-[30%] tab_facility border-l-transparent"
             >
               <Tab
                 value="1"

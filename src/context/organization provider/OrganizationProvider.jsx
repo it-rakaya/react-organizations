@@ -71,7 +71,7 @@ export const OrganizationProvider = ({ children }) => {
     });
   };
   return (
-    <OrgContext.Provider value={{ orgData, refetch, isRefetching, updateLogo , isLoading }}>
+    <OrgContext.Provider value={{ orgData, refetch, isRefetching, updateLogo , isLoading , isSuccess }}>
       {children}
     </OrgContext.Provider>
   );

@@ -5,12 +5,12 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { t } from "i18next";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
-
 import { useEffect } from "react";
 import LoginIcon from "../../components/atoms/icons/LoginIcon";
 import LoginForm from "../../components/templates/LoginForm";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useSettings } from "../../hooks/useSettings";
+import Loading from "../../components/molecules/Loading";
 
 const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -19,16 +19,6 @@ const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
     padding: theme.spacing(10),
   },
 }));
-
-// const LoginIllustration = styled("img")(({ theme }) => ({
-//   maxWidth: "50rem",
-//   [theme.breakpoints.down("xl")]: {
-//     maxWidth: "50rem",
-//   },
-//   [theme.breakpoints.down("lg")]: {
-//     maxWidth: "30rem",
-//   },
-// }));
 
 const RightWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -56,7 +46,7 @@ const TypographyStyled = styled(Typography)(({ theme }) => ({
 
 const Login = () => {
   const navigate = useNavigate();
-  const { orgData } = UseOrg();
+  const { orgData, isSuccess, isRefetching } = UseOrg();
   const theme = useTheme();
   const { settings } = useSettings();
   const hidden = useMediaQuery(theme.breakpoints.down("md"));
@@ -71,7 +61,7 @@ const Login = () => {
       navigate("/");
     }
   }, [navigate, token]);
-  // const imageSource = skin === 'bordered' ? 'auth-v2-login-illustration-bordered' : 'auth-v2-login-illustration'
+  if (!isSuccess || isRefetching) return <Loading />;
   if (!token) {
     return (
       <div className="">
@@ -86,7 +76,6 @@ const Login = () => {
             <Box
               sx={{
                 p: 7,
-                // height: "100%",
                 display: "flex",
                 alignItems: "center",
                 flexDirection: "column",
@@ -97,11 +86,10 @@ const Login = () => {
               }}
               className="scroll_main"
             >
-              
               <Box
                 sx={{
                   display: "flex",
-
+                  cursor: "pointer",
                   justifyContent: "center",
                 }}
               >
@@ -161,11 +149,6 @@ const Login = () => {
               }}
             >
               <LoginIllustrationWrapper>
-                {/* <LoginIllustration
-                  alt="login-illustration"
-                  // src={`/images/pages/${imageSource}-${theme.palette.mode}.png`}
-                  src={imgLogin}
-                /> */}
                 <LoginIcon />
               </LoginIllustrationWrapper>
               {/* <FooterIllustrationsV2 /> */}

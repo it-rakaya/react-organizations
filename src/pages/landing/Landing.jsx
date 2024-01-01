@@ -1,33 +1,17 @@
 import { useTheme } from "@mui/material/styles";
-import { t } from "i18next";
-import { useEffect, useState } from "react";
 import bg2 from "../../assets/bg2.png";
 import Footer from "../../components/Landing/Footer";
 import Hero from "../../components/Landing/Hero";
-import Marquee from "../../components/Landing/Marquee";
 import Navbar from "../../components/Landing/Navbar";
+import News from "../../components/Landing/News";
 import Loading from "../../components/molecules/Loading";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
 function Landing() {
   const { orgData, isLoading } = UseOrg();
-  const [news, setNews] = useState(["landing.rights"]);
   const theme = useTheme();
 
-  useEffect(() => {
-    setNews(["landing.rights"]);
-    if (orgData?.organizations?.organization_news)
-      orgData?.organizations?.organization_news.map((val) => {
-        setNews((prev) => [...prev, val.new]);
-      });
-  }, [orgData]);
-
-  const marqueeElementStyle =
-    "py-3 font-semibold text-white flex flex-row gap-10";
-  const organizationName = !orgData?.organizations?.name_ar
-    ? t("landing.organizationName")
-    : orgData?.organizations?.name_ar;
-    if (isLoading) return <Loading/> 
+  if (isLoading) return <Loading />;
   return (
     <div className="relative w-screen overflow-hidden lg:h-screen" dir="ltr">
       <div className="w-screen h-full absolute flex justify-end z-[-10000]">
@@ -76,35 +60,9 @@ function Landing() {
         </div>
       </div>
       {/* > 1 because news is always larger than 1 since it has All rights message */}
-      <Marquee disabled={news.length <= 1}>
-        <div
-          className={`flex items-center ${
-            news.length <= 1 ? "justify-center" : "justify-between"
-          } w-screen`}
-        >
-          {news.map((val, index) => {
-            return (
-              <>
-                {index != 0 && (
-                  <h4 className={`${marqueeElementStyle} px-2`}>|</h4>
-                )}
-                <h4 className={`${marqueeElementStyle} px-2`} key={index}>
-                  {index == 0 ? `${t("landing.rights")}` : val}{" "}
-                  {index == 0 && <>&copy;</>}{" "}
-                  {index == 0
-                    ? `${t(
-                        "landing.for"
-                      )}${organizationName} ${new Date().getUTCFullYear()}`
-                    : ""}
-                </h4>
-              </>
-            );
-          })}
-        </div>
-      </Marquee>
+      <News />
     </div>
-    
-  ) 
+  );
 }
 
 export default Landing;

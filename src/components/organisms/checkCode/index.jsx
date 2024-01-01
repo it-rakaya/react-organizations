@@ -11,10 +11,9 @@ export default function CheckCode({
   setValueOTP,
   sendOTP,
   userData,
-  login
+  login,
 }) {
   const [values, setValues] = useState(["", "", "", ""]);
-  console.log("🚀 ~ file: index.jsx:17 ~ values:", values.join("").length)
   const [availableResetCode, setAvailableResetCode] = useState(false);
   const [timerStarted, setTimerStarted] = useState(true);
   const [colorPinInput, setColorPinInput] = useState("");
@@ -25,13 +24,12 @@ export default function CheckCode({
 
   const handleSendTime = () => {
     if (availableResetCode) {
-      if(login){
+      if (login) {
         sendOTP({
           ...valuesForm,
           organization_id: orgData?.organizations?.id,
         });
-      }else{
-        
+      } else {
         sendOTP({
           phone: userData?.phone,
           phone_code: userData?.phone_code,
@@ -47,8 +45,8 @@ export default function CheckCode({
   return (
     <>
       <div className="lex ">
-        <div className="flex flex-col items-center justify-center   gap-5  shadow-main bg-[#FFF] rounded-xl pt-0 p-10 dark:bg-inherit">
-          <h1 className="font-bold">أدخل رمز التحقق </h1>
+        <div className="flex flex-col items-center justify-center   gap-5  shadow-main bg-[#FFF] rounded-xl  pt-5 dark:bg-inherit">
+          <h1 className="text-xl font-bold">أدخل رمز التحقق </h1>
           <p className="text-center">
             رقم التحقق مطلوب لإكمال العملية لقد تم إرسال رمز التحقق في رسالة
             إليكم
@@ -64,16 +62,16 @@ export default function CheckCode({
               placeholder="x"
               onChange={(value, index, values) => {
                 setValues(values);
-                if ( values.join("").length == 4) {
+                if (values.join("").length == 4) {
                   setValueOTP(values.join(""));
-                  setColorPinInput('#eee');
+                  setColorPinInput("#eee");
                 } else {
                   // setColorPinInput("rgb(220,53,69)");
                 }
               }}
               onComplete={(values) => {
                 if (values.join("").length === 4) {
-                  setColorPinInput('#eee');
+                  setColorPinInput("#eee");
                 } else {
                   setColorPinInput("rgb(220,53,69)");
                 }
@@ -90,7 +88,7 @@ export default function CheckCode({
           />
           {availableResetCode && (
             <Button
-              className={`!w-2/3 !rounded-md !border !border-solid hover:shadow-lg hover:!text-white`}
+              className={`w-[160px] h-[40px] !rounded-md !border !border-solid hover:shadow-lg hover:!text-white`}
               style={{
                 borderColor: theme?.palette?.primary.main,
                 color: theme?.palette?.primary.main,
@@ -106,7 +104,7 @@ export default function CheckCode({
             >
               إعادة الإرسال
             </Button>
-          )} 
+          )}
         </div>
       </div>
     </>

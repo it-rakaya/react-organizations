@@ -21,23 +21,23 @@ function DeleteEMployee({ refetch, employeeId, setModelDeleteEMployee }) {
     formData: true,
   });
   return (
-    <div className="flex flex-col items-center justify-center gap-5 p-10 align-middle">
+    <div className="flex flex-col items-center justify-center p-10 align-middle gap-7">
       <div>
         <TermsConditionIcon />
       </div>
-      <div className="flex flex-col items-center gap-5">
+      <div className="flex flex-col items-center gap-7">
         <div>هل انت متاكد من حذف هذا الموظف ؟ </div>
         <Grid xs={12} sm={12} md={12} xl={12}>
           <ButtonComp
             variant="contained"
-            className="mx-5 border-2 border-solid border-contained bg-contained w-[90px] h-[40px]"
+            className="mx-1 border-2 border-solid border-contained bg-contained w-[120px] h-[40px] !mt-0"
             action={() => DeleteEMployee({})}
             loading={isPending}
           >
             موافق
           </ButtonComp>
           <ButtonComp
-            className="mx-5 border-2 border-solid border-contained !text-contained w-[90px] h-[40px]"
+            className="mx-1 border-2 border-solid border-contained !text-contained w-[120px] h-[40px] !mt-0"
             action={() => setModelDeleteEMployee(false)}
             variant="outline"
           >

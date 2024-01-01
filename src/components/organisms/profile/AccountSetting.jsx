@@ -1,14 +1,12 @@
 /* eslint-disable react/prop-types */
+import { useTheme } from "@mui/material/styles";
 import { Form, Formik } from "formik";
 import { useMutate } from "../../../hooks/useMutate";
+import { convertToHijri } from "../../../utils/helpers";
 import { notify } from "../../../utils/toast";
 import MainHeader from "../../atoms/MainHeader";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
-import BaseInputField from "../../molecules/Formik/BaseInputField";
-import DatePickerComp from "../../molecules/Formik/DatePickerComp";
-import PhoneInput2 from "../../molecules/Formik/PhoneInput2";
-import SelectCountry from "../../molecules/SelectCountry";
-import UploadImage from "../../molecules/UploadImage";
+import AccountSettingMainData from "./AccountSettingMainData";
 
 export default function AccountSetting({ userData, setEditUser, setUser }) {
   const initialValue = {
@@ -21,7 +19,9 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
     birthday: userData?.birthday,
     photo: userData?.photo,
     national_id_expired: userData?.national_id_expired,
+    national_id_expired_hj: convertToHijri(userData?.national_id_expired),
     favourit_organizations: userData?.favourit_organizations,
+    birthday_hj: convertToHijri(userData?.birthday),
   };
 
   const { mutate: UpdateUser, isPending } = useMutate({
@@ -36,69 +36,24 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
       notify("error", err?.response?.data.message);
     },
   });
+  const theme = useTheme();
 
   return (
     <div>
-      <MainHeader title={`  تعديل البيانات `} />
+      <MainHeader
+        title={`  تعديل البيانات `}
+        styleHead={{ color: theme.palette.primary.main }}
+      />
       <Formik
         initialValues={initialValue}
         onSubmit={(value) => UpdateUser(value)}
       >
         <Form>
-          <div className="grid items-start grid-cols-2 gap-2 !overflow-y-scroll !shadow-none h-[27rem]  scroll_main m-3 p-5">
-            <div>
-              <BaseInputField
-                label="الاسم الكامل "
-                placeholder="محمد احمد محمد"
-                name="name"
-              />
-            </div>
-            <div>
-              <BaseInputField
-                label=" رقم الهوية "
-                placeholder="10********"
-                name="national_id"
-              />
-            </div>
-            <div>
-              <PhoneInput2 name="phone" label={"رقم الهاتف"} />
-            </div>
-            <div>
-              <BaseInputField
-                label="البريد الإلكتروني"
-                placeholder="Example@example.com"
-                name="email"
-              />
-            </div>
-            <div>
-              <SelectCountry label={"الدولة"} name={"nationality"} />
-            </div>
-            <div className="flex flex-col col-span-1 gap-3 ">
-              <DatePickerComp name="birthday" label={"تاريخ  الميلاد"} />
-            </div>
-
-            <div className="flex flex-col col-span-2 gap-3 ">
-              <DatePickerComp
-                name="national_id_expired"
-                label={"تاريخ انتهاء الاقامه"}
-              />
-            </div>
-            <div>
-              {userData?.attachments?.map((item) => (
-                <UploadImage
-                  key={item.id}
-                  name={`attachments[${item?.id}]`}
-                  label={item?.attachment_label?.placeholder}
-                  placeholder={item?.attachment_label?.placeholder}
-                />
-              ))}
-            </div>
-
-            <div className="flex justify-end col-span-2">
-              <ButtonComp className="w-auto" loading={isPending}>
-                تعديل
-              </ButtonComp>
-            </div>
+          <AccountSettingMainData userData={userData} />
+          <div className="flex justify-end col-span-2 px-8">
+            <ButtonComp className="w-auto" loading={isPending}>
+              تعديل
+            </ButtonComp>
           </div>
         </Form>
       </Formik>

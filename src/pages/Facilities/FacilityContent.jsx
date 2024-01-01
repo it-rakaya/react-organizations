@@ -121,7 +121,7 @@ function FacilityContent({
         height: "calc(100vh - 280px)",
         overflowY: "scroll",
       }}
-      className="bg-transparent shadow-none  scroll_main"
+      className="bg-transparent shadow-none scroll_main"
     >
       <CardContent className="h-full pt-0 bg-transparent">
         <Formik

@@ -153,6 +153,7 @@ const Home = () => {
         open={open}
         hidden
         onClose={() => {}}
+        className="!max-w-[550px]  "
         Children={
           <VerifyUser
             userData={user}
@@ -161,7 +162,6 @@ const Home = () => {
             sendOTP={sendOTP}
           />
         }
-        className={"w-1/2"}
       />
     </ApexChartWrapper>
   );
