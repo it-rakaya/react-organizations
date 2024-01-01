@@ -10,19 +10,19 @@ import LayoutAppBar from "../components/organisms/Navbar/appBar/LayoutAppBar";
 import { SideBar } from "../components/organisms/Sidebar/Sidebar";
 import { useAuth } from "../context/auth-and-perm/AuthProvider";
 import { useSettings } from "../hooks/useSettings";
+import Footer from "./Footer";
 
 export const Root = ({ props }) => {
   const [openSide, setOpenSide] = useState(false);
   const [, setShowOverlay] = useState(false);
   const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [collapsed, setCollapsed] = React.useState(false);
-  console.log("🚀 ~ file: Root.jsx:19 ~ Root ~ collapsed:", collapsed);
   const [toggled, setToggled] = React.useState(false);
-  console.log("🚀 ~ file: Root.jsx:20 ~ Root ~ toggled:", toggled);
-
-  const navigate = useNavigate();
-  const [changeStyle, setChangeStyle] = useState(false);
+  const token = Cookies.get("token");
   const { user } = useAuth();
+  const navigate = useNavigate();
+
+  // const [, setChangeStyle] = useState(false);
 
   useEffect(() => {
     setShowOverlay(openSide);
@@ -45,26 +45,26 @@ export const Root = ({ props }) => {
     //   document.body.removeAttribute("sidebar-collapsed");
     // }
   };
-  useEffect(() => {
-    // إضافة معالج السحب إلى العنصر الذي له الكلاس "main"
-    const mainElement = document.querySelector(".main");
+  // useEffect(() => {
+  //   // إضافة معالج السحب إلى العنصر الذي له الكلاس "main"
+  //   const mainElement = document.querySelector(".main");
 
-    if (mainElement) {
-      const handleScroll = () => {
-        if (mainElement.scrollTop > 10) {
-          setChangeStyle(true);
-        } else {
-          setChangeStyle(false);
-        }
-      };
+  //   if (mainElement) {
+  //     const handleScroll = () => {
+  //       if (mainElement.scrollTop > 10) {
+  //         setChangeStyle(true);
+  //       } else {
+  //         setChangeStyle(false);
+  //       }
+  //     };
 
-      mainElement.addEventListener("scroll", handleScroll);
+  //     mainElement.addEventListener("scroll", handleScroll);
 
-      return () => {
-        mainElement.removeEventListener("scroll", handleScroll);
-      };
-    }
-  }, []);
+  //     return () => {
+  //       mainElement.removeEventListener("scroll", handleScroll);
+  //     };
+  //   }
+  // }, []);
   const { settings, saveSettings, contentWidth } = useSettings();
 
   const VerticalLayoutWrapper = styled("div")({
@@ -85,13 +85,13 @@ export const Root = ({ props }) => {
     flexGrow: 1,
     width: "100%",
     padding: theme.spacing(6),
+    
     transition: "padding .25s ease-in-out",
     [theme.breakpoints.down("sm")]: {
       paddingLeft: theme.spacing(4),
       paddingRight: theme.spacing(4),
     },
   }));
-  const token = Cookies.get("token");
 
   useEffect(() => {
     if (!token) {
@@ -113,10 +113,12 @@ export const Root = ({ props }) => {
       >
         {user?.is_verified && (
           <div
-            className={toggled ? "w-[20%]" : collapsed ? "w-[6%]" : " md:w-[23%]"}
+            className={
+              toggled ? "w-[20%]" : collapsed ? "w-[6%]" : " md:w-[23%]"
+            }
           >
             <OutsideClickHandler onOutsideClick={handleClickOutside}>
-              <div className="fixed z-[999]">
+              <div className="fixed z-[9]">
                 <SideBar
                   handleClickItem={handleClickOutside}
                   isSidebarCollapsed={isSidebarCollapsed}
@@ -165,15 +167,13 @@ export const Root = ({ props }) => {
                   }),
                 }}
               >
-                {/* <div className="mt-[0px] bg-[#f7f7f9]  h-screen py-5 m"> */}
                 <Outlet />
-                {/* </div> */}
+               {/* <Footer/> */}
               </ContentWrapper>
             </MainContentWrapper>
           </VerticalLayoutWrapper>
         </div>
 
-        {/* <Footer /> */}
       </div>
     );
   } else {

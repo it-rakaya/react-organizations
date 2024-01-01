@@ -10,6 +10,7 @@ import { UseOrg } from "../../context/organization provider/OrganizationProvider
 import { useSettings } from "../../hooks/useSettings";
 import { useEffect } from "react";
 import { t } from "i18next";
+import Loading from "../../components/molecules/Loading";
 
 const RegisterIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -53,7 +54,7 @@ const Register = () => {
   const { skin } = settings;
   const token = Cookies.get("token");
   const navigate = useNavigate();
-  const { orgData } = UseOrg();
+  const { orgData, isSuccess , isRefetching } = UseOrg();
   const organizationName = !orgData?.organizations?.name_ar
     ? t("landing.organizationName")
     : orgData?.organizations?.name_ar;
@@ -70,7 +71,7 @@ const Register = () => {
       navigate("/");
     }
   }, [navigate, token]);
-
+  if (!isSuccess || isRefetching) return <Loading />;
   if (!token) {
     return (
       <Box className="flex content-right">

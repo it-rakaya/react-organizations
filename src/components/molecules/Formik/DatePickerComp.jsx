@@ -9,6 +9,7 @@ import { FormikError } from "./FormikError";
 import { convertArabicToEnglish } from "../../../utils/helpers";
 import { mdiCalendarMonthOutline, mdiInformationOutline } from "@mdi/js";
 import Icon from "@mdi/react";
+import Label from "../Label";
 
 export default function DatePickerComp({
   name,
@@ -46,12 +47,12 @@ export default function DatePickerComp({
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="w-full">
-        <label className="block  my-[0.75rem]">
+        <Label>
           {label}
           <span className="mx-1 text-red-500">
             {required == "1" ? "*" : ""}
           </span>
-        </label>
+        </Label>
         {showIcon && (
           <div
             className="my-1 cursor-pointer w-fit"

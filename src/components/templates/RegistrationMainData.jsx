@@ -5,8 +5,18 @@ import DatePickerComp from "../molecules/Formik/DatePickerComp";
 import PhoneInput2 from "../molecules/Formik/PhoneInput2";
 import SelectCountry from "../molecules/SelectCountry";
 import UploadImage from "../molecules/uploadImage/UploadImage";
+import { useEffect } from "react";
+import { useFormikContext } from "formik";
 
 function RegistrationMainData({ attachments_register }) {
+  const { setFieldValue, values } = useFormikContext();
+  useEffect(() => {
+    if (values.national_id.startsWith("1")) {
+      setFieldValue("nationality", "192");
+    } else {
+      setFieldValue("nationality", "");
+    }
+  }, [values.national_id, setFieldValue]);
   return (
     <div>
       <BaseInputField
@@ -17,13 +27,13 @@ function RegistrationMainData({ attachments_register }) {
       />
       <BaseInputField
         label={t("registration.IDNumberLabel")}
-        placeholder="10********"
+        placeholder="********10"
         name="national_id"
         type="custom"
         maxNum={10}
         required
       />
-      <PhoneInput2 name="phone" label={t("registration.phoneLabel")}  />
+      <PhoneInput2 name="phone" label={t("registration.phoneLabel")} required />
       <BaseInputField
         label={t("registration.emailLabel")}
         placeholder="Example@example.com"
@@ -56,7 +66,7 @@ function RegistrationMainData({ attachments_register }) {
             // id={item?.id}
             accept={item?.extensions}
             placeholder={item?.placeholder}
-            isRequired={ item?.is_required == 1 ? true : false}
+            isRequired={item?.is_required == 1 ? true : false}
           />
         ))}
       </div>

@@ -12,6 +12,8 @@ import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import { FormikError } from "./FormikError";
 import { mdiInformationOutline } from "@mdi/js";
 import Icon from "@mdi/react";
+import { useTheme } from "@mui/material/styles";
+import Label from "../Label";
 
 export default function BaseInputField({
   label,
@@ -31,6 +33,7 @@ export default function BaseInputField({
   const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
     useFormikContext();
   const [showPassword, setShowPassword] = useState(false);
+  const theme = useTheme();
 
   // !! type custom == type number ==> but im used this type in other name because in type number is MUI is given is problem
   const handleChangeNumber = (e) => {
@@ -88,21 +91,26 @@ export default function BaseInputField({
         </FormControl>
       ) : (
         <>
-          <label className="flex my-[0.75rem] relative">
+          {/* <label
+            className="flex my-[0.75rem] relative  font-bold"
+            style={{ color: theme.palette.primary?.main }}
+          > */}
+          <Label>
             {label}
             <span className="mx-1 text-red-500">
               {required == "1" ? "*" : ""}
             </span>
-          </label>
+          </Label>
+          {/* </label> */}
           {showIcon && (
-          <div
-            className="my-1 cursor-pointer w-fit"
-            onClick={() => {
-              setShow(true);
-              setIndex(index);
-            }}
-          >
-            <div className="flex items-center gap-1">
+            <div
+              className="my-1 cursor-pointer w-fit"
+              onClick={() => {
+                setShow(true);
+                setIndex(index);
+              }}
+            >
+              <div className="flex items-center gap-1">
                 <>
                   <span className="text-[10px] text-[#80b3f0]">
                     {" "}
@@ -110,9 +118,9 @@ export default function BaseInputField({
                   </span>
                   <Icon path={mdiInformationOutline} size={0.7} />
                 </>
+              </div>
             </div>
-          </div>
-              )}
+          )}
           <TextField
             // autoFocus
             placeholder={placeholder}

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // ** MUI Imports
 import { styled, useTheme } from '@mui/material/styles'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
@@ -31,15 +32,10 @@ const Toolbar = styled(MuiToolbar)(({ theme }) => ({
 }))
 
 const LayoutAppBar =props => {
-  // ** Props
   const { settings, appBarProps, appBarContent } = props
 
-  // ** Hooks
   const theme = useTheme()
   const scrollTrigger = useScrollTrigger({ threshold: 0, disableHysteresis: true })
-
-  // ** Vars
-  // eslint-disable-next-line react/prop-types
   const { skin, appBar, appBarBlur, contentWidth } = settings
 
   const appBarFixedStyles = () => {
@@ -75,7 +71,7 @@ const LayoutAppBar =props => {
         sx={{
           ...(appBar === 'fixed' && scrollTrigger && { ...appBarFixedStyles() }),
           ...(contentWidth === 'boxed' && {
-            '@media (min-width:1440px)': { maxWidth: `calc(1440px - ${theme.spacing(6)} * 2)` }
+            '@media (min-width:1440px)': { maxWidth: `calc(1440px - ${theme.spacing(3)} * 2)` }
           })
         }}
       >

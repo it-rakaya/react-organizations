@@ -9,7 +9,7 @@ import {
   RadioGroup,
 } from "@mui/material";
 
-function TermsAndCondition({checked ,setChecked }) {
+function TermsAndCondition({checked ,setChecked , hidden }) {
   const { orgData } = UseOrg();
 
   return (
@@ -56,6 +56,10 @@ function TermsAndCondition({checked ,setChecked }) {
           </ul>
         </div>
       )}
+      {
+        hidden ? 
+      ''  
+        : 
       <div className="flex justify-center mt-5 ">
         <FormControl>
           <RadioGroup
@@ -77,6 +81,7 @@ function TermsAndCondition({checked ,setChecked }) {
           </RadioGroup>
         </FormControl>
       </div>
+      }
     </div>
   );
 }

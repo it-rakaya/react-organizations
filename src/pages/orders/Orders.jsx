@@ -15,6 +15,7 @@ import { UseOrg } from "../../context/organization provider/OrganizationProvider
 import useFetch from "../../hooks/useFetch";
 import { notify } from "../../utils/toast";
 import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
+import { convertArabicToEnglish, convertToHijri } from "../../utils/helpers";
 export default function Orders() {
   const [openAddFaculty, setOpenAddFaculty] = useState(false);
   const [openDetailsOrder, setOpenDetailsOrder] = useState(false);
@@ -139,6 +140,39 @@ export default function Orders() {
             }}
           >
             {row.status?.name_ar}
+          </Typography>
+        );
+      },
+    },
+    {
+      flex: 0.15,
+      headerName: t("create at"),
+      field: "created_at",
+      cellClassName: "flex !px-0 !justify-center",
+      headerAlign: "center",
+      renderCell: ({ row }) => {
+        return (
+          <Typography
+            variant="subtitle1"
+            noWrap
+            sx={{
+              textTransform: "capitalize",
+              // backgroundColor: row?.status?.color,
+              // color: "white",
+              // borderRadius: "5px",
+              // padding: "0 10px",
+            }}
+          >
+            <div className="flex gap-1">
+              <p className="text-[15px]">{row?.created_at?.slice(0, 10)}</p>
+              /
+              <p className="text-[15px]">
+                {convertArabicToEnglish(
+                  convertToHijri(row?.created_at?.slice(0, 10))
+                )}
+              </p>
+              هـ
+            </div>
           </Typography>
         );
       },

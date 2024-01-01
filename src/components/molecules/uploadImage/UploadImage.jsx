@@ -16,6 +16,7 @@ import PreviewPdf from "../PreviewPdf";
 import Icon from "@mdi/react";
 import { mdiInformationOutline } from "@mdi/js";
 import { t } from "i18next";
+import Label from "../Label";
 
 const UploadImage = ({
   name,
@@ -35,7 +36,6 @@ const UploadImage = ({
     type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
     update: true,
   };
-  console.log("🚀 ~ file: UploadImage.jsx:38 ~ updateImage:", updateImage)
 
   const { setFieldValue, values } = useFormikContext();
 
@@ -50,7 +50,7 @@ const UploadImage = ({
   );
   const isLargeFile = files?.length && files[0]?.size > 5242880;
   const [invalidFormat, setInvalidFormat] = useState(false);
-  console.log("🚀 ~ file: UploadImage.jsx:52 ~ invalidFormat:", invalidFormat)
+
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: {
@@ -95,8 +95,12 @@ const UploadImage = ({
     <div className="relative w-full mt-5">
       <Box sx={files?.length ? { height: "" } : {}}>
         <h2 className="w-full px-3 mb-2 text-center rounded-md ">
-          {label}
-          <span className="text-red-500">{isRequired ? "*" : ""}</span>{" "}
+          <Label>
+            {label}
+            <span className="mx-1 text-red-500">
+              {isRequired == "1" ? "*" : ""}
+            </span>
+          </Label>
         </h2>
         <div className="relative w-full cursor-pointer">
           <div className="flex flex-col items-center ">
@@ -150,7 +154,7 @@ const UploadImage = ({
                 className="text-[#80b3f0]"
               />
               <p className="text-[14px] px-1 py-0 text-[#80b3f0]">
-                يرجى رفع الملف بهذه الصيغة{" "}
+                {t("Please upload the file in this format")}
                 {textAccept ? textAccept : "png - jpg - pdf"}
               </p>
             </div>
@@ -199,6 +203,18 @@ const UploadImage = ({
               updateImage?.value ? (
               <div className="w-full">
                 <PreviewPdf item={files[0]} />
+              </div>
+            ) : isLargeFile ? (
+              <div className="flex items-center p-2">
+                <Icon
+                  path={mdiInformationOutline}
+                  size={0.7}
+                  className="text-[#80b3f0]"
+                />
+                <p className="text-[14px] px-1 py-0 text-[#80b3f0]">
+                  {t("Please upload a file no larger than 5MB")}
+                  {/* {textAccept ? textAccept : "png - jpg - pdf"} */}
+                </p>
               </div>
             ) : (
               ""

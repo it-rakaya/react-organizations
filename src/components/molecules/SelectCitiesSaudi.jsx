@@ -5,6 +5,7 @@ import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
 import Icon from "@mdi/react";
 import { mdiInformationOutline } from "@mdi/js";
+import Label from "./Label";
 
 export default function SelectCitiesSaudi({
   name,
@@ -29,13 +30,19 @@ export default function SelectCitiesSaudi({
 
   return (
     <div className={className}>
-      <label className="block my-[0.75rem]">
+      {/* <label className="block my-[0.75rem]">
         {label}
         <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
-      </label>
+      </label> */}
+      <Label>
+            {label}
+            <span className="mx-1 text-red-500">
+              {required == "1" ? "*" : ""}
+            </span>
+          </Label>
       {showIcon && (
         <div
-          className="my-1 w-fit cursor-pointer"
+          className="my-1 cursor-pointer w-fit"
           onClick={() => {
             setShow(true);
             setIndex(index);

@@ -16,8 +16,8 @@ const style = {
   maxHeight: "90vh",
   overflowY: "scroll !important",
   p: 4,
-  border:"0", 
-  borderColor:"red",
+  border: "0",
+  borderColor: "red",
   // height:"100%"
 };
 
@@ -27,7 +27,7 @@ export default function ModalComp({
   Children,
   className,
   hidden,
-  classNameBox
+  classNameBox,
 }) {
   return (
     <div className="max-h-[350px]">
@@ -43,7 +43,7 @@ export default function ModalComp({
             ""
           ) : (
             <div
-              className="absolute ltr:!right-[20px] ltr:left-auto left-[20px] cursor-pointer  "
+              className="absolute ltr:!right-[20px] ltr:left-auto left-[20px] cursor-pointer top-[39px] "
               onClick={onClose}
             >
               <GridCloseIcon className="text-contained" />

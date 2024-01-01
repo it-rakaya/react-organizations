@@ -1,15 +1,18 @@
 /* eslint-disable react/prop-types */
+import { useTheme } from "@mui/material/styles";
 import { useFormikContext } from "formik";
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { tv } from "tailwind-variants";
+import Label from "../Label";
 import { FormikError } from "./FormikError";
 
-const PhoneInput2 = ({ label }) => {
+const PhoneInput2 = ({ label, required }) => {
   const [phone, setPhone] = useState("");
   const { setFieldValue, errors, handleBlur, values, touched } =
     useFormikContext();
+  const theme = useTheme();
 
   const handlePhoneChange = (value, selectedCountry, name, number) => {
     const modifiedPhone = +number
@@ -32,8 +35,13 @@ const PhoneInput2 = ({ label }) => {
 
   return (
     <div className="col-span-1 ">
-      <div className="flex flex-col gap-1 ">
-        <label className="my-[0.6rem]"> {label} </label>
+      <div className="flex flex-col ">
+        <Label>
+          {label}
+          <span className="mx-1 text-red-500">
+            {required == "1" ? "*" : ""}
+          </span>
+        </Label>
 
         <PhoneInput
           country={"sa"}

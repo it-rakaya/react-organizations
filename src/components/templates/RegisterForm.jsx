@@ -7,17 +7,18 @@ import { Form, Formik } from "formik";
 import { t } from "i18next";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { isValidSaudiID } from "saudi-id-validator";
 import * as Yup from "yup";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import useFetch from "../../hooks/useFetch";
 import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
-import ButtonComp from "../atoms/buttons/ButtonComp";
-import RegistrationMainData from "./RegistrationMainData";
-import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import ModalComp from "../atoms/ModalComp";
+import ButtonComp from "../atoms/buttons/ButtonComp";
 import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
-import { isValidSaudiID } from "saudi-id-validator";
-import useFetch from "../../hooks/useFetch";
+import RegistrationMainData from "./RegistrationMainData";
+import TermsAndCondition from "../molecules/TermsAndCondition";
 
 export default function RegisterForm() {
   const LinkStyled = styled(Link)(({ theme }) => ({
@@ -45,10 +46,6 @@ export default function RegisterForm() {
     endpoint: `attachments-labels/users`,
     queryKey: ["attachments_register"],
   });
-  console.log(
-    "🚀 ~ file: RegisterForm.jsx:48 ~ RegisterForm ~ attachments_register:",
-    attachments_register
-  );
 
   const ValidationSchema = () =>
     Yup.object({
@@ -106,7 +103,6 @@ export default function RegisterForm() {
       >
         {({ errors, values }) => (
           <Form>
-            {console.log("values", values)}
             <RegistrationMainData attachments_register={attachments_register} />
 
             <FormControlLabel
@@ -176,52 +172,7 @@ export default function RegisterForm() {
         onClose={() => setOpen(false)}
         Children={
           <>
-            <div className="relative mt-10 ">
-              <div className="flex flex-col items-center justify-center gap-2 mb-3 ">
-                <TermsConditionIcon />
-                <h1 className="text-xl font-bold ">
-                  {" "}
-                  {t("Terms & condition ")}
-                </h1>
-              </div>
-            </div>
-            {orgData?.organizations?.policies ? (
-              <div
-                className="main_content max-h-[450px] overflow-y-scroll scroll_main"
-                dangerouslySetInnerHTML={{
-                  __html: orgData?.organizations?.policies,
-                }}
-              ></div>
-            ) : (
-              <div className="main_content max-h-[450px] overflow-y-scroll scroll_main">
-                <p className="font-semibold text-center">
-                  بموافقتك على التسجيل بالمنصة فإنك تقر وتقبل الشروط والأحكام
-                  التالية:
-                </p>
-                <ul className="mx-4 text-start">
-                  <li className="my-2 text-[15px]">
-                    جميع البيانات والمرفقات المدخلة من قبلكم صحيحة ومحدثة ولا
-                    تتحمل المنصة أدنى مسؤولية في حالة كونها غير صحيحة أو غير
-                    مطابقة.
-                  </li>
-                  <li className="my-2 text-[15px]">
-                    في حالة إرفاق ملف في غير محله لغرض مِلء المتطلبات لن يتم
-                    النظر إليه ولن يتم قبولكم في المنصة.
-                  </li>
-                  <li className="my-2 text-[15px]">
-                    يجب أن يكون مستخدم المنصة يقدم خدمات الإعاشة ومصرح له بذلك.
-                  </li>
-                  <li className="my-2 text-[15px]">
-                    يحق للمنصة الإطلاع على البيانات المرفقة من قبلكم وحفظها
-                    لديها لأغراض تطوير المنصة.
-                  </li>
-                  <li className="my-2 text-[15px]">
-                    يخضع المسجل في المنصة لأحكامها وفي حالة تحديثها أو تعديلها
-                    سيتم إشعارك بذلك.
-                  </li>
-                </ul>
-              </div>
-            )}
+            <TermsAndCondition hidden={true} />
           </>
         }
       />

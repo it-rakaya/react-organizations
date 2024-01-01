@@ -4,10 +4,12 @@ import { t } from "i18next";
 import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
 import { FormikError } from "./Formik/FormikError";
+import Label from "./Label";
 
-export default function SelectCountry({ name, label, className }) {
+export default function SelectCountry({ name, label, className ,required }) {
   const { setFieldValue, errors, values, touched, handleBlur } =
     useFormikContext();
+
   const { data: countries } = useFetch({
     endpoint: `countries`,
     queryKey: ["countries"],
@@ -16,13 +18,19 @@ export default function SelectCountry({ name, label, className }) {
     value: item.id,
     label: item.name_ar,
   }));
+
   const selectedCountry = options?.find(
     (option) => option?.value == values[name]
   );
 
   return (
     <div className={`${className} mt-2`}>
-      <label>{label}</label>
+        <Label>
+            {label}
+            <span className="mx-1 text-red-500">
+              {required == "1" ? "*" : ""}
+            </span>
+          </Label>
       <div className="mt-[0.5rem]">
         <Select
           options={options}

@@ -634,3 +634,7 @@ input:-webkit-autofill:active {
 .MuiDataGrid-row.MuiDataGrid-row--lastVisible:hover {
   background-color: transparent;
 }
+
+.MuiTabs-flexContainer.MuiTabs-flexContainerVertical{
+border-left: 2px solid rgb(241, 239, 239);
+}

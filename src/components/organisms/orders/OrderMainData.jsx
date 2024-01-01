@@ -16,7 +16,6 @@ export default function OrderMainData({ setShow, show, isPending }) {
     queryKey: [`extra_questions/${values.organization_service_id}`],
     enabled: !!values.organization_service_id,
   });
-  console.log("🚀 ~ file: OrderMainData.jsx:19 ~ OrderMainData ~ extra_questions:", extra_questions)
   const theme = useTheme();
 
   return (

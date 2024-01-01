@@ -22,7 +22,9 @@ function Loading({ title }) {
           wrapperClass=""
         />
       </div>
-      <div> {title ? title : "جاري التحميل ..."} </div>
+      <div>
+        <h1 className="text-2xl font-bold">{title ? title : "جاري التحميل ..."}</h1>
+      </div>
     </div>
   );
 }

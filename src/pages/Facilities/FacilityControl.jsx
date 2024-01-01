@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalComp from "../../components/atoms/ModalComp";
 import TermsAndCondition from "../../components/molecules/TermsAndCondition";
 import ButtonComp from "../../components/atoms/buttons/ButtonComp";
@@ -11,6 +11,7 @@ import { notify } from "../../utils/toast";
 import { useNavigate } from "react-router-dom";
 
 function FacilityControl({ setOpen, open, update, idFacility }) {
+
   const [checked, setChecked] = useState(false);
   const { values } = useFormikContext();
   const { orgData } = UseOrg();
@@ -30,6 +31,13 @@ function FacilityControl({ setOpen, open, update, idFacility }) {
     },
     formData: true,
   });
+  useEffect(() => {
+    if(!open){
+      setChecked(false)
+    }
+   
+  }, [open])
+  
   return (
     <div>
       <ModalComp
@@ -43,7 +51,8 @@ function FacilityControl({ setOpen, open, update, idFacility }) {
             <ButtonComp
               type={"submit"}
               action={() => {
-                const validAttachments = values?.attachments?.map((file, index) => ({ index, file }))
+                const validAttachments = values?.attachments
+                  ?.map((file, index) => ({ index, file }))
                   .filter((item) => typeof item?.file !== "undefined");
                 const attachments = validAttachments?.map((item) => ({
                   [`attachments[${item?.index}]`]: item?.file,
@@ -55,10 +64,6 @@ function FacilityControl({ setOpen, open, update, idFacility }) {
                   ...Object?.assign({}, ...attachments),
                 };
                 delete combinedObject?.attachments;
-                console.log(
-                  "🚀 ~ file: FacilityControl.jsx:52 ~ FacilityControl ~ combinedObject:",
-                  combinedObject
-                );
                 addFacility(combinedObject);
               }}
               loading={loadingAddFacility}
