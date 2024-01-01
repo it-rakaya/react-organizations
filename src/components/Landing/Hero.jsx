@@ -30,7 +30,7 @@ const Hero = () => {
             className="w-[70px] rounded-xl"
           />
           {/* </h1> */}
-          <h1 className="text-2xl font-bold 3xl:text-3xl">
+          <h1 className="text-2xl font-bold 3xl:text-3xl dark:text-white">
             {!orgData?.organizations?.name_ar && t("landing.organizationName")}
             {orgData?.organizations?.name_ar}
           </h1>

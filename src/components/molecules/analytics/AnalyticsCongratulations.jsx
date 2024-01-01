@@ -61,7 +61,7 @@ const AnalyticsCongratulations = ({ userData }) => {
 
             {user?.is_verified && (
               <Link to={"/dashboard/profile"}>
-                <ButtonComp variant="contained" className={"w-auto"}>
+                <ButtonComp variant="contained" className={"!w-auto"}>
                   {t("My profile")}
                 </ButtonComp>
               </Link>

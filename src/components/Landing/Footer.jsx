@@ -42,8 +42,6 @@ const textStyle = `font-semibold`;
 const Footer = () => {
   const { t } = useTranslation();
   const { orgData } = UseOrg();
-  console.log("🚀 ~ file: Footer.jsx:45 ~ Footer ~ orgData:", orgData);
-
   const [nextPrayerTime, setNextPrayerTime] = useState({
     hours: null,
     minutes: null,
@@ -59,22 +57,28 @@ const Footer = () => {
   return (
     <div className="2xl:pe-[18%] 3xl:pe-[26%]">
       <div className="flex flex-col w-full gap-3 lg:flex-row">
-        <FooterComponent title={t("landing.userManual")}>
-          <a
-            href={orgData?.organizations?.profile_file}
-            download={orgData?.organizations?.profile_file}
-            className="cursor-pointer"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <h1 className={`${textStyle} flex items-center gap-2`}>
-              {t("landing.downloadFile")}
-              <Icon icon="ic:baseline-download" className="" />
-            </h1>
-          </a>
-        </FooterComponent>
+        {orgData?.organizations?.profile_file ? (
+          <FooterComponent title={t("landing.userManual")}>
+            <a
+              href={orgData?.organizations?.profile_file}
+              download={orgData?.organizations?.profile_file}
+              className="cursor-pointer"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <h1
+                className={`${textStyle} flex items-center gap-2 dark:text-white`}
+              >
+                {t("landing.downloadFile")}
+                <Icon icon="ic:baseline-download" className="" />
+              </h1>
+            </a>
+          </FooterComponent>
+        ) : (
+          ""
+        )}
         <FooterComponent title={t("landing.remainingTimeToHajj")}>
-          <h1 className={`${textStyle} tracking-wider`}>
+          <h1 className={`${textStyle} tracking-wider dark:text-white`}>
             {timeLeft.months + " "} {t("landing.months")} {timeLeft.days + " "}{" "}
             {t("landing.days")} {timeLeft.hours + " "}
             {t("landing.hours")}
@@ -84,7 +88,9 @@ const Footer = () => {
           title={`${t("landing.timeLeftTo")} ${t(`landing.prayers.${prayer}`)}`}
           last
         >
-          <h1 className={`${textStyle} flex items-center gap-4 tracking-wider`}>
+          <h1
+            className={`${textStyle} flex items-center gap-4 tracking-wider dark:text-white`}
+          >
             {nextPrayerTime?.hours} {t("landing.hrs")} {nextPrayerTime?.minutes}{" "}
             {t("landing.minutes")}
           </h1>

@@ -155,7 +155,7 @@ export const SideBar = ({
         display: "flex",
         height: "100vh",
         minHeight: "400px",
-        direction: "rtl",
+        direction:isRTL ? "rtl" : "ltr",
         position: "relative",
         backgroundColor: toggled
           ? "rgb(249 249 249)"
@@ -165,7 +165,7 @@ export const SideBar = ({
 
     >
       <Sidebar
-        rtl={isRTL ? true : false}
+
         
         toggled={toggled}
         customBreakPoint="800px"

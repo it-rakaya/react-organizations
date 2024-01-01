@@ -23,11 +23,12 @@ const ModeToggler = (props) => {
       document.body.classList.add("dark");
     } else {
       localStorage.setItem("darkMode", "false");
-
       handleModeChange("light");
       document.body.classList.remove("dark");
     }
   };
+
+
 
   useEffect(() => {
     const savedMode = localStorage.getItem("darkMode");

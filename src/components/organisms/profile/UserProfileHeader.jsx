@@ -24,7 +24,7 @@ const ProfilePicture = styled("img")(({ theme }) => ({
 const UserProfileHeader = ({ user, setEditUser }) => {
   return (
     <div>
-      <Card className="flex flex-col items-center justify-center bg-transparent shadow-none">
+      <Card className="flex flex-col items-center justify-center !bg-transparent !shadow-none">
         <ProfilePicture
           src={
             (user?.attachmentUrl?.length && user?.attachmentUrl[1]?.value) ||

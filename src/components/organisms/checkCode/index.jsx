@@ -5,6 +5,8 @@ import { PinInput } from "react-input-pin-code";
 import ResendCode from "../../molecules/Formik/ResendCode";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import { useTheme } from "@mui/material/styles";
+import { t } from "i18next";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 export default function CheckCode({
   number,
   valuesForm,
@@ -19,6 +21,7 @@ export default function CheckCode({
   const [colorPinInput, setColorPinInput] = useState("");
   const theme = useTheme();
   const [btnBgColor, setBtnBgColor] = useState("transparent");
+  const isRTL = useIsRTL();
 
   const { orgData } = UseOrg();
 
@@ -46,12 +49,15 @@ export default function CheckCode({
     <>
       <div className="lex ">
         <div className="flex flex-col items-center justify-center   gap-5  shadow-main bg-[#FFF] rounded-xl  pt-5 dark:bg-inherit">
-          <h1 className="text-xl font-bold">أدخل رمز التحقق </h1>
-          <p className="text-center">
-            رقم التحقق مطلوب لإكمال العملية لقد تم إرسال رمز التحقق في رسالة
-            إليكم
+          <h1 className="text-xl font-bold dark:text-white">
+            {t("Enter the verification code")}
+          </h1>
+          <p className="text-center dark:text-white">
+            {t(
+              "The verification number is required to complete the process. The verification code has been sent in a message To you"
+            )}
           </p>
-          <p>{number}</p>
+          <p className="dark:text-white">{number}</p>
           <div>
             <PinInput
               values={values}
@@ -76,7 +82,7 @@ export default function CheckCode({
                   setColorPinInput("rgb(220,53,69)");
                 }
               }}
-              containerStyle={{ flexDirection: "row-reverse" }}
+              containerStyle={{ flexDirection: "row-reverse" ,  direction:isRTL ? "rtl" : "rtl" }}
               inputClassName="focus:border-0 focus:border-red-200 selection:outline-none "
             />
           </div>
@@ -88,7 +94,7 @@ export default function CheckCode({
           />
           {availableResetCode && (
             <Button
-              className={`w-[160px] h-[40px] !rounded-md !border !border-solid hover:shadow-lg hover:!text-white`}
+              className={`w-[160px] h-[40px] !rounded-md !border !border-solid hover:shadow-lg hover:!text-white dark:text-white`}
               style={{
                 borderColor: theme?.palette?.primary.main,
                 color: theme?.palette?.primary.main,
@@ -102,7 +108,7 @@ export default function CheckCode({
                 setBtnBgColor("transparent");
               }}
             >
-              إعادة الإرسال
+              {t("Resend the code")}
             </Button>
           )}
         </div>

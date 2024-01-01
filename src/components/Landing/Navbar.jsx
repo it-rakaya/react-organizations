@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { t } from "i18next";
 import Typography from "@mui/material/Typography";
+import { useSettings } from "../../hooks/useSettings";
+import { useEffect } from "react";
 
 function Navbar() {
   const { i18n } = useTranslation();
@@ -14,15 +16,36 @@ function Navbar() {
   const { orgData } = UseOrg();
   const { logout, user } = useAuth();
   const theme = useTheme();
+  const { settings, saveSettings } = useSettings();
+  console.log("🚀 ~ file: Navbar.jsx:20 ~ Navbar ~ settings:", settings)
 
   const { mutate: LogOut } = useMutate({
     mutationKey: [`Log_out`],
     endpoint: `logout`,
   });
+  const handleLangItemClick = (lang) => {
+    i18n.changeLanguage(lang);
+  };
+  useEffect(() => {
+    document.documentElement.setAttribute("lang", i18n.language);
+  }, [i18n.language]);
+  useEffect(() => {
+    if(settings.mode == "dark"){
+      document.documentElement.classList.add("dark");
+    }
+  }, [settings.mode]);
 
   const handleLogout = () => {
     logout();
     LogOut();
+  };
+  //
+  //
+  const handleLanguage = () => {
+    // handleLangItemClick("en");
+    i18n.changeLanguage(language == "ar" ? "en" : "ar");
+    saveSettings({ ...settings, direction: language == "ar" ? "ltr" : "rtl" });
+    handleLangItemClick();
   };
 
   return (
@@ -51,17 +74,13 @@ function Navbar() {
           </Typography>
         )}
         <Typography>
-          <a
-            href={`https://wa.me/${orgData?.organizations?.phone}/`}
-           
-          >
+          <a href={`https://wa.me/${orgData?.organizations?.phone}/`}>
             {t("landing.contactUs")}
           </a>
         </Typography>
         <button
-          onClick={() => {
-            i18n.changeLanguage(language == "ar" ? "en" : "ar");
-          }}
+          onClick={handleLanguage}
+          //
           className={`text-3xl`}
         >
           <Icon

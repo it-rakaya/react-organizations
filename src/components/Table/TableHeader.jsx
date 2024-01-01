@@ -28,7 +28,7 @@ const TableHeader = (props) => {
         variant="contained"
         sx={{ mb: 2 }}
         action={actionButton}
-        className={"w-auto mt-0"}
+        className={"!w-auto mt-0"}
       >
         {textButton}
       </ButtonComp>

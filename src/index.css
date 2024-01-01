@@ -655,3 +655,7 @@ input:-webkit-autofill:active {
 .rtl-1dimb5e-singleValue{
   color: white;
 }
+.css-1dimb5e-singleValue{
+  color: white !important;
+
+}
