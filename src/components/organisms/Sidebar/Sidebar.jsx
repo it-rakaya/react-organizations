@@ -165,7 +165,8 @@ export const SideBar = ({
 
     >
       <Sidebar
-        rtl
+        rtl={isRTL ? true : false}
+        
         toggled={toggled}
         customBreakPoint="800px"
         backgroundColor={

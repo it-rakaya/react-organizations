@@ -19,7 +19,9 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
     birthday: userData?.birthday,
     photo: userData?.photo,
     national_id_expired: userData?.national_id_expired,
-    national_id_expired_hj: convertToHijri(userData?.national_id_expired),
+    national_id_expired_hj: convertToHijri(
+      userData?.national_id_expired !== "0000-00-00" ? userData?.national_id_expired : "0"
+    ),
     favourit_organizations: userData?.favourit_organizations,
     birthday_hj: convertToHijri(userData?.birthday),
   };

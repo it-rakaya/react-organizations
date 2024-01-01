@@ -41,22 +41,18 @@ export default function SelectCountry({ name, label, className ,required }) {
           onBlur={handleBlur}
           onChange={(option) => setFieldValue(name, option.value)}
           styles={{
-            control: (baseStyles, state) => ({
+            control: (baseStyles) => ({
               ...baseStyles,
               padding: "10px 0",
-              borderRadius: " 12px",
-
-              borderColor:
-                !!touched[name] && !!errors[name]
-                  ? "red"
-                  : state.isFocused
-                  ? "#d8d8dd"
-                  : "#d8d8dd",
+              borderRadius: " 8px",
+              borderWidth:"1px",
+              borderColor:"#555d64",
               background: "white",
               margin: "0",
             }),
             option: (baseStyles) => ({
               ...baseStyles,
+              // background:"white" ,
               color: "black",
             }),
           }}
@@ -69,6 +65,10 @@ export default function SelectCountry({ name, label, className ,required }) {
               primary: "#eee",
             },
           })}
+          classNames={{
+            control: () => "dark:bg-dark-primary",
+            option: () => "dark:bg-dark-primary dark:text-white  ",
+          }}
         />
         <div>
           <FormikError name={name} />
