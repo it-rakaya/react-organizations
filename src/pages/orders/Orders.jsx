@@ -1,6 +1,6 @@
 import { mdiDotsVertical, mdiEyeOutline, mdiTrashCanOutline } from "@mdi/js";
 import Icon from "@mdi/react";
-import { Box, Typography } from "@mui/material";
+import { Alert, Box, Typography } from "@mui/material";
 import { t } from "i18next";
 import { useState } from "react";
 import Table from "../../components/Table/Table";
@@ -24,6 +24,7 @@ export default function Orders() {
   const [detailsOrder, setDetailsOrder] = useState("");
 
   const { orgData } = UseOrg();
+  console.log("🚀 ~ file: Orders.jsx:27 ~ Orders ~ orgData:", orgData);
 
   const {
     data: Orders,
@@ -164,8 +165,7 @@ export default function Orders() {
             }}
           >
             <div className="flex gap-1">
-              <p className="text-[15px]">{row?.created_at?.slice(0, 10)}</p>
-              /
+              <p className="text-[15px]">{row?.created_at?.slice(0, 10)}</p>/
               <p className="text-[15px]">
                 {convertArabicToEnglish(
                   convertToHijri(row?.created_at?.slice(0, 10))
@@ -246,6 +246,7 @@ export default function Orders() {
       },
     },
   ];
+  const closeRegister = orgData?.organizations?.close_registeration == "1"
 
   return (
     <div>
@@ -254,6 +255,16 @@ export default function Orders() {
         <Loading />
       ) : (
         <>
+        {
+          closeRegister  && 
+          <Alert severity="warning" className="flex items-center bg-transparent mt-[-14px]">
+            <div className="flex items-center gap-5 ">
+              <p className="p-0 m-0 font-bold text-red-500">
+                تم اغلاق استقبال الطلبات
+              </p>
+            </div>
+          </Alert>
+        }
           <OrderInfo Orders={Orders} />
 
           <Table
@@ -262,6 +273,7 @@ export default function Orders() {
             textButton={t("Add order")}
             actionButton={() => setOpenAddFaculty(true)}
             placeholderSearch={t("Search in orders")}
+            disabled={closeRegister}
           />
         </>
       )}

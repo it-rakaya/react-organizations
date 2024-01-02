@@ -182,6 +182,11 @@
   "create at": "تاريخ الانشاء",
   "Please upload the file in this format": "يرجى رفع الملف بهذه الصيغة",
   "Please upload a file no larger than 5MB": "يرجى رفع ملف لا يزيد حجمه عن MB 5",
+  "personal Data": "البيانات الشخصية",
+  "Enter the verification code": "أدخل رمز التحقق ",
+  "Resend the code":"اعادة ارسال الكود",
+  "Chose position":"اختر المسمى الوظيفي",
+  "The verification number is required to complete the process. The verification code has been sent in a message To you": "رقم التحقق مطلوب لإكمال العملية. تم إرسال رمز التحقق في رسالة إليك",
   "landing": {
     "organizationName": "اسم المنظمة",
     "description": "نص عربي نص عربي نص عربي نص عربي نص عربي نص عربي",

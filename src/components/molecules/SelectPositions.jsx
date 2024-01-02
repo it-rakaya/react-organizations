@@ -6,18 +6,19 @@ import useFetch from "../../hooks/useFetch";
 import { FormikError } from "./Formik/FormikError";
 import Label from "./Label";
 
-export default function SelectCountry({ name, label, className ,required }) {
-  const { setFieldValue, errors, values, touched, handleBlur } =
+export default function SelectPositions({ name, label, className ,required }) {
+  const { setFieldValue,  values,  handleBlur } =
     useFormikContext();
 
-  const { data: countries } = useFetch({
-    endpoint: `countries`,
-    queryKey: ["countries"],
+  const { data: positions } = useFetch({
+    endpoint: `employees-positions`,
+    queryKey: ["employees-positions"],
   });
-  const options = countries?.countries.map((item) => ({
+  const options = positions?.positions.map((item) => ({
     value: item.id,
-    label: item.name_ar,
+    label: item.name,
   }));
+  console.log("🚀 ~ file: SelectPositions.jsx:21 ~ options ~ options:", options)
 
   const selectedCountry = options?.find(
     (option) => option?.value == values[name]
@@ -36,7 +37,7 @@ export default function SelectCountry({ name, label, className ,required }) {
           options={options}
           name={name}
           value={selectedCountry}
-          placeholder={t("Chose Country")}
+          placeholder={t("Chose position")}
           noOptionsMessage={() => t("Not Found Data")}
           onBlur={handleBlur}
           onChange={(option) => setFieldValue(name, option.value)}

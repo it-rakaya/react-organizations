@@ -37,11 +37,11 @@ const ResendCode = ({
     <>
       <div className="flex justify-center gap-2 ">
         <button
-          className={`font-[futuraMed,sans-serif] ${
-            !available ? "text-[#777]" : "text-mainColorLand"
-          } ${available ? "cursor-pointer" : "cursor-not-allowed"}`}
+          className={`font-[futuraMed,sans-serif]  ${
+            !available ? "text-[#777] dark:text-white" : "text-mainColorLand dark:text-white"
+          } ${available ? "cursor-pointer dark:text-white" : "cursor-not-allowed dark:text-white"}`}
         >
-          <p>إعادة إرسال الرمز بعد </p>
+          <p className="dark:text-white">إعادة إرسال الرمز بعد </p>
         </button>
 
         <span

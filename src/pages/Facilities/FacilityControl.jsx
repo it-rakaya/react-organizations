@@ -10,7 +10,7 @@ import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import { useNavigate } from "react-router-dom";
 
-function FacilityControl({ setOpen, open, update, idFacility }) {
+function FacilityControl({ setOpen, open, update, idFacility  }) {
 
   const [checked, setChecked] = useState(false);
   const { values } = useFormikContext();
@@ -53,15 +53,15 @@ function FacilityControl({ setOpen, open, update, idFacility }) {
               action={() => {
                 const validAttachments = values?.attachments
                   ?.map((file, index) => ({ index, file }))
-                  .filter((item) => typeof item?.file !== "undefined");
+                  .filter((item) => typeof item?.file !== "undefined") || [];
                 const attachments = validAttachments?.map((item) => ({
                   [`attachments[${item?.index}]`]: item?.file,
-                }));
+                })) || [];
 
                 const combinedObject = {
                   ...values,
                   organization_id: orgData?.organizations?.id,
-                  ...Object?.assign({}, ...attachments),
+                  ...Object?.assign({}, ...attachments ),
                 };
                 delete combinedObject?.attachments;
                 addFacility(combinedObject);

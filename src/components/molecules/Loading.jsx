@@ -9,7 +9,7 @@ function Loading({ title }) {
   return (
     <div
       className="absolute flex flex-col items-center justify-center z-[999999999999] loading"
-      style={{ left: "calc(50% - 100px )", top: "calc(50% - 50px)" }}
+      // style={{ left: "calc(50% - 100px )", top: "calc(50% - 50px)" }}
     >
       <div>
         <Rings
@@ -23,7 +23,7 @@ function Loading({ title }) {
         />
       </div>
       <div>
-        <h1 className="text-2xl font-bold">{title ? title : "جاري التحميل ..."}</h1>
+        <h1 className="text-2xl font-bold dark:text-white">{title ? title : "جاري التحميل ..."}</h1>
       </div>
     </div>
   );

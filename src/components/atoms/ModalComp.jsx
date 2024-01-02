@@ -2,6 +2,7 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { GridCloseIcon } from "@mui/x-data-grid";
+import { useTheme } from "@mui/material/styles";
 
 const style = {
   position: "absolute",
@@ -29,14 +30,16 @@ export default function ModalComp({
   hidden,
   classNameBox,
 }) {
+  const theme = useTheme();
+
   return (
-    <div className="max-h-[350px]">
+    <div className="max-h-[350px] ">
       <Modal
         open={open}
         onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        className={`max-w-[950px]   m-auto ${className}`}
+        className={`max-w-[950px] m-2  md:m-auto ${className}`}
       >
         <Box sx={style} className={`scroll_main ${classNameBox}`}>
           {hidden ? (
@@ -46,7 +49,10 @@ export default function ModalComp({
               className="absolute ltr:!right-[20px] ltr:left-auto left-[20px] cursor-pointer top-[39px] "
               onClick={onClose}
             >
-              <GridCloseIcon className="text-contained" />
+              <GridCloseIcon
+                className=" dark:!text-white"
+                style={{ color: theme.palette.primary?.main }}
+              />
             </div>
           )}
           {Children}

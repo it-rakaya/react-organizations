@@ -35,11 +35,9 @@ export default function SelectCitiesSaudi({
         <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
       </label> */}
       <Label>
-            {label}
-            <span className="mx-1 text-red-500">
-              {required == "1" ? "*" : ""}
-            </span>
-          </Label>
+        {label}
+        <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
+      </Label>
       {showIcon && (
         <div
           className="my-1 cursor-pointer w-fit"
@@ -71,6 +69,8 @@ export default function SelectCitiesSaudi({
               ...baseStyles,
               padding: "10px 0",
               borderRadius: " 8px",
+              borderWidth:"1px",
+              borderColor:"#555d64",
               background: "white",
               margin: "0",
             }),
@@ -89,6 +89,10 @@ export default function SelectCitiesSaudi({
               primary: "#eee",
             },
           })}
+          classNames={{
+            control: () => "dark:bg-dark-primary",
+            option: () => "dark:bg-dark-primary dark:text-white  ",
+          }}
           // defaultValue={{ value: values[name] , label:values[name] }}
         />
       </div>

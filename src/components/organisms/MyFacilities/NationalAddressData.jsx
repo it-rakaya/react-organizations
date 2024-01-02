@@ -25,7 +25,7 @@ function NationalAddressData() {
         <div className="w-full md:w-1/2">
           <SelectCitiesSaudi
             label={"اسم المدينة "}
-            name="city"
+            name="city_id"
             required
             showIcon
             setShow={setShow}
@@ -36,7 +36,7 @@ function NationalAddressData() {
         <div className="w-full md:w-1/2">
           <SelectDistrict
             label={t("District name")}
-            name="neighborhood"
+            name="district_id"
             required
             showIcon
             setShow={setShow}

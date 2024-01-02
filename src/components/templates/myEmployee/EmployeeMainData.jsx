@@ -8,6 +8,7 @@ import { Divider } from "@mui/material";
 import Icon from "@mdi/react";
 import { mdiAccountBoxOutline, mdiFileDocumentOutline } from "@mdi/js";
 import UploadImage from "../../molecules/uploadImage/UploadImage";
+import SelectPositions from "../../molecules/SelectPositions";
 export default function EmployeeMainData({
   showSelectFacility,
   attachments_facility_employees,
@@ -20,8 +21,8 @@ export default function EmployeeMainData({
         title={t("Add Employee")}
         styleHead={{ color: theme.palette.primary.main }}
       />
-      <div className="grid items-start grid-cols-2 gap-2 px-5 max-h-[32rem] h-full overflow-y-scroll scroll_main">
-      <h1 className="flex items-center col-span-12 gap-1 py-2 text-xl font-medium">
+      <div className="grid items-start grid-cols-2 gap-2 px-5 max-h-[32rem] h-full overflow-y-scroll scroll_main ">
+      <h1 className="flex items-center col-span-12 gap-1 py-2 text-xl font-medium dark:text-white">
         <Icon path={mdiAccountBoxOutline} size={1} />
         {t("employee Data")}:
       </h1>
@@ -43,11 +44,12 @@ export default function EmployeeMainData({
             />
           </div>
           <div className="w-full md:w-1/2">
-            <BaseInputField
+            {/* <BaseInputField
               label={t("Job title")}
               placeholder={`${t("Programming")}`}
               name="position"
-            />
+            /> */}
+            <SelectPositions label={t("Job title")}  name="facility_employee_position_id"/>
           </div>
         </div>
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap ">
@@ -64,7 +66,7 @@ export default function EmployeeMainData({
         <div className="col-span-12 pb-8 pt-9">
           <Divider />
         </div>
-        <h1 className="flex col-span-12 gap-1 pb-3 text-xl font-medium item-center">
+        <h1 className="flex col-span-12 gap-1 pb-3 text-xl font-medium item-center dark:text-white">
         <Icon path={mdiFileDocumentOutline} size={1} />
 
          {t("attachments")}:

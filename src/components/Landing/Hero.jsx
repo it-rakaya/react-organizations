@@ -30,7 +30,7 @@ const Hero = () => {
             className="w-[70px] rounded-xl"
           />
           {/* </h1> */}
-          <h1 className="text-2xl font-bold 3xl:text-3xl">
+          <h1 className="text-2xl font-bold 3xl:text-3xl dark:text-white">
             {!orgData?.organizations?.name_ar && t("landing.organizationName")}
             {orgData?.organizations?.name_ar}
           </h1>
@@ -40,7 +40,9 @@ const Hero = () => {
           dangerouslySetInnerHTML={{ __html: orgData?.organizations?.about_us }}
           className="mt-5 text-xl font-bold text-center md:text-start 3xl:text-2xl"
         ></div>
-        <div className="flex flex-col gap-4 mt-10 ">
+        <div
+          className={`flex flex-col gap-4 mt-10 ${!user ? " xl:flex-row" : ""}`}
+        >
           {!user ? (
             <>
               <button

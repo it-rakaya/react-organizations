@@ -18,6 +18,7 @@ function FacilityContentEdit({
     endpoint: `facilities/${idFacility}`,
     queryKey: ["facilities_update"],
   });
+  console.log("🚀 ~ file: FacilityContentEdit.jsx:21 ~ DetailsFacilities:", DetailsFacilities)
   const initialFormValues = {
     name: DetailsFacilities?.facility ? DetailsFacilities?.facility?.name : "",
     registration_number: DetailsFacilities?.facility
@@ -47,9 +48,9 @@ function FacilityContentEdit({
     license_expired_hj: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.license_expired_hj
       : "",
-    address: DetailsFacilities?.facility
-      ? DetailsFacilities?.facility?.address
-      : "",
+    // address: DetailsFacilities?.facility
+    //   ? DetailsFacilities?.facility?.address
+    //   : "",
     tax_certificate: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.tax_certificate
       : "",
@@ -65,10 +66,10 @@ function FacilityContentEdit({
     street_name: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.street_name
       : "",
-    neighborhood: DetailsFacilities?.facility
-      ? DetailsFacilities?.facility?.neighborhood
+    district_id: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.district_id
       : "",
-    city: DetailsFacilities?.facility ? DetailsFacilities?.facility?.city : "",
+    city_id: DetailsFacilities?.facility ? DetailsFacilities?.facility?.city_id : "",
     building_number: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.building_number
       : "",

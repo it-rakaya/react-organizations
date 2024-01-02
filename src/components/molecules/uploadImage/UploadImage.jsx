@@ -130,14 +130,17 @@ const UploadImage = ({
                   )}
                 </div>
               )}
-              <p className="flex items-end justify-center m-0 text-center text-[14px] ">
+              <p className="flex items-end justify-center m-0 text-center text-[14px] dark:text-white ">
                 {isLargeFile ? (
                   t("File size is large")
                 ) : invalidFormat ? (
                   t("Invalid file format, please choose a PDF or image file")
                 ) : files?.length ? (
                   <div className="flex flex-col items-center justify-center ">
-                    <p> {t("The file has been uploaded successfully")}</p>
+                    <p className=" dark:text-white">
+                      {" "}
+                      {t("The file has been uploaded successfully")}
+                    </p>
                   </div>
                 ) : (
                   t("Choose a file or drop it here")
@@ -174,7 +177,9 @@ const UploadImage = ({
             ) : !isLargeFile &&
               files[0]?.type?.startsWith("image/") &&
               updateImage?.value ? (
-              <PreviewImageLink url={files[0]?.value} />
+              <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
+                <PreviewImageLink url={files[0]?.value} />
+              </div>
             ) : !isLargeFile &&
               files[0]?.type?.startsWith("application/") &&
               files[0]?.name ? (
@@ -187,7 +192,10 @@ const UploadImage = ({
                   <div
                     className={` flex items-center  !justify-start gap-2  py-4 cursor-pointer  `}
                   >
-                    <IconifyIcon icon={"prime:file-pdf"} className="text-xl" />
+                    <IconifyIcon
+                      icon={"prime:file-pdf"}
+                      className="text-xl dark:text-white"
+                    />
                     <Typography className="file-name">
                       {files[0]?.name.slice(0, 15)}
                     </Typography>
@@ -195,7 +203,11 @@ const UploadImage = ({
                   </div>
                 </a>
                 <div onClick={() => handleRemoveFile(files[0])}>
-                  <IconifyIcon icon="mdi:close" fontSize={20} />
+                  <IconifyIcon
+                    icon="mdi:close"
+                    fontSize={20}
+                    className="dark:text-white"
+                  />
                 </div>
               </div>
             ) : !isLargeFile &&

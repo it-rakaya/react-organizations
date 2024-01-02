@@ -83,6 +83,8 @@ const Login = () => {
                 backgroundColor: "background.paper",
                 height: "100vh",
                 overflowY: "scroll",
+                overflowX: "hidden",
+
               }}
               className="scroll_main"
             >
