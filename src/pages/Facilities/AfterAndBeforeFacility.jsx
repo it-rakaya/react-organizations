@@ -10,7 +10,7 @@ function AfterAndBeforeFacility({
   setOpen,
   steps,
   attachments_facilities,
-  update
+  update,
 }) {
   const { values, errors } = useFormikContext();
 
@@ -57,16 +57,16 @@ function AfterAndBeforeFacility({
     registration_source: "",
     capacity: "",
     license: "",
-    // address: "",
     tax_certificate: "",
   };
 
   const initialCase1 = {
     street_name: "",
-    neighborhood: "",
     building_number: "",
     postal_code: "",
     sub_number: "",
+    district_id: "",
+    city_id: "",
   };
   const initialCase2 = {
     employee_number: "",
@@ -76,7 +76,8 @@ function AfterAndBeforeFacility({
   };
   const isSaveDisabled = () => {
     const checkErrorsForKeys = (initialCase) =>
-      Object.keys(initialCase).some((key) => values[key] === "" || errors[key]);
+    Object.keys(initialCase).some((key) => values[key] === "" || errors[key]);
+    console.log("🚀 ~ file: AfterAndBeforeFacility.jsx:79 ~ isSaveDisabled ~ checkErrorsForKeys:", checkErrorsForKeys)
 
     switch (activeStep) {
       case 0:
@@ -96,19 +97,11 @@ function AfterAndBeforeFacility({
           attachments_facilities?.attachment_labels.length || 0;
         const actualAttachmentsLength = filteredAttachmentLabels?.length || 0;
 
-        return update ? '' : attachmentsLength !== actualAttachmentsLength;
+        return update ? "" : attachmentsLength !== actualAttachmentsLength;
       default:
         return false;
     }
   };
-  // const validateImages = () => {
-  //   // Loop through the images and check if required images have values
-  //   attachments_facilities?.attachment_labels.forEach((item) => {
-  //     if (item.is_required && !values[`attachments[${item.id || item.attachment_id}]`]) {
-  //       setFieldError(`attachments[${item.id || item.attachment_id}]`, "Image is required");
-  //     }
-  //   });
-  // };
 
   return (
     <Grid

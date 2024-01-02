@@ -35,7 +35,7 @@ export default function PreviewImage({
                   >
                     <IconifyIcon
                       icon={"iconamoon:file-image-light"}
-                      className="text-xl"
+                      className="text-xl dark:text-white"
                     />
                     <Typography className="file-name">
                       {files[0]?.name.slice(0, 15)}
@@ -45,7 +45,7 @@ export default function PreviewImage({
               </div>
             </a>
             <div onClick={() => handleRemoveFile(files[0])}>
-              <IconifyIcon icon="mdi:close" fontSize={20} />
+              <IconifyIcon icon="mdi:close" fontSize={20} className="dark:text-white" />
             </div>
           </div>
         ))}

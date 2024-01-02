@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
+import { mdiInformationOutline } from "@mdi/js";
+import Icon from "@mdi/react";
 import { useFormikContext } from "formik";
 import { t } from "i18next";
-import { useEffect } from "react";
 import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
 import Spinner from "../atoms/Spinner";
-import Icon from "@mdi/react";
-import { mdiInformationOutline } from "@mdi/js";
 
 export default function SelectDistrict({
   name,
@@ -19,23 +18,19 @@ export default function SelectDistrict({
   index,
 }) {
   const { setFieldValue, values } = useFormikContext();
-  console.log("🚀 ~ file: SelectDistrict.jsx:22 ~ values:", values)
 
   const { data: district, isLoading } = useFetch({
-    endpoint: `saudi-districts?city_id=${values?.city}`,
-    queryKey: [`district/${values?.city}`],
-    enabled: !!values?.city,
+    endpoint: `saudi-districts?city_id=${values?.city_id}`,
+    queryKey: [`district/${values?.city_id}`],
+    enabled: !!values?.city_id,
   });
   const options = district?.districts?.map((item) => ({
     value: item.id,
     label: item.name_ar,
   }));
-  const selectedDistrict = options?.find((option) => option?.value == values[name]);
-  console.log("🚀 ~ file: SelectDistrict.jsx:34 ~ selectedDistrict:bbbbbbbbbbbbbbb", selectedDistrict)
-
-  // useEffect(() => {
-  //   setFieldValue(name, "");
-  // }, [values?.city, name, setFieldValue]);
+  const selectedDistrict = options?.find(
+    (option) => option?.value == values[name]
+  );
 
   return (
     <div className={className}>
@@ -62,11 +57,11 @@ export default function SelectDistrict({
           </div>
         </div>
       )}
-      <div >
+      <div>
         <Select
           options={options}
           name={name}
-          value={selectedDistrict ? selectedDistrict :""}
+          value={selectedDistrict ? selectedDistrict : ""}
           isLoading={!!isLoading}
           isDisabled={!district?.districts?.length}
           placeholder={
@@ -84,8 +79,8 @@ export default function SelectDistrict({
               ...baseStyles,
               padding: "10px 0",
               borderRadius: " 8px",
-              borderWidth:"1px",
-              borderColor:"#555d64",
+              borderWidth: "1px",
+              borderColor: "#555d64",
               background: "white",
               margin: "0",
             }),

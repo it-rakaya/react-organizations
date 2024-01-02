@@ -140,7 +140,7 @@ export const SideBar = ({
               setToggled(!toggled);
             }
           }}
-          icon={<Item.icon size={15} />}
+          icon={<Item.icon size={15} className="dark:text-white"/>}
           active={location?.pathname === Item.link}
         >
           <div>{t(Item.label)}</div>
@@ -207,7 +207,7 @@ export const SideBar = ({
             </div>
           ) : (
             <div onClick={() => setToggled(!toggled)} className="ml-5">
-              <IconifyIcon icon={"iconoir:cancel"} />
+              <IconifyIcon icon={"iconoir:cancel"} className="dark:text-white" />
             </div>
           )}
         </div>

@@ -17,22 +17,16 @@ export default function PreviewImageLink({ url, eyeIcon }) {
           },
         }}
       >
-      
-        <a data-fancybox="gallery" href={url} className="" >
-          <div className="flex flex-col items-center justify-center w-full">
+        <a data-fancybox="gallery" href={url} className="">
+          <div className="flex flex-col items-center justify-center w-full ">
             <div className="w-full rounded-xl">
-              <div className="flex items-center w-full p-1 rounded-md cursor-pointer ">
+              <div className="flex items-center w-full p-2 rounded-md cursor-pointer ">
                 {eyeIcon ? (
-                  // <Icon
-                  //   path={mdiEyeOutline}
-                  //   size={1}
-                  //   className={"cursor-pointer "}
-                  // />
-                  <ViewICon/>
+                  <ViewICon className="dark:text-white" />
                 ) : (
                   <IconifyIcon
                     icon={"iconamoon:file-image-light"}
-                    className="text-[1.6rem] cursor-pointer  "
+                    className="text-[1.6rem] cursor-pointer dark:text-white  "
                   />
                 )}
                 {!eyeIcon && (
@@ -48,4 +42,3 @@ export default function PreviewImageLink({ url, eyeIcon }) {
     </div>
   );
 }
-

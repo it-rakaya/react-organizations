@@ -45,7 +45,7 @@ export default function OrderMainData({ setShow, show, isPending }) {
           <div className="flex justify-end mt-10">
             <ButtonComp
               variant="contained"
-              className={"w-auto"}
+              className={"!w-auto"}
               action={() =>
                 extra_questions?.questions?.length ? setShow(false) : ""
               }

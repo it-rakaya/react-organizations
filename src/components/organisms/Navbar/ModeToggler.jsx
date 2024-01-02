@@ -21,10 +21,13 @@ const ModeToggler = (props) => {
       localStorage.setItem("darkMode", "true");
       handleModeChange("dark");
       document.body.classList.add("dark");
+      document.documentElement.classList.add("dark");
+
     } else {
       localStorage.setItem("darkMode", "false");
       handleModeChange("light");
       document.body.classList.remove("dark");
+      document.documentElement.classList.remove("dark");
     }
   };
 

@@ -9,7 +9,7 @@ import {
   RadioGroup,
 } from "@mui/material";
 
-function TermsAndCondition({checked ,setChecked , hidden }) {
+function TermsAndCondition({ checked, setChecked, hidden }) {
   const { orgData } = UseOrg();
 
   return (
@@ -18,7 +18,9 @@ function TermsAndCondition({checked ,setChecked , hidden }) {
         <div className="">
           <TermsConditionIcon className={""} />
         </div>
-        <h1 className="text-xl font-bold dark:text-white">{t("Terms and Conditions")}</h1>
+        <h1 className="text-xl font-bold dark:text-white">
+          {t("Terms and Conditions")}
+        </h1>
       </div>
 
       {orgData?.organizations?.policies ? (
@@ -56,32 +58,31 @@ function TermsAndCondition({checked ,setChecked , hidden }) {
           </ul>
         </div>
       )}
-      {
-        hidden ? 
-      ''  
-        : 
-      <div className="flex justify-center mt-5 ">
-        <FormControl>
-          <RadioGroup
-            aria-labelledby="demo-controlled-radio-buttons-group"
-            name="controlled-radio-buttons-group"
-          >
-            <FormControlLabel
-              value="female"
-              className="TermsAndCondition"
-              control={
-                <Radio
-                  onClick={() => setChecked(!checked)}
-                  checked={checked}
-                  className="pt-0 pb-0"
-                />
-              }
-              label={t("I have read all terms and conditions")}
-            />
-          </RadioGroup>
-        </FormControl>
-      </div>
-      }
+      {hidden ? (
+        ""
+      ) : (
+        <div className="flex justify-center mt-5 ">
+          <FormControl>
+            <RadioGroup
+              aria-labelledby="demo-controlled-radio-buttons-group"
+              name="controlled-radio-buttons-group"
+            >
+              <FormControlLabel
+                value="female"
+                className="text-white TermsAndCondition"
+                control={
+                  <Radio
+                    onClick={() => setChecked(!checked)}
+                    checked={checked}
+                    className="pt-0 pb-0 dark:text-white"
+                  />
+                }
+                label={t("I have read all terms and conditions")}
+              />
+            </RadioGroup>
+          </FormControl>
+        </div>
+      )}
     </div>
   );
 }

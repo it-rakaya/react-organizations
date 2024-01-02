@@ -8,6 +8,7 @@ import { Divider } from "@mui/material";
 import Icon from "@mdi/react";
 import { mdiAccountBoxOutline, mdiFileDocumentOutline } from "@mdi/js";
 import UploadImage from "../../molecules/uploadImage/UploadImage";
+import SelectPositions from "../../molecules/SelectPositions";
 export default function EmployeeMainData({
   showSelectFacility,
   attachments_facility_employees,
@@ -43,11 +44,12 @@ export default function EmployeeMainData({
             />
           </div>
           <div className="w-full md:w-1/2">
-            <BaseInputField
+            {/* <BaseInputField
               label={t("Job title")}
               placeholder={`${t("Programming")}`}
               name="position"
-            />
+            /> */}
+            <SelectPositions label={t("Job title")}  name="facility_employee_position_id"/>
           </div>
         </div>
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap ">

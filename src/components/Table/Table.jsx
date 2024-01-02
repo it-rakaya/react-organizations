@@ -13,6 +13,7 @@ const Table = ({
   textButton,
   actionButton,
   placeholderSearch,
+  disabled
 }) => {
   const [value, setValue] = useState("");
 
@@ -50,6 +51,7 @@ const Table = ({
             textButton={textButton}
             actionButton={actionButton}
             placeholderSearch={placeholderSearch}
+            disabled={disabled}
           />
           <DataGrid
             autoHeight

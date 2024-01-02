@@ -18,7 +18,7 @@ function DataNotFound({ title }) {
         size={4}
         style={{ color: theme?.palette?.primary?.main }}
       />
-      <div className="mt-20 text-3xl font-bold md:m-0">{title}</div>
+      <div className="text-3xl font-bold md:mt-20 md:m-0 dark:text-white">{title}</div>
     </div>
   );
 }

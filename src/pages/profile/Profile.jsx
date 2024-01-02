@@ -4,12 +4,13 @@ import AccountSetting from "../../components/organisms/profile/AccountSetting";
 import UserProfileHeader from "../../components/organisms/profile/UserProfileHeader";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import { useTheme } from "@mui/material/styles";
 
 export default function Profile() {
   const [editUser, setEditUser] = useState(false);
   const { user, setUser } = useAuth();
   const { orgData } = UseOrg();
-  // const theme = useTheme();
+  const theme = useTheme();
   // const bgDynamic = theme?.palette?.primary?.main
   //   ? theme?.palette?.primary?.main
   //   : "#9f9685";
@@ -26,6 +27,7 @@ export default function Profile() {
           setEditUser={setEditUser}
           user={user}
           orgData={orgData}
+          theme={theme}
         />
       </div>
 

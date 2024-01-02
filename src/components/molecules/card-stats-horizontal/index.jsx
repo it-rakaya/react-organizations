@@ -6,7 +6,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 const CardStatsHorizontal = (props) => {
-  const {  item } = props;
+  const { item } = props;
 
   return (
     <>
@@ -15,7 +15,7 @@ const CardStatsHorizontal = (props) => {
           sx={{ py: (theme) => `${theme.spacing(4.125)} !important` }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <div className="bg-[#c5b27917] rounded-md h-[40px] w-[40px] flex items-center justify-center ml-6 ">
+            <div className="bg-[#c5b27917] rounded-md h-[40px] w-[40px] flex items-center justify-center ltr:mr-6  rtl:ml-6 ">
               <Icon path={item?.icon} size={1} className=" text-primary" />
             </div>
 
@@ -28,34 +28,10 @@ const CardStatsHorizontal = (props) => {
                 }}
               >
                 <Typography variant="h6">{item.stats}</Typography>
-                {/* <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <Box
-                    sx={{
-                      display: "inline-flex",
-                      color:
-                        trend === "positive" ? "success.main" : "error.main",
-                    }}
-                  >
-                    <IconifyIcon
-                      icon={
-                        trend === "positive"
-                          ? "mdi:chevron-up"
-                          : "mdi:chevron-down"
-                      }
-                    />
-                  </Box>
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      color:
-                        trend === "positive" ? "success.main" : "error.main",
-                    }}
-                  >
-                    {item?.trendNumber}
-                  </Typography>
-                </Box> */}
               </Box>
-              <Typography variant="caption">{item?.title}</Typography>
+              <Typography variant="caption" className="dark:text-white">
+                {item?.title}
+              </Typography>
             </Box>
           </Box>
         </CardContent>
