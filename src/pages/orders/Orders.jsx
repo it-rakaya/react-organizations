@@ -166,7 +166,7 @@ export default function Orders() {
           >
             <div className="flex gap-1">
               <p className="text-[15px]">{row?.created_at?.slice(0, 10)}</p>/
-              <p className="text-[15px]">
+              <p className="text-[15px] dark:text-white">
                 {convertArabicToEnglish(
                   convertToHijri(row?.created_at?.slice(0, 10))
                 )}

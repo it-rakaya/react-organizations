@@ -9,7 +9,6 @@ import { mdiEyeOutline } from "@mdi/js";
 function PreviewPdf({ item, eyeIcon }) {
   const theme = useTheme();
 
-
   return (
     <div>
       <a
@@ -23,9 +22,12 @@ function PreviewPdf({ item, eyeIcon }) {
           className={` flex items-center w-full  p-1  cursor-pointer rounded-md  `}
         >
           {eyeIcon ? (
-            <Icon path={mdiEyeOutline} size={1} />
+            <Icon path={mdiEyeOutline} size={1} className="text-black dark:text-white " />
           ) : (
-            <IconifyIcon icon={"prime:file-pdf"} className="text-3xl" />
+            <IconifyIcon
+              icon={"prime:file-pdf"}
+              className="text-3xl text-black dark:text-white "
+            />
           )}
         </div>
       </a>

@@ -8,7 +8,7 @@ function FacilityWrapper({ activeStep, steps, StepperCustomDot }) {
       <Stepper
         activeStep={activeStep}
         alternativeLabel
-        className="mt-10 !bg-transparent   "
+        className="mt-10 !bg-transparent  !shadow-none "
       >
         {steps.map((step, index) => {
           return (

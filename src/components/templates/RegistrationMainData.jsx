@@ -32,6 +32,7 @@ function RegistrationMainData({ attachments_register }) {
         type="custom"
         maxNum={10}
         required
+
       />
       <PhoneInput2 name="phone" label={t("registration.phoneLabel")} required />
       <BaseInputField

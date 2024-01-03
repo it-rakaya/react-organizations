@@ -77,7 +77,6 @@ function AfterAndBeforeFacility({
   const isSaveDisabled = () => {
     const checkErrorsForKeys = (initialCase) =>
     Object.keys(initialCase).some((key) => values[key] === "" || errors[key]);
-    console.log("🚀 ~ file: AfterAndBeforeFacility.jsx:79 ~ isSaveDisabled ~ checkErrorsForKeys:", checkErrorsForKeys)
 
     switch (activeStep) {
       case 0:
@@ -112,7 +111,7 @@ function AfterAndBeforeFacility({
         justifyContent: "end",
         gap: "5px",
       }}
-      className="fixed bottom-[5px] md:bottom-[10px] left-[37px] md:left-[62px] "
+      className="fixed bottom-[5px] md:bottom-[10px] ltr:left-[37px] ltr:md:right-[62px] rtl:left-[37px] md:rtl:left-[62px] "
     >
       <ButtonComp
         size="large"
@@ -120,7 +119,7 @@ function AfterAndBeforeFacility({
         disabled={activeStep === 0}
         action={handleBack}
         variant="outlined"
-        className={`md:!w-[100px] px-1 !text-contained  !mt-0 ${
+        className={`w-[90px]  md:!w-[100px] px-1 !text-contained  !mt-0 ${
           activeStep === 0 ? "hidden" : "block"
         } `}
       >
@@ -129,7 +128,7 @@ function AfterAndBeforeFacility({
       <ButtonComp
         action={handleNext}
         type="button"
-        className={"w-[150px] md:!w-[100px] py-2  px-1 md:py-3 !mt-0 "}
+        className={"w-[90px]  md:!w-[100px] py-2  px-1 md:py-3 !mt-0 "}
         variant="contained"
         disabled={isSaveDisabled()}
       >

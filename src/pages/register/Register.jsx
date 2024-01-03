@@ -104,7 +104,7 @@ const Register = () => {
             >
               <img src={orgData?.organizations?.logo} className="w-[30px]" />
               <Box sx={{ mb: 3, width: "100%" }} className="text-center">
-                <TypographyStyled variant="h5">{`${t(
+                <TypographyStyled className="text-black dark:text-white"  variant="h5">{`${t(
                   "Welcome to"
                 )} ${organizationName}! 👋🏻`}</TypographyStyled>
               </Box>

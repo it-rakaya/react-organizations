@@ -30,6 +30,7 @@ const UploadImage = ({
 }) => {
   const modifyAccept = accept?.map((item) => `.${item}`);
   const textAccept = accept?.map((item) => ` -${item} `);
+  console.log("🚀 ~ file: UploadImage.jsx:33 ~ modifyAccept:", modifyAccept)
 
   const updateImage = {
     value: value,
@@ -53,9 +54,8 @@ const UploadImage = ({
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
-    accept: {
-      "image/*": modifyAccept ? modifyAccept : [".png", ".pdf", ".jpg"],
-    },
+    accept: modifyAccept ? modifyAccept : [".png", ".pdf", ".jpg"],
+
     onDrop: (acceptedFiles) => {
       const modifiedFiles = acceptedFiles.map((file) => {
         if (file.type === "application/pdf" || file.type.startsWith("image/")) {

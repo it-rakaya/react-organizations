@@ -33,22 +33,26 @@ export default function DetailsFacility({ data, className }) {
   return (
     <div>
       <div className="mt-8 px-">
-        <TabContext value={value}>
-          <div className="flex mt-5 ">
+        <TabContext value={value} className="!w-fit">
+          <div className="flex mt-5">
             <TabList
               onChange={handleChange}
               aria-label="nav tabs example"
               orientation="vertical"
-              className="w-[30%] tab_facility border-l-transparent"
+              className=" !min-w-[2%] md:w-[30%] tab_facility border-l-transparent w-[80px]  ml-0 "
             >
               <Tab
                 value="1"
                 component="a"
-                style={{ alignItems: "start" }}
+                style={{ alignItems: "start" , minWidth:"50px" }}
                 label={
-                  <div className="flex items-center gap-2">
-                    <Icon path={mdiOfficeBuildingOutline} size={1} />
-                    <h2 className="text-font-mediumblack font- text-start">
+                  <div className="flex items-center gap-2 ">
+                    <Icon
+                      path={mdiOfficeBuildingOutline}
+                      size={1}
+                      className="text-black dark:text-white w-fit"
+                    />
+                    <h2 className="hidden text-black text-font-mediumblack font- text-start dark:text-white md:block">
                       بيانات المنشاة{" "}
                     </h2>
                   </div>
@@ -57,12 +61,16 @@ export default function DetailsFacility({ data, className }) {
               <Tab
                 value="2"
                 component="a"
-                style={{ alignItems: "start" }}
+                style={{ alignItems: "start"  }}
                 label={
                   <div className="flex items-center gap-2">
-                    <Icon path={mdiMapMarkerOutline} size={1} />
+                    <Icon
+                      path={mdiMapMarkerOutline}
+                      size={1}
+                      className="text-black dark:text-white"
+                    />
 
-                    <h2 className="text-font-mediumblack font- text-start">
+                    <h2 className="hidden text-black text-font-mediumblack font- text-start dark:text-white md:block">
                       بيانات العنوان الوطني{" "}
                     </h2>
                   </div>
@@ -70,13 +78,17 @@ export default function DetailsFacility({ data, className }) {
               />
               <Tab
                 value="3"
-                style={{ alignItems: "start" }}
+                style={{ alignItems: "start" , width:"50px" , maxWidth:"100px" }}
                 component="a"
                 label={
                   <div className="flex items-center gap-2">
-                    <Icon path={mdiFormatListBulleted} size={1} />
+                    <Icon
+                      path={mdiFormatListBulleted}
+                      size={1}
+                      className="text-black dark:text-white"
+                    />
 
-                    <h2 className="text-font-mediumblack font- text-start">
+                    <h2 className="hidden text-black text-font-mediumblack font- text-start dark:text-white md:block">
                       بيانات اضافية
                     </h2>
                   </div>
@@ -88,9 +100,13 @@ export default function DetailsFacility({ data, className }) {
                 style={{ alignItems: "start" }}
                 label={
                   <div className="flex items-center gap-2">
-                    <Icon path={mdiFileDocumentOutline} size={1} />
+                    <Icon
+                      path={mdiFileDocumentOutline}
+                      size={1}
+                      className="text-black dark:text-white"
+                    />
 
-                    <h2 className="text-font-mediumblack font- text-start">
+                    <h2 className="hidden text-black text-font-mediumblack font- text-start dark:text-white md:block">
                       مرفقات
                     </h2>
                   </div>
