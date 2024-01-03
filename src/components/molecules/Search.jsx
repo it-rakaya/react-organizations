@@ -17,7 +17,7 @@ function Search({ setSearchQuery, placeholder, addTitle, action }) {
             <SearchIcon />
           </div>
         </div>
-        <div className="w-full mt-5 md:w-auto md:m-0">
+        <div className="w-full rtl:mt-5 md:w-auto md:m-0">
           {addTitle && (
             <ButtonComp variant="contained" className={"!m-0"} action={action}>
               {addTitle}
