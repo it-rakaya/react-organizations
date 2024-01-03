@@ -10,7 +10,7 @@ function DataNotFound({ title }) {
   return (
     <div
       className="absolute flex flex-col items-center justify-center gap-5"
-      style={{ left: "calc(50% - 100px )", top: "calc(50% - 50px)" }}
+      style={{ left: "calc(50% - 100px )", top: "calc(60% - 50px)" }}
     >
       <Icon
         path={mdiFileSearchOutline}
