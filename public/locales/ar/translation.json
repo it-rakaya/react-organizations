@@ -185,8 +185,10 @@
   "personal Data": "البيانات الشخصية",
   "Enter the verification code": "أدخل رمز التحقق ",
   "Resend the code":"اعادة ارسال الكود",
+  "I agree with this statement":"موافق على هذا الاقرار",
   "Chose position":"اختر المسمى الوظيفي",
-  "The verification number is required to complete the process. The verification code has been sent in a message To you": "رقم التحقق مطلوب لإكمال العملية. تم إرسال رمز التحقق في رسالة إليك",
+  "The data required to be recorded is the information of the facility owner and I promise Register it correctly":" البيانات المطلوب تسجيلها هي المعلومات الخاصة بمالك المنشأة وأتعهد بتسجيلها بشكل صحيح",
+  "Endorsement":"إقرار",  "The verification number is required to complete the process. The verification code has been sent in a message To you": "رقم التحقق مطلوب لإكمال العملية. تم إرسال رمز التحقق في رسالة إليك",
   "landing": {
     "organizationName": "اسم المنظمة",
     "description": "نص عربي نص عربي نص عربي نص عربي نص عربي نص عربي",

@@ -22,6 +22,13 @@ const App = () => {
     document.documentElement.dir = isRTL ? "rtl" : "ltr";
     document.documentElement.lang = isRTL ? "ar" : "en";
   }, []);
+  useEffect(() => {
+    const darkModeSetting = localStorage.getItem("darkMode");
+    if (darkModeSetting === "true") {
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+  
   /////////// FUNCTIONS | EVENTS | IF CASES
   ///
 

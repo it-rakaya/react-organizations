@@ -55,7 +55,7 @@ export default function OrganizationServices({
                 padding: "10px 0",
                 borderRadius: " 8px",
                 borderWidth:"1px",
-                borderColor:"#555d64",
+                // borderColor:"#555d64",
                 background: "white",
                 margin: "0",
               }),
@@ -69,13 +69,13 @@ export default function OrganizationServices({
               ...theme,
               borderRadius: 0,
               colors: {
-                ...theme.colors,
+                // ...theme.colors,
                 primary25: `#eee`,
                 primary: "#eee",
               },
             })}
             classNames={{
-              control: () => "dark:bg-dark-primary",
+              control: () => "dark:bg-dark-primary dark:border-[#555d64]",
               option: () => "dark:bg-dark-primary dark:text-white  ",
             }}
           />

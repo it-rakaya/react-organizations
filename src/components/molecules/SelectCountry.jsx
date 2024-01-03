@@ -60,13 +60,13 @@ export default function SelectCountry({ name, label, className ,required }) {
             ...theme,
             borderRadius: 0,
             colors: {
-              ...theme.colors,
+              // ...theme.colors,
               primary25: `#eee`,
               primary: "#eee",
             },
           })}
           classNames={{
-            control: () => "dark:bg-dark-primary",
+            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",
           }}
         />

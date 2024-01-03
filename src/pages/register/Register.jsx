@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import { styled, useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginIcon from "../../components/atoms/icons/LoginIcon";
 import RegisterForm from "../../components/templates/RegisterForm";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
@@ -88,6 +88,8 @@ const Register = () => {
               backgroundColor: "background.paper",
               height: "100vh",
               overflowY: "scroll",
+              overflowX: "hidden",
+
             }}
             className="scroll_main"
           >
@@ -102,7 +104,9 @@ const Register = () => {
                 marginTop: "20px",
               }}
             >
+              <Link to="/">
               <img src={orgData?.organizations?.logo} className="w-[30px]" />
+              </Link>
               <Box sx={{ mb: 3, width: "100%" }} className="text-center">
                 <TypographyStyled className="text-black dark:text-white"  variant="h5">{`${t(
                   "Welcome to"

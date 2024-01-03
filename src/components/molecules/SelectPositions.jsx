@@ -47,7 +47,7 @@ export default function SelectPositions({ name, label, className ,required }) {
               padding: "10px 0",
               borderRadius: " 8px",
               borderWidth:"1px",
-              borderColor:"#555d64",
+              // borderColor:"#555d64",
               background: "white",
               margin: "0",
             }),
@@ -61,13 +61,13 @@ export default function SelectPositions({ name, label, className ,required }) {
             ...theme,
             borderRadius: 0,
             colors: {
-              ...theme.colors,
+              // ...theme.colors,
               primary25: `#eee`,
               primary: "#eee",
             },
           })}
           classNames={{
-            control: () => "dark:bg-dark-primary",
+            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",
           }}
         />

@@ -1,16 +1,15 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
-import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
-import { UseOrg } from "../../context/organization provider/OrganizationProvider";
-import { t } from "i18next";
 import {
   FormControl,
   FormControlLabel,
   Radio,
   RadioGroup,
 } from "@mui/material";
-import ButtonComp from "../atoms/buttons/ButtonComp";
+import { t } from "i18next";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ButtonComp from "../atoms/buttons/ButtonComp";
+import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
 
 function Signature() {
   //   const { orgData } = UseOrg();
@@ -23,44 +22,21 @@ function Signature() {
         <div className="">
           <TermsConditionIcon className={""} />
         </div>
-        <h1 className="text-xl font-bold ">{t("Terms and Conditions")}</h1>
+        <h1 className="text-xl font-bold dark:text-white ">
+          {t("Terms and Conditions")}
+        </h1>
       </div>
 
-      {/* {orgData?.organizations?.policies ? (
-        <div
-          className="main_content max-h-[450px] overflow-y-scroll scroll_main mt-5"
-          dangerouslySetInnerHTML={{
-            __html: orgData?.organizations?.policies,
-          }}
-        ></div>
-      ) : ( */}
       <div className="main_content max-h-[450px] overflow-y-scroll scroll_main mt-5">
-        <p className="font-semibold text-center">
-          بموافقتك على التسجيل بالمنصة فإنك تقر وتقبل الشروط والأحكام التالية:
+        <p className="font-semibold text-center dark:text-white">
+          {t("Endorsement")}{" "}
         </p>
-        <ul className="mx-4 text-start">
-          <li className="my-2 text-[15px]">
-            جميع البيانات والمرفقات المدخلة من قبلكم صحيحة ومحدثة ولا تتحمل
-            المنصة أدنى مسؤولية في حالة كونها غير صحيحة أو غير مطابقة.
-          </li>
-          <li className="my-2 text-[15px]">
-            في حالة إرفاق ملف في غير محله لغرض مِلء المتطلبات لن يتم النظر إليه
-            ولن يتم قبولكم في المنصة.
-          </li>
-          <li className="my-2 text-[15px]">
-            يجب أن يكون مستخدم المنصة يقدم خدمات الإعاشة ومصرح له بذلك.
-          </li>
-          <li className="my-2 text-[15px]">
-            يحق للمنصة الإطلاع على البيانات المرفقة من قبلكم وحفظها لديها لأغراض
-            تطوير المنصة.
-          </li>
-          <li className="my-2 text-[15px]">
-            يخضع المسجل في المنصة لأحكامها وفي حالة تحديثها أو تعديلها سيتم
-            إشعارك بذلك.
-          </li>
-        </ul>
+        <p className="text-center dark:text-white">
+          {t(
+            "The data required to be recorded is the information of the facility owner and I promise Register it correctly"
+          )}
+        </p>
       </div>
-      {/* )} */}
 
       <div className="flex justify-center mt-5 ">
         <FormControl>
@@ -78,13 +54,15 @@ function Signature() {
                   className="pt-0 pb-0"
                 />
               }
-              label={t("I have read all terms and conditions")}
+              label={t("I agree with this statement")}
             />
           </RadioGroup>
         </FormControl>
       </div>
       <div>
-        <ButtonComp disabled={!checked}  action={()=>navigate('/register')}>{t("landing.register")}</ButtonComp>
+        <ButtonComp disabled={!checked} action={() => navigate("/register")}>
+          {t("landing.register")}
+        </ButtonComp>
       </div>
     </div>
   );

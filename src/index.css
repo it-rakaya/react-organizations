@@ -25,6 +25,11 @@ svg {
   /* @apply  text-contained */
 }
 
+.dark svg {
+  color: white;
+  /* @apply  text-contained */
+}
+
 div {
   scrollbar-width: thin !important;
   scrollbar-color: #3b3b64 transparent;
@@ -697,4 +702,7 @@ background-color: transparent !important;
   [dir="ltr"] .css-zchfm5-MuiPaper-root-MuiCard-root{
     height: calc(100vh - 310px) !important;
   }
+}
+.css-10grdpy-MuiDataGrid-columnHeaders{
+  background-color: transparent !important;
 }

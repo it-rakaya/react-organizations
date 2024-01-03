@@ -48,6 +48,7 @@ export default function Orders() {
       headerName: t("code"),
       cellClassName: "flex !px-0 !justify-center ",
       headerAlign: "center",
+      minWidth: 50,
 
       renderCell: ({ row }) => {
         const { code } = row;
@@ -74,6 +75,7 @@ export default function Orders() {
       headerName: t("service name"),
       cellClassName: "flex !px-0 !justify-center",
       headerAlign: "center",
+      minWidth: 50,
       renderCell: ({ row }) => {
         return (
           <Typography noWrap variant="body2">
@@ -88,6 +90,7 @@ export default function Orders() {
       field: "facility_name",
       headerName: t("facility name"),
       cellClassName: "flex !px-0 !justify-center",
+      minWidth: 50,
       headerAlign: "center",
       renderCell: ({ row }) => {
         return (
@@ -127,6 +130,7 @@ export default function Orders() {
       field: "status",
       cellClassName: "flex !px-0 !justify-center",
       headerAlign: "center",
+      minWidth: 50,
       renderCell: ({ row }) => {
         return (
           <Typography
@@ -151,6 +155,7 @@ export default function Orders() {
       field: "created_at",
       cellClassName: "flex !px-0 !justify-center",
       headerAlign: "center",
+      minWidth: 50,
       renderCell: ({ row }) => {
         return (
           <Typography
@@ -183,6 +188,7 @@ export default function Orders() {
       field: "الاجراءات",
       cellClassName: "flex !px-0 !justify-center",
       headerAlign: "center",
+      minWidth: 50,
       renderCell: ({ row }) => {
         return (
           <Typography
