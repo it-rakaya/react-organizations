@@ -31,7 +31,7 @@ function FacilityContent({
       kitchen_space: "",
       street_name: "",
       district_id: "",
-      city_id: "",
+      city: "",
       building_number: "",
       postal_code: "",
       sub_number: "",

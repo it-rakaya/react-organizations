@@ -69,7 +69,7 @@ export default function MyFacilities() {
       <div className="flex flex-col items-center justify-between h-[65vh]">
         {isLoading || isRefetching ? (
           <Loading />
-        ) : filteredFacilities?.length ? (
+        ) : !filteredFacilities?.length ? (
           <>
             <Grid container spacing={6}>
               {paginatedFacilities?.map((item) => (
@@ -123,7 +123,8 @@ export default function MyFacilities() {
                             <Typography
                               variant="h6"
                               sx={{ fontWeight: 500, marginTop: 1 }}
-                              className="!my-2"
+                              className="!my-2 
+                              "
                             >
                               {item?.name}
                             </Typography>

@@ -153,12 +153,16 @@ export default function RegisterForm() {
                 marginTop: "10px",
               }}
             >
-              <Typography sx={{ mr: 2, color: "text.secondary" }}>
+              <Typography
+                sx={{ mr: 2, color: "text.secondary" }}
+                className=" dark:text-white"
+              >
                 {t("Already have an account?")}
               </Typography>
               <Link
                 to="/login"
                 sx={{ color: "primary.main", textDecoration: "none" }}
+                className=" dark:text-white"
               >
                 {t("Sign in instead")}
               </Link>

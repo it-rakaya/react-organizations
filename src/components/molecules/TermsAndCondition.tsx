@@ -36,22 +36,22 @@ function TermsAndCondition({ checked, setChecked, hidden }) {
             بموافقتك على التسجيل بالمنصة فإنك تقر وتقبل الشروط والأحكام التالية:
           </p>
           <ul className="mx-4 text-start">
-            <li className="my-2 text-[15px]">
+            <li className="my-2 text-[15px] text-black dark:text-white">
               جميع البيانات والمرفقات المدخلة من قبلكم صحيحة ومحدثة ولا تتحمل
               المنصة أدنى مسؤولية في حالة كونها غير صحيحة أو غير مطابقة.
             </li>
-            <li className="my-2 text-[15px]">
+            <li className="my-2 text-[15px] text-black dark:text-white">
               في حالة إرفاق ملف في غير محله لغرض مِلء المتطلبات لن يتم النظر
               إليه ولن يتم قبولكم في المنصة.
             </li>
-            <li className="my-2 text-[15px]">
+            <li className="my-2 text-[15px] text-black dark:text-white">
               يجب أن يكون مستخدم المنصة يقدم خدمات الإعاشة ومصرح له بذلك.
             </li>
-            <li className="my-2 text-[15px]">
+            <li className="my-2 text-[15px] text-black dark:text-white">
               يحق للمنصة الإطلاع على البيانات المرفقة من قبلكم وحفظها لديها
               لأغراض تطوير المنصة.
             </li>
-            <li className="my-2 text-[15px]">
+            <li className="my-2 text-[15px] text-black dark:text-white">
               يخضع المسجل في المنصة لأحكامها وفي حالة تحديثها أو تعديلها سيتم
               إشعارك بذلك.
             </li>
@@ -66,15 +66,17 @@ function TermsAndCondition({ checked, setChecked, hidden }) {
             <RadioGroup
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
+              className=" dark:!text-white"
+
             >
               <FormControlLabel
                 value="female"
-                className="text-white TermsAndCondition"
+                className="dark:!text-white TermsAndCondition"
                 control={
                   <Radio
                     onClick={() => setChecked(!checked)}
                     checked={checked}
-                    className="pt-0 pb-0 dark:text-white"
+                    className="pt-0 pb-0 dark:!text-white"
                   />
                 }
                 label={t("I have read all terms and conditions")}

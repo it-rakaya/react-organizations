@@ -16,12 +16,15 @@ function AttachmentsData({ data, colorHead }) {
                 <div className="mr-[2px]">
                   <IconifyIcon
                     icon={"iconamoon:file-image-light"}
-                    className="text-[1.6rem]  "
+                    className="text-[1.6rem] text-black  dark:text-white "
                   />
                 </div>
               ) : (
                 <div>
-                  <IconifyIcon icon={"prime:file-pdf"} className="text-3xl" />
+                  <IconifyIcon
+                    icon={"prime:file-pdf"}
+                    className="text-3xl text-black dark:text-white "
+                  />
                 </div>
               )}
               <p
@@ -43,7 +46,7 @@ function AttachmentsData({ data, colorHead }) {
                     rel="noreferrer"
                     className="cursor-pointer "
                   >
-                    <Icon path={mdiTrayArrowDown} size={1} />
+                    <Icon path={mdiTrayArrowDown} size={1} className="text-black dark:text-white " />
                   </a>
                 </div>
               ) : (
@@ -56,7 +59,7 @@ function AttachmentsData({ data, colorHead }) {
                     rel="noreferrer"
                     className="cursor-pointer"
                   >
-                    <Icon path={mdiTrayArrowDown} size={1} />
+                    <Icon path={mdiTrayArrowDown} size={1} className="text-black dark:text-white "  />
                   </a>
                 </div>
               )}

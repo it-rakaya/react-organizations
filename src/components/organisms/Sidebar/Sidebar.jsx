@@ -143,7 +143,7 @@ export const SideBar = ({
           icon={<Item.icon size={15} className="dark:text-white"/>}
           active={location?.pathname === Item.link}
         >
-          <div>{t(Item.label)}</div>
+          <div className="dark:text-white">{t(Item.label)}</div>
         </MenuItem>
       </>
     );

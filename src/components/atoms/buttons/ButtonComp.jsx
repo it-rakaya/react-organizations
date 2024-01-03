@@ -32,7 +32,7 @@ const ButtonComp = ({
       }}
       variant={variant}
       className={`${className}  text-white  hover:!bg-${theme?.palette?.primary?.main}
-       disabled:cursor-not-allowed disabled:text-[${theme?.palette?.primary?.main}] !disabled:opacity-6 !mt-5 `}
+       disabled:cursor-not-allowed disabled:text-[${theme?.palette?.primary?.main}] !disabled:opacity-6 ltr:!mt-5 mt-5 `}
       // sx={{ mb: 7 }}
       disabled={disabled}
       onClick={action}

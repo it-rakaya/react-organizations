@@ -18,14 +18,14 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
   const [index, setIndex] = useState(0);
 
   return (
-    <div className="grid grid-cols-1 mt-3 gap-x-10 md:grid-cols-3 xl:grid-cols-3">
-      <div className="col-span-3">
+    <div className="grid w-full grid-cols-12 col-span-12 mt-3 md:gap-x-10 md:grid-cols-3 xl:grid-cols-3">
+      <div className="col-span-12">
         <Typography className={`font-bold  `}>4. تحميل المستندات </Typography>
       </div>
       {detailsFacilitiesData?.map((item, index) => (
         <div
           key={index}
-          className="col-span-3 m-auto md:m-0 md:col-span-1 xl:col-span-1"
+          className="w-full col-span-12 m-auto md:m-0 md:col-span-1 xl:col-span-1"
         >
           <UploadImage
             name={`attachments[${item?.id ? item?.id : item?.attachment_id}]`}

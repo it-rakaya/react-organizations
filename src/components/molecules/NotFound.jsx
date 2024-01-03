@@ -3,14 +3,16 @@
 import Icon from "@mdi/react";
 import { mdiFileSearchOutline } from "@mdi/js";
 import { useTheme } from "@mui/material/styles";
+import { useIsRTL } from "../../hooks/useIsRTL";
 
 function DataNotFound({ title }) {
   const theme = useTheme();
+  const isRtl = useIsRTL()
 
   return (
     <div
       className="absolute flex flex-col items-center justify-center gap-5"
-      style={{ left: "calc(50% - 100px )", top: "calc(50% - 50px)" }}
+      style={{ left:isRtl ? "calc(50% - 100px )" : "", top: "calc(60% - 50px)" }}
     >
       <Icon
         path={mdiFileSearchOutline}
@@ -18,7 +20,7 @@ function DataNotFound({ title }) {
         size={4}
         style={{ color: theme?.palette?.primary?.main }}
       />
-      <div className="text-3xl font-bold md:mt-20 md:m-0 dark:text-white">{title}</div>
+      <div className="text-3xl font-bold md:m-0 dark:text-white">{title}</div>
     </div>
   );
 }
