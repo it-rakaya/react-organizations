@@ -46,7 +46,7 @@ export default function AddEmployee({
   const validationSchema = () =>
     Yup.object({
       name: Yup.string().trim().required(t("employee name is required")),
-      position: Yup.string().trim().required(t("position name is required")),
+      facility_employee_position_id: Yup.string().trim().required(t("position name is required")),
       national_id: Yup.string()
         ?.matches(/^\d{10}$/, t("The ID number must be exactly 10 digits"))
         ?.test({
@@ -78,7 +78,7 @@ export default function AddEmployee({
       <Formik
         initialValues={{
           name: "",
-          position: "",
+          facility_employee_position_id: "",
           national_id: "",
           facility_id: "",
         }}

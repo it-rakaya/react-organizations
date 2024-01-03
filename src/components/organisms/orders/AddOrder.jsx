@@ -14,7 +14,7 @@ export default function AddOrder({ setOpenAddFaculty }) {
   const [show, setShow] = useState(true);
   const queryClient = useQueryClient();
   const { orgData } = UseOrg();
-  
+
   const { mutate: AddOrder, isPending } = useMutate({
     mutationKey: [`create_new_orders`],
     endpoint: `orders`,
@@ -51,23 +51,26 @@ export default function AddOrder({ setOpenAddFaculty }) {
             ...answers,
           };
           AddOrder(formData);
-        
         }}
       >
         {({ errors, values }) => (
           <Form>
-            <OrderMainData setShow={setShow} show={show} isPending={isPending} />
+            <OrderMainData
+              setShow={setShow}
+              show={show}
+              isPending={isPending}
+            />
             {!show && (
               <div className="flex justify-center gap-5 mt-10">
                 <ButtonComp
-                  className={"w-auto"}
+                  className={"!w-auto"}
                   variant="outlined"
                   action={() => setShow(true)}
                 >
                   {t("Back")}
                 </ButtonComp>
                 <ButtonComp
-                  className={"w-auto"}
+                  className={"!w-auto"}
                   type={"submit"}
                   loading={isPending}
                 >

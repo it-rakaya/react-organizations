@@ -38,8 +38,8 @@ export default function Orders() {
   });
   console.log("🚀 ~ file: Orders.jsx:37 ~ Orders ~ Orders:", Orders);
 
-  const Canceled = 5;
-  const Rejected = 4;
+  const Canceled = 6;
+  const Rejected = 5;
 
   const columns = [
     {
@@ -153,7 +153,7 @@ export default function Orders() {
       flex: 0.15,
       headerName: t("create at"),
       field: "created_at",
-      cellClassName: "flex !px-0 !justify-center",
+      cellClassName: "flex !px-0 !justify-center ",
       headerAlign: "center",
       minWidth: 50,
       renderCell: ({ row }) => {
@@ -169,8 +169,8 @@ export default function Orders() {
               // padding: "0 10px",
             }}
           >
-            <div className="flex gap-1">
-              <p className="text-[15px]">{row?.created_at?.slice(0, 10)}</p>/
+            <div className="flex gap-1 dark:text-white">
+              <p className="text-[15px] dark:text-white">{row?.created_at?.slice(0, 10)}</p>/
               <p className="text-[15px] dark:text-white">
                 {convertArabicToEnglish(
                   convertToHijri(row?.created_at?.slice(0, 10))
@@ -252,7 +252,7 @@ export default function Orders() {
       },
     },
   ];
-  const closeRegister = orgData?.organizations?.close_registeration == "1"
+  const closeRegister = orgData?.organizations?.close_registeration == "1";
 
   return (
     <div>
@@ -261,16 +261,18 @@ export default function Orders() {
         <Loading />
       ) : (
         <>
-        {
-          closeRegister  && 
-          <Alert severity="warning" className="flex items-center bg-transparent mt-[-14px]">
-            <div className="flex items-center gap-5 ">
-              <p className="p-0 m-0 font-bold text-red-500">
-                تم اغلاق استقبال الطلبات
-              </p>
-            </div>
-          </Alert>
-        }
+          {closeRegister && (
+            <Alert
+              severity="warning"
+              className="flex items-center bg-transparent mt-[-14px]"
+            >
+              <div className="flex items-center gap-5 ">
+                <p className="p-0 m-0 font-bold text-red-500">
+                  تم اغلاق استقبال الطلبات
+                </p>
+              </div>
+            </Alert>
+          )}
           <OrderInfo Orders={Orders} />
 
           <Table
@@ -286,7 +288,6 @@ export default function Orders() {
 
       <ModalComp
         open={openAddFaculty}
-        className={"  "}
         onClose={() => setOpenAddFaculty(false)}
         Children={<AddOrder setOpenAddFaculty={setOpenAddFaculty} />}
       />

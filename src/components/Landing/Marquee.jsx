@@ -5,6 +5,7 @@ import { useTheme } from "@mui/material/styles";
 const Marquee = ({ children, disabled }) => {
   const theme = useTheme();
 
+  
   return (
     <div
       style={{ backgroundColor: theme?.palette?.primary?.main }}

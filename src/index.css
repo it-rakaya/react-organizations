@@ -241,6 +241,7 @@ main,
 .react-tel-input .flag-dropdown {
   border-radius: 5px 0 0 5px;
 }
+
 .dark .react-tel-input .flag-dropdown {
   @apply bg-darkModeColor
 }
@@ -624,7 +625,8 @@ input:-webkit-autofill:active {
   box-shadow: 0 0 0px 1px !important;
 
 }
-.loading{
+
+.loading {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -680,29 +682,37 @@ input:-webkit-autofill:active {
   color: white !important;
 
 }
-.dark .MuiDataGrid-columnHeaderTitle{
+
+.dark .MuiDataGrid-columnHeaderTitle {
   color: white !important;
 
 }
 
-.MuiDataGrid-main{
-background-color: transparent !important;
+.MuiDataGrid-main {
+  background-color: transparent !important;
 }
 
-.dark .MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label{
+.dark .MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label {
   color: white !important;
 
 }
-.css-zchfm5-MuiPaper-root-MuiCard-root{
+
+.css-zchfm5-MuiPaper-root-MuiCard-root {
   box-shadow: 0 0 0 !important;
   background-color: transparent !important;
 }
 
 @media (max-width:960px) {
-  [dir="ltr"] .css-zchfm5-MuiPaper-root-MuiCard-root{
+  [dir="ltr"] .css-zchfm5-MuiPaper-root-MuiCard-root {
     height: calc(100vh - 310px) !important;
   }
 }
-.css-10grdpy-MuiDataGrid-columnHeaders{
+
+.css-10grdpy-MuiDataGrid-columnHeaders {
   background-color: transparent !important;
+}
+
+.dark .css-bvn70t-multiValue,
+.dark .rtl-bvn70t-multiValue {
+  background-color: #3a474b;
 }
