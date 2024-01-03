@@ -21,13 +21,14 @@ const AppBarContent = (props) => {
         className=" actions-left"
         sx={{ mr: 2, display: "flex", alignItems: "center" }}
       >
-        <div
-          className="block md:hidden"
-          onClick={() => setToggled(!toggled)}
-        >
-          <IconButton color="inherit" sx={{ ml: -2.75 }}>
-            <IconifyIcon icon="mdi:menu" />
-          </IconButton>
+        <div className="block md:hidden" onClick={() => setToggled(!toggled)}>
+          {toggled ? (
+            ""
+          ) : (
+            <IconButton color="inherit" sx={{ ml: -2.75 }}>
+              <IconifyIcon icon="mdi:menu" />
+            </IconButton>
+          )}
         </div>
       </Box>
       <Box

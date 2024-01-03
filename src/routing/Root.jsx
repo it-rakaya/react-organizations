@@ -148,10 +148,10 @@ export const Root = ({ props }) => {
                   <AppBarContent
                     settings={settings}
                     isSidebarCollapsed={isSidebarCollapsed}
+                    toggled={toggled}
                     setSidebarCollapsed={setSidebarCollapsed}
                     saveSettings={saveSettings}
                     setToggled={setToggled}
-                    toggled={toggled}
                     // appBarContent={verticalLayoutProps.appBar?.content}
                     {...props}
                   />
