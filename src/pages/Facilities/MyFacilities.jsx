@@ -69,7 +69,7 @@ export default function MyFacilities() {
       <div className="flex flex-col items-center justify-between h-[65vh]">
         {isLoading || isRefetching ? (
           <Loading />
-        ) : !filteredFacilities?.length ? (
+        ) :filteredFacilities?.length ? (
           <>
             <Grid container spacing={6}>
               {paginatedFacilities?.map((item) => (
