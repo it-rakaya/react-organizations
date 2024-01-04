@@ -53,7 +53,6 @@ export default function MyEmployees() {
       headerAlign: "center",
       renderCell: ({ row }) => {
         const { name } = row;
-
         return (
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box
@@ -63,9 +62,10 @@ export default function MyEmployees() {
                 gap: "5px",
                 // flexDirection: "column",
               }}
+              
             >
               <Icon path={mdiAccountOutline} size={1} />
-              <LinkStyled href="/apps/user/view/overview/">{name}</LinkStyled>
+              <LinkStyled href="/apps/user/view/overview/" className="text-black dark:text-white">{name}</LinkStyled>
             </Box>
           </Box>
         );
@@ -80,7 +80,7 @@ export default function MyEmployees() {
       headerAlign: "center",
       renderCell: ({ row }) => {
         return (
-          <Typography noWrap variant="body2">
+          <Typography noWrap variant="body2"className="text-black dark:text-white">
             {row.facility_name}
           </Typography>
         );
@@ -100,6 +100,7 @@ export default function MyEmployees() {
             <Typography
               noWrap
               sx={{ color: "text.secondary", textTransform: "capitalize" }}
+              className="text-black dark:text-white"
             >
               {row.national_id}
             </Typography>
@@ -121,6 +122,7 @@ export default function MyEmployees() {
             variant="subtitle1"
             noWrap
             sx={{ textTransform: "capitalize" }}
+            className="text-black dark:text-white"
           >
             {row.position}
           </Typography>
@@ -149,6 +151,7 @@ export default function MyEmployees() {
               // marginTop:"50px",
               // marginBottom:"50px"
             }}
+            className="text-black dark:text-white"
           >
             {row?.attachmentUrl.map((item) => (
               <div className="" key={item?.id}>

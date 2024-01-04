@@ -36,7 +36,6 @@ export default function Orders() {
     queryKey: ["my_orders"],
     enabled: !!orgData?.organizations?.id,
   });
-  console.log("🚀 ~ file: Orders.jsx:37 ~ Orders ~ Orders:", Orders);
 
   const Canceled = 6;
   const Rejected = 5;
@@ -61,7 +60,7 @@ export default function Orders() {
                 gap: "5px",
               }}
             >
-              <Typography noWrap variant="caption">
+              <Typography noWrap variant="caption" className="text-black dark:text-white">
                 {`#${code}`}
               </Typography>
             </Box>
@@ -78,7 +77,7 @@ export default function Orders() {
       minWidth: 50,
       renderCell: ({ row }) => {
         return (
-          <Typography noWrap variant="body2">
+          <Typography noWrap variant="body2" className="text-black dark:text-white">
             {row.service?.name}
           </Typography>
         );
@@ -98,6 +97,7 @@ export default function Orders() {
             <Typography
               noWrap
               sx={{ color: "text.secondary", textTransform: "capitalize" }}
+              className="text-black dark:text-white"
             >
               {row.facility?.name}
             </Typography>
@@ -143,6 +143,7 @@ export default function Orders() {
               borderRadius: "5px",
               padding: "0 10px",
             }}
+            className="text-white"
           >
             {row.status?.name_ar}
           </Typography>
@@ -168,6 +169,7 @@ export default function Orders() {
               // borderRadius: "5px",
               // padding: "0 10px",
             }}
+            className="text-black dark:text-white"
           >
             <div className="flex gap-1 dark:text-white">
               <p className="text-[15px] dark:text-white">{row?.created_at?.slice(0, 10)}</p>/
@@ -176,7 +178,7 @@ export default function Orders() {
                   convertToHijri(row?.created_at?.slice(0, 10))
                 )}
               </p>
-              هـ
+              {t("H")}
             </div>
           </Typography>
         );

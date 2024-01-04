@@ -65,11 +65,11 @@ export default function MyFacilities() {
         addTitle={t("Add Facility")}
         action={() => navigate("/dashboard/facilities/create-facility")}
       />
-        {/* <button className="my-5" onClick={()=>notify("success")}>test</button> */}
+      {/* <button className="my-5" onClick={()=>notify("success")}>test</button> */}
       <div className="flex flex-col items-center justify-between h-[65vh]">
         {isLoading || isRefetching ? (
           <Loading />
-        ) :filteredFacilities?.length ? (
+        ) : filteredFacilities?.length ? (
           <>
             <Grid container spacing={6}>
               {paginatedFacilities?.map((item) => (
@@ -123,7 +123,7 @@ export default function MyFacilities() {
                             <Typography
                               variant="h6"
                               sx={{ fontWeight: 500, marginTop: 1 }}
-                              className="!my-2 
+                              className="!my-2 text-center mx-1 text-black dark:text-white
                               "
                             >
                               {item?.name}
@@ -158,7 +158,6 @@ export default function MyFacilities() {
           <DataNotFound title={t("Not Found Facilities")} />
         )}
       </div>
-    
 
       <ModalComp
         open={open}
@@ -194,18 +193,22 @@ export default function MyFacilities() {
       <ModalComp
         open={openSecundModal}
         hidden
-        className="!max-w-[500px]  "
+        className="!max-w-[500px]"
         onClose={() => setSecundModal(true)}
         Children={
           <div className="flex flex-col items-center justify-center gap-4 p-3">
             <CheckIcon className="stroke-contained" />
-            <h1 className="font-bold"> تم إضافة موظف بنجاح</h1>
+            <h1 className="font-bold text-black dark:text-white">
+              {t("An employee has been added successfully")}
+            </h1>
             <ButtonComp
-              className="!w-2/3 !mb-0"
+              className="!w-2/3 !mb-0 "
               variant="contained"
               action={() => navigate("/dashboard/employee")}
             >
-              الانتقال الى الموظفين
+              <p className="text-black dark:text-white">
+                {t("Moving on to employees")}
+              </p>
             </ButtonComp>
             <ButtonComp
               className="!w-2/3 !px-10 !mt-0"
@@ -215,7 +218,7 @@ export default function MyFacilities() {
                 setOpenAddEmployee(false);
               }}
             >
-              الرجوع
+              {t("Back")}
             </ButtonComp>
           </div>
         }

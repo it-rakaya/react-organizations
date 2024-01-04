@@ -23,14 +23,13 @@ function Signature() {
           <TermsConditionIcon className={""} />
         </div>
         <h1 className="text-xl font-bold dark:text-white ">
-          {t("Terms and Conditions")}
+        {t("Endorsement")}
+
         </h1>
       </div>
 
       <div className="main_content max-h-[450px] overflow-y-scroll scroll_main mt-5">
-        <p className="font-semibold text-center dark:text-white">
-          {t("Endorsement")}{" "}
-        </p>
+
         <p className="text-center dark:text-white">
           {t(
             "The data required to be recorded is the information of the facility owner and I promise Register it correctly"
