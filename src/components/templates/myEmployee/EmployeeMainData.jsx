@@ -22,16 +22,17 @@ export default function EmployeeMainData({
         styleHead={{ color: theme.palette.primary.main }}
       />
       <div className="grid items-start grid-cols-2 gap-2 px-5 max-h-[32rem] h-full overflow-y-scroll scroll_main ">
-      <h1 className="flex items-center col-span-12 gap-1 py-2 text-xl font-medium dark:text-white">
-        <Icon path={mdiAccountBoxOutline} size={1} />
-        {t("employee Data")}:
-      </h1>
+        <h1 className="flex items-center col-span-12 gap-1 py-2 text-xl font-medium dark:text-white">
+          <Icon path={mdiAccountBoxOutline} size={1} />
+          {t("employee Data")}:
+        </h1>
         {showSelectFacility && (
           <div className="col-span-12">
             <SelectFacilities
               label={t("Choose the facility name")}
               name="facility_id"
               placeholder={t("Choose the facility name")}
+              required
             />
           </div>
         )}
@@ -41,15 +42,15 @@ export default function EmployeeMainData({
               label={t("Employee Name")}
               placeholder="محمد احمد محمد"
               name="name"
+              required
             />
           </div>
           <div className="w-full md:w-1/2">
-            {/* <BaseInputField
+            <SelectPositions
               label={t("Job title")}
-              placeholder={`${t("Programming")}`}
-              name="position"
-            /> */}
-            <SelectPositions label={t("Job title")}  name="facility_employee_position_id"/>
+              name="facility_employee_position_id"
+              required
+            />
           </div>
         </div>
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap ">
@@ -60,6 +61,7 @@ export default function EmployeeMainData({
               name="national_id"
               type="custom"
               maxNum={10}
+              required
             />
           </div>
         </div>
@@ -67,9 +69,8 @@ export default function EmployeeMainData({
           <Divider />
         </div>
         <h1 className="flex col-span-12 gap-1 pb-3 text-xl font-medium item-center dark:text-white">
-        <Icon path={mdiFileDocumentOutline} size={1} />
-
-         {t("attachments")}:
+          <Icon path={mdiFileDocumentOutline} size={1} />
+          {t("attachments")}:
         </h1>
 
         <div className="grid grid-cols-1 col-span-12 gap-2 md:grid-cols-2 ">
@@ -82,6 +83,7 @@ export default function EmployeeMainData({
               placeholder={t("please upload photo")}
               className="!justify-start mt-1 rounded-md text-start"
               accept={item?.extensions || []}
+              isRequired={item?.is_required}
             />
             // </div>
           ))}

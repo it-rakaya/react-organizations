@@ -60,24 +60,7 @@ export default function AddOrder({ setOpenAddFaculty }) {
               show={show}
               isPending={isPending}
             />
-            {!show && (
-              <div className="flex justify-center gap-5 mt-10">
-                <ButtonComp
-                  className={"!w-auto"}
-                  variant="outlined"
-                  action={() => setShow(true)}
-                >
-                  {t("Back")}
-                </ButtonComp>
-                <ButtonComp
-                  className={"!w-auto"}
-                  type={"submit"}
-                  loading={isPending}
-                >
-                  {t("Save")}
-                </ButtonComp>
-              </div>
-            )}
+          
           </Form>
         )}
       </Formik>

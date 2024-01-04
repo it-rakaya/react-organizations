@@ -76,7 +76,7 @@ export default function SelectCitiesSaudi({
             }),
             option: (baseStyles) => ({
               ...baseStyles,
-              // background:"white" ,
+              background:"white" ,
               color: "black",
             }),
           }}
@@ -84,7 +84,7 @@ export default function SelectCitiesSaudi({
             ...theme,
             borderRadius: 0,
             colors: {
-              // ...theme.colors,
+              ...theme.colors,
               primary25: `#eee`,
               primary: "#eee",
             },

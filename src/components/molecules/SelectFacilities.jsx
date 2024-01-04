@@ -53,7 +53,7 @@ export default function SelectFacilities({ name, label, required, className }) {
               }),
               option: (baseStyles) => ({
                 ...baseStyles,
-                // background:"white" ,
+               background:"white" ,
                 color: "black",
               }),
             }}

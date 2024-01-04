@@ -53,7 +53,7 @@ export default function SelectPositions({ name, label, className ,required }) {
             }),
             option: (baseStyles) => ({
               ...baseStyles,
-              // background:"white" ,
+              background:"white" ,
               color: "black",
             }),
           }}

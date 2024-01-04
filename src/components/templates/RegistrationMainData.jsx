@@ -10,6 +10,7 @@ import { useFormikContext } from "formik";
 
 function RegistrationMainData({ attachments_register }) {
   const { setFieldValue, values } = useFormikContext();
+
   useEffect(() => {
     if (values.national_id.startsWith("1")) {
       setFieldValue("nationality", "192");
@@ -32,7 +33,6 @@ function RegistrationMainData({ attachments_register }) {
         type="custom"
         maxNum={10}
         required
-
       />
       <PhoneInput2 name="phone" label={t("registration.phoneLabel")} required />
       <BaseInputField

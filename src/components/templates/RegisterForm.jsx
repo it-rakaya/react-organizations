@@ -16,9 +16,8 @@ import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import ModalComp from "../atoms/ModalComp";
 import ButtonComp from "../atoms/buttons/ButtonComp";
-import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
-import RegistrationMainData from "./RegistrationMainData";
 import TermsAndCondition from "../molecules/TermsAndCondition";
+import RegistrationMainData from "./RegistrationMainData";
 
 export default function RegisterForm() {
   const LinkStyled = styled(Link)(({ theme }) => ({
@@ -46,6 +45,10 @@ export default function RegisterForm() {
     endpoint: `attachments-labels/users`,
     queryKey: ["attachments_register"],
   });
+  console.log(
+    "🚀 ~ file: RegisterForm.jsx:48 ~ RegisterForm ~ attachments_register:",
+    attachments_register
+  );
 
   const ValidationSchema = () =>
     Yup.object({
@@ -59,7 +62,7 @@ export default function RegisterForm() {
         })
         .required(t("This field is required")),
       email: Yup.string().trim().required(t("email is required")),
-      birthday: Yup.string().trim().required(t("birthday is required")),
+      birthday: Yup.date().required(t("birthday is required")),
       phone: Yup.string()
         .matches(/^\d{9}$/, t("The phone number must be exactly 10 digits"))
         .required(t("This field is required")),
@@ -138,7 +141,12 @@ export default function RegisterForm() {
               type={"submit"}
               loading={isPending}
               disabled={
-                !checked || !!Object.entries(errors).length || values.name == ""
+                !checked ||
+                !!Object.entries(errors).length ||
+                values.name == "" ||
+                values.attachments.filter(
+                  (file) => file !== undefined && file !== null
+                ).length != attachments_register.attachment_labels.length
               }
               className={"!mt-0"}
             >
