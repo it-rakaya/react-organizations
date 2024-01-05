@@ -7,6 +7,7 @@ import SelectCountry from "../molecules/SelectCountry";
 import UploadImage from "../molecules/uploadImage/UploadImage";
 import { useEffect } from "react";
 import { useFormikContext } from "formik";
+import SelectCitiesSaudi from "../molecules/SelectCitiesSaudi";
 
 function RegistrationMainData({ attachments_register }) {
   const { setFieldValue, values } = useFormikContext();
@@ -46,6 +47,11 @@ function RegistrationMainData({ attachments_register }) {
         label={t("registration.countryLabel")}
         name={"nationality"}
         required
+      />
+      <SelectCitiesSaudi
+       label={t("registration.nationalSource")}
+       name={"national_source"}
+       required
       />
       <DatePickerComp
         name="birthday"

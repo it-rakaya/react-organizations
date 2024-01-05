@@ -190,6 +190,7 @@
   "Moving on to employees":"  الانتقال الى الموظفين",
   "An employee has been added successfully":"تم إضافة موظف بنجاح",
   "H":"هـ",
+  "national source is required":"مصدر الهوية مطلوب",
   "The data required to be recorded is the information of the facility owner and I promise Register it correctly":" البيانات المطلوب تسجيلها هي المعلومات الخاصة بمالك المنشأة وأتعهد بتسجيلها بشكل صحيح",
   "Endorsement":"إقرار",  "The verification number is required to complete the process. The verification code has been sent in a message To you": "رقم التحقق مطلوب لإكمال العملية. تم إرسال رمز التحقق في رسالة إليك",
   "landing": {
@@ -237,6 +238,7 @@
     "IDDateLabel": "تاريخ انتهاء الهوية الوطنية",
     "IDDatePleaceholder": "اختر التاريخ",
     "IDAttachmentLabel": "مرفق الهوية الوطنية",
-    "personalImgAttachmentLabel": "مرفق الصورة الشخصية"
+    "personalImgAttachmentLabel": "مرفق الصورة الشخصية",
+    "nationalSource":"مصدر الهوية"
   }
 }
