@@ -6,6 +6,7 @@ import { t } from "i18next";
 import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
 import Spinner from "../atoms/Spinner";
+import Label from "./Label";
 
 export default function SelectDistrict({
   name,
@@ -34,10 +35,12 @@ export default function SelectDistrict({
 
   return (
     <div className={className}>
-      <label className="block my-[0.75rem]">
-        {label}
-        <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
-      </label>
+     <Label>
+            {label}
+            <span className="mx-1 text-red-500">
+              {required == "1" ? "*" : ""}
+            </span>
+          </Label>
       {showIcon && (
         <div
           className="my-1 cursor-pointer w-fit"
