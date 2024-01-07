@@ -24,7 +24,6 @@ export default function Orders() {
   const [detailsOrder, setDetailsOrder] = useState("");
 
   const { orgData } = UseOrg();
-  console.log("🚀 ~ file: Orders.jsx:27 ~ Orders ~ orgData:", orgData);
 
   const {
     data: Orders,

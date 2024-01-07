@@ -27,9 +27,9 @@ const CardStatsHorizontal = (props) => {
                   alignItems: "center",
                 }}
               >
-                <Typography variant="h6">{item.stats}</Typography>
+                <Typography variant="h6" className="text-black dark:text-white">{item.stats}</Typography>
               </Box>
-              <Typography variant="caption" className="dark:text-white">
+              <Typography variant="caption" className="text-black dark:text-white">
                 {item?.title}
               </Typography>
             </Box>

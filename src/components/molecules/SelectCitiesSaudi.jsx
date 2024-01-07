@@ -30,10 +30,6 @@ export default function SelectCitiesSaudi({
 
   return (
     <div className={className}>
-      {/* <label className="block my-[0.75rem]">
-        {label}
-        <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
-      </label> */}
       <Label>
         {label}
         <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
@@ -49,7 +45,6 @@ export default function SelectCitiesSaudi({
           <div className="flex items-center gap-1">
             <>
               <span className="text-[10px] text-[#80b3f0]">
-                {" "}
                 لمعرفة المرفق اضغط هنا
               </span>
               <Icon path={mdiInformationOutline} size={0.7} />

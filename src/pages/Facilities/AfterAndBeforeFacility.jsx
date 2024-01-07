@@ -119,7 +119,7 @@ function AfterAndBeforeFacility({
         disabled={activeStep === 0}
         action={handleBack}
         variant="outlined"
-        className={`w-[90px]  md:!w-[100px] px-1 !text-contained  !mt-0 ${
+        className={`!w-[130px] px-1 !text-contained  !mt-0 ${
           activeStep === 0 ? "hidden" : "block"
         } `}
       >
@@ -128,7 +128,7 @@ function AfterAndBeforeFacility({
       <ButtonComp
         action={handleNext}
         type="button"
-        className={"w-[90px]  md:!w-[100px] py-2  px-1 md:py-3 !mt-0 "}
+        className={"!w-[130px] py-2  px-1 md:py-3 !mt-0 "}
         variant="contained"
         disabled={isSaveDisabled()}
       >
