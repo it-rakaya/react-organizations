@@ -1,8 +1,5 @@
 import Box from "@mui/material/Box";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
 import { Form, Formik } from "formik";
 import { t } from "i18next";
 import { useState } from "react";
@@ -15,17 +12,11 @@ import useFetch from "../../hooks/useFetch";
 import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import ModalComp from "../atoms/ModalComp";
-import ButtonComp from "../atoms/buttons/ButtonComp";
 import TermsAndCondition from "../molecules/TermsAndCondition";
 import RegistrationMainData from "./RegistrationMainData";
 
 export default function RegisterForm() {
-  const LinkStyled = styled(Link)(({ theme }) => ({
-    textDecoration: "none",
-    color: theme.palette.primary.main,
-  }));
   const { login } = useAuth();
-  const [checked, setChecked] = useState(false);
   const { orgData } = UseOrg();
   const [open, setOpen] = useState(false);
 
@@ -45,10 +36,6 @@ export default function RegisterForm() {
     endpoint: `attachments-labels/users`,
     queryKey: ["attachments_register"],
   });
-  console.log(
-    "🚀 ~ file: RegisterForm.jsx:48 ~ RegisterForm ~ attachments_register:",
-    attachments_register
-  );
 
   const ValidationSchema = () =>
     Yup.object({
@@ -67,7 +54,9 @@ export default function RegisterForm() {
         .matches(/^\d{9}$/, t("The phone number must be exactly 10 digits"))
         .required(t("This field is required")),
       nationality: Yup.string().trim().required(t("country is required")),
-      national_source: Yup.string().trim().required(t("national source is required")),
+      national_source: Yup.string()
+        .trim()
+        .required(t("national source is required")),
 
       national_id_expired: Yup.string()
         .trim()
@@ -107,79 +96,37 @@ export default function RegisterForm() {
         validationSchema={ValidationSchema}
         initialValues={initialValues}
       >
-        {({ errors, values }) => (
-          <Form>
-            <RegistrationMainData attachments_register={attachments_register} />
+        <Form>
+          <RegistrationMainData
+            attachments_register={attachments_register}
+            isPending={isPending}
+            setOpen={setOpen}
+          />
 
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={checked}
-                  onChange={() => setChecked(!checked)}
-                />
-              }
-              sx={{
-                mb: 4,
-                mt: 1.5,
-                "& .MuiFormControlLabel-label": { fontSize: "0.875rem" },
-              }}
-              label={
-                <div>
-                  <Typography variant="body2" component="span">
-                    {t("I agree to ")}
-                  </Typography>
-                  <LinkStyled
-                    href="/"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setOpen(true);
-                    }}
-                  >
-                    {t("Terms & condition ")}
-                  </LinkStyled>
-                </div>
-              }
-            />
-            <ButtonComp
-              type={"submit"}
-              loading={isPending}
-              disabled={
-                !checked ||
-                !!Object.entries(errors).length ||
-                values.name == "" ||
-                values.attachments.filter(
-                  (file) => file !== undefined && file !== null
-                ).length != attachments_register.attachment_labels.length
-              }
-              className={"!mt-0"}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              marginTop: "10px",
+            }}
+          >
+            <Typography
+              sx={{ mr: 2, color: "text.secondary" }}
+              className=" dark:text-white"
             >
-              {t("Sign up")}
-            </ButtonComp>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                marginTop: "10px",
-              }}
+              {t("Already have an account?")}
+            </Typography>
+            <Link
+              to="/login"
+              sx={{ color: "primary.main", textDecoration: "none" }}
+              className=" dark:text-white"
             >
-              <Typography
-                sx={{ mr: 2, color: "text.secondary" }}
-                className=" dark:text-white"
-              >
-                {t("Already have an account?")}
-              </Typography>
-              <Link
-                to="/login"
-                sx={{ color: "primary.main", textDecoration: "none" }}
-                className=" dark:text-white"
-              >
-                {t("Sign in instead")}
-              </Link>
-            </Box>
-          </Form>
-        )}
+              {t("Sign in instead")}
+            </Link>
+          </Box>
+        </Form>
       </Formik>
       <ModalComp
         open={open}

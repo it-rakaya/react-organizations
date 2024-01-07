@@ -30,7 +30,6 @@ const UploadImage = ({
 }) => {
   const modifyAccept = accept?.map((item) => `.${item}`);
   const textAccept = accept?.map((item) => ` -${item} `);
-  console.log("🚀 ~ file: UploadImage.jsx:33 ~ modifyAccept:", modifyAccept)
 
   const updateImage = {
     value: value,
@@ -39,6 +38,7 @@ const UploadImage = ({
   };
 
   const { setFieldValue, values } = useFormikContext();
+  
 
   const theme = useTheme();
 

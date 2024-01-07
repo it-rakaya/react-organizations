@@ -1,4 +1,4 @@
-import { mdiDotsVertical, mdiEyeOutline, mdiTrashCanOutline } from "@mdi/js";
+import { mdiDotsVertical } from "@mdi/js";
 import Icon from "@mdi/react";
 import { Alert, Box, Typography } from "@mui/material";
 import { t } from "i18next";
@@ -7,15 +7,15 @@ import Table from "../../components/Table/Table";
 import MainHeader from "../../components/atoms/MainHeader";
 import ModalComp from "../../components/atoms/ModalComp";
 import Loading from "../../components/molecules/Loading";
+import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import AddOrder from "../../components/organisms/orders/AddOrder";
 import CancelOrder from "../../components/organisms/orders/CancelOrder";
 import DetailsOrder from "../../components/organisms/orders/DetailsOrder";
 import OrderInfo from "../../components/organisms/orders/OrderInfo";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import useFetch from "../../hooks/useFetch";
-import { notify } from "../../utils/toast";
-import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import { convertArabicToEnglish, convertToHijri } from "../../utils/helpers";
+import { notify } from "../../utils/toast";
 export default function Orders() {
   const [openAddFaculty, setOpenAddFaculty] = useState(false);
   const [openDetailsOrder, setOpenDetailsOrder] = useState(false);
@@ -39,6 +39,7 @@ export default function Orders() {
   const Canceled = 6;
   const Rejected = 5;
 
+  
   const columns = [
     {
       flex: 0.2,
@@ -59,7 +60,11 @@ export default function Orders() {
                 gap: "5px",
               }}
             >
-              <Typography noWrap variant="caption" className="text-black dark:text-white">
+              <Typography
+                noWrap
+                variant="caption"
+                className="text-black dark:text-white"
+              >
                 {`#${code}`}
               </Typography>
             </Box>
@@ -76,7 +81,11 @@ export default function Orders() {
       minWidth: 50,
       renderCell: ({ row }) => {
         return (
-          <Typography noWrap variant="body2" className="text-black dark:text-white">
+          <Typography
+            noWrap
+            variant="body2"
+            className="text-black dark:text-white"
+          >
             {row.service?.name}
           </Typography>
         );
@@ -155,7 +164,7 @@ export default function Orders() {
       field: "created_at",
       cellClassName: "flex !px-0 !justify-center ",
       headerAlign: "center",
-      minWidth: 50,
+      minWidth: 210,
       renderCell: ({ row }) => {
         return (
           <Typography
@@ -171,7 +180,10 @@ export default function Orders() {
             className="text-black dark:text-white"
           >
             <div className="flex gap-1 dark:text-white">
-              <p className="text-[15px] dark:text-white">{row?.created_at?.slice(0, 10)}</p>/
+              <p className="text-[15px] dark:text-white">
+                {row?.created_at?.slice(0, 10)}
+              </p>
+              /
               <p className="text-[15px] dark:text-white">
                 {convertArabicToEnglish(
                   convertToHijri(row?.created_at?.slice(0, 10))

@@ -11,27 +11,22 @@ import { useTheme } from "@mui/material/styles";
 
 export default function OrderMainData({ setShow, show, isPending }) {
   const { values } = useFormikContext();
-  console.log(
-    "🚀 ~ file: OrderMainData.jsx:14 ~ OrderMainData ~ values:",
-    values
-  );
+  const theme = useTheme();
   const { data: extra_questions } = useFetch({
     endpoint: `orders/create?organization_service_id=${values.organization_service_id}`,
     queryKey: [`extra_questions/${values.organization_service_id}`],
     enabled: !!values.organization_service_id,
   });
-  const theme = useTheme();
-  const requiredQuestionIds = extra_questions?.questions
-  .filter((item) => item?.is_required === "1")
-  .map((item) => item?.id) || [];
-  console.log("🚀 ~ file: OrderMainData.jsx:27 ~ OrderMainData ~ requiredQuestionIds:", requiredQuestionIds)
+  const requiredQuestionIds =
+    extra_questions?.questions
+      .filter((item) => item?.is_required === "1")
+      .map((item) => item?.id) || [];
 
-const allRequiredQuestionsFound = requiredQuestionIds?.every((id) =>
-  Object.keys(values).includes(`answers${id}`) && values[`answers${id}`] !== ""
-);
-
-console.log("All required questions found:", allRequiredQuestionsFound);
-
+  const allRequiredQuestionsFound = requiredQuestionIds?.every(
+    (id) =>
+      Object.keys(values).includes(`answers${id}`) &&
+      values[`answers${id}`] !== ""
+  );
 
   return (
     <div>
@@ -120,7 +115,7 @@ console.log("All required questions found:", allRequiredQuestionsFound);
             className={"!w-auto"}
             type={"submit"}
             loading={isPending}
-            // disabled={lengthQuestions > answerInValues}
+            disabled={!allRequiredQuestionsFound}
           >
             {t("Save")}
           </ButtonComp>

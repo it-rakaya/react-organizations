@@ -61,7 +61,7 @@ const Login = () => {
       navigate("/");
     }
   }, [navigate, token]);
-  if (!isSuccess || isRefetching) return <Loading />;
+  // if (!isSuccess || isRefetching) return <Loading />;
   if (!token) {
     return (
       <div className="">
