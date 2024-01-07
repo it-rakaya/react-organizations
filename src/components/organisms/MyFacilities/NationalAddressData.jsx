@@ -17,7 +17,7 @@ function NationalAddressData() {
   return (
     <div className="grid items-start grid-cols-2">
       <div className="">
-        <Typography className={`font-bold  `}>
+        <Typography className={`font-bold !text-black dark:!text-white `}>
           2. بيانات العنوان الوطني
         </Typography>
       </div>

@@ -11,7 +11,6 @@ export default function AddFacility() {
     { path: "/registerMain.png" },
     { path: "/tax_certificate.png" },
     { path: "/license.png" },
-
   ];
   const [show, setShow] = useState(false);
   const [index, setIndex] = useState(0);
@@ -20,7 +19,9 @@ export default function AddFacility() {
     <div className="relative">
       <div className="grid items-start grid-cols-1 md:px-5 md:grid-cols-2">
         <div className="col-span-2">
-          <Typography className={`font-bold  `}>1. بيانات المنشاة</Typography>
+          <Typography className={`font-bold  !text-black dark:!text-white `}>
+            1. بيانات المنشاة
+          </Typography>
         </div>
 
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
@@ -140,8 +141,6 @@ export default function AddFacility() {
           </div>
         </div>
 
-
-
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="w-full ">
             <BaseInputField
@@ -151,7 +150,6 @@ export default function AddFacility() {
               type="custom"
               maxNum="5"
               required
-              
             />
           </div>
         </div>

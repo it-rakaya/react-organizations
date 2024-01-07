@@ -49,7 +49,7 @@ export default function MyEmployees() {
       minWidth: 230,
       field: "name",
       headerName: t("name"),
-      // cellClassName: "flex !px-0 !justify-center",
+      cellClassName: "!bg-transparent",
       headerAlign: "center",
       renderCell: ({ row }) => {
         const { name } = row;
