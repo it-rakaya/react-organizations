@@ -126,7 +126,7 @@ export default function DetailsOrder({ data }) {
                     </div>
                   ))
                 ) : (
-                  <div className="text-2xl font-bold text-"> لايوجد اسئلة </div>
+                  <div className="text-2xl font-bold text-black dark:text-white"> لايوجد اسئلة </div>
                 )}
               </div>
             </TabPanel>

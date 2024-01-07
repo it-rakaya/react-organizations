@@ -58,7 +58,7 @@ function MainContent({
 
   return (
     <div>
-      <div spacing={5} className="flex flex-col justify-between h-full mt-10 ">
+      <div  className="flex flex-col justify-between h-full md:mt-5 ">
         {getStepContent(activeStep)}
         <AfterAndBeforeFacility
           activeStep={activeStep}

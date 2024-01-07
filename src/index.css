@@ -123,13 +123,15 @@ body[class="dark"] .ps-menu-button.ps-open .ps-menu-icon {
 }
 
 .ps-menu-label {
-  color: #a7aaad !important;
+  /* color: #a7aaad !important; */
+  color: black !important;
+
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.5;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: rgba(76, 78, 100, 0.87);
+  /* color: rgba(76, 78, 100, 0.87); */
 }
 
 .ps-menu-label.ps-active {
@@ -231,11 +233,17 @@ main,
   width: 100% !important;
   animation-name: mui-auto-fill-cancel;
   animation-duration: 10ms;
+  color: black;
   /* padding: 16.5px 14px; */
   padding-left: 50px !important;
   border-radius: 12px;
   padding: 16.5px 14px;
   /* border: 1px solid #eee; */
+}
+
+.dark .react-tel-input .form-control {
+  color: white;
+
 }
 
 .react-tel-input .flag-dropdown {
@@ -717,9 +725,33 @@ input:-webkit-autofill:active {
   background-color: #3a474b;
 }
 
-.dark .rtl-1r5cbbl-placeholder{
-color: white;
-}
-.dark .css-1r5cbbl-placeholder{
+.dark .rtl-1r5cbbl-placeholder {
   color: white;
-  }
+}
+
+.dark .css-1r5cbbl-placeholder {
+  color: white;
+}
+
+.dark .MuiDataGrid-row:hover {
+  background-color: #313b3e !important;
+}
+
+.dark .MuiPickersToolbar-content h2 {
+  color: white !important;
+
+}
+
+.dark .MuiPickersToolbar-content div {
+  color: white !important;
+
+}
+
+.dark ::placeholder {
+  color: white;
+}
+
+.dark .rtl-1g0ciz2-singleValue,
+.dark .css-1g0ciz2-singleValue {
+  color: white !important;
+}

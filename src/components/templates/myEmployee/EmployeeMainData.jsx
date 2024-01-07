@@ -21,7 +21,7 @@ export default function EmployeeMainData({
         title={t("Add Employee")}
         styleHead={{ color: theme.palette.primary.main }}
       />
-      <div className="grid items-start grid-cols-2 gap-2 px-5 max-h-[32rem] h-full overflow-y-scroll scroll_main ">
+      <div className="grid items-start grid-cols-2 gap-2 md:px-5 max-h-[32rem] h-full overflow-y-scroll scroll_main ">
         <h1 className="flex items-center col-span-12 gap-1 py-2 text-xl font-medium dark:text-white">
           <Icon path={mdiAccountBoxOutline} size={1} />
           {t("employee Data")}:
