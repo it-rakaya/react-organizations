@@ -53,7 +53,8 @@ h1 {
 }
 
 .dark :placeholder-shown {
-  color: #797e7f;
+  /* color: #797e7f; */
+  color: white;
 }
 
 .dark input,
