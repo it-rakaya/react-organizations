@@ -10,7 +10,6 @@ import NotesOrder from "../../molecules/NotesOrder";
 import DetailsFacility from "../MyFacilities/DetailsFacility";
 
 export default function DetailsOrder({ data }) {
-  console.log("🚀 ~ file: DetailsOrder.jsx:9 ~ DetailsOrder ~ data:", data);
   const [value, setValue] = useState("1");
   const theme = useTheme();
 
@@ -18,7 +17,7 @@ export default function DetailsOrder({ data }) {
     setValue(newValue);
   };
   // const mainColor = theme?.palette?.primary?.main;
-  const Rejected = 4;
+  const Rejected = 5;
   return (
     <div className="">
       <div className="mt-10 md:px-10 ">
@@ -31,11 +30,11 @@ export default function DetailsOrder({ data }) {
 
         <div className="grid grid-cols-1 px-10 mt-5 md:px-20 md:grid-cols-2 ">
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold ">نوع الخدمة</p>
-            <p>{data?.service?.name}</p>
+            <p className="font-bold dark:text-white">نوع الخدمة</p>
+            <p className="dark:text-white">{data?.service?.name}</p>
           </div>
           <div className="flex items-center col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold "> حالة الطلب </p>
+            <p className="font-bold dark:text-white"> حالة الطلب </p>
             <p
               className="px-2 py-1 text-white rounded-md"
               style={{ backgroundColor: data?.status?.color }}
@@ -44,14 +43,17 @@ export default function DetailsOrder({ data }) {
             </p>
           </div>
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold "> كود الطلب </p>
-            <p>{data?.code}</p>
+            <p className="font-bold dark:text-white"> كود الطلب </p>
+            <p className="dark:text-white">{data?.code}</p>
           </div>
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold "> تاريخ الانشاء </p>
+            <p className="font-bold dark:text-white"> تاريخ الانشاء </p>
             <div className="flex gap-1">
-              <p>{data?.created_at?.slice(0, 10)}</p>/
-              <p>
+              <p className="dark:text-white">
+                {data?.created_at?.slice(0, 10)}
+              </p>
+              /
+              <p className="dark:text-white">
                 {convertArabicToEnglish(
                   convertToHijri(data?.created_at?.slice(0, 10))
                 )}
@@ -72,14 +74,24 @@ export default function DetailsOrder({ data }) {
             <Tab
               value="1"
               component="a"
-              label={<h2 className="font-bold text-black"> ملاحظات الطلب </h2>}
+              label={
+                <h2 className="font-bold text-black dark:text-white">
+                  {" "}
+                  ملاحظات الطلب{" "}
+                </h2>
+              }
             />
             {Rejected !== data?.status?.id && (
               <Tab
                 value="2"
                 component="a"
                 style={{ alignItems: "center" }}
-                label={<h2 className="font-bold text-black"> الاسئلة </h2>}
+                label={
+                  <h2 className="font-bold text-black dark:text-white">
+                    {" "}
+                    الاسئلة{" "}
+                  </h2>
+                }
               />
             )}
             {Rejected !== data?.status?.id && (
@@ -87,7 +99,9 @@ export default function DetailsOrder({ data }) {
                 value="3"
                 component="a"
                 label={
-                  <h2 className="font-bold text-black">تفاصيل المنشأة </h2>
+                  <h2 className="font-bold text-black dark:text-white">
+                    تفاصيل المنشأة{" "}
+                  </h2>
                 }
               />
             )}
@@ -105,10 +119,10 @@ export default function DetailsOrder({ data }) {
                 {data?.answers?.length ? (
                   data?.answers?.map((item) => (
                     <div className="flex gap-2" key={item?.id}>
-                      <p className="font-bold text-contained">
+                      <p className="font-bold " style={{ color: theme.palette.primary.main }}>
                         {item?.question?.content}؟
                       </p>
-                      <p>{item?.value}</p>
+                      <p className="dark:text-white">{item?.value}</p>
                     </div>
                   ))
                 ) : (
@@ -131,31 +145,4 @@ export default function DetailsOrder({ data }) {
       </TabContext>
     </div>
   );
-}
-
-{
-  /* <div className="grid grid-cols-2 p-4 gap-y-4">
-<div className="col-span-2"></div>
-<div className="flex gap-2">
-  <p className="font-bold text-contained"> الطلب:</p>
-  <p>{data?.service?.name}</p>
-</div>
-<div className="flex gap-2">
-  <p className="font-bold text-contained">السعر:</p>
-  <p>{data?.service?.price}</p>
-</div>
-<div className="flex gap-2">
-  <p className="font-bold text-contained">الكود:</p>
-  <p>{data?.code}</p>
-</div>
-<div className="flex gap-2">
-  <p className="font-bold text-contained">الحاله:</p>
-  <p
-    style={{ backgroundColor: data?.status?.color }}
-    className="px-2 py-1 text-sm font-bold text-white rounded-md"
-  >
-    {data?.status?.name}
-  </p>
-</div>
-</div> */
 }

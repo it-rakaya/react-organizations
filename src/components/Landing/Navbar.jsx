@@ -17,7 +17,6 @@ function Navbar() {
   const { logout, user } = useAuth();
   const theme = useTheme();
   const { settings, saveSettings } = useSettings();
-  console.log("🚀 ~ file: Navbar.jsx:20 ~ Navbar ~ settings:", settings)
 
   const { mutate: LogOut } = useMutate({
     mutationKey: [`Log_out`],
@@ -29,8 +28,10 @@ function Navbar() {
   useEffect(() => {
     document.documentElement.setAttribute("lang", i18n.language);
   }, [i18n.language]);
+  // Set dark mode class on page load
+
   useEffect(() => {
-    if(settings.mode == "dark"){
+    if (settings.mode == "dark") {
       document.documentElement.classList.add("dark");
     }
   }, [settings.mode]);

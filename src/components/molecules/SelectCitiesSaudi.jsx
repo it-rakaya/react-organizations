@@ -30,10 +30,6 @@ export default function SelectCitiesSaudi({
 
   return (
     <div className={className}>
-      {/* <label className="block my-[0.75rem]">
-        {label}
-        <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
-      </label> */}
       <Label>
         {label}
         <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
@@ -49,7 +45,6 @@ export default function SelectCitiesSaudi({
           <div className="flex items-center gap-1">
             <>
               <span className="text-[10px] text-[#80b3f0]">
-                {" "}
                 لمعرفة المرفق اضغط هنا
               </span>
               <Icon path={mdiInformationOutline} size={0.7} />
@@ -70,13 +65,13 @@ export default function SelectCitiesSaudi({
               padding: "10px 0",
               borderRadius: " 8px",
               borderWidth:"1px",
-              borderColor:"#555d64",
+              // borderColor:"#555d64",
               background: "white",
               margin: "0",
             }),
             option: (baseStyles) => ({
               ...baseStyles,
-              // background:"white" ,
+              background:"white" ,
               color: "black",
             }),
           }}
@@ -90,7 +85,7 @@ export default function SelectCitiesSaudi({
             },
           })}
           classNames={{
-            control: () => "dark:bg-dark-primary",
+            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",
           }}
           // defaultValue={{ value: values[name] , label:values[name] }}

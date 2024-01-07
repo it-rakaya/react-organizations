@@ -61,7 +61,7 @@ const Login = () => {
       navigate("/");
     }
   }, [navigate, token]);
-  if (!isSuccess || isRefetching) return <Loading />;
+  // if (!isSuccess || isRefetching) return <Loading />;
   if (!token) {
     return (
       <div className="">
@@ -111,7 +111,7 @@ const Login = () => {
                   <Typography variant="body2" className="text-black dark:text-white" >
                     {t("Please sign-in to your account")}
                   </Typography>
-                  <Typography variant="body2" className="text-black dark:text-white" >{"530410927"}</Typography>
+                  {/* <Typography variant="body2" className="text-black dark:text-white" >{"530410927"}</Typography> */}
                 </Box>
 
                 <LoginForm />

@@ -50,6 +50,7 @@
     "IDDateLabel": "National ID expiration date",
     "IDDatePleaceholder": "Select date",
     "IDAttachmentLabel": "National ID attachment",
-    "personalImgAttachmentLabel": "Personal Image attachment"
+    "personalImgAttachmentLabel": "Personal Image attachment",
+    "nationalSource":"National Source"
   }
 }

@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import { mdiInformationOutline } from "@mdi/js";
+import Icon from "@mdi/react";
 import {
   FormControl,
   IconButton,
@@ -9,11 +11,8 @@ import {
 import { useFormikContext } from "formik";
 import { useState } from "react";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
-import { FormikError } from "./FormikError";
-import { mdiInformationOutline } from "@mdi/js";
-import Icon from "@mdi/react";
-import { useTheme } from "@mui/material/styles";
 import Label from "../Label";
+import { FormikError } from "./FormikError";
 
 export default function BaseInputField({
   label,
@@ -29,11 +28,11 @@ export default function BaseInputField({
   setIndex,
   index,
   ...props
+  
 }) {
   const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
     useFormikContext();
   const [showPassword, setShowPassword] = useState(false);
-  const theme = useTheme();
 
   // !! type custom == type number ==> but im used this type in other name because in type number is MUI is given is problem
   const handleChangeNumber = (e) => {
@@ -67,7 +66,6 @@ export default function BaseInputField({
             error={!!errors[name]}
             onChange={(e) => {
               if (props.value === undefined) {
-                // setFieldValueState(e.target.value)
                 setFieldValue(name, e.target.value);
               }
             }}
@@ -91,10 +89,6 @@ export default function BaseInputField({
         </FormControl>
       ) : (
         <>
-          {/* <label
-            className="flex my-[0.75rem] relative  font-bold"
-            style={{ color: theme.palette.primary?.main }}
-          > */}
           <Label>
             {label}
             <span className="mx-1 text-red-500">
@@ -122,11 +116,9 @@ export default function BaseInputField({
             </div>
           )}
           <TextField
-            // autoFocus
             placeholder={placeholder}
             {...props}
             error={touched[name] && !!errors[name]}
-            // helperText={!!touched[name] && !!errors[name]}
             fullWidth
             value={values[name]}
             sx={{ background: "white", borderRadius: "10px" }}

@@ -1,4 +1,4 @@
-import { mdiDotsVertical, mdiEyeOutline, mdiTrashCanOutline } from "@mdi/js";
+import { mdiDotsVertical } from "@mdi/js";
 import Icon from "@mdi/react";
 import { Alert, Box, Typography } from "@mui/material";
 import { t } from "i18next";
@@ -7,15 +7,15 @@ import Table from "../../components/Table/Table";
 import MainHeader from "../../components/atoms/MainHeader";
 import ModalComp from "../../components/atoms/ModalComp";
 import Loading from "../../components/molecules/Loading";
+import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import AddOrder from "../../components/organisms/orders/AddOrder";
 import CancelOrder from "../../components/organisms/orders/CancelOrder";
 import DetailsOrder from "../../components/organisms/orders/DetailsOrder";
 import OrderInfo from "../../components/organisms/orders/OrderInfo";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import useFetch from "../../hooks/useFetch";
-import { notify } from "../../utils/toast";
-import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import { convertArabicToEnglish, convertToHijri } from "../../utils/helpers";
+import { notify } from "../../utils/toast";
 export default function Orders() {
   const [openAddFaculty, setOpenAddFaculty] = useState(false);
   const [openDetailsOrder, setOpenDetailsOrder] = useState(false);
@@ -24,7 +24,6 @@ export default function Orders() {
   const [detailsOrder, setDetailsOrder] = useState("");
 
   const { orgData } = UseOrg();
-  console.log("🚀 ~ file: Orders.jsx:27 ~ Orders ~ orgData:", orgData);
 
   const {
     data: Orders,
@@ -36,11 +35,11 @@ export default function Orders() {
     queryKey: ["my_orders"],
     enabled: !!orgData?.organizations?.id,
   });
-  console.log("🚀 ~ file: Orders.jsx:37 ~ Orders ~ Orders:", Orders);
 
-  const Canceled = 5;
-  const Rejected = 4;
+  const Canceled = 6;
+  const Rejected = 5;
 
+  
   const columns = [
     {
       flex: 0.2,
@@ -48,6 +47,7 @@ export default function Orders() {
       headerName: t("code"),
       cellClassName: "flex !px-0 !justify-center ",
       headerAlign: "center",
+      minWidth: 50,
 
       renderCell: ({ row }) => {
         const { code } = row;
@@ -60,7 +60,11 @@ export default function Orders() {
                 gap: "5px",
               }}
             >
-              <Typography noWrap variant="caption">
+              <Typography
+                noWrap
+                variant="caption"
+                className="text-black dark:text-white"
+              >
                 {`#${code}`}
               </Typography>
             </Box>
@@ -74,9 +78,14 @@ export default function Orders() {
       headerName: t("service name"),
       cellClassName: "flex !px-0 !justify-center",
       headerAlign: "center",
+      minWidth: 50,
       renderCell: ({ row }) => {
         return (
-          <Typography noWrap variant="body2">
+          <Typography
+            noWrap
+            variant="body2"
+            className="text-black dark:text-white"
+          >
             {row.service?.name}
           </Typography>
         );
@@ -88,6 +97,7 @@ export default function Orders() {
       field: "facility_name",
       headerName: t("facility name"),
       cellClassName: "flex !px-0 !justify-center",
+      minWidth: 50,
       headerAlign: "center",
       renderCell: ({ row }) => {
         return (
@@ -95,6 +105,7 @@ export default function Orders() {
             <Typography
               noWrap
               sx={{ color: "text.secondary", textTransform: "capitalize" }}
+              className="text-black dark:text-white"
             >
               {row.facility?.name}
             </Typography>
@@ -127,6 +138,7 @@ export default function Orders() {
       field: "status",
       cellClassName: "flex !px-0 !justify-center",
       headerAlign: "center",
+      minWidth: 50,
       renderCell: ({ row }) => {
         return (
           <Typography
@@ -139,6 +151,7 @@ export default function Orders() {
               borderRadius: "5px",
               padding: "0 10px",
             }}
+            className="text-white"
           >
             {row.status?.name_ar}
           </Typography>
@@ -149,8 +162,9 @@ export default function Orders() {
       flex: 0.15,
       headerName: t("create at"),
       field: "created_at",
-      cellClassName: "flex !px-0 !justify-center",
+      cellClassName: "flex !px-0 !justify-center ",
       headerAlign: "center",
+      minWidth: 210,
       renderCell: ({ row }) => {
         return (
           <Typography
@@ -163,15 +177,19 @@ export default function Orders() {
               // borderRadius: "5px",
               // padding: "0 10px",
             }}
+            className="text-black dark:text-white"
           >
-            <div className="flex gap-1">
-              <p className="text-[15px]">{row?.created_at?.slice(0, 10)}</p>/
+            <div className="flex gap-1 dark:text-white">
+              <p className="text-[15px] dark:text-white">
+                {row?.created_at?.slice(0, 10)}
+              </p>
+              /
               <p className="text-[15px] dark:text-white">
                 {convertArabicToEnglish(
                   convertToHijri(row?.created_at?.slice(0, 10))
                 )}
               </p>
-              هـ
+              {t("H")}
             </div>
           </Typography>
         );
@@ -183,6 +201,7 @@ export default function Orders() {
       field: "الاجراءات",
       cellClassName: "flex !px-0 !justify-center",
       headerAlign: "center",
+      minWidth: 50,
       renderCell: ({ row }) => {
         return (
           <Typography
@@ -246,7 +265,7 @@ export default function Orders() {
       },
     },
   ];
-  const closeRegister = orgData?.organizations?.close_registeration == "1"
+  const closeRegister = orgData?.organizations?.close_registeration == "1";
 
   return (
     <div>
@@ -255,16 +274,18 @@ export default function Orders() {
         <Loading />
       ) : (
         <>
-        {
-          closeRegister  && 
-          <Alert severity="warning" className="flex items-center bg-transparent mt-[-14px]">
-            <div className="flex items-center gap-5 ">
-              <p className="p-0 m-0 font-bold text-red-500">
-                تم اغلاق استقبال الطلبات
-              </p>
-            </div>
-          </Alert>
-        }
+          {closeRegister && (
+            <Alert
+              severity="warning"
+              className="flex items-center bg-transparent mt-[-14px]"
+            >
+              <div className="flex items-center gap-5 ">
+                <p className="p-0 m-0 font-bold text-red-500">
+                  تم اغلاق استقبال الطلبات
+                </p>
+              </div>
+            </Alert>
+          )}
           <OrderInfo Orders={Orders} />
 
           <Table
@@ -280,7 +301,6 @@ export default function Orders() {
 
       <ModalComp
         open={openAddFaculty}
-        className={"  "}
         onClose={() => setOpenAddFaculty(false)}
         Children={<AddOrder setOpenAddFaculty={setOpenAddFaculty} />}
       />

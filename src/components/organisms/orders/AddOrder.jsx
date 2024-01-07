@@ -3,18 +3,16 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
 import { useState } from "react";
+import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
-import ButtonComp from "../../atoms/buttons/ButtonComp";
 import OrderMainData from "./OrderMainData";
-import { t } from "i18next";
-import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 
 export default function AddOrder({ setOpenAddFaculty }) {
   const [show, setShow] = useState(true);
   const queryClient = useQueryClient();
   const { orgData } = UseOrg();
-  
+
   const { mutate: AddOrder, isPending } = useMutate({
     mutationKey: [`create_new_orders`],
     endpoint: `orders`,
@@ -51,30 +49,16 @@ export default function AddOrder({ setOpenAddFaculty }) {
             ...answers,
           };
           AddOrder(formData);
-        
         }}
       >
         {({ errors, values }) => (
           <Form>
-            <OrderMainData setShow={setShow} show={show} isPending={isPending} />
-            {!show && (
-              <div className="flex justify-center gap-5 mt-10">
-                <ButtonComp
-                  className={"w-auto"}
-                  variant="outlined"
-                  action={() => setShow(true)}
-                >
-                  {t("Back")}
-                </ButtonComp>
-                <ButtonComp
-                  className={"w-auto"}
-                  type={"submit"}
-                  loading={isPending}
-                >
-                  {t("Save")}
-                </ButtonComp>
-              </div>
-            )}
+            <OrderMainData
+              setShow={setShow}
+              show={show}
+              isPending={isPending}
+            />
+          
           </Form>
         )}
       </Formik>

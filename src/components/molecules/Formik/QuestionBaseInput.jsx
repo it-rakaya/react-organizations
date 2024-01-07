@@ -126,36 +126,38 @@ export default function QuestionBaseInput({
         <Select
           options={selectOptions}
           onChange={(option) => setFieldValue(`answers${name}`, option?.value)}
-          className="border rounded-md"
+          // className="border rounded-md"
           placeholder={t("Chose Country")}
           noOptionsMessage={() => t("Not Found Data")}
           styles={{
-            control: (baseStyles, state) => ({
+            control: (baseStyles) => ({
               ...baseStyles,
-              padding: "10px",
+              padding: "10px 0",
               borderRadius: " 8px",
-              borderColor: "white",
+              borderWidth:"1px",
+              // borderColor:"#555d64",
               background: "white",
               margin: "0",
             }),
             option: (baseStyles) => ({
               ...baseStyles,
               // background:"white" ,
-              // borderColor:"#eee",
               color: "black",
             }),
           }}
           theme={(theme) => ({
             ...theme,
             borderRadius: 0,
-
             colors: {
-              ...theme.colors,
+              // ...theme.colors,
               primary25: `#eee`,
               primary: "#eee",
-              // borderColor: "red",
             },
           })}
+          classNames={{
+            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+            option: () => "dark:bg-dark-primary dark:text-white  ",
+          }}
         />
       ) : type == "radio" ? (
         <>
@@ -224,7 +226,7 @@ export default function QuestionBaseInput({
             minRows={4}
             placeholder={placeholder}
             // defaultValue="tetarea"
-            className="w-full p-2 border rounded-md"
+            className="w-full p-2 border rounded-md dark:bg-transparent dark:border-[#555d64]"
             onChange={(e) => {
               // if (values[name] !== undefined) {
               // setFieldValueState(e.target.value)
@@ -275,36 +277,38 @@ export default function QuestionBaseInput({
             )
           }
           isMulti
-          className="border rounded-md"
+          // className="border rounded-md"
           placeholder={t("Chose Country")}
           noOptionsMessage={() => t("Not Found Data")}
           styles={{
-            control: (baseStyles, state) => ({
+            control: (baseStyles) => ({
               ...baseStyles,
-              padding: "10px",
+              padding: "10px 0",
               borderRadius: " 8px",
-              borderColor: "white",
+              borderWidth:"1px",
+              // borderColor:"#555d64",
               background: "white",
               margin: "0",
             }),
             option: (baseStyles) => ({
               ...baseStyles,
               // background:"white" ,
-              // borderColor:"#eee",
               color: "black",
             }),
           }}
           theme={(theme) => ({
             ...theme,
             borderRadius: 0,
-
             colors: {
-              ...theme.colors,
+              // ...theme.colors,
               primary25: `#eee`,
               primary: "#eee",
-              // borderColor: "red",
             },
           })}
+          classNames={{
+            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+            option: () => "dark:bg-dark-primary dark:text-white  ",
+          }}
         />
       ) : (
         ""

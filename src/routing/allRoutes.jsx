@@ -22,10 +22,12 @@ export const AllRoutesProvider = () => {
   const { orgData } = UseOrg();
 
   useEffect(() => {
-    if (!orgData?.organizations?.name_ar)
+    if (!orgData?.organizations?.name_ar) {
       document.title = t("landing.organizationName");
-    else document.title = orgData?.organizations?.name_ar;
-  }, [i18n.language]);
+    } else {
+      document.title = orgData?.organizations?.name_ar;
+    }
+  }, [i18n.language, orgData?.organizations?.name_ar]);
   return (
     <Routes>
       <Route path="/" element={<Landing title={t("Landing")} />} />
@@ -42,7 +44,7 @@ export const AllRoutesProvider = () => {
           path="/dashboard/facilities/create-facility"
           element={<AddFacilityPage />}
         />
-         <Route
+        <Route
           path="/dashboard/facilities/edit-facility/:id"
           element={<EditFacilityPage />}
         />
@@ -51,7 +53,6 @@ export const AllRoutesProvider = () => {
         <Route path="/dashboard/orders" element={<Orders />} />
         <Route path="/dashboard/profile" element={<Profile />} />
         <Route path="/dashboard/other" element={<Other />} />
-
       </Route>
       <Route
         errorElement={<ErrorPage />}

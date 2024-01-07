@@ -73,20 +73,21 @@ export default function SelectDistrict({
               t("Chose city is first")
             )
           }
+          className="$"
           onChange={(option) => setFieldValue(name, option.value)}
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
               padding: "10px 0",
               borderRadius: " 8px",
-              borderWidth: "1px",
-              borderColor: "#555d64",
-              background: "white",
+              borderWidth:"1px",
+              // borderColor:district?.districts?.length ? "red" : "#555d64",
+              background: !district?.districts?.length ? "#cecfcf" : "white",
               margin: "0",
             }),
             option: (baseStyles) => ({
               ...baseStyles,
-              // background:"white" ,
+              background:"white" ,
               color: "black",
             }),
           }}
@@ -94,13 +95,13 @@ export default function SelectDistrict({
             ...theme,
             borderRadius: 0,
             colors: {
-              ...theme.colors,
+              // ...theme.colors,
               primary25: `#eee`,
               primary: "#eee",
             },
           })}
           classNames={{
-            control: () => "dark:bg-dark-primary",
+            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",
           }}
         />

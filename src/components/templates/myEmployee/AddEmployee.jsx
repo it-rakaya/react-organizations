@@ -15,7 +15,7 @@ export default function AddEmployee({
   setSecundModal,
   showSelectFacility,
   refetch,
-  setOpenAddEmployee
+  setOpenAddEmployee,
 }) {
   const { orgData } = UseOrg();
 
@@ -24,13 +24,12 @@ export default function AddEmployee({
     endpoint: `facility-employees`,
     onSuccess: () => {
       notify("success");
-      
-      if (showSelectFacility) {
-        setOpenAddEmployee(false)
-        refetch();
-      }else{
-        setSecundModal(true);
 
+      if (showSelectFacility) {
+        setOpenAddEmployee(false);
+        refetch();
+      } else {
+        setSecundModal(true);
       }
     },
     onError: (err) => {
@@ -46,7 +45,9 @@ export default function AddEmployee({
   const validationSchema = () =>
     Yup.object({
       name: Yup.string().trim().required(t("employee name is required")),
-      position: Yup.string().trim().required(t("position name is required")),
+      facility_employee_position_id: Yup.string()
+        .trim()
+        .required(t("position name is required")),
       national_id: Yup.string()
         ?.matches(/^\d{10}$/, t("The ID number must be exactly 10 digits"))
         ?.test({
@@ -78,7 +79,7 @@ export default function AddEmployee({
       <Formik
         initialValues={{
           name: "",
-          position: "",
+          facility_employee_position_id: "",
           national_id: "",
           facility_id: "",
         }}
@@ -87,8 +88,6 @@ export default function AddEmployee({
       >
         {({ errors, values }) => (
           <>
-           
-
             <Form>
               <EmployeeMainData
                 showSelectFacility={showSelectFacility}
@@ -102,13 +101,11 @@ export default function AddEmployee({
                   className=" !rounded-md  !w-auto  mt-5"
                   disabled={
                     values?.national_id == "" ||
-                    values?.attachments
-                      ?.map((file, index) => ({ index, file }))
-                      ?.filter((item) => typeof item?.file !== "undefined")
-                      .length !==
-                      attachments_facility_employees?.attachment_labels
-                        ?.length ||
-                    Object.entries(errors) > 0
+                    Object.entries(errors).length > 0 ||
+                    values?.attachments?.filter(
+                      (item) => item !== undefined && item !== null
+                    ).length !==
+                      attachments_facility_employees?.attachment_labels?.length
                   }
                 >
                   {t("Add")}

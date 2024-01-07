@@ -44,7 +44,7 @@ export default function DetailsFacility({ data, className }) {
               <Tab
                 value="1"
                 component="a"
-                style={{ alignItems: "start" , minWidth:"50px" }}
+                style={{ alignItems: "start", minWidth: "50px" }}
                 label={
                   <div className="flex items-center gap-2 ">
                     <Icon
@@ -61,7 +61,7 @@ export default function DetailsFacility({ data, className }) {
               <Tab
                 value="2"
                 component="a"
-                style={{ alignItems: "start"  }}
+                style={{ alignItems: "start" }}
                 label={
                   <div className="flex items-center gap-2">
                     <Icon
@@ -78,7 +78,11 @@ export default function DetailsFacility({ data, className }) {
               />
               <Tab
                 value="3"
-                style={{ alignItems: "start" , width:"50px" , maxWidth:"100px" }}
+                style={{
+                  alignItems: "start",
+                  // width: "50px",
+                  // maxWidth: "100px",
+                }}
                 component="a"
                 label={
                   <div className="flex items-center gap-2">

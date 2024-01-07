@@ -1,8 +1,5 @@
 import Box from "@mui/material/Box";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
 import { Form, Formik } from "formik";
 import { t } from "i18next";
 import { useState } from "react";
@@ -15,18 +12,11 @@ import useFetch from "../../hooks/useFetch";
 import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import ModalComp from "../atoms/ModalComp";
-import ButtonComp from "../atoms/buttons/ButtonComp";
-import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
-import RegistrationMainData from "./RegistrationMainData";
 import TermsAndCondition from "../molecules/TermsAndCondition";
+import RegistrationMainData from "./RegistrationMainData";
 
 export default function RegisterForm() {
-  const LinkStyled = styled(Link)(({ theme }) => ({
-    textDecoration: "none",
-    color: theme.palette.primary.main,
-  }));
   const { login } = useAuth();
-  const [checked, setChecked] = useState(false);
   const { orgData } = UseOrg();
   const [open, setOpen] = useState(false);
 
@@ -59,11 +49,15 @@ export default function RegisterForm() {
         })
         .required(t("This field is required")),
       email: Yup.string().trim().required(t("email is required")),
-      birthday: Yup.string().trim().required(t("birthday is required")),
+      birthday: Yup.date().required(t("birthday is required")),
       phone: Yup.string()
         .matches(/^\d{9}$/, t("The phone number must be exactly 10 digits"))
         .required(t("This field is required")),
       nationality: Yup.string().trim().required(t("country is required")),
+      national_source: Yup.string()
+        .trim()
+        .required(t("national source is required")),
+
       national_id_expired: Yup.string()
         .trim()
         .required(t("birthday is required")),
@@ -76,6 +70,7 @@ export default function RegisterForm() {
     birthday: "",
     nationality: "",
     national_id_expired: "",
+    national_source: "",
     attachments: [],
     organization_id: orgData?.organizations?.id,
   };
@@ -101,74 +96,37 @@ export default function RegisterForm() {
         validationSchema={ValidationSchema}
         initialValues={initialValues}
       >
-        {({ errors, values }) => (
-          <Form>
-            <RegistrationMainData attachments_register={attachments_register} />
+        <Form>
+          <RegistrationMainData
+            attachments_register={attachments_register}
+            isPending={isPending}
+            setOpen={setOpen}
+          />
 
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={checked}
-                  onChange={() => setChecked(!checked)}
-                />
-              }
-              sx={{
-                mb: 4,
-                mt: 1.5,
-                "& .MuiFormControlLabel-label": { fontSize: "0.875rem" },
-              }}
-              label={
-                <div>
-                  <Typography variant="body2" component="span">
-                    {t("I agree to ")}
-                  </Typography>
-                  <LinkStyled
-                    href="/"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setOpen(true);
-                    }}
-                  >
-                    {t("Terms & condition ")}
-                  </LinkStyled>
-                </div>
-              }
-            />
-            <ButtonComp
-              type={"submit"}
-              loading={isPending}
-              disabled={
-                !checked || !!Object.entries(errors).length || values.name == ""
-              }
-              className={"!mt-0"}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              marginTop: "10px",
+            }}
+          >
+            <Typography
+              sx={{ mr: 2, color: "text.secondary" }}
+              className=" dark:text-white"
             >
-              {t("Sign up")}
-            </ButtonComp>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                marginTop: "10px",
-              }}
+              {t("Already have an account?")}
+            </Typography>
+            <Link
+              to="/login"
+              sx={{ color: "primary.main", textDecoration: "none" }}
+              className=" dark:text-white"
             >
-              <Typography
-                sx={{ mr: 2, color: "text.secondary" }}
-                className=" dark:text-white"
-              >
-                {t("Already have an account?")}
-              </Typography>
-              <Link
-                to="/login"
-                sx={{ color: "primary.main", textDecoration: "none" }}
-                className=" dark:text-white"
-              >
-                {t("Sign in instead")}
-              </Link>
-            </Box>
-          </Form>
-        )}
+              {t("Sign in instead")}
+            </Link>
+          </Box>
+        </Form>
       </Formik>
       <ModalComp
         open={open}
