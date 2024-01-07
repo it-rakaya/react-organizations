@@ -80,7 +80,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                     ? convertArabicToEnglish(convertToHijri(user?.birthday))
                     : ""}
                 </p>
-                هـ
+                {t("H")}
               </div>
             </Typography>
           </div>
@@ -115,7 +115,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                         : ""
                     )}
                   </p>
-                  هـ
+                  {t("H")}
                 </div>
               </p>
             </Typography>
