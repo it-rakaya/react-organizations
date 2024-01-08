@@ -13,7 +13,7 @@ const Table = ({
   textButton,
   actionButton,
   placeholderSearch,
-  disabled
+  disabled,
 }) => {
   const [value, setValue] = useState("");
 
@@ -37,7 +37,7 @@ const Table = ({
   const customLocaleText = {
     noRowsLabel: t("Not Found Data"),
     pagination: {
-      rowsPerPage: "ssssssssssssssssssssssssss Rows pesdsdcsdfwesfwefr page:", // Add your custom "Rows per page" label here
+      rowsPerPage: t("Custom Rows Per Pageسسس"), // اختر النص الذي ترغب في استخدامه
     },
   };
 
@@ -64,9 +64,13 @@ const Table = ({
             style={{ width: "99%" }}
             onPaginationModelChange={setPaginationModel}
             disableColumnFilter={true}
+            // hideFooter
+            // hideFooterSelectedRowCount={true}
+            // hideFooterPagination
             disableColumnMenu={true}
             i18nIsDynamicList={isRTL}
             localeText={customLocaleText}
+            
             sx={{
               "& .MuiDataGrid-columnHeaders": {
                 borderRadius: 0,
