@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
+import { Typography } from "@mui/material";
 import { useFormikContext } from "formik";
 import { useState } from "react";
 import ModalComp from "../../atoms/ModalComp";
-import UploadImage from "../../molecules/uploadImage/UploadImage";
-import { Typography } from "@mui/material";
+import UploadDoc from "../../molecules/uploadImage/UploadDoc";
 
 export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
   const detailsFacilitiesData =
@@ -27,7 +27,7 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
           key={index}
           className="w-full col-span-12 m-auto md:m-0 md:col-span-1 xl:col-span-1"
         >
-          <UploadImage
+          <UploadDoc
             name={`attachments[${item?.id ? item?.id : item?.attachment_id}]`}
             label={item?.placeholder ? item?.placeholder : item?.label}
             nameValue={item?.id ? item?.id : item?.attachment_id}

@@ -52,14 +52,18 @@ h1 {
   color: black;
 }
 
-.dark :placeholder-shown {
+.dark :placeholder {
   /* color: #797e7f; */
   color: white;
+}
+.dark ::-webkit-input-placeholder  , ::-moz-placeholder {
+  /* color: #797e7f; */
+  color: white !important;
 }
 
 .dark input,
 .dark select {
-  @apply bg-dark-primary text-white
+  @apply bg-dark-primary !text-white  
 }
 
 .css-dip3t8 {
@@ -760,3 +764,7 @@ input:-webkit-autofill:active {
 .MuiTablePagination-selectLabel{
 display: none !important;
 }
+
+/* .dark ::placeholder{
+  color: white  !important;
+} */

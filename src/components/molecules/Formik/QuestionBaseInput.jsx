@@ -20,6 +20,7 @@ import { useDropzone } from "react-dropzone";
 import Select from "react-select";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import UploadImage from "../uploadImage/UploadImage";
+import UploadDoc from "../uploadImage/UploadDoc";
 
 export default function QuestionBaseInput({
   label,
@@ -256,7 +257,7 @@ export default function QuestionBaseInput({
           />
         </div>
       ) : type == "file" ? (
-        <UploadImage dynamic={true} name={name} />
+        <UploadDoc dynamic={true} name={name} />
       ) : type == "checkbox" ? (
         <FormGroup row onChange={handleChangeCheckbox}>
           {options?.map((option) => (

@@ -28,7 +28,7 @@ export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
           <TermsConditionIcon />
         </div>
         <div className="flex flex-col items-center g">
-          <div>{t("Are you sure you want to cancel the order?")}</div>
+          <div className="text-black dark:text-white">{t("Are you sure you want to cancel the order?")}</div>
           <Grid xs={12} sm={12} md={12} xl={12}>
             <ButtonComp
               variant="contained"
