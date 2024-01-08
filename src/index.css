@@ -756,3 +756,7 @@ input:-webkit-autofill:active {
 .dark .css-1g0ciz2-singleValue {
   color: white !important;
 }
+
+.MuiTablePagination-selectLabel{
+display: none !important;
+}
