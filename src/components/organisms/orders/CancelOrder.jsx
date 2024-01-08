@@ -4,6 +4,7 @@ import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import TermsConditionIcon from "../../atoms/icons/TermsConditionIcon";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
+import { t } from "i18next";
 
 export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
   const { mutate: CancelOrder  , isPending } = useMutate({
@@ -27,7 +28,7 @@ export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
           <TermsConditionIcon />
         </div>
         <div className="flex flex-col items-center g">
-          <div>هل انت متاكد من الغاء الطلب ؟</div>
+          <div>{t("Are you sure you want to cancel the order?")}</div>
           <Grid xs={12} sm={12} md={12} xl={12}>
             <ButtonComp
               variant="contained"
@@ -35,14 +36,14 @@ export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
               action={() => CancelOrder({})}
               loading={isPending}
             >
-              موافق
+              {t("Agree")}
             </ButtonComp>
             <ButtonComp
               className="mx-2 border-2 border-solid border-contained !text-contained w-[90px] h-[40px]"
               action={() => setOpenCancelOrder(false)}
               variant="outlined"
             >
-              الغاء
+              {t("cancel")}
             </ButtonComp>
           </Grid>
         </div>

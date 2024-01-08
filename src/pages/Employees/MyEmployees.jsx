@@ -90,7 +90,7 @@ export default function MyEmployees() {
       flex: 0.15,
       field: "national_id",
       minWidth: 150,
-      headerName: t("national_id"),
+      headerName: t("National ID"),
       cellClassName: "flex !px-0 !justify-center",
 
       headerAlign: "center",

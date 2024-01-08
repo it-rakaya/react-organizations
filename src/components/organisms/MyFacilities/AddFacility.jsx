@@ -20,14 +20,14 @@ export default function AddFacility() {
       <div className="grid items-start grid-cols-1 md:px-5 md:grid-cols-2">
         <div className="col-span-2">
           <Typography className={`font-bold  !text-black dark:!text-white `}>
-            1. بيانات المنشاة
+            1. {t("Facility data")}
           </Typography>
         </div>
 
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="relative w-full md:w-1/2">
             <BaseInputField
-              label={t("Trade name")}
+              label={t("facility name")}
               placeholder="محمد احمد محمد"
               name="name"
               showIcon
@@ -40,7 +40,7 @@ export default function AddFacility() {
 
           <div className="w-full md:w-1/2">
             <BaseInputField
-              label=" رقم السجل التجاري  "
+              label={t("registration number")}
               placeholder="10********"
               name="registration_number"
               type="custom"
@@ -56,7 +56,7 @@ export default function AddFacility() {
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="w-full col-span-6 md:w-1/2">
             <SelectCitiesSaudi
-              label={"مصدر السجل التجاري "}
+              label={t("registration source name")}
               name="registration_source"
               required
               showIcon
@@ -67,7 +67,7 @@ export default function AddFacility() {
           </div>
           <div className="w-full md:w-1/2">
             <BaseInputField
-              label="شهادة الرقم الضريبي"
+              label={t("tax certificate")}
               placeholder="***********34"
               name="tax_certificate"
               type="custom"
@@ -113,7 +113,7 @@ export default function AddFacility() {
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="w-full md:col-span-6">
             <BaseInputField
-              label="رقم رخصة مزاولة المهنة الصادرة من أمانة العاصمة المقدسة  "
+              label={t("license")}
               placeholder="10********"
               name="license"
               type="custom"
@@ -129,9 +129,7 @@ export default function AddFacility() {
             <DatePickerComp
               name="license_expired"
               name_hj="license_expired_hj"
-              label={
-                "تاريخ انتهاء رخصة مزاولة المهنة الصادرة من أمانة العاصمة المقدسة بالميلادي"
-              }
+              label={t("license expired")}
               required
               showIcon
               setShow={setShow}
@@ -144,7 +142,7 @@ export default function AddFacility() {
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="w-full ">
             <BaseInputField
-              label="الطاقة الاستيعابية للمنشأة"
+              label={t("capacity")}
               placeholder="36541"
               name="capacity"
               type="custom"

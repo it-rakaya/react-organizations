@@ -7,28 +7,26 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
     <div className={parentSection}>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          الاسم
+          {t("facility name")}
         </p>
         <p className="mt-1 dark:text-white">{data?.name}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {" "}
-          رقم السجل التجاري
+          {t("registration number")}
         </p>
         <p className="mt-1 dark:text-white">{data?.registration_number}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {" "}
-          مصدر السجل التجاري{" "}
+          {t("registration source name")}
         </p>
         <p className="mt-1 dark:text-white">{data?.registration_source_name}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {" "}
-          شهادة الرقم الضريبي{" "}
+          {t("tax certificate")}
         </p>
         <p className="mt-1 dark:text-white">{data?.tax_certificate}</p>
       </div>
@@ -56,15 +54,14 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
 
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {" "}
-          رقم رخصة مزاولة المهنة{" "}
+          {t("license")}
         </p>
         <p className="mt-1 dark:text-white">{data?.license}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {" "}
-          تاريخ انتهاء رخصة مزاولة المهنة
+          {t("license expired")}
         </p>
         <p className="mt-1 dark:text-white">
           {data?.license_expired} /{" "}
@@ -74,7 +71,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
 
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          الطاقه الاستيعابية للمنشأة
+          {t("capacity")}
         </p>
         <p className="mt-1 dark:text-white">{data?.capacity}</p>
       </div>

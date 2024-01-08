@@ -6,7 +6,7 @@ import FacilityWrapper from "./FacilityWrapper";
 
 const steps = [
   {
-    title: "1. بيانات المنشأة",
+    title: `1. بيانات المنشأة`,
     // subtitle: "ادخل بيانات منشاتك",
   },
   {

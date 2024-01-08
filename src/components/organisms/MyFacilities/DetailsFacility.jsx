@@ -14,6 +14,7 @@ import AdditionalInformationData from "./AditionalInformationData";
 import AttachmentsData from "./AttachmentsData";
 import DetailsFacilityData from "./DetailsFacilityData";
 import NationalAdressData from "./NationalAdressData";
+import { t } from "i18next";
 
 export default function DetailsFacility({ data, className }) {
   const theme = useTheme();
@@ -53,7 +54,7 @@ export default function DetailsFacility({ data, className }) {
                       className="text-black dark:text-white w-fit"
                     />
                     <h2 className="hidden text-black text-font-mediumblack font- text-start dark:text-white md:block">
-                      بيانات المنشاة{" "}
+                      {t("Facility Data")}
                     </h2>
                   </div>
                 }
@@ -71,7 +72,7 @@ export default function DetailsFacility({ data, className }) {
                     />
 
                     <h2 className="hidden text-black text-font-mediumblack font- text-start dark:text-white md:block">
-                      بيانات العنوان الوطني{" "}
+                      {t("National address")}
                     </h2>
                   </div>
                 }
@@ -93,7 +94,7 @@ export default function DetailsFacility({ data, className }) {
                     />
 
                     <h2 className="hidden text-black text-font-mediumblack font- text-start dark:text-white md:block">
-                      بيانات اضافية
+                      {t("Additional information")}
                     </h2>
                   </div>
                 }
@@ -111,7 +112,7 @@ export default function DetailsFacility({ data, className }) {
                     />
 
                     <h2 className="hidden text-black text-font-mediumblack font- text-start dark:text-white md:block">
-                      مرفقات
+                      {t("attachment")}
                     </h2>
                   </div>
                 }
