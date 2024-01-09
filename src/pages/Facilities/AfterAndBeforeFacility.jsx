@@ -112,7 +112,7 @@ function AfterAndBeforeFacility({
         justifyContent: "end",
         gap: "5px",
       }}
-      className="fixed bottom-[11px] md:bottom-[10px] ltr:right-[16px] ltr:md:right-[62px] rtl:left-[16px] md:rtl:left-[62px] "
+      className="fixed bottom-[55px] md:bottom-[38px] ltr:right-[16px] ltr:md:right-[48px] rtl:left-[16px] md:rtl:left-[50px] "
     >
       <ButtonComp
         size="large"
@@ -133,7 +133,7 @@ function AfterAndBeforeFacility({
         variant="contained"
         disabled={isSaveDisabled()}
       >
-        {activeStep === steps.length - 1 ? t("Save"): t("Next")}
+        {activeStep === steps.length - 1 ? t("Save") : t("Next")}
       </ButtonComp>
     </Grid>
   );

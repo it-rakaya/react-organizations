@@ -200,7 +200,7 @@ export default function MyEmployees() {
     },
     {
       flex: 0.15,
-      minWidth: 50,
+      minWidth: 100,
       headerName: "الاجراءات",
       field: "الاجراءات",
       cellClassName: "!flex !px-0 !justify-center !items-center",

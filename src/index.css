@@ -65,7 +65,7 @@ h1 {
 
 @media (max-width:440px) {
   p {
-    font-size: 13px;
+    font-size: 13px !important;
   }
 
   h1,
