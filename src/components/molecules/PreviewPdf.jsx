@@ -5,6 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import { hexToRGBA } from "../../utils/helpers";
 import Icon from "@mdi/react";
 import { mdiEyeOutline } from "@mdi/js";
+import ViewICon from "../atoms/icons/ViewICon";
 
 function PreviewPdf({ item, eyeIcon }) {
   const theme = useTheme();
@@ -22,7 +23,8 @@ function PreviewPdf({ item, eyeIcon }) {
           className={` flex items-center w-full  p-1  cursor-pointer rounded-md  `}
         >
           {eyeIcon ? (
-            <Icon path={mdiEyeOutline} size={1} className="text-black dark:text-white " />
+            // <Icon path={mdiEyeOutline} size={1} className="text-black dark:text-white " />
+            <ViewICon className="dark:text-white" />
           ) : (
             <IconifyIcon
               icon={"prime:file-pdf"}

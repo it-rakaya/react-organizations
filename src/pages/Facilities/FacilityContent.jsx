@@ -12,33 +12,31 @@ function FacilityContent({
   setChecked,
   setActiveStep,
 }) {
-  const initialFormValues = 
-    {
-      name: "",
-      registration_number: "",
-      version_date: '',
-      version_date_hj: "",
-      end_date: '',
-      end_date_hj: "",
-      registration_source: "",
-      license: "",
-      license_expired: '',
-      license_expired_hj: "",
-      address: "",
-      tax_certificate: "",
-      employee_number: "",
-      chefs_number: "",
-      kitchen_space: "",
-      street_name: "",
-      district_id: "",
-      city: "",
-      building_number: "",
-      postal_code: "",
-      sub_number: "",
-      signature: "",
-      capacity: "",
-    }
-
+  const initialFormValues = {
+    name: "",
+    registration_number: "",
+    version_date: "",
+    version_date_hj: "",
+    end_date: "",
+    end_date_hj: "",
+    registration_source: "",
+    license: "",
+    license_expired: "",
+    license_expired_hj: "",
+    address: "",
+    tax_certificate: "",
+    employee_number: "",
+    chefs_number: "",
+    kitchen_space: "",
+    street_name: "",
+    district_id: "",
+    city: "",
+    building_number: "",
+    postal_code: "",
+    sub_number: "",
+    signature: "",
+    capacity: "",
+  };
 
   const validationSchema = (step) => {
     switch (step) {
@@ -118,12 +116,17 @@ function FacilityContent({
     <Card
       sx={{
         mt: 4,
-        height: "calc(100vh - 280px)",
+        height: { xs: "calc(100vh - 320px)", md: "calc(100vh - 280px)" },
         overflowY: "scroll",
       }}
-      className="bg-transparent shadow-none scroll_main"
+      // md={{
+      //   mt: 4,
+      //   height: "calc(100vh - 280px)",
+      //   overflowY: "scroll",
+      // }}
+      className="!bg-transparent !shadow-none scroll_main"
     >
-      <CardContent className="h-full pt-0 bg-transparent">
+      <CardContent className="h-full !px-0 pt-0 bg-transparent md:px-5 ">
         <Formik
           initialValues={initialFormValues}
           validationSchema={validationSchema(activeStep)}

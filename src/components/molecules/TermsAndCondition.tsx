@@ -33,7 +33,9 @@ function TermsAndCondition({ checked, setChecked, hidden }) {
       ) : (
         <div className="main_content max-h-[450px] overflow-y-scroll scroll_main mt-5">
           <p className="font-semibold text-center dark:text-white">
-            بموافقتك على التسجيل بالمنصة فإنك تقر وتقبل الشروط والأحكام التالية:
+            {t(
+              "By agreeing to register on the platform, you acknowledge and accept the following terms and conditions:"
+            )}
           </p>
           <ul className="mx-4 text-start">
             <li className="my-2 text-[15px] text-black dark:text-white">
@@ -67,7 +69,6 @@ function TermsAndCondition({ checked, setChecked, hidden }) {
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
               className=" dark:!text-white"
-
             >
               <FormControlLabel
                 value="female"

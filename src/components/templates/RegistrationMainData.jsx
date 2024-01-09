@@ -12,6 +12,7 @@ import { Checkbox, FormControlLabel, Typography } from "@mui/material";
 import ButtonComp from "../atoms/buttons/ButtonComp";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import UploadDoc from "../molecules/uploadImage/UploadDoc";
 
 function RegistrationMainData({ attachments_register, setOpen, isPending }) {
   const { setFieldValue, values, errors } = useFormikContext();
@@ -104,15 +105,24 @@ function RegistrationMainData({ attachments_register, setOpen, isPending }) {
       />
       <div>
         {attachments_register?.attachment_labels?.map((item) => (
-          <UploadImage
-            key={item.id}
-            name={`attachments[${item?.id}]`}
+          <UploadDoc
+          key={item.id}
+          name={`attachments[${item?.id}]`}
             label={item?.placeholder}
-            // id={item?.id}
+            id={item?.id}
             accept={item?.extensions}
             placeholder={item?.placeholder}
             isRequired={item?.is_required == 1 ? true : false}
-          />
+           />
+          // <UploadImage
+          //   key={item.id}
+          //   name={`attachments[${item?.id}]`}
+          //   label={item?.placeholder}
+          //   // id={item?.id}
+          //   accept={item?.extensions}
+          //   placeholder={item?.placeholder}
+          //   isRequired={item?.is_required == 1 ? true : false}
+          // />
         ))}
       </div>
       <FormControlLabel

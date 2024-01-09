@@ -9,6 +9,7 @@ import Icon from "@mdi/react";
 import { mdiAccountBoxOutline, mdiFileDocumentOutline } from "@mdi/js";
 import UploadImage from "../../molecules/uploadImage/UploadImage";
 import SelectPositions from "../../molecules/SelectPositions";
+import UploadDoc from "../../molecules/uploadImage/UploadDoc";
 export default function EmployeeMainData({
   showSelectFacility,
   attachments_facility_employees,
@@ -21,7 +22,7 @@ export default function EmployeeMainData({
         title={t("Add Employee")}
         styleHead={{ color: theme.palette.primary.main }}
       />
-      <div className="grid items-start grid-cols-2 gap-2 px-5 max-h-[32rem] h-full overflow-y-scroll scroll_main ">
+      <div className="grid items-start grid-cols-2 gap-2 md:px-5 max-h-[32rem] h-full overflow-y-scroll scroll_main ">
         <h1 className="flex items-center col-span-12 gap-1 py-2 text-xl font-medium dark:text-white">
           <Icon path={mdiAccountBoxOutline} size={1} />
           {t("employee Data")}:
@@ -76,7 +77,7 @@ export default function EmployeeMainData({
         <div className="grid grid-cols-1 col-span-12 gap-2 md:grid-cols-2 ">
           {attachments_facility_employees?.attachment_labels?.map((item) => (
             // <div className="" >
-            <UploadImage
+            <UploadDoc
               key={item?.id}
               label={item?.placeholder}
               name={`attachments[${item?.id}]`}

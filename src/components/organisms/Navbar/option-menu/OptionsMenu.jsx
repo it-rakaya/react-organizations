@@ -80,7 +80,7 @@ const OptionsMenu = props => {
         {options?.map((option, index) => {
           if (typeof option === 'string') {
             return (
-              <MenuItem key={index} onClick={handleClose}>
+              <MenuItem key={index} onClick={handleClose}  className="!text-black dark:!text-white">
                 {option}
               </MenuItem>
             )
@@ -91,6 +91,7 @@ const OptionsMenu = props => {
               <MenuItem
                 key={index}
                 {...option.menuItemProps}
+                className="!text-black dark:!text-white"
                 {...(option.href && { sx: { p: 0 } })}
                 onClick={e => {
                   handleClose();

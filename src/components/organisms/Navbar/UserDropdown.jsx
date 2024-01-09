@@ -145,7 +145,7 @@ const UserDropdown = (props) => {
                 flexDirection: "column",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>{user?.name}</Typography>
+              <Typography sx={{ fontWeight: 600 }} className="!text-black dark:!text-white">{user?.name}</Typography>
             </Box>
           </Box>
         </Box>
@@ -153,7 +153,7 @@ const UserDropdown = (props) => {
         {user?.is_verified && (
           <>
             <MenuItem sx={{ p: 0 }} onClick={() => navigate("/")}>
-              <Box sx={styles}>
+              <Box sx={styles}  className="!text-black dark:!text-white">
                 <IconifyIcon icon="uil:home" />
                 {t("Landing")}
               </Box>
@@ -162,7 +162,7 @@ const UserDropdown = (props) => {
               sx={{ p: 0 }}
               onClick={() => navigate("/dashboard/profile/")}
             >
-              <Box sx={styles}>
+              <Box sx={styles}  className="!text-black dark:!text-white">
                 <IconifyIcon icon="mdi:account-outline" />
                 {t("Profile")}
               </Box>
@@ -172,6 +172,7 @@ const UserDropdown = (props) => {
         <Divider />
         <MenuItem
           onClick={handleLogout}
+          className="!text-black dark:!text-white"
           sx={{
             py: 2,
             "& svg": { mr: 2, fontSize: "1.375rem", color: "text.primary" },

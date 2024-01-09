@@ -79,7 +79,7 @@ export default function OrderMainData({ setShow, show, isPending }) {
             <ul key={item?.id}>
               {item?.is_visible == "1" && (
                 <>
-                  <li className="my-3 font-bold">
+                  <li className="my-3 font-bold text-black dark:text-white">
                     {item?.content}{" "}
                     <span className="text-red-500">
                       {item?.is_required == "1" ? "*" : ""}

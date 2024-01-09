@@ -7,6 +7,8 @@ import defaultImage from "../../../../public/profile pic1.png";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import { t } from "i18next";
 import { convertArabicToEnglish, convertToHijri } from "../../../utils/helpers";
+import { Button } from "@mui/material";
+import ButtonComp from "../../atoms/buttons/ButtonComp";
 
 const ProfilePicture = styled("img")(({ theme }) => ({
   width: 150,
@@ -32,16 +34,31 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
           }
           alt="profile-picture"
         />
-        <div className="flex items-center gap-2 mt-2">
-          <h1 className="text-3xl font-extrabold dark:text-white">
+        <div className="flex flex-col items-center gap-2 mt-2">
+          <h1 className="text-2xl font-extrabold dark:text-white">
             {user?.name}
           </h1>
-          <IconifyIcon
-            icon={"bxs:edit"}
-            className="w-[20px] md:w-[30px] h-[20px] md:h-[30px] cursor-pointer"
-            onClick={() => setEditUser(true)}
-            style={{ color: theme.palette.primary?.main }}
-          />
+          <div className="flex items-center">
+            <ButtonComp
+              className={"!m-0 py-2 px-3"}
+              action={() => setEditUser(true)}
+            >
+              <p className="text-black dark:text-white">
+                {t("Edit personal information")}
+              </p>
+            </ButtonComp>
+            <div
+              style={{ background: theme?.palette?.primary?.main }}
+              className="px-2 py-1 mx-1 rounded-[8px] w-[41px]] h-[41px] flex items-center"
+              onClick={() => setEditUser(true)}
+            >
+              <IconifyIcon
+                icon={"bxs:edit"}
+                className="w-[25px] h-[25px]  cursor-pointer"
+                // style={{ color: theme.palette.primary?.main }}
+              />
+            </div>
+          </div>
         </div>
       </Card>
       <div className="grid grid-cols-1 p-5 m-2 bg-white shadow-lg md:m-20 md:grid-cols-2 rounded-2xl dark:bg-dark-primary">
@@ -74,13 +91,13 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
             >
               <div className="flex gap-1">
                 <p className="dark:text-white">{t("Birthday")} :</p>
-                <p className="dark:text-white">{user?.birthday}</p>/
+                <p className=" dark:text-white">{user?.birthday}</p>/
                 <p className="dark:text-white">
                   {user?.birthday
                     ? convertArabicToEnglish(convertToHijri(user?.birthday))
                     : ""}
                 </p>
-                هـ
+                {t("H")}
               </div>
             </Typography>
           </div>
@@ -115,7 +132,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                         : ""
                     )}
                   </p>
-                  هـ
+                  {t("H")}
                 </div>
               </p>
             </Typography>

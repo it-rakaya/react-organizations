@@ -4,12 +4,16 @@ import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import PreviewImageLink from "../../molecules/PreviewImageLink";
 import { mdiTrayArrowDown } from "@mdi/js";
 import PreviewPdf from "../../molecules/PreviewPdf";
+import { t } from "i18next";
 
 function AttachmentsData({ data, colorHead }) {
   return (
-    <div className="pt-7 ">
+    <div className="pt-5 md:pt-7">
+          <div className="block col-span-2 md:hidden">
+        <h2 className="text-black dark:text-white" >{t("attachment")}</h2>
+      </div>
       {data?.attachmentUrl?.map((item) => (
-        <div className="m-auto ml-10 " key={item?.id}>
+        <div className="m-auto md:ml-10 " key={item?.id}>
           <div className="flex items-center justify-between w-full py-1 my-3 border-b border-[#e6e6e991]">
             <div className="flex items-center gap-2">
               {!item?.value?.toLowerCase()?.endsWith(".pdf") ? (

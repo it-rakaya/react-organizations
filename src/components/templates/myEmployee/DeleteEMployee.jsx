@@ -26,18 +26,18 @@ function DeleteEMployee({ refetch, employeeId, setModelDeleteEMployee }) {
         <TermsConditionIcon />
       </div>
       <div className="flex flex-col items-center gap-7">
-        <div>هل انت متاكد من حذف هذا الموظف ؟ </div>
+        <div className="text-black dark:text-white">هل انت متاكد من حذف هذا الموظف ؟ </div>
         <Grid xs={12} sm={12} md={12} xl={12}>
           <ButtonComp
             variant="contained"
-            className="mx-1 border-2 border-solid border-contained bg-contained w-[120px] h-[40px] !mt-0"
+            className="mx-1 border-2 border-solid border-contained bg-contained w-[120px] h-[40px] !mt-0 text-black dark:text-white"
             action={() => DeleteEMployee({})}
             loading={isPending}
           >
             موافق
           </ButtonComp>
           <ButtonComp
-            className="mx-1 border-2 border-solid border-contained !text-contained w-[120px] h-[40px] !mt-0"
+            className="mx-1 border-2 border-solid border-contained !text-contained w-[120px] h-[40px] !mt-0 text-black dark:text-white"
             action={() => setModelDeleteEMployee(false)}
             variant="outline"
           >

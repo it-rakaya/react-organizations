@@ -5,30 +5,31 @@ import { convertArabicToEnglish } from "../../../utils/helpers";
 function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
   return (
     <div className={parentSection}>
+      <div className="block col-span-2 md:hidden">
+        <h2 className="text-black dark:text-white" >{t("Facility Data")}</h2>
+      </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          الاسم
+          {t("facility name")}
         </p>
         <p className="mt-1 dark:text-white">{data?.name}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {" "}
-          رقم السجل التجاري
+          {t("registration number")}
         </p>
         <p className="mt-1 dark:text-white">{data?.registration_number}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {" "}
-          مصدر السجل التجاري{" "}
+          {t("registration source name")}
         </p>
         <p className="mt-1 dark:text-white">{data?.registration_source_name}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {" "}
-          شهادة الرقم الضريبي{" "}
+          {t("tax certificate")}
         </p>
         <p className="mt-1 dark:text-white">{data?.tax_certificate}</p>
       </div>
@@ -41,7 +42,6 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
           {data?.version_date} / {convertArabicToEnglish(data?.version_date_hj)}
         </p>
       </div>
-
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {" "}
@@ -53,28 +53,25 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
           {data?.end_date} / {convertArabicToEnglish(data?.end_date_hj)}
         </p>
       </div>
-
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {" "}
-          رقم رخصة مزاولة المهنة{" "}
+          {t("license")}
         </p>
         <p className="mt-1 dark:text-white">{data?.license}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {" "}
-          تاريخ انتهاء رخصة مزاولة المهنة
+          {t("license expired")}
         </p>
         <p className="mt-1 dark:text-white">
           {data?.license_expired} /{" "}
           {convertArabicToEnglish(data?.license_expired_hj)}
         </p>
       </div>
-
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          الطاقه الاستيعابية للمنشأة
+          {t("capacity")}
         </p>
         <p className="mt-1 dark:text-white">{data?.capacity}</p>
       </div>

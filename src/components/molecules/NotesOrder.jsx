@@ -60,7 +60,7 @@ function NotesOrder({ notes }) {
       </>
     ))
   ) : (
-    <div className="mt-10 text-2xl font-bold text-"> لايوجد ملاحظات </div>
+    <div className="mt-10 text-2xl font-bold text-black dark:text-white"> لايوجد ملاحظات </div>
   );
 }
 

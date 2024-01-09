@@ -38,7 +38,6 @@ const UploadImage = ({
   };
 
   const { setFieldValue, values } = useFormikContext();
-  
 
   const theme = useTheme();
 

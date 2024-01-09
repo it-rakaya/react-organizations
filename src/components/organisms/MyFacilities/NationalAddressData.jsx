@@ -17,14 +17,14 @@ function NationalAddressData() {
   return (
     <div className="grid items-start grid-cols-2">
       <div className="">
-        <Typography className={`font-bold  `}>
-          2. بيانات العنوان الوطني
+        <Typography className={`font-bold !text-black dark:!text-white `}>
+          2. {t("National address data")}
         </Typography>
       </div>
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
         <div className="w-full md:w-1/2">
           <SelectCitiesSaudi
-            label={"اسم المدينة "}
+            label={t("city name")}
             name="city_id"
             required
             showIcon
@@ -49,7 +49,7 @@ function NationalAddressData() {
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
         <div className="w-full md:w-1/2">
           <BaseInputField
-            label=" اسم الشارع"
+            label={t("street name")}
             placeholder="شارع الهدى والنور"
             name="street_name"
             required
@@ -61,7 +61,7 @@ function NationalAddressData() {
         </div>
         <div className="w-full md:w-1/2">
           <BaseInputField
-            label="رقم المبنى"
+            label={t("building number")}
             placeholder="3654"
             name="building_number"
             type="custom"
@@ -77,7 +77,7 @@ function NationalAddressData() {
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
         <div className="w-full md:w-1/2">
           <BaseInputField
-            label="الرمز البريدي"
+            label={t("postal code")}
             placeholder="568750"
             name="postal_code"
             type="custom"
@@ -91,7 +91,7 @@ function NationalAddressData() {
         </div>
         <div className="w-full md:w-1/2">
           <BaseInputField
-            label="الرقم الفرعي"
+            label={t("sub number")}
             placeholder="698547"
             name="sub_number"
             type="custom"

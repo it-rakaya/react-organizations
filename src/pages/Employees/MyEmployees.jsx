@@ -26,6 +26,7 @@ export default function MyEmployees() {
     endpoint: `facility-employees`,
     queryKey: ["facility_employees"],
   });
+    console.log("🚀 ~ file: MyEmployees.jsx:29 ~ MyEmployees ~ employees:", employees)
 
   const [openAddEmployee, setOpenAddEmployee] = useState(false);
   const [employeeId, setEmployeeId] = useState();
@@ -49,7 +50,7 @@ export default function MyEmployees() {
       minWidth: 230,
       field: "name",
       headerName: t("name"),
-      // cellClassName: "flex !px-0 !justify-center",
+      cellClassName: "!bg-transparent",
       headerAlign: "center",
       renderCell: ({ row }) => {
         const { name } = row;
@@ -62,10 +63,14 @@ export default function MyEmployees() {
                 gap: "5px",
                 // flexDirection: "column",
               }}
-              
             >
               <Icon path={mdiAccountOutline} size={1} />
-              <LinkStyled href="/apps/user/view/overview/" className="text-black dark:text-white">{name}</LinkStyled>
+              <LinkStyled
+                href="/apps/user/view/overview/"
+                className="text-black dark:text-white"
+              >
+                {name}
+              </LinkStyled>
             </Box>
           </Box>
         );
@@ -80,7 +85,11 @@ export default function MyEmployees() {
       headerAlign: "center",
       renderCell: ({ row }) => {
         return (
-          <Typography noWrap variant="body2"className="text-black dark:text-white">
+          <Typography
+            noWrap
+            variant="body2"
+            className="text-black dark:text-white"
+          >
             {row.facility_name}
           </Typography>
         );
@@ -90,7 +99,7 @@ export default function MyEmployees() {
       flex: 0.15,
       field: "national_id",
       minWidth: 150,
-      headerName: t("national_id"),
+      headerName: t("National ID"),
       cellClassName: "flex !px-0 !justify-center",
 
       headerAlign: "center",
@@ -124,7 +133,7 @@ export default function MyEmployees() {
             sx={{ textTransform: "capitalize" }}
             className="text-black dark:text-white"
           >
-            {row.position}
+            {row.position_name}
           </Typography>
         );
       },

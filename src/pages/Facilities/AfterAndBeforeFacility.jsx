@@ -3,6 +3,7 @@
 import { Grid } from "@mui/material";
 import { useFormikContext } from "formik";
 import ButtonComp from "../../components/atoms/buttons/ButtonComp";
+import { t } from "i18next";
 
 function AfterAndBeforeFacility({
   activeStep,
@@ -76,7 +77,7 @@ function AfterAndBeforeFacility({
   };
   const isSaveDisabled = () => {
     const checkErrorsForKeys = (initialCase) =>
-    Object.keys(initialCase).some((key) => values[key] === "" || errors[key]);
+      Object.keys(initialCase).some((key) => values[key] === "" || errors[key]);
 
     switch (activeStep) {
       case 0:
@@ -111,7 +112,7 @@ function AfterAndBeforeFacility({
         justifyContent: "end",
         gap: "5px",
       }}
-      className="fixed bottom-[5px] md:bottom-[10px] ltr:left-[37px] ltr:md:right-[62px] rtl:left-[37px] md:rtl:left-[62px] "
+      className="fixed bottom-[11px] md:bottom-[10px] ltr:right-[16px] ltr:md:right-[62px] rtl:left-[16px] md:rtl:left-[62px] "
     >
       <ButtonComp
         size="large"
@@ -120,10 +121,10 @@ function AfterAndBeforeFacility({
         action={handleBack}
         variant="outlined"
         className={`!w-[130px] px-1 !text-contained  !mt-0 ${
-          activeStep === 0 ? "hidden" : "block"
+          activeStep === 0 ? "!hidden" : "block"
         } `}
       >
-        السابق
+        {t("Back")}
       </ButtonComp>
       <ButtonComp
         action={handleNext}
@@ -132,7 +133,7 @@ function AfterAndBeforeFacility({
         variant="contained"
         disabled={isSaveDisabled()}
       >
-        {activeStep === steps.length - 1 ? "حفظ ومتابعه" : "التالي"}
+        {activeStep === steps.length - 1 ? t("Save"): t("Next")}
       </ButtonComp>
     </Grid>
   );

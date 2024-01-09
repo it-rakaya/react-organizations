@@ -30,11 +30,15 @@ export default function DetailsOrder({ data }) {
 
         <div className="grid grid-cols-1 px-10 mt-5 md:px-20 md:grid-cols-2 ">
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold dark:text-white">نوع الخدمة</p>
+            <p className="font-bold dark:text-white">
+            {t("service type")}
+            </p>
             <p className="dark:text-white">{data?.service?.name}</p>
           </div>
           <div className="flex items-center col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold dark:text-white"> حالة الطلب </p>
+            <p className="font-bold dark:text-white">
+             {t("Order status")}
+               </p>
             <p
               className="px-2 py-1 text-white rounded-md"
               style={{ backgroundColor: data?.status?.color }}
@@ -43,11 +47,11 @@ export default function DetailsOrder({ data }) {
             </p>
           </div>
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold dark:text-white"> كود الطلب </p>
+            <p className="font-bold dark:text-white"> {t("Order code")}</p>
             <p className="dark:text-white">{data?.code}</p>
           </div>
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold dark:text-white"> تاريخ الانشاء </p>
+            <p className="font-bold dark:text-white"> {t("Date created")}</p>
             <div className="flex gap-1">
               <p className="dark:text-white">
                 {data?.created_at?.slice(0, 10)}
@@ -77,7 +81,7 @@ export default function DetailsOrder({ data }) {
               label={
                 <h2 className="font-bold text-black dark:text-white">
                   {" "}
-                  ملاحظات الطلب{" "}
+                  {t("Order notes")}
                 </h2>
               }
             />
@@ -89,7 +93,7 @@ export default function DetailsOrder({ data }) {
                 label={
                   <h2 className="font-bold text-black dark:text-white">
                     {" "}
-                    الاسئلة{" "}
+                    {t("Questions")}
                   </h2>
                 }
               />
@@ -100,7 +104,7 @@ export default function DetailsOrder({ data }) {
                 component="a"
                 label={
                   <h2 className="font-bold text-black dark:text-white">
-                    تفاصيل المنشأة{" "}
+                    {t("Facility Details")}
                   </h2>
                 }
               />
@@ -126,7 +130,7 @@ export default function DetailsOrder({ data }) {
                     </div>
                   ))
                 ) : (
-                  <div className="text-2xl font-bold text-"> لايوجد اسئلة </div>
+                  <div className="text-2xl font-bold text-black dark:text-white">{t("There are no questions")}</div>
                 )}
               </div>
             </TabPanel>

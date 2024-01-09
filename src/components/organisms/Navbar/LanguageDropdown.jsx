@@ -20,6 +20,7 @@ const LanguageDropdown = ({ settings, saveSettings }) => {
       options={[
         {
           text: "English",
+
           menuItemProps: {
             sx: { py: 2 },
             selected: i18n.language === "en",

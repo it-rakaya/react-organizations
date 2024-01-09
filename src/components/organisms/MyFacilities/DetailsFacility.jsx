@@ -14,6 +14,7 @@ import AdditionalInformationData from "./AditionalInformationData";
 import AttachmentsData from "./AttachmentsData";
 import DetailsFacilityData from "./DetailsFacilityData";
 import NationalAdressData from "./NationalAdressData";
+import { t } from "i18next";
 
 export default function DetailsFacility({ data, className }) {
   const theme = useTheme();
@@ -29,6 +30,28 @@ export default function DetailsFacility({ data, className }) {
     "flex flex-col col-span-2 py-2 mt-5 border-b gap-2 md:col-span-1";
 
   const colorHead = mainColor;
+  const tabsItems = [
+    {
+      value: "1",
+      icon: mdiOfficeBuildingOutline,
+      label: t("Facility Data"),
+    },
+    {
+      value: "2",
+      icon: mdiMapMarkerOutline,
+      label: t("National address"),
+    },
+    {
+      value: "3",
+      icon: mdiFormatListBulleted,
+      label: t("Additional information"),
+    },
+    {
+      value: "4",
+      icon: mdiFileDocumentOutline,
+      label: t("attachment"),
+    },
+  ];
 
   return (
     <div>
@@ -41,81 +64,26 @@ export default function DetailsFacility({ data, className }) {
               orientation="vertical"
               className=" !min-w-[2%] md:w-[30%] tab_facility border-l-transparent w-[80px]  ml-0 "
             >
-              <Tab
-                value="1"
-                component="a"
-                style={{ alignItems: "start", minWidth: "50px" }}
-                label={
-                  <div className="flex items-center gap-2 ">
-                    <Icon
-                      path={mdiOfficeBuildingOutline}
-                      size={1}
-                      className="text-black dark:text-white w-fit"
-                    />
-                    <h2 className="hidden text-black text-font-mediumblack font- text-start dark:text-white md:block">
-                      بيانات المنشاة{" "}
-                    </h2>
-                  </div>
-                }
-              />
-              <Tab
-                value="2"
-                component="a"
-                style={{ alignItems: "start" }}
-                label={
-                  <div className="flex items-center gap-2">
-                    <Icon
-                      path={mdiMapMarkerOutline}
-                      size={1}
-                      className="text-black dark:text-white"
-                    />
-
-                    <h2 className="hidden text-black text-font-mediumblack font- text-start dark:text-white md:block">
-                      بيانات العنوان الوطني{" "}
-                    </h2>
-                  </div>
-                }
-              />
-              <Tab
-                value="3"
-                style={{
-                  alignItems: "start",
-                  // width: "50px",
-                  // maxWidth: "100px",
-                }}
-                component="a"
-                label={
-                  <div className="flex items-center gap-2">
-                    <Icon
-                      path={mdiFormatListBulleted}
-                      size={1}
-                      className="text-black dark:text-white"
-                    />
-
-                    <h2 className="hidden text-black text-font-mediumblack font- text-start dark:text-white md:block">
-                      بيانات اضافية
-                    </h2>
-                  </div>
-                }
-              />
-              <Tab
-                value="4"
-                component="a"
-                style={{ alignItems: "start" }}
-                label={
-                  <div className="flex items-center gap-2">
-                    <Icon
-                      path={mdiFileDocumentOutline}
-                      size={1}
-                      className="text-black dark:text-white"
-                    />
-
-                    <h2 className="hidden text-black text-font-mediumblack font- text-start dark:text-white md:block">
-                      مرفقات
-                    </h2>
-                  </div>
-                }
-              />
+              {tabsItems?.map((item, index) => (
+                <Tab
+                  value={item?.value}
+                  key={index}
+                  component="a"
+                  style={{ alignItems: "start" }}
+                  label={
+                    <div className="flex items-center gap-2 ">
+                      <Icon
+                        path={item?.icon}
+                        size={1}
+                        className="text-black dark:text-white w-fit"
+                      />
+                      <h2 className="hidden text-black text-font-mediumblack font- text-start dark:text-white md:block">
+                        {item?.label}
+                      </h2>
+                    </div>
+                  }
+                />
+              ))}
             </TabList>
             <div
               className={`${className} !overflow-y-scroll !shadow-none max-h-[40rem]  scroll_main w-full`}

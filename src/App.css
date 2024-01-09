@@ -14,15 +14,16 @@
   animation: marqueeAnimation 40s linear infinite normal;
 }
 
+[dir="ltr"] .marquee-content {
+
+  animation: marqueeAnimationLtr 40s linear infinite normal;
+}
 [dir="rtl"] .marquee-content {
 
   animation: marqueeAnimationRtl 40s linear infinite normal;
 }
 
-[dir="ltr"] .marquee-content {
 
-  animation: marqueeAnimationLtr 40s linear infinite normal;
-}
 
 @keyframes marqueeAnimationLtr {
   0% {
@@ -36,7 +37,7 @@
 
 @keyframes marqueeAnimationRtl {
   0% {
-    transform: translateX(100%);
+    transform: translateX(-100%);
   }
 
   100% {

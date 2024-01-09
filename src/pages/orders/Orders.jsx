@@ -39,7 +39,6 @@ export default function Orders() {
   const Canceled = 6;
   const Rejected = 5;
 
-  
   const columns = [
     {
       flex: 0.2,
@@ -47,8 +46,7 @@ export default function Orders() {
       headerName: t("code"),
       cellClassName: "flex !px-0 !justify-center ",
       headerAlign: "center",
-      minWidth: 50,
-
+      minWidth: 130,
       renderCell: ({ row }) => {
         const { code } = row;
         return (
@@ -78,7 +76,7 @@ export default function Orders() {
       headerName: t("service name"),
       cellClassName: "flex !px-0 !justify-center",
       headerAlign: "center",
-      minWidth: 50,
+      minWidth: 130,
       renderCell: ({ row }) => {
         return (
           <Typography
@@ -97,7 +95,7 @@ export default function Orders() {
       field: "facility_name",
       headerName: t("facility name"),
       cellClassName: "flex !px-0 !justify-center",
-      minWidth: 50,
+      minWidth: 130,
       headerAlign: "center",
       renderCell: ({ row }) => {
         return (
@@ -113,32 +111,14 @@ export default function Orders() {
         );
       },
     },
-    // {
-    //   flex: 0.15,
-    //   field: "facility_address",
-    //   headerName: t("facility address"),
-    //   cellClassName: "flex !px-0 !justify-center",
-    //   headerAlign: "center",
-    //   renderCell: ({ row }) => {
-    //     return (
-    //       <>
-    //         <Typography
-    //           noWrap
-    //           sx={{ color: "text.secondary", textTransform: "capitalize" }}
-    //         >
-    //           {row.facility?.address}
-    //         </Typography>
-    //       </>
-    //     );
-    //   },
-    // },
+
     {
       flex: 0.15,
       headerName: t("status"),
       field: "status",
       cellClassName: "flex !px-0 !justify-center",
       headerAlign: "center",
-      minWidth: 50,
+      minWidth: 130,
       renderCell: ({ row }) => {
         return (
           <Typography
@@ -197,11 +177,11 @@ export default function Orders() {
     },
     {
       flex: 0.15,
-      headerName: "الاجراءات",
-      field: "الاجراءات",
+      headerName: t("actions"),
+      field: t("actions"),
       cellClassName: "flex !px-0 !justify-center",
       headerAlign: "center",
-      minWidth: 50,
+      minWidth: 130,
       renderCell: ({ row }) => {
         return (
           <Typography
@@ -281,7 +261,7 @@ export default function Orders() {
             >
               <div className="flex items-center gap-5 ">
                 <p className="p-0 m-0 font-bold text-red-500">
-                  تم اغلاق استقبال الطلبات
+                  {t("Receiving orders is closed")}
                 </p>
               </div>
             </Alert>

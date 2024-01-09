@@ -16,7 +16,7 @@ function FacilityWrapper({ activeStep, steps, StepperCustomDot }) {
               <StepLabel StepIconComponent={StepperCustomDot}>
                 <div className="step-label">
                   <div>
-                    <Typography className={`font-bold text-[12px] `}>
+                    <Typography className={`font-bold text-[12px] !text-black dark:!text-white`}>
                       {step.title}
                     </Typography>
                  
