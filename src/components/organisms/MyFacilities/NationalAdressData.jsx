@@ -3,12 +3,11 @@
 import { t } from "i18next";
 
 function NationalAdressData({ data, childSection, colorHead, parentSection }) {
-  console.log(
-    "🚀 ~ file: NationalAdressData.jsx:4 ~ NationalAdressData ~ data:",
-    data
-  );
   return (
     <div className={parentSection}>
+       <div className="block col-span-2 md:hidden">
+        <h2 className="text-black dark:text-white" >{t("National address")}</h2>
+      </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {t("street name")}

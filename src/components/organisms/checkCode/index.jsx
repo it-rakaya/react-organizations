@@ -57,7 +57,7 @@ export default function CheckCode({
               "The verification number is required to complete the process. The verification code has been sent in a message To you"
             )}
           </p>
-          {/* <p className="dark:text-white">{number}</p> */}
+          <p className="dark:text-white">{number}</p>
           <div>
             <PinInput
               values={values}

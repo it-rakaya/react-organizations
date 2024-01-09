@@ -119,7 +119,7 @@ export const Root = ({ props }) => {
             }
           >
             <OutsideClickHandler onOutsideClick={handleClickOutside}>
-              <div className="fixed z-[1000]">
+              <div className="fixed z-[9999] md:z-[999]">
                 <SideBar
                   handleClickItem={handleClickOutside}
                   isSidebarCollapsed={isSidebarCollapsed}

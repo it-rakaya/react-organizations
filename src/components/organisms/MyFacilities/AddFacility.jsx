@@ -68,7 +68,7 @@ export default function AddFacility() {
           <div className="w-full md:w-1/2">
             <BaseInputField
               label={t("tax certificate")}
-              placeholder="***********34"
+              placeholder="34***********"
               name="tax_certificate"
               type="custom"
               maxNum="9"

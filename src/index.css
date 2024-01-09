@@ -56,14 +56,26 @@ h1 {
   /* color: #797e7f; */
   color: white;
 }
-.dark ::-webkit-input-placeholder  , ::-moz-placeholder {
+
+.dark ::-webkit-input-placeholder,
+::-moz-placeholder {
   /* color: #797e7f; */
   color: white !important;
 }
 
+@media (max-width:440px) {
+  p {
+    font-size: 12px;
+  }
+  h1 , h2{
+    font-size: 14px;
+
+  }
+}
+
 .dark input,
 .dark select {
-  @apply bg-dark-primary !text-white  
+  @apply bg-dark-primary !text-white
 }
 
 .css-dip3t8 {
@@ -761,8 +773,8 @@ input:-webkit-autofill:active {
   color: white !important;
 }
 
-.MuiTablePagination-selectLabel{
-display: none !important;
+.MuiTablePagination-selectLabel {
+  display: none !important;
 }
 
 /* .dark ::placeholder{

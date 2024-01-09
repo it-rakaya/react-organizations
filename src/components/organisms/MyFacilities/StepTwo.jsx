@@ -20,7 +20,9 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
   return (
     <div className="grid w-full grid-cols-12 col-span-12 mt-3 md:gap-x-10 md:grid-cols-3 xl:grid-cols-3">
       <div className="col-span-12">
-        <Typography className={`font-bold  !text-black dark:!text-white`}>4. تحميل المستندات </Typography>
+        <Typography className={`font-bold  !text-black dark:!text-white`}>
+          4. تحميل المستندات{" "}
+        </Typography>
       </div>
       {detailsFacilitiesData?.map((item, index) => (
         <div

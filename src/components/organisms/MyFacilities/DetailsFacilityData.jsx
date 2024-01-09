@@ -5,6 +5,9 @@ import { convertArabicToEnglish } from "../../../utils/helpers";
 function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
   return (
     <div className={parentSection}>
+      <div className="block col-span-2 md:hidden">
+        <h2 className="text-black dark:text-white" >{t("Facility Data")}</h2>
+      </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {t("facility name")}
@@ -39,7 +42,6 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
           {data?.version_date} / {convertArabicToEnglish(data?.version_date_hj)}
         </p>
       </div>
-
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {" "}
@@ -51,7 +53,6 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
           {data?.end_date} / {convertArabicToEnglish(data?.end_date_hj)}
         </p>
       </div>
-
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {t("license")}
@@ -68,7 +69,6 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
           {convertArabicToEnglish(data?.license_expired_hj)}
         </p>
       </div>
-
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {t("capacity")}

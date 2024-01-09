@@ -26,6 +26,7 @@ export default function MyEmployees() {
     endpoint: `facility-employees`,
     queryKey: ["facility_employees"],
   });
+    console.log("🚀 ~ file: MyEmployees.jsx:29 ~ MyEmployees ~ employees:", employees)
 
   const [openAddEmployee, setOpenAddEmployee] = useState(false);
   const [employeeId, setEmployeeId] = useState();
@@ -132,7 +133,7 @@ export default function MyEmployees() {
             sx={{ textTransform: "capitalize" }}
             className="text-black dark:text-white"
           >
-            {row.position}
+            {row.position_name}
           </Typography>
         );
       },

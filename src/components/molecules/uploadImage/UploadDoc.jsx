@@ -70,7 +70,7 @@ function UploadDoc({
 
   return (
     <div>
-      <Label>
+      <Label className={"text-center"}>
         {label}
         <span className="mx-1 text-red-500">
           {isRequired == "1" ? "*" : ""}
@@ -81,11 +81,11 @@ function UploadDoc({
           type="file"
           accept={modifyAccept}
           name={name}
-          className="absolute w-full h-full opacity-0 cursor-pointer z-[999999]"
+          className="absolute w-full h-full opacity-0 cursor-pointer z-[999]"
           onChange={handleFileChange}
         />
         <div
-          className="absolute top-1/2 left-1/2"
+          className="absolute w-full top-1/2 left-1/2"
           style={{ transform: `translate(-50%, -50%)` }}
         >
           {!files?.length ? (
@@ -131,8 +131,8 @@ function UploadDoc({
         <div className="flex items-center p-2">
           <Icon
             path={mdiInformationOutline}
-            size={0.7}
-            className="text-[#80b3f0]"
+            // size={1}
+            className="text-[#80b3f0] w-7"
           />
           <p className="text-[14px] px-1 py-0 text-[#80b3f0]">
             {t("Please upload the file in this format")}
@@ -173,7 +173,7 @@ function UploadDoc({
                   icon={"prime:file-pdf"}
                   className="text-xl dark:text-white"
                 />
-                <Typography className="file-name">
+                <Typography className="text-black file-name dark:text-white">
                   {files[0]?.name.slice(0, 15)}
                 </Typography>
                 {/* <span className="text-sm">اضغط هنا لمشاهدة المرفق</span> */}
