@@ -169,7 +169,7 @@ export const Root = ({ props }) => {
                 }}
               >
                 <Outlet />
-               {/* <Footer/> */}
+               <Footer/>
               </ContentWrapper>
             </MainContentWrapper>
           </VerticalLayoutWrapper>
