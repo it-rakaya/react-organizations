@@ -65,10 +65,10 @@ h1 {
 
 @media (max-width:440px) {
   p {
-    font-size: 12px;
+    font-size: 13px;
   }
   h1 , h2{
-    font-size: 14px;
+    font-size: 15px;
 
   }
 }
