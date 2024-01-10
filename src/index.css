@@ -26,6 +26,9 @@ body {
   overflow-x: hidden;
 
 }
+.layout-page-content{
+max-height: calc(100vh - 80px);
+}
 
 
 svg {
