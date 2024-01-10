@@ -1,25 +1,20 @@
 /* eslint-disable react/prop-types */
+import { Checkbox, FormControlLabel, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { useFormikContext } from "formik";
 import { t } from "i18next";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import ButtonComp from "../atoms/buttons/ButtonComp";
 import BaseInputField from "../molecules/Formik/BaseInputField";
 import DatePickerComp from "../molecules/Formik/DatePickerComp";
 import PhoneInput2 from "../molecules/Formik/PhoneInput2";
-import SelectCountry from "../molecules/SelectCountry";
-import UploadImage from "../molecules/uploadImage/UploadImage";
-import { useEffect, useState } from "react";
-import { useFormikContext } from "formik";
 import SelectCitiesSaudi from "../molecules/SelectCitiesSaudi";
-import { Checkbox, FormControlLabel, Typography } from "@mui/material";
-import ButtonComp from "../atoms/buttons/ButtonComp";
-import { styled } from "@mui/material/styles";
-import { Link } from "react-router-dom";
+import SelectCountry from "../molecules/SelectCountry";
 import UploadDoc from "../molecules/uploadImage/UploadDoc";
 
 function RegistrationMainData({ attachments_register, setOpen, isPending }) {
   const { setFieldValue, values, errors } = useFormikContext();
-  console.log(
-    "🚀 ~ file: RegistrationMainData.jsx:18 ~ RegistrationMainData ~ values:",
-    values
-  );
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
@@ -53,11 +48,6 @@ function RegistrationMainData({ attachments_register, setOpen, isPending }) {
     );
     return attachmentItem && attachmentItem[`attachments[${id}]`] !== null;
   });
-  console.log(
-    "🚀 ~ file: RegistrationMainData.jsx:60 ~ isValid ~ isValid:",
-    isValid
-  );
-
   return (
     <div>
       <BaseInputField
@@ -65,6 +55,8 @@ function RegistrationMainData({ attachments_register, setOpen, isPending }) {
         placeholder={t("registration.namePleaceholder")}
         name="name"
         required
+        showIcon
+        messageInfo={t("Please enter the full name of the facility owner")}
       />
       <BaseInputField
         label={t("registration.IDNumberLabel")}
@@ -73,56 +65,69 @@ function RegistrationMainData({ attachments_register, setOpen, isPending }) {
         type="custom"
         maxNum={10}
         required
+        showIcon
+        messageInfo={t("Please enter the ID number of the facility owner")}
       />
-      <PhoneInput2 name="phone" label={t("registration.phoneLabel")} required />
+      <PhoneInput2
+        name="phone"
+        label={t("registration.phoneLabel")}
+        required
+        showIcon
+        messageInfo={t("Please enter the phone number of the facility owner")}
+      />
       <BaseInputField
         label={t("registration.emailLabel")}
         placeholder="Example@example.com"
         name="email"
         required
+        showIcon
+        messageInfo={t("Please enter the email of the facility owner")}
       />
 
       <SelectCountry
         label={t("registration.countryLabel")}
         name={"nationality"}
         required
+        showIcon
+        messageInfo={t("Please select the nationality of the facility owner")}
       />
       <SelectCitiesSaudi
         label={t("registration.nationalSource")}
         name={"national_source"}
         required
+        showIcon
+        messageInfo={t(
+          "Please select the identity source for the facility owner"
+        )}
       />
       <DatePickerComp
         name="birthday"
         label={t("registration.birthdayDateLabel")}
         required
+        showIcon
+        messageInfo={t("Please enter the date of birth of the facility owner")}
       />
       <DatePickerComp
         name="national_id_expired"
         name_hj="national_id_expired_hj"
         label={t("registration.IDDateLabel")}
         required
+        showIcon
+        messageInfo={t(
+          "Please enter the expiry date of the facility owner's ID"
+        )}
       />
       <div>
         {attachments_register?.attachment_labels?.map((item) => (
           <UploadDoc
-          key={item.id}
-          name={`attachments[${item?.id}]`}
+            key={item.id}
+            name={`attachments[${item?.id}]`}
             label={item?.placeholder}
             id={item?.id}
             accept={item?.extensions}
             placeholder={item?.placeholder}
             isRequired={item?.is_required == 1 ? true : false}
-           />
-          // <UploadImage
-          //   key={item.id}
-          //   name={`attachments[${item?.id}]`}
-          //   label={item?.placeholder}
-          //   // id={item?.id}
-          //   accept={item?.extensions}
-          //   placeholder={item?.placeholder}
-          //   isRequired={item?.is_required == 1 ? true : false}
-          // />
+          />
         ))}
       </div>
       <FormControlLabel

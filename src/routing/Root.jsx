@@ -171,8 +171,8 @@ export const Root = ({ props }) => {
                 }}
               >
                 <Outlet />
-               {/* <Footer/> */}
-               {isFacilityRoute ? null : <Footer />}
+               <Footer/>
+               {/* {isFacilityRoute ? null : <Footer />} */}
               </ContentWrapper>
             </MainContentWrapper>
           </VerticalLayoutWrapper>

@@ -68,13 +68,13 @@ function Navbar() {
 
       <div className="flex items-center gap-5">
         {!!user && (
-          <Typography>
+          <Typography className="text-black dark:text-white">
             <Link href="#" onClick={handleLogout}>
-              Logout
+              {t("Logout")}
             </Link>
           </Typography>
         )}
-        <Typography>
+        <Typography className="text-black dark:text-white">
           <a href={`https://wa.me/${orgData?.organizations?.phone}/`}>
             {t("landing.contactUs")}
           </a>

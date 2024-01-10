@@ -20,6 +20,7 @@ export default function DatePickerComp({
   setShow,
   setIndex,
   index,
+  messageInfo
 }) {
   const { setFieldValue, values } = useFormikContext();
   const [valueGregorian, setValueGregorian] = useState();
@@ -63,10 +64,9 @@ export default function DatePickerComp({
           >
             <div className="flex items-center gap-1">
               <>
-                <span className="text-[10px] text-[#80b3f0]">
-                  {" "}
-                  لمعرفة المرفق اضغط هنا
-                </span>
+              <span className="text-[10px] text-[#80b3f0]">
+                {messageInfo ? messageInfo : " لمعرفة المرفق اضغط هنا"}
+              </span>
                 <Icon path={mdiInformationOutline} size={0.7} />
               </>
             </div>
