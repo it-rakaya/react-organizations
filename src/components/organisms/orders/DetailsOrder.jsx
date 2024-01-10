@@ -70,7 +70,6 @@ export default function DetailsOrder({ data }) {
       <div className="my-5">
         <Divider />
       </div>
-      <div></div>
 
       <TabContext value={value}>
         <div className="mt-5 md:px-10">
@@ -110,7 +109,7 @@ export default function DetailsOrder({ data }) {
               />
             )}
           </TabList>
-          <div className="main_content max-h-[30rem] overflow-y-scroll scroll_main">
+          <div className="">
             <TabPanel value="1" className="pt-0">
               <div>
                 <div className="">

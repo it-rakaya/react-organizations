@@ -31,6 +31,11 @@ function UploadDoc({
   const { setFieldValue, values } = useFormikContext();
   const theme = useTheme();
   const [invalidFormat, setInvalidFormat] = useState(false);
+  const updateImage = {
+    value: value,
+    type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
+    update: true,
+  };
   const [files, setFiles] = useState(
     values?.attachments?.length
       ? [values?.attachments[nameValue]]
@@ -43,11 +48,7 @@ function UploadDoc({
   const isLargeFile = files?.length && files[0]?.size > 5242880;
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
 
-  const updateImage = {
-    value: value,
-    type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
-    update: true,
-  };
+
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     const isLarge = selectedFile?.size > 5242880;

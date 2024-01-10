@@ -64,14 +64,15 @@ export default function SelectCitiesSaudi({
               ...baseStyles,
               padding: "10px 0",
               borderRadius: " 8px",
-              borderWidth:"1px",
+              borderWidth: "1px",
               // borderColor:"#555d64",
               background: "white",
               margin: "0",
+              zIndex:"9999999"
             }),
             option: (baseStyles) => ({
               ...baseStyles,
-              background:"white" ,
+              background: "white",
               color: "black",
             }),
           }}

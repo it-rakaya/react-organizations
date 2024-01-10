@@ -10,6 +10,7 @@ import AccountSettingMainData from "./AccountSettingMainData";
 import { t } from "i18next";
 
 export default function AccountSetting({ userData, setEditUser, setUser }) {
+  console.log("🚀 ~ file: AccountSetting.jsx:13 ~ AccountSetting ~ userData:", userData)
   const initialValue = {
     name: userData?.name,
     national_id: userData?.national_id,
@@ -17,14 +18,15 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
     phone_code: userData?.phone_code,
     email: userData?.email,
     nationality: userData?.nationality,
+    national_source:userData?.national_source,
     birthday: userData?.birthday,
+    birthday_hj: convertToHijri(userData?.birthday),
     photo: userData?.photo,
     national_id_expired: userData?.national_id_expired,
     national_id_expired_hj: convertToHijri(
       userData?.national_id_expired !== "0000-00-00" ? userData?.national_id_expired : "0"
     ),
     favourit_organizations: userData?.favourit_organizations,
-    birthday_hj: convertToHijri(userData?.birthday),
   };
 
   const { mutate: UpdateUser, isPending } = useMutate({
