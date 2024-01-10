@@ -46,11 +46,11 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               <p className="text-black dark:text-white">
                 {t("Edit personal information")}
               </p>
-            <IconifyIcon
-              icon={"bxs:edit"}
-              className="w-[20px] h-[20px]  rtl:mr-2 ltr:ml-2 cursor-pointer"
-              // style={{ color: theme.palette.primary?.main }}
-            />
+              <IconifyIcon
+                icon={"bxs:edit"}
+                className="w-[20px] h-[20px]  rtl:mr-2 ltr:ml-2 cursor-pointer"
+                // style={{ color: theme.palette.primary?.main }}
+              />
             </ButtonComp>
             {/* <div
               style={{ background: theme?.palette?.primary?.main }}
@@ -96,7 +96,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                   {user?.birthday
                     ? convertArabicToEnglish(convertToHijri(user?.birthday))
                     : ""}
-                    {t("H")}
+                  {t("H")}
                 </p>
               </div>
             </Typography>
@@ -131,7 +131,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                         ? convertToHijri(user?.national_id_expired)
                         : ""
                     )}
-                  {t("H")}
+                    {t("H")}
                   </p>
                 </div>
               </p>
