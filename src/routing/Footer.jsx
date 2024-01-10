@@ -16,7 +16,7 @@ const Footer = () => {
         <div
           className={` flex  justify-center flex-col md:flex-row items-center  p-2 gap-1`}
         >
-          <h2 className="text-sm text-center md:text-base">
+          <h2 className="text-sm text-center text-black md:text-base dark:text-white">
             {t("landing.rights")} لدى شركة ركايا{" "}
             <span className="text-xs text-black dark:text-white">&copy;</span>
             {new Date().getUTCFullYear()}

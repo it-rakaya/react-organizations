@@ -789,9 +789,9 @@ input:-webkit-autofill:active {
 .dark .footer_shadow {
   box-shadow: 0px 0px 0px 0px transparent;
 }
-/* @media (max-width: 979px) {
+@media (max-width: 979px) {
   .main_container  {
-      max-height: calc(100vh - 80px);
-      overflow-y: scroll;
+      /* max-height: calc(100vh - 80px); */
+      overflow-y: hidden;
   }
-} */
+}
