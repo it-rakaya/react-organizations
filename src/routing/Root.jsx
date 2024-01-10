@@ -106,7 +106,7 @@ export const Root = ({ props }) => {
   if (token) {
     return (
       <div
-      style={{height:"calc(100vh - 86px)"}}
+      // style={{height:"calc(100vh - 86px)"}}
         className={
           toggled
             ? "flex"
