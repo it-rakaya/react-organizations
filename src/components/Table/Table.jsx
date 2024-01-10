@@ -61,7 +61,7 @@ const Table = ({
             disableRowSelectionOnClick
             pageSizeOptions={[10, 25, 50]}
             paginationModel={paginationModel}
-            style={{ width: "99%" }}
+            style={{ width: "99%" , background:"transparent" }}
             onPaginationModelChange={setPaginationModel}
             disableColumnFilter={true}
             // hideFooter

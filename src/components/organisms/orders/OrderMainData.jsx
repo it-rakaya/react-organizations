@@ -35,7 +35,7 @@ export default function OrderMainData({ setShow, show, isPending }) {
         styleHead={{ color: theme.palette.primary.main }}
       />
 
-      <div className="mt-10 px-5 max-h-[32rem] h-full overflow-y-scroll scroll_main ">
+      <div className="mt-10 px-5 max-h-[25rem] h-full overflow-y-scroll scroll_main ">
         {show ? (
           <>
             <div className="grid grid-cols-1 gap-2 md:grid-cols-2 ">

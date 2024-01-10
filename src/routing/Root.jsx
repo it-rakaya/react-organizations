@@ -11,6 +11,7 @@ import { SideBar } from "../components/organisms/Sidebar/Sidebar";
 import { useAuth } from "../context/auth-and-perm/AuthProvider";
 import { useSettings } from "../hooks/useSettings";
 import Footer from "./Footer";
+import { document } from "postcss";
 
 export const Root = ({ props }) => {
   const [openSide, setOpenSide] = useState(false);
@@ -22,7 +23,6 @@ export const Root = ({ props }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  // const [, setChangeStyle] = useState(false);
 
   useEffect(() => {
     setShowOverlay(openSide);
@@ -39,32 +39,8 @@ export const Root = ({ props }) => {
 
   const handleCollapsedSideBar = () => {
     setSidebarCollapsed(!isSidebarCollapsed);
-    // if (!isSidebarCollapsed) {
-    //   document.body.setAttribute("sidebar-collapsed", "true");
-    // } else {
-    //   document.body.removeAttribute("sidebar-collapsed");
-    // }
   };
-  // useEffect(() => {
-  //   // إضافة معالج السحب إلى العنصر الذي له الكلاس "main"
-  //   const mainElement = document.querySelector(".main");
 
-  //   if (mainElement) {
-  //     const handleScroll = () => {
-  //       if (mainElement.scrollTop > 10) {
-  //         setChangeStyle(true);
-  //       } else {
-  //         setChangeStyle(false);
-  //       }
-  //     };
-
-  //     mainElement.addEventListener("scroll", handleScroll);
-
-  //     return () => {
-  //       mainElement.removeEventListener("scroll", handleScroll);
-  //     };
-  //   }
-  // }, []);
   const { settings, saveSettings, contentWidth } = useSettings();
 
   const VerticalLayoutWrapper = styled("div")({
@@ -85,7 +61,7 @@ export const Root = ({ props }) => {
     flexGrow: 1,
     width: "100%",
     padding: theme.spacing(6),
-    
+
     transition: "padding .25s ease-in-out",
     [theme.breakpoints.down("sm")]: {
       paddingLeft: theme.spacing(4),
@@ -100,17 +76,22 @@ export const Root = ({ props }) => {
   }, [navigate, token]);
 
   const toggleNavVisibility = () => setNavVisible(!navVisible);
-  const isFacilityRoute = location.pathname.startsWith('/dashboard/facilities/create-facility');
+  const isFacilityRoute = location.pathname.startsWith(
+    "/dashboard/facilities/create-facility"
+  );
 
 
   if (token) {
     return (
       <div
+        // style={{height: isFacilityRoute ? "calc(100vh - 64px)" : ""}}
         className={
-          toggled
-            ? "flex"
-            : // : collapsed
-              "flex"
+          `${
+            toggled
+              ? "flex"
+              : // : collapsed
+                "flex"
+          } `
           // : "grid grid-cols-12 w-full"
         }
       >
@@ -138,9 +119,9 @@ export const Root = ({ props }) => {
         )}
 
         <div
-          className={ 
-           ` main_container ${ collapsed ? "w-full" : user?.is_verified ? "w-full" : "w-full"}`
-          }
+          className={` main_container ${
+            collapsed ? "w-full" : user?.is_verified ? "w-full" : "w-full"
+          }`}
         >
           <VerticalLayoutWrapper className="">
             <MainContentWrapper className="layout-content-wrapper">
@@ -161,7 +142,7 @@ export const Root = ({ props }) => {
                 }
               />
               <ContentWrapper
-                className="flex flex-col justify-between !pb-1 layout-page-content"
+                className="flex flex-col justify-between !pb-1 layout-page-content  md:max-h-[91vh] overflow-scroll"
                 sx={{
                   ...(contentWidth === "boxed" && {
                     mx: "auto",
@@ -171,13 +152,12 @@ export const Root = ({ props }) => {
                 }}
               >
                 <Outlet />
-               <Footer/>
-               {/* {isFacilityRoute ? null : <Footer />} */}
+                <Footer />
+                {/* {isFacilityRoute ? null : <Footer />} */}
               </ContentWrapper>
             </MainContentWrapper>
           </VerticalLayoutWrapper>
         </div>
-
       </div>
     );
   } else {

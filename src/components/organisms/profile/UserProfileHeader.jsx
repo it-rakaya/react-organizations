@@ -43,14 +43,14 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               className={"!m-0 py-2 px-3"}
               action={() => setEditUser(true)}
             >
-              <p className="text-black dark:text-white">
+              <p className="text-white ">
                 {t("Edit personal information")}
               </p>
-            <IconifyIcon
-              icon={"bxs:edit"}
-              className="w-[20px] h-[20px]  rtl:mr-2 ltr:ml-2 cursor-pointer"
-              // style={{ color: theme.palette.primary?.main }}
-            />
+              <IconifyIcon
+                icon={"bxs:edit"}
+                className="w-[20px] h-[20px]  rtl:mr-2 ltr:ml-2 cursor-pointer text-white"
+                // style={{ color: theme.palette.primary?.main }}
+              />
             </ButtonComp>
             {/* <div
               style={{ background: theme?.palette?.primary?.main }}
@@ -61,7 +61,8 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
           </div>
         </div>
       </Card>
-      <div className="grid grid-cols-1 p-5 m-2 bg-white shadow-lg md:m-20 md:grid-cols-2 rounded-2xl dark:bg-dark-primary">
+      
+      <div className="grid grid-cols-1 p-5 m-2 bg-white shadow-lg md:m-20 md:mb-0 md:grid-cols-2 rounded-2xl dark:bg-dark-primary">
         <div>
           <div className="flex gap-2 mt-4">
             <Typography
@@ -96,7 +97,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                   {user?.birthday
                     ? convertArabicToEnglish(convertToHijri(user?.birthday))
                     : ""}
-                    {t("H")}
+                  {t("H")}
                 </p>
               </div>
             </Typography>
@@ -131,7 +132,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                         ? convertToHijri(user?.national_id_expired)
                         : ""
                     )}
-                  {t("H")}
+                    {t("H")}
                   </p>
                 </div>
               </p>

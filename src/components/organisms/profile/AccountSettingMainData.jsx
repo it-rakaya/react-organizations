@@ -7,6 +7,7 @@ import UploadImage from "../../molecules/uploadImage/UploadImage";
 import Icon from "@mdi/react";
 import { mdiAccountBoxOutline, mdiFileDocumentOutline } from "@mdi/js";
 import { t } from "i18next";
+import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
 
 function AccountSettingMainData({ userData }) {
   return (
@@ -42,6 +43,12 @@ function AccountSettingMainData({ userData }) {
       <div className="col-span-2 md:col-span-1 ">
         <SelectCountry label={"الدولة"} name={"nationality"} />
       </div>
+      <SelectCitiesSaudi
+        label={t("registration.nationalSource")}
+        name={"national_source"}
+        required
+     
+      />
       <div className="col-span-2 md:col-span-1 ">
         <DatePickerComp
           name="birthday"
@@ -50,7 +57,7 @@ function AccountSettingMainData({ userData }) {
         />
       </div>
 
-      <div className="flex flex-col col-span-2 gap-3 ">
+      <div className="flex flex-col col-span-2 gap-3 md:col-span-1 ">
         <DatePickerComp
           name="national_id_expired"
           label={"تاريخ انتهاء الاقامه"}
