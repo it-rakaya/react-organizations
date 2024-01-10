@@ -789,3 +789,9 @@ input:-webkit-autofill:active {
 .dark .footer_shadow {
   box-shadow: 0px 0px 0px 0px transparent;
 }
+@media (max-width: 979px) {
+  body  {
+      max-height: 100vh;
+      overflow-y: scroll;
+  }
+}
