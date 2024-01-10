@@ -21,7 +21,7 @@ body {
 }
 
 body {
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   height: calc(100% - 40px);
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
