@@ -43,12 +43,12 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               className={"!m-0 py-2 px-3"}
               action={() => setEditUser(true)}
             >
-              <p className="text-black dark:text-white">
+              <p className="text-white ">
                 {t("Edit personal information")}
               </p>
               <IconifyIcon
                 icon={"bxs:edit"}
-                className="w-[20px] h-[20px]  rtl:mr-2 ltr:ml-2 cursor-pointer"
+                className="w-[20px] h-[20px]  rtl:mr-2 ltr:ml-2 cursor-pointer text-white"
                 // style={{ color: theme.palette.primary?.main }}
               />
             </ButtonComp>
