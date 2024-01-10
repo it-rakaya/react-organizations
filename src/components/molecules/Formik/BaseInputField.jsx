@@ -27,8 +27,8 @@ export default function BaseInputField({
   showIcon,
   setIndex,
   index,
+  messageInfo,
   ...props
-  
 }) {
   const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
     useFormikContext();
@@ -107,8 +107,7 @@ export default function BaseInputField({
               <div className="flex items-center gap-1">
                 <>
                   <span className="text-[10px] text-[#80b3f0]">
-                    {" "}
-                    لمعرفة المرفق اضغط هنا
+                    {messageInfo ? messageInfo : " لمعرفة المرفق اضغط هنا"}
                   </span>
                   <Icon path={mdiInformationOutline} size={0.7} />
                 </>

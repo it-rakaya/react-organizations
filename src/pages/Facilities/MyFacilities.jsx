@@ -66,7 +66,7 @@ export default function MyFacilities() {
         action={() => navigate("/dashboard/facilities/create-facility")}
       />
       {/* <button className="my-5" onClick={()=>notify("success")}>test</button> */}
-      <div className="flex flex-col items-center justify-between h-[65vh]">
+      <div className="flex flex-col items-center justify-between ">
         {isLoading || isRefetching ? (
           <Loading />
         ) : filteredFacilities?.length ? (

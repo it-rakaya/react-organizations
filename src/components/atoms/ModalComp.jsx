@@ -39,9 +39,9 @@ export default function ModalComp({
         onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        className={`max-w-[950px] m-2  md:m-auto ${className}`}
+        className={`max-w-[950px] m-4  md:m-auto ${className}`}
       >
-        <Box sx={style} className={`scroll_main ${classNameBox}`}>
+        <Box sx={style} className={`scroll_main px-0 md:px-4  ${classNameBox}`}>
           {hidden ? (
             ""
           ) : (

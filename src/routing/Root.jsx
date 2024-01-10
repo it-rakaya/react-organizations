@@ -100,6 +100,8 @@ export const Root = ({ props }) => {
   }, [navigate, token]);
 
   const toggleNavVisibility = () => setNavVisible(!navVisible);
+  const isFacilityRoute = location.pathname.startsWith('/dashboard/facilities/create-facility');
+
 
   if (token) {
     return (
@@ -136,8 +138,8 @@ export const Root = ({ props }) => {
         )}
 
         <div
-          className={
-            collapsed ? "w-full" : user?.is_verified ? "w-full" : "w-full"
+          className={ 
+           ` main_container ${ collapsed ? "w-full" : user?.is_verified ? "w-full" : "w-full"}`
           }
         >
           <VerticalLayoutWrapper className="">
@@ -170,6 +172,7 @@ export const Root = ({ props }) => {
               >
                 <Outlet />
                <Footer/>
+               {/* {isFacilityRoute ? null : <Footer />} */}
               </ContentWrapper>
             </MainContentWrapper>
           </VerticalLayoutWrapper>
