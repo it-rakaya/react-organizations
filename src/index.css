@@ -26,8 +26,10 @@ body {
   overflow-x: hidden;
 
 }
-.layout-page-content{
-max-height: calc(100vh - 80px);
+
+body {
+  max-height: calc(100vh - 120px);
+  height: 100%;
 }
 
 
