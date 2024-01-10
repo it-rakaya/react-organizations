@@ -24,12 +24,13 @@ body {
   box-sizing: border-box;
   max-height: 100vh;
   overflow-x: hidden;
+  /* overflow-y: scroll; */
 
 }
 
 body {
-  max-height: calc(100vh - 120px);
-  height: 100%;
+ /* height: calc(100vh - 180px); */
+  /* height: 100%; */
 }
 
 
