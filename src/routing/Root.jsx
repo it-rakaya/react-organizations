@@ -85,7 +85,7 @@ export const Root = ({ props }) => {
     flexGrow: 1,
     width: "100%",
     padding: theme.spacing(6),
-    
+
     transition: "padding .25s ease-in-out",
     [theme.breakpoints.down("sm")]: {
       paddingLeft: theme.spacing(4),
@@ -100,18 +100,21 @@ export const Root = ({ props }) => {
   }, [navigate, token]);
 
   const toggleNavVisibility = () => setNavVisible(!navVisible);
-  const isFacilityRoute = location.pathname.startsWith('/dashboard/facilities/create-facility');
-
+  const isFacilityRoute = location.pathname.startsWith(
+    "/dashboard/facilities/create-facility"
+  );
 
   if (token) {
     return (
       <div
-      // style={{height:"calc(100vh - 86px)"}}
+        style={{height: isFacilityRoute ? "calc(100vh - 86px)" : "100vh"}}
         className={
-          toggled
-            ? "flex"
-            : // : collapsed
-              "flex"
+          `${isFacilityRoute && "overflow-hidden"}${
+            toggled
+              ? "flex"
+              : // : collapsed
+                "flex"
+          }`
           // : "grid grid-cols-12 w-full"
         }
       >
@@ -139,9 +142,9 @@ export const Root = ({ props }) => {
         )}
 
         <div
-          className={ 
-           ` main_container ${ collapsed ? "w-full" : user?.is_verified ? "w-full" : "w-full"}`
-          }
+          className={` main_container ${
+            collapsed ? "w-full" : user?.is_verified ? "w-full" : "w-full"
+          }`}
         >
           <VerticalLayoutWrapper className="">
             <MainContentWrapper className="layout-content-wrapper">
@@ -172,13 +175,12 @@ export const Root = ({ props }) => {
                 }}
               >
                 <Outlet />
-               <Footer/>
-               {/* {isFacilityRoute ? null : <Footer />} */}
+                <Footer />
+                {/* {isFacilityRoute ? null : <Footer />} */}
               </ContentWrapper>
             </MainContentWrapper>
           </VerticalLayoutWrapper>
         </div>
-
       </div>
     );
   } else {

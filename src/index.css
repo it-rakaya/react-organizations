@@ -4,9 +4,6 @@
 @tailwind utilities;
 /* arabic */
 
-
-
-
 *,
 body,
 html {
@@ -28,9 +25,7 @@ body {
   max-height: calc(100vh - 150px);
 
 }
-.layout-page-content{
 
-}
 
 svg {
   color: #51595C;
