@@ -29,7 +29,7 @@ body {
 }
 
 body {
- /* height: calc(100vh - 180px); */
+  /* height: calc(100vh - 180px); */
   /* height: 100%; */
 }
 
@@ -811,6 +811,14 @@ input:-webkit-autofill:active {
     /* overflow-y: hidden; */
   }
 }
-.MuiDataGrid-columnHeaders.MuiDataGrid-withBorderColor{
-background-color: transparent !important;
+
+.MuiDataGrid-columnHeaders.MuiDataGrid-withBorderColor {
+  background-color: transparent !important;
+}
+
+
+@media (max-width:660px) {
+  .layout-page-content {
+    max-width: calc(100vh - 120px);
+  }
 }
