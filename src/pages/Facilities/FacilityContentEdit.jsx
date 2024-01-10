@@ -18,7 +18,6 @@ function FacilityContentEdit({
     endpoint: `facilities/${idFacility}`,
     queryKey: ["facilities_update"],
   });
-  console.log("🚀 ~ file: FacilityContentEdit.jsx:21 ~ DetailsFacilities:", DetailsFacilities)
   const initialFormValues = {
     name: DetailsFacilities?.facility ? DetailsFacilities?.facility?.name : "",
     registration_number: DetailsFacilities?.facility

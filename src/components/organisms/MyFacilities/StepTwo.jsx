@@ -4,6 +4,7 @@ import { useFormikContext } from "formik";
 import { useState } from "react";
 import ModalComp from "../../atoms/ModalComp";
 import UploadDoc from "../../molecules/uploadImage/UploadDoc";
+import { t } from "i18next";
 
 export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
   const detailsFacilitiesData =
@@ -21,7 +22,7 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
     <div className="grid w-full grid-cols-12 col-span-12 mt-3 md:gap-x-10 md:grid-cols-3 xl:grid-cols-3">
       <div className="col-span-12">
         <Typography className={`font-bold  !text-black dark:!text-white`}>
-          4. تحميل المستندات{" "}
+          4.{t("Upload files")}
         </Typography>
       </div>
       {detailsFacilitiesData?.map((item, index) => (

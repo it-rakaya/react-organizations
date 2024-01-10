@@ -23,7 +23,7 @@ export default function LoginForm() {
     endpoint: `login`,
     onSuccess: (data) => {
       login(data.data);
-      notify("success", `مرحبا بك يا ${data?.data?.user.name}`);
+      notify("success", ` ${t("Welcome")} ${data?.data?.user.name}`);
     },
     onError: (err) => {
       notify("error", err?.response?.data.message);

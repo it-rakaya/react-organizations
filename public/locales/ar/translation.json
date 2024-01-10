@@ -235,6 +235,8 @@
   "capacity": " الطاقه الاستيعابية للمنشأة ",
   "registration source name": "مصدر السجل التجاري",
   "Continue": "حفظ ومتابعة",
+  "Upload files":"تحميل المستندات",
+  "Resend the code later":"اعادة ارسال الرمز بعد",
   "national source is required": "مصدر الهوية مطلوب",
   "The data required to be recorded is the information of the facility owner and I promise Register it correctly": " البيانات المطلوب تسجيلها هي المعلومات الخاصة بمالك المنشأة وأتعهد بتسجيلها بشكل صحيح",
   "Endorsement": "إقرار",

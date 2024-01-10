@@ -29,7 +29,7 @@ export const Root = ({ props }) => {
   }, [openSide]);
 
   const handleClickOutside = () => {
-    document.body.removeAttribute("drawer-aside-bar");
+    // document.body.removeAttribute("drawer-aside-bar");
     setOpenSide(false);
   };
 

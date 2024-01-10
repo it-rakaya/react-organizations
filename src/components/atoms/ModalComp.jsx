@@ -41,20 +41,19 @@ export default function ModalComp({
         aria-describedby="modal-modal-description"
         className={`max-w-[950px] m-4  md:m-auto ${className}`}
       >
-        <Box sx={style} className={`scroll_main px-0 md:px-4  ${classNameBox}`}>
-          {hidden ? (
-            ""
-          ) : (
-            <div
-              className="absolute ltr:!right-[20px] ltr:left-auto left-[20px] cursor-pointer top-[39px] "
-              onClick={onClose}
-            >
-              <GridCloseIcon
-                className=" dark:!text-white"
-                style={{ color: theme.palette.primary?.main }}
-              />
-            </div>
-          )}
+        <Box sx={style} className={`scroll_main px-0 md:px-4 dark:md:bg-transparent  ${classNameBox}`}>
+          <div
+            className={`absolute ltr:!right-[20px] ltr:left-auto left-[20px] cursor-pointer top-[39px] ${
+              hidden ? "md:hidden" : ""
+            } `}
+            onClick={onClose}
+          >
+            <GridCloseIcon
+              className=" dark:!text-white"
+              style={{ color: theme.palette.primary?.main }}
+            />
+          </div>
+
           {Children}
         </Box>
       </Modal>

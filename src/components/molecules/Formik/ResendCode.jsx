@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { t } from "i18next";
 import { useEffect, useState } from "react";
 
 const ResendCode = ({
@@ -41,7 +42,14 @@ const ResendCode = ({
             !available ? "text-[#777] dark:text-white" : "text-mainColorLand dark:text-white"
           } ${available ? "cursor-pointer dark:text-white" : "cursor-not-allowed dark:text-white"}`}
         >
-          <p className="dark:text-white">إعادة إرسال الرمز بعد </p>
+          <p className="dark:text-white">
+            {t("Resend the code later")}
+          
+          
+           
+
+          
+          </p>
         </button>
 
         <span
