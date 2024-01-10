@@ -142,7 +142,8 @@ export const Root = ({ props }) => {
                 }
               />
               <ContentWrapper
-                className="flex flex-col justify-between !pb-1 layout-page-content max-h-[84vh] md:max-h-[100vh] overflow-scroll"
+              style={{maxHeight:"calc(100vh - 200px)"}}
+                className="flex flex-col justify-between !pb-1 layout-page-content  md:max-h-[100vh] overflow-scroll"
                 sx={{
                   ...(contentWidth === "boxed" && {
                     mx: "auto",
