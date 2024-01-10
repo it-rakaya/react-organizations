@@ -61,6 +61,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
           </div>
         </div>
       </Card>
+      
       <div className="grid grid-cols-1 p-5 m-2 bg-white shadow-lg md:m-20 md:mb-0 md:grid-cols-2 rounded-2xl dark:bg-dark-primary">
         <div>
           <div className="flex gap-2 mt-4">
