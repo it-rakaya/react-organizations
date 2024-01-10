@@ -806,6 +806,6 @@ input:-webkit-autofill:active {
 @media (max-width: 979px) {
   .main_container {
     /* max-height: calc(100vh - 80px); */
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
   }
 }
