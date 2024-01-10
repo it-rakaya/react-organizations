@@ -27,7 +27,8 @@ body {
   box-sizing: border-box;
 }
 .layout-page-content{
-  max-height: calc(100vh - 120px);
+  max-height: calc(100vh - 150px);
+  overflow-y: hidden;
 
 }
 
