@@ -11,6 +11,7 @@ import { SideBar } from "../components/organisms/Sidebar/Sidebar";
 import { useAuth } from "../context/auth-and-perm/AuthProvider";
 import { useSettings } from "../hooks/useSettings";
 import Footer from "./Footer";
+import { document } from "postcss";
 
 export const Root = ({ props }) => {
   const [openSide, setOpenSide] = useState(false);
@@ -22,7 +23,6 @@ export const Root = ({ props }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  // const [, setChangeStyle] = useState(false);
 
   useEffect(() => {
     setShowOverlay(openSide);
@@ -39,32 +39,8 @@ export const Root = ({ props }) => {
 
   const handleCollapsedSideBar = () => {
     setSidebarCollapsed(!isSidebarCollapsed);
-    // if (!isSidebarCollapsed) {
-    //   document.body.setAttribute("sidebar-collapsed", "true");
-    // } else {
-    //   document.body.removeAttribute("sidebar-collapsed");
-    // }
   };
-  // useEffect(() => {
-  //   // إضافة معالج السحب إلى العنصر الذي له الكلاس "main"
-  //   const mainElement = document.querySelector(".main");
 
-  //   if (mainElement) {
-  //     const handleScroll = () => {
-  //       if (mainElement.scrollTop > 10) {
-  //         setChangeStyle(true);
-  //       } else {
-  //         setChangeStyle(false);
-  //       }
-  //     };
-
-  //     mainElement.addEventListener("scroll", handleScroll);
-
-  //     return () => {
-  //       mainElement.removeEventListener("scroll", handleScroll);
-  //     };
-  //   }
-  // }, []);
   const { settings, saveSettings, contentWidth } = useSettings();
 
   const VerticalLayoutWrapper = styled("div")({
@@ -104,6 +80,7 @@ export const Root = ({ props }) => {
     "/dashboard/facilities/create-facility"
   );
 
+
   if (token) {
     return (
       <div
@@ -114,7 +91,7 @@ export const Root = ({ props }) => {
               ? "flex"
               : // : collapsed
                 "flex"
-          } ${isFacilityRoute && "overflow-hidden"}`
+          } `
           // : "grid grid-cols-12 w-full"
         }
       >

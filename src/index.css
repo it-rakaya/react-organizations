@@ -22,7 +22,7 @@ body {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  max-height: calc(100vh - 150px);
+  /* max-height: calc(100vh - 150px); */
 
 }
 
