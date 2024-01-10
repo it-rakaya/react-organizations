@@ -21,13 +21,14 @@ body {
 }
 
 body {
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  max-height: calc(100vh - 150px);
+
 }
 .layout-page-content{
-  max-height: calc(100vh - 150px);
 
 }
 
