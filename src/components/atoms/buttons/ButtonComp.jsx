@@ -28,7 +28,7 @@ const ButtonComp = ({
             ? theme?.palette?.primary?.main
             : "transparent",
         color: variant == "outlined" ? theme?.palette?.primary?.main : "white",
-        opacity: disabled ? "0.6" : "1",
+        opacity: disabled ? "1" : "1",
       }}
       variant={variant}
       className={`${className}  text-white  hover:!bg-${theme?.palette?.primary?.main}

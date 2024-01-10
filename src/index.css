@@ -65,10 +65,12 @@ h1 {
 
 @media (max-width:440px) {
   p {
-    font-size: 12px;
+    font-size: 13px !important;
   }
-  h1 , h2{
-    font-size: 14px;
+
+  h1,
+  h2 {
+    font-size: 15px;
 
   }
 }
@@ -780,3 +782,10 @@ input:-webkit-autofill:active {
 /* .dark ::placeholder{
   color: white  !important;
 } */
+
+.footer_shadow {
+  box-shadow: 0px 2px 10px 0px rgba(76, 78, 100, 0.22);
+}
+.dark .footer_shadow {
+  box-shadow: 0px 0px 0px 0px transparent;
+}
