@@ -100,6 +100,8 @@ export const Root = ({ props }) => {
   }, [navigate, token]);
 
   const toggleNavVisibility = () => setNavVisible(!navVisible);
+  const isFacilityRoute = location.pathname.startsWith('/dashboard/facilities/create-facility');
+
 
   if (token) {
     return (
@@ -169,7 +171,8 @@ export const Root = ({ props }) => {
                 }}
               >
                 <Outlet />
-               <Footer/>
+               {/* <Footer/> */}
+               {isFacilityRoute ? null : <Footer />}
               </ContentWrapper>
             </MainContentWrapper>
           </VerticalLayoutWrapper>
