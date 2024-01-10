@@ -142,7 +142,7 @@ export const Root = ({ props }) => {
                 }
               />
               <ContentWrapper
-                className="flex flex-col justify-between !pb-1 layout-page-content max-h-[90vh]"
+                className="flex flex-col justify-between !pb-1 layout-page-content max-h-[90vh] overflow-hidden"
                 sx={{
                   ...(contentWidth === "boxed" && {
                     mx: "auto",
