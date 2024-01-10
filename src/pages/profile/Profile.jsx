@@ -16,7 +16,7 @@ export default function Profile() {
   //   : "#9f9685";
   return (
     <div
-      className="grid grid-cols-12 gap-5 h-[calc(100vh)]"
+      className="grid grid-cols-12 gap-5"
       style={{
         // background: `linear-gradient(130deg, ${bgDynamic} 0%, rgba(255,255,255,1) 90%)`,
         height: "",
