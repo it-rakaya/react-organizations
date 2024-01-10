@@ -107,7 +107,7 @@ export const Root = ({ props }) => {
   if (token) {
     return (
       <div
-        style={{height: isFacilityRoute ? "calc(100vh - 64px)" : ""}}
+        // style={{height: isFacilityRoute ? "calc(100vh - 64px)" : ""}}
         className={
           `${
             toggled
