@@ -107,14 +107,14 @@ export const Root = ({ props }) => {
   if (token) {
     return (
       <div
-        style={{height: isFacilityRoute ? "calc(100vh - 86px)" : "100vh"}}
+        style={{height: isFacilityRoute ? "calc(100vh - 64px)" : ""}}
         className={
-          `${isFacilityRoute && "overflow-hidden"}${
+          `${
             toggled
               ? "flex"
               : // : collapsed
                 "flex"
-          }`
+          } ${isFacilityRoute && "overflow-hidden"}`
           // : "grid grid-cols-12 w-full"
         }
       >
