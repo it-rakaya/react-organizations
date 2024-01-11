@@ -737,6 +737,10 @@ input:-webkit-autofill:active {
   color: white !important;
 
 }
+.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label {
+  color: black !important;
+}
+
 
 .css-zchfm5-MuiPaper-root-MuiCard-root {
   box-shadow: 0 0 0 !important;
@@ -819,7 +823,7 @@ input:-webkit-autofill:active {
 
 @media (max-width:660px) {
   .layout-page-content {
-    max-height: calc(100vh - 75px);
+    max-height: calc(100vh - 95px);
   }
 }
 .MuiBackdrop-root.MuiModal-backdrop{
