@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Step, StepLabel, Stepper, Typography } from "@mui/material";
 import StepperWrapper from "../../components/theme/stepper";
+import { t } from "i18next";
 
 function FacilityWrapper({ activeStep, steps, StepperCustomDot }) {
   return (
@@ -17,7 +18,7 @@ function FacilityWrapper({ activeStep, steps, StepperCustomDot }) {
                 <div className="step-label">
                   <div>
                     <Typography className={`font-bold text-[12px] !text-black dark:!text-white`}>
-                      {step.title}
+                      {t(step.title)}
                     </Typography>
                  
                   </div>

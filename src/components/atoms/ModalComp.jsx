@@ -41,7 +41,7 @@ export default function ModalComp({
         aria-describedby="modal-modal-description"
         className={`max-w-[950px] m-4  md:m-auto ${className}`}
       >
-        <Box sx={style} className={`scroll_main px-0 md:px-4 dark:md:bg-transparent  ${classNameBox}`}>
+        <Box sx={style} className={`scroll_main px-0 md:px-4 dark:md:bg-darkModeColor  ${classNameBox}`}>
           <div
             className={`absolute ltr:!right-[20px] ltr:left-auto left-[20px] cursor-pointer top-[39px] ${
               hidden ? "md:hidden" : ""

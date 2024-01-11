@@ -24,7 +24,11 @@ function Loading({ title }) {
       </div>
       <div>
         <h1 className="text-2xl font-bold dark:!text-white">
-          {title ? title : "جاري التحميل"}
+          {title ? (
+            title
+          ) : (
+            <p className="text-black dark:!text-white">جاري التحميل</p>
+          )}
         </h1>
       </div>
     </div>
