@@ -29,7 +29,7 @@ export const Root = ({ props }) => {
   }, [openSide]);
 
   const handleClickOutside = () => {
-    document.body.removeAttribute("drawer-aside-bar");
+    // document.body.removeAttribute("drawer-aside-bar");
     setOpenSide(false);
   };
 
@@ -142,7 +142,7 @@ export const Root = ({ props }) => {
                 }
               />
               <ContentWrapper
-                className="flex flex-col justify-between !pb-1 layout-page-content  md:max-h-[91vh] overflow-scroll"
+                className="flex flex-col justify-between !pb-1 layout-page-content  md:max-h-[85vh] overflow-scroll"
                 sx={{
                   ...(contentWidth === "boxed" && {
                     mx: "auto",

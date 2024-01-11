@@ -1,8 +1,9 @@
-import { Alert, Button } from "@mui/material";
 import Grid from "@mui/material/Grid";
+import { t } from "i18next";
 import { useState } from "react";
 import ModalComp from "../../components/atoms/ModalComp";
 import IconifyIcon from "../../components/atoms/icons/IconifyIcon";
+import UserNotVerified from "../../components/molecules/UserNotVerified";
 import VerifyUser from "../../components/molecules/VerifyUser";
 import AnalyticsActivityTimeline from "../../components/molecules/analytics/AnalyticsActivityTimeline";
 import AnalyticsCongratulations from "../../components/molecules/analytics/AnalyticsCongratulations";
@@ -19,12 +20,9 @@ import AnalyticsWeeklySales from "../../components/molecules/analytics/Analytics
 import CardStatsVertical from "../../components/molecules/card-stats-vertical/CardStatsVertical";
 import ApexChartWrapper from "../../components/react-apexcharts/ApexChartWrapper";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
-import { UseOrg } from "../../context/organization provider/OrganizationProvider";
-import { t } from "i18next";
-import UserNotVerifiedIcon from "../../components/atoms/icons/UserNotVerifiedIcon";
-import UserNotVerified from "../../components/molecules/UserNotVerified";
 
 const Home = () => {
   const [open, setOpen] = useState(false);

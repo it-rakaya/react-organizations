@@ -15,7 +15,7 @@ function AdditionalInfo() {
   return (
     <div className="grid items-start grid-cols-2">
       <div className="">
-        <Typography className={`font-bold  !text-black dark:!text-white `}>3. بيانات اضافية</Typography>
+        <Typography className={`font-bold  !text-black dark:!text-white `}>3.{t("Additional information")}</Typography>
       </div>
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
         <div className="w-full md:w-1/2">
