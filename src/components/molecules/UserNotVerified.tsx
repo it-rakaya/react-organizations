@@ -2,24 +2,26 @@ import React from "react";
 import UserNotVerifiedIcon from "../atoms/icons/UserNotVerifiedIcon";
 import ButtonComp from "../atoms/buttons/ButtonComp";
 import { Alert } from "@mui/material";
+import { t } from "i18next";
 
 function UserNotVerified({ user, setOpen, sendOTP, organization_id }) {
   return (
     <div className="w-full">
       <div className="mx-20 ">
-        <h1 className="text-3xl font-bold text-black ">
-          مرحبا بك {user?.name} !
+        <h1 className="text-3xl font-bold text-black dark:text-white ">
+          <p className="text-black dark:text-white">
+            {t("Welcome")} {user?.name} !
+          </p>
         </h1>
-        <Alert severity="warning" className="flex items-center bg-transparent ">
-          <div className="flex items-center gap-5 ">
-            <p className="p-0 m-0 font-bold text-black">
-              {" "}
-              لاضافة منشئه جديده يرجى تفعيل حسابك
+        <Alert severity="warning" className="!flex !items-center !bg-transparent !w-full ">
+          <div className="!flex !items-center gap-5 ">
+            <p className="p-0 m-0 font-bold text-black dark:text-white">
+              {t("Add a new facility, please activate your account")}
             </p>
 
             <ButtonComp
               variant="contained"
-              className="w-auto !m-0"
+              className="!w-auto !m-0 ltr:!mt-0"
               action={() => {
                 setOpen(true);
                 sendOTP({
@@ -29,7 +31,7 @@ function UserNotVerified({ user, setOpen, sendOTP, organization_id }) {
                 });
               }}
             >
-              اضغط هنا
+              {t("click here")}
             </ButtonComp>
           </div>
         </Alert>

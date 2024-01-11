@@ -1,8 +1,8 @@
 import { Typography } from "@mui/material";
-import BaseInputField from "../../molecules/Formik/BaseInputField";
+import { t } from "i18next";
 import { useState } from "react";
 import ModalComp from "../../atoms/ModalComp";
-import { t } from "i18next";
+import BaseInputField from "../../molecules/Formik/BaseInputField";
 
 function AdditionalInfo() {
   const images = [
@@ -15,7 +15,9 @@ function AdditionalInfo() {
   return (
     <div className="grid items-start grid-cols-2">
       <div className="">
-        <Typography className={`font-bold  !text-black dark:!text-white `}>3.{t("Additional information")}</Typography>
+        <Typography className={`font-bold  !text-black dark:!text-white `}>
+          3.{t("Additional information")}
+        </Typography>
       </div>
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
         <div className="w-full md:w-1/2">
@@ -26,6 +28,7 @@ function AdditionalInfo() {
             type="custom"
             maxNum="3"
             required
+
             // showIcon
             // setShow={setShow}
             // setIndex={setIndex}
@@ -40,6 +43,7 @@ function AdditionalInfo() {
             type="custom"
             maxNum="3"
             required
+
             // showIcon
             // setShow={setShow}
             // setIndex={setIndex}
@@ -55,6 +59,7 @@ function AdditionalInfo() {
             placeholder="500"
             name="kitchen_space"
             type="custom"
+            images={images}
             required
           />
         </div>

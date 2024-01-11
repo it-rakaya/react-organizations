@@ -32,14 +32,14 @@ export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
           <Grid xs={12} sm={12} md={12} xl={12}>
             <ButtonComp
               variant="contained"
-              className="mx-2 bg-contained w-[90px] h-[40px]"
+              className="!mx-2 bg-contained !w-[90px] !h-[40px]"
               action={() => CancelOrder({})}
               loading={isPending}
             >
               {t("Agree")}
             </ButtonComp>
             <ButtonComp
-              className="mx-2 border-2 border-solid border-contained !text-contained w-[90px] h-[40px]"
+              className="!mx-2 !border-2 border-solid border-contained !text-contained !w-[90px] !h-[40px]"
               action={() => setOpenCancelOrder(false)}
               variant="outlined"
             >

@@ -62,7 +62,7 @@ export default function DetailsOrder({ data }) {
                   convertToHijri(data?.created_at?.slice(0, 10))
                 )}
               </p>
-              هـ
+              {t("H")}
             </div>
           </div>
         </div>

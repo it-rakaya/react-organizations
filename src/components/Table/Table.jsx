@@ -57,13 +57,14 @@ const Table = ({
             autoHeight
             rows={filteredRows}
             columns={columns}
-            checkboxSelection
+            // checkboxSelection
             disableRowSelectionOnClick
             pageSizeOptions={[10, 25, 50]}
             paginationModel={paginationModel}
             style={{ width: "99%" , background:"transparent" }}
             onPaginationModelChange={setPaginationModel}
             disableColumnFilter={true}
+            
             // hideFooter
             // hideFooterSelectedRowCount={true}
             // hideFooterPagination

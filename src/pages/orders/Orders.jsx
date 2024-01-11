@@ -257,7 +257,7 @@ export default function Orders() {
           {closeRegister && (
             <Alert
               severity="warning"
-              className="flex items-center bg-transparent mt-[-14px]"
+              className="flex items-center !bg-transparent mt-[-14px]"
             >
               <div className="flex items-center gap-5 ">
                 <p className="p-0 m-0 font-bold text-red-500">

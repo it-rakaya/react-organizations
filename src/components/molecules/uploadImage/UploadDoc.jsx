@@ -36,7 +36,6 @@ function UploadDoc({
     type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
     update: true,
   };
-  console.log("🚀 ~ updateImage:", updateImage)
   const [files, setFiles] = useState(
     values?.attachments?.length
       ? [values?.attachments[nameValue]]
@@ -44,7 +43,6 @@ function UploadDoc({
       ? [updateImage]
       : []
   );
-  console.log("🚀 ~ files:", files)
   const modifyAccept = accept?.map((item) => `.${item}`);
   const textAccept = accept?.map((item) => ` -${item} `);
   const isLargeFile = files?.length && files[0]?.size > 5242880;

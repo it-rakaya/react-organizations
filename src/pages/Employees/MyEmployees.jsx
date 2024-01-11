@@ -201,8 +201,8 @@ export default function MyEmployees() {
     {
       flex: 0.15,
       minWidth: 100,
-      headerName: "الاجراءات",
-      field: "الاجراءات",
+      headerName:t("actions"),
+      field: t("actions"),
       cellClassName: "!flex !px-0 !justify-center !items-center",
       headerAlign: "center",
 

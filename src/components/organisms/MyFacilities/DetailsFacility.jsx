@@ -62,7 +62,7 @@ export default function DetailsFacility({ data, className }) {
               onChange={handleChange}
               aria-label="nav tabs example"
               orientation="vertical"
-              className=" !min-w-[2%] md:w-[30%] tab_facility border-l-transparent w-[80px]  ml-0 "
+              className=" !min-w-[2%] md:w-[30%] tab_facility border-l-transparent ltr:border-r-transparent w-[80px]  ml-0 "
             >
               {tabsItems?.map((item, index) => (
                 <Tab

@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
-import { mdiInformationOutline } from "@mdi/js";
-import Icon from "@mdi/react";
 import { useFormikContext } from "formik";
 import { t } from "i18next";
 import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
 import Spinner from "../atoms/Spinner";
+import CardInfo from "./CardInfo";
 import Label from "./Label";
 
 export default function SelectDistrict({
@@ -17,6 +16,8 @@ export default function SelectDistrict({
   setShow,
   setIndex,
   index,
+  messageInfo,
+  images
 }) {
   const { setFieldValue, values } = useFormikContext();
 
@@ -41,25 +42,15 @@ export default function SelectDistrict({
               {required == "1" ? "*" : ""}
             </span>
           </Label>
-      {showIcon && (
-        <div
-          className="my-1 cursor-pointer w-fit"
-          onClick={() => {
-            setShow(true);
-            setIndex(index);
-          }}
-        >
-          <div className="flex items-center gap-1">
-            <>
-              <span className="text-[10px] text-[#80b3f0]">
-                {" "}
-                لمعرفة المرفق اضغط هنا
-              </span>
-              <Icon path={mdiInformationOutline} size={0.7} />
-            </>
-          </div>
-        </div>
-      )}
+          {showIcon && (
+            <CardInfo
+              index={index}
+              setIndex={setIndex}
+              messageInfo={messageInfo}
+              setShow={setShow}
+              images={images}
+            />
+          )}
       <div>
         <Select
           options={options}

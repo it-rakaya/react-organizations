@@ -1,15 +1,17 @@
 /* eslint-disable react/prop-types */
+import { mdiCalendarMonthOutline } from "@mdi/js";
+import Icon from "@mdi/react";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs";
 import { useFormikContext } from "formik";
-import { useState, useEffect } from "react";
-import { FormikError } from "./FormikError";
+import { useEffect, useState } from "react";
 import { convertArabicToEnglish } from "../../../utils/helpers";
-import { mdiCalendarMonthOutline, mdiInformationOutline } from "@mdi/js";
-import Icon from "@mdi/react";
+import CardInfo from "../CardInfo";
 import Label from "../Label";
+import { FormikError } from "./FormikError";
+import { t } from "i18next";
 
 export default function DatePickerComp({
   name,
@@ -20,7 +22,8 @@ export default function DatePickerComp({
   setShow,
   setIndex,
   index,
-  messageInfo
+  messageInfo,
+  images
 }) {
   const { setFieldValue, values } = useFormikContext();
   const [valueGregorian, setValueGregorian] = useState();
@@ -55,23 +58,14 @@ export default function DatePickerComp({
           </span>
         </Label>
         {showIcon && (
-          <div
-            className="my-1 cursor-pointer w-fit"
-            onClick={() => {
-              setShow(true);
-              setIndex(index);
-            }}
-          >
-            <div className="flex items-center gap-1">
-              <>
-              <span className="text-[10px] text-[#80b3f0]">
-                {messageInfo ? messageInfo : " لمعرفة المرفق اضغط هنا"}
-              </span>
-                <Icon path={mdiInformationOutline} size={0.7} />
-              </>
-            </div>
-          </div>
-        )}
+            <CardInfo
+              index={index}
+              setIndex={setIndex}
+              messageInfo={messageInfo}
+              setShow={setShow}
+              images={images}
+            />
+          )}
         <DatePicker
           className="bg-white dark:bg-dark-primary rounded-[10px] w-full "
           name={name}
@@ -94,7 +88,7 @@ export default function DatePickerComp({
             <span className="dark:text-white ">
               {convertArabicToEnglish(valueHijri)}
             </span>
-            هـ
+            {t("H")}
           </p>
         )}
         <div>

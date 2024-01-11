@@ -18,8 +18,9 @@ const Footer = () => {
         >
           <h2 className="text-sm text-center text-black md:text-base dark:text-white">
             <span className=" text-[14px]">
-              {t("landing.rights")} لدى شركة ركايا{" "}
+              {t("landing.rights")} لدى شركة ركايا
             </span>
+            <span></span>{" "}
             <span className="text-xs text-black dark:text-white  text-[14px]">
               &copy;
             </span>

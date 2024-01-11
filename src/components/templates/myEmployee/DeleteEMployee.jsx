@@ -7,12 +7,12 @@ import ButtonComp from "../../atoms/buttons/ButtonComp";
 import TermsConditionIcon from "../../atoms/icons/TermsConditionIcon";
 
 function DeleteEMployee({ refetch, employeeId, setModelDeleteEMployee }) {
-  const { mutate: DeleteEMployee , isPending } = useMutate({
+  const { mutate: DeleteEMployee, isPending } = useMutate({
     mutationKey: [`delete-employee${employeeId}`],
     endpoint: `delete-employee/${employeeId}`,
     onSuccess: () => {
-      notify("success" , t("employee deleted successfully"));
-      setModelDeleteEMployee(false)
+      notify("success", t("employee deleted successfully"));
+      setModelDeleteEMployee(false);
       refetch();
     },
     onError: (err) => {
@@ -25,23 +25,25 @@ function DeleteEMployee({ refetch, employeeId, setModelDeleteEMployee }) {
       <div>
         <TermsConditionIcon />
       </div>
-      <div className="flex flex-col items-center gap-7">
-        <div className="text-black dark:text-white">هل انت متاكد من حذف هذا الموظف ؟ </div>
+      <div className="!flex flex-col items-center gap-7">
+        <div className="text-center text-black dark:text-white">
+          {t("Are you sure you want to delete this employee?")}
+        </div>
         <Grid xs={12} sm={12} md={12} xl={12}>
           <ButtonComp
             variant="contained"
-            className="mx-1 border-2 border-solid border-contained bg-contained w-[120px] h-[40px] !mt-0 text-black dark:text-white"
+            className="!mx-1 !border-2 !border-solid !border-contained !bg-contained !w-[120px] !h-[40px] !mt-0 text-black dark:text-white"
             action={() => DeleteEMployee({})}
             loading={isPending}
           >
-            موافق
+            {t("Agree")}
           </ButtonComp>
           <ButtonComp
-            className="mx-1 border-2 border-solid border-contained !text-contained w-[120px] h-[40px] !mt-0 text-black dark:text-white"
+            className="!mx-1 !border-2 !border-solid !border-contained !text-contained !w-[120px] !h-[40px] !mt-0  dark:text-white"
             action={() => setModelDeleteEMployee(false)}
             variant="outline"
           >
-            الغاء
+            {t("cancel")}
           </ButtonComp>
         </Grid>
       </div>

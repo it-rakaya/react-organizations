@@ -7,6 +7,7 @@ import {
   TimelineSeparator,
 } from "@mui/lab";
 import { Box, CardContent, Typography } from "@mui/material";
+import { t } from "i18next";
 
 /* eslint-disable react/prop-types */
 function NotesOrder({ notes }) {
@@ -30,14 +31,10 @@ function NotesOrder({ notes }) {
                     justifyContent: "space-between",
                   }}
                 >
-                  {/* <div
-                    key={item?.id}
-                    dangerouslySetInnerHTML={{
-                      __html: item?.content,
-                    }}
-                  ></div> */}
                   <div>
-                    <Typography variant="caption" className="font-semibold">{item?.user_name} </Typography>
+                    <Typography variant="caption" className="font-semibold">
+                      {item?.user_name}{" "}
+                    </Typography>
                     <div
                       key={item?.id}
                       dangerouslySetInnerHTML={{
@@ -60,7 +57,10 @@ function NotesOrder({ notes }) {
       </>
     ))
   ) : (
-    <div className="mt-10 text-2xl font-bold text-black dark:text-white"> لايوجد ملاحظات </div>
+    <div className="mt-10 text-2xl font-bold text-black dark:text-white">
+      {" "}
+     {t("There is no notes")}
+    </div>
   );
 }
 

@@ -56,9 +56,9 @@ export default function VerifyUser({ userData, dataValue, setOpen, sendOTP }) {
               loading={!!loadingVerify}
               type="submit"
               variant="contained"
-              className={"w-[160px] h-[40px] m-auto mb-5"}
+              className={"!w-[160px] h-[40px] !m-auto mb-5 rtl:!mt-5 "}
             >
-              {t("تفعيل")}
+              {t("Activate")}
             </ButtonComp>
           </div>
         </Form>

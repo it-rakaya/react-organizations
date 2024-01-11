@@ -43,25 +43,16 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               className={"!m-0 py-2 px-3"}
               action={() => setEditUser(true)}
             >
-              <p className="text-white ">
-                {t("Edit personal information")}
-              </p>
+              <p className="text-white ">{t("Edit personal information")}</p>
               <IconifyIcon
                 icon={"bxs:edit"}
                 className="w-[20px] h-[20px]  rtl:mr-2 ltr:ml-2 cursor-pointer text-white"
-                // style={{ color: theme.palette.primary?.main }}
               />
             </ButtonComp>
-            {/* <div
-              style={{ background: theme?.palette?.primary?.main }}
-              className="px-2 py-1 mx-1 rounded-[8px] w-[41px]] h-[41px] flex items-center"
-              onClick={() => setEditUser(true)}
-            >
-            </div> */}
           </div>
         </div>
       </Card>
-      
+
       <div className="grid grid-cols-1 p-5 m-2 bg-white shadow-lg md:m-20 md:mb-0 md:grid-cols-2 rounded-2xl dark:bg-dark-primary">
         <div>
           <div className="flex gap-2 mt-4">

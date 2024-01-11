@@ -31,6 +31,7 @@ function NationalAddressData() {
             setShow={setShow}
             setIndex={setIndex}
             index={0}
+            images={images}
           />
         </div>
         <div className="w-full md:w-1/2">
@@ -42,6 +43,8 @@ function NationalAddressData() {
             setShow={setShow}
             setIndex={setIndex}
             index={0}
+            images={images}
+
           />
         </div>
       </div>
@@ -57,6 +60,8 @@ function NationalAddressData() {
             setShow={setShow}
             setIndex={setIndex}
             index={0}
+            images={images}
+
           />
         </div>
         <div className="w-full md:w-1/2">
@@ -71,6 +76,8 @@ function NationalAddressData() {
             setShow={setShow}
             setIndex={setIndex}
             index={0}
+            images={images}
+
           />
         </div>
       </div>
@@ -87,6 +94,8 @@ function NationalAddressData() {
             setShow={setShow}
             setIndex={setIndex}
             index={0}
+            images={images}
+
           />
         </div>
         <div className="w-full md:w-1/2">
@@ -101,6 +110,8 @@ function NationalAddressData() {
             setShow={setShow}
             setIndex={setIndex}
             index={0}
+            images={images}
+
           />
         </div>
       </div>

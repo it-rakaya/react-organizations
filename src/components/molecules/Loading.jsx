@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { useTheme } from "@mui/material/styles";
+import { t } from "i18next";
 import { Rings } from "react-loader-spinner";
 
 function Loading({ title }) {
@@ -27,7 +28,7 @@ function Loading({ title }) {
           {title ? (
             title
           ) : (
-            <p className="text-black dark:!text-white">جاري التحميل</p>
+            <p className="text-black dark:!text-white"> {t("Loading")}</p>
           )}
         </h1>
       </div>
