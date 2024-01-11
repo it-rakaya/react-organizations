@@ -154,7 +154,7 @@ const UserDropdown = (props) => {
           <>
             <MenuItem sx={{ p: 0 }} onClick={() => navigate("/")}>
               <Box sx={styles}  className="!text-black dark:!text-white">
-                <IconifyIcon icon="uil:home" />
+                <IconifyIcon icon="uil:home" style={{ color: theme?.palette?.primary?.main }} />
                 {t("Landing")}
               </Box>
             </MenuItem>
@@ -163,7 +163,7 @@ const UserDropdown = (props) => {
               onClick={() => navigate("/dashboard/profile/")}
             >
               <Box sx={styles}  className="!text-black dark:!text-white">
-                <IconifyIcon icon="mdi:account-outline" />
+                <IconifyIcon icon="mdi:account-outline" style={{ color: theme?.palette?.primary?.main }}  />
                 {t("Profile")}
               </Box>
             </MenuItem>
@@ -178,7 +178,7 @@ const UserDropdown = (props) => {
             "& svg": { mr: 2, fontSize: "1.375rem", color: "text.primary" },
           }}
         >
-          <IconifyIcon icon="mdi:logout-variant" />
+          <IconifyIcon icon="mdi:logout-variant" style={{ color: theme?.palette?.primary?.main }}  />
           {t("Logout")}
         </MenuItem>
       </Menu>
