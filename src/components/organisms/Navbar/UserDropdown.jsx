@@ -65,7 +65,7 @@ const UserDropdown = (props) => {
     mutationKey: [`Log_out`],
     endpoint: `logout`,
     onSuccess: () => {
-      notify("success", t("good luck"));
+      notify("success", t("see you soon"));
     },
     onError: (err) => {
       notify("error", err?.response?.data.message);
@@ -145,7 +145,12 @@ const UserDropdown = (props) => {
                 flexDirection: "column",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }} className="!text-black dark:!text-white">{user?.name}</Typography>
+              <Typography
+                sx={{ fontWeight: 600 }}
+                className="!text-black dark:!text-white"
+              >
+                {user?.name}
+              </Typography>
             </Box>
           </Box>
         </Box>
@@ -153,8 +158,11 @@ const UserDropdown = (props) => {
         {user?.is_verified && (
           <>
             <MenuItem sx={{ p: 0 }} onClick={() => navigate("/")}>
-              <Box sx={styles}  className="!text-black dark:!text-white">
-                <IconifyIcon icon="uil:home" style={{ color: theme?.palette?.primary?.main }} />
+              <Box sx={styles} className="!text-black dark:!text-white">
+                <IconifyIcon
+                  icon="uil:home"
+                  style={{ color: theme?.palette?.primary?.main }}
+                />
                 {t("Landing")}
               </Box>
             </MenuItem>
@@ -162,8 +170,11 @@ const UserDropdown = (props) => {
               sx={{ p: 0 }}
               onClick={() => navigate("/dashboard/profile/")}
             >
-              <Box sx={styles}  className="!text-black dark:!text-white">
-                <IconifyIcon icon="mdi:account-outline" style={{ color: theme?.palette?.primary?.main }}  />
+              <Box sx={styles} className="!text-black dark:!text-white">
+                <IconifyIcon
+                  icon="mdi:account-outline"
+                  style={{ color: theme?.palette?.primary?.main }}
+                />
                 {t("Profile")}
               </Box>
             </MenuItem>
@@ -178,7 +189,10 @@ const UserDropdown = (props) => {
             "& svg": { mr: 2, fontSize: "1.375rem", color: "text.primary" },
           }}
         >
-          <IconifyIcon icon="mdi:logout-variant" style={{ color: theme?.palette?.primary?.main }}  />
+          <IconifyIcon
+            icon="mdi:logout-variant"
+            style={{ color: theme?.palette?.primary?.main }}
+          />
           {t("Logout")}
         </MenuItem>
       </Menu>

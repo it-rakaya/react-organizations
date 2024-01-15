@@ -206,7 +206,7 @@ export default function MyFacilities() {
               variant="contained"
               action={() => navigate("/dashboard/employee")}
             >
-              <p className="text-black dark:text-white">
+              <p className="text-white">
                 {t("Moving on to employees")}
               </p>
             </ButtonComp>

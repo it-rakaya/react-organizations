@@ -1,15 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useFormikContext } from "formik";
+import { t } from "i18next";
+import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
 import { FormikError } from "./Formik/FormikError";
-import SelectComp from "./Formik/SelectComp";
 import Label from "./Label";
-import Select from "react-select";
-import { t } from "i18next";
 
 export default function SelectFacilities({ name, label, required, className }) {
-  const { values, setFieldValue, handleBlur, touched, errors } =
-    useFormikContext();
+  const { values, setFieldValue, handleBlur } = useFormikContext();
   const { data: facilities } = useFetch({
     endpoint: `facilities?select=id,name`,
     queryKey: ["select_facilities"],
@@ -46,15 +44,15 @@ export default function SelectFacilities({ name, label, required, className }) {
                 ...baseStyles,
                 padding: "10px 0",
                 borderRadius: " 8px",
-                borderWidth:"1px",
+                borderWidth: "1px",
                 // borderColor:"#555d64",
                 background: "white",
                 margin: "0",
               }),
               option: (baseStyles) => ({
                 ...baseStyles,
-               background:"white" ,
-                color: "black",
+                // background: "white",
+                // color: "black",
               }),
             }}
             theme={(theme) => ({
@@ -66,26 +64,17 @@ export default function SelectFacilities({ name, label, required, className }) {
                 primary: "#eee",
               },
             })}
-            classNames={{
-              control: () => "dark:bg-dark-primary dark:border-[#555d64]",
-              option: () => "dark:bg-dark-primary dark:text-white  ",
-            }}
+            // classNames={{
+            //   control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+            //   option: () => "dark:bg-dark-primary dark:text-white  ",
+            // }}
           />
           <div>
             <FormikError name={name} />
           </div>
         </div>
       </div>
-      {/* <label className="block my-3">{label}</label> */}
 
-      {/* <SelectComp
-        name={name}
-        multi={false}
-        data={facilities?.user_facilities ? facilities?.user_facilities : []}
-        className="w-full"
-        placeholder={"placeholder"}
-        idValue={true} */}
-      {/* /> */}
     </div>
   );
 }

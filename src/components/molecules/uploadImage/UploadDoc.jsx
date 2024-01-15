@@ -48,11 +48,10 @@ function UploadDoc({
   const isLargeFile = files?.length && files[0]?.size > 5242880;
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
 
-
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     const isLarge = selectedFile?.size > 5242880;
-
+    console.log("upload")
     if (selectedFile) {
       setFiles([selectedFile]);
       setFieldValue(
@@ -142,7 +141,9 @@ function UploadDoc({
         </div>
       )}
       <div className="flex justify-start w-full rounded-md">
-        {(!isLargeFile && files[0]?.type?.startsWith("image/")) &&
+        {(!isLargeFile &&
+          !updateImage?.value &&
+          files[0]?.type?.startsWith("image/")) ||
         files[0]?.path ? (
           <div className="flex items-center justify-center w-full ">
             <PreviewImage

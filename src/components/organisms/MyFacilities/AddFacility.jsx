@@ -28,7 +28,7 @@ export default function AddFacility() {
           <div className="relative w-full md:w-1/2">
             <BaseInputField
               label={t("facility name")}
-              placeholder="محمد احمد محمد"
+              placeholder={t("facility name")}
               name="name"
               showIcon
               required
