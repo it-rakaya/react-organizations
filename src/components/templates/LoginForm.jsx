@@ -34,7 +34,8 @@ export default function LoginForm() {
     mutationKey: [`send-otp`],
     endpoint: `send-otp`,
     onSuccess: (data) => {
-      notify("success", "التحقق من الهاتف ");
+      console.log("🚀 ~ LoginForm ~ data:", data)
+      notify("success", data?.data?.message);
       setDataValue(data?.data?.verification);
       setVerifyPhone(true);
     },

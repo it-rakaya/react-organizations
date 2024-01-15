@@ -11,15 +11,25 @@ const Footer = () => {
     : orgData?.organizations?.name_ar;
 
   return (
-    <div className=" w-[100%]  mt-5 rounded-md bg-white dark:bg-darkModeColor footer_shadow">
+    <div className=" w-[100%]  mt-5 rounded-md ">
       <div className="w-[98%] overflow-hidden m">
         <div
           className={` flex  justify-center flex-col md:flex-row items-center  p-2 gap-1`}
         >
-          <h2 className="text-sm text-center text-black md:text-base dark:text-white">
-            {t("landing.rights")} لدى شركة ركايا{" "}
-            <span className="text-xs text-black dark:text-white">&copy;</span>
-            {new Date().getUTCFullYear()}
+          {/* <h2 className="text-sm text-center text-black md:text-base dark:text-white">
+            <span className=" text-[14px]">
+              {t("landing.rights")} لدى شركة ركايا
+            </span>
+            <span></span>{" "}
+            <span className="text-xs text-black dark:text-white  text-[14px]">
+              &copy;
+            </span>
+            <span className=" text-[14px]">{new Date().getUTCFullYear()}</span>
+          </h2> */}
+          <h2 className="text-[12px] md:text-[14px]  text-center">
+            {t(
+              "All rights reserved at Rakaya Management and Food Consulting Company © 2024"
+            )}
           </h2>
         </div>
       </div>

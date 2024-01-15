@@ -43,28 +43,19 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               className={"!m-0 py-2 px-3"}
               action={() => setEditUser(true)}
             >
-              <p className="text-white ">
-                {t("Edit personal information")}
-              </p>
+              <p className="text-white ">{t("Edit personal information")}</p>
               <IconifyIcon
                 icon={"bxs:edit"}
                 className="w-[20px] h-[20px]  rtl:mr-2 ltr:ml-2 cursor-pointer text-white"
-                // style={{ color: theme.palette.primary?.main }}
               />
             </ButtonComp>
-            {/* <div
-              style={{ background: theme?.palette?.primary?.main }}
-              className="px-2 py-1 mx-1 rounded-[8px] w-[41px]] h-[41px] flex items-center"
-              onClick={() => setEditUser(true)}
-            >
-            </div> */}
           </div>
         </div>
       </Card>
-      
+
       <div className="grid grid-cols-1 p-5 m-2 bg-white shadow-lg md:m-20 md:mb-0 md:grid-cols-2 rounded-2xl dark:bg-dark-primary">
         <div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex flex-col gap-2 mt-4 md:flex-row">
             <Typography
               sx={{ color: "text.secondary", fontWeight: 600 }}
               className="dark:text-white"
@@ -75,7 +66,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               </p>
             </Typography>
           </div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex flex-col gap-2 mt-4 md:flex-row">
             <Typography
               sx={{ color: "text.secondary", fontWeight: 600 }}
               className="dark:text-white"
@@ -85,13 +76,13 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               </p>
             </Typography>
           </div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex flex-col gap-2 mt-4 md:flex-row">
             <Typography
               sx={{ color: "text.secondary", fontWeight: 600 }}
-              className="dark:text-white"
+              className="flex flex-wrap dark:text-white"
             >
+              <p className="dark:text-white">{t("Birthday")} :</p>
               <div className="flex gap-1">
-                <p className="dark:text-white">{t("Birthday")} :</p>
                 <p className=" dark:text-white">{user?.birthday}</p>/
                 <p className="dark:text-white">
                   {user?.birthday
@@ -105,7 +96,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
         </div>
 
         <div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex flex-col gap-2 mt-4 md:flex-row">
             <Typography
               sx={{ color: "text.secondary", fontWeight: 600 }}
               className="dark:text-white"
@@ -116,16 +107,18 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               </p>
             </Typography>
           </div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex flex-col gap-2 mt-4 md:flex-row">
             <Typography
               sx={{ color: "text.secondary", fontWeight: 600 }}
               className="dark:text-white"
             >
-              <p className="dark:text-white">
+              <div className="flex flex-wrap dark:text-white">
+                <p>{t("National ID Expired")} :</p>
                 <div className="flex gap-1">
-                  {t("National ID Expired")} :
-                  <p className="dark:text-white">{user?.national_id_expired}</p>
-                  /
+                  <p className="dark:text-white">
+                    {user?.national_id_expired} /
+                  </p>
+
                   <p className="dark:text-white">
                     {convertArabicToEnglish(
                       user?.national_id_expired !== "0000-00-00"
@@ -135,10 +128,10 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                     {t("H")}
                   </p>
                 </div>
-              </p>
+              </div>
             </Typography>
           </div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex flex-col gap-2 mt-4 md:flex-row">
             <Typography
               sx={{ color: "text.secondary", fontWeight: 600 }}
               className="dark:text-white"

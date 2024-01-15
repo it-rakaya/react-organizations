@@ -18,30 +18,30 @@ function AccountSettingMainData({ userData }) {
       </h1>
       <div className="col-span-2 md:col-span-1 ">
         <BaseInputField
-          label="الاسم الكامل "
+          label={t("Name")}
           placeholder="محمد احمد محمد"
           name="name"
         />
       </div>
       <div className="col-span-2 md:col-span-1 ">
         <BaseInputField
-          label=" رقم الهوية "
+          label={t("National ID")}
           placeholder="10********"
           name="national_id"
         />
       </div>
       <div className="col-span-2 md:col-span-1 ">
-        <PhoneInput2 name="phone" label={"رقم الهاتف"} />
+        <PhoneInput2 name="phone" label= {t("phone number")}  />
       </div>
       <div className="col-span-2 md:col-span-1 ">
         <BaseInputField
-          label="البريد الإلكتروني"
+          label=  {t("Email")}
           placeholder="Example@example.com"
           name="email"
         />
       </div>
       <div className="col-span-2 md:col-span-1 ">
-        <SelectCountry label={"الدولة"} name={"nationality"} />
+        <SelectCountry label= {t("Country")}name={"nationality"} />
       </div>
       <SelectCitiesSaudi
         label={t("registration.nationalSource")}
@@ -52,7 +52,7 @@ function AccountSettingMainData({ userData }) {
       <div className="col-span-2 md:col-span-1 ">
         <DatePickerComp
           name="birthday"
-          label={"تاريخ  الميلاد"}
+          label={t("Birthday")} 
           name_hj="birthday_hj"
         />
       </div>
@@ -60,7 +60,7 @@ function AccountSettingMainData({ userData }) {
       <div className="flex flex-col col-span-2 gap-3 md:col-span-1 ">
         <DatePickerComp
           name="national_id_expired"
-          label={"تاريخ انتهاء الاقامه"}
+          label={t("National ID Expired")}
           name_hj="national_id_expired_hj"
         />
       </div>

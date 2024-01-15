@@ -10,7 +10,6 @@ import AccountSettingMainData from "./AccountSettingMainData";
 import { t } from "i18next";
 
 export default function AccountSetting({ userData, setEditUser, setUser }) {
-  console.log("🚀 ~ file: AccountSetting.jsx:13 ~ AccountSetting ~ userData:", userData)
   const initialValue = {
     name: userData?.name,
     national_id: userData?.national_id,
@@ -46,7 +45,7 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
   return (
     <div>
       <MainHeader
-        title={`  تعديل البيانات `}
+        title={t("Edit personal information")}
         styleHead={{ color: theme.palette.primary.main }}
       />
       <Formik

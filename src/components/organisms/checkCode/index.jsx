@@ -16,6 +16,7 @@ export default function CheckCode({
   login,
 }) {
   const [values, setValues] = useState(["", "", "", ""]);
+  console.log("🚀 ~ values:", values);
   const [availableResetCode, setAvailableResetCode] = useState(false);
   const [timerStarted, setTimerStarted] = useState(true);
   const [colorPinInput, setColorPinInput] = useState("");
@@ -44,6 +45,7 @@ export default function CheckCode({
     } else {
       return;
     }
+    setValues(["", "", "", ""]);
   };
   return (
     <>
@@ -53,9 +55,10 @@ export default function CheckCode({
             {t("Enter the verification code")}
           </h1>
           <p className="text-center dark:text-white">
-            {t(
-              "The verification number is required to complete the process. The verification code has been sent in a message To you"
-            )}
+            {t("The verification number is required to complete the process")}
+          </p>
+          <p className="text-center dark:text-white mt-[-10px]">
+            {t("The verification code has been sent in a message To you")}
           </p>
           <p className="dark:text-white">{number}</p>
           <div>
@@ -82,7 +85,10 @@ export default function CheckCode({
                   setColorPinInput("rgb(220,53,69)");
                 }
               }}
-              containerStyle={{ flexDirection: "row-reverse" ,  direction:isRTL ? "rtl" : "rtl" }}
+              containerStyle={{
+                flexDirection: "row-reverse",
+                direction: isRTL ? "rtl" : "rtl",
+              }}
               inputClassName="focus:border-0 focus:border-red-200 selection:outline-none "
             />
           </div>
@@ -91,6 +97,7 @@ export default function CheckCode({
             timerStart={timerStarted}
             setAvailableResetCode={setAvailableResetCode}
             setTimerStarted={setTimerStarted}
+            setValues={setValues}
           />
           {availableResetCode && (
             <Button

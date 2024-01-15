@@ -3,8 +3,7 @@ import { useFormikContext } from "formik";
 import { t } from "i18next";
 import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
-import Icon from "@mdi/react";
-import { mdiInformationOutline } from "@mdi/js";
+import CardInfo from "./CardInfo";
 import Label from "./Label";
 
 export default function SelectCitiesSaudi({
@@ -16,6 +15,8 @@ export default function SelectCitiesSaudi({
   setShow,
   setIndex,
   index,
+  messageInfo,
+  images,
 }) {
   const { setFieldValue, values } = useFormikContext();
   const { data: cities } = useFetch({
@@ -35,22 +36,13 @@ export default function SelectCitiesSaudi({
         <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
       </Label>
       {showIcon && (
-        <div
-          className="my-1 cursor-pointer w-fit"
-          onClick={() => {
-            setShow(true);
-            setIndex(index);
-          }}
-        >
-          <div className="flex items-center gap-1">
-            <>
-              <span className="text-[10px] text-[#80b3f0]">
-                لمعرفة المرفق اضغط هنا
-              </span>
-              <Icon path={mdiInformationOutline} size={0.7} />
-            </>
-          </div>
-        </div>
+        <CardInfo
+          index={index}
+          setIndex={setIndex}
+          messageInfo={messageInfo}
+          setShow={setShow}
+          images={images}
+        />
       )}
       <div className="">
         <Select

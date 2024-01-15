@@ -28,12 +28,13 @@ export default function AddFacility() {
           <div className="relative w-full md:w-1/2">
             <BaseInputField
               label={t("facility name")}
-              placeholder="محمد احمد محمد"
+              placeholder={t("facility name")}
               name="name"
               showIcon
               required
               setShow={setShow}
               setIndex={setIndex}
+              images={images}
               index={0}
             />
           </div>
@@ -49,6 +50,7 @@ export default function AddFacility() {
               showIcon
               setShow={setShow}
               setIndex={setIndex}
+              images={images}
               index={0}
             />
           </div>
@@ -62,6 +64,7 @@ export default function AddFacility() {
               showIcon
               setShow={setShow}
               setIndex={setIndex}
+              images={images}
               index={0}
             />
           </div>
@@ -76,6 +79,7 @@ export default function AddFacility() {
               showIcon
               index={1}
               setIndex={setIndex}
+              images={images}
               setShow={setShow}
             />
           </div>
@@ -90,6 +94,7 @@ export default function AddFacility() {
               showIcon
               setShow={setShow}
               setIndex={setIndex}
+              images={images}
               index={0}
             />
           </div>
@@ -105,6 +110,7 @@ export default function AddFacility() {
               showIcon
               setShow={setShow}
               setIndex={setIndex}
+              images={images}
               index={0}
             />
           </div>
@@ -122,6 +128,7 @@ export default function AddFacility() {
               showIcon
               setShow={setShow}
               setIndex={setIndex}
+              images={images}
               index={2}
             />
           </div>
@@ -134,6 +141,7 @@ export default function AddFacility() {
               showIcon
               setShow={setShow}
               setIndex={setIndex}
+              images={images}
               index={2}
             />
           </div>

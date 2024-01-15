@@ -1,21 +1,22 @@
 /* eslint-disable react/prop-types */
+import { mdiAccountBoxOutline, mdiFileDocumentOutline } from "@mdi/js";
+import Icon from "@mdi/react";
+import { Divider } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { t } from "i18next";
 import MainHeader from "../../atoms/MainHeader";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
 import SelectFacilities from "../../molecules/SelectFacilities";
-import { useTheme } from "@mui/material/styles";
-import { Divider } from "@mui/material";
-import Icon from "@mdi/react";
-import { mdiAccountBoxOutline, mdiFileDocumentOutline } from "@mdi/js";
-import UploadImage from "../../molecules/uploadImage/UploadImage";
 import SelectPositions from "../../molecules/SelectPositions";
 import UploadDoc from "../../molecules/uploadImage/UploadDoc";
+import { useFormikContext } from "formik";
 export default function EmployeeMainData({
   showSelectFacility,
   attachments_facility_employees,
 }) {
   const theme = useTheme();
-
+  const {values} = useFormikContext()
+  console.log("🚀 ~ values:", values)
   return (
     <div className="">
       <MainHeader

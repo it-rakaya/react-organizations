@@ -1,6 +1,4 @@
 /* eslint-disable react/prop-types */
-import { mdiInformationOutline } from "@mdi/js";
-import Icon from "@mdi/react";
 import {
   FormControl,
   IconButton,
@@ -11,6 +9,7 @@ import {
 import { useFormikContext } from "formik";
 import { useState } from "react";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
+import CardInfo from "../CardInfo";
 import Label from "../Label";
 import { FormikError } from "./FormikError";
 
@@ -28,6 +27,7 @@ export default function BaseInputField({
   setIndex,
   index,
   messageInfo,
+  images,
   ...props
 }) {
   const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
@@ -97,22 +97,13 @@ export default function BaseInputField({
           </Label>
           {/* </label> */}
           {showIcon && (
-            <div
-              className="my-1 cursor-pointer w-fit"
-              onClick={() => {
-                setShow(true);
-                setIndex(index);
-              }}
-            >
-              <div className="flex items-center gap-1">
-                <>
-                  <span className="text-[10px] text-[#80b3f0]">
-                    {messageInfo ? messageInfo : " لمعرفة المرفق اضغط هنا"}
-                  </span>
-                  <Icon path={mdiInformationOutline} size={0.7} />
-                </>
-              </div>
-            </div>
+            <CardInfo
+              index={index}
+              setIndex={setIndex}
+              messageInfo={messageInfo}
+              setShow={setShow}
+              images={images}
+            />
           )}
           <TextField
             placeholder={placeholder}

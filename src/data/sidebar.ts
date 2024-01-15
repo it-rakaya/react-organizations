@@ -4,6 +4,8 @@ import {
   BiSolidCube,
   BiUser
 } from "react-icons/bi";
+import { FaRegBuilding } from "react-icons/fa";
+
 import { IconType } from "react-icons/lib";
 
 export type MenuItem_TP = {
@@ -31,7 +33,7 @@ export const sideBarItems: MenuItem_TP[] = [
   {
     id: crypto.randomUUID(),
     label: `${"Facilities"}`,
-    icon: BiSolidCube,
+    icon: FaRegBuilding ,
     link: "/dashboard/facilities",
   },
   {

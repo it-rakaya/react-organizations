@@ -44,26 +44,6 @@ const Home = () => {
 
   return (
     <ApexChartWrapper>
-      {/* {user?.is_verified && (
-        <div className="py-3">
-          <Alert severity="warning" className="flex items-center ">
-            لإضافة منشأة جديدة أو تقديم طلب جديد يرجى تفعيل حسابك !
-            <Button
-              variant="text"
-              onClick={() => {
-                setOpen(true);
-                sendOTP({
-                  organization_id: orgData?.organizations?.id,
-                  phone: user?.phone,
-                  phone_code: user?.phone_code,
-                });
-              }}
-            >
-              للتفعيل اضغط هنا{" "}
-            </Button>
-          </Alert>
-        </div>
-      )} */}
       <Grid container spacing={6} className="match-height">
         {user?.is_verified ? (
           <>

@@ -35,7 +35,7 @@ body {
 
 
 svg {
-  color: #51595C;
+  color: black;
   /* @apply  text-contained */
 }
 
@@ -706,6 +706,11 @@ input:-webkit-autofill:active {
 .MuiTabs-flexContainer.MuiTabs-flexContainerVertical {
   border-left: 2px solid rgb(241, 239, 239);
 }
+[dir="ltr"] .MuiTabs-flexContainer.MuiTabs-flexContainerVertical {
+  border-right: 2px solid rgb(241, 239, 239);
+  border-left: 2px solid transparent;
+
+}
 
 .dark .ps-sidebar-container {
   @apply bg-dark-primary border-r-transparent
@@ -737,6 +742,10 @@ input:-webkit-autofill:active {
   color: white !important;
 
 }
+.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label {
+  color: black !important;
+}
+
 
 .css-zchfm5-MuiPaper-root-MuiCard-root {
   box-shadow: 0 0 0 !important;
@@ -819,7 +828,7 @@ input:-webkit-autofill:active {
 
 @media (max-width:660px) {
   .layout-page-content {
-    max-height: calc(100vh - 60px);
+    max-height: calc(100vh - 140px);
   }
 }
 .MuiBackdrop-root.MuiModal-backdrop{
