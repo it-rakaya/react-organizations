@@ -5,6 +5,7 @@ import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
 import CardInfo from "./CardInfo";
 import Label from "./Label";
+import { useIsRTL } from "../../hooks/useIsRTL";
 
 export default function SelectCitiesSaudi({
   name,
@@ -19,13 +20,14 @@ export default function SelectCitiesSaudi({
   images,
 }) {
   const { setFieldValue, values } = useFormikContext();
+  const isRTL = useIsRTL();
   const { data: cities } = useFetch({
     endpoint: `saudi-cities`,
     queryKey: ["saudi-cities"],
   });
   const options = cities?.cities.map((item) => ({
     value: item.id,
-    label: item.name_ar,
+    label: isRTL ? item.name_ar : item?.name_en,
   }));
   const selectedCity = options?.find((option) => option?.value == values[name]);
 
