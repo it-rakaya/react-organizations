@@ -828,12 +828,9 @@ input:-webkit-autofill:active {
 
 @media (max-width:660px) {
   .layout-page-content {
-    max-height: calc(100vh - 135px);
+    max-height: calc(100vh - 140px);
   }
 }
 .MuiBackdrop-root.MuiModal-backdrop{
   background-color: rgba(0, 0, 0, 0.5) !important;
-}
-.MuiTabs-flexContainer.MuiTabs-flexContainerVertical{
-
 }
