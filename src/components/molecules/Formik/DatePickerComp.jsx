@@ -12,6 +12,7 @@ import CardInfo from "../CardInfo";
 import Label from "../Label";
 import { FormikError } from "./FormikError";
 import { t } from "i18next";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 
 export default function DatePickerComp({
   name,
@@ -28,6 +29,7 @@ export default function DatePickerComp({
   const { setFieldValue, values } = useFormikContext();
   const [valueGregorian, setValueGregorian] = useState();
   const [valueHijri, setValueHijri] = useState(values[name_hj]);
+  const isRTL = useIsRTL()
 
   useEffect(() => {
     if (valueGregorian) {
@@ -69,6 +71,8 @@ export default function DatePickerComp({
         <DatePicker
           className="bg-white dark:bg-dark-primary rounded-[10px] w-full "
           name={name}
+          
+          i18nIsDynamicList={isRTL}
           defaultValue={values[name] ? dayjs(values[name]) : null}
           onChange={(newValue) => {
             if (values[name] !== undefined) {

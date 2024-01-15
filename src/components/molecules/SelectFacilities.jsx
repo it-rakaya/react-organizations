@@ -69,8 +69,8 @@ export default function SelectFacilities({ name, label, required, className }) {
               control: () => "dark:bg-dark-primary dark:border-[#555d64]",
               option: () => "dark:bg-dark-primary dark:text-white  ",
             }}
-            menuStyle={{ maxHeight: 120, overflowY: "scroll" }}
             maxMenuHeight={200}
+            menuShouldScrollIntoView
             // minMenuHeight={500}
           />
           <div>
