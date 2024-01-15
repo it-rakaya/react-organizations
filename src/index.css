@@ -828,7 +828,7 @@ input:-webkit-autofill:active {
 
 @media (max-width:660px) {
   .layout-page-content {
-    max-height: calc(100vh );
+    max-height: calc(100vh - 35px);
   }
 }
 .MuiBackdrop-root.MuiModal-backdrop{
