@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }) => {
     window.localStorage.removeItem("token");
     Cookies.remove("role");
     Cookies.remove("token");
+    
 
     navigate("/", { replace: true });
   }, [setUser, navigate]);

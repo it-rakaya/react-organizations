@@ -20,7 +20,7 @@ export const Root = ({ props }) => {
   const [collapsed, setCollapsed] = React.useState(false);
   const [toggled, setToggled] = React.useState(false);
   const token = Cookies.get("token");
-  const { user } = useAuth();
+  const { user , logout } = useAuth();
   const navigate = useNavigate();
 
 
@@ -72,13 +72,14 @@ export const Root = ({ props }) => {
   useEffect(() => {
     if (!token) {
       navigate("/");
+      logout()
     }
   }, [navigate, token]);
 
   const toggleNavVisibility = () => setNavVisible(!navVisible);
-  const isFacilityRoute = location.pathname.startsWith(
-    "/dashboard/facilities/create-facility"
-  );
+  // const isFacilityRoute = location.pathname.startsWith(
+  //   "/dashboard/facilities/create-facility"
+  // );
 
 
   if (token) {
