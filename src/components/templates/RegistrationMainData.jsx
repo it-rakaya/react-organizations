@@ -141,7 +141,7 @@ function RegistrationMainData({ attachments_register, setOpen, isPending }) {
         }}
         label={
           <div>
-            <Typography variant="body2" component="span">
+            <Typography variant="body2" component="span" className="text-black dark:text-white">
               {t("I agree to ")}
             </Typography>
             <LinkStyled

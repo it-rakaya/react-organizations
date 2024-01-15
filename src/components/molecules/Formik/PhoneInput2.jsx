@@ -8,8 +8,9 @@ import Label from "../Label";
 import { FormikError } from "./FormikError";
 import Icon from "@mdi/react";
 import { mdiInformationOutline } from "@mdi/js";
+import CardInfo from "../CardInfo";
 
-const PhoneInput2 = ({ label, required , showIcon  , messageInfo}) => {
+const PhoneInput2 = ({ label, required, showIcon, messageInfo }) => {
   const [phone, setPhone] = useState("");
   const { setFieldValue, errors, handleBlur, values, touched } =
     useFormikContext();
@@ -42,20 +43,21 @@ const PhoneInput2 = ({ label, required , showIcon  , messageInfo}) => {
             {required == "1" ? "*" : ""}
           </span>
         </Label>
-        {showIcon && (
+        {/* {showIcon && (
             <div
               className="my-1 cursor-pointer w-fit"
             >
               <div className="flex items-center gap-1">
                 <>
                   <span className="text-[10px] text-[#80b3f0]">
-                    {messageInfo ? messageInfo : " لمعرفة المرفق اضغط هنا"}
+                    {messageInfo ? messageInfo : " }
                   </span>
                   <Icon path={mdiInformationOutline} size={0.7} />
                 </>
               </div>
             </div>
-          )}
+          )} */}
+        {showIcon && <CardInfo messageInfo={messageInfo} />}
 
         <PhoneInput
           country={"sa"}
