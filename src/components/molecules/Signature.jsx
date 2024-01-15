@@ -23,13 +23,11 @@ function Signature() {
           <TermsConditionIcon className={""} />
         </div>
         <h1 className="text-xl font-bold dark:text-white ">
-        {t("Endorsement")}
-
+          {t("Endorsement")}
         </h1>
       </div>
 
       <div className="main_content max-h-[450px] overflow-y-scroll scroll_main mt-5">
-
         <p className="text-center dark:text-white">
           {t(
             "The data required to be recorded is the information of the facility owner and I promise Register it correctly"
@@ -58,8 +56,8 @@ function Signature() {
           </RadioGroup>
         </FormControl>
       </div>
-      <div>
-        <ButtonComp disabled={!checked} action={() => navigate("/register")}>
+      <div className="flex justify-center">
+        <ButtonComp disabled={!checked} action={() => navigate("/register")} className={"!w-[173px]"}>
           {t("landing.register")}
         </ButtonComp>
       </div>

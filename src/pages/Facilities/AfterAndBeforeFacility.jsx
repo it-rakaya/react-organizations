@@ -42,6 +42,9 @@ function AfterAndBeforeFacility({
         setOpen(true);
       } else {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      
+
+
       }
     }
   };
