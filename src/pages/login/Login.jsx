@@ -107,7 +107,7 @@ const Login = () => {
                 <Box sx={{ mb: 3, width: "100%" }} className="text-center">
                   <TypographyStyled className="text-black dark:text-white" variant="h5">{`${t(
                     "Welcome to"
-                  )} ${organizationName}! 👋🏻`}</TypographyStyled>
+                  )} ${organizationName}!`}</TypographyStyled>
                   <Typography variant="body2" className="text-black dark:text-white" >
                     {t("Please sign-in to your account")}
                   </Typography>

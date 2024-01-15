@@ -16,7 +16,7 @@ const Footer = () => {
         <div
           className={` flex  justify-center flex-col md:flex-row items-center  p-2 gap-1`}
         >
-          <h2 className="text-sm text-center text-black md:text-base dark:text-white">
+          {/* <h2 className="text-sm text-center text-black md:text-base dark:text-white">
             <span className=" text-[14px]">
               {t("landing.rights")} لدى شركة ركايا
             </span>
@@ -25,6 +25,11 @@ const Footer = () => {
               &copy;
             </span>
             <span className=" text-[14px]">{new Date().getUTCFullYear()}</span>
+          </h2> */}
+          <h2 className="text-[12px] md:text-[14px]  text-center">
+            {t(
+              "All rights reserved at Rakaya Management and Food Consulting Company © 2024"
+            )}
           </h2>
         </div>
       </div>

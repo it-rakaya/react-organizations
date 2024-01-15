@@ -55,7 +55,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
 
       <div className="grid grid-cols-1 p-5 m-2 bg-white shadow-lg md:m-20 md:mb-0 md:grid-cols-2 rounded-2xl dark:bg-dark-primary">
         <div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex flex-col gap-2 mt-4 md:flex-row">
             <Typography
               sx={{ color: "text.secondary", fontWeight: 600 }}
               className="dark:text-white"
@@ -66,7 +66,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               </p>
             </Typography>
           </div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex flex-col gap-2 mt-4 md:flex-row">
             <Typography
               sx={{ color: "text.secondary", fontWeight: 600 }}
               className="dark:text-white"
@@ -76,13 +76,13 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               </p>
             </Typography>
           </div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex flex-col gap-2 mt-4 md:flex-row">
             <Typography
               sx={{ color: "text.secondary", fontWeight: 600 }}
-              className="dark:text-white"
+              className="flex flex-wrap dark:text-white"
             >
+              <p className="dark:text-white">{t("Birthday")} :</p>
               <div className="flex gap-1">
-                <p className="dark:text-white">{t("Birthday")} :</p>
                 <p className=" dark:text-white">{user?.birthday}</p>/
                 <p className="dark:text-white">
                   {user?.birthday
@@ -96,7 +96,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
         </div>
 
         <div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex flex-col gap-2 mt-4 md:flex-row">
             <Typography
               sx={{ color: "text.secondary", fontWeight: 600 }}
               className="dark:text-white"
@@ -107,16 +107,18 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               </p>
             </Typography>
           </div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex flex-col gap-2 mt-4 md:flex-row">
             <Typography
               sx={{ color: "text.secondary", fontWeight: 600 }}
               className="dark:text-white"
             >
-              <p className="dark:text-white">
+              <div className="flex flex-wrap dark:text-white">
+                <p>{t("National ID Expired")} :</p>
                 <div className="flex gap-1">
-                  {t("National ID Expired")} :
-                  <p className="dark:text-white">{user?.national_id_expired}</p>
-                  /
+                  <p className="dark:text-white">
+                    {user?.national_id_expired} /
+                  </p>
+
                   <p className="dark:text-white">
                     {convertArabicToEnglish(
                       user?.national_id_expired !== "0000-00-00"
@@ -126,10 +128,10 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                     {t("H")}
                   </p>
                 </div>
-              </p>
+              </div>
             </Typography>
           </div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex flex-col gap-2 mt-4 md:flex-row">
             <Typography
               sx={{ color: "text.secondary", fontWeight: 600 }}
               className="dark:text-white"

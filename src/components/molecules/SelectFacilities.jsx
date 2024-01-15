@@ -51,8 +51,8 @@ export default function SelectFacilities({ name, label, required, className }) {
               }),
               option: (baseStyles) => ({
                 ...baseStyles,
-                // background: "white",
-                // color: "black",
+                background: "white",
+                color: "black",
               }),
             }}
             theme={(theme) => ({
@@ -64,10 +64,10 @@ export default function SelectFacilities({ name, label, required, className }) {
                 primary: "#eee",
               },
             })}
-            // classNames={{
-            //   control: () => "dark:bg-dark-primary dark:border-[#555d64]",
-            //   option: () => "dark:bg-dark-primary dark:text-white  ",
-            // }}
+            classNames={{
+              control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+              option: () => "dark:bg-dark-primary dark:text-white  ",
+            }}
           />
           <div>
             <FormikError name={name} />

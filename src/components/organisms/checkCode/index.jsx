@@ -55,9 +55,10 @@ export default function CheckCode({
             {t("Enter the verification code")}
           </h1>
           <p className="text-center dark:text-white">
-            {t(
-              "The verification number is required to complete the process. The verification code has been sent in a message To you"
-            )}
+            {t("The verification number is required to complete the process")}
+          </p>
+          <p className="text-center dark:text-white mt-[-10px]">
+            {t("The verification code has been sent in a message To you")}
           </p>
           <p className="dark:text-white">{number}</p>
           <div>
