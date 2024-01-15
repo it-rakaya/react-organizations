@@ -162,8 +162,8 @@ export default function AddFacility() {
       </div>
       <ModalComp
         open={show}
-        className="!max-w-[700px] m-auto   max-h-[450px]   "
-        classNameBox="shadow-none w-full  "
+        className="!max-w-[700px] m-auto   max-h-[450px]  "
+        classNameBox="shadow-none w-full  !bg-transparent "
         onClose={() => setShow(false)}
         hidden={true}
         Children={

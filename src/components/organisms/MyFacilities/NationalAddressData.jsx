@@ -118,13 +118,13 @@ function NationalAddressData() {
       <ModalComp
         open={show}
         className="!max-w-[700px] m-auto    "
-        classNameBox="shadow-none w-full "
+        classNameBox="shadow-none w-full !bg-transparent "
         onClose={() => setShow(false)}
         hidden={true}
         Children={
           <div className="flex justify-center w-full">
             <img
-              className="w-full h-[38rem] object-contain"
+              className="w-full h-[45rem] object-contain"
               src={images[index].path}
             />
           </div>
