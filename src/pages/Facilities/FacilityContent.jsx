@@ -116,7 +116,7 @@ function FacilityContent({
     <Card
       sx={{
         mt: 4,
-        height: { xs: "calc(100vh - 350px)", md: "calc(100vh - 310px)" },
+        height: {  md: "calc(100vh - 310px)" },
         overflowY: "scroll",
       }}
       // md={{

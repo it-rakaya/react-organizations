@@ -112,7 +112,7 @@ function AfterAndBeforeFacility({
         justifyContent: "end",
         gap: "5px",
       }}
-      className="fixed bottom-[55px] md:bottom-[65px] ltr:right-[16px] ltr:md:right-[48px] rtl:left-[16px] md:rtl:left-[26px] "
+      className="md:fixed mt-5 md:mt-0 bottom-[55px] md:bottom-[65px] ltr:right-[16px] ltr:md:right-[48px] rtl:left-[16px] md:rtl:left-[26px] "
     >
       <ButtonComp
         size="large"
@@ -126,7 +126,7 @@ function AfterAndBeforeFacility({
       >
         {t("Back")}
       </ButtonComp>
-      
+
       <ButtonComp
         action={handleNext}
         type="button"
