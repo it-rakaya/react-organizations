@@ -113,7 +113,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               className="dark:text-white"
             >
               <div className="flex flex-wrap dark:text-white">
-                <p>{t("National ID Expired")} :</p>
+                <p className="text-black dark:text-white">{t("National ID Expired")} :</p>
                 <div className="flex gap-1">
                   <p className="dark:text-white">
                     {user?.national_id_expired} /
