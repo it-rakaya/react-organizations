@@ -14,11 +14,11 @@ export default {
         secondaryText: "#967860",
         dark: {
           primary: "#2c3639",
-        
         },
       },
       screens: {
         "3xl": "1940px",
+        xs: "350px",
       },
     },
   },
