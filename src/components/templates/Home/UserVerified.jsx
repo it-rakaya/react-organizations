@@ -54,7 +54,7 @@ function UserVerified() {
   return (
     <div>
       <div
-        className="grid grid-cols-12 px-2 py-10 bg-white md:px-5 md:m-20 rounded-2xl"
+        className="grid grid-cols-12 px-2 py-10 bg-white dark:bg-dark-primary md:px-5 md:m-20 rounded-2xl"
         style={{ boxShadow: "0 0 27px -20px" }}
       >
         <div className="flex flex-col justify-center col-span-12 md:col-span-7 ">
