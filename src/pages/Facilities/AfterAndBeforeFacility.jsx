@@ -42,9 +42,6 @@ function AfterAndBeforeFacility({
         setOpen(true);
       } else {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      
-
-
       }
     }
   };
@@ -115,7 +112,7 @@ function AfterAndBeforeFacility({
         justifyContent: "end",
         gap: "5px",
       }}
-      className="md:fixed mt-5 md:mt-0 bottom-[55px] md:bottom-[30px] ltr:right-[16px] ltr:md:right-[48px] rtl:left-[16px] md:rtl:left-[26px] "
+      className="md:fixed mt-5 md:mt-0 bottom-[55px] md:bottom-[30px] ltr:right-[16px] ltr:md:right-[28px] rtl:left-[16px] md:rtl:left-[33px] "
     >
       <ButtonComp
         size="large"

@@ -26,8 +26,8 @@ function useFetch({ endpoint, enabled, select, queryKey, onError, onSuccess }) {
     select,
     onError: (error) => {
       console.log("🚀 ~ useFetch ~ error:", error)
-      notify("error", error?.response?.data?.message);
-      if (error?.response?.data?.message == "Unauthenticated.") {
+      notify("error", error);
+      if (error?.message == "Unauthenticated.") {
         localStorage.removeItem("user");
         navigate("/login");
         Cookies.remove("token");
