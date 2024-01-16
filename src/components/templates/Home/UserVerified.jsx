@@ -69,12 +69,12 @@ function UserVerified() {
 
           <div className="flex flex-wrap justify-center gap-1 md:justify-normal md:gap-2 xs:flex-nowrap ">
             <Link to={`https://wa.me/${orgData?.organizations?.phone}/`}>
-              <ButtonComp className={" w-[10rem] text-[12px] md:!w-[full]"}>
-                {t("Communication via WhatsApp")}
+              <ButtonComp className={" w-[10rem] !text-[12px] md:!w-[full]"}>
+                {t("contact via WhatsApp")}
               </ButtonComp>
             </Link>
             <Link to={"/dashboard/profile"}>
-              <ButtonComp className={" w-[10rem] text-[12px] md:!w-[full]"} variant="outlined">
+              <ButtonComp className={" w-[10rem] !text-[12px] md:!w-[full]"} variant="outlined">
                 {t("My personal data")}
               </ButtonComp>
             </Link>
@@ -85,7 +85,7 @@ function UserVerified() {
                 <CardStatsHorizontal
                   item={item}
                   className="bg-transparent !shadow-none"
-                  classNameBox="!pr-0 pl-0 "
+                  classNameBox="!pr-0 !pl-0   "
                 />
               </Grid>
             ))}

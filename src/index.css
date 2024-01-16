@@ -706,6 +706,7 @@ input:-webkit-autofill:active {
 .MuiTabs-flexContainer.MuiTabs-flexContainerVertical {
   border-left: 2px solid rgb(241, 239, 239);
 }
+
 [dir="ltr"] .MuiTabs-flexContainer.MuiTabs-flexContainerVertical {
   border-right: 2px solid rgb(241, 239, 239);
   border-left: 2px solid transparent;
@@ -742,6 +743,7 @@ input:-webkit-autofill:active {
   color: white !important;
 
 }
+
 .MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label {
   color: black !important;
 }
@@ -831,6 +833,7 @@ input:-webkit-autofill:active {
     /* max-height: calc(100vh - 35px); */
   }
 }
-.MuiBackdrop-root.MuiModal-backdrop{
+
+.MuiBackdrop-root.MuiModal-backdrop {
   background-color: rgba(0, 0, 0, 0.5) !important;
 }

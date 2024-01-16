@@ -105,10 +105,10 @@ const Login = () => {
               </Box>
               <BoxWrapper className="flex flex-col items-center justify-center mt-5">
                 <Box sx={{ mb: 3, width: "100%" }} className="text-center">
-                  <TypographyStyled className="text-black dark:text-white" variant="h5">{`${t(
+                  <TypographyStyled className="!text-black dark:text-white" variant="h5">{`${t(
                     "Welcome to"
                   )} ${organizationName}!`}</TypographyStyled>
-                  <Typography variant="body2" className="text-black dark:text-white" >
+                  <Typography variant="body2" className="!text-black dark:text-white" >
                     {t("Please sign-in to your account")}
                   </Typography>
                   {/* <Typography variant="body2" className="text-black dark:text-white" >{"530410927"}</Typography> */}
@@ -125,13 +125,13 @@ const Login = () => {
                     marginTop: "10px",
                   }}
                 >
-                  <Typography sx={{ mr: 2, color: "text.secondary" }} className="text-black dark:text-white" >
+                  <Typography sx={{ mr: 2,}} className="!text-black dark:!text-white" >
                     {t("New on our platform?")}
                   </Typography>
                   <Link
                     to="/register"
                     sx={{ color: "primary.main", textDecoration: "none" }}
-                    className="text-black dark:text-white" 
+                    className="!text-black dark:text-white" 
                   >
                     {t("Create an account")}
                   </Link>

@@ -8,6 +8,8 @@ import MainHeader from "../../atoms/MainHeader";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import AccountSettingMainData from "./AccountSettingMainData";
 import { t } from "i18next";
+import * as Yup from "yup";
+import { isValidSaudiID } from "saudi-id-validator";
 
 export default function AccountSetting({ userData, setEditUser, setUser }) {
   const initialValue = {
@@ -27,7 +29,31 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
     ),
     favourit_organizations: userData?.favourit_organizations,
   };
+  const ValidationSchema = () =>
+    Yup.object({
+      name: Yup.string().trim().required(t("name is required")),
+      national_id: Yup.string()
+        .matches(/^\d{10}$/, t("The ID number must be exactly 10 digits"))
+        .test({
+          name: "isValidSaudiID",
+          test: (value) => isValidSaudiID(value),
+          message: t("Invalid Saudi ID"),
+        })
+        .required(t("This field is required")),
+      email: Yup.string().trim().required(t("email is required")),
+      birthday: Yup.date().required(t("birthday is required")),
+      phone: Yup.string()
+        .matches(/^\d{9}$/, t("The phone number must be exactly 10 digits"))
+        .required(t("This field is required")),
+      nationality: Yup.string().trim().required(t("country is required")),
+      national_source: Yup.string()
+        .trim()
+        .required(t("national source is required")),
 
+      national_id_expired: Yup.string()
+        .trim()
+        .required(t("birthday is required")),
+    });
   const { mutate: UpdateUser, isPending } = useMutate({
     mutationKey: [`users_update`],
     endpoint: `users/update`,
@@ -51,6 +77,7 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
       <Formik
         initialValues={initialValue}
         onSubmit={(value) => UpdateUser(value)}
+        validationSchema={ValidationSchema}
       >
         <Form>
           <AccountSettingMainData userData={userData} />

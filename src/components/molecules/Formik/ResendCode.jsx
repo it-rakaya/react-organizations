@@ -39,22 +39,21 @@ const ResendCode = ({
       <div className="flex justify-center gap-2 ">
         <button
           className={`font-[futuraMed,sans-serif]  ${
-            !available ? "text-[#777] dark:text-white" : "text-mainColorLand dark:text-white"
-          } ${available ? "cursor-pointer dark:text-white" : "cursor-not-allowed dark:text-white"}`}
+            !available
+              ? "text-[#777] dark:text-white"
+              : "text-mainColorLand dark:text-white"
+          } ${
+            available
+              ? "cursor-pointer dark:text-white"
+              : "cursor-not-allowed dark:text-white"
+          }`}
         >
-          <p className="dark:text-white">
-            {t("Resend the code later")}
-          
-          
-           
-
-          
-          </p>
+          <p className="dark:text-white">{t("Resend the code later")}</p>
         </button>
 
         <span
           className={`text-center font-bold ${
-            !available ? "text-[#777]" : "text-mainColorLand"
+            !available ? "text-black dark:text-white" : "text-mainColorLand"
           }`}
         >
           {`${Math.floor(remainingTime / 60)}:${

@@ -28,6 +28,8 @@ function AccountSettingMainData({ userData }) {
           label={t("National ID")}
           placeholder="10********"
           name="national_id"
+          type="custom"
+          maxNum={10}
         />
       </div>
       <div className="col-span-2 md:col-span-1 ">
@@ -38,6 +40,7 @@ function AccountSettingMainData({ userData }) {
           label=  {t("Email")}
           placeholder="Example@example.com"
           name="email"
+          
         />
       </div>
       <div className="col-span-2 md:col-span-1 ">

@@ -33,6 +33,11 @@ function CardInfo({ setShow, setIndex, messageInfo, index, images }) {
       </div>
       <div className="flex items-center gap-1 cursor-pointer md:hidden">
         <>
+        <Icon
+            path={mdiInformationOutline}
+            size={0.7}
+            className="!text-[#80b3f0]"
+          />
           <span className="text-[10px] text-[#80b3f0]">
             {messageInfo ? (
               messageInfo
@@ -46,11 +51,7 @@ function CardInfo({ setShow, setIndex, messageInfo, index, images }) {
               </div>
             )}
           </span>
-          <Icon
-            path={mdiInformationOutline}
-            size={0.7}
-            className="text-[#80b3f0]"
-          />
+         
         </>
       </div>
     </div>

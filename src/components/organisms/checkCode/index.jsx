@@ -16,7 +16,6 @@ export default function CheckCode({
   login,
 }) {
   const [values, setValues] = useState(["", "", "", ""]);
-  console.log("🚀 ~ values:", values);
   const [availableResetCode, setAvailableResetCode] = useState(false);
   const [timerStarted, setTimerStarted] = useState(true);
   const [colorPinInput, setColorPinInput] = useState("");

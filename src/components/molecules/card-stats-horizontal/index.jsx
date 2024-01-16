@@ -16,7 +16,7 @@ const CardStatsHorizontal = (props) => {
           className={classNameBox}
         >
           <Box sx={{ display: "flex", alignItems: "center" }} >
-            <div className="bg-[#c5b27917] rounded-md h-[40px] w-[40px] flex items-center justify-center ltr:mr-6  rtl:md:ml-6 ">
+            <div className="bg-[#c5b27917] rounded-md h-[40px] w-[40px] flex items-center justify-center ltr:mr-2  rtl:md:ml-6 ">
               <Icon path={item?.icon} size={1} className=" text-primary" />
             </div>
 
