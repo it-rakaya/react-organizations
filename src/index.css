@@ -263,7 +263,7 @@ main,
   -webkit-tap-highlight-color: transparent;
   display: block;
   min-width: 0;
-  width: 100% !important;
+  width: fit-content !important;
   animation-name: mui-auto-fill-cancel;
   animation-duration: 10ms;
   color: black;

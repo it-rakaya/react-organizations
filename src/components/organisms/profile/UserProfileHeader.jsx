@@ -22,7 +22,6 @@ const ProfilePicture = styled("img")(({ theme }) => ({
 }));
 
 const UserProfileHeader = ({ user, setEditUser, theme }) => {
-
   return (
     <div>
       <Card className="flex flex-col items-center justify-center !bg-transparent !shadow-none">
@@ -52,7 +51,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
         </div>
       </Card>
 
-      <div className="grid grid-cols-1 gap-20 p-5 m-2 bg-white shadow-lg md:m-20 md:mb-0 md:grid-cols-2 rounded-2xl dark:bg-dark-primary">
+      <div className="grid grid-cols-1 gap-5 p-5 m-2 bg-white shadow-lg md:gap-20 md:m-20 md:mb-0 md:grid-cols-2 rounded-2xl dark:bg-dark-primary">
         <div>
           <div className="flex flex-col col-span-2 gap-2 py-2 border-b md:col-span-1">
             <p style={{ color: theme.palette.primary?.main }}>

@@ -53,41 +53,45 @@ function UserVerified() {
 
   return (
     <div>
-      <div className="grid grid-cols-12 p-5 m-20 bg-white rounded-2xl" style={{boxShadow:"0 0 27px -20px"}}>
-        <div className="flex flex-col justify-center col-span-7">
+      <div
+        className="grid grid-cols-12 px-2 py-10 bg-white dark:bg-dark-primary md:px-5 md:m-20 rounded-2xl"
+        style={{ boxShadow: "0 0 27px -20px" }}
+      >
+        <div className="flex flex-col justify-center col-span-12 md:col-span-7 ">
           <div className="flex">
-            <h1 className="text-3xl font-bold text-black dark:text-white">
+            <h1 className="text-xl font-bold text-black md:text-3xl dark:text-white">
               {t("Welcome")}
             </h1>
-            <h1 className="mx-1 text-3xl font-bold text-black dark:text-white">
+            <h1 className="mx-1 text-xl font-bold text-black md:text-3xl dark:text-white">
               {user?.name}!
             </h1>
           </div>
 
-          <div className="flex w-full gap-20 ">
+          <div className="flex flex-wrap justify-center gap-1 md:justify-normal md:gap-2 xs:flex-nowrap ">
             <Link to={`https://wa.me/${orgData?.organizations?.phone}/`}>
-              <ButtonComp className={"!w-[250px] ltr:!w-[300px]"}>
+              <ButtonComp className={" w-[10rem] text-[12px] md:!w-[full]"}>
                 {t("Communication via WhatsApp")}
               </ButtonComp>
             </Link>
             <Link to={"/dashboard/profile"}>
-              <ButtonComp className={"!w-[250px] ltr:!w-[300px]"} variant="outlined">
+              <ButtonComp className={" w-[10rem] text-[12px] md:!w-[full]"} variant="outlined">
                 {t("My personal data")}
               </ButtonComp>
             </Link>
           </div>
           <div className="flex justify-between mt-5">
             {data?.map((item, index) => (
-              <Grid xs={12} md={3} sm={6} item key={index}>
+              <Grid xs={3} md={3} sm={3} item key={index}>
                 <CardStatsHorizontal
                   item={item}
                   className="bg-transparent !shadow-none"
+                  classNameBox="!pr-0 pl-0 "
                 />
               </Grid>
             ))}
           </div>
         </div>
-        <div className="col-span-5">
+        <div className="col-span-12 md:col-span-5">
           <UserVerifiedIcon className="w-full" />
         </div>
       </div>
