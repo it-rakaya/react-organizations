@@ -6,13 +6,13 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 const CardStatsHorizontal = (props) => {
-  const { item } = props;
+  const { item , className } = props;
 
   return (
     <>
-      <Card>
+      <Card className={className}>
         <CardContent
-          sx={{ py: (theme) => `${theme.spacing(4.125)} !important` }}
+          sx={{ py: (theme) => `${theme.spacing(4.125)} !important ` }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <div className="bg-[#c5b27917] rounded-md h-[40px] w-[40px] flex items-center justify-center ltr:mr-6  rtl:ml-6 ">
@@ -27,7 +27,7 @@ const CardStatsHorizontal = (props) => {
                   alignItems: "center",
                 }}
               >
-                <Typography variant="h6" className="text-black dark:text-white">{item.stats}</Typography>
+                <Typography variant="h6" className="font-semibold text-black dark:text-white">{item.stats}</Typography>
               </Box>
               <Typography variant="caption" className="text-black dark:text-white">
                 {item?.title}
