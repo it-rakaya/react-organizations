@@ -24,7 +24,7 @@ body {
   box-sizing: border-box;
   max-height: 100vh;
   overflow-x: hidden;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 
 }
 
@@ -828,7 +828,7 @@ input:-webkit-autofill:active {
 
 @media (max-width:660px) {
   .layout-page-content {
-    max-height: calc(100vh - 140px);
+    /* max-height: calc(100vh - 35px); */
   }
 }
 .MuiBackdrop-root.MuiModal-backdrop{

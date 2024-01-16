@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import AddFacility from "../../components/organisms/MyFacilities/AddFacility";
 import AdditionalInfo from "../../components/organisms/MyFacilities/AdditionalInfo";
 import NationalAddressData from "../../components/organisms/MyFacilities/NationalAddressData";
@@ -21,6 +21,9 @@ function MainContent({
     endpoint: `attachments-labels/facilities`,
     queryKey: ["attachments_facilities"],
   });
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activeStep]);
 
   const getStepContent = (step) => {
     switch (step) {
@@ -58,7 +61,7 @@ function MainContent({
 
   return (
     <div>
-      <div  className="flex flex-col justify-between h-full md:mt-5 ">
+      <div className="flex flex-col justify-between h-full md:mt-5 ">
         {getStepContent(activeStep)}
         <AfterAndBeforeFacility
           activeStep={activeStep}

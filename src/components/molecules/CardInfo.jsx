@@ -6,7 +6,7 @@ import PreviewImageLink from "./PreviewImageLink";
 
 function CardInfo({ setShow, setIndex, messageInfo, index, images }) {
   return (
-    <div className="my-1 cursor-pointer w-fit">
+    <div className="my-1 w-fit">
       <div
         className="items-center hidden gap-1 md:flex"
         onClick={() => {
@@ -15,19 +15,23 @@ function CardInfo({ setShow, setIndex, messageInfo, index, images }) {
         }}
       >
         <>
+          <Icon
+            path={mdiInformationOutline}
+            // size={0.7}
+            className="!text-[#80b3f0]  w-5"
+          />
           <span className="text-[10px] text-[#80b3f0]">
             {messageInfo ? (
               messageInfo
             ) : (
-              <p className="text-[10px] text-[#80b3f0] ">
+              <p className="text-[10px] text-[#80b3f0] cursor-pointer">
                 {t("To view the attachment, click here")}
               </p>
             )}
           </span>
-          <Icon path={mdiInformationOutline} size={0.7} />
         </>
       </div>
-      <div className="flex items-center gap-1 md:hidden">
+      <div className="flex items-center gap-1 cursor-pointer md:hidden">
         <>
           <span className="text-[10px] text-[#80b3f0]">
             {messageInfo ? (
@@ -42,7 +46,11 @@ function CardInfo({ setShow, setIndex, messageInfo, index, images }) {
               </div>
             )}
           </span>
-          <Icon path={mdiInformationOutline} size={0.7} />
+          <Icon
+            path={mdiInformationOutline}
+            size={0.7}
+            className="text-[#80b3f0]"
+          />
         </>
       </div>
     </div>

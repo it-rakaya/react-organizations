@@ -29,7 +29,7 @@ const AddFacilityPage = () => {
 
   return (
     <>
-      <div className="w-full">
+      <div className="w-full px-2">
         <FacilityWrapper
           steps={steps}
           activeStep={activeStep}

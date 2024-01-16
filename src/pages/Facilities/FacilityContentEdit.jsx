@@ -68,7 +68,9 @@ function FacilityContentEdit({
     district_id: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.district_id
       : "",
-    city_id: DetailsFacilities?.facility ? DetailsFacilities?.facility?.city_id : "",
+    city_id: DetailsFacilities?.facility
+      ? DetailsFacilities?.facility?.city_id
+      : "",
     building_number: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.building_number
       : "",
@@ -164,9 +166,9 @@ function FacilityContentEdit({
           height: "calc(100vh - 280px)",
           overflowY: "scroll",
         }}
-        className="bg-transparent shadow-none scroll_main"
+        className="!bg-transparent !shadow-none scroll_main"
       >
-        <CardContent className="h-full pt-0 bg-transparent">
+        <CardContent className="h-full !px-0 pt-0 bg-transparent ">
           <Formik
             initialValues={initialFormValues}
             validationSchema={validationSchema(activeStep)}
@@ -183,7 +185,9 @@ function FacilityContentEdit({
                     setActiveStep={setActiveStep}
                     // setFormValues={setFormValues}
                     update={true}
-                    DetailsFacilities={DetailsFacilities?.facility?.attachmentUrl}
+                    DetailsFacilities={
+                      DetailsFacilities?.facility?.attachmentUrl
+                    }
                     idFacility={idFacility}
                   />
                 </Form>

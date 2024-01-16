@@ -131,8 +131,8 @@ function UploadDoc({
         <div className="flex items-center p-2">
           <Icon
             path={mdiInformationOutline}
-            // size={1}
-            className="text-[#80b3f0] w-5"
+            // size={}
+            className="!text-[#80b3f0] w-5"
           />
           <p className="text-[14px] px-1 py-0 text-[#80b3f0]">
             {t("Please upload the file in this format")}

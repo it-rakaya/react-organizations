@@ -26,7 +26,7 @@ const Footer = () => {
             </span>
             <span className=" text-[14px]">{new Date().getUTCFullYear()}</span>
           </h2> */}
-          <h2 className="text-[12px] md:text-[14px]  text-center">
+          <h2 className="text-[12px] md:text-[14px]  text-center text-black dark:text-white">
             {t(
               "All rights reserved at Rakaya Management and Food Consulting Company © 2024"
             )}

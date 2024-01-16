@@ -58,6 +58,7 @@ export default function SelectFacilities({ name, label, required, className }) {
             theme={(theme) => ({
               ...theme,
               borderRadius: 0,
+
               colors: {
                 // ...theme.colors,
                 primary25: `#eee`,
@@ -68,13 +69,15 @@ export default function SelectFacilities({ name, label, required, className }) {
               control: () => "dark:bg-dark-primary dark:border-[#555d64]",
               option: () => "dark:bg-dark-primary dark:text-white  ",
             }}
+            maxMenuHeight={200}
+            menuShouldScrollIntoView
+            // minMenuHeight={500}
           />
           <div>
             <FormikError name={name} />
           </div>
         </div>
       </div>
-
     </div>
   );
 }

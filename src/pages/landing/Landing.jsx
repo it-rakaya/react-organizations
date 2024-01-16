@@ -13,7 +13,7 @@ function Landing() {
 
   if (isLoading) return <Loading />;
   return (
-    <div className="relative w-screen overflow-hidden lg:h-screen" dir="ltr">
+    <div className="relative w-screen lg:h-screen" dir="ltr">
       <div className="w-screen h-full absolute flex justify-end z-[-10000]">
         <div className="relative w-full h-full ">
           {/* big */}
