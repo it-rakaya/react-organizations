@@ -46,12 +46,15 @@ function AccountSettingMainData({ userData }) {
       <div className="col-span-2 md:col-span-1 ">
         <SelectCountry label= {t("Country")}name={"nationality"} />
       </div>
+      <div className="col-span-2 md:col-span-1 ">
+        
       <SelectCitiesSaudi
         label={t("registration.nationalSource")}
         name={"national_source"}
         required
      
       />
+      </div>
       <div className="col-span-2 md:col-span-1 ">
         <DatePickerComp
           name="birthday"
