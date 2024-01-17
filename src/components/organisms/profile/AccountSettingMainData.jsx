@@ -82,6 +82,7 @@ function AccountSettingMainData({ userData }) {
             name={`attachments[${item?.attachment_id}]`}
             label={item?.label}
             nameValue={item?.attachment_id}
+            value={item?.value}
           />
         </div>
       ))}

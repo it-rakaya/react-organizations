@@ -66,6 +66,7 @@ function UploadDoc({
     const filtered = uploadedFiles?.filter((i) => i.name !== file.name);
     setFiles([...filtered]);
     setFieldValue(name, null);
+    document.getElementsByName(name)[0].value = '';
   };
 
   return (

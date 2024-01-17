@@ -19,15 +19,17 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
     phone_code: userData?.phone_code,
     email: userData?.email,
     nationality: userData?.nationality,
-    national_source:userData?.national_source,
+    national_source: userData?.national_source,
     birthday: userData?.birthday,
     birthday_hj: convertToHijri(userData?.birthday),
-    photo: userData?.photo,
+    // photo: userData?.photo,
     national_id_expired: userData?.national_id_expired,
     national_id_expired_hj: convertToHijri(
-      userData?.national_id_expired !== "0000-00-00" ? userData?.national_id_expired : "0"
+      userData?.national_id_expired !== "0000-00-00"
+        ? userData?.national_id_expired
+        : "0"
     ),
-    favourit_organizations: userData?.favourit_organizations,
+    // favourit_organizations: userData?.favourit_organizations,
   };
   const ValidationSchema = () =>
     Yup.object({
@@ -65,8 +67,26 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
     onError: (err) => {
       notify("error", err?.response?.data.message);
     },
+    formData:true
   });
   const theme = useTheme();
+  const handleSubmit = (values) => {
+    const validAttachments =
+      values?.attachments
+        ?.map((file, index) => ({ index, file }))
+        .filter((item) => typeof item?.file !== "undefined") || [];
+    const attachments =
+      validAttachments?.map((item) => ({
+        [`attachments[${item?.index}]`]: item?.file,
+      })) || [];
+
+    const combinedObject = {
+      ...values,
+      ...Object?.assign({}, ...attachments),
+    };
+    delete combinedObject?.attachments;
+    UpdateUser(combinedObject)
+  };
 
   return (
     <div>
@@ -76,7 +96,7 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
       />
       <Formik
         initialValues={initialValue}
-        onSubmit={(value) => UpdateUser(value)}
+        onSubmit={(values) => handleSubmit(values)}
         validationSchema={ValidationSchema}
       >
         <Form>
