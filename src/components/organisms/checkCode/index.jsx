@@ -88,7 +88,7 @@ export default function CheckCode({
                 flexDirection: "row-reverse",
                 direction: isRTL ? "rtl" : "rtl",
               }}
-              inputClassName="focus:border-0 focus:border-red-200 selection:outline-none "
+              inputClassName="!focus:border-1 !focus:border-[rgb(159,150,133)] selection:outline-none "
             />
           </div>
           <ResendCode
