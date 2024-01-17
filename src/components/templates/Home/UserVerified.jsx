@@ -84,7 +84,7 @@ function UserVerified() {
               <Grid xs={3} md={3} sm={3} item key={index}>
                 <CardStatsHorizontal
                   item={item}
-                  className="bg-transparent !shadow-none"
+                  className="!bg-transparent !shadow-none"
                   classNameBox="!pr-0 !pl-0   "
                 />
               </Grid>
