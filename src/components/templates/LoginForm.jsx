@@ -49,7 +49,7 @@ export default function LoginForm() {
       phone: Yup.string().trim().required(t("phone is required")),
     });
   return (
-    <div className="w-full">
+    <div className="w-full overflow-x-hidden">
       <Formik
         onSubmit={(values) => {
           setValuesForm(values);
