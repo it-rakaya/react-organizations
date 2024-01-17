@@ -26,10 +26,10 @@ function useFetch({ endpoint, enabled, select, queryKey, onError, onSuccess }) {
     select,
     onError: (error) => {
       console.log("🚀 ~ useFetch ~ error:", error)
-      notify("error", error);
+      notify("errorssssssssssssssssssssssssssssss", error);
       if (error?.message == "Unauthenticated.") {
         localStorage.removeItem("user");
-        navigate("/login");
+        navigate("/");
         Cookies.remove("token");
       }
       if (onError) {
