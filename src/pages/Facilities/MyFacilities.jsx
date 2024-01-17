@@ -42,6 +42,7 @@ export default function MyFacilities() {
   } = useFetch({
     endpoint: `facilities`,
     queryKey: ["facilities"],
+
   });
 
   const filteredFacilities = facilities?.user_facilities?.filter((item) =>
