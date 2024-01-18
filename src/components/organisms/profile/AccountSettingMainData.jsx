@@ -21,6 +21,7 @@ function AccountSettingMainData({ userData }) {
           label={t("Name")}
           placeholder="محمد احمد محمد"
           name="name"
+          required
         />
       </div>
       <div className="col-span-2 md:col-span-1 ">
@@ -30,6 +31,8 @@ function AccountSettingMainData({ userData }) {
           name="national_id"
           type="custom"
           maxNum={10}
+          required
+
         />
       </div>
       <div className="col-span-2 md:col-span-1 ">
@@ -40,11 +43,13 @@ function AccountSettingMainData({ userData }) {
           label=  {t("Email")}
           placeholder="Example@example.com"
           name="email"
+          required
+
           
         />
       </div>
       <div className="col-span-2 md:col-span-1 ">
-        <SelectCountry label= {t("Country")}name={"nationality"} />
+        <SelectCountry label= {t("Country")}name={"nationality"}  required/>
       </div>
       <div className="col-span-2 md:col-span-1 ">
         
@@ -60,6 +65,8 @@ function AccountSettingMainData({ userData }) {
           name="birthday"
           label={t("Birthday")} 
           name_hj="birthday_hj"
+          required
+
         />
       </div>
 
@@ -68,6 +75,8 @@ function AccountSettingMainData({ userData }) {
           name="national_id_expired"
           label={t("National ID Expired")}
           name_hj="national_id_expired_hj"
+          required
+
         />
       </div>
       <div className="flex flex-col col-span-2 gap-3 pt-5 ">

@@ -51,7 +51,6 @@ function UploadDoc({
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     const isLarge = selectedFile?.size > 5242880;
-    console.log("upload")
     if (selectedFile) {
       setFiles([selectedFile]);
       setFieldValue(
