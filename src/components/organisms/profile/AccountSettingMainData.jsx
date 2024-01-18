@@ -92,6 +92,9 @@ function AccountSettingMainData({ userData }) {
             label={item?.label}
             nameValue={item?.attachment_id}
             value={item?.value}
+            isRequired={item?.is_required == 1 ? true : false}
+
+            
           />
         </div>
       ))}
