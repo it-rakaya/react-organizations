@@ -76,7 +76,7 @@ function UploadDoc({
           {isRequired == "1" ? "*" : ""}
         </span>
       </Label>
-      <div className="h-[90px] relative  border border-dashed rounded-[20px] border-[#9f968575] ">
+      <div className="h-[100px] relative  border border-dashed rounded-[20px] border-[#9f968575] ">
         <input
           type="file"
           accept={modifyAccept}
@@ -108,7 +108,7 @@ function UploadDoc({
             </div>
           )}
 
-          <p className="flex items-end justify-center m-0 text-center text-[14px] dark:text-white mt-2">
+          <p className="flex items-end justify-center m-0 text-center text-[14px] dark:text-white mt-2 px-1">
             {isLargeFile ? (
               t("File size is large")
             ) : invalidFormat ? (
