@@ -70,7 +70,7 @@ function UserVerified() {
           <div className="flex flex-wrap justify-center gap-1 md:justify-normal md:gap-2 xs:flex-nowrap ">
             <Link to={`https://wa.me/${orgData?.organizations?.phone}/`}>
               <ButtonComp className={" w-[10rem] !text-[12px] md:!w-[full]"}>
-                {t("contact via WhatsApp")}
+                {t("customers service")}
               </ButtonComp>
             </Link>
             <Link to={"/dashboard/profile"}>
