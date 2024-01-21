@@ -16,10 +16,9 @@ export default function CheckCode({
   login,
 }) {
   const [values, setValues] = useState(["", "", "", ""]);
-  console.log("🚀 ~ values:", values);
   const [availableResetCode, setAvailableResetCode] = useState(false);
   const [timerStarted, setTimerStarted] = useState(true);
-  const [colorPinInput, setColorPinInput] = useState("");
+  const [colorPinInput, setColorPinInput] = useState("rgb(159,150,133)");
   const theme = useTheme();
   const [btnBgColor, setBtnBgColor] = useState("transparent");
   const isRTL = useIsRTL();
@@ -73,14 +72,14 @@ export default function CheckCode({
                 setValues(values);
                 if (values.join("").length == 4) {
                   setValueOTP(values.join(""));
-                  setColorPinInput("#eee");
+                  setColorPinInput("rgb(159,150,133)");
                 } else {
                   // setColorPinInput("rgb(220,53,69)");
                 }
               }}
               onComplete={(values) => {
                 if (values.join("").length === 4) {
-                  setColorPinInput("#eee");
+                  setColorPinInput("rgb(159,150,133)");
                 } else {
                   setColorPinInput("rgb(220,53,69)");
                 }
@@ -89,7 +88,7 @@ export default function CheckCode({
                 flexDirection: "row-reverse",
                 direction: isRTL ? "rtl" : "rtl",
               }}
-              inputClassName="focus:border-0 focus:border-red-200 selection:outline-none "
+              inputClassName="!focus:border-1 !focus:border-[rgb(159,150,133)] selection:outline-none "
             />
           </div>
           <ResendCode

@@ -22,7 +22,7 @@ export default function Profile() {
         height: "",
       }}
     >
-      <div className="col-span-12 mt-10">
+      <div className="col-span-12 ">
         <UserProfileHeader
           setEditUser={setEditUser}
           user={user}

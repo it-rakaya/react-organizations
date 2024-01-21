@@ -42,6 +42,7 @@ export default function MyFacilities() {
   } = useFetch({
     endpoint: `facilities`,
     queryKey: ["facilities"],
+
   });
 
   const filteredFacilities = facilities?.user_facilities?.filter((item) =>
@@ -123,7 +124,7 @@ export default function MyFacilities() {
                             <Typography
                               variant="h6"
                               sx={{ fontWeight: 500, marginTop: 1 }}
-                              className="!my-2 text-center mx-1 text-black dark:text-white
+                              className="!my-2 text-center mx-1 !text-black dark:!text-white
                               "
                             >
                               {item?.name}

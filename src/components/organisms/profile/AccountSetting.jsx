@@ -8,6 +8,8 @@ import MainHeader from "../../atoms/MainHeader";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import AccountSettingMainData from "./AccountSettingMainData";
 import { t } from "i18next";
+import * as Yup from "yup";
+import { isValidSaudiID } from "saudi-id-validator";
 
 export default function AccountSetting({ userData, setEditUser, setUser }) {
   const initialValue = {
@@ -17,17 +19,43 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
     phone_code: userData?.phone_code,
     email: userData?.email,
     nationality: userData?.nationality,
-    national_source:userData?.national_source,
+    national_source: userData?.national_source,
     birthday: userData?.birthday,
     birthday_hj: convertToHijri(userData?.birthday),
-    photo: userData?.photo,
+    // photo: userData?.photo,
     national_id_expired: userData?.national_id_expired,
     national_id_expired_hj: convertToHijri(
-      userData?.national_id_expired !== "0000-00-00" ? userData?.national_id_expired : "0"
+      userData?.national_id_expired !== "0000-00-00"
+        ? userData?.national_id_expired
+        : "0"
     ),
-    favourit_organizations: userData?.favourit_organizations,
+    // favourit_organizations: userData?.favourit_organizations,
   };
+  const ValidationSchema = () =>
+    Yup.object({
+      name: Yup.string().trim().required(t("name is required")),
+      national_id: Yup.string()
+        .matches(/^\d{10}$/, t("The ID number must be exactly 10 digits"))
+        .test({
+          name: "isValidSaudiID",
+          test: (value) => isValidSaudiID(value),
+          message: t("Invalid Saudi ID"),
+        })
+        .required(t("This field is required")),
+      email: Yup.string().trim().required(t("email is required")),
+      birthday: Yup.date().required(t("birthday is required")),
+      phone: Yup.string()
+        .matches(/^\d{9}$/, t("The phone number must be exactly 10 digits"))
+        .required(t("This field is required")),
+      nationality: Yup.string().trim().required(t("country is required")),
+      national_source: Yup.string()
+        .trim()
+        .required(t("national source is required")),
 
+      national_id_expired: Yup.string()
+        .trim()
+        .required(t("birthday is required")),
+    });
   const { mutate: UpdateUser, isPending } = useMutate({
     mutationKey: [`users_update`],
     endpoint: `users/update`,
@@ -39,8 +67,26 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
     onError: (err) => {
       notify("error", err?.response?.data.message);
     },
+    formData:true
   });
   const theme = useTheme();
+  const handleSubmit = (values) => {
+    const validAttachments =
+      values?.attachments
+        ?.map((file, index) => ({ index, file }))
+        .filter((item) => typeof item?.file !== "undefined") || [];
+    const attachments =
+      validAttachments?.map((item) => ({
+        [`attachments[${item?.index}]`]: item?.file,
+      })) || [];
+
+    const combinedObject = {
+      ...values,
+      ...Object?.assign({}, ...attachments),
+    };
+    delete combinedObject?.attachments;
+    UpdateUser(combinedObject)
+  };
 
   return (
     <div>
@@ -50,7 +96,8 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
       />
       <Formik
         initialValues={initialValue}
-        onSubmit={(value) => UpdateUser(value)}
+        onSubmit={(values) => handleSubmit(values)}
+        validationSchema={ValidationSchema}
       >
         <Form>
           <AccountSettingMainData userData={userData} />

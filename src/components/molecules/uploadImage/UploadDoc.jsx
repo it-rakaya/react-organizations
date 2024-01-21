@@ -51,7 +51,6 @@ function UploadDoc({
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     const isLarge = selectedFile?.size > 5242880;
-    console.log("upload")
     if (selectedFile) {
       setFiles([selectedFile]);
       setFieldValue(
@@ -66,6 +65,7 @@ function UploadDoc({
     const filtered = uploadedFiles?.filter((i) => i.name !== file.name);
     setFiles([...filtered]);
     setFieldValue(name, null);
+    document.getElementsByName(name)[0].value = '';
   };
 
   return (
@@ -76,7 +76,7 @@ function UploadDoc({
           {isRequired == "1" ? "*" : ""}
         </span>
       </Label>
-      <div className="h-[90px] relative  border border-dashed rounded-[20px] border-[#9f968575] ">
+      <div className="h-[100px] relative  border border-dashed rounded-[20px] border-[#9f968575] ">
         <input
           type="file"
           accept={modifyAccept}
@@ -108,7 +108,7 @@ function UploadDoc({
             </div>
           )}
 
-          <p className="flex items-end justify-center m-0 text-center text-[14px] dark:text-white mt-2">
+          <p className="flex items-end justify-center m-0 text-center text-[14px] dark:text-white mt-2 px-1">
             {isLargeFile ? (
               t("File size is large")
             ) : invalidFormat ? (
