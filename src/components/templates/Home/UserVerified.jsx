@@ -67,15 +67,18 @@ function UserVerified() {
             </h1>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-1 md:justify-normal md:gap-2 xs:flex-nowrap ">
+          <div className="flex flex-wrap justify-between gap-1 md:justify-normal md:gap-2 xs:flex-nowrap ">
             <Link to={`https://wa.me/${orgData?.organizations?.phone}/`}>
-              <ButtonComp className={" w-[10rem] !text-[12px] md:!w-[full]"}>
+              <ButtonComp className={" w-[10rem] !text-[10px] md:text-[12px] md:!w-[full]"}>
                 {t("customers service")}
               </ButtonComp>
             </Link>
             <Link to={"/dashboard/profile"}>
-              <ButtonComp className={" w-[10rem] !text-[12px] md:!w-[full]"} variant="outlined">
-                {t("My personal data")}
+              <ButtonComp
+                className={" w-[10rem] !text-[10px] md:text-[12px] md:!w-[full]"}
+                variant="outlined"
+              >
+                {t("personal data")}
               </ButtonComp>
             </Link>
           </div>
