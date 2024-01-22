@@ -17,10 +17,12 @@ export default function LoginForm() {
   const [dataValue, setDataValue] = useState();
   const [valueOTP, setValueOTP] = useState();
   const { orgData } = UseOrg();
+  const endPointLogin =
+    "login/eyJpdiI6IkV6WlVFS2JqTXdZbjV2RkNCbllZUHc9PSIsInZhbHVlIjoiaDIrVTRqeFc1SW1SNjkwUWNTYm9kZz09IiwibWFjIjoiYTBkY2FlYjNmMTViOWQ2ODA3NGQ3MjNlMjc2ZjU2MzE5OWRhMWZlZTNjMTI5OThjODY4Y2FmMmQzMDYxZjlhZCIsInRhZyI6IiJ9";
   const { mutate: LoginData, isPending: loadingLogin } = useMutate({
     mutationKey: [`login_data`],
     formData: true,
-    endpoint: `login`,
+    endpoint: endPointLogin,
     onSuccess: (data) => {
       login(data.data);
       notify("success", ` ${t("Welcome")} ${data?.data?.user.name}`);
@@ -34,7 +36,6 @@ export default function LoginForm() {
     mutationKey: [`send-otp`],
     endpoint: `send-otp`,
     onSuccess: (data) => {
-      console.log("🚀 ~ LoginForm ~ data:", data)
       notify("success", data?.data?.message);
       setDataValue(data?.data?.verification);
       setVerifyPhone(true);
@@ -48,23 +49,24 @@ export default function LoginForm() {
     Yup.object({
       phone: Yup.string().trim().required(t("phone is required")),
     });
+  const handleSubmit = (values) => {
+    setValuesForm(values);
+
+    !verifyPhone
+      ? sendOTP({
+          ...values,
+          organization_id: orgData?.organizations?.id,
+        })
+      : LoginData({
+          ...values,
+          otp: valueOTP,
+          organization_id: orgData?.organizations?.id,
+        });
+  };
   return (
     <div className="w-full overflow-x-hidden">
       <Formik
-        onSubmit={(values) => {
-          setValuesForm(values);
-
-          !verifyPhone
-            ? sendOTP({
-                ...values,
-                organization_id: orgData?.organizations?.id,
-              })
-            : LoginData({
-                ...values,
-                otp: valueOTP,
-                organization_id: orgData?.organizations?.id,
-              });
-        }}
+        onSubmit={(values) => handleSubmit(values)}
         initialValues={{ phone: "", phone_code: "", otp: "" }}
         validationSchema={ValidationSchema}
       >
