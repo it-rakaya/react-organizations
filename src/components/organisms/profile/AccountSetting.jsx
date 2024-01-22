@@ -98,7 +98,7 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
       <Formik
         initialValues={initialValue}
         onSubmit={(values) => handleSubmit(values)}
-        // validationSchema={ValidationSchema}
+        validationSchema={ValidationSchema}
       >
         <Form>
           <AccountSettingMainData userData={userData} />
