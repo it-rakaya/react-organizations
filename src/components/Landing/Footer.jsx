@@ -50,8 +50,7 @@ const Footer = () => {
   const [timeLeft, setTimeLeft] = useState({ months: "3", days: "20", hours: "9" });
   useEffect(() => {
     getPrayerTime(setNextPrayerTime, setPrayer);
-
-    // getTimeLeftToHajj(setTimeLeft);
+    getTimeLeftToHajj(setTimeLeft);
   }, []);
 
   return (

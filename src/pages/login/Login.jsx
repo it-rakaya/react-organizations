@@ -4,13 +4,12 @@ import { styled, useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { t } from "i18next";
 import Cookies from "js-cookie";
-import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import LoginIcon from "../../components/atoms/icons/LoginIcon";
 import LoginForm from "../../components/templates/LoginForm";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useSettings } from "../../hooks/useSettings";
-import Loading from "../../components/molecules/Loading";
 
 const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -46,7 +45,7 @@ const TypographyStyled = styled(Typography)(({ theme }) => ({
 
 const Login = () => {
   const navigate = useNavigate();
-  const { orgData, isSuccess, isRefetching } = UseOrg();
+  const { orgData } = UseOrg();
   const theme = useTheme();
   const { settings } = useSettings();
   const hidden = useMediaQuery(theme.breakpoints.down("md"));
