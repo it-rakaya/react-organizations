@@ -27,7 +27,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
       <Card className="flex flex-col items-center justify-center !bg-transparent !shadow-none">
         <ProfilePicture
           src={
-            (user?.attachmentUrl?.length && user?.attachmentUrl[1]?.value) ||
+            (user?.profile_photo) ||
             defaultImage
           }
           alt="profile-picture"

@@ -7,6 +7,7 @@ import Fancybox from "./Fancybox";
 import { t } from "i18next";
 
 export default function PreviewImageLink({ url, eyeIcon, info, messageInfo }) {
+  console.log("🚀 ~ PreviewImageLink ~ url:", url)
   return (
     <div className="">
       <Fancybox

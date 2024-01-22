@@ -65,8 +65,9 @@ function UploadDoc({
     const filtered = uploadedFiles?.filter((i) => i.name !== file.name);
     setFiles([...filtered]);
     setFieldValue(name, null);
-    document.getElementsByName(name)[0].value = '';
+    document.getElementsByName(name)[0].value = "";
   };
+  const shouldShowUploadIcon = !files?.length || files.every(file => !file);
 
   return (
     <div>
@@ -88,15 +89,15 @@ function UploadDoc({
           className="absolute w-full top-1/2 left-1/2"
           style={{ transform: `translate(-50%, -50%)` }}
         >
-          {!files?.length ? (
+          {shouldShowUploadIcon ? (
             <div className="flex flex-col items-center justify-center ">
               <UploadImageIcon className="w-[35px]" />
             </div>
-          ) : invalidFormat ? (
+          ) : invalidFormat   ? (
             <TermsConditionIcon className={"w-[35px] !fill-[#F0A44B]"} />
           ) : (
             <div className="rounded-md">
-              {!isLargeFile ? (
+              {!isLargeFile   ? (
                 <div className="flex flex-col items-center justify-center ">
                   <CheckIcon />
                 </div>
@@ -156,9 +157,18 @@ function UploadDoc({
         ) : !isLargeFile &&
           files[0]?.type?.startsWith("image/") &&
           updateImage?.value ? (
-          <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
-            <PreviewImageLink url={files[0]?.value} />
-          </div>
+          files[0]?.value ? (
+            <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
+              <PreviewImageLink url={files[0]?.value} />
+            </div>
+          ) : (
+            <PreviewImage
+              files={files ? files : []}
+              bgMain={bgMain}
+              className={className}
+              handleRemoveFile={handleRemoveFile}
+            />
+          )
         ) : !isLargeFile &&
           files[0]?.type?.startsWith("application/") &&
           files[0]?.name ? (

@@ -18,7 +18,6 @@ export default function SelectPositions({ name, label, className ,required }) {
     value: item.id,
     label: item.name,
   }));
-  console.log("🚀 ~ file: SelectPositions.jsx:21 ~ options ~ options:", options)
 
   const selectedCountry = options?.find(
     (option) => option?.value == values[name]

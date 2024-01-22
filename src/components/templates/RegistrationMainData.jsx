@@ -48,6 +48,7 @@ function RegistrationMainData({ attachments_register, setOpen, isPending }) {
     );
     return attachmentItem && attachmentItem[`attachments[${id}]`] !== null;
   });
+  
   return (
     <div>
       <BaseInputField

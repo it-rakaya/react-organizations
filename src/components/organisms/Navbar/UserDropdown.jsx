@@ -95,8 +95,8 @@ const UserDropdown = (props) => {
           onClick={handleDropdownOpen}
           sx={{ width: 40, height: 40 }}
           src={
-            user?.attachmentUrl?.length
-              ? user?.attachmentUrl[1]?.value
+            user?.profile_photo
+              ? user?.profile_photo
               : defaultImage
           }
           style={{ backgroundColor: theme?.palette?.primary?.main }}
@@ -129,8 +129,8 @@ const UserDropdown = (props) => {
               <Avatar
                 alt="John Doe"
                 src={
-                  user?.attachmentUrl?.length
-                    ? user?.attachmentUrl[1]?.value
+                  user?.profile_photo
+                    ? user?.profile_photo
                     : defaultImage
                 }
                 sx={{ width: "2.5rem", height: "2.5rem" }}

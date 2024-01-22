@@ -1,18 +1,17 @@
 /* eslint-disable react/prop-types */
 import { useTheme } from "@mui/material/styles";
 import { Form, Formik } from "formik";
+import { t } from "i18next";
+import { isValidSaudiID } from "saudi-id-validator";
+import * as Yup from "yup";
 import { useMutate } from "../../../hooks/useMutate";
 import { convertToHijri } from "../../../utils/helpers";
 import { notify } from "../../../utils/toast";
 import MainHeader from "../../atoms/MainHeader";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import AccountSettingMainData from "./AccountSettingMainData";
-import { t } from "i18next";
-import * as Yup from "yup";
-import { isValidSaudiID } from "saudi-id-validator";
 
 export default function AccountSetting({ userData, setEditUser, setUser }) {
-  console.log("🚀 ~ AccountSetting ~ userData:", userData)
   const initialValue = {
     name: userData?.name,
     national_id: userData?.national_id,

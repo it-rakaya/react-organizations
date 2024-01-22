@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { notify } from "../utils/toast";
 import { useNavigate } from "react-router-dom";
 // import { UseOrg } from "../context/organization provider/OrganizationProvider";
 

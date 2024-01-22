@@ -1,15 +1,21 @@
 /* eslint-disable react/prop-types */
-import BaseInputField from "../../molecules/Formik/BaseInputField";
-import PhoneInput2 from "../../molecules/Formik/PhoneInput2";
-import SelectCountry from "../../molecules/SelectCountry";
-import DatePickerComp from "../../molecules/Formik/DatePickerComp";
-import UploadImage from "../../molecules/uploadImage/UploadImage";
-import Icon from "@mdi/react";
 import { mdiAccountBoxOutline, mdiFileDocumentOutline } from "@mdi/js";
+import Icon from "@mdi/react";
 import { t } from "i18next";
+import useFetch from "../../../hooks/useFetch";
+import BaseInputField from "../../molecules/Formik/BaseInputField";
+import DatePickerComp from "../../molecules/Formik/DatePickerComp";
+import PhoneInput2 from "../../molecules/Formik/PhoneInput2";
 import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
+import SelectCountry from "../../molecules/SelectCountry";
+import UploadDoc from "../../molecules/uploadImage/UploadDoc";
 
 function AccountSettingMainData({ userData }) {
+  const { data: attachments_register } = useFetch({
+    endpoint: `attachments-labels/users`,
+    queryKey: ["attachments_register"],
+  });
+
   return (
     <div className="grid items-start grid-cols-2 gap-2 !overflow-y-scroll   !overflow-x-hidden !shadow-none h-[27rem]  scroll_main m-3 md:p-5">
       <h1 className="flex items-center col-span-2 gap-1 py-2 text-xl font-medium dark:text-white">
@@ -78,17 +84,25 @@ function AccountSettingMainData({ userData }) {
           {t("attachments")}:
         </h1>
       </div>
-      {userData?.attachmentUrl?.map((item) => (
-        <div className="flex flex-col col-span-1 gap-3 " key={item.id}>
-          <UploadImage
-            name={`attachments[${item?.attachment_label_id}]`}
-            label={item?.label}
-            nameValue={item?.attachment_id}
-            value={item?.value}
-            isRequired={item?.is_required == 1 ? true : false}
+
+      {attachments_register?.attachment_labels?.map((attachmentLabel) => {
+        const userAttachment = userData?.attachmentUrl?.find(
+          (ua) => ua.attachment_label_id === attachmentLabel.id
+        );
+        return (
+          <UploadDoc
+            key={attachmentLabel.id}
+            name={`attachments[${attachmentLabel.id}]`}
+            label={attachmentLabel.placeholder}
+            nameValue={attachmentLabel?.id}
+            id={attachmentLabel.id}
+            accept={attachmentLabel.extensions}
+            placeholder={attachmentLabel.placeholder}
+            isRequired={attachmentLabel.is_required == "1"}
+            value={userAttachment ? userAttachment.value : null}
           />
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
