@@ -12,6 +12,7 @@ import * as Yup from "yup";
 import { isValidSaudiID } from "saudi-id-validator";
 
 export default function AccountSetting({ userData, setEditUser, setUser }) {
+  console.log("🚀 ~ AccountSetting ~ userData:", userData)
   const initialValue = {
     name: userData?.name,
     national_id: userData?.national_id,

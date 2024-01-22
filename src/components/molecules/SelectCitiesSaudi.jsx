@@ -53,6 +53,8 @@ export default function SelectCitiesSaudi({
           value={selectedCity}
           placeholder={t("Chose city")}
           onChange={(option) => setFieldValue(name, option.value)}
+          noOptionsMessage={() => t("Not Found Data")}
+
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
