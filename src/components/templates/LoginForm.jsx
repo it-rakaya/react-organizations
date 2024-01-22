@@ -17,12 +17,11 @@ export default function LoginForm() {
   const [dataValue, setDataValue] = useState();
   const [valueOTP, setValueOTP] = useState();
   const { orgData } = UseOrg();
-  const endPointLogin =
-    "login/eyJpdiI6IkV6WlVFS2JqTXdZbjV2RkNCbllZUHc9PSIsInZhbHVlIjoiaDIrVTRqeFc1SW1SNjkwUWNTYm9kZz09IiwibWFjIjoiYTBkY2FlYjNmMTViOWQ2ODA3NGQ3MjNlMjc2ZjU2MzE5OWRhMWZlZTNjMTI5OThjODY4Y2FmMmQzMDYxZjlhZCIsInRhZyI6IiJ9";
+ 
   const { mutate: LoginData, isPending: loadingLogin } = useMutate({
     mutationKey: [`login_data`],
     formData: true,
-    endpoint: endPointLogin,
+    endpoint: 'login/providor',
     onSuccess: (data) => {
       login(data.data);
       notify("success", ` ${t("Welcome")} ${data?.data?.user.name}`);
