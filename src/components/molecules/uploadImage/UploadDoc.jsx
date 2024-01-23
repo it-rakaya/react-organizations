@@ -135,7 +135,7 @@ function UploadDoc({
             // size={}
             className="!text-[#80b3f0] w-5"
           />
-          <p className="text-[14px] px-1 py-0 text-[#80b3f0]">
+          <p className="text-[12px] px-1 py-0 text-[#80b3f0]">
             {t("Please upload the file in this format")}
             {textAccept ? textAccept : "png - jpg - pdf"}
           </p>
@@ -212,7 +212,7 @@ function UploadDoc({
               size={0.7}
               className="text-[#80b3f0]"
             />
-            <p className="text-[14px] px-1 py-0 text-[#80b3f0]">
+            <p className="text-[12px] px-1 py-0 text-[#80b3f0]">
               {t("Please upload a file no larger than 5MB")}
               {/* {textAccept ? textAccept : "png - jpg - pdf"} */}
             </p>
