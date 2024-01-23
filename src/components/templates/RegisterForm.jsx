@@ -93,7 +93,7 @@ export default function RegisterForm() {
           delete combinedObject.attachments;
           sendRegister(combinedObject);
         }}
-        validationSchema={ValidationSchema}
+        // validationSchema={ValidationSchema}
         initialValues={initialValues}
       >
         <Form>

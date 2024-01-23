@@ -1,14 +1,8 @@
 /* eslint-disable react/prop-types */
-import { t } from "i18next";
 import IconifyIcon from "../atoms/icons/IconifyIcon";
-import { useTheme } from "@mui/material/styles";
-import { hexToRGBA } from "../../utils/helpers";
-import Icon from "@mdi/react";
-import { mdiEyeOutline } from "@mdi/js";
 import ViewICon from "../atoms/icons/ViewICon";
 
-function PreviewPdf({ item, eyeIcon }) {
-  const theme = useTheme();
+function PreviewPdf({ item, eyeIcon  }) {
 
   return (
     <div>

@@ -24,7 +24,6 @@ export const OrganizationProvider = ({ children }) => {
   });
   useEffect(() => {
     if (isSuccess) {
-      console.log("تم تحميل البيانات بنجاح");
       setOrgData(data);
     }
   }, [isSuccess]);

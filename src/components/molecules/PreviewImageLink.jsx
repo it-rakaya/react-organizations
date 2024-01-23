@@ -6,7 +6,16 @@ import ViewICon from "../atoms/icons/ViewICon";
 import Fancybox from "./Fancybox";
 import { t } from "i18next";
 
-export default function PreviewImageLink({ url, eyeIcon, info, messageInfo }) {
+export default function PreviewImageLink({
+  url,
+  eyeIcon,
+  info,
+  messageInfo,
+  nameLabel,
+}) {
+  let filename = nameLabel;
+  filename = filename?.replace(/[0-9().]/g, '');
+  filename = filename?.replace(/_/g, " ")?.slice(0, -4);
   return (
     <div className="">
       <Fancybox
@@ -38,6 +47,9 @@ export default function PreviewImageLink({ url, eyeIcon, info, messageInfo }) {
                       icon={"iconamoon:file-image-light"}
                       className="text-[1.6rem] cursor-pointer dark:text-white  "
                     />
+                  )}
+                  {filename && (
+                    <Typography className="file-name">{filename}</Typography>
                   )}
                   {!eyeIcon && (
                     <Typography className="file-name">

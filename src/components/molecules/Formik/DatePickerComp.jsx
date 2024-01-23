@@ -89,7 +89,7 @@ export default function DatePickerComp({
         {valueHijri && (
           <p className="flex items-center gap-2 mt-1 dark:text-white">
             <Icon path={mdiCalendarMonthOutline} size={0.8} />
-            <span className="dark:text-white ">
+            <span className="dark:text-white date_hj">
               {convertArabicToEnglish(valueHijri)}
             </span>
             {t("H")}

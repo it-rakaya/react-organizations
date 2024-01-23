@@ -10,8 +10,7 @@ import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import { useNavigate } from "react-router-dom";
 
-function FacilityControl({ setOpen, open, update, idFacility  }) {
-
+function FacilityControl({ setOpen, open, update, idFacility }) {
   const [checked, setChecked] = useState(false);
   const { values } = useFormikContext();
   const { orgData } = UseOrg();
@@ -23,7 +22,12 @@ function FacilityControl({ setOpen, open, update, idFacility  }) {
     mutationKey: [`add_facilities`],
     endpoint: update ? updateEndpoint : endpoint,
     onSuccess: () => {
-      notify("success", t("A facility has been added successfully"));
+      notify(
+        "success",
+        update
+          ? t("A facility has been updated successfully")
+          : t("A facility has been added successfully")
+      );
       navigate("/dashboard/facilities");
     },
     onError: (err) => {
@@ -32,12 +36,11 @@ function FacilityControl({ setOpen, open, update, idFacility  }) {
     formData: true,
   });
   useEffect(() => {
-    if(!open){
-      setChecked(false)
+    if (!open) {
+      setChecked(false);
     }
-   
-  }, [open])
-  
+  }, [open]);
+
   return (
     <div>
       <ModalComp
@@ -51,17 +54,19 @@ function FacilityControl({ setOpen, open, update, idFacility  }) {
             <ButtonComp
               type={"submit"}
               action={() => {
-                const validAttachments = values?.attachments
-                  ?.map((file, index) => ({ index, file }))
-                  .filter((item) => typeof item?.file !== "undefined") || [];
-                const attachments = validAttachments?.map((item) => ({
-                  [`attachments[${item?.index}]`]: item?.file,
-                })) || [];
+                const validAttachments =
+                  values?.attachments
+                    ?.map((file, index) => ({ index, file }))
+                    .filter((item) => typeof item?.file !== "undefined") || [];
+                const attachments =
+                  validAttachments?.map((item) => ({
+                    [`attachments[${item?.index}]`]: item?.file,
+                  })) || [];
 
                 const combinedObject = {
                   ...values,
                   organization_id: orgData?.organizations?.id,
-                  ...Object?.assign({}, ...attachments ),
+                  ...Object?.assign({}, ...attachments),
                 };
                 delete combinedObject?.attachments;
                 addFacility(combinedObject);

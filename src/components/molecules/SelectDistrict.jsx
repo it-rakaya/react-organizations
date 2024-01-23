@@ -58,6 +58,8 @@ export default function SelectDistrict({
           value={selectedDistrict ? selectedDistrict : ""}
           isLoading={!!isLoading}
           isDisabled={!district?.districts?.length}
+          noOptionsMessage={() => t("Not Found Data")}
+
           placeholder={
             isLoading ? (
               <Spinner />
@@ -97,6 +99,8 @@ export default function SelectDistrict({
           classNames={{
             control: () => "dark:bg-dark-primary dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",
+            menu: () => " bg-white dark:bg-dark-primary dark:text-white  ",
+
           }}
         />
       </div>

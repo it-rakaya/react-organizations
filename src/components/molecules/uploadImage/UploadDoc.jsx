@@ -27,10 +27,15 @@ function UploadDoc({
   accept,
   isRequired,
   dynamic = false,
+  nameLabel,
 }) {
   const { setFieldValue, values } = useFormikContext();
   const theme = useTheme();
   const [invalidFormat, setInvalidFormat] = useState(false);
+  let filename = nameLabel;
+  filename = filename?.replace(/[0-9().-]/g, '');
+  filename = filename?.replace(/_/g, " ")?.slice(0, -4);
+  
   const updateImage = {
     value: value,
     type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
@@ -65,8 +70,9 @@ function UploadDoc({
     const filtered = uploadedFiles?.filter((i) => i.name !== file.name);
     setFiles([...filtered]);
     setFieldValue(name, null);
-    document.getElementsByName(name)[0].value = '';
+    document.getElementsByName(name)[0].value = "";
   };
+  const shouldShowUploadIcon = !files?.length || files.every((file) => !file);
 
   return (
     <div>
@@ -88,7 +94,7 @@ function UploadDoc({
           className="absolute w-full top-1/2 left-1/2"
           style={{ transform: `translate(-50%, -50%)` }}
         >
-          {!files?.length ? (
+          {shouldShowUploadIcon ? (
             <div className="flex flex-col items-center justify-center ">
               <UploadImageIcon className="w-[35px]" />
             </div>
@@ -134,7 +140,7 @@ function UploadDoc({
             // size={}
             className="!text-[#80b3f0] w-5"
           />
-          <p className="text-[14px] px-1 py-0 text-[#80b3f0]">
+          <p className="text-[12px] px-1 py-0 text-[#80b3f0]">
             {t("Please upload the file in this format")}
             {textAccept ? textAccept : "png - jpg - pdf"}
           </p>
@@ -156,9 +162,18 @@ function UploadDoc({
         ) : !isLargeFile &&
           files[0]?.type?.startsWith("image/") &&
           updateImage?.value ? (
-          <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
-            <PreviewImageLink url={files[0]?.value} />
-          </div>
+          files[0]?.value ? (
+            <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
+              <PreviewImageLink url={files[0]?.value} nameLabel={nameLabel} />
+            </div>
+          ) : (
+            <PreviewImage
+              files={files ? files : []}
+              bgMain={bgMain}
+              className={className}
+              handleRemoveFile={handleRemoveFile}
+            />
+          )
         ) : !isLargeFile &&
           files[0]?.type?.startsWith("application/") &&
           files[0]?.name ? (
@@ -193,7 +208,12 @@ function UploadDoc({
           files[0]?.type?.startsWith("application/") &&
           updateImage?.value ? (
           <div className="w-full">
-            <PreviewPdf item={files[0]} />
+            <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
+            <PreviewPdf item={files[0]}  />
+            <p>{filename.length  > 20 ? filename.slice(0,30)  : filename.length }</p>
+              
+            </div>
+
           </div>
         ) : isLargeFile ? (
           <div className="flex items-center p-2">
@@ -202,7 +222,7 @@ function UploadDoc({
               size={0.7}
               className="text-[#80b3f0]"
             />
-            <p className="text-[14px] px-1 py-0 text-[#80b3f0]">
+            <p className="text-[12px] px-1 py-0 text-[#80b3f0]">
               {t("Please upload a file no larger than 5MB")}
               {/* {textAccept ? textAccept : "png - jpg - pdf"} */}
             </p>

@@ -21,7 +21,8 @@ function UserNotVerified({ user, setOpen, sendOTP, organization_id }) {
 
             <ButtonComp
               variant="contained"
-              className="!w-auto !m-0 ltr:!mt-0"
+              className="!w-auto !m-0 rtl:!mt-0 ltr:!mt-0"
+              
               action={() => {
                 setOpen(true);
                 sendOTP({

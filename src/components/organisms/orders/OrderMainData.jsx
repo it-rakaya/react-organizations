@@ -80,13 +80,13 @@ export default function OrderMainData({ setShow, show, isPending }) {
               {item?.is_visible == "1" && (
                 <>
                   <li className="my-3 font-bold text-black dark:text-white">
-                    {item?.content}{" "}
+                    {item?.content}
                     <span className="text-red-500">
                       {item?.is_required == "1" ? "*" : ""}
-                    </span>{" "}
+                    </span>
                   </li>
                   <QuestionBaseInput
-                    type={item?.question_type?.name}
+                    type={item?.question_type_name}
                     name={item?.id}
                     placeholder={item?.placeholder}
                     idQuestion={item?.id}

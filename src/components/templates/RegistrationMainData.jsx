@@ -48,6 +48,7 @@ function RegistrationMainData({ attachments_register, setOpen, isPending }) {
     );
     return attachmentItem && attachmentItem[`attachments[${id}]`] !== null;
   });
+  
   return (
     <div>
       <BaseInputField
@@ -102,6 +103,7 @@ function RegistrationMainData({ attachments_register, setOpen, isPending }) {
       />
       <DatePickerComp
         name="birthday"
+        name_hj="birthday_hj"
         label={t("registration.birthdayDateLabel")}
         required
         showIcon

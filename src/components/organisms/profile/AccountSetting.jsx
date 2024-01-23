@@ -1,17 +1,23 @@
 /* eslint-disable react/prop-types */
 import { useTheme } from "@mui/material/styles";
 import { Form, Formik } from "formik";
+import { t } from "i18next";
+import { isValidSaudiID } from "saudi-id-validator";
+import * as Yup from "yup";
 import { useMutate } from "../../../hooks/useMutate";
 import { convertToHijri } from "../../../utils/helpers";
 import { notify } from "../../../utils/toast";
 import MainHeader from "../../atoms/MainHeader";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import AccountSettingMainData from "./AccountSettingMainData";
-import { t } from "i18next";
-import * as Yup from "yup";
-import { isValidSaudiID } from "saudi-id-validator";
+import useFetch from "../../../hooks/useFetch";
+import { useEffect } from "react";
+import { useAuth } from "../../../context/auth-and-perm/AuthProvider";
 
-export default function AccountSetting({ userData, setEditUser, setUser }) {
+export default function AccountSetting({ userData, setEditUser, setUser , refetch }) {
+  const { user , token } = useAuth();
+
+
   const initialValue = {
     name: userData?.name,
     national_id: userData?.national_id,
@@ -31,6 +37,7 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
     ),
     // favourit_organizations: userData?.favourit_organizations,
   };
+
   const ValidationSchema = () =>
     Yup.object({
       name: Yup.string().trim().required(t("name is required")),
@@ -60,6 +67,7 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
     mutationKey: [`users_update`],
     endpoint: `users/update`,
     onSuccess: (data) => {
+      refetch()
       notify("success", "تم التعديل بنجاح");
       setEditUser(false);
       setUser(data?.data?.user);
@@ -67,7 +75,7 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
     onError: (err) => {
       notify("error", err?.response?.data.message);
     },
-    formData:true
+    formData: true,
   });
   const theme = useTheme();
   const handleSubmit = (values) => {
@@ -85,8 +93,9 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
       ...Object?.assign({}, ...attachments),
     };
     delete combinedObject?.attachments;
-    UpdateUser(combinedObject)
+    UpdateUser(combinedObject);
   };
+
 
   return (
     <div>
@@ -97,7 +106,7 @@ export default function AccountSetting({ userData, setEditUser, setUser }) {
       <Formik
         initialValues={initialValue}
         onSubmit={(values) => handleSubmit(values)}
-        validationSchema={ValidationSchema}
+        // validationSchema={ValidationSchema}
       >
         <Form>
           <AccountSettingMainData userData={userData} />

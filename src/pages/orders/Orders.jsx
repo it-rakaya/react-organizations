@@ -36,7 +36,7 @@ export default function Orders() {
     enabled: !!orgData?.organizations?.id,
   });
 
-  const Canceled = 6;
+  const Canceled = 7;
   const Rejected = 5;
 
   const columns = [

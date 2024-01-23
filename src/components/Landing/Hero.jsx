@@ -11,7 +11,7 @@ const Hero = () => {
   const btnStyles =
     "basis-1/2 py-4 rounded-lg font-bold text-lg 3xl:text-2xl shadow";
   const { i18n, t } = useTranslation();
-  const { user } = useAuth();
+  const { user , token  } = useAuth();
 
   const { orgData } = UseOrg();
   const theme = useTheme();
@@ -43,7 +43,7 @@ const Hero = () => {
         <div
           className={`flex flex-col gap-4 mt-10 ${!user ? " xl:flex-row" : ""}`}
         >
-          {!user ? (
+          {!token ? (
             <>
               <button
                 onClick={() => navigate("/login")}
