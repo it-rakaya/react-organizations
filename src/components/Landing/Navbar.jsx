@@ -14,7 +14,7 @@ function Navbar() {
   const { i18n } = useTranslation();
   const language = i18n.language;
   const { orgData } = UseOrg();
-  const { logout, user } = useAuth();
+  const { logout, user , token } = useAuth();
   const theme = useTheme();
   const { settings, saveSettings } = useSettings();
 
@@ -67,7 +67,7 @@ function Navbar() {
       </div>
 
       <div className="flex items-center gap-5">
-        {!!user && (
+        {!!token && (
           <Typography className="text-black dark:text-white">
             <Link href="#" onClick={handleLogout}>
               {t("Logout")}
