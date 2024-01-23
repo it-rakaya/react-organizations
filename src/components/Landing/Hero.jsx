@@ -14,7 +14,7 @@ const Hero = () => {
   const { user , token  } = useAuth();
 
   const { orgData } = UseOrg();
-  console.log("🚀 ~ Hero ~ orgData:", orgData?.organizations?.domain + orgData?.organizations?.logo)
+  console.log("🚀 ~ Hero ~ orgData:", orgData?.organizations?.logo)
   const theme = useTheme();
   const language = i18n.language;
   const [open, setOpen] = useState(false);
@@ -27,7 +27,7 @@ const Hero = () => {
           {/* <h1 className="px-6 py-1 border rounded-lg border-primaryText"> */}
           <img
             alt=""
-            src={orgData?.organizations?.domain + orgData?.organizations?.logo}
+            src={orgData?.organizations?.logo}
             className="w-[70px] rounded-xl"
           />
           {/* </h1> */}
