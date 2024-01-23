@@ -12,9 +12,9 @@ const Hero = () => {
     "basis-1/2 py-4 rounded-lg font-bold text-lg 3xl:text-2xl shadow";
   const { i18n, t } = useTranslation();
   const { user , token  } = useAuth();
-  console.log("🚀 ~ Hero ~ token:", token)
 
   const { orgData } = UseOrg();
+  console.log("🚀 ~ Hero ~ orgData:", orgData)
   const theme = useTheme();
   const language = i18n.language;
   const [open, setOpen] = useState(false);
