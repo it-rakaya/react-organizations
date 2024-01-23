@@ -38,7 +38,7 @@ export const OrganizationProvider = ({ children }) => {
           organizations: {
             ...prev?.organizations,
             background_image: default_image,
-            // logo: !savedMode ? lightModeLogo : darkModeLogo,
+            logo: !savedMode ? lightModeLogo : darkModeLogo,
           },
         };
       });
