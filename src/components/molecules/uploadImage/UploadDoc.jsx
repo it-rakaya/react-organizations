@@ -16,6 +16,8 @@ import PreviewImageLink from "../PreviewImageLink";
 import PreviewImage from "../PreviewImage";
 import Icon from "@mdi/react";
 import { mdiInformationOutline } from "@mdi/js";
+import ModalComp from "../../atoms/ModalComp";
+import DeleteDoc from "./DeleteDoc";
 
 /* eslint-disable react/prop-types */
 function UploadDoc({
@@ -33,9 +35,10 @@ function UploadDoc({
   const theme = useTheme();
   const [invalidFormat, setInvalidFormat] = useState(false);
   let filename = nameLabel;
-  filename = filename?.replace(/[0-9().-]/g, '');
+  filename = filename?.replace(/[0-9().-]/g, "");
   filename = filename?.replace(/_/g, " ")?.slice(0, -4);
-  
+  const [openModal, setOpenModal] = useState(false);
+
   const updateImage = {
     value: value,
     type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
@@ -172,6 +175,7 @@ function UploadDoc({
               bgMain={bgMain}
               className={className}
               handleRemoveFile={handleRemoveFile}
+              setOpenModal={setOpenModal}
             />
           )
         ) : !isLargeFile &&
@@ -196,7 +200,7 @@ function UploadDoc({
                 {/* <span className="text-sm">اضغط هنا لمشاهدة المرفق</span> */}
               </div>
             </a>
-            <div onClick={() => handleRemoveFile(files[0])}>
+            <div onClick={() => setOpenModal(true)}>
               <IconifyIcon
                 icon="mdi:close"
                 fontSize={20}
@@ -209,11 +213,11 @@ function UploadDoc({
           updateImage?.value ? (
           <div className="w-full">
             <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
-            <PreviewPdf item={files[0]}  />
-            <p>{filename.length  > 20 ? filename.slice(0,30)  : filename.length }</p>
-              
+              <PreviewPdf item={files[0]} />
+              <p>
+                {filename.length > 20 ? filename.slice(0, 30) : filename.length}
+              </p>
             </div>
-
           </div>
         ) : isLargeFile ? (
           <div className="flex items-center p-2">
@@ -231,6 +235,18 @@ function UploadDoc({
           ""
         )}
       </div>
+      <ModalComp
+        open={openModal}
+        className="!max-w-[450px]  "
+        onClose={() => setOpenModal(false)}
+        Children={
+          <DeleteDoc
+            setOpenModal={setOpenModal}
+            handleRemoveFile={handleRemoveFile}
+            files={files}
+          />
+        }
+      />
     </div>
   );
 }
