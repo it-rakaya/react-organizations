@@ -14,7 +14,7 @@ const Hero = () => {
   const { user , token  } = useAuth();
 
   const { orgData } = UseOrg();
-  console.log("🚀 ~ Hero ~ orgData:", orgData)
+  console.log("🚀 ~ Hero ~ orgData:", orgData?.organizations?.domain + orgData?.organizations?.logo)
   const theme = useTheme();
   const language = i18n.language;
   const [open, setOpen] = useState(false);
