@@ -86,7 +86,7 @@ export default function DetailsFacility({ data, className }) {
               ))}
             </TabList>
             <div
-              className={`${className} !overflow-y-scroll !shadow-none  max-h-[35rem]  scroll_main w-full`}
+              className={`${className} !overflow-y-scroll !shadow-none  max-h-[44rem]  scroll_main w-full`}
             >
               <TabPanel value="1" className="pt-0">
                 <DetailsFacilityData
