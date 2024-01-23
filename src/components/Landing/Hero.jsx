@@ -27,7 +27,7 @@ const Hero = () => {
           {/* <h1 className="px-6 py-1 border rounded-lg border-primaryText"> */}
           <img
             alt=""
-            src={orgData?.organizations?.logo}
+            src={orgData?.organizations?.domain + orgData?.organizations?.logo}
             className="w-[70px] rounded-xl"
           />
           {/* </h1> */}
