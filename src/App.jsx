@@ -33,7 +33,7 @@ const App = () => {
     enabled: !!user,
   });
   useEffect(() => {
-    if (isSuccess && !user) {
+    if (isSuccess && user) {
       setUser(infoUser?.user);
     }
   }, [infoUser?.user, isFetched, isSuccess, setUser, token, user]);
