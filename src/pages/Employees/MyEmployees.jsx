@@ -64,12 +64,11 @@ export default function MyEmployees() {
               }}
             >
               <Icon path={mdiAccountOutline} size={1} />
-              <LinkStyled
-                href="/apps/user/view/overview/"
+              <p
                 className="text-black dark:text-white"
               >
                 {name}
-              </LinkStyled>
+              </p>
             </Box>
           </Box>
         );
