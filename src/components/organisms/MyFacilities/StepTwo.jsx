@@ -6,8 +6,6 @@ import ModalComp from "../../atoms/ModalComp";
 import UploadDoc from "../../molecules/uploadImage/UploadDoc";
 
 export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
-  console.log("🚀 ~ StepTwo ~ DetailsFacilities:", DetailsFacilities);
-
   const detailsFacilitiesData = attachments_facilities?.attachment_labels;
   const images = [
     { path: "/nationalAddress.png" },
@@ -16,7 +14,6 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
   ];
   const [show, setShow] = useState(false);
   const [index] = useState(0);
-
 
   return (
     <>

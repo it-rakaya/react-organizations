@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import OptionsMenu from "./option-menu/OptionsMenu";
+import { t } from "i18next";
 const LanguageDropdown = ({ settings, saveSettings }) => {
   const { i18n } = useTranslation();
   const handleLangItemClick = (lang) => {
@@ -31,7 +32,7 @@ const LanguageDropdown = ({ settings, saveSettings }) => {
           },
         },
         {
-          text: "Arabic",
+          text: t("Arabic"),
           menuItemProps: {
             sx: { py: 2 },
             selected: i18n.language === "ar",

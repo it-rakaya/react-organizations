@@ -841,3 +841,6 @@ input:-webkit-autofill:active {
   border-color: rgb(159,150,133) !important;
   box-shadow: #9F9685 0px 0px 0px 1px !important;
 }
+.date_hj{
+direction: rtl;
+}

@@ -132,7 +132,7 @@ function AfterAndBeforeFacility({
         justifyContent: "end",
         gap: "5px",
       }}
-      className="md:fixed mt-5 md:mt-0 bottom-[55px] md:bottom-[30px] ltr:right-[16px] ltr:md:right-[28px] rtl:left-[16px] md:rtl:left-[33px] "
+      className="md:fixed mt-5 md:mt-0 bottom-[55px] md:bottom-[25px] ltr:right-[16px] ltr:md:right-[28px] rtl:left-[16px] md:rtl:left-[33px] "
     >
       <ButtonComp
         size="large"

@@ -258,8 +258,10 @@
   "1.Facility Data": "1. بيانات المنشاه",
   "Resend the code later": "اعادة ارسال الرمز بعد",
   "national source is required": "مصدر الهوية مطلوب",
+  "A facility has been updated successfully":"A facility has been updated successfully",
   "The data required to be recorded is the information of the facility owner and I promise Register it correctly": " البيانات المطلوب تسجيلها هي المعلومات الخاصة بمالك المنشأة وأتعهد بتسجيلها بشكل صحيح",
   "Endorsement": "إقرار",
+  "Arabic":"عربي",
   "the capacity must be equal 5 digits": "يجب أن تكون السعة تساوي 5 أرقام",
   "The verification number is required to complete the process. The verification code has been sent in a message To you": "رقم التحقق مطلوب لإكمال العملية. تم إرسال رمز التحقق في رسالة إليك",
   "landing": {

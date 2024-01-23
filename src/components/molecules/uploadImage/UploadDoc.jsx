@@ -27,12 +27,15 @@ function UploadDoc({
   accept,
   isRequired,
   dynamic = false,
-  nameLabel
+  nameLabel,
 }) {
-  console.log("🚀 ~ nameLabel:", nameLabel)
   const { setFieldValue, values } = useFormikContext();
   const theme = useTheme();
   const [invalidFormat, setInvalidFormat] = useState(false);
+  let filename = nameLabel;
+  filename = filename?.replace(/[0-9().-]/g, '');
+  filename = filename?.replace(/_/g, " ")?.slice(0, -4);
+  
   const updateImage = {
     value: value,
     type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
@@ -69,7 +72,7 @@ function UploadDoc({
     setFieldValue(name, null);
     document.getElementsByName(name)[0].value = "";
   };
-  const shouldShowUploadIcon = !files?.length || files.every(file => !file);
+  const shouldShowUploadIcon = !files?.length || files.every((file) => !file);
 
   return (
     <div>
@@ -95,11 +98,11 @@ function UploadDoc({
             <div className="flex flex-col items-center justify-center ">
               <UploadImageIcon className="w-[35px]" />
             </div>
-          ) : invalidFormat   ? (
+          ) : invalidFormat ? (
             <TermsConditionIcon className={"w-[35px] !fill-[#F0A44B]"} />
           ) : (
             <div className="rounded-md">
-              {!isLargeFile   ? (
+              {!isLargeFile ? (
                 <div className="flex flex-col items-center justify-center ">
                   <CheckIcon />
                 </div>
@@ -161,7 +164,7 @@ function UploadDoc({
           updateImage?.value ? (
           files[0]?.value ? (
             <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
-              <PreviewImageLink url={files[0]?.value}  nameLabel={nameLabel}/>
+              <PreviewImageLink url={files[0]?.value} nameLabel={nameLabel} />
             </div>
           ) : (
             <PreviewImage
@@ -205,7 +208,12 @@ function UploadDoc({
           files[0]?.type?.startsWith("application/") &&
           updateImage?.value ? (
           <div className="w-full">
-            <PreviewPdf item={files[0]} />
+            <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
+            <PreviewPdf item={files[0]}  />
+            <p>{filename.length  > 20 ? filename.slice(0,30)  : filename.length }</p>
+              
+            </div>
+
           </div>
         ) : isLargeFile ? (
           <div className="flex items-center p-2">

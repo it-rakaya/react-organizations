@@ -49,6 +49,7 @@ export default function SelectPositions({ name, label, className ,required }) {
               // borderColor:"#555d64",
               background: "white",
               margin: "0",
+              
             }),
             option: (baseStyles) => ({
               ...baseStyles,

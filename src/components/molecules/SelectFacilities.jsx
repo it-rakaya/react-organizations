@@ -54,7 +54,13 @@ export default function SelectFacilities({ name, label, required, className }) {
                 background: "white",
                 // color: "black",
               }),
+              // menu: (baseStyles) => ({
+              //   ...baseStyles,
+              //   background:"white",
+              //   zIndex: 999, // Add z-index here
+              // }),
             }}
+            
             theme={(theme) => ({
               ...theme,
               borderRadius: 0,
@@ -68,6 +74,8 @@ export default function SelectFacilities({ name, label, required, className }) {
             classNames={{
               control: () => "dark:bg-dark-primary dark:border-[#555d64]",
               option: () => "dark:bg-dark-primary dark:text-white  ",
+              menu: () => " bg-white dark:bg-dark-primary dark:text-white  ",
+
             }}
             maxMenuHeight={200}
             menuShouldScrollIntoView

@@ -118,12 +118,12 @@ export default function DetailsOrder({ data }) {
               </div>
             </TabPanel>
             <TabPanel value="2">
-              <div className="grid grid-cols-2 px-4 mt-5 gap-y-4">
+              <div className="grid grid-cols-2 gap-4 px-4 mt-5">
                 {data?.answers?.length ? (
                   data?.answers?.map((item) => (
-                    <div className="flex gap-2" key={item?.id}>
+                    <div className="flex flex-col col-span-2 gap-2 py-2 mt-5 border-b md:col-span-1" key={item?.id}>
                       <p className="font-bold " style={{ color: theme.palette.primary.main }}>
-                        {item?.question?.content}؟
+                        {item?.question?.content}:
                       </p>
                       <p className="dark:text-white">{item?.value}</p>
                     </div>

@@ -10,8 +10,6 @@ import { useAuth } from "./context/auth-and-perm/AuthProvider";
 const App = () => {
   ///
   const isRTL = useIsRTL();
-  const { setUser, token, user } = useAuth();
-
   useLayoutEffect(() => {
     document.documentElement.dir = isRTL ? "rtl" : "ltr";
     document.documentElement.lang = isRTL ? "ar" : "en";
@@ -23,20 +21,6 @@ const App = () => {
     }
   }, []);
 
-  const {
-    data: infoUser,
-    isFetched,
-    isSuccess,
-  } = useFetch({
-    endpoint: `users/info`,
-    queryKey: ["users/info"],
-    enabled: !!user,
-  });
-  useEffect(() => {
-    if (isSuccess && user) {
-      setUser(infoUser?.user);
-    }
-  }, [infoUser?.user, isFetched, isSuccess, setUser, token, user]);
 
   return (
     <>
