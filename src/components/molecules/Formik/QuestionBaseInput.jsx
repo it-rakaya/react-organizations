@@ -11,7 +11,7 @@ import {
   Radio,
   RadioGroup,
   TextField,
-  TextareaAutosize
+  TextareaAutosize,
 } from "@mui/material";
 import { useFormikContext } from "formik";
 import { t } from "i18next";
@@ -19,7 +19,6 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Select from "react-select";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
-import UploadImage from "../uploadImage/UploadImage";
 import UploadDoc from "../uploadImage/UploadDoc";
 
 export default function QuestionBaseInput({
@@ -135,7 +134,7 @@ export default function QuestionBaseInput({
               ...baseStyles,
               padding: "10px 0",
               borderRadius: " 8px",
-              borderWidth:"1px",
+              borderWidth: "1px",
               // borderColor:"#555d64",
               background: "white",
               margin: "0",
@@ -286,7 +285,7 @@ export default function QuestionBaseInput({
               ...baseStyles,
               padding: "10px 0",
               borderRadius: " 8px",
-              borderWidth:"1px",
+              borderWidth: "1px",
               // borderColor:"#555d64",
               background: "white",
               margin: "0",

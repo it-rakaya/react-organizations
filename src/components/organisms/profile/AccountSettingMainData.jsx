@@ -100,6 +100,7 @@ function AccountSettingMainData({ userData }) {
             placeholder={attachmentLabel.placeholder}
             isRequired={attachmentLabel.is_required == "1"}
             value={userAttachment ? userAttachment.value : null}
+            nameLabel={userAttachment?.name}
           />
         );
       })}

@@ -27,7 +27,9 @@ function UploadDoc({
   accept,
   isRequired,
   dynamic = false,
+  nameLabel
 }) {
+  console.log("🚀 ~ nameLabel:", nameLabel)
   const { setFieldValue, values } = useFormikContext();
   const theme = useTheme();
   const [invalidFormat, setInvalidFormat] = useState(false);
@@ -159,7 +161,7 @@ function UploadDoc({
           updateImage?.value ? (
           files[0]?.value ? (
             <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
-              <PreviewImageLink url={files[0]?.value} />
+              <PreviewImageLink url={files[0]?.value}  nameLabel={nameLabel}/>
             </div>
           ) : (
             <PreviewImage
