@@ -86,7 +86,7 @@ export default function OrderMainData({ setShow, show, isPending }) {
                     </span>{" "}
                   </li>
                   <QuestionBaseInput
-                    type={item?.question_type?.name}
+                    type={item?.question_type_name}
                     name={item?.id}
                     placeholder={item?.placeholder}
                     idQuestion={item?.id}
