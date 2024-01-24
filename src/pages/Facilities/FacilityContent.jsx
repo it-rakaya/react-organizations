@@ -36,6 +36,10 @@ function FacilityContent({
     sub_number: "",
     signature: "",
     capacity: "",
+    account_name:"",
+    iban:"",
+    bank_id:""
+    
   };
 
   const validationSchema = (step) => {
@@ -106,6 +110,13 @@ function FacilityContent({
           kitchen_space: Yup.string()
             .trim()
             .required(t("kitchen space required")),
+            account_name: Yup.string()
+            .trim()
+            .required(t("the account name required")),
+            iban: Yup.string()
+            .trim()
+            .required(t("this field is required"))
+            .length(24, t("the IBAN number must be equal 24 digits")),
         });
       default:
         return Yup.object({});

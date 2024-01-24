@@ -3,6 +3,8 @@ import { t } from "i18next";
 import { useState } from "react";
 import ModalComp from "../../atoms/ModalComp";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
+import SelectBank from "../../molecules/Selects/SelectBank";
+import BaseInputMask from "../../molecules/Formik/BaseInputMask";
 
 function AdditionalInfo() {
   const images = [
@@ -53,7 +55,7 @@ function AdditionalInfo() {
       </div>
 
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
-        <div className="w-full">
+        <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("kitchen space")}
             placeholder="500"
@@ -63,7 +65,33 @@ function AdditionalInfo() {
             required
           />
         </div>
+        <div className="w-full md:w-1/2">
+          <BaseInputField
+            label={t("account name")}
+            placeholder="احمد محمد"
+            name="account_name"
+            images={images}
+            required
+          />
+        </div>
       </div>
+      <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
+        <div className="w-full md:w-1/2">
+          <BaseInputField
+            label={t("IBAN number")}
+            placeholder="27*********************"
+            name="iban"
+            type="IBAN"
+            images={images}
+            required
+            maxNum="29"
+          />
+        </div>
+        <div className="w-full md:w-1/2">
+          <SelectBank name="bank_id" required={true} label={t("Chose bank")} />
+        </div>
+      </div>
+      {/* <BaseInputMask/> */}
       <ModalComp
         open={show}
         className="!max-w-[700px] m-auto    "

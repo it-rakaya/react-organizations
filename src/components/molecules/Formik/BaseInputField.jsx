@@ -7,11 +7,12 @@ import {
   TextField,
 } from "@mui/material";
 import { useFormikContext } from "formik";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import CardInfo from "../CardInfo";
 import Label from "../Label";
 import { FormikError } from "./FormikError";
+import BaseInputMask from "./BaseInputMask";
 
 export default function BaseInputField({
   label,
@@ -32,22 +33,34 @@ export default function BaseInputField({
 }) {
   const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
     useFormikContext();
+  console.log("🚀 ~ values:", values);
   const [showPassword, setShowPassword] = useState(false);
+  const formatIBAN = (value) => {
+    value = value.replace(/[^\dA-Z]/g, "");
+    return value.replace(/(.{4})/g, "$1 ").trim();
+  };
+  const ibanRef = useRef();
 
   // !! type custom == type number ==> but im used this type in other name because in type number is MUI is given is problem
   const handleChangeNumber = (e) => {
     let value = e.target.value;
-    if (type === "custom") {
-      const numericRegex = /^[0-9]+$/;
-      if (!numericRegex.test(value)) {
-        setFieldValue(name, "");
-        return;
+    if (type === "custom" || type === "IBAN") {
+      if (type === "IBAN") {
+        value = formatIBAN(value);
+      } else {
+        const numericRegex = /^[0-9]+$/;
+        if (!numericRegex.test(value)) {
+          setFieldValue(name, "");
+          return;
+        }
       }
-      if (value.length > maxNum) {
+      if (maxNum && value.length > maxNum) {
         value = value.slice(0, maxNum);
       }
     }
-    setFieldValue(name, value);
+
+    // For IBAN, remove spaces before setting the value
+    setFieldValue(name, type === "IBAN" ? value.replace(/\s+/g, "") : value);
   };
 
   return (
@@ -117,7 +130,13 @@ export default function BaseInputField({
             InputProps={
               type === "custom"
                 ? {
-                    inputProps: { maxLength: 10 },
+                    inputProps: { maxLength: maxNum || 10 },
+                    onChange: handleChangeNumber,
+                  }
+                : type === "IBAN"
+                ? {
+                    inputComponent: BaseInputMask,
+                    inputProps: {  ref: ibanRef },
                     onChange: handleChangeNumber,
                   }
                 : { onChange: handleChange }

@@ -18,6 +18,7 @@ function FacilityContentEdit({
     endpoint: `facilities/${idFacility}`,
     queryKey: ["facilities_update"],
   });
+  console.log(DetailsFacilities)
   const initialFormValues = {
     name: DetailsFacilities?.facility ? DetailsFacilities?.facility?.name : "",
     registration_number: DetailsFacilities?.facility
@@ -47,9 +48,7 @@ function FacilityContentEdit({
     license_expired_hj: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.license_expired_hj
       : "",
-    // address: DetailsFacilities?.facility
-    //   ? DetailsFacilities?.facility?.address
-    //   : "",
+
     tax_certificate: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.tax_certificate
       : "",
@@ -82,6 +81,15 @@ function FacilityContentEdit({
       : "",
     capacity: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.capacity
+      : "",
+      account_name: DetailsFacilities?.facility?.bank_information
+      ? DetailsFacilities?.facility?.bank_information?.account_name
+      : "",
+      bank_id: DetailsFacilities?.facility?.bank_information
+      ? DetailsFacilities?.facility?.bank_information?.bank_id
+      : "",
+      iban: DetailsFacilities?.facility?.bank_information
+      ? DetailsFacilities?.facility?.bank_information?.iban
       : "",
   };
 
