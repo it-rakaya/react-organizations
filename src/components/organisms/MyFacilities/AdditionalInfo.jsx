@@ -4,7 +4,6 @@ import { useState } from "react";
 import ModalComp from "../../atoms/ModalComp";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
 import SelectBank from "../../molecules/Selects/SelectBank";
-import BaseInputMask from "../../molecules/Formik/BaseInputMask";
 
 function AdditionalInfo() {
   const images = [

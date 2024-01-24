@@ -837,10 +837,20 @@ input:-webkit-autofill:active {
 .MuiBackdrop-root.MuiModal-backdrop {
   background-color: rgba(0, 0, 0, 0.5) !important;
 }
-.dMptYj:focus{
-  border-color: rgb(159,150,133) !important;
+
+.dMptYj:focus {
+  border-color: rgb(159, 150, 133) !important;
   box-shadow: #9F9685 0px 0px 0px 1px !important;
 }
-.date_hj{
-direction: rtl;
+
+.date_hj {
+  direction: rtl;
+}
+
+.MuiDataGrid-overlay {
+  color: black;
+}
+
+.dark .MuiDataGrid-overlay {
+  color: white;
 }
