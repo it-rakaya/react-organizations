@@ -1,12 +1,11 @@
-import React, { forwardRef } from "react";
+/* eslint-disable react/display-name */
+import { forwardRef } from "react";
 import MaskedInput from "react-text-mask";
 
 const BaseInputMask = forwardRef((props, ref) => {
   return (
     <MaskedInput
       {...props}
-      
-
       ref={ref} // تمرير ref مباشرة
       mask={[
         /\d/,
@@ -38,11 +37,9 @@ const BaseInputMask = forwardRef((props, ref) => {
         /\d/,
         /\d/,
         /\d/,
-        
-        
       ]}
-    //   placeholderChar={"\u2000"}
-    //   showMask
+      //   placeholderChar={"\u2000"}
+      //   showMask
     />
   );
 });
