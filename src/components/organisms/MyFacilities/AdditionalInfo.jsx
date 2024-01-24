@@ -29,11 +29,6 @@ function AdditionalInfo() {
             type="custom"
             maxNum="3"
             required
-
-            // showIcon
-            // setShow={setShow}
-            // setIndex={setIndex}
-            // index={0}
           />
         </div>
         <div className="w-full md:w-1/2">
@@ -44,11 +39,6 @@ function AdditionalInfo() {
             type="custom"
             maxNum="3"
             required
-
-            // showIcon
-            // setShow={setShow}
-            // setIndex={setIndex}
-            // index={0}
           />
         </div>
       </div>
