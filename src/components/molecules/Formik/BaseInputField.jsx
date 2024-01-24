@@ -135,7 +135,7 @@ export default function BaseInputField({
                   }
                 : type === "IBAN"
                 ? {
-                    // inputComponent: BaseInputMask,
+                    inputComponent: BaseInputMask,
                     inputProps: {  ref: ibanRef },
                     onChange: handleChangeNumber,
                   }
