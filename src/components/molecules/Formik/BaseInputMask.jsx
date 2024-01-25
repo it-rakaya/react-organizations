@@ -29,7 +29,7 @@ const BaseInputMask = forwardRef((props, name) => {
           borderColor: !!touched.iban && !!errors.iban ? "red" : "",
           borderRadius: "10px",
         }}
-        className={`"my-3 code p-[18px] w-full focus-visible:!outline-none " ${
+        className={`"my-3 code p-[18px] w-full focus-visible:!outline-none  dark:!text-white" ${
           !!touched.iban && !!errors.iban && "border-red-500 "
         }`}
       />
