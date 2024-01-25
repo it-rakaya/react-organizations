@@ -10,11 +10,11 @@ import Typography from "@mui/material/Typography";
 import { useSettings } from "../../hooks/useSettings";
 import { useEffect } from "react";
 
-function Navbar() {
+function Navbar({ hidden }) {
   const { i18n } = useTranslation();
   const language = i18n.language;
   const { orgData } = UseOrg();
-  const { logout, user , token } = useAuth();
+  const { logout, token } = useAuth();
   const theme = useTheme();
   const { settings, saveSettings } = useSettings();
 
@@ -54,17 +54,21 @@ function Navbar() {
       className="flex justify-between w-full px-5 py-3 layout-navbar"
       dir={i18n.dir(language)}
     >
-      <div className="flex gap-10">
-        <a href="">
-          <img
-            alt=""
-            // srcset={bg2}
-            src={orgData?.organizations?.logo}
-            className="animated-box w-[30px] rounded-xl"
-          />
-          {/* Logo */}
-        </a>
-      </div>
+      {hidden ? (
+        ""
+      ) : (
+        <div className="flex gap-10">
+          <a href="">
+            <img
+              alt=""
+              // srcset={bg2}
+              src={orgData?.organizations?.logo}
+              className="animated-box w-[30px] rounded-xl"
+            />
+            {/* Logo */}
+          </a>
+        </div>
+      )}
 
       <div className="flex items-center gap-5">
         {!!token && (

@@ -11,6 +11,7 @@ import { useSettings } from "../../hooks/useSettings";
 import { useEffect } from "react";
 import { t } from "i18next";
 import Loading from "../../components/molecules/Loading";
+import Navbar from "../../components/Landing/Navbar";
 
 const RegisterIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -74,6 +75,10 @@ const Register = () => {
   if (!isSuccess || isRefetching) return <Loading />;
   if (!token) {
     return (
+      <>
+       <div className="absolute rtl:left-0 ltr:right-0 z-[999999]">
+          <Navbar hidden={true} />
+        </div>
       <Box className="flex content-right">
         <RightWrapper
           sx={
@@ -136,6 +141,7 @@ const Register = () => {
           </Box>
         ) : null}
       </Box>
+      </>
     );
   } else {
     navigate("/dashboard");

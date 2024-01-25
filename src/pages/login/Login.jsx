@@ -10,6 +10,7 @@ import LoginIcon from "../../components/atoms/icons/LoginIcon";
 import LoginForm from "../../components/templates/LoginForm";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useSettings } from "../../hooks/useSettings";
+import Navbar from "../../components/Landing/Navbar";
 
 const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -64,6 +65,10 @@ const Login = () => {
   if (!token) {
     return (
       <div className="">
+        <div className="absolute rtl:left-0 ltr:right-0 z-[999999]">
+          <Navbar hidden={true} />
+        </div>
+
         <Box className="flex content-right">
           <RightWrapper
             sx={
@@ -83,7 +88,6 @@ const Login = () => {
                 height: "100vh",
                 overflowY: "scroll",
                 overflowX: "hidden",
-
               }}
               className="scroll_main"
             >
@@ -104,10 +108,16 @@ const Login = () => {
               </Box>
               <BoxWrapper className="flex flex-col items-center justify-center mt-5">
                 <Box sx={{ mb: 3, width: "100%" }} className="text-center">
-                  <TypographyStyled className="!text-black dark:!text-white" variant="h5">{`${t(
+                  <TypographyStyled
+                    className="!text-black dark:!text-white"
+                    variant="h5"
+                  >{`${t(
                     "Welcome to"
                   )} ${organizationName}!`}</TypographyStyled>
-                  <Typography variant="body2" className="!text-black dark:!text-white" >
+                  <Typography
+                    variant="body2"
+                    className="!text-black dark:!text-white"
+                  >
                     {t("Please sign-in to your account")}
                   </Typography>
                   {/* <Typography variant="body2" className="text-black dark:text-white" >{"530410927"}</Typography> */}
@@ -124,13 +134,16 @@ const Login = () => {
                     marginTop: "10px",
                   }}
                 >
-                  <Typography sx={{ mr: 2,}} className="!text-black dark:!text-white" >
+                  <Typography
+                    sx={{ mr: 2 }}
+                    className="!text-black dark:!text-white"
+                  >
                     {t("New on our platform?")}
                   </Typography>
                   <Link
                     to="/register"
                     sx={{ color: "primary.main", textDecoration: "none" }}
-                    className="!text-black dark:!text-white" 
+                    className="!text-black dark:!text-white"
                   >
                     {t("Create an account")}
                   </Link>
