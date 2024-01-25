@@ -26,7 +26,6 @@ export default function MyEmployees() {
     endpoint: `facility-employees`,
     queryKey: ["facility_employees"],
   });
-  console.log("🚀 ~ MyEmployees ~ employees:", employees);
 
   const [openAddEmployee, setOpenAddEmployee] = useState(false);
   const [employeeId, setEmployeeId] = useState();
@@ -36,7 +35,7 @@ export default function MyEmployees() {
   const columns = [
     {
       flex: 0.2,
-      minWidth: 230,
+      minWidth: 180,
       field: "name",
       headerName: t("name"),
       cellClassName: "!bg-transparent",
@@ -58,7 +57,7 @@ export default function MyEmployees() {
                   src={attachmentUrl[1].value}
                   className="w-[40px]  h-[40px] rounded-full"
                 />
-                <p className="text-black dark:text-white">{name}</p>
+                <p className="text-black dark:text-white">{name.length > 30 ? `${name.slice(0,20)}...` : name}</p>
               </div>
             </Box>
           </Box>
@@ -67,7 +66,7 @@ export default function MyEmployees() {
     },
     {
       flex: 0.2,
-      minWidth: 250,
+      minWidth: 180,
       field: "facility_name",
       headerName: t("facility name"),
       cellClassName: "flex !px-0 !justify-center",
@@ -87,7 +86,7 @@ export default function MyEmployees() {
     {
       flex: 0.15,
       field: "national_id",
-      minWidth: 150,
+      minWidth: 180,
       headerName: t("National ID"),
       cellClassName: "flex !px-0 !justify-center",
 
@@ -108,7 +107,7 @@ export default function MyEmployees() {
     },
     {
       flex: 0.15,
-      minWidth: 120,
+      minWidth: 180,
       headerName: t("position"),
       field: "position",
       cellClassName: "flex !px-0 !justify-center",
@@ -189,7 +188,7 @@ export default function MyEmployees() {
     },
     {
       flex: 0.15,
-      minWidth: 100,
+      minWidth: 120,
       headerName: t("actions"),
       field: t("actions"),
       cellClassName: "!flex !px-0 !justify-center !items-center",
