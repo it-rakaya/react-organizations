@@ -15,7 +15,6 @@ function AfterAndBeforeFacility({
 }) {
   const { values, errors } = useFormikContext();
 
-
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -74,9 +73,9 @@ function AfterAndBeforeFacility({
     chefs_number: "",
     building_number: "",
     kitchen_space: "",
-    account_name:"",
-    iban:"",
-    bank_id:""
+    account_name: "",
+    iban: "",
+    bank_id: "",
   };
   const isSaveDisabled = () => {
     const checkErrorsForKeys = (initialCase) =>
@@ -91,16 +90,36 @@ function AfterAndBeforeFacility({
         return checkErrorsForKeys(initialCase2);
       case 3:
         // Filter out undefined values from attachments_facilities
-        const filteredAttachmentLabels =
-          values?.attachments?.filter(
-            (value) => value !== undefined && value !== null
-          ) || [];
+        // const filteredAttachmentLabels =
+        //   values?.attachments?.filter(
+        //     (value) => value !== undefined && value !== null
+        //   ) || [];
 
-        const attachmentsLength =
-          attachments_facilities?.attachment_labels.length || 0;
-        const actualAttachmentsLength = filteredAttachmentLabels?.length || 0;
+        // const attachmentsLength =
+        //   attachments_facilities?.attachment_labels.length || 0;
+        // const actualAttachmentsLength = filteredAttachmentLabels?.length || 0;
 
-        return update ? "" : attachmentsLength !== actualAttachmentsLength;
+        // return update ? "" : attachmentsLength !== actualAttachmentsLength;
+        const requiredInputs =
+          attachments_facilities?.attachment_labels
+            ?.filter((item) => item?.is_required === "1")
+            ?.map((item) => item?.id) || [];
+
+        const validAttachments = values?.attachments
+          ?.map((file, index) => ({ index, file }))
+          ?.filter((item) => typeof item?.file !== "undefined");
+        const attachments = validAttachments?.map((item) => ({
+          [`attachments[${item?.index}]`]: item?.file,
+        }));
+        const isValid = requiredInputs?.every((id) => {
+          const attachmentItem = attachments?.find(
+            (item) => item[`attachments[${id}]`] !== undefined
+          );
+          return (
+            attachmentItem && attachmentItem[`attachments[${id}]`] !== null
+          );
+        });
+        return update ? "" : !isValid;
       default:
         return false;
     }

@@ -4,7 +4,6 @@ import { Form, Formik } from "formik";
 import { t } from "i18next";
 import { isValidSaudiID } from "saudi-id-validator";
 import * as Yup from "yup";
-import { useAuth } from "../../../context/auth-and-perm/AuthProvider";
 import { useMutate } from "../../../hooks/useMutate";
 import { convertToHijri } from "../../../utils/helpers";
 import { notify } from "../../../utils/toast";
@@ -13,7 +12,6 @@ import ButtonComp from "../../atoms/buttons/ButtonComp";
 import AccountSettingMainData from "./AccountSettingMainData";
 
 export default function AccountSetting({ userData, setEditUser, setUser , refetch }) {
-  const { user , token } = useAuth();
 
 
   const initialValue = {

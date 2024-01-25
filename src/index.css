@@ -68,13 +68,13 @@ h1 {
 
 .dark :placeholder {
   /* color: #797e7f; */
-  color: white;
+  /* color: white; */
 }
 
 .dark ::-webkit-input-placeholder,
 ::-moz-placeholder {
   /* color: #797e7f; */
-  color: white !important;
+  /* color: white !important; */
 }
 
 @media (max-width:440px) {
@@ -792,7 +792,7 @@ input:-webkit-autofill:active {
 }
 
 .dark ::placeholder {
-  color: white;
+  color: #6d7476;
 }
 
 .dark .rtl-1g0ciz2-singleValue,

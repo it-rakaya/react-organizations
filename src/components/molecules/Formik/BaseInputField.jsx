@@ -33,35 +33,27 @@ export default function BaseInputField({
 }) {
   const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
     useFormikContext();
-  console.log("🚀 ~ values:", values);
   const [showPassword, setShowPassword] = useState(false);
-  const formatIBAN = (value) => {
-    value = value.replace(/[^\dA-Z]/g, "");
-    return value.replace(/(.{4})/g, "$1 ").trim();
-  };
   const ibanRef = useRef();
 
   // !! type custom == type number ==> but im used this type in other name because in type number is MUI is given is problem
   const handleChangeNumber = (e) => {
     let value = e.target.value;
-    if (type === "custom" || type === "IBAN") {
-      if (type === "IBAN") {
-        value = formatIBAN(value);
-      } else {
-        const numericRegex = /^[0-9]+$/;
-        if (!numericRegex.test(value)) {
-          setFieldValue(name, "");
-          return;
-        }
+    if (type === "custom") {
+      const numericRegex = /^[0-9]+$/;
+      if (!numericRegex.test(value)) {
+        setFieldValue(name, "");
+        return;
       }
-      if (maxNum && value.length > maxNum) {
-        value = value.slice(0, maxNum);
-      }
+    }
+    if (maxNum && value.length > maxNum) {
+      value = value.slice(0, maxNum);
     }
 
     // For IBAN, remove spaces before setting the value
-    setFieldValue(name, type === "IBAN" ? value.replace(/\s+/g, "") : value);
+    setFieldValue(name, value);
   };
+
 
   return (
     <div>
@@ -136,7 +128,7 @@ export default function BaseInputField({
                 : type === "IBAN"
                 ? {
                     inputComponent: BaseInputMask,
-                    inputProps: {  ref: ibanRef },
+                    inputProps: { ref: ibanRef },
                     onChange: handleChangeNumber,
                   }
                 : { onChange: handleChange }

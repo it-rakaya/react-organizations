@@ -54,7 +54,9 @@ function FacilityControl({ setOpen, open, update, idFacility }) {
             <ButtonComp
               type={"submit"}
               action={() => {
-                const updatedIban = values.iban.replace(/-/g, '').trim();
+                const updatedIban = values.iban
+                  .replace(/-/g, "")
+                  .replace(/\s+/g, "");
                 const validAttachments =
                   values?.attachments
                     ?.map((file, index) => ({ index, file }))

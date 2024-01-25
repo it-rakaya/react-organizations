@@ -116,7 +116,7 @@ function FacilityContent({
             iban: Yup.string()
             .trim()
             .required(t("this field is required"))
-            .length(24, t("the IBAN number must be equal 24 digits")),
+            .length(29, t("the IBAN number must be equal 24 digits")),
         });
       default:
         return Yup.object({});

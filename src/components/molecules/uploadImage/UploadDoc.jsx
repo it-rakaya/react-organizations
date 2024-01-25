@@ -160,6 +160,7 @@ function UploadDoc({
               bgMain={bgMain}
               className={className}
               handleRemoveFile={handleRemoveFile}
+              setOpenModal={setOpenModal}
             />
           </div>
         ) : !isLargeFile &&

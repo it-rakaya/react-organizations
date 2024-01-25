@@ -9,17 +9,13 @@ import useFetch from "../../hooks/useFetch";
 
 export default function Profile() {
   const [editUser, setEditUser] = useState(false);
-  const { user, setUser , token } = useAuth();
+  const { user, setUser, token } = useAuth();
   const { orgData } = UseOrg();
   const theme = useTheme();
-  // const bgDynamic = theme?.palette?.primary?.main
-  //   ? theme?.palette?.primary?.main
-  //   : "#9f9685";
   const {
     data: infoUser,
-    isFetched,
     isSuccess,
-    refetch
+    refetch,
   } = useFetch({
     endpoint: `users/info`,
     queryKey: ["users/info"],
@@ -35,7 +31,6 @@ export default function Profile() {
     <div
       className="grid grid-cols-12 gap-5"
       style={{
-        // background: `linear-gradient(130deg, ${bgDynamic} 0%, rgba(255,255,255,1) 90%)`,
         height: "",
       }}
     >
