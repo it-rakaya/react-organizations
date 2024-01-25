@@ -61,7 +61,7 @@ function AdditionalInfo() {
       <ModalComp
         open={show}
         className="!max-w-[700px] m-auto    "
-        classNameBox="shadow-none w-full "
+        classNameBox="!shadow-none w-full  !bg-transparent  "
         onClose={() => setShow(false)}
         hidden={true}
         Children={

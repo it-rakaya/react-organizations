@@ -118,7 +118,7 @@ function NationalAddressData() {
       <ModalComp
         open={show}
         className="!max-w-[700px] m-auto    "
-        classNameBox="shadow-none w-full !bg-transparent "
+        classNameBox="!shadow-none w-full !bg-transparent "
         onClose={() => setShow(false)}
         hidden={true}
         Children={
