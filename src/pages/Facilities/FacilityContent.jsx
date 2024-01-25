@@ -77,6 +77,13 @@ function FacilityContent({
             .trim()
             .required(t("tax certificate is required"))
             .length(9, t("the tax certificate number must be equal 9 digits")),
+            account_name: Yup.string()
+            .trim()
+            .required(t("the account name required")),
+            iban: Yup.string()
+            .trim()
+            .required(t("this field is required"))
+            .length(29, t("the IBAN number must be equal 24 digits")),
         });
       case 1:
         return Yup.object({
@@ -110,13 +117,7 @@ function FacilityContent({
           kitchen_space: Yup.string()
             .trim()
             .required(t("kitchen space required")),
-            account_name: Yup.string()
-            .trim()
-            .required(t("the account name required")),
-            iban: Yup.string()
-            .trim()
-            .required(t("this field is required"))
-            .length(29, t("the IBAN number must be equal 24 digits")),
+          
         });
       default:
         return Yup.object({});

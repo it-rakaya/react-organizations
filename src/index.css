@@ -28,11 +28,36 @@ body {
 
 }
 
-body {
-  /* height: calc(100vh - 180px); */
-  /* height: 100%; */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+/* Hide scrollbar on all elements */
+::-webkit-scrollbar {
+  width: 0.4rem;
 }
 
+/* Make the scrollbar transparent */
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+/* Optional: Add some padding to the scrollbar area */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* For Safari */
+body::-webkit-scrollbar {
+  width: 0.4rem;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
 
 svg {
   color: black;
@@ -46,7 +71,7 @@ svg {
 
 div {
   scrollbar-width: thin !important;
-  scrollbar-color: #3b3b64 transparent;
+  scrollbar-color: transparent;
   --scrollbar-space: 0.4rem;
   --kt-toolbar-height: 55px !important;
   --kt-toolbar-height-tablet-and-mobile: 55px !important;
@@ -193,10 +218,6 @@ li.ps-active {
   border-radius: 8px;
 }
 
-.ps-active {
-  /* background-color: #787eff !important; */
-  /* @apply rounded-[8px] bg-contained; */
-}
 
 @media (min-width: 1280px) {
 
@@ -207,10 +228,6 @@ li.ps-active {
   }
 }
 
-/* 
-#react-select-2-listbox {
-  background-color: #1c1c2b !important;
-} */
 
 main::-webkit-scrollbar,
 .css-dip3t8::-webkit-scrollbar {
@@ -320,9 +337,6 @@ main,
   width: 100% !important;
 }
 
-.MuiButtonBase-root.MuiRadio-root {
-  /* display: none ; */
-}
 
 .MuiBox-root {
   /* padding: 0 !important; ; */

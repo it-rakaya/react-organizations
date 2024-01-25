@@ -59,6 +59,9 @@ function AfterAndBeforeFacility({
     capacity: "",
     license: "",
     tax_certificate: "",
+    account_name: "",
+    iban: "",
+    bank_id: "",
   };
   const initialCase1 = {
     street_name: "",
@@ -73,9 +76,7 @@ function AfterAndBeforeFacility({
     chefs_number: "",
     building_number: "",
     kitchen_space: "",
-    account_name: "",
-    iban: "",
-    bank_id: "",
+
   };
   const isSaveDisabled = () => {
     const checkErrorsForKeys = (initialCase) =>

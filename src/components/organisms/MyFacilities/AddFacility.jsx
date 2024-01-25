@@ -1,10 +1,11 @@
-import { Typography } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 import { t } from "i18next";
 import { useState } from "react";
 import ModalComp from "../../atoms/ModalComp";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
 import DatePickerComp from "../../molecules/Formik/DatePickerComp";
 import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
+import SelectBank from "../../molecules/Selects/SelectBank";
 
 export default function AddFacility() {
   const images = [
@@ -23,6 +24,10 @@ export default function AddFacility() {
             1. {t("Facility data")}
           </Typography>
         </div>
+        <h1 className="flex items-center col-span-12 gap-1 pt-5 pb-3 text-xl font-medium dark:text-white">
+          {/* <Icon path={mdiAccountBoxOutline} size={1} /> */}
+          {t("Commercial registry data")}:
+        </h1>
 
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="relative w-full md:w-1/2">
@@ -115,6 +120,13 @@ export default function AddFacility() {
             />
           </div>
         </div>
+        <div className="col-span-12 pb-8 pt-9">
+          <Divider />
+        </div>
+        <h1 className="flex items-center col-span-12 gap-1 pb-3 text-xl font-medium dark:text-white">
+          {/* <Icon path={mdiAccountBoxOutline} size={1} /> */}
+          {t("Commercial activity license data")}:
+        </h1>
 
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="w-full md:col-span-6">
@@ -156,6 +168,44 @@ export default function AddFacility() {
               type="custom"
               maxNum="5"
               required
+            />
+          </div>
+        </div>
+        <div className="col-span-12 pb-8 pt-9">
+          <Divider />
+        </div>
+        <h1 className="flex items-center col-span-12 gap-1 pb-3 text-xl font-medium dark:text-white">
+          {/* <Icon path={mdiAccountBoxOutline} size={1} /> */}
+          {t("Bank data of the facility")}:
+        </h1>
+        <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
+          <div className="w-full md:w-1/2">
+            <BaseInputField
+              label={t("account name")}
+              placeholder="احمد محمد"
+              name="account_name"
+              images={images}
+              required
+            />
+          </div>
+          <div className="w-full md:w-1/2">
+            <SelectBank
+              name="bank_id"
+              required={true}
+              label={t("Chose bank")}
+            />
+          </div>
+        </div>
+        <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
+          <div className="w-full">
+            <BaseInputField
+              label={t("IBAN number")}
+              placeholder="27*********************"
+              name="iban"
+              type="IBAN"
+              images={images}
+              required
+              maxNum="29"
             />
           </div>
         </div>

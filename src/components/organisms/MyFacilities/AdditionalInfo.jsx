@@ -54,32 +54,9 @@ function AdditionalInfo() {
             required
           />
         </div>
-        <div className="w-full md:w-1/2">
-          <BaseInputField
-            label={t("account name")}
-            placeholder="احمد محمد"
-            name="account_name"
-            images={images}
-            required
-          />
-        </div>
+       
       </div>
-      <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
-        <div className="w-full md:w-1/2">
-          <BaseInputField
-            label={t("IBAN number")}
-            placeholder="27*********************"
-            name="iban"
-            type="IBAN"
-            images={images}
-            required
-            maxNum="29"
-          />
-        </div>
-        <div className="w-full md:w-1/2">
-          <SelectBank name="bank_id" required={true} label={t("Chose bank")} />
-        </div>
-      </div>
+    
       {/* <BaseInputMask/> */}
       <ModalComp
         open={show}
