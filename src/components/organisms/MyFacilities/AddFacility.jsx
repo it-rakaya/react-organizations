@@ -25,7 +25,6 @@ export default function AddFacility() {
           </Typography>
         </div>
         <h1 className="flex items-center col-span-12 gap-1 pt-5 pb-3 text-xl font-medium dark:text-white">
-          {/* <Icon path={mdiAccountBoxOutline} size={1} /> */}
           {t("Commercial registry data")}:
         </h1>
 

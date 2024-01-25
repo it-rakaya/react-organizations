@@ -1,12 +1,21 @@
 /* eslint-disable react/prop-types */
 import { t } from "i18next";
 import { convertArabicToEnglish } from "../../../utils/helpers";
+import { Divider } from "@mui/material";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 
 function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
+  const isRTL = useIsRTL();
+
   return (
     <div className={parentSection}>
       <div className="block col-span-2 md:hidden">
-        <h2 className="text-black dark:text-white" >{t("Facility Data")}</h2>
+        <h2 className="text-black dark:text-white">{t("Facility Data")}</h2>
+      </div>
+      <div className="col-span-2">
+        <h1 className="flex items-center col-span-12 gap-1 pt-5 pb-3 text-xl font-medium dark:text-white">
+          {t("Commercial registry data")}:
+        </h1>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
@@ -53,6 +62,15 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
           {data?.end_date} / {convertArabicToEnglish(data?.end_date_hj)}
         </p>
       </div>
+      <div className="col-span-2 pt-10 pb-8">
+        <Divider />
+      </div>
+
+      <div className="col-span-2">
+        <h1 className="flex items-center col-span-12 gap-1 pt-2 pb-3 text-xl font-medium dark:text-white">
+          {t("Commercial activity license data")}:
+        </h1>
+      </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {t("license")}
@@ -74,6 +92,39 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
           {t("capacity")}
         </p>
         <p className="mt-1 dark:text-white">{data?.capacity}</p>
+      </div>
+      <div className="col-span-2 pt-10 pb-8">
+        <Divider />
+      </div>
+
+      <div className="col-span-2">
+        <h1 className="flex items-center col-span-12 gap-1 pt-2 pb-3 text-xl font-medium dark:text-white">
+          {t("Bank data of the facility")}:
+        </h1>
+      </div>
+      <div className={childSection}>
+        <p className="font-medium " style={{ color: colorHead }}>
+          {t("account name")}
+        </p>
+        <p className="mt-1 dark:text-white">
+          {data?.bank_information?.account_name}
+        </p>
+      </div>
+      <div className={childSection}>
+        <p className="font-medium " style={{ color: colorHead }}>
+          {t("IBAN number")}
+        </p>
+        <p className="mt-1 dark:text-white">{data?.bank_information?.iban}</p>
+      </div>
+      <div className={childSection}>
+        <p className="font-medium " style={{ color: colorHead }}>
+          {t("Bank name")}
+        </p>
+        <p className="mt-1 dark:text-white">
+          {isRTL
+            ? data?.bank_information?.bank?.name_ar
+            : data?.bank_information?.bank?.name_en}
+        </p>
       </div>
     </div>
   );

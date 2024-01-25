@@ -26,22 +26,12 @@ export default function MyEmployees() {
     endpoint: `facility-employees`,
     queryKey: ["facility_employees"],
   });
+  console.log("🚀 ~ MyEmployees ~ employees:", employees);
 
   const [openAddEmployee, setOpenAddEmployee] = useState(false);
   const [employeeId, setEmployeeId] = useState();
   const [openModelDeleteEmployee, setModelDeleteEMployee] = useState(false);
   const theme = useTheme();
-
-  const LinkStyled = styled(Link)(({ theme }) => ({
-    fontWeight: 600,
-    fontSize: "1rem",
-    cursor: "pointer",
-    textDecoration: "none",
-    color: theme.palette.text.secondary,
-    "&:hover": {
-      color: theme.palette.primary.main,
-    },
-  }));
 
   const columns = [
     {
@@ -52,7 +42,7 @@ export default function MyEmployees() {
       cellClassName: "!bg-transparent",
       headerAlign: "center",
       renderCell: ({ row }) => {
-        const { name } = row;
+        const { name, attachmentUrl } = row;
         return (
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box
@@ -63,12 +53,13 @@ export default function MyEmployees() {
                 // flexDirection: "column",
               }}
             >
-              <Icon path={mdiAccountOutline} size={1} />
-              <p
-                className="text-black dark:text-white"
-              >
-                {name}
-              </p>
+              <div className="flex items-center gap-3">
+                <img
+                  src={attachmentUrl[1].value}
+                  className="w-[40px]  h-[40px] rounded-full"
+                />
+                <p className="text-black dark:text-white">{name}</p>
+              </div>
             </Box>
           </Box>
         );
@@ -199,7 +190,7 @@ export default function MyEmployees() {
     {
       flex: 0.15,
       minWidth: 100,
-      headerName:t("actions"),
+      headerName: t("actions"),
       field: t("actions"),
       cellClassName: "!flex !px-0 !justify-center !items-center",
       headerAlign: "center",
