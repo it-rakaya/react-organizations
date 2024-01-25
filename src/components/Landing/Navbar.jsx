@@ -9,6 +9,7 @@ import { t } from "i18next";
 import Typography from "@mui/material/Typography";
 import { useSettings } from "../../hooks/useSettings";
 import { useEffect } from "react";
+import ModeToggler from "../organisms/Navbar/ModeToggler";
 
 function Navbar({ hidden }) {
   const { i18n } = useTranslation();
@@ -83,6 +84,7 @@ function Navbar({ hidden }) {
             {t("landing.contactUs")}
           </a>
         </Typography>
+        <ModeToggler settings={settings} saveSettings={saveSettings} />
         <button
           onClick={handleLanguage}
           //
