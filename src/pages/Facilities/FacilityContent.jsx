@@ -136,7 +136,7 @@ function FacilityContent({
       <CardContent className="h-full !px-0 pt-0 bg-transparent  ">
         <Formik
           initialValues={initialFormValues}
-          // validationSchema={validationSchema(activeStep)}
+          validationSchema={validationSchema(activeStep)}
           onSubmit={() => {}}
         >
           {() => (
