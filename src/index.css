@@ -27,6 +27,9 @@ body {
   /* overflow-y: hidden; */
 
 }
+.dark body{
+background-color: #2c3639 !important;
+}
 
 * {
   scrollbar-width: thin;

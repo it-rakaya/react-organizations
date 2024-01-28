@@ -20,9 +20,8 @@ export const Root = ({ props }) => {
   const [collapsed, setCollapsed] = React.useState(false);
   const [toggled, setToggled] = React.useState(false);
   const token = Cookies.get("token");
-  const { user , logout } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
-
 
   useEffect(() => {
     setShowOverlay(openSide);
@@ -72,7 +71,7 @@ export const Root = ({ props }) => {
   useEffect(() => {
     if (!token) {
       navigate("/");
-      logout()
+      logout();
     }
   }, [navigate, token]);
 
@@ -80,7 +79,6 @@ export const Root = ({ props }) => {
   // const isFacilityRoute = location.pathname.startsWith(
   //   "/dashboard/facilities/create-facility"
   // );
-
 
   if (token) {
     return (

@@ -16,8 +16,12 @@ const App = () => {
   }, []);
   useEffect(() => {
     const darkModeSetting = localStorage.getItem("darkMode");
+    console.log("🚀 ~ useEffect ~ darkModeSetting:", darkModeSetting)
     if (darkModeSetting === "true") {
       document.documentElement.classList.add("dark");
+    }else{
+      document.documentElement.classList.remove("dark");
+
     }
   }, []);
 

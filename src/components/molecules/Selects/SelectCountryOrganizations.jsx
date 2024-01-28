@@ -22,11 +22,12 @@ export default function SelectCountryOrganizations({
 }) {
   const { setFieldValue, values, handleBlur } = useFormikContext();
   const { orgData } = UseOrg();
+  console.log("🚀 ~ orgData:", orgData)
 
   const { data: countries } = useFetch({
     endpoint: `order-countries?organization_id=${orgData?.id}`,
     queryKey: [`order-countries?organization_id=${orgData?.id}`],
-    enabled:!!orgData?.id
+    enabled:!!orgData?.organizations?.id
   });
   const options = countries?.country_organization.map((item) => ({
     value: item.country_id,
