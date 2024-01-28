@@ -58,7 +58,7 @@ export default function OrderMainData({ setShow, show, isPending }) {
               </div>
               <div className="mb-3">
                 <SelectCountryOrganizations
-                  label={t("country")}
+                  label={t("Country")}
                   name="country_ids"
                 />
               </div>
