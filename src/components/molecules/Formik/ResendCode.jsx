@@ -52,8 +52,8 @@ const ResendCode = ({
         </button>
 
         <span
-          className={`text-center font-bold ${
-            !available ? "text-black dark:text-white" : "text-mainColorLand"
+          className={`text-center font-bold !text-black dark:!text-white ${
+            !available ? "!text-black dark:!text-white" : "text-mainColorLand"
           }`}
         >
           {`${Math.floor(remainingTime / 60)}:${

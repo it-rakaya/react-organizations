@@ -38,6 +38,7 @@ function UploadDoc({
   filename = filename?.replace(/[0-9().-]/g, "");
   filename = filename?.replace(/_/g, " ")?.slice(0, -4);
   const [openModal, setOpenModal] = useState(false);
+  const [isLargeFile , setIsLargeFile] = useState(false)
 
   const updateImage = {
     value: value,
@@ -53,18 +54,28 @@ function UploadDoc({
   );
   const modifyAccept = accept?.map((item) => `.${item}`);
   const textAccept = accept?.map((item) => ` -${item} `);
-  const isLargeFile = files?.length && files[0]?.size > 5242880;
+  // const isLargeFile = files?.length && files[0]?.size > 5242880;
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     const isLarge = selectedFile?.size > 5242880;
+    console.log("🚀 ~ handleFileChange ~ isLarge:", isLarge);
+    setIsLargeFile(isLarge)
+    const isFileFormatValid = modifyAccept.includes(
+      `.${selectedFile?.type.split("/")[1]}`
+    );
+
     if (selectedFile) {
-      setFiles([selectedFile]);
-      setFieldValue(
-        dynamic ? `answers${name}` : name,
-        isLarge ? null : selectedFile
-      );
+      setInvalidFormat(!isFileFormatValid);
+
+      if (isFileFormatValid && !isLarge) {
+        setFiles([selectedFile]);
+        setFieldValue(dynamic ? `answers${name}` : name, selectedFile);
+      } else {
+        setFiles([]);
+        setFieldValue(name, null);
+      }
     }
   };
 
@@ -97,12 +108,14 @@ function UploadDoc({
           className="absolute w-full top-1/2 left-1/2"
           style={{ transform: `translate(-50%, -50%)` }}
         >
-          {shouldShowUploadIcon ? (
+          {shouldShowUploadIcon && !invalidFormat && !isLargeFile  ? (
             <div className="flex flex-col items-center justify-center ">
               <UploadImageIcon className="w-[35px]" />
             </div>
-          ) : invalidFormat ? (
-            <TermsConditionIcon className={"w-[35px] !fill-[#F0A44B]"} />
+          ) : invalidFormat || isLargeFile ? (
+            <div className="flex flex-col items-center justify-center ">
+              <TermsConditionIcon className={"w-[35px] "} />
+            </div>
           ) : (
             <div className="rounded-md">
               {!isLargeFile ? (
@@ -224,8 +237,8 @@ function UploadDoc({
           <div className="flex items-center p-2">
             <Icon
               path={mdiInformationOutline}
-              size={0.7}
-              className="text-[#80b3f0]"
+              size={0.8}
+              className="!text-[#80b3f0]"
             />
             <p className="text-[12px] px-1 py-0 text-[#80b3f0]">
               {t("Please upload a file no larger than 5MB")}
