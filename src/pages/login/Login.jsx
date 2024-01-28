@@ -65,7 +65,7 @@ const Login = () => {
   if (!token) {
     return (
       <div className="">
-        <div className="absolute rtl:left-0 ltr:right-0 z-[999999]">
+        <div className="absolute rtl:left-0 ltr:right-0 z-[99]">
           <Navbar hidden={true} />
         </div>
 
