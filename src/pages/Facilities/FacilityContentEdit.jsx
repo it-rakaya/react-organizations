@@ -18,10 +18,12 @@ function FacilityContentEdit({
   const {
     data: DetailsFacilities,
     isRefetching,
+    isSuccess
   } = useFetch({
     endpoint: `facilities/${idFacility}`,
     queryKey: ["facilities_update"],
   });
+    console.log("🚀 ~ isRefetching:", isRefetching)
   const initialFormValues = {
     name: DetailsFacilities?.facility ? DetailsFacilities?.facility?.name : "",
     registration_number: DetailsFacilities?.facility
@@ -168,8 +170,8 @@ function FacilityContentEdit({
         return Yup.object({});
     }
   };
-  if (!isRefetching)
-    return (
+  if ( !isSuccess || isRefetching) return <Loading/>  
+   return (
       <Card
         sx={{
           mt: 4,
@@ -207,7 +209,7 @@ function FacilityContentEdit({
         </CardContent>
       </Card>
     );
-  else return <Loading />;
+
 }
 
 export default FacilityContentEdit;

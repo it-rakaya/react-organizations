@@ -22,7 +22,6 @@ const ModeToggler = (props) => {
       handleModeChange("dark");
       document.body.classList.add("dark");
       document.documentElement.classList.add("dark");
-
     } else {
       localStorage.setItem("darkMode", "false");
       handleModeChange("light");
@@ -30,8 +29,6 @@ const ModeToggler = (props) => {
       document.documentElement.classList.remove("dark");
     }
   };
-
-
 
   useEffect(() => {
     const savedMode = localStorage.getItem("darkMode");
