@@ -227,7 +227,7 @@ function UploadDoc({
           <div className="w-full">
             <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
               <PreviewPdf item={files[0]} />
-              <p>
+              <p className="text-black  dark:text-white"> 
                 {filename.length > 20 ? filename.slice(0, 30) : filename.length}
               </p>
             </div>

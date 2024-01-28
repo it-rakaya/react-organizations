@@ -5,6 +5,7 @@ import { t } from "i18next";
 import * as Yup from "yup";
 import MainContent from "./MainContent";
 import useFetch from "../../hooks/useFetch";
+import Loading from "../../components/molecules/Loading";
 
 function FacilityContentEdit({
   activeStep,
@@ -14,11 +15,13 @@ function FacilityContentEdit({
   setActiveStep,
   idFacility,
 }) {
-  const { data: DetailsFacilities, isSuccess } = useFetch({
+  const {
+    data: DetailsFacilities,
+    isRefetching,
+  } = useFetch({
     endpoint: `facilities/${idFacility}`,
     queryKey: ["facilities_update"],
   });
-  console.log(DetailsFacilities)
   const initialFormValues = {
     name: DetailsFacilities?.facility ? DetailsFacilities?.facility?.name : "",
     registration_number: DetailsFacilities?.facility
@@ -82,17 +85,16 @@ function FacilityContentEdit({
     capacity: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.capacity
       : "",
-      account_name: DetailsFacilities?.facility?.bank_information
+    account_name: DetailsFacilities?.facility?.bank_information
       ? DetailsFacilities?.facility?.bank_information?.account_name
       : "",
-      bank_id: DetailsFacilities?.facility?.bank_information
+    bank_id: DetailsFacilities?.facility?.bank_information
       ? DetailsFacilities?.facility?.bank_information?.bank_id
       : "",
-      iban: DetailsFacilities?.facility?.bank_information
+    iban: DetailsFacilities?.facility?.bank_information
       ? DetailsFacilities?.facility?.bank_information?.iban
       : "",
   };
-
   const validationSchema = (step) => {
     switch (step) {
       case 0:
@@ -166,7 +168,7 @@ function FacilityContentEdit({
         return Yup.object({});
     }
   };
-  if (isSuccess)
+  if (!isRefetching)
     return (
       <Card
         sx={{
@@ -205,6 +207,7 @@ function FacilityContentEdit({
         </CardContent>
       </Card>
     );
+  else return <Loading />;
 }
 
 export default FacilityContentEdit;
