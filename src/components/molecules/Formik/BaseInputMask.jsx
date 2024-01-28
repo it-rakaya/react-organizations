@@ -2,20 +2,34 @@
 import { useFormikContext } from "formik";
 import { forwardRef, useState } from "react";
 
-const BaseInputMask = forwardRef((props, name) => {
+const BaseInputMask = forwardRef(() => {
   const { setFieldValue, values, touched, errors, handleBlur } =
-  useFormikContext();
-  console.log("🚀 ~ BaseInputMask ~ values:", values)
+    useFormikContext();
   const [inputValue, setInputValue] = useState(values?.iban);
   const handleInputChange = (event) => {
-    const value = event.target.value;
-    const sanitizedValue = value.replace(/[^A-Za-z0-9]/g, "");
-    if (sanitizedValue.length <= 24) {
-      const formattedValue = sanitizedValue.replace(/(.{4})/g, "$1 ");
-      setInputValue(formattedValue);
-      setFieldValue("iban", formattedValue);
+    const oldValue = inputValue.replace(/ /g, "");
+    const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, "");
+
+    if (oldValue.length > newValue.length) {
+      // User is deleting
+      const isDeletingSpace = inputValue[inputValue.length - 1] === " ";
+      if (isDeletingSpace) {
+        setInputValue(formatIban(newValue));
+        setFieldValue("iban", formatIban(newValue));
+        return;
+      }
+    }
+
+    if (newValue.length <= 24) {
+      setInputValue(formatIban(newValue));
+      setFieldValue("iban", formatIban(newValue));
     }
   };
+
+  const formatIban = (value) => {
+    return value.replace(/(.{4})/g, "$1 ").trim();
+  };
+
   return (
     <div className="w-full">
       <input
