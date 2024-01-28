@@ -119,6 +119,7 @@ export default function BaseInputField({
             sx={{ background: "white", borderRadius: "7px" }}
             type={type}
             onBlur={handleBlur}
+            
             InputProps={
               type === "custom"
                 ? {

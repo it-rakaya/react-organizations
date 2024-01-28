@@ -812,7 +812,7 @@ input:-webkit-autofill:active {
 }
 
 .dark ::placeholder {
-  color: #6d7476;
+  color: white !important;
 }
 
 .dark .rtl-1g0ciz2-singleValue,
@@ -824,9 +824,6 @@ input:-webkit-autofill:active {
   display: none !important;
 }
 
-/* .dark ::placeholder{
-  color: white  !important;
-} */
 
 .footer_shadow {
   box-shadow: 0px 2px 10px 0px rgba(76, 78, 100, 0.22);
@@ -882,22 +879,26 @@ input:-webkit-autofill:active {
 
 .dark input:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: white;
+  color: white !important;
 }
 
 .dark input::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: white;
+  color: white !important;
 }
 
 .dark input:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: white;
+  color: white !important;
 }
 
 .dark input::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: white;
+  color: white !important;
+}
+.dark input::placeholder {
+  /* Microsoft Edge */
+  color: white !important;
 }
 
 .dark input:-webkit-autofill,
@@ -908,12 +909,17 @@ input:-webkit-autofill:active {
 }
 
 .dark .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation6.MuiCard-root,
-.dark .MuiDataGrid-overlay ,
+.dark .MuiDataGrid-overlay,
 .dark .MuiDataGrid-columnHeaders.MuiDataGrid-withBorderColor,
 .dark .MuiDataGrid-footerContainer.MuiDataGrid-withBorderColor,
-.dark .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.MuiMenu-paper.MuiMenu-paper
-{
-  background-color: #313B3E ;
-  border-color:#2c3639 !important ;
+.dark .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.MuiMenu-paper.MuiMenu-paper {
+  background-color: #313B3E;
+  border-color: #2c3639 !important;
   box-shadow: 0 0 10px -11px black;
+}
+.navbar-content-container{
+  /* background-color: #313B3E;
+  box-shadow: 0 0 10px -11px black; */
+
+
 }

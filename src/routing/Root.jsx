@@ -123,10 +123,11 @@ export const Root = ({ props }) => {
           }`}
         >
           <VerticalLayoutWrapper className="">
-            <MainContentWrapper className="layout-content-wrapper">
+            <MainContentWrapper className="layout-content-wrapper ">
               <LayoutAppBar
                 toggleNavVisibility={toggleNavVisibility}
                 settings={settings}
+                
                 appBarContent={
                   <AppBarContent
                     settings={settings}
@@ -141,7 +142,7 @@ export const Root = ({ props }) => {
                 }
               />
               <ContentWrapper
-                className="flex flex-col justify-between !pb-1 layout-page-content  md:max-h-[91vh] overflow-scroll"
+                className="flex flex-col justify-between !pb-1 layout-page-content  md:max-h-[91vh] overflow-scroll "
                 sx={{
                   ...(contentWidth === "boxed" && {
                     mx: "auto",

@@ -18,7 +18,7 @@ const AppBarContent = (props) => {
       }}
     >
       <Box
-        className=" actions-left"
+        className=" actions-left dark:bg-"
         sx={{ mr: 2, display: "flex", alignItems: "center" }}
       >
         <div className="block md:hidden" onClick={() => setToggled(!toggled)}>
