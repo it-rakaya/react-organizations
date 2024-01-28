@@ -41,7 +41,7 @@ const BaseInputMask = forwardRef(() => {
         onBlur={handleBlur}
         style={{
           borderColor: !!touched.iban && !!errors.iban ? "red" : "",
-          borderRadius: "7px",
+          borderRadius: "9px",
         }}
         className={`"my-3 code p-[18px] w-full focus-visible:!outline-none  dark:!text-white" ${
           !!touched.iban && !!errors.iban && "border-red-500 "

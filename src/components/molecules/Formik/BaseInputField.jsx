@@ -54,7 +54,6 @@ export default function BaseInputField({
     setFieldValue(name, value);
   };
 
-
   return (
     <div>
       {password ? (
@@ -116,10 +115,19 @@ export default function BaseInputField({
             error={touched[name] && !!errors[name]}
             fullWidth
             value={values[name]}
-            sx={{ background: "white", borderRadius: "7px" }}
+            sx={{
+              background: "white",
+              borderRadius: "11px",
+              // border:"1px",
+              borderStyle:"solid",
+              // borderColor:"white",
+              "& .MuiInputBase-input::placeholder": {
+                // Adding this line
+                opacity: 1,
+              },
+            }}
             type={type}
             onBlur={handleBlur}
-            
             InputProps={
               type === "custom"
                 ? {
@@ -137,9 +145,10 @@ export default function BaseInputField({
             name={name}
             style={{
               borderColor: !!touched[name] && !!errors[name] ? "red" : "",
-              borderRadius: "15px",
+              // borderRadius: "10px",
             }}
-            className={`${className} "my-3 code " ${
+            sty
+            className={`${className} dark:border-[1px] border-[#555d64] "my-3 code " ${
               !!touched[name] && !!errors[name] && "border-red-500 "
             }`}
           />

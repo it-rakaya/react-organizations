@@ -54,7 +54,6 @@ export default function SelectCitiesSaudi({
           placeholder={t("Chose city")}
           onChange={(option) => setFieldValue(name, option.value)}
           noOptionsMessage={() => t("Not Found Data")}
-
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
@@ -71,6 +70,10 @@ export default function SelectCitiesSaudi({
               background: "white",
               color: "black",
             }),
+            // placeholder: (baseStyles) => ({
+            //   ...baseStyles,
+            //   color: 'white', // Replace 'desiredColor' with the color you want
+            // }),
           }}
           theme={(theme) => ({
             ...theme,

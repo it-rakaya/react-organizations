@@ -74,7 +74,7 @@ export default function DatePickerComp({
           />
         )}
         <DatePicker
-          className="bg-white dark:bg-dark-primary rounded-[10px] w-full "
+          className="bg-white dark:bg-dark-primary rounded-[10px] w-full dark:border dark:!border-solid dark:!border-1 dark:!border-[#555d64]"
           name={name}
           i18nIsDynamicList={isRTL}
           defaultValue={values[name] ? dayjs(values[name]) : null}
@@ -82,6 +82,14 @@ export default function DatePickerComp({
             cancelButtonLabel: t("cancel"),
             okButtonLabel: t("OK"),
             toolbarTitle: t("Select Date"),
+          }}
+          sx={{
+            background: "white",
+            borderRadius: "10px",
+            "& .MuiInputBase-input::placeholder": {
+              // Adding this line
+              opacity: 1,
+            },
           }}
           onChange={(newValue) => {
             if (values[name] !== undefined) {

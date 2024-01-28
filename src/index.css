@@ -546,24 +546,10 @@ main,
   animation: spinReverse 3s linear infinite;
 }
 
-/* .MuiStepConnector-root.MuiStepConnector-horizontal.MuiStepConnector-alternativeLabel {
-  right: calc(-100% + 20px);
-  left: calc(0px + 20px);
-
-}
-
-.MuiStepLabel-root.MuiStepLabel-horizontal.Mui-disabled.MuiStepLabel-alternativeLabel {
-  justify-content: end;
-  align-items: end;
-}
-.MuiStepLabel-root.MuiStepLabel-horizontal.MuiStepLabel-alternativeLabel{
-  justify-content: start;
-  align-items: start;
 
 
-} */
 .MuiInputBase-input {
-  border-radius: 10px;
+  border-radius: 9px;
 }
 
 .animate-\[spin_2\.5s_linear_infinite\] {
@@ -922,4 +908,8 @@ input:-webkit-autofill:active {
   box-shadow: 0 0 10px -11px black; */
 
 
+}
+
+.dark .react-select__placeholder {
+  color: red !important; /* استبدل باللون المطلوب للوضع الداكن */
 }

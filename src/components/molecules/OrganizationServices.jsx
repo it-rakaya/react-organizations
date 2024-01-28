@@ -54,14 +54,14 @@ export default function OrganizationServices({
                 ...baseStyles,
                 padding: "10px 0",
                 borderRadius: " 8px",
-                borderWidth:"1px",
-                // borderColor:"#555d64",
+                borderWidth: "1px",
+                // borderColor:"#555d64" ,
                 background: "white",
                 margin: "0",
               }),
               option: (baseStyles) => ({
                 ...baseStyles,
-               background:"white" ,
+                background: "white",
                 color: "black",
               }),
             }}
@@ -69,7 +69,7 @@ export default function OrganizationServices({
               ...theme,
               borderRadius: 0,
               colors: {
-                // ...theme.colors,
+                ...theme.colors,
                 primary25: `#eee`,
                 primary: "#eee",
               },
