@@ -20,30 +20,30 @@ function AfterAndBeforeFacility({
   };
 
   const handleNext = () => {
-    const checkErrorsForKeys = (initialCase) =>
-      Object.keys(initialCase).some((key) => values[key] === "" || errors[key]);
+    // const checkErrorsForKeys = (initialCase) =>
+    //   Object.keys(initialCase).some((key) => values[key] === "" || errors[key]);
 
-    // Check for validation errors for the current step
-    const hasValidationErrors =
-      activeStep === 0
-        ? checkErrorsForKeys(initialCase0)
-        : activeStep === 1
-        ? checkErrorsForKeys(initialCase1)
-        : activeStep === 2
-        ? checkErrorsForKeys(initialCase2)
-        : false;
+    // // Check for validation errors for the current step
+    // const hasValidationErrors =
+    //   activeStep === 0
+    //     ? checkErrorsForKeys(initialCase0)
+    //     : activeStep === 1
+    //     ? checkErrorsForKeys(initialCase1)
+    //     : activeStep === 2
+    //     ? checkErrorsForKeys(initialCase2)
+    //     : false;
 
-    // If there are validation errors, handle them (notify, etc.)
-    if (hasValidationErrors) {
-      return;
-    } else {
-      // Proceed to the next step
-      if (activeStep === steps.length - 1) {
-        setOpen(true);
-      } else {
+    // // If there are validation errors, handle them (notify, etc.)
+    // if (hasValidationErrors) {
+    //   return;
+    // } else {
+    //   // Proceed to the next step
+    //   if (activeStep === steps.length - 1) {
+    //     setOpen(true);
+    //   } else {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      }
-    }
+      // }
+    // }
   };
 
   const initialCase0 = {
@@ -155,7 +155,7 @@ function AfterAndBeforeFacility({
         type="button"
         className={"!w-[130px] py-2  px-1 md:py-3 !mt-0 "}
         variant="contained"
-        disabled={isSaveDisabled()}
+        // disabled={isSaveDisabled()}
       >
         {activeStep === steps.length - 1 ? t("Save") : t("Next")}
       </ButtonComp>

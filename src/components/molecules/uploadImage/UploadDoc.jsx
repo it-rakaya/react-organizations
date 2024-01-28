@@ -60,7 +60,6 @@ function UploadDoc({
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     const isLarge = selectedFile?.size > 5242880;
-    console.log("🚀 ~ handleFileChange ~ isLarge:", isLarge);
     setIsLargeFile(isLarge)
     const isFileFormatValid = modifyAccept.includes(
       `.${selectedFile?.type.split("/")[1]}`

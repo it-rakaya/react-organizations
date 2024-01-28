@@ -20,7 +20,6 @@ export default function SelectDistrict({
   images,
 }) {
   const { setFieldValue, values } = useFormikContext();
-  console.log(values?.city_id);
   const { data: district, isLoading } = useFetch({
     endpoint: `saudi-districts`,
     queryKey: [`district`],
@@ -34,6 +33,14 @@ export default function SelectDistrict({
       label: item.name_ar,
       city_id: item.city_id,
     }));
+  const other = district?.districts.find((option) => option?.name_en == "Other");
+  if (!filteredOptions || filteredOptions.length === 0) {
+    filteredOptions?.push({
+      value: other?.id,
+      label: other?.name_ar,
+      city_id: values.city_id,
+    });
+  }
 
   const selectedDistrict = filteredOptions?.find(
     (option) => option?.value == values[name]
