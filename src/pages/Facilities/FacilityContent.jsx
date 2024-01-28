@@ -131,11 +131,6 @@ function FacilityContent({
         height: {  md: "calc(100vh - 280px)" },
         overflowY: "scroll",
       }}
-      // md={{
-      //   mt: 4,
-      //   height: "calc(100vh - 280px)",
-      //   overflowY: "scroll",
-      // }}
       className="!bg-transparent !shadow-none scroll_main"
     >
       <CardContent className="h-full !px-0 pt-0 bg-transparent  ">
@@ -153,7 +148,6 @@ function FacilityContent({
                   checked={checked}
                   setChecked={setChecked}
                   setActiveStep={setActiveStep}
-                  // setFormValues={setFormValues}
                 />
               </Form>
             </>
