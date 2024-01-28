@@ -116,7 +116,7 @@ export default function BaseInputField({
             error={touched[name] && !!errors[name]}
             fullWidth
             value={values[name]}
-            sx={{ background: "white", borderRadius: "10px" }}
+            sx={{ background: "#555d64", borderRadius: "7px" }}
             type={type}
             onBlur={handleBlur}
             InputProps={
