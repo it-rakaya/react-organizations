@@ -89,7 +89,7 @@ const Login = () => {
                 overflowY: "scroll",
                 overflowX: "hidden",
               }}
-              className="scroll_main"
+              className="scroll_main dark:bg-darkModeColor"
             >
               <Box
                 sx={{

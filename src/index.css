@@ -27,14 +27,16 @@ body {
   /* overflow-y: hidden; */
 
 }
-.dark body{
-background-color: #2c3639 !important;
+
+.dark body {
+  background-color: #2c3639 !important;
 }
 
 * {
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
 }
+
 /* Hide scrollbar on all elements */
 ::-webkit-scrollbar {
   width: 0.4rem;
@@ -49,6 +51,7 @@ background-color: #2c3639 !important;
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 /* For Safari */
 body::-webkit-scrollbar {
   width: 0.4rem;
@@ -648,7 +651,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
-  
+
 }
 
 .dark input:-webkit-autofill,
@@ -872,24 +875,45 @@ input:-webkit-autofill:active {
   color: white;
 }
 
-.dark input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+.dark input::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
   color: white;
 }
-.dark input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+
+.dark input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
   color: white;
 }
-.dark input::-moz-placeholder { /* Mozilla Firefox 19+ */
+
+.dark input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
   color: white;
 }
-.dark input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+
+.dark input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
   color: white;
 }
-.dark input::-ms-input-placeholder { /* Microsoft Edge */
+
+.dark input::-ms-input-placeholder {
+  /* Microsoft Edge */
   color: white;
 }
+
 .dark input:-webkit-autofill,
-.dark input:-webkit-autofill:hover, 
-.dark input:-webkit-autofill:focus, 
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
 .dark input:-webkit-autofill:active {
-    -webkit-text-fill-color:white !important;
+  -webkit-text-fill-color: white !important;
+}
+
+.dark .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation6.MuiCard-root,
+.dark .MuiDataGrid-overlay ,
+.dark .MuiDataGrid-columnHeaders.MuiDataGrid-withBorderColor,
+.dark .MuiDataGrid-footerContainer.MuiDataGrid-withBorderColor,
+.dark .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.MuiMenu-paper.MuiMenu-paper
+{
+  background-color: #313B3E ;
+  border-color:#2c3639 !important ;
+  box-shadow: 0 0 10px -11px black;
 }

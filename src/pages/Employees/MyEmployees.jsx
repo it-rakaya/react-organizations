@@ -54,10 +54,10 @@ export default function MyEmployees() {
             >
               <div className="flex items-center gap-3">
                 <img
-                  src={attachmentUrl[1].value}
+                  src={attachmentUrl[1]?.value}
                   className="w-[40px]  h-[40px] rounded-full"
                 />
-                <p className="text-black dark:text-white">{name.length > 30 ? `${name.slice(0,20)}...` : name}</p>
+                <p className="text-black dark:text-white">{name?.length > 30 ? `${name?.slice(0,20)}...` : name}</p>
               </div>
             </Box>
           </Box>

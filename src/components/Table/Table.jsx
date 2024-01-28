@@ -67,12 +67,15 @@ const Table = ({
             disableColumnMenu={true}
             i18nIsDynamicList={isRTL}
             localeText={customLocaleText}
+            // className="dark:!bg-[#2c3639]"
+            class
             sx={{
               "& .MuiDataGrid-columnHeaders": {
                 borderRadius: 0,
                 width: "100%",
               },
             }}
+            
           />
         </Card>
       </Grid>
