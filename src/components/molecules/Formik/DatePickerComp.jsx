@@ -11,9 +11,11 @@ import { convertArabicToEnglish } from "../../../utils/helpers";
 import CardInfo from "../CardInfo";
 import Label from "../Label";
 import { FormikError } from "./FormikError";
-import { t } from "i18next";
+import i18next, { t } from "i18next";
 import { useIsRTL } from "../../../hooks/useIsRTL";
-
+import "dayjs/locale/ar";
+import "dayjs/locale/en";
+import { useTranslation } from "react-i18next";
 export default function DatePickerComp({
   name,
   name_hj,
@@ -24,12 +26,15 @@ export default function DatePickerComp({
   setIndex,
   index,
   messageInfo,
-  images
+  images,
 }) {
   const { setFieldValue, values } = useFormikContext();
   const [valueGregorian, setValueGregorian] = useState();
   const [valueHijri, setValueHijri] = useState(values[name_hj]);
-  const isRTL = useIsRTL()
+  const isRTL = useIsRTL();
+  const locale = isRTL ? "ar" : "en";
+  dayjs.locale(locale);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (valueGregorian) {
@@ -51,7 +56,7 @@ export default function DatePickerComp({
   }, [name_hj, setFieldValue, valueGregorian]);
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider dateAdapter={AdapterDayjs} locale={locale}>
       <div className="w-full">
         <Label>
           {label}
@@ -60,20 +65,24 @@ export default function DatePickerComp({
           </span>
         </Label>
         {showIcon && (
-            <CardInfo
-              index={index}
-              setIndex={setIndex}
-              messageInfo={messageInfo}
-              setShow={setShow}
-              images={images}
-            />
-          )}
+          <CardInfo
+            index={index}
+            setIndex={setIndex}
+            messageInfo={messageInfo}
+            setShow={setShow}
+            images={images}
+          />
+        )}
         <DatePicker
           className="bg-white dark:bg-dark-primary rounded-[10px] w-full "
           name={name}
-          
           i18nIsDynamicList={isRTL}
           defaultValue={values[name] ? dayjs(values[name]) : null}
+          localeText={{
+            cancelButtonLabel: t("cancel"),
+            okButtonLabel: t("OK"),
+            toolbarTitle: t("Select Date"),
+          }}
           onChange={(newValue) => {
             if (values[name] !== undefined) {
               const newDate = dayjs(newValue);
