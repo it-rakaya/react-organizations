@@ -116,7 +116,7 @@ export default function BaseInputField({
             error={touched[name] && !!errors[name]}
             fullWidth
             value={values[name]}
-            sx={{ background: "#555d64", borderRadius: "7px" }}
+            sx={{ background: "white", borderRadius: "7px" }}
             type={type}
             onBlur={handleBlur}
             InputProps={
@@ -136,7 +136,7 @@ export default function BaseInputField({
             name={name}
             style={{
               borderColor: !!touched[name] && !!errors[name] ? "red" : "",
-              borderRadius: "10px",
+              borderRadius: "15px",
             }}
             className={`${className} "my-3 code " ${
               !!touched[name] && !!errors[name] && "border-red-500 "
