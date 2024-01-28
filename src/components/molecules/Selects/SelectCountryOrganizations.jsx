@@ -2,12 +2,13 @@
 import { useFormikContext } from "formik";
 import { t } from "i18next";
 import Select from "react-select";
-import useFetch from "../../hooks/useFetch";
-import CardInfo from "./CardInfo";
-import { FormikError } from "./Formik/FormikError";
-import Label from "./Label";
+import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
+import useFetch from "../../../hooks/useFetch";
+import Label from "../Label";
+import CardInfo from "../CardInfo";
+import { FormikError } from "../Formik/FormikError";
 
-export default function SelectCountry({
+export default function SelectCountryOrganizations({
   name,
   label,
   className,
@@ -17,17 +18,19 @@ export default function SelectCountry({
   setIndex,
   index,
   images,
-  setShow
+  setShow,
 }) {
   const { setFieldValue, values, handleBlur } = useFormikContext();
+  const { orgData } = UseOrg();
 
   const { data: countries } = useFetch({
-    endpoint: `countries`,
-    queryKey: ["countries"],
+    endpoint: `order-countries?organization_id=${orgData?.id}`,
+    queryKey: [`order-countries?organization_id=${orgData?.id}`],
+    enabled:!!orgData?.id
   });
-  const options = countries?.countries.map((item) => ({
-    value: item.id,
-    label: item.name_ar,
+  const options = countries?.country_organization.map((item) => ({
+    value: item.country_id,
+    label: item.country_name,
   }));
 
   const selectedCountry = options?.find(
@@ -57,7 +60,13 @@ export default function SelectCountry({
           placeholder={t("Chose Country")}
           noOptionsMessage={() => t("Not Found Data")}
           onBlur={handleBlur}
-          onChange={(option) => setFieldValue(name, option.value)}
+          isMulti
+          onChange={(option) => {
+            setFieldValue(
+              name,
+              option.map((item) => item.value)
+            );
+          }}
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
