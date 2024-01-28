@@ -645,6 +645,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
+  
 }
 
 .dark input:-webkit-autofill,
@@ -652,6 +653,7 @@ input:-webkit-autofill:active {
 .dark input:-webkit-autofill:focus,
 .dark input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px #2c3639 inset !important;
+  color: white !important;
 }
 
 .TermsAndCondition span {
@@ -666,9 +668,7 @@ input:-webkit-autofill:active {
   background-color: #313b3e !important;
 }
 
-.content_name_hover {
-  /* display: none; */
-}
+
 
 .info_hover:hover+.content_name_hover {
   display: block;
@@ -883,4 +883,10 @@ input:-webkit-autofill:active {
 }
 .dark input::-ms-input-placeholder { /* Microsoft Edge */
   color: white;
+}
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover, 
+.dark input:-webkit-autofill:focus, 
+.dark input:-webkit-autofill:active {
+    -webkit-text-fill-color:white !important;
 }
