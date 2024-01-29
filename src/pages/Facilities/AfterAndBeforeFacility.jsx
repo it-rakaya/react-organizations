@@ -4,6 +4,7 @@ import { Grid } from "@mui/material";
 import { useFormikContext } from "formik";
 import ButtonComp from "../../components/atoms/buttons/ButtonComp";
 import { t } from "i18next";
+import { useTheme } from "@mui/material/styles";
 
 function AfterAndBeforeFacility({
   activeStep,
@@ -14,6 +15,7 @@ function AfterAndBeforeFacility({
   update,
 }) {
   const { values, errors } = useFormikContext();
+  const theme = useTheme();
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -143,7 +145,7 @@ function AfterAndBeforeFacility({
         disabled={activeStep === 0}
         action={handleBack}
         variant="outlined"
-        className={`!w-[130px] px-1 !text-contained  !mt-0 ${
+        className={`!w-[130px] px-1  !mt-0 ${
           activeStep === 0 ? "!hidden" : "block"
         } `}
       >
