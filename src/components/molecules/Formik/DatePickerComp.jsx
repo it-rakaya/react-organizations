@@ -5,17 +5,16 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs";
+import "dayjs/locale/ar";
+import "dayjs/locale/en";
 import { useFormikContext } from "formik";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 import { convertArabicToEnglish } from "../../../utils/helpers";
 import CardInfo from "../CardInfo";
 import Label from "../Label";
 import { FormikError } from "./FormikError";
-import i18next, { t } from "i18next";
-import { useIsRTL } from "../../../hooks/useIsRTL";
-import "dayjs/locale/ar";
-import "dayjs/locale/en";
-import { useTranslation } from "react-i18next";
 export default function DatePickerComp({
   name,
   name_hj,
@@ -33,7 +32,7 @@ export default function DatePickerComp({
   const [valueHijri, setValueHijri] = useState(values[name_hj]);
   const isRTL = useIsRTL();
   const locale = isRTL ? "ar" : "en";
-  dayjs.locale(locale);
+  dayjs.locale("ar");
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -82,6 +81,7 @@ export default function DatePickerComp({
             cancelButtonLabel: t("cancel"),
             okButtonLabel: t("OK"),
             toolbarTitle: t("Select Date"),
+            
           }}
           sx={{
             background: "white",

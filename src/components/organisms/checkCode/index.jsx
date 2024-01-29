@@ -7,6 +7,7 @@ import { UseOrg } from "../../../context/organization provider/OrganizationProvi
 import { useTheme } from "@mui/material/styles";
 import { t } from "i18next";
 import { useIsRTL } from "../../../hooks/useIsRTL";
+import { hexToRGBA } from "../../../utils/helpers";
 export default function CheckCode({
   number,
   valuesForm,
@@ -18,8 +19,10 @@ export default function CheckCode({
   const [values, setValues] = useState(["", "", "", ""]);
   const [availableResetCode, setAvailableResetCode] = useState(false);
   const [timerStarted, setTimerStarted] = useState(true);
-  const [colorPinInput, setColorPinInput] = useState("rgb(159,150,133)");
   const theme = useTheme();
+  const [colorPinInput, setColorPinInput] = useState(
+    theme?.palette?.primary?.main
+  );
   const [btnBgColor, setBtnBgColor] = useState("transparent");
   const isRTL = useIsRTL();
 
@@ -72,14 +75,14 @@ export default function CheckCode({
                 setValues(values);
                 if (values.join("").length == 4) {
                   setValueOTP(values.join(""));
-                  setColorPinInput("rgb(159,150,133)");
+                  setColorPinInput((theme?.palette?.primary?.main));
                 } else {
                   // setColorPinInput("rgb(220,53,69)");
                 }
               }}
               onComplete={(values) => {
                 if (values.join("").length === 4) {
-                  setColorPinInput("rgb(159,150,133)");
+                  setColorPinInput((theme?.palette?.primary?.main));
                 } else {
                   setColorPinInput("rgb(220,53,69)");
                 }

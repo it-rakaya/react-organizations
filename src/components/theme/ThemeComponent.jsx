@@ -10,7 +10,7 @@ import Direction from './Direction'
 
 const ThemeComponent = props => {
   const { settings, children } = props
-  let theme = createTheme(themeOptions(settings, 'dark'))
+  let theme = createTheme(themeOptions(settings, 'light'))
   if (themeConfig.responsiveFontSizes) {
     theme = responsiveFontSizes(theme)
   }
