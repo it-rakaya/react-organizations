@@ -916,3 +916,6 @@ input:-webkit-autofill:active {
 .dark .MuiInputBase-input{
   color: white;
 }
+.dark input {
+  caret-color: white;
+}
