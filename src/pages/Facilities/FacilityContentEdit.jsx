@@ -23,6 +23,7 @@ function FacilityContentEdit({
     endpoint: `facilities/${idFacility}`,
     queryKey: ["facilities_update"],
   });
+    console.log("🚀 ~ DetailsFacilities:", DetailsFacilities)
   const initialFormValues = {
     name: DetailsFacilities?.facility ? DetailsFacilities?.facility?.name : "",
     registration_number: DetailsFacilities?.facility
@@ -95,6 +96,7 @@ function FacilityContentEdit({
     iban: DetailsFacilities?.facility?.bank_information
       ? DetailsFacilities?.facility?.bank_information?.iban
       : "",
+
   };
   const validationSchema = (step) => {
     switch (step) {
@@ -137,9 +139,6 @@ function FacilityContentEdit({
           street_name: Yup.string()
             .trim()
             .required(t("the street name required")),
-          neighborhood: Yup.string()
-            .trim()
-            .required(t("the neighborhood required")),
           building_number: Yup.string()
             .trim()
             .required(t("tax building number is required"))

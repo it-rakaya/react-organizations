@@ -5,7 +5,12 @@ import { forwardRef, useState } from "react";
 const BaseInputMask = forwardRef(() => {
   const { setFieldValue, values, touched, errors, handleBlur } =
     useFormikContext();
-  const [inputValue, setInputValue] = useState(values?.iban);
+
+    const formatIban = (value) => {
+      return value.replace(/(.{4})/g, "$1 ").trim();
+    };
+    const [inputValue, setInputValue] = useState(formatIban(values?.iban));
+
   const handleInputChange = (event) => {
     const oldValue = inputValue.replace(/ /g, "");
     const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, "");
@@ -24,10 +29,6 @@ const BaseInputMask = forwardRef(() => {
       setInputValue(formatIban(newValue));
       setFieldValue("iban", formatIban(newValue));
     }
-  };
-
-  const formatIban = (value) => {
-    return value.replace(/(.{4})/g, "$1 ").trim();
   };
 
   return (

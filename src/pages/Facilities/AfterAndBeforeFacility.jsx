@@ -5,6 +5,7 @@ import { useFormikContext } from "formik";
 import ButtonComp from "../../components/atoms/buttons/ButtonComp";
 import { t } from "i18next";
 import { useTheme } from "@mui/material/styles";
+import { notify } from "../../utils/toast";
 
 function AfterAndBeforeFacility({
   activeStep,
@@ -15,10 +16,22 @@ function AfterAndBeforeFacility({
   update,
 }) {
   const { values, errors } = useFormikContext();
+  console.log("🚀 ~ values:", values)
+  console.log("🚀 ~ errors:", errors)
   const theme = useTheme();
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+  const formatErrorMessage = (errors) => {
+    return Object.entries(errors)
+      .map(([key, error]) => `${t(key)}: ${error}`)
+      .join(', ');
+  };
+  
+  const showErrorNotification = () => {
+    const errorMessage = formatErrorMessage(errors);
+    notify("error", errorMessage);
   };
 
   const handleNext = () => {
@@ -37,6 +50,7 @@ function AfterAndBeforeFacility({
 
     // If there are validation errors, handle them (notify, etc.)
     if (hasValidationErrors) {
+      showErrorNotification();
       return;
     } else {
       // Proceed to the next step
@@ -72,13 +86,13 @@ function AfterAndBeforeFacility({
     sub_number: "",
     district_id: "",
     city_id: "",
+    neighborhood:""
   };
   const initialCase2 = {
     employee_number: "",
     chefs_number: "",
     building_number: "",
     kitchen_space: "",
-
   };
   const isSaveDisabled = () => {
     const checkErrorsForKeys = (initialCase) =>
