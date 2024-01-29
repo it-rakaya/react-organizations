@@ -903,13 +903,16 @@ input:-webkit-autofill:active {
   border-color: #2c3639 !important;
   box-shadow: 0 0 10px -11px black;
 }
-.navbar-content-container{
-  /* background-color: #313B3E;
-  box-shadow: 0 0 10px -11px black; */
 
-
+.MuiInputBase-input{
+  color: black;
 }
-
-.dark .react-select__placeholder {
-  color: red !important; /* استبدل باللون المطلوب للوضع الداكن */
+.MuiInputBase-input::placeholder{
+  color: black;
+}
+.dark .MuiInputBase-input::placeholder{
+  color: white;
+}
+.dark .MuiInputBase-input{
+  color: white;
 }

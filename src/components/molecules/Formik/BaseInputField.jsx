@@ -123,6 +123,7 @@ export default function BaseInputField({
               // borderColor:"white",
               "& .MuiInputBase-input::placeholder": {
                 // Adding this line
+                // color:"black",
                 opacity: 1,
               },
             }}
