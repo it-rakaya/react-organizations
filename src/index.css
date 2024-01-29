@@ -908,10 +908,10 @@ input:-webkit-autofill:active {
   color: black;
 }
 .MuiInputBase-input::placeholder{
-  color: black;
+  color: rgb(161, 149, 149);
 }
 .dark .MuiInputBase-input::placeholder{
-  color: white;
+  color: rgb(194, 185, 185);
 }
 .dark .MuiInputBase-input{
   color: white;
