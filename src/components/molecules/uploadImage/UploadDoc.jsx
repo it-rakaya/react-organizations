@@ -207,7 +207,7 @@ function UploadDoc({
                   icon={"prime:file-pdf"}
                   className="text-xl dark:text-white"
                 />
-                <Typography className="text-black file-name dark:text-white">
+                <Typography className="!text-black file-name dark:!text-white">
                   {files[0]?.name.slice(0, 15)}
                 </Typography>
                 {/* <span className="text-sm">اضغط هنا لمشاهدة المرفق</span> */}
@@ -227,7 +227,7 @@ function UploadDoc({
           <div className="w-full">
             <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
               <PreviewPdf item={files[0]} />
-              <p className="text-black  dark:text-white"> 
+              <p className="!text-black  dark:!text-white"> 
                 {filename.length > 20 ? filename.slice(0, 30) : filename.length}
               </p>
             </div>

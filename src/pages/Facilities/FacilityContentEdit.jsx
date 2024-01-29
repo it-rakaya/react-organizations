@@ -122,17 +122,26 @@ function FacilityContentEdit({
           capacity: Yup.string()
             .trim()
             .required(t("the capacity number required"))
-            .length(5, t("the capacity must be equal 5 digits")),
+            .min(1, t("the capacity must be from 1 to 5 numbers"))
+            .max(5, t("the capacity must be from 1 to 5 numbers")),
 
-          license: Yup.string()
+            license: Yup.string()
             .trim()
             .required(t("the license number required"))
-            .length(10, t("the license number must be equal 10 digits")),
+            .min(10, t("the license number must be between 10 and 11 digits"))
+            .max(11, t("the license number must be between 10 and 11 digits")),
           // address: Yup.string().trim().required(t("address is  required")),
           tax_certificate: Yup.string()
             .trim()
-            .required(t("tax certificate is required"))
-            .length(9, t("the tax certificate number must be equal 9 digits")),
+            .required(t("Tax registration number is required"))
+            .length(15, t("the Tax registration number must be equal 15 digits")),
+            account_name: Yup.string()
+            .trim()
+            .required(t("the account name required")),
+            iban: Yup.string()
+            .trim()
+            .required(t("this field is required"))
+            .length(24, t("the IBAN number must be equal 24 digits")),
         });
       case 1:
         return Yup.object({
@@ -146,11 +155,11 @@ function FacilityContentEdit({
           postal_code: Yup.string()
             .trim()
             .required(t("tax postal code is required"))
-            .length(6, t("the tax postal code must be equal 6 digits")),
+            .length(5, t("the tax postal code must be equal 5 digits")),
           sub_number: Yup.string()
             .trim()
             .required(t("tax sub number is required"))
-            .length(6, t("the tax sub number must be equal 6 digits")),
+            .length(4, t("the tax sub number must be equal 4 digits")),
         });
       case 2:
         return Yup.object({
@@ -163,6 +172,7 @@ function FacilityContentEdit({
           kitchen_space: Yup.string()
             .trim()
             .required(t("kitchen space required")),
+          
         });
       default:
         return Yup.object({});

@@ -8,6 +8,7 @@ import useFetch from "../../../hooks/useFetch";
 import { FormikError } from "../Formik/FormikError";
 import Label from "../Label";
 import { useIsRTL } from "../../../hooks/useIsRTL";
+import CardInfo from "../CardInfo";
 
 export default function SelectBank({
   name,
@@ -15,10 +16,14 @@ export default function SelectBank({
   className,
   required,
   showIcon,
+  index,
   messageInfo,
+  setIndex,
+  setShow,
+  images,
 }) {
   const { setFieldValue, values, handleBlur } = useFormikContext();
-  const isRTL = useIsRTL()
+  const isRTL = useIsRTL();
 
   const { data: banks } = useFetch({
     endpoint: `banks`,
@@ -26,7 +31,7 @@ export default function SelectBank({
   });
   const options = banks?.banks.map((item) => ({
     value: item.id,
-    label:isRTL ? item.name_ar : item?.name_en,
+    label: isRTL ? item.name_ar : item?.name_en,
   }));
 
   const selectedCountry = options?.find(
@@ -40,16 +45,13 @@ export default function SelectBank({
         <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
       </Label>
       {showIcon && (
-        <div className="my-1 cursor-pointer w-fit">
-          <div className="flex items-center gap-1">
-            <>
-              <span className="text-[10px] text-[#80b3f0]">
-                {messageInfo ? messageInfo : " لمعرفة المرفق اضغط هنا"}
-              </span>
-              <Icon path={mdiInformationOutline} size={0.7} />
-            </>
-          </div>
-        </div>
+        <CardInfo
+          index={index}
+          setIndex={setIndex}
+          messageInfo={messageInfo}
+          setShow={setShow}
+          images={images}
+        />
       )}
       <div className="mt-[0.5rem]">
         <Select

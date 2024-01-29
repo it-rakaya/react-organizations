@@ -88,7 +88,7 @@ function NationalAddressData() {
             placeholder="568750"
             name="postal_code"
             type="custom"
-            maxNum="6"
+            maxNum="5"
             required
             showIcon
             setShow={setShow}
@@ -104,7 +104,7 @@ function NationalAddressData() {
             placeholder="698547"
             name="sub_number"
             type="custom"
-            maxNum="6"
+            maxNum="4"
             required
             showIcon
             setShow={setShow}

@@ -31,8 +31,8 @@ export default function AddFacility() {
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="relative w-full md:w-1/2">
             <BaseInputField
-              label={t("facility name")}
-              placeholder={t("facility name")}
+              label={t("Facility commercial name")}
+              placeholder={t("Rakaya Kitchen for Catering Services")}
               name="name"
               showIcon
               required
@@ -74,11 +74,11 @@ export default function AddFacility() {
           </div>
           <div className="w-full md:w-1/2">
             <BaseInputField
-              label={t("tax certificate")}
+              label={t("Tax registration number")}
               placeholder="34***********"
               name="tax_certificate"
               type="custom"
-              maxNum="9"
+              maxNum="15"
               required
               showIcon
               index={1}
@@ -124,7 +124,7 @@ export default function AddFacility() {
         </div>
         <h1 className="flex items-center col-span-12 gap-1 pb-3 text-xl font-medium dark:text-white">
           {/* <Icon path={mdiAccountBoxOutline} size={1} /> */}
-          {t("Commercial activity license data")}:
+          {t("Commercial activity license data (my country)")}:
         </h1>
 
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
@@ -134,7 +134,7 @@ export default function AddFacility() {
               placeholder="10********"
               name="license"
               type="custom"
-              maxNum="10"
+              maxNum="11"
               required
               showIcon
               setShow={setShow}
@@ -183,8 +183,9 @@ export default function AddFacility() {
               label={t("account name")}
               placeholder="احمد محمد"
               name="account_name"
-              images={images}
               required
+              showIcon
+              messageInfo={t("Please enter the name of the facility's bank account")}
             />
           </div>
           <div className="w-full md:w-1/2">
@@ -192,6 +193,8 @@ export default function AddFacility() {
               name="bank_id"
               required={true}
               label={t("Chose bank")}
+              showIcon
+              messageInfo={t("Please select the facility's bank")}
             />
           </div>
         </div>
@@ -202,9 +205,10 @@ export default function AddFacility() {
               placeholder="27*********************"
               name="iban"
               type="IBAN"
-              images={images}
               required
               maxNum="29"
+              showIcon
+              messageInfo={t("Please enter the establishment's IBAN number")}
             />
           </div>
         </div>

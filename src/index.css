@@ -884,7 +884,7 @@ input:-webkit-autofill:active {
 }
 .dark input::placeholder {
   /* Microsoft Edge */
-  color: white !important;
+  color: #9e9e9e !important;;
 }
 
 .dark input:-webkit-autofill,
