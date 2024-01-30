@@ -11,6 +11,7 @@ import LoginIcon from "../../components/atoms/icons/LoginIcon";
 import Loading from "../../components/molecules/Loading";
 import LoginForm from "../../components/templates/LoginForm";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import { useIsRTL } from "../../hooks/useIsRTL";
 
 const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -46,16 +47,18 @@ const TypographyStyled = styled(Typography)(({ theme }) => ({
 
 const Login = () => {
   const navigate = useNavigate();
-  const { orgData , isSuccess, isRefetching  } = UseOrg();
+  const { orgData, isSuccess, isRefetching } = UseOrg();
   const theme = useTheme();
   // const { settings } = useSettings();
   const hidden = useMediaQuery(theme.breakpoints.down("md"));
+  const isRTL = useIsRTL();
 
+  const name = isRTL
+    ? orgData?.organizations?.name_ar
+    : orgData?.organizations?.name_en;
   // const { skin } = settings;
   const token = Cookies.get("token");
-  const organizationName = !orgData?.organizations?.name_ar
-    ? t("landing.organizationName")
-    : orgData?.organizations?.name_ar;
+  const organizationName = !name ? t("landing.organizationName") : name;
   useEffect(() => {
     if (token) {
       navigate("/");
@@ -71,11 +74,11 @@ const Login = () => {
 
         <Box className="flex content-right">
           <RightWrapper
-            // sx={
-            //   skin === "bordered" && !hidden
-            //     ? { borderLeft: `1px solid ${theme.palette.divider}` }
-            //     : {}
-            // }
+          // sx={
+          //   skin === "bordered" && !hidden
+          //     ? { borderLeft: `1px solid ${theme.palette.divider}` }
+          //     : {}
+          // }
           >
             <Box
               sx={{

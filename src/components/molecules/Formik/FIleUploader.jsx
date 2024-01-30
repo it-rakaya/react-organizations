@@ -9,7 +9,6 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
 
-import { useFormikContext } from "formik";
 import { useDropzone } from "react-dropzone";
 import { notify } from "../../../utils/toast";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";

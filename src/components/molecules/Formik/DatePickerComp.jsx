@@ -91,7 +91,7 @@ export default function DatePickerComp({
               selected={date}
               // locale="ar-SA"
               placeholderText="MM/DD/YYYY"
-              isClearable
+              // isClearable
               locale={i18n.language}
               // localeText={{
               //   cancelButtonLabel: t("cancel"),

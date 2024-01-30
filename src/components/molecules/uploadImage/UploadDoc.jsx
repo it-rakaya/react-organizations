@@ -38,7 +38,7 @@ function UploadDoc({
   filename = filename?.replace(/[0-9().-]/g, "");
   filename = filename?.replace(/_/g, " ")?.slice(0, -4);
   const [openModal, setOpenModal] = useState(false);
-  const [isLargeFile , setIsLargeFile] = useState(false)
+  const [isLargeFile, setIsLargeFile] = useState(false);
 
   const updateImage = {
     value: value,
@@ -60,7 +60,7 @@ function UploadDoc({
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     const isLarge = selectedFile?.size > 5242880;
-    setIsLargeFile(isLarge)
+    setIsLargeFile(isLarge);
     const isFileFormatValid = modifyAccept.includes(
       `.${selectedFile?.type.split("/")[1]}`
     );
@@ -107,7 +107,7 @@ function UploadDoc({
           className="absolute w-full top-1/2 left-1/2"
           style={{ transform: `translate(-50%, -50%)` }}
         >
-          {shouldShowUploadIcon && !invalidFormat && !isLargeFile  ? (
+          {shouldShowUploadIcon && !invalidFormat && !isLargeFile ? (
             <div className="flex flex-col items-center justify-center ">
               <UploadImageIcon className="w-[35px]" />
             </div>
@@ -179,8 +179,19 @@ function UploadDoc({
           files[0]?.type?.startsWith("image/") &&
           updateImage?.value ? (
           files[0]?.value ? (
-            <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
-              <PreviewImageLink url={files[0]?.value} nameLabel={nameLabel} />
+            <div className="mt-4 flex justify-between items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
+              <PreviewImageLink
+                url={files[0]?.value}
+                nameLabel={nameLabel}
+                setOpenModal={setOpenModal}
+              />
+              <div onClick={() => setOpenModal(true)} className="">
+                <IconifyIcon
+                  icon="mdi:close"
+                  fontSize={20}
+                  className="cursor-pointer dark:text-white"
+                />
+              </div>
             </div>
           ) : (
             <PreviewImage
@@ -227,7 +238,7 @@ function UploadDoc({
           <div className="w-full">
             <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
               <PreviewPdf item={files[0]} />
-              <p className="!text-black  dark:!text-white"> 
+              <p className="!text-black  dark:!text-white">
                 {filename.length > 20 ? filename.slice(0, 30) : filename.length}
               </p>
             </div>
