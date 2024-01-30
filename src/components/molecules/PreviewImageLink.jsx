@@ -12,9 +12,10 @@ export default function PreviewImageLink({
   info,
   messageInfo,
   nameLabel,
+  setOpenModal,
 }) {
   let filename = nameLabel;
-  filename = filename?.replace(/[0-9().]/g, '');
+  filename = filename?.replace(/[0-9().]/g, "");
   filename = filename?.replace(/_/g, " ")?.slice(0, -4);
   return (
     <div className="">
@@ -49,7 +50,12 @@ export default function PreviewImageLink({
                     />
                   )}
                   {filename && (
-                    <Typography className="file-name !text-black dark:!text-white">{filename}</Typography>
+                    <div className="">
+                      <Typography className="file-name !text-black dark:!text-white">
+                        {filename}
+                      </Typography>
+                     
+                    </div>
                   )}
                   {!eyeIcon && (
                     <Typography className="file-name">
