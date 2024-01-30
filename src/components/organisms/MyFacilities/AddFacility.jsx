@@ -181,7 +181,7 @@ export default function AddFacility() {
           <div className="w-full md:w-1/2">
             <BaseInputField
               label={t("account name")}
-              placeholder="احمد محمد"
+              placeholder={t("Rakaya Kitchen for Catering Services")}
               name="account_name"
               required
               showIcon
