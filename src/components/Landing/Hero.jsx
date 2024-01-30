@@ -6,6 +6,7 @@ import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import ModalComp from "../atoms/ModalComp";
 import Signature from "../molecules/Signature";
+import { useIsRTL } from "../../hooks/useIsRTL";
 const Hero = () => {
   const navigate = useNavigate();
   const btnStyles =
@@ -14,9 +15,11 @@ const Hero = () => {
   const { user , token  } = useAuth();
 
   const { orgData } = UseOrg();
+  console.log("🚀 ~ Hero ~ orgData:", orgData)
   const theme = useTheme();
   const language = i18n.language;
   const [open, setOpen] = useState(false);
+  const isRTL = useIsRTL()
 
   return (
     <div className="px-3 lg:w-1/2 2xl:ps-56 2xl:px-80 xl:ps-12">
@@ -31,8 +34,8 @@ const Hero = () => {
           />
           {/* </h1> */}
           <h1 className="text-2xl font-bold 3xl:text-3xl dark:text-white">
-            {!orgData?.organizations?.name_ar && t("landing.organizationName")}
-            {orgData?.organizations?.name_ar}
+            {!orgData?.organizations?.name && t("landing.organizationName")}
+            {isRTL ? orgData?.organizations?.name_ar : orgData?.organizations?.name_en}
           </h1>
         </div>
         {/* description */}

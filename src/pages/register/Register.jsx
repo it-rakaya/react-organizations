@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { t } from "i18next";
 import Loading from "../../components/molecules/Loading";
 import Navbar from "../../components/Landing/Navbar";
+import { useIsRTL } from "../../hooks/useIsRTL";
 
 const RegisterIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -48,9 +49,14 @@ const Register = () => {
   const token = Cookies.get("token");
   const navigate = useNavigate();
   const { orgData, isSuccess, isRefetching } = UseOrg();
-  const organizationName = !orgData?.organizations?.name_ar
+  const isRTL = useIsRTL();
+
+  const name = isRTL
+    ? orgData?.organizations?.name_ar
+    : orgData?.organizations?.name_en;
+  const organizationName = !name
     ? t("landing.organizationName")
-    : orgData?.organizations?.name_ar;
+    : name;
 
   const TypographyStyled = styled(Typography)(({ theme }) => ({
     fontWeight: 600,
