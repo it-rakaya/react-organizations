@@ -37,7 +37,7 @@ const BaseInputMask = forwardRef(() => {
         type="text"
         value={inputValue}
         onChange={handleInputChange}
-        placeholder="27*********************"
+        placeholder="xxxxxxxxxxxxxxxxxxxxxxxx"
         name="iban"
         onBlur={handleBlur}
         style={{

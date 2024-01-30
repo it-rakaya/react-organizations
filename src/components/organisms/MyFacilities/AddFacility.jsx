@@ -46,7 +46,7 @@ export default function AddFacility() {
           <div className="w-full md:w-1/2">
             <BaseInputField
               label={t("registration number")}
-              placeholder="10********"
+              placeholder="xxxxxxxxxx"
               name="registration_number"
               type="custom"
               maxNum="10"
@@ -75,7 +75,7 @@ export default function AddFacility() {
           <div className="w-full md:w-1/2">
             <BaseInputField
               label={t("Tax registration number")}
-              placeholder="34***********"
+              placeholder="xxxxxxxxxxxxxxx"
               name="tax_certificate"
               type="custom"
               maxNum="15"
@@ -131,7 +131,7 @@ export default function AddFacility() {
           <div className="w-full md:col-span-6">
             <BaseInputField
               label={t("license")}
-              placeholder="10********"
+              placeholder="xxxxxxxxxxx"
               name="license"
               type="custom"
               maxNum="11"
@@ -162,7 +162,7 @@ export default function AddFacility() {
           <div className="w-full ">
             <BaseInputField
               label={t("capacity")}
-              placeholder="36541"
+              placeholder="xxxxx"
               name="capacity"
               type="custom"
               maxNum="5"
@@ -202,7 +202,7 @@ export default function AddFacility() {
           <div className="w-full">
             <BaseInputField
               label={t("IBAN number")}
-              placeholder="27*********************"
+              placeholder="xxxxxxxxxxxxxxxxxxxxxxxx"
               name="iban"
               type="IBAN"
               required

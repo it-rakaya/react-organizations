@@ -11,7 +11,9 @@ import { SideBar } from "../components/organisms/Sidebar/Sidebar";
 import { useAuth } from "../context/auth-and-perm/AuthProvider";
 import { useSettings } from "../hooks/useSettings";
 import Footer from "./Footer";
-import { document } from "postcss";
+import Navbar from "../components/Landing/Navbar";
+import { UseOrg } from "../context/organization provider/OrganizationProvider";
+import Loading from "../components/molecules/Loading";
 
 export const Root = ({ props }) => {
   const [openSide, setOpenSide] = useState(false);
@@ -39,7 +41,7 @@ export const Root = ({ props }) => {
   const handleCollapsedSideBar = () => {
     setSidebarCollapsed(!isSidebarCollapsed);
   };
-
+  const { orgData , isSuccess, isRefetching  } = UseOrg();
   const { settings, saveSettings, contentWidth } = useSettings();
 
   const VerticalLayoutWrapper = styled("div")({
@@ -59,13 +61,13 @@ export const Root = ({ props }) => {
   const ContentWrapper = styled("main")(({ theme }) => ({
     flexGrow: 1,
     width: "100%",
-    padding: theme.spacing(6),
+    // padding: theme.spacing(6),
 
     transition: "padding .25s ease-in-out",
-    [theme.breakpoints.down("sm")]: {
-      paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(4),
-    },
+    // [theme.breakpoints.down("sm")]: {
+    //   // paddingLeft: theme.spacing(4),
+    //   // paddingRight: theme.spacing(4),
+    // },
   }));
 
   useEffect(() => {
@@ -79,7 +81,7 @@ export const Root = ({ props }) => {
   // const isFacilityRoute = location.pathname.startsWith(
   //   "/dashboard/facilities/create-facility"
   // );
-
+  if (!isSuccess || isRefetching) return <Loading />;
   if (token) {
     return (
       <div
@@ -122,12 +124,19 @@ export const Root = ({ props }) => {
             collapsed ? "w-full" : user?.is_verified ? "w-full" : "w-full"
           }`}
         >
-          <VerticalLayoutWrapper className="">
-            <MainContentWrapper className="layout-content-wrapper ">
+          <div className={`h-full flex`} >
+            <Box
+              sx={{
+                flexGrow: 1,
+                minWidth: 0,
+                display: "flex",
+                minHeight: "100vh",
+                flexDirection: "column",
+              }}
+            >
               <LayoutAppBar
                 toggleNavVisibility={toggleNavVisibility}
                 settings={settings}
-                
                 appBarContent={
                   <AppBarContent
                     settings={settings}
@@ -136,27 +145,26 @@ export const Root = ({ props }) => {
                     setSidebarCollapsed={setSidebarCollapsed}
                     saveSettings={saveSettings}
                     setToggled={setToggled}
-                    // appBarContent={verticalLayoutProps.appBar?.content}
                     {...props}
                   />
                 }
               />
-              <ContentWrapper
-                className="flex flex-col justify-between !pb-1 layout-page-content  md:max-h-[91vh] overflow-scroll "
-                sx={{
-                  ...(contentWidth === "boxed" && {
-                    mx: "auto",
-                    "@media (min-width:1440px)": { maxWidth: 1440 },
-                    "@media (min-width:1200px)": { maxWidth: "100%" },
-                  }),
-                }}
+              <main
+                // sx={{
+                //   flexGrow: 1,
+                //   width: "100%",
+                //   transition: "padding .25s ease-in-out",
+                //   mx: "auto",
+                //   "@media (min-width:1440px)": { maxWidth: 1440 },
+                //   "@media (min-width:1200px)": { maxWidth: "100%" },
+                // }}
+                className="flex p-6  flex-col justify-between !pb-1 layout-page-content  md:max-h-[91vh] lg:max-w-full overflow-scroll md:max-w-screen-lg flex-grow w-full mx-auto transition-padding"
               >
                 <Outlet />
                 <Footer />
-                {/* {isFacilityRoute ? null : <Footer />} */}
-              </ContentWrapper>
-            </MainContentWrapper>
-          </VerticalLayoutWrapper>
+              </main>
+            </Box>
+          </div>
         </div>
       </div>
     );

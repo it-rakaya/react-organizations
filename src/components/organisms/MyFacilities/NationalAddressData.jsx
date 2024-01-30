@@ -67,7 +67,7 @@ function NationalAddressData() {
         <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("building number")}
-            placeholder="3654"
+            placeholder="xxxx"
             name="building_number"
             type="custom"
             maxNum="4"
@@ -85,7 +85,7 @@ function NationalAddressData() {
         <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("postal code")}
-            placeholder="568750"
+            placeholder="xxxxx"
             name="postal_code"
             type="custom"
             maxNum="5"
@@ -101,7 +101,7 @@ function NationalAddressData() {
         <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("sub number")}
-            placeholder="698547"
+            placeholder="xxxx"
             name="sub_number"
             type="custom"
             maxNum="4"

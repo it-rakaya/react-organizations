@@ -6,11 +6,11 @@ import { t } from "i18next";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../../components/Landing/Navbar";
 import LoginIcon from "../../components/atoms/icons/LoginIcon";
+import Loading from "../../components/molecules/Loading";
 import LoginForm from "../../components/templates/LoginForm";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
-import { useSettings } from "../../hooks/useSettings";
-import Navbar from "../../components/Landing/Navbar";
 
 const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -46,12 +46,12 @@ const TypographyStyled = styled(Typography)(({ theme }) => ({
 
 const Login = () => {
   const navigate = useNavigate();
-  const { orgData } = UseOrg();
+  const { orgData , isSuccess, isRefetching  } = UseOrg();
   const theme = useTheme();
-  const { settings } = useSettings();
+  // const { settings } = useSettings();
   const hidden = useMediaQuery(theme.breakpoints.down("md"));
 
-  const { skin } = settings;
+  // const { skin } = settings;
   const token = Cookies.get("token");
   const organizationName = !orgData?.organizations?.name_ar
     ? t("landing.organizationName")
@@ -61,7 +61,7 @@ const Login = () => {
       navigate("/");
     }
   }, [navigate, token]);
-  // if (!isSuccess || isRefetching) return <Loading />;
+  if (!isSuccess || isRefetching) return <Loading />;
   if (!token) {
     return (
       <div className="">
@@ -71,11 +71,11 @@ const Login = () => {
 
         <Box className="flex content-right">
           <RightWrapper
-            sx={
-              skin === "bordered" && !hidden
-                ? { borderLeft: `1px solid ${theme.palette.divider}` }
-                : {}
-            }
+            // sx={
+            //   skin === "bordered" && !hidden
+            //     ? { borderLeft: `1px solid ${theme.palette.divider}` }
+            //     : {}
+            // }
           >
             <Box
               sx={{

@@ -33,7 +33,6 @@ function FacilityContent({
     building_number: "",
     postal_code: "",
     sub_number: "",
-    signature: "",
     capacity: "",
     account_name:"",
     iban:"",

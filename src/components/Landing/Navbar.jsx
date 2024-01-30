@@ -1,14 +1,15 @@
+/* eslint-disable react/prop-types */
 import { Icon } from "@iconify/react";
-import { useTranslation } from "react-i18next";
-import { UseOrg } from "../../context/organization provider/OrganizationProvider";
-import { useMutate } from "../../hooks/useMutate";
-import { useAuth } from "../../context/auth-and-perm/AuthProvider";
-import { Link } from "react-router-dom";
+import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import { t } from "i18next";
-import Typography from "@mui/material/Typography";
-import { useSettings } from "../../hooks/useSettings";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/auth-and-perm/AuthProvider";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import { useMutate } from "../../hooks/useMutate";
+import { useSettings } from "../../hooks/useSettings";
 import ModeToggler from "../organisms/Navbar/ModeToggler";
 
 function Navbar({ hidden }) {
@@ -27,9 +28,13 @@ function Navbar({ hidden }) {
     i18n.changeLanguage(lang);
   };
   useEffect(() => {
-    document.documentElement.setAttribute("lang", i18n.language);
-  }, [i18n.language]);
-  // Set dark mode class on page load
+    document.documentElement.setAttribute("lang", language);
+    document.documentElement.dir = language == "ar" ? "rtl" : "ltr";
+    document.documentElement.setAttribute(
+      "dir",
+      language == "ar" ? "rtl" : "ltr"
+    );
+  }, [language]);
 
   useEffect(() => {
     if (settings.mode == "dark") {
@@ -44,9 +49,11 @@ function Navbar({ hidden }) {
   //
   //
   const handleLanguage = () => {
-    // handleLangItemClick("en");
     i18n.changeLanguage(language == "ar" ? "en" : "ar");
-    saveSettings({ ...settings, direction: language == "ar" ? "ltr" : "rtl" });
+    document.documentElement.setAttribute(
+      "dir",
+      language == "ar" ? "rtl" : "ltr"
+    );
     handleLangItemClick();
   };
 

@@ -140,8 +140,10 @@ export const SideBar = ({
               setToggled(!toggled);
             }
           }}
-          icon={<Item.icon size={15} className="dark:text-white"/>}
+          icon={<Item.icon size={15} className="dark:text-white" />}
           active={location?.pathname === Item.link}
+          // active={location?.pathname === Item.link || location?.pathname.startsWith(`${Item.link}/`)}
+
         >
           <div className=" dark:text-white">{t(Item.label)}</div>
         </MenuItem>
@@ -150,23 +152,20 @@ export const SideBar = ({
   };
   return (
     <div
-    
       style={{
         display: "flex",
         height: "100vh",
         minHeight: "400px",
-        direction:isRTL ? "rtl" : "ltr",
+        direction: isRTL ? "rtl" : "ltr",
         position: "relative",
         backgroundColor: toggled
           ? "rgb(249 249 249)"
           : "rgba(249, 249, 249, 0.7)",
       }}
       className="dark:!bg-[#2c3639]"
-
     >
       <Sidebar
-
-        rtl ={isRTL}
+        rtl={isRTL}
         toggled={toggled}
         customBreakPoint="800px"
         backgroundColor={
@@ -174,11 +173,9 @@ export const SideBar = ({
         }
         onBreakPoint={setBroken}
         transitionDuration={500}
-
         collapsed={collapsed}
         onBackdropClick={() => setToggled(false)}
         // rootStyles={{ paddingTop: !toggled && "20px" }}
-        
       >
         <div
           className={`${
@@ -207,7 +204,10 @@ export const SideBar = ({
             </div>
           ) : (
             <div onClick={() => setToggled(!toggled)} className="ml-5">
-              <IconifyIcon icon={"iconoir:cancel"} className="dark:text-white" />
+              <IconifyIcon
+                icon={"iconoir:cancel"}
+                className="dark:text-white"
+              />
             </div>
           )}
         </div>
@@ -224,7 +224,8 @@ export const SideBar = ({
                 key={Item.id}
                 label={t(Item.label)}
                 icon={<Item.icon size={15} />}
-                active={location.pathname === Item.link}
+                // active={location.pathname === Item.link}
+                // active={location.pathname.startsWith(Item.link)}
               >
                 {Item.items.map((innerItem) => generateItem(innerItem))}
               </SubMenu>

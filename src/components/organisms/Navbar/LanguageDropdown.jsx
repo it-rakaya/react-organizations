@@ -6,8 +6,20 @@ import OptionsMenu from "./option-menu/OptionsMenu";
 import { t } from "i18next";
 const LanguageDropdown = ({ settings, saveSettings }) => {
   const { i18n } = useTranslation();
+  const language = i18n.language;
+  useEffect(() => {
+    document.documentElement.setAttribute("lang", language);
+    document.documentElement.dir = language == "ar" ? "rtl" : "ltr";
+    document.documentElement.setAttribute(
+      "dir",
+      language == "ar" ? "rtl" : "ltr"
+    );
+  }, [language]);
+
   const handleLangItemClick = (lang) => {
     i18n.changeLanguage(lang);
+    document.documentElement.setAttribute("dir", lang == "ar" ? "rtl" : "ltr");
+    handleLangItemClick();
   };
   useEffect(() => {
     document.documentElement.setAttribute("lang", i18n.language);
@@ -27,7 +39,7 @@ const LanguageDropdown = ({ settings, saveSettings }) => {
             selected: i18n.language === "en",
             onClick: () => {
               handleLangItemClick("en");
-              saveSettings({ ...settings, direction: "ltr" });
+              // saveSettings({ ...settings, direction: "ltr" });
             },
           },
         },
@@ -38,7 +50,7 @@ const LanguageDropdown = ({ settings, saveSettings }) => {
             selected: i18n.language === "ar",
             onClick: () => {
               handleLangItemClick("ar");
-              saveSettings({ ...settings, direction: "rtl" });
+              // saveSettings({ ...settings, direction: "rtl" });
             },
           },
         },

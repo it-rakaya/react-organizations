@@ -9,12 +9,16 @@ import "dayjs/locale/ar";
 import "dayjs/locale/en";
 import { useFormikContext } from "formik";
 import { useEffect, useState } from "react";
+import { registerLocale } from 'react-datepicker';
 import { useTranslation } from "react-i18next";
 import { useIsRTL } from "../../../hooks/useIsRTL";
 import { convertArabicToEnglish } from "../../../utils/helpers";
 import CardInfo from "../CardInfo";
 import Label from "../Label";
 import { FormikError } from "./FormikError";
+import fr from 'date-fns/locale/fr'
+import ar from 'date-fns/locale/ar-SA'
+import en from 'date-fns/locale/en-US'
 export default function DatePickerComp({
   name,
   name_hj,
@@ -32,9 +36,14 @@ export default function DatePickerComp({
   const [valueHijri, setValueHijri] = useState(values[name_hj]);
   const isRTL = useIsRTL();
   const locale = isRTL ? "ar" : "en";
-  dayjs.locale("ar");
+  // dayjs.locale("ar-SA");
   const { t } = useTranslation();
+  
 
+  const handleCalendarOpen = () => {
+    dayjs.locale(locale);
+  };
+  const langObj = { fr, ar, en }
   useEffect(() => {
     if (valueGregorian) {
       // Convert the Gregorian date to Hijri
@@ -51,11 +60,23 @@ export default function DatePickerComp({
 
       setValueHijri(hijriDateWithoutHeh);
       setFieldValue(name_hj, hijriDateWithoutHeh);
+      
     }
   }, [name_hj, setFieldValue, valueGregorian]);
-
+  const localizationKey = `localization-${locale}`;
+  const { i18n } = useTranslation()
+  registerLocale(i18n.language, langObj[i18n.language])
+  const [date, setDate] = useState(new Date())
+  
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} locale={locale}>
+    <LocalizationProvider
+      dateAdapter={AdapterDayjs}
+      // locale={locale}
+      // localeText={
+      //   deDE.components.MuiLocalizationProvider.defaultProps.localeText
+      // }
+      key={localizationKey}
+    >
       <div className="w-full">
         <Label>
           {label}
@@ -75,13 +96,15 @@ export default function DatePickerComp({
         <DatePicker
           className="bg-white dark:bg-dark-primary rounded-[10px] w-full dark:border dark:!border-solid dark:!border-1 dark:!border-[#555d64]"
           name={name}
+          selected={date}
           i18nIsDynamicList={isRTL}
           defaultValue={values[name] ? dayjs(values[name]) : null}
+          onOpen={handleCalendarOpen}
+          locale={i18n.language}
           localeText={{
             cancelButtonLabel: t("cancel"),
             okButtonLabel: t("OK"),
             toolbarTitle: t("Select Date"),
-            
           }}
           sx={{
             background: "white",
@@ -99,6 +122,7 @@ export default function DatePickerComp({
               } else {
                 setFieldValue(name, newDate.format("YYYY-MM-DD"));
                 setValueGregorian(newDate.format("YYYY-MM-DD"));
+                setDate(date)
               }
             }
           }}

@@ -5,11 +5,12 @@ import { t } from "i18next";
 
 function FacilityWrapper({ activeStep, steps, StepperCustomDot }) {
   return (
-    <StepperWrapper>
+    <StepperWrapper dir="rtl">
       <Stepper
         activeStep={activeStep}
         alternativeLabel
         className=" mt-0 md:mt-10 !bg-transparent  !shadow-none "
+        dir="rtl"
       >
         {steps.map((step, index) => {
           return (

@@ -21,15 +21,7 @@ const RegisterIllustrationWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-// const RegisterIllustration = styled("img")(({ theme }) => ({
-//   maxWidth: "48rem",
-//   [theme.breakpoints.down("xl")]: {
-//     maxWidth: "50rem",
-//   },
-//   [theme.breakpoints.down("lg")]: {
-//     maxWidth: "30rem",
-//   },
-// }));
+
 
 const RightWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -55,7 +47,7 @@ const Register = () => {
   const { skin } = settings;
   const token = Cookies.get("token");
   const navigate = useNavigate();
-  const { orgData, isSuccess , isRefetching } = UseOrg();
+  const { orgData, isSuccess, isRefetching } = UseOrg();
   const organizationName = !orgData?.organizations?.name_ar
     ? t("landing.organizationName")
     : orgData?.organizations?.name_ar;
@@ -76,71 +68,76 @@ const Register = () => {
   if (!token) {
     return (
       <>
-       <div className="absolute rtl:left-0 ltr:right-0 z-[99]">
+        <div className="absolute rtl:left-0 ltr:right-0 z-[99]">
           <Navbar hidden={true} />
         </div>
-      <Box className="flex content-right">
-        <RightWrapper
-          sx={
-            skin === "bordered" && !hidden
-              ? { borderLeft: `1px solid ${theme.palette.divider}` }
-              : {}
-          }
-        >
-          <Box
-            sx={{
-              p: 7,
-              backgroundColor: "background.paper",
-              height: "100vh",
-              overflowY: "scroll",
-              overflowX: "hidden",
-
-            }}
-            className="scroll_main dark:bg-darkModeColor"
+        <Box className="flex content-right">
+          <RightWrapper
+            sx={
+              skin === "bordered" && !hidden
+                ? { borderLeft: `1px solid ${theme.palette.divider}` }
+                : {}
+            }
           >
             <Box
               sx={{
+                p: 7,
+                backgroundColor: "background.paper",
+                height: "100vh",
+                overflowY: "scroll",
+                overflowX: "hidden",
+              }}
+              className="scroll_main dark:bg-darkModeColor"
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  width: "100%",
+                  alignItems: "center",
+                  justifyContent: "start",
+                  flexDirection: "column",
+                  gap: "10px",
+                  marginTop: "20px",
+                }}
+              >
+                <Link to="/">
+                  <img
+                    src={orgData?.organizations?.logo}
+                    className="w-[30px]"
+                  />
+                </Link>
+                <Box sx={{ mb: 3, width: "100%" }} className="text-center">
+                  <TypographyStyled
+                    className="!text-black dark:!text-white"
+                    variant="h5"
+                  >{`${t(
+                    "Welcome to"
+                  )} ${organizationName}! 👋🏻`}</TypographyStyled>
+                </Box>
+              </Box>
+              <BoxWrapper>
+                <RegisterForm />
+              </BoxWrapper>
+            </Box>
+          </RightWrapper>
+          {!hidden ? (
+            <Box
+              sx={{
+                flex: 1,
                 display: "flex",
-                width: "100%",
+                position: "relative",
                 alignItems: "center",
-                justifyContent: "start",
-                flexDirection: "column",
-                gap: "10px",
-                marginTop: "20px",
+                justifyContent: "center",
+                height: "100vh",
+                overflow: "hidden",
               }}
             >
-              <Link to="/">
-              <img src={orgData?.organizations?.logo} className="w-[30px]" />
-              </Link>
-              <Box sx={{ mb: 3, width: "100%" }} className="text-center">
-                <TypographyStyled className="!text-black dark:!text-white"  variant="h5">{`${t(
-                  "Welcome to"
-                )} ${organizationName}! 👋🏻`}</TypographyStyled>
-              </Box>
+              <RegisterIllustrationWrapper>
+                <LoginIcon />
+              </RegisterIllustrationWrapper>
             </Box>
-            <BoxWrapper>
-              <RegisterForm />
-            </BoxWrapper>
-          </Box>
-        </RightWrapper>
-        {!hidden ? (
-          <Box
-            sx={{
-              flex: 1,
-              display: "flex",
-              position: "relative",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "100vh",
-              overflow: "hidden",
-            }}
-          >
-            <RegisterIllustrationWrapper>
-              <LoginIcon />
-            </RegisterIllustrationWrapper>
-          </Box>
-        ) : null}
-      </Box>
+          ) : null}
+        </Box>
       </>
     );
   } else {
