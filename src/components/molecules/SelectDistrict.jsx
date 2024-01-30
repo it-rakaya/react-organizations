@@ -17,53 +17,62 @@ export default function SelectDistrict({
   setIndex,
   index,
   messageInfo,
-  images
+  images,
 }) {
   const { setFieldValue, values } = useFormikContext();
-
   const { data: district, isLoading } = useFetch({
-    endpoint: `saudi-districts?city_id=${values?.city_id}`,
-    queryKey: [`district/${values?.city_id}`],
-    enabled: !!values?.city_id,
+    endpoint: `saudi-districts`,
+    queryKey: [`district`],
+    // enabled: !!values?.city_id,
   });
-  const options = district?.districts?.map((item) => ({
-    value: item.id,
-    label: item.name_ar,
-  }));
-  const selectedDistrict = options?.find(
+
+  const filteredOptions = district?.districts
+    ?.filter((item) => item.city_id == values.city_id)
+    ?.map((item) => ({
+      value: item.id,
+      label: item.name_ar,
+      city_id: item.city_id,
+    }));
+  const other = district?.districts.find((option) => option?.name_en == "Other");
+  if (!filteredOptions || filteredOptions.length === 0) {
+    filteredOptions?.push({
+      value: other?.id,
+      label: other?.name_ar,
+      city_id: values.city_id,
+    });
+  }
+
+  const selectedDistrict = filteredOptions?.find(
     (option) => option?.value == values[name]
   );
 
   return (
     <div className={className}>
-     <Label>
-            {label}
-            <span className="mx-1 text-red-500">
-              {required == "1" ? "*" : ""}
-            </span>
-          </Label>
-          {showIcon && (
-            <CardInfo
-              index={index}
-              setIndex={setIndex}
-              messageInfo={messageInfo}
-              setShow={setShow}
-              images={images}
-            />
-          )}
+      <Label>
+        {label}
+        <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
+      </Label>
+      {showIcon && (
+        <CardInfo
+          index={index}
+          setIndex={setIndex}
+          messageInfo={messageInfo}
+          setShow={setShow}
+          images={images}
+        />
+      )}
       <div>
         <Select
-          options={options}
+          options={filteredOptions}
           name={name}
           value={selectedDistrict ? selectedDistrict : ""}
           isLoading={!!isLoading}
-          isDisabled={!district?.districts?.length}
+          isDisabled={!values?.city_id}
           noOptionsMessage={() => t("Not Found Data")}
-
           placeholder={
             isLoading ? (
               <Spinner />
-            ) : district?.districts?.length ? (
+            ) : values?.city_id ? (
               t("chose District")
             ) : (
               t("Chose city is first")
@@ -76,14 +85,14 @@ export default function SelectDistrict({
               ...baseStyles,
               padding: "10px 0",
               borderRadius: " 8px",
-              borderWidth:"1px",
+              borderWidth: "1px",
               // borderColor:district?.districts?.length ? "red" : "#555d64",
-              background: !district?.districts?.length ? "#cecfcf" : "white",
+              background: !values?.city_id ? "#cecfcf" : "white",
               margin: "0",
             }),
             option: (baseStyles) => ({
               ...baseStyles,
-              background:"white" ,
+              background: "white",
               color: "black",
             }),
           }}
@@ -100,7 +109,6 @@ export default function SelectDistrict({
             control: () => "dark:bg-dark-primary dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",
             menu: () => " bg-white dark:bg-dark-primary dark:text-white  ",
-
           }}
         />
       </div>

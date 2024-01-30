@@ -49,7 +49,7 @@ export default function PreviewImageLink({
                     />
                   )}
                   {filename && (
-                    <Typography className="file-name">{filename}</Typography>
+                    <Typography className="file-name !text-black dark:!text-white">{filename}</Typography>
                   )}
                   {!eyeIcon && (
                     <Typography className="file-name">

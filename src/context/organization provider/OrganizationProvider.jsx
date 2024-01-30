@@ -10,11 +10,6 @@ export const OrganizationProvider = ({ children }) => {
   const url = window.location.href;
   // const local = "http://localhost:5173";
   const baseUrl = new URL(url).origin;
-
-  // const isDevelopment = true;
-  // const origin = isDevelopment ? local : baseUrl;
-
-  // const local = "africa-dev.rmcc.sa"
   const savedMode = localStorage.getItem("darkMode");
   const [orgData, setOrgData] = UseLocalStorage("organization");
   // http://localhost:5173/

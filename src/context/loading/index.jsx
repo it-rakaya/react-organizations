@@ -1,10 +1,22 @@
-import { createContext, useContext } from "react";
-// import { useDisclosure } from "@mantine/hooks";
+/* eslint-disable react/prop-types */
+import { createContext, useContext, useState } from "react";
 
 const LoadingContext = createContext();
 
 export const LoadingContextProvider = ({ children }) => {
-  // const [visible, { toggle, open, close }] = useDisclosure(false);
+  const [visible, setVisible] = useState(false);
+
+  const toggle = () => {
+    setVisible((prevVisible) => !prevVisible);
+  };
+
+  const open = () => {
+    setVisible(true);
+  };
+
+  const close = () => {
+    setVisible(false);
+  };
 
   return (
     <LoadingContext.Provider value={{ open, close, visible, toggle }}>

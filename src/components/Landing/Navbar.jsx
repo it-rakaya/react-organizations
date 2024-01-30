@@ -1,20 +1,22 @@
+/* eslint-disable react/prop-types */
 import { Icon } from "@iconify/react";
-import { useTranslation } from "react-i18next";
-import { UseOrg } from "../../context/organization provider/OrganizationProvider";
-import { useMutate } from "../../hooks/useMutate";
-import { useAuth } from "../../context/auth-and-perm/AuthProvider";
-import { Link } from "react-router-dom";
+import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import { t } from "i18next";
-import Typography from "@mui/material/Typography";
-import { useSettings } from "../../hooks/useSettings";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/auth-and-perm/AuthProvider";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import { useMutate } from "../../hooks/useMutate";
+import { useSettings } from "../../hooks/useSettings";
+import ModeToggler from "../organisms/Navbar/ModeToggler";
 
-function Navbar() {
+function Navbar({ hidden }) {
   const { i18n } = useTranslation();
   const language = i18n.language;
   const { orgData } = UseOrg();
-  const { logout, user , token } = useAuth();
+  const { logout, token } = useAuth();
   const theme = useTheme();
   const { settings, saveSettings } = useSettings();
 
@@ -26,9 +28,13 @@ function Navbar() {
     i18n.changeLanguage(lang);
   };
   useEffect(() => {
-    document.documentElement.setAttribute("lang", i18n.language);
-  }, [i18n.language]);
-  // Set dark mode class on page load
+    document.documentElement.setAttribute("lang", language);
+    document.documentElement.dir = language == "ar" ? "rtl" : "ltr";
+    document.documentElement.setAttribute(
+      "dir",
+      language == "ar" ? "rtl" : "ltr"
+    );
+  }, [language]);
 
   useEffect(() => {
     if (settings.mode == "dark") {
@@ -43,9 +49,11 @@ function Navbar() {
   //
   //
   const handleLanguage = () => {
-    // handleLangItemClick("en");
     i18n.changeLanguage(language == "ar" ? "en" : "ar");
-    saveSettings({ ...settings, direction: language == "ar" ? "ltr" : "rtl" });
+    document.documentElement.setAttribute(
+      "dir",
+      language == "ar" ? "rtl" : "ltr"
+    );
     handleLangItemClick();
   };
 
@@ -54,17 +62,21 @@ function Navbar() {
       className="flex justify-between w-full px-5 py-3 layout-navbar"
       dir={i18n.dir(language)}
     >
-      <div className="flex gap-10">
-        <a href="">
-          <img
-            alt=""
-            // srcset={bg2}
-            src={orgData?.organizations?.logo}
-            className="animated-box w-[30px] rounded-xl"
-          />
-          {/* Logo */}
-        </a>
-      </div>
+      {hidden ? (
+        ""
+      ) : (
+        <div className="flex gap-10">
+          <a href="">
+            <img
+              alt=""
+              // srcset={bg2}
+              src={orgData?.organizations?.logo}
+              className="animated-box w-[30px] rounded-xl"
+            />
+            {/* Logo */}
+          </a>
+        </div>
+      )}
 
       <div className="flex items-center gap-5">
         {!!token && (
@@ -79,6 +91,7 @@ function Navbar() {
             {t("landing.contactUs")}
           </a>
         </Typography>
+        <ModeToggler settings={settings} saveSettings={saveSettings} />
         <button
           onClick={handleLanguage}
           //

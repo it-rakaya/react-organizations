@@ -8,6 +8,7 @@ import OrganizationServices from "../../molecules/OrganizationServices";
 import SelectFacilities from "../../molecules/SelectFacilities";
 import MainHeader from "../../atoms/MainHeader";
 import { useTheme } from "@mui/material/styles";
+import SelectCountryOrganizations from "../../molecules/Selects/SelectCountryOrganizations";
 
 export default function OrderMainData({ setShow, show, isPending }) {
   const { values } = useFormikContext();
@@ -53,6 +54,12 @@ export default function OrderMainData({ setShow, show, isPending }) {
                   name="organization_service_id"
                   placeholder={t("Choose the type of service provided")}
                   required
+                />
+              </div>
+              <div className="mb-3">
+                <SelectCountryOrganizations
+                  label={t("Country")}
+                  name="country_ids"
                 />
               </div>
             </div>

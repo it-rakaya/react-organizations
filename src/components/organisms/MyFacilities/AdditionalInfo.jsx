@@ -3,6 +3,7 @@ import { t } from "i18next";
 import { useState } from "react";
 import ModalComp from "../../atoms/ModalComp";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
+import SelectBank from "../../molecules/Selects/SelectBank";
 
 function AdditionalInfo() {
   const images = [
@@ -28,11 +29,6 @@ function AdditionalInfo() {
             type="custom"
             maxNum="3"
             required
-
-            // showIcon
-            // setShow={setShow}
-            // setIndex={setIndex}
-            // index={0}
           />
         </div>
         <div className="w-full md:w-1/2">
@@ -43,17 +39,12 @@ function AdditionalInfo() {
             type="custom"
             maxNum="3"
             required
-
-            // showIcon
-            // setShow={setShow}
-            // setIndex={setIndex}
-            // index={0}
           />
         </div>
       </div>
 
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
-        <div className="w-full">
+        <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("kitchen space")}
             placeholder="500"
@@ -63,11 +54,14 @@ function AdditionalInfo() {
             required
           />
         </div>
+       
       </div>
+    
+      {/* <BaseInputMask/> */}
       <ModalComp
         open={show}
         className="!max-w-[700px] m-auto    "
-        classNameBox="shadow-none w-full "
+        classNameBox="!shadow-none w-full  !bg-transparent  "
         onClose={() => setShow(false)}
         hidden={true}
         Children={

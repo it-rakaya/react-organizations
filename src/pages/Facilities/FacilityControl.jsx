@@ -54,6 +54,9 @@ function FacilityControl({ setOpen, open, update, idFacility }) {
             <ButtonComp
               type={"submit"}
               action={() => {
+                const updatedIban = values.iban
+                  .replace(/-/g, "")
+                  .replace(/\s+/g, "");
                 const validAttachments =
                   values?.attachments
                     ?.map((file, index) => ({ index, file }))
@@ -65,6 +68,7 @@ function FacilityControl({ setOpen, open, update, idFacility }) {
 
                 const combinedObject = {
                   ...values,
+                  iban: updatedIban,
                   organization_id: orgData?.organizations?.id,
                   ...Object?.assign({}, ...attachments),
                 };

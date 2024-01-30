@@ -7,11 +7,12 @@ import {
   TextField,
 } from "@mui/material";
 import { useFormikContext } from "formik";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import CardInfo from "../CardInfo";
 import Label from "../Label";
 import { FormikError } from "./FormikError";
+import BaseInputMask from "./BaseInputMask";
 
 export default function BaseInputField({
   label,
@@ -33,6 +34,7 @@ export default function BaseInputField({
   const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
     useFormikContext();
   const [showPassword, setShowPassword] = useState(false);
+  const ibanRef = useRef();
 
   // !! type custom == type number ==> but im used this type in other name because in type number is MUI is given is problem
   const handleChangeNumber = (e) => {
@@ -43,10 +45,12 @@ export default function BaseInputField({
         setFieldValue(name, "");
         return;
       }
-      if (value.length > maxNum) {
-        value = value.slice(0, maxNum);
-      }
     }
+    if (maxNum && value.length > maxNum) {
+      value = value.slice(0, maxNum);
+    }
+
+    // For IBAN, remove spaces before setting the value
     setFieldValue(name, value);
   };
 
@@ -111,13 +115,30 @@ export default function BaseInputField({
             error={touched[name] && !!errors[name]}
             fullWidth
             value={values[name]}
-            sx={{ background: "white", borderRadius: "10px" }}
+            sx={{
+              background: "white",
+              borderRadius: "11px",
+              // border:"1px",
+              borderStyle:"solid",
+              // borderColor:"white",
+              "& .MuiInputBase-input::placeholder": {
+                // Adding this line
+                // color:"black",
+                opacity: 1,
+              },
+            }}
             type={type}
             onBlur={handleBlur}
             InputProps={
               type === "custom"
                 ? {
-                    inputProps: { maxLength: 10 },
+                    inputProps: { maxLength: maxNum || 10 },
+                    onChange: handleChangeNumber,
+                  }
+                : type === "IBAN"
+                ? {
+                    inputComponent: BaseInputMask,
+                    inputProps: { ref: ibanRef },
                     onChange: handleChangeNumber,
                   }
                 : { onChange: handleChange }
@@ -125,9 +146,10 @@ export default function BaseInputField({
             name={name}
             style={{
               borderColor: !!touched[name] && !!errors[name] ? "red" : "",
-              borderRadius: "10px",
+              // borderRadius: "10px",
             }}
-            className={`${className} "my-3 code " ${
+            sty
+            className={`${className} dark:border-[1px] border-[#555d64] "my-3 code " ${
               !!touched[name] && !!errors[name] && "border-red-500 "
             }`}
           />

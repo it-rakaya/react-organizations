@@ -45,9 +45,11 @@ export default function AddOrder({ setOpenAddFaculty }) {
           const formData = {
             facility_id: values.facility_id,
             organization_id: orgData?.organizations?.id,
+            country_ids:values?.country_ids,
             organization_service_id: values.organization_service_id,
             ...answers,
           };
+          console.log("🚀 ~ formData:", formData)
           AddOrder(formData);
         }}
       >

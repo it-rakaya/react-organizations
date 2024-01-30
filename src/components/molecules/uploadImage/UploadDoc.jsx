@@ -16,6 +16,8 @@ import PreviewImageLink from "../PreviewImageLink";
 import PreviewImage from "../PreviewImage";
 import Icon from "@mdi/react";
 import { mdiInformationOutline } from "@mdi/js";
+import ModalComp from "../../atoms/ModalComp";
+import DeleteDoc from "./DeleteDoc";
 
 /* eslint-disable react/prop-types */
 function UploadDoc({
@@ -33,9 +35,11 @@ function UploadDoc({
   const theme = useTheme();
   const [invalidFormat, setInvalidFormat] = useState(false);
   let filename = nameLabel;
-  filename = filename?.replace(/[0-9().-]/g, '');
+  filename = filename?.replace(/[0-9().-]/g, "");
   filename = filename?.replace(/_/g, " ")?.slice(0, -4);
-  
+  const [openModal, setOpenModal] = useState(false);
+  const [isLargeFile , setIsLargeFile] = useState(false)
+
   const updateImage = {
     value: value,
     type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
@@ -50,18 +54,27 @@ function UploadDoc({
   );
   const modifyAccept = accept?.map((item) => `.${item}`);
   const textAccept = accept?.map((item) => ` -${item} `);
-  const isLargeFile = files?.length && files[0]?.size > 5242880;
+  // const isLargeFile = files?.length && files[0]?.size > 5242880;
   const bgMain = hexToRGBA(theme.palette.primary.main, 0.1);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     const isLarge = selectedFile?.size > 5242880;
+    setIsLargeFile(isLarge)
+    const isFileFormatValid = modifyAccept.includes(
+      `.${selectedFile?.type.split("/")[1]}`
+    );
+
     if (selectedFile) {
-      setFiles([selectedFile]);
-      setFieldValue(
-        dynamic ? `answers${name}` : name,
-        isLarge ? null : selectedFile
-      );
+      setInvalidFormat(!isFileFormatValid);
+
+      if (isFileFormatValid && !isLarge) {
+        setFiles([selectedFile]);
+        setFieldValue(dynamic ? `answers${name}` : name, selectedFile);
+      } else {
+        setFiles([]);
+        setFieldValue(name, null);
+      }
     }
   };
 
@@ -94,12 +107,14 @@ function UploadDoc({
           className="absolute w-full top-1/2 left-1/2"
           style={{ transform: `translate(-50%, -50%)` }}
         >
-          {shouldShowUploadIcon ? (
+          {shouldShowUploadIcon && !invalidFormat && !isLargeFile  ? (
             <div className="flex flex-col items-center justify-center ">
               <UploadImageIcon className="w-[35px]" />
             </div>
-          ) : invalidFormat ? (
-            <TermsConditionIcon className={"w-[35px] !fill-[#F0A44B]"} />
+          ) : invalidFormat || isLargeFile ? (
+            <div className="flex flex-col items-center justify-center ">
+              <TermsConditionIcon className={"w-[35px] "} />
+            </div>
           ) : (
             <div className="rounded-md">
               {!isLargeFile ? (
@@ -157,6 +172,7 @@ function UploadDoc({
               bgMain={bgMain}
               className={className}
               handleRemoveFile={handleRemoveFile}
+              setOpenModal={setOpenModal}
             />
           </div>
         ) : !isLargeFile &&
@@ -172,6 +188,7 @@ function UploadDoc({
               bgMain={bgMain}
               className={className}
               handleRemoveFile={handleRemoveFile}
+              setOpenModal={setOpenModal}
             />
           )
         ) : !isLargeFile &&
@@ -190,13 +207,13 @@ function UploadDoc({
                   icon={"prime:file-pdf"}
                   className="text-xl dark:text-white"
                 />
-                <Typography className="text-black file-name dark:text-white">
+                <Typography className="!text-black file-name dark:!text-white">
                   {files[0]?.name.slice(0, 15)}
                 </Typography>
                 {/* <span className="text-sm">اضغط هنا لمشاهدة المرفق</span> */}
               </div>
             </a>
-            <div onClick={() => handleRemoveFile(files[0])}>
+            <div onClick={() => setOpenModal(true)}>
               <IconifyIcon
                 icon="mdi:close"
                 fontSize={20}
@@ -209,18 +226,18 @@ function UploadDoc({
           updateImage?.value ? (
           <div className="w-full">
             <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
-            <PreviewPdf item={files[0]}  />
-            <p>{filename.length  > 20 ? filename.slice(0,30)  : filename.length }</p>
-              
+              <PreviewPdf item={files[0]} />
+              <p className="!text-black  dark:!text-white"> 
+                {filename.length > 20 ? filename.slice(0, 30) : filename.length}
+              </p>
             </div>
-
           </div>
         ) : isLargeFile ? (
           <div className="flex items-center p-2">
             <Icon
               path={mdiInformationOutline}
-              size={0.7}
-              className="text-[#80b3f0]"
+              size={0.8}
+              className="!text-[#80b3f0]"
             />
             <p className="text-[12px] px-1 py-0 text-[#80b3f0]">
               {t("Please upload a file no larger than 5MB")}
@@ -231,6 +248,18 @@ function UploadDoc({
           ""
         )}
       </div>
+      <ModalComp
+        open={openModal}
+        className="!max-w-[450px]  "
+        onClose={() => setOpenModal(false)}
+        Children={
+          <DeleteDoc
+            setOpenModal={setOpenModal}
+            handleRemoveFile={handleRemoveFile}
+            files={files}
+          />
+        }
+      />
     </div>
   );
 }

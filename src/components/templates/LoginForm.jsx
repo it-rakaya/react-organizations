@@ -84,14 +84,17 @@ export default function LoginForm() {
               login={true}
             />
           )}
-
+          <div>
           <ButtonComp
             loading={loadingLogin || isPending}
             disabled={valueOTP && valueOTP?.length != 4 ? true : false}
-            className={"ltr:mt-3"}
+            className={"ltr:!mt-5"}
           >
             {t("LOGIN")}
           </ButtonComp>
+          </div>
+          
+
         </Form>
       </Formik>
     </div>

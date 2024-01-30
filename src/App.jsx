@@ -1,32 +1,39 @@
-import { useIsRTL } from "./hooks/useIsRTL";
-import { AllRoutesProvider } from "./routing/allRoutes";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useFetch from "./hooks/useFetch";
-import { useAuth } from "./context/auth-and-perm/AuthProvider";
+import { useIsRTL } from "./hooks/useIsRTL";
+import { AllRoutesProvider } from "./routing/allRoutes";
 
 const App = () => {
   ///
   const isRTL = useIsRTL();
-  useLayoutEffect(() => {
-    document.documentElement.dir = isRTL ? "rtl" : "ltr";
-    document.documentElement.lang = isRTL ? "ar" : "en";
-  }, []);
+  useEffect(() => {
+    if (isRTL) {
+      // document.documentElement.dir = "rtl";
+      document.documentElement.lang = "ar";
+      document.documentElement.setAttribute("dir", "rtl");
+    } else {
+      // document.documentElement.dir = "ltr";
+      document.documentElement.lang = "en";
+      document.documentElement.setAttribute("dir", "ltr");
+    }
+  }, [isRTL]);
+
   useEffect(() => {
     const darkModeSetting = localStorage.getItem("darkMode");
     if (darkModeSetting === "true") {
       document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
     }
   }, []);
-
 
   return (
     <>
       <AllRoutesProvider />
       <ToastContainer rtl={isRTL} />
-      <ReactQueryDevtools initialIsOpen={false} position={"bottom-right"} />
+      {/* <ReactQueryDevtools initialIsOpen={false} position={"bottom-right"} /> */}
       {/* </Box> */}
     </>
   );

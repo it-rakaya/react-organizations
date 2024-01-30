@@ -1,19 +1,21 @@
 /* eslint-disable react/prop-types */
 import { mdiCalendarMonthOutline } from "@mdi/js";
 import Icon from "@mdi/react";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { format } from "date-fns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import dayjs from "dayjs";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns/AdapterDateFns";
+import ar from "date-fns/locale/ar-SA";
 import { useFormikContext } from "formik";
 import { useEffect, useState } from "react";
+import DatePicker, { registerLocale } from "react-datepicker";
+import { useTranslation } from "react-i18next";
 import { convertArabicToEnglish } from "../../../utils/helpers";
 import CardInfo from "../CardInfo";
 import Label from "../Label";
 import { FormikError } from "./FormikError";
-import { t } from "i18next";
-import { useIsRTL } from "../../../hooks/useIsRTL";
+import CustomInput from "./PickersCustomInput";
 
+import DatePickerWrapper from ".";
 export default function DatePickerComp({
   name,
   name_hj,
@@ -24,13 +26,18 @@ export default function DatePickerComp({
   setIndex,
   index,
   messageInfo,
-  images
+  images,
 }) {
   const { setFieldValue, values } = useFormikContext();
   const [valueGregorian, setValueGregorian] = useState();
   const [valueHijri, setValueHijri] = useState(values[name_hj]);
-  const isRTL = useIsRTL()
+  const [date, setDate] = useState(
+    values[name] ? new Date(values[name]) : null
+  );
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
 
+  const langObj = { ar };
   useEffect(() => {
     if (valueGregorian) {
       // Convert the Gregorian date to Hijri
@@ -49,17 +56,26 @@ export default function DatePickerComp({
       setFieldValue(name_hj, hijriDateWithoutHeh);
     }
   }, [name_hj, setFieldValue, valueGregorian]);
+  registerLocale(i18n.language, langObj[i18n.language]);
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <div className="w-full">
-        <Label>
-          {label}
-          <span className="mx-1 text-red-500">
-            {required == "1" ? "*" : ""}
-          </span>
-        </Label>
-        {showIcon && (
+    <>
+      <LocalizationProvider
+        dateAdapter={AdapterDateFns}
+        // locale={arSA}
+        // localeText={
+        //   deDE.components.MuiLocalizationProvider.defaultProps.localeText
+        // }
+        // key={localizationKey}
+      >
+        <div className="w-full">
+          <Label>
+            {label}
+            <span className="mx-1 text-red-500">
+              {required == "1" ? "*" : ""}
+            </span>
+          </Label>
+          {showIcon && (
             <CardInfo
               index={index}
               setIndex={setIndex}
@@ -68,37 +84,66 @@ export default function DatePickerComp({
               images={images}
             />
           )}
-        <DatePicker
-          className="bg-white dark:bg-dark-primary rounded-[10px] w-full "
-          name={name}
-          
-          i18nIsDynamicList={isRTL}
-          defaultValue={values[name] ? dayjs(values[name]) : null}
-          onChange={(newValue) => {
-            if (values[name] !== undefined) {
-              const newDate = dayjs(newValue);
-              if (!newDate.isValid()) {
-                console.error("تاريخ غير صحيح");
-              } else {
-                setFieldValue(name, newDate.format("YYYY-MM-DD"));
-                setValueGregorian(newDate.format("YYYY-MM-DD"));
-              }
-            }
-          }}
-        />
-        {valueHijri && (
-          <p className="flex items-center gap-2 mt-1 dark:text-white">
-            <Icon path={mdiCalendarMonthOutline} size={0.8} />
-            <span className="dark:text-white date_hj">
-              {convertArabicToEnglish(valueHijri)}
-            </span>
-            {t("H")}
-          </p>
-        )}
-        <div>
-          <FormikError name={name} />
+          <DatePickerWrapper>
+            <DatePicker
+              className="bg-white dark:bg-dark-primary rounded-[10px] w-full dark:border dark:!border-solid dark:!border-1 dark:!border-[#555d64]"
+              name={name}
+              selected={date}
+              // locale="ar-SA"
+              placeholderText="MM/DD/YYYY"
+              isClearable
+              locale={i18n.language}
+              // localeText={{
+              //   cancelButtonLabel: t("cancel"),
+              //   okButtonLabel: t("OK"),
+              //   toolbarTitle: t("Select Date"),
+              // }}
+              sx={{
+                // cursor:"pointer",
+                background: "white",
+                borderRadius: "10px",
+                "& .MuiInputBase-input::placeholder": {
+                  // Adding this line
+                  opacity: 1,
+                },
+              }}
+              onChange={(newValue) => {
+                if (newValue === null) {
+                  // Clear the fields and set the date to null
+                  setFieldValue(name, "");
+                  setValueHijri(null);
+                  setFieldValue(name_hj, null);
+
+                  setDate(null);
+                } else if (values[name] !== undefined) {
+                  const newDate = new Date(newValue);
+                  if (isNaN(newDate)) {
+                    console.error("Invalid date");
+                  } else {
+                    const formattedDate = format(newDate, "yyyy-MM-dd");
+                    setFieldValue(name, formattedDate);
+                    setValueGregorian(formattedDate);
+                    setDate(newDate);
+                  }
+                }
+              }}
+              customInput={<CustomInput />}
+            />
+          </DatePickerWrapper>
+          {valueHijri && (
+            <p className="flex items-center gap-2 mt-1 dark:text-white">
+              <Icon path={mdiCalendarMonthOutline} size={0.8} />
+              <span className="dark:text-white date_hj">
+                {convertArabicToEnglish(valueHijri)}
+              </span>
+              {t("H")}
+            </p>
+          )}
+          <div>
+            <FormikError name={name} />
+          </div>
         </div>
-      </div>
-    </LocalizationProvider>
+      </LocalizationProvider>
+    </>
   );
 }

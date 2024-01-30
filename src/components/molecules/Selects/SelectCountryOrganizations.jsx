@@ -2,37 +2,44 @@
 import { useFormikContext } from "formik";
 import { t } from "i18next";
 import Select from "react-select";
-import useFetch from "../../hooks/useFetch";
-import CardInfo from "./CardInfo";
-import Label from "./Label";
-import { useIsRTL } from "../../hooks/useIsRTL";
+import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
+import useFetch from "../../../hooks/useFetch";
+import Label from "../Label";
+import CardInfo from "../CardInfo";
+import { FormikError } from "../Formik/FormikError";
 
-export default function SelectCitiesSaudi({
+export default function SelectCountryOrganizations({
   name,
   label,
   className,
   required,
   showIcon,
-  setShow,
+  messageInfo,
   setIndex,
   index,
-  messageInfo,
   images,
+  setShow,
 }) {
-  const { setFieldValue, values } = useFormikContext();
-  const isRTL = useIsRTL();
-  const { data: cities } = useFetch({
-    endpoint: `saudi-cities`,
-    queryKey: ["saudi-cities"],
+  const { setFieldValue, values, handleBlur } = useFormikContext();
+  const { orgData } = UseOrg();
+  console.log("🚀 ~ orgData:", orgData)
+
+  const { data: countries } = useFetch({
+    endpoint: `order-countries?organization_id=${orgData?.id}`,
+    queryKey: [`order-countries?organization_id=${orgData?.id}`],
+    enabled:!!orgData?.organizations?.id
   });
-  const options = cities?.cities.map((item) => ({
-    value: item.id,
-    label: isRTL ? item.name_ar : item?.name_en,
+  const options = countries?.country_organization.map((item) => ({
+    value: item.country_id,
+    label: item.country_name,
   }));
-  const selectedCity = options?.find((option) => option?.value == values[name]);
+
+  const selectedCountry = options?.find(
+    (option) => option?.value == values[name]
+  );
 
   return (
-    <div className={className}>
+    <div className={`${className} mt-2`}>
       <Label>
         {label}
         <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
@@ -46,34 +53,36 @@ export default function SelectCitiesSaudi({
           images={images}
         />
       )}
-      <div className="">
+      <div className="mt-[0.5rem]">
         <Select
           options={options}
           name={name}
-          value={selectedCity}
-          placeholder={t("Chose city")}
-          onChange={(option) => setFieldValue(name, option.value)}
+          value={selectedCountry}
+          placeholder={t("Chose Country")}
           noOptionsMessage={() => t("Not Found Data")}
+          onBlur={handleBlur}
+          isMulti
+          onChange={(option) => {
+            setFieldValue(
+              name,
+              option.map((item) => item.value)
+            );
+          }}
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
               padding: "10px 0",
               borderRadius: " 8px",
               borderWidth: "1px",
-              // borderColor:"#555d64",
+              // borderColor:"#555d64" ,
               background: "white",
               margin: "0",
-              // zIndex:"9999999"
             }),
             option: (baseStyles) => ({
               ...baseStyles,
               background: "white",
               color: "black",
             }),
-            // placeholder: (baseStyles) => ({
-            //   ...baseStyles,
-            //   color: 'white', // Replace 'desiredColor' with the color you want
-            // }),
           }}
           theme={(theme) => ({
             ...theme,
@@ -88,8 +97,10 @@ export default function SelectCitiesSaudi({
             control: () => "dark:bg-dark-primary dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",
           }}
-          // defaultValue={{ value: values[name] , label:values[name] }}
         />
+        <div>
+          <FormikError name={name} />
+        </div>
       </div>
     </div>
   );

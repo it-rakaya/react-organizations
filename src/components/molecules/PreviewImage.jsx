@@ -7,7 +7,7 @@ import { Typography } from "@mui/material";
 export default function PreviewImage({
   files,
   bgMain,
-  className,
+  setOpenModal,
   handleRemoveFile,
 }) {
   // Extract the URLs from the files array
@@ -44,7 +44,7 @@ export default function PreviewImage({
                 </div>
               </div>
             </a>
-            <div onClick={() => handleRemoveFile(files[0])}>
+            <div onClick={() => setOpenModal(true)}>
               <IconifyIcon icon="mdi:close" fontSize={20} className="cursor-pointer dark:text-white" />
             </div>
           </div>

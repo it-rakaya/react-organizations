@@ -9,14 +9,11 @@ import BaseInputField from "../../molecules/Formik/BaseInputField";
 import SelectFacilities from "../../molecules/SelectFacilities";
 import SelectPositions from "../../molecules/SelectPositions";
 import UploadDoc from "../../molecules/uploadImage/UploadDoc";
-import { useFormikContext } from "formik";
 export default function EmployeeMainData({
   showSelectFacility,
   attachments_facility_employees,
 }) {
   const theme = useTheme();
-  const {values} = useFormikContext()
-  console.log("🚀 ~ values:", values)
   return (
     <div className="">
       <MainHeader

@@ -1,38 +1,45 @@
 /* eslint-disable react/prop-types */
+import { mdiInformationOutline } from "@mdi/js";
+import Icon from "@mdi/react";
 import { useFormikContext } from "formik";
 import { t } from "i18next";
 import Select from "react-select";
-import useFetch from "../../hooks/useFetch";
-import CardInfo from "./CardInfo";
-import Label from "./Label";
-import { useIsRTL } from "../../hooks/useIsRTL";
+import useFetch from "../../../hooks/useFetch";
+import { FormikError } from "../Formik/FormikError";
+import Label from "../Label";
+import { useIsRTL } from "../../../hooks/useIsRTL";
+import CardInfo from "../CardInfo";
 
-export default function SelectCitiesSaudi({
+export default function SelectBank({
   name,
   label,
   className,
   required,
   showIcon,
-  setShow,
-  setIndex,
   index,
   messageInfo,
+  setIndex,
+  setShow,
   images,
 }) {
-  const { setFieldValue, values } = useFormikContext();
+  const { setFieldValue, values, handleBlur } = useFormikContext();
   const isRTL = useIsRTL();
-  const { data: cities } = useFetch({
-    endpoint: `saudi-cities`,
-    queryKey: ["saudi-cities"],
+
+  const { data: banks } = useFetch({
+    endpoint: `banks`,
+    queryKey: ["banks"],
   });
-  const options = cities?.cities.map((item) => ({
+  const options = banks?.banks.map((item) => ({
     value: item.id,
     label: isRTL ? item.name_ar : item?.name_en,
   }));
-  const selectedCity = options?.find((option) => option?.value == values[name]);
+
+  const selectedCountry = options?.find(
+    (option) => option?.value == values[name]
+  );
 
   return (
-    <div className={className}>
+    <div className={`${className} mt-2`}>
       <Label>
         {label}
         <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
@@ -46,34 +53,30 @@ export default function SelectCitiesSaudi({
           images={images}
         />
       )}
-      <div className="">
+      <div className="mt-[0.5rem]">
         <Select
           options={options}
           name={name}
-          value={selectedCity}
-          placeholder={t("Chose city")}
-          onChange={(option) => setFieldValue(name, option.value)}
+          value={selectedCountry}
+          placeholder={t("Chose bank")}
           noOptionsMessage={() => t("Not Found Data")}
+          onBlur={handleBlur}
+          onChange={(option) => setFieldValue(name, option.value)}
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
               padding: "10px 0",
               borderRadius: " 8px",
               borderWidth: "1px",
-              // borderColor:"#555d64",
+              // borderColor:"#555d64" ,
               background: "white",
               margin: "0",
-              // zIndex:"9999999"
             }),
             option: (baseStyles) => ({
               ...baseStyles,
               background: "white",
               color: "black",
             }),
-            // placeholder: (baseStyles) => ({
-            //   ...baseStyles,
-            //   color: 'white', // Replace 'desiredColor' with the color you want
-            // }),
           }}
           theme={(theme) => ({
             ...theme,
@@ -88,8 +91,12 @@ export default function SelectCitiesSaudi({
             control: () => "dark:bg-dark-primary dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",
           }}
-          // defaultValue={{ value: values[name] , label:values[name] }}
+          maxMenuHeight={250}
+          menuShouldScrollIntoView
         />
+        <div>
+          <FormikError name={name} />
+        </div>
       </div>
     </div>
   );

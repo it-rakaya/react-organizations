@@ -32,27 +32,16 @@ export default function MyEmployees() {
   const [openModelDeleteEmployee, setModelDeleteEMployee] = useState(false);
   const theme = useTheme();
 
-  const LinkStyled = styled(Link)(({ theme }) => ({
-    fontWeight: 600,
-    fontSize: "1rem",
-    cursor: "pointer",
-    textDecoration: "none",
-    color: theme.palette.text.secondary,
-    "&:hover": {
-      color: theme.palette.primary.main,
-    },
-  }));
-
   const columns = [
     {
       flex: 0.2,
-      minWidth: 230,
+      minWidth: 180,
       field: "name",
       headerName: t("name"),
       cellClassName: "!bg-transparent",
       headerAlign: "center",
       renderCell: ({ row }) => {
-        const { name } = row;
+        const { name, attachmentUrl } = row;
         return (
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box
@@ -63,13 +52,13 @@ export default function MyEmployees() {
                 // flexDirection: "column",
               }}
             >
-              <Icon path={mdiAccountOutline} size={1} />
-              <LinkStyled
-                href="/apps/user/view/overview/"
-                className="text-black dark:text-white"
-              >
-                {name}
-              </LinkStyled>
+              <div className="flex items-center gap-3">
+                <img
+                  src={attachmentUrl[1]?.value}
+                  className="w-[40px]  h-[40px] rounded-full"
+                />
+                <p className="text-black dark:text-white">{name?.length > 30 ? `${name?.slice(0,20)}...` : name}</p>
+              </div>
             </Box>
           </Box>
         );
@@ -77,7 +66,7 @@ export default function MyEmployees() {
     },
     {
       flex: 0.2,
-      minWidth: 250,
+      minWidth: 180,
       field: "facility_name",
       headerName: t("facility name"),
       cellClassName: "flex !px-0 !justify-center",
@@ -97,7 +86,7 @@ export default function MyEmployees() {
     {
       flex: 0.15,
       field: "national_id",
-      minWidth: 150,
+      minWidth: 180,
       headerName: t("National ID"),
       cellClassName: "flex !px-0 !justify-center",
 
@@ -118,7 +107,7 @@ export default function MyEmployees() {
     },
     {
       flex: 0.15,
-      minWidth: 120,
+      minWidth: 180,
       headerName: t("position"),
       field: "position",
       cellClassName: "flex !px-0 !justify-center",
@@ -199,8 +188,8 @@ export default function MyEmployees() {
     },
     {
       flex: 0.15,
-      minWidth: 100,
-      headerName:t("actions"),
+      minWidth: 120,
+      headerName: t("actions"),
       field: t("actions"),
       cellClassName: "!flex !px-0 !justify-center !items-center",
       headerAlign: "center",

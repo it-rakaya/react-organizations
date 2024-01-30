@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
+import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import LanguageDropdown from "./LanguageDropdown";
 import ModeToggler from "./ModeToggler";
 import UserDropdown from "./UserDropdown";
-import IconifyIcon from "../../atoms/icons/IconifyIcon";
 
 const AppBarContent = (props) => {
   const { settings, saveSettings, toggled, setToggled } = props;
@@ -18,7 +18,7 @@ const AppBarContent = (props) => {
       }}
     >
       <Box
-        className=" actions-left"
+        className=" actions-left dark:bg-"
         sx={{ mr: 2, display: "flex", alignItems: "center" }}
       >
         <div className="block md:hidden" onClick={() => setToggled(!toggled)}>
@@ -35,7 +35,7 @@ const AppBarContent = (props) => {
         className="actions-right"
         sx={{ display: "flex", alignItems: "center" }}
       >
-        <LanguageDropdown settings={settings} saveSettings={saveSettings} />
+        <LanguageDropdown settings={settings} />
         <ModeToggler settings={settings} saveSettings={saveSettings} />
         <UserDropdown settings={settings} />
       </Box>

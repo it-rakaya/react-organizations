@@ -67,7 +67,7 @@ function NationalAddressData() {
         <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("building number")}
-            placeholder="3654"
+            placeholder="xxxx"
             name="building_number"
             type="custom"
             maxNum="4"
@@ -85,10 +85,10 @@ function NationalAddressData() {
         <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("postal code")}
-            placeholder="568750"
+            placeholder="xxxxx"
             name="postal_code"
             type="custom"
-            maxNum="6"
+            maxNum="5"
             required
             showIcon
             setShow={setShow}
@@ -101,10 +101,10 @@ function NationalAddressData() {
         <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("sub number")}
-            placeholder="698547"
+            placeholder="xxxx"
             name="sub_number"
             type="custom"
-            maxNum="6"
+            maxNum="4"
             required
             showIcon
             setShow={setShow}
@@ -118,7 +118,7 @@ function NationalAddressData() {
       <ModalComp
         open={show}
         className="!max-w-[700px] m-auto    "
-        classNameBox="shadow-none w-full !bg-transparent "
+        classNameBox="!shadow-none w-full !bg-transparent "
         onClose={() => setShow(false)}
         hidden={true}
         Children={

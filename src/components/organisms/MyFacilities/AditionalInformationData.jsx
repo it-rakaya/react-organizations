@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { t } from "i18next";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 
 function AdditionalInformationData({
   data,
@@ -33,6 +34,7 @@ function AdditionalInformationData({
         </p>
         <p className="mt-1 dark:text-white">{data?.kitchen_space}</p>
       </div>
+
     </div>
   );
 }

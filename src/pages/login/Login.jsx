@@ -6,10 +6,11 @@ import { t } from "i18next";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../../components/Landing/Navbar";
 import LoginIcon from "../../components/atoms/icons/LoginIcon";
+import Loading from "../../components/molecules/Loading";
 import LoginForm from "../../components/templates/LoginForm";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
-import { useSettings } from "../../hooks/useSettings";
 
 const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -45,12 +46,12 @@ const TypographyStyled = styled(Typography)(({ theme }) => ({
 
 const Login = () => {
   const navigate = useNavigate();
-  const { orgData } = UseOrg();
+  const { orgData , isSuccess, isRefetching  } = UseOrg();
   const theme = useTheme();
-  const { settings } = useSettings();
+  // const { settings } = useSettings();
   const hidden = useMediaQuery(theme.breakpoints.down("md"));
 
-  const { skin } = settings;
+  // const { skin } = settings;
   const token = Cookies.get("token");
   const organizationName = !orgData?.organizations?.name_ar
     ? t("landing.organizationName")
@@ -60,17 +61,21 @@ const Login = () => {
       navigate("/");
     }
   }, [navigate, token]);
-  // if (!isSuccess || isRefetching) return <Loading />;
+  if (!isSuccess || isRefetching) return <Loading />;
   if (!token) {
     return (
       <div className="">
+        <div className="absolute rtl:left-0 ltr:right-0 z-[99]">
+          <Navbar hidden={true} />
+        </div>
+
         <Box className="flex content-right">
           <RightWrapper
-            sx={
-              skin === "bordered" && !hidden
-                ? { borderLeft: `1px solid ${theme.palette.divider}` }
-                : {}
-            }
+            // sx={
+            //   skin === "bordered" && !hidden
+            //     ? { borderLeft: `1px solid ${theme.palette.divider}` }
+            //     : {}
+            // }
           >
             <Box
               sx={{
@@ -83,9 +88,8 @@ const Login = () => {
                 height: "100vh",
                 overflowY: "scroll",
                 overflowX: "hidden",
-
               }}
-              className="scroll_main"
+              className="scroll_main dark:bg-darkModeColor"
             >
               <Box
                 sx={{
@@ -104,10 +108,16 @@ const Login = () => {
               </Box>
               <BoxWrapper className="flex flex-col items-center justify-center mt-5">
                 <Box sx={{ mb: 3, width: "100%" }} className="text-center">
-                  <TypographyStyled className="!text-black dark:!text-white" variant="h5">{`${t(
+                  <TypographyStyled
+                    className="!text-black dark:!text-white"
+                    variant="h5"
+                  >{`${t(
                     "Welcome to"
                   )} ${organizationName}!`}</TypographyStyled>
-                  <Typography variant="body2" className="!text-black dark:!text-white" >
+                  <Typography
+                    variant="body2"
+                    className="!text-black dark:!text-white"
+                  >
                     {t("Please sign-in to your account")}
                   </Typography>
                   {/* <Typography variant="body2" className="text-black dark:text-white" >{"530410927"}</Typography> */}
@@ -124,13 +134,16 @@ const Login = () => {
                     marginTop: "10px",
                   }}
                 >
-                  <Typography sx={{ mr: 2,}} className="!text-black dark:!text-white" >
+                  <Typography
+                    sx={{ mr: 2 }}
+                    className="!text-black dark:!text-white"
+                  >
                     {t("New on our platform?")}
                   </Typography>
                   <Link
                     to="/register"
                     sx={{ color: "primary.main", textDecoration: "none" }}
-                    className="!text-black dark:!text-white" 
+                    className="!text-black dark:!text-white"
                   >
                     {t("Create an account")}
                   </Link>

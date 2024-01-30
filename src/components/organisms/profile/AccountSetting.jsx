@@ -10,12 +10,8 @@ import { notify } from "../../../utils/toast";
 import MainHeader from "../../atoms/MainHeader";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import AccountSettingMainData from "./AccountSettingMainData";
-import useFetch from "../../../hooks/useFetch";
-import { useEffect } from "react";
-import { useAuth } from "../../../context/auth-and-perm/AuthProvider";
 
 export default function AccountSetting({ userData, setEditUser, setUser , refetch }) {
-  const { user , token } = useAuth();
 
 
   const initialValue = {
@@ -106,7 +102,7 @@ export default function AccountSetting({ userData, setEditUser, setUser , refetc
       <Formik
         initialValues={initialValue}
         onSubmit={(values) => handleSubmit(values)}
-        // validationSchema={ValidationSchema}
+        validationSchema={ValidationSchema}
       >
         <Form>
           <AccountSettingMainData userData={userData} />

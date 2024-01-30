@@ -4,6 +4,8 @@ import { Grid } from "@mui/material";
 import { useFormikContext } from "formik";
 import ButtonComp from "../../components/atoms/buttons/ButtonComp";
 import { t } from "i18next";
+import { useTheme } from "@mui/material/styles";
+import { notify } from "../../utils/toast";
 
 function AfterAndBeforeFacility({
   activeStep,
@@ -14,9 +16,22 @@ function AfterAndBeforeFacility({
   update,
 }) {
   const { values, errors } = useFormikContext();
+  console.log("🚀 ~ values:", values)
+  console.log("🚀 ~ errors:", errors)
+  const theme = useTheme();
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+  const formatErrorMessage = (errors) => {
+    return Object.entries(errors)
+      .map(([key, error]) => `${t(key)}: ${error}`)
+      .join(', ');
+  };
+  
+  const showErrorNotification = () => {
+    const errorMessage = formatErrorMessage(errors);
+    notify("error", errorMessage);
   };
 
   const handleNext = () => {
@@ -35,6 +50,7 @@ function AfterAndBeforeFacility({
 
     // If there are validation errors, handle them (notify, etc.)
     if (hasValidationErrors) {
+      showErrorNotification();
       return;
     } else {
       // Proceed to the next step
@@ -59,6 +75,9 @@ function AfterAndBeforeFacility({
     capacity: "",
     license: "",
     tax_certificate: "",
+    account_name: "",
+    iban: "",
+    bank_id: "",
   };
   const initialCase1 = {
     street_name: "",
@@ -67,6 +86,7 @@ function AfterAndBeforeFacility({
     sub_number: "",
     district_id: "",
     city_id: "",
+    neighborhood:""
   };
   const initialCase2 = {
     employee_number: "",
@@ -88,12 +108,12 @@ function AfterAndBeforeFacility({
       case 3:
         // Filter out undefined values from attachments_facilities
         // const filteredAttachmentLabels =
-        // values?.attachments?.filter(
-        //   (value) => value !== undefined && value !== null
+        //   values?.attachments?.filter(
+        //     (value) => value !== undefined && value !== null
         //   ) || [];
 
         // const attachmentsLength =
-        // attachments_facilities?.attachment_labels.length || 0;
+        //   attachments_facilities?.attachment_labels.length || 0;
         // const actualAttachmentsLength = filteredAttachmentLabels?.length || 0;
 
         // return update ? "" : attachmentsLength !== actualAttachmentsLength;
@@ -105,7 +125,6 @@ function AfterAndBeforeFacility({
         const validAttachments = values?.attachments
           ?.map((file, index) => ({ index, file }))
           ?.filter((item) => typeof item?.file !== "undefined");
-
         const attachments = validAttachments?.map((item) => ({
           [`attachments[${item?.index}]`]: item?.file,
         }));
@@ -132,7 +151,7 @@ function AfterAndBeforeFacility({
         justifyContent: "end",
         gap: "5px",
       }}
-      className="md:fixed mt-5 md:mt-0 bottom-[55px] md:bottom-[25px] ltr:right-[16px] ltr:md:right-[28px] rtl:left-[16px] md:rtl:left-[33px] "
+      className="md:fixed mt-5 md:mt-0 bottom-[55px] md:bottom-[20px] ltr:right-[16px] ltr:md:right-[41px] rtl:left-[16px] md:rtl:left-[41px] "
     >
       <ButtonComp
         size="large"
@@ -140,7 +159,7 @@ function AfterAndBeforeFacility({
         disabled={activeStep === 0}
         action={handleBack}
         variant="outlined"
-        className={`!w-[130px] px-1 !text-contained  !mt-0 ${
+        className={`!w-[130px] px-1  !mt-0 ${
           activeStep === 0 ? "!hidden" : "block"
         } `}
       >

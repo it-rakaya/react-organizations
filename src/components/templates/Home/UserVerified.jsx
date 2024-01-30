@@ -8,6 +8,7 @@ import useFetch from "../../../hooks/useFetch";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import UserVerifiedIcon from "../../atoms/icons/UserVerifiedIcon";
 import CardStatsHorizontal from "../../molecules/card-stats-horizontal";
+import { useTheme } from "@mui/material/styles";
 
 function UserVerified() {
   const { user } = useAuth();
@@ -29,6 +30,7 @@ function UserVerified() {
   const AllOrder = Orders?.all_user_orders.length;
   const AllFacilities = facilities?.user_facilities.length;
   const AllEmployee = employees?.employees.length;
+  const theme = useTheme();
 
   const data = [
     {
@@ -68,7 +70,10 @@ function UserVerified() {
           </div>
 
           <div className="flex flex-wrap justify-between gap-1 md:justify-normal md:gap-2 xs:flex-nowrap ">
-            <Link to={`https://wa.me/${orgData?.organizations?.phone}/`} className="w-1/2">
+            <Link
+              to={`https://wa.me/${orgData?.organizations?.phone}/`}
+              className="w-1/2"
+            >
               <ButtonComp
                 className={"  !text-[10px] md:!text-[14px] md:!w-[full]"}
               >
@@ -91,6 +96,7 @@ function UserVerified() {
                   item={item}
                   className="!bg-transparent !shadow-none"
                   classNameBox="!pr-0 !pl-0   "
+                
                 />
               </Grid>
             ))}

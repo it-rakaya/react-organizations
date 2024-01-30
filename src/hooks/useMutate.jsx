@@ -15,36 +15,45 @@ export function useMutate({
   const token = user_token;
   const authorizationHeader = `Bearer ${token}`;
 
-  const { data, isLoading, isSuccess, mutate, failureReason, isError ,isPending } =
-    useMutation({
-      mutationKey,
-      mutationFn: (values) => {
-        const requestConfig = {
-          method: method.toUpperCase(), // Use the specified method
-          url: `https://front-api.rmcc.sa/api/${endpoint}`,
-          data: values,
-          headers: formData
-            ? {
-                "Content-Type": "multipart/form-data",
-                Authorization: authorizationHeader,
-                // origin: "africa-dev.rmcc.sa",
-                // mode:'cors'
+  const {
+    data,
+    isLoading,
+    isSuccess,
+    mutate,
+    failureReason,
+    isError,
+    isPending,
+  } = useMutation({
+    mutationKey,
+    mutationFn: (values) => {
+      const requestConfig = {
+        method: method.toUpperCase(), // Use the specified method
+        url: `https://front-api.rmcc.sa/api/${endpoint}`,
+        data: values,
+        headers: formData
+          ? {
+              "Content-Type": "multipart/form-data",
+              Authorization: authorizationHeader,
+            }
+          : {
+              "Content-Type": "application/json; charset=utf-8",
+              Authorization: authorizationHeader,
+            },
+      };
 
-              }
-            : {
-                "Content-Type": "application/json; charset=utf-8",
-                Authorization: authorizationHeader,
-                // origin: "africa-dev.rmcc.sa",
-                // mode:'cors'
-
-              },
-        };
-
-        return axios(requestConfig);
-      },
-      onSuccess,
-      onError,
-      onMutate,
-    });
-  return { data, isLoading, isSuccess, mutate, failureReason, isError , isPending };
+      return axios(requestConfig);
+    },
+    onSuccess,
+    onError,
+    onMutate,
+  });
+  return {
+    data,
+    isLoading,
+    isSuccess,
+    mutate,
+    failureReason,
+    isError,
+    isPending,
+  };
 }
