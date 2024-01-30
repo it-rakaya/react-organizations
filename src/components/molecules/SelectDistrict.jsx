@@ -33,7 +33,9 @@ export default function SelectDistrict({
       label: item.name_ar,
       city_id: item.city_id,
     }));
-  const other = district?.districts.find((option) => option?.name_en == "Other");
+  const other = district?.districts.find(
+    (option) => option?.name_en == "Other"
+  );
   if (!filteredOptions || filteredOptions.length === 0) {
     filteredOptions?.push({
       value: other?.id,
@@ -73,9 +75,13 @@ export default function SelectDistrict({
             isLoading ? (
               <Spinner />
             ) : values?.city_id ? (
-              t("chose District")
+              <div className="select-placeholder-text">
+                {t("chose District")}
+              </div>
             ) : (
-              t("Chose city is first")
+              <div className="select-placeholder-text">
+                {t("Chose city is first")}
+              </div>
             )
           }
           className="$"

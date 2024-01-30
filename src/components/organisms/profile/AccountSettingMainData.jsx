@@ -33,7 +33,7 @@ function AccountSettingMainData({ userData }) {
       <div className="col-span-2 md:col-span-1 ">
         <BaseInputField
           label={t("National ID")}
-          placeholder="10********"
+          placeholder="xxxxxxxxxx"
           name="national_id"
           type="custom"
           maxNum={10}
@@ -85,25 +85,27 @@ function AccountSettingMainData({ userData }) {
         </h1>
       </div>
 
-      {attachments_register?.attachment_labels?.map((attachmentLabel) => {
-        const userAttachment = userData?.attachmentUrl?.find(
-          (ua) => ua.attachment_label_id === attachmentLabel.id
-        );
-        return (
-          <UploadDoc
-            key={attachmentLabel.id}
-            name={`attachments[${attachmentLabel.id}]`}
-            label={attachmentLabel.placeholder}
-            nameValue={attachmentLabel?.id}
-            id={attachmentLabel.id}
-            accept={attachmentLabel.extensions}
-            placeholder={attachmentLabel.placeholder}
-            isRequired={attachmentLabel.is_required == "1"}
-            value={userAttachment ? userAttachment.value : null}
-            nameLabel={userAttachment?.name}
-          />
-        );
-      })}
+      {attachments_register?.attachment_labels
+        ?.filter((item) => item.id !== 3)
+        .map((attachmentLabel) => {
+          const userAttachment = userData?.attachmentUrl?.find(
+            (ua) => ua.attachment_label_id === attachmentLabel.id
+          );
+          return (
+            <UploadDoc
+              key={attachmentLabel.id}
+              name={`attachments[${attachmentLabel.id}]`}
+              label={attachmentLabel.placeholder}
+              nameValue={attachmentLabel?.id}
+              id={attachmentLabel.id}
+              accept={attachmentLabel.extensions}
+              placeholder={attachmentLabel.placeholder}
+              isRequired={attachmentLabel.is_required == "1"}
+              value={userAttachment ? userAttachment.value : null}
+              nameLabel={userAttachment?.name}
+            />
+          );
+        })}
     </div>
   );
 }

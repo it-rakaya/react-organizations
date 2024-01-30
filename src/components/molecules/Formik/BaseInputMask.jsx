@@ -7,6 +7,10 @@ const BaseInputMask = forwardRef(() => {
     useFormikContext();
 
     const formatIban = (value) => {
+      const hasSpaces = /\s/.test(value);
+      if (hasSpaces) {
+        return value;
+      }
       return value.replace(/(.{4})/g, "$1 ").trim();
     };
     const [inputValue, setInputValue] = useState(formatIban(values?.iban));

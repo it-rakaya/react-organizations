@@ -14,6 +14,7 @@ export default function SelectPositions({ name, label, className ,required }) {
     endpoint: `employees-positions`,
     queryKey: ["employees-positions"],
   });
+  console.log("🚀 ~ SelectPositions ~ positions:", positions)
   const options = positions?.positions.map((item) => ({
     value: item.id,
     label: item.name,

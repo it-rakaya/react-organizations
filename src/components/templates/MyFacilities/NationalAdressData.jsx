@@ -16,7 +16,7 @@ function NationalAdressData({ data, childSection, colorHead, parentSection }) {
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("district")}
+          {t("District name")}
         </p>
         <p className="mt-1 dark:text-white">{data?.district}</p>
       </div>

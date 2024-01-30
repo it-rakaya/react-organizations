@@ -5,6 +5,7 @@ import { Divider } from "@mui/material";
 import { useIsRTL } from "../../../hooks/useIsRTL";
 
 function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
+  console.log("🚀 ~ DetailsFacilityData ~ data:", data)
   const isRTL = useIsRTL();
 
   return (
@@ -13,7 +14,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
         <h2 className="text-black dark:text-white">{t("Facility Data")}</h2>
       </div>
       <div className="col-span-2">
-        <h1 className="flex items-center col-span-12 gap-1 pt-5 pb-3 text-xl font-medium dark:text-white">
+        <h1 className="flex items-center col-span-12 gap-1 pt-5 pb-3 font-medium md:text-xl dark:text-white">
           {t("Commercial registry data")}:
         </h1>
       </div>
@@ -67,8 +68,9 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       </div>
 
       <div className="col-span-2">
-        <h1 className="flex items-center col-span-12 gap-1 pt-2 pb-3 text-xl font-medium dark:text-white">
-          {t("Commercial activity license data")}:
+        <h1 className="flex items-center col-span-12 gap-1 pt-2 pb-3 font-medium md:text-xl dark:text-white">
+          {/* {t("Commercial activity license data")}: */}
+          {t("Commercial activity license data (my country)")}:
         </h1>
       </div>
       <div className={childSection}>
@@ -98,7 +100,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       </div>
 
       <div className="col-span-2">
-        <h1 className="flex items-center col-span-12 gap-1 pt-2 pb-3 text-xl font-medium dark:text-white">
+        <h1 className="flex items-center col-span-12 gap-1 pt-2 pb-3 font-medium md:text-xl dark:text-white">
           {t("Bank data of the facility")}:
         </h1>
       </div>

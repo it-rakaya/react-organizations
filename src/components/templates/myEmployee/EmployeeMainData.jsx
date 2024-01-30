@@ -39,7 +39,7 @@ export default function EmployeeMainData({
           <div className="w-full md:w-1/2">
             <BaseInputField
               label={t("Employee Name")}
-              placeholder="محمد احمد محمد"
+              placeholder={t("registration.namePleaceholder")}
               name="name"
               required
             />
@@ -56,7 +56,7 @@ export default function EmployeeMainData({
           <div className="w-full">
             <BaseInputField
               label={t("ID Number")}
-              placeholder="********10"
+              placeholder="xxxxxxxxxx"
               name="national_id"
               type="custom"
               maxNum={10}

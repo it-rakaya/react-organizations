@@ -16,7 +16,7 @@ import DetailsFacilityData from "./DetailsFacilityData";
 import NationalAdressData from "./NationalAdressData";
 import { t } from "i18next";
 
-export default function DetailsFacility({ data, className }) {
+export default function DetailsFacility({ data, className , style }) {
   const theme = useTheme();
   const mainColor = theme?.palette?.primary?.main;
   const [value, setValue] = useState("1");
@@ -57,7 +57,7 @@ export default function DetailsFacility({ data, className }) {
     <div>
       <div className="mt-8 px-">
         <TabContext value={value} className="!w-fit">
-          <div className="flex mt-5">
+          <div className="flex mt-5 overflow-hidden" style={{height:"calc(90vh - 5rem)"}}>
             <TabList
               onChange={handleChange}
               aria-label="nav tabs example"
@@ -86,7 +86,8 @@ export default function DetailsFacility({ data, className }) {
               ))}
             </TabList>
             <div
-              className={`${className} !overflow-y-scroll !shadow-none  max-h-[44rem]  scroll_main w-full`}
+              className={`${className} !overflow-y-scroll !shadow-none   scroll_main w-full`}
+              style={style}
             >
               <TabPanel value="1" className="pt-0">
                 <DetailsFacilityData

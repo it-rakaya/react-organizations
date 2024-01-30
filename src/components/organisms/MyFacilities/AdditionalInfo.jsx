@@ -44,7 +44,7 @@ function AdditionalInfo() {
       </div>
 
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
-        <div className="w-full md:w-1/2">
+        <div className="w-full ">
           <BaseInputField
             label={t("kitchen space")}
             placeholder="500"

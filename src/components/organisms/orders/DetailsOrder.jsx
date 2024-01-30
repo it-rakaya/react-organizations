@@ -19,7 +19,7 @@ export default function DetailsOrder({ data }) {
   // const mainColor = theme?.palette?.primary?.main;
   const Rejected = 5;
   return (
-    <div className="">
+    <div className="overflow-hidden" style={{ height: "calc(90vh - 2rem)" }}>
       <div className="mt-10 md:px-10 ">
         <div className="col-span-2">
           <MainHeader
@@ -30,15 +30,11 @@ export default function DetailsOrder({ data }) {
 
         <div className="grid grid-cols-1 px-10 mt-5 md:px-20 md:grid-cols-2 ">
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold dark:text-white">
-            {t("service type")}
-            </p>
+            <p className="font-bold dark:text-white">{t("service type")}</p>
             <p className="dark:text-white">{data?.service?.name}</p>
           </div>
           <div className="flex items-center col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold dark:text-white">
-             {t("Order status")}
-               </p>
+            <p className="font-bold dark:text-white">{t("Order status")}</p>
             <p
               className="px-2 py-1 text-white rounded-md"
               style={{ backgroundColor: data?.status?.color }}
@@ -121,15 +117,23 @@ export default function DetailsOrder({ data }) {
               <div className="grid grid-cols-2 gap-4 px-4 mt-5">
                 {data?.answers?.length ? (
                   data?.answers?.map((item) => (
-                    <div className="flex flex-col col-span-2 gap-2 py-2 mt-5 border-b md:col-span-1" key={item?.id}>
-                      <p className="font-bold " style={{ color: theme.palette.primary.main }}>
+                    <div
+                      className="flex flex-col col-span-2 gap-2 py-2 mt-5 border-b md:col-span-1"
+                      key={item?.id}
+                    >
+                      <p
+                        className="font-bold "
+                        style={{ color: theme.palette.primary.main }}
+                      >
                         {item?.question?.content}:
                       </p>
                       <p className="dark:text-white">{item?.value}</p>
                     </div>
                   ))
                 ) : (
-                  <div className="text-2xl font-bold text-black dark:text-white">{t("There are no questions")}</div>
+                  <div className="text-2xl font-bold text-black dark:text-white">
+                    {t("There are no questions")}
+                  </div>
                 )}
               </div>
             </TabPanel>
@@ -138,7 +142,8 @@ export default function DetailsOrder({ data }) {
                 <div className="">
                   <DetailsFacility
                     data={data?.facility}
-                    className="h-[27rem]"
+                    className="detailsOrderFacility"
+                    style={{height:"calc(100vh - 28rem)"}}
                   />
                 </div>
               </div>

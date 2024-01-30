@@ -65,7 +65,7 @@ function RegistrationMainData({ attachments_register, setOpen, isPending }) {
       />
       <BaseInputField
         label={t("registration.IDNumberLabel")}
-        placeholder="********10"
+        placeholder="xxxxxxxxxx"
         name="national_id"
         type="custom"
         maxNum={10}

@@ -53,12 +53,14 @@ export default function SelectBank({
           images={images}
         />
       )}
-      <div className="mt-[0.5rem]">
+      <div className="">
         <Select
           options={options}
           name={name}
           value={selectedCountry}
-          placeholder={t("Chose bank")}
+          // placeholder={t("Chose bank")}
+          placeholder={<div className="select-placeholder-text">{t("Chose bank")}</div>} 
+
           noOptionsMessage={() => t("Not Found Data")}
           onBlur={handleBlur}
           onChange={(option) => setFieldValue(name, option.value)}

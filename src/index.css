@@ -97,16 +97,8 @@ h1 {
   color: black;
 }
 
-.dark :placeholder {
-  /* color: #797e7f; */
-  /* color: white; */
-}
 
-.dark ::-webkit-input-placeholder,
-::-moz-placeholder {
-  /* color: #797e7f; */
-  /* color: white !important; */
-}
+
 
 @media (max-width:440px) {
   p {
@@ -797,9 +789,9 @@ input:-webkit-autofill:active {
 
 }
 
-.dark ::placeholder {
+/* .dark ::placeholder {
   color: white !important;
-}
+} */
 
 .dark .rtl-1g0ciz2-singleValue,
 .dark .css-1g0ciz2-singleValue {
@@ -882,9 +874,11 @@ input:-webkit-autofill:active {
   /* Microsoft Edge */
   color: white !important;
 }
+
 .dark input::placeholder {
   /* Microsoft Edge */
-  color: #9e9e9e !important;;
+  color: #9e9e9e !important;
+  ;
 }
 
 .dark input:-webkit-autofill,
@@ -904,18 +898,44 @@ input:-webkit-autofill:active {
   box-shadow: 0 0 10px -11px black;
 }
 
-.MuiInputBase-input{
+.MuiInputBase-input {
   color: black;
 }
-.MuiInputBase-input::placeholder{
+
+.MuiInputBase-input::placeholder,
+input::placeholder,
+.select-placeholder-text {
   color: rgb(161, 149, 149);
+  opacity: 1;
+
 }
-.dark .MuiInputBase-input::placeholder{
+
+.dark .MuiInputBase-input::placeholder,
+.dark input::placeholder,
+.dark .select-placeholder-text {
+  color: rgb(194, 185, 185) !important;
+  opacity: 1;
+
+}
+
+/* .dark .MuiInputBase-input::placeholder{
   color: rgb(194, 185, 185);
-}
-.dark .MuiInputBase-input{
+} */
+.dark .MuiInputBase-input {
   color: white;
 }
+
 .dark input {
   caret-color: white;
+}
+
+.detailsOrderFacility {
+  height: calc(100vh - 28rem)
+}
+
+@media (max-width:800px) {
+  .detailsOrderFacility {
+    height: calc(100vh - 33rem) !important
+  }
+
 }
