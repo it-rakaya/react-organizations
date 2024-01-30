@@ -10,21 +10,15 @@ const OrgContext = createContext();
 export const OrganizationProvider = ({ children }) => {
   const url = window.location.href;
   // const local = "http://localhost:5173";
- 
+
   const baseUrl = new URL(url).origin;
   const savedMode = localStorage.getItem("darkMode");
   const [orgData, setOrgData] = UseLocalStorage("organization");
-  console.log(
-    "🚀 ~ OrganizationProvider ~ orgData:",
-    orgData?.organizations?.background_image == undefined
-  );
   // http://localhost:5173/
-  const { data, refetch, isRefetching, isSuccess, isLoading  } = useFetch({
+  const { data, refetch, isRefetching, isSuccess, isLoading } = useFetch({
     endpoint: `organizations?organizationDomain=${baseUrl}`,
     queryKey: ["organization_info"],
   });
-  const isRTL = useIsRTL()
-  console.log("🚀 ~ OrganizationProvider ~ isSuccess:", isSuccess)
   useEffect(() => {
     if (isSuccess) {
       setOrgData(data);
@@ -52,8 +46,7 @@ export const OrganizationProvider = ({ children }) => {
           return {
             ...prev,
             organizations: {
-              ...prev,
-              // background_image: default_image,
+              ...prev?.organizations,
               logo: !savedMode ? lightModeLogo : darkModeLogo,
             },
           };
@@ -67,7 +60,6 @@ export const OrganizationProvider = ({ children }) => {
           };
         });
       }
-
     }
   }, [orgData, savedMode]);
 
