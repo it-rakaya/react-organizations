@@ -142,7 +142,7 @@ export default function BaseInputField({
               borderColor: !!touched[name] && !!errors[name] ? "red" : "",
             }}
             sty
-            className={`${className} dark:border-[1px] border-[#555d64] "my-3 code " ${
+            className={`${className} d "my-3 code " ${
               !!touched[name] && !!errors[name] && "border-red-500 "
             }`}
           />

@@ -280,12 +280,15 @@ main,
   border: 1px solid #d8d8dd !important;
   /* width: 100% !important; */
 }
+
 .dark .react-tel-input .form-control {
   @apply bg-dark-primary
 }
+
 .dark .react-tel-input .form-control {
   border: 1px solid #555d64 !important;
 }
+
 .dark .react-tel-input .form-control {
   color: white;
 
@@ -541,8 +544,14 @@ main,
 
 .dark .MuiInputBase-input {
   border-radius: 8px;
-  padding-top:15.5px ;
-  border: 1px solid #555d64 !important;
+  padding-top: 15.5px;
+  border: 1px solid #555d64 ;
+}
+
+.MuiInputBase-input {
+  border-radius: 8px;
+  padding-top: 15.5px;
+  border: 1px solid #cccccc7d ;
 }
 
 
@@ -911,7 +920,9 @@ input::placeholder,
   opacity: 1;
 
 }
-input , select {
+
+input,
+select {
   border: #555d64 !;
 }
 
@@ -923,9 +934,7 @@ input , select {
 
 }
 
-/* .dark .MuiInputBase-input::placeholder{
-  color: rgb(194, 185, 185);
-} */
+
 .dark .MuiInputBase-input {
   color: white;
 }
@@ -960,30 +969,35 @@ input , select {
   }
 
 }
+
 @media (max-width:990px) {
   [dir="ltr"] .MuiStepConnector-root.MuiStepConnector-horizontal.MuiStepConnector-alternativeLabel {
     transform: translateX(-128%);
   }
 
 }
+
 @media (max-width:700px) {
   [dir="ltr"] .MuiStepConnector-root.MuiStepConnector-horizontal.MuiStepConnector-alternativeLabel {
     transform: translateX(-136%);
   }
 
 }
+
 @media (max-width:585px) {
   [dir="ltr"] .MuiStepConnector-root.MuiStepConnector-horizontal.MuiStepConnector-alternativeLabel {
     transform: translateX(-155%);
   }
 
 }
+
 @media (max-width:485px) {
   [dir="ltr"] .MuiStepConnector-root.MuiStepConnector-horizontal.MuiStepConnector-alternativeLabel {
     transform: translateX(-180%);
   }
 
 }
+
 @media (max-width:390px) {
   [dir="ltr"] .MuiStepConnector-root.MuiStepConnector-horizontal.MuiStepConnector-alternativeLabel {
     transform: translateX(-200%);
@@ -991,15 +1005,16 @@ input , select {
 
 }
 
-.MuiDataGrid-columnHeaderTitle{
-color: black !important;
+.MuiDataGrid-columnHeaderTitle {
+  color: black !important;
 }
 
 input {
   background-color: white !important;
+  /* border:1px solid red !important; */
 }
 
 .dark input,
 .dark select {
-  @apply !bg-dark-primary  !text-white
+  @apply !bg-transparent !text-white
 }

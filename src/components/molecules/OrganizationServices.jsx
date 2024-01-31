@@ -79,7 +79,7 @@ export default function OrganizationServices({
               },
             })}
             classNames={{
-              control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+              control: () => "dark:bg-transparent dark:!border-[#555d64] border border-solid !border-[#d7d7d7]",
               option: () => "dark:bg-dark-primary dark:text-white  ",
             }}
           />

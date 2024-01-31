@@ -7,19 +7,17 @@ import { FormikError } from "./Formik/FormikError";
 import Label from "./Label";
 import { useIsRTL } from "../../hooks/useIsRTL";
 
-export default function SelectPositions({ name, label, className ,required }) {
-  const { setFieldValue,  values,  handleBlur } =
-    useFormikContext();
-const isRTL = useIsRTL()
+export default function SelectPositions({ name, label, className, required }) {
+  const { setFieldValue, values, handleBlur } = useFormikContext();
+  const isRTL = useIsRTL();
   const { data: positions } = useFetch({
     endpoint: `employees-positions`,
     queryKey: ["employees-positions"],
   });
   const options = positions?.positions.map((item) => ({
     value: item.id,
-    label: isRTL ?  item.name_ar : item?.name_en,
+    label: isRTL ? item.name_ar : item?.name_en,
   }));
-  
 
   const selectedCountry = options?.find(
     (option) => option?.value == values[name]
@@ -27,19 +25,18 @@ const isRTL = useIsRTL()
 
   return (
     <div className={`${className} mt-2`}>
-        <Label>
-            {label}
-            <span className="mx-1 text-red-500">
-              {required == "1" ? "*" : ""}
-            </span>
-          </Label>
+      <Label>
+        {label}
+        <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
+      </Label>
       <div className="mt-[0.5rem]">
         <Select
           options={options}
           name={name}
           value={selectedCountry}
-          placeholder={<div className="select-placeholder-text">{t("Chose position")}</div>} 
-
+          placeholder={
+            <div className="select-placeholder-text">{t("Chose position")}</div>
+          }
           // placeholder={t("Chose position")}
           noOptionsMessage={() => t("Not Found Data")}
           onBlur={handleBlur}
@@ -47,17 +44,17 @@ const isRTL = useIsRTL()
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
-              padding: "9.5px 0",
+              padding: "10px 0",
               borderRadius: " 8px",
-              borderWidth:"1px",
+              borderWidth: "1px",
               // borderColor:"#555d64",
               background: "white",
               margin: "0",
-              
+              // zIndex:"9999999"
             }),
             option: (baseStyles) => ({
               ...baseStyles,
-              background:"white" ,
+              background: "white",
               color: "black",
             }),
           }}
@@ -65,14 +62,15 @@ const isRTL = useIsRTL()
             ...theme,
             borderRadius: 0,
             colors: {
-              // ...theme.colors,
+              ...theme.colors,
               primary25: `#eee`,
               primary: "#eee",
             },
           })}
           classNames={{
-            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+            control: () => "dark:bg-transparent dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",
+            menu: () => " bg-white dark:bg-dark-primary dark:text-white  ",
           }}
         />
         <div>

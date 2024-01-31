@@ -71,10 +71,7 @@ export default function SelectCitiesSaudi({
               background: "white",
               color: "black",
             }),
-            // placeholder: (baseStyles) => ({
-            //   ...baseStyles,
-            //   color: 'white', // Replace 'desiredColor' with the color you want
-            // }),
+
           }}
           theme={(theme) => ({
             ...theme,

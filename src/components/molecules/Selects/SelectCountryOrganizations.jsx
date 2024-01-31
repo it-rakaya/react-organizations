@@ -74,7 +74,7 @@ export default function SelectCountryOrganizations({
               ...baseStyles,
               padding: "9.5px 0",
               borderRadius: " 8px",
-              borderWidth: "1px",
+              // borderWidth: "1px",
               background: "white",
               margin: "0",
             }),
@@ -94,7 +94,7 @@ export default function SelectCountryOrganizations({
             },
           })}
           classNames={{
-            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+            control: () => "dark:bg-transparent dark:!border-[#555d64] border border-solid !border-[#d7d7d7]",
             option: () => "dark:bg-dark-primary dark:text-white  ",
           }}
         />

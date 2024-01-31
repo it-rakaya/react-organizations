@@ -38,7 +38,6 @@ export default function EmployeeMainData({
     );
     return attachmentItem && attachmentItem[`attachments[${id}]`] !== null;
   });
-  console.log("🚀 ~ isValid ~ isValid:", isValid);
   return (
     <>
       <div className="">

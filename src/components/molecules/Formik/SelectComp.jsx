@@ -12,7 +12,7 @@ const SelectComp = ({
   className,
   multi,
   idValue,
-  placeholder
+  placeholder,
 }) => {
   const { setFieldValue, values, errors } = useFormikContext();
   const [personName, setPersonName] = useState([]);
@@ -38,7 +38,9 @@ const SelectComp = ({
             helperText={errors[name]}
             error={!!errors[name]}
             value={personName}
-            placeholder={placeholder}
+            placeholder={
+              <div className="select-placeholder-text">{placeholder}</div>
+            }
             // MenuProps={MenuProps}
             id="demo-multiple-chip"
             onChange={handleChange}
@@ -66,7 +68,6 @@ const SelectComp = ({
             helperText={errors[name]}
             error={!!errors[name]}
             label={label}
-            
             id="controlled-select"
             onChange={(event) => {
               if (values[name] !== undefined) {
@@ -74,7 +75,7 @@ const SelectComp = ({
               }
             }}
             labelId="controlled-select-label"
-            placeholder={"placeholder"}
+            // placeholder={"placeholder"}
           >
             {data?.map((item) => (
               <MenuItem
@@ -85,7 +86,9 @@ const SelectComp = ({
               </MenuItem>
             ))}
           </Select>
-          <div><FormikError name={name} /></div>
+          <div>
+            <FormikError name={name} />
+          </div>
         </FormControl>
       )}
     </>
