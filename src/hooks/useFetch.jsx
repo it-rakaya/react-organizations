@@ -2,15 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { useIsRTL } from "./useIsRTL";
 
 function useFetch({ endpoint, enabled, select, queryKey, onError, onSuccess }) {
   const user_token = Cookies.get("token");
   const token = user_token;
   const authorizationHeader = `Bearer ${token}`;
   const navigate = useNavigate();
+  const isRTL = useIsRTL();
   const config = {
     headers: {
       Authorization: authorizationHeader,
+      "Accept-Language": isRTL ? "ar" : "en",
     },
   };
   const baseURL = import.meta.env.VITE_BASE_URL;

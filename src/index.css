@@ -114,7 +114,7 @@ h1 {
 
 .dark input,
 .dark select {
-  @apply bg-dark-primary !text-white
+  @apply bg-dark-primary  !text-white
 }
 
 .css-dip3t8 {
@@ -125,12 +125,6 @@ h1 {
 .react-select-container {
   @apply bg-dark-primary text-white
 }
-
-.react-tel-input {
-  /* @apply border border-solid rounded-md */
-}
-
-/* border-1 border-[rgba(0, 29, 110, 0.4)] focus:!border-1 focus:!border-[rgba(0, 29, 110, 0.7)] */
 
 
 .ps-submenu-content {
@@ -292,7 +286,9 @@ main,
 .dark .react-tel-input .form-control {
   @apply bg-dark-primary
 }
-
+.dark .react-tel-input .form-control {
+  border: 1px solid #555d64 !important;
+}
 .dark .react-tel-input .form-control {
   color: white;
 
@@ -546,11 +542,12 @@ main,
 
 
 
-.MuiInputBase-input {
+.dark .MuiInputBase-input {
   border-radius: 8px;
   padding-top:15.5px ;
-  border: 1px solid #555d64;
+  border: 1px solid #555d64 !important;
 }
+
 
 .animate-\[spin_2\.5s_linear_infinite\] {
   animation: spin 2.5s linear infinite;
