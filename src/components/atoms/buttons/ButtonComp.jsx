@@ -30,11 +30,12 @@ const ButtonComp = ({
             : "transparent",
         color: variant == "outline" ? theme?.palette?.primary?.main : "white",
         borderColor: theme?.palette?.primary?.main,
+        borderStyle:variant == "outline" ?"solid":"",
 
         opacity: disabled ? "1" : "1",
       }}
       variant={variant}
-      className={`${className}   border  hover:!bg-${theme?.palette?.primary?.main}
+      className={`${className}  ${variant =="outline" &&'dark:!text-white'} border    hover:!bg-${theme?.palette?.primary?.main}
        disabled:cursor-not-allowed disabled:text-[${theme?.palette?.primary?.main}] !disabled:opacity-6 ltr:mt-5 mt-5 `}
       // sx={{ mb: 7 }}
       disabled={disabled}

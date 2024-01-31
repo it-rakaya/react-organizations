@@ -83,7 +83,7 @@ function UserVerified() {
             <Link to={"/dashboard/profile"} className="w-1/2">
               <ButtonComp
                 className={" !text-[10px] md:!text-[14px] md:!w-[full]"}
-                variant="outlined"
+                variant="outline"
               >
                 {t("personal data")}
               </ButtonComp>
