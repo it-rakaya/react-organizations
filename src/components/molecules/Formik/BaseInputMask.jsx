@@ -6,14 +6,14 @@ const BaseInputMask = forwardRef(() => {
   const { setFieldValue, values, touched, errors, handleBlur } =
     useFormikContext();
 
-    const formatIban = (value) => {
-      const hasSpaces = /\s/.test(value);
-      if (hasSpaces) {
-        return value;
-      }
-      return value.replace(/(.{4})/g, "$1 ").trim();
-    };
-    const [inputValue, setInputValue] = useState(formatIban(values?.iban));
+  const formatIban = (value) => {
+    const hasSpaces = /\s/.test(value);
+    if (hasSpaces) {
+      return value;
+    }
+    return value.replace(/(.{4})/g, "$1 ").trim();
+  };
+  const [inputValue, setInputValue] = useState(formatIban(values?.iban));
 
   const handleInputChange = (event) => {
     const oldValue = inputValue.replace(/ /g, "");
@@ -46,9 +46,9 @@ const BaseInputMask = forwardRef(() => {
         onBlur={handleBlur}
         style={{
           borderColor: !!touched.iban && !!errors.iban ? "red" : "",
-          borderRadius: "9px",
+          // borderRadius: "9px",
         }}
-        className={`"my-3 code p-[18px] w-full focus-visible:!outline-none  dark:!text-white" ${
+        className={`"my-3 code p-[18px] w-full focus-visible:!outline-none  dark:!text-white rounded-[8px] dark:!border dark:!border-solid border-[ #555d64] " ${
           !!touched.iban && !!errors.iban && "border-red-500 "
         }`}
       />

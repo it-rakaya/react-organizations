@@ -112,10 +112,7 @@ h1 {
   }
 }
 
-.dark input,
-.dark select {
-  @apply bg-dark-primary  !text-white
-}
+
 
 .css-dip3t8 {
   padding: 15px 10px 70px;
@@ -996,4 +993,13 @@ input , select {
 
 .MuiDataGrid-columnHeaderTitle{
 color: black !important;
+}
+
+input {
+  background-color: white !important;
+}
+
+.dark input,
+.dark select {
+  @apply !bg-dark-primary  !text-white
 }
