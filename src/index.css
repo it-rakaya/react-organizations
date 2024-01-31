@@ -912,7 +912,7 @@ input::placeholder,
 
 }
 input , select {
-  border: #555d64 !important;
+  border: #555d64 !;
 }
 
 .dark .MuiInputBase-input::placeholder,

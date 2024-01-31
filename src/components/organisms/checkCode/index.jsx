@@ -69,7 +69,8 @@ export default function CheckCode({
               validBorderColor={colorPinInput}
               focusBorderColor={theme?.palette?.primary.main}
               borderColor={colorPinInput}
-              inputStyle={{ userSelect: "none" }}
+              inputStyle={{ userSelect: "none" , border:`1px solid ${theme?.palette?.primary.main}` , }}
+              
               placeholder="x"
               onChange={(value, index, values) => {
                 setValues(values);
@@ -91,7 +92,7 @@ export default function CheckCode({
                 flexDirection: "row-reverse",
                 direction: isRTL ? "rtl" : "rtl",
               }}
-              inputClassName="!focus:border-1 !focus:border-[rgb(159,150,133)] selection:outline-none "
+              inputClassName={`!focus:border-1 !focus:border-[rgb(159,150,133)] selection:outline-none !border  rounded-[8px]`}
             />
           </div>
           <ResendCode
