@@ -19,6 +19,7 @@ const isRTL = useIsRTL()
     value: item.id,
     label: isRTL ?  item.name_ar : item?.name_en,
   }));
+  
 
   const selectedCountry = options?.find(
     (option) => option?.value == values[name]
@@ -46,7 +47,7 @@ const isRTL = useIsRTL()
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
-              padding: "10px 0",
+              padding: "9.5px 0",
               borderRadius: " 8px",
               borderWidth:"1px",
               // borderColor:"#555d64",

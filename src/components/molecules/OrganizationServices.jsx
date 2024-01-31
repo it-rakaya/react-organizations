@@ -45,31 +45,35 @@ export default function OrganizationServices({
             options={options}
             name={name}
             value={selectedCountry}
-            placeholder={t("Chose service")}
+            // placeholder={t("Chose service")}
+            placeholder={
+              <div className="select-placeholder-text">
+                {t("Chose service")}
+              </div>
+            }
             noOptionsMessage={() => t("Not Found Data")}
             onBlur={handleBlur}
             onChange={(option) => setFieldValue(name, option.value)}
             styles={{
               control: (baseStyles) => ({
                 ...baseStyles,
-                padding: "10px 0",
+                padding: "9.5px 0",
                 borderRadius: " 8px",
                 borderWidth: "1px",
-                // borderColor:"#555d64" ,
                 background: "white",
                 margin: "0",
               }),
               option: (baseStyles) => ({
                 ...baseStyles,
                 background: "white",
-                color: "black",
               }),
             }}
             theme={(theme) => ({
               ...theme,
               borderRadius: 0,
+
               colors: {
-                ...theme.colors,
+                // ...theme.colors,
                 primary25: `#eee`,
                 primary: "#eee",
               },

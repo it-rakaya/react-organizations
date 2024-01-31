@@ -54,7 +54,12 @@ export default function SelectCountry({
           options={options}
           name={name}
           value={selectedCountry}
-          placeholder={t("Chose Country")}
+          // placeholder={t("Chose Country")}
+          placeholder={
+            <div className="select-placeholder-text">
+             {t("Chose Country")}
+            </div>
+          }
           noOptionsMessage={() => t("Not Found Data")}
           onBlur={handleBlur}
           onChange={(option) => setFieldValue(name, option.value)}

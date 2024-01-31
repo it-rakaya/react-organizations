@@ -127,7 +127,7 @@ h1 {
 }
 
 .react-tel-input {
-  @apply border border-solid rounded-md
+  /* @apply border border-solid rounded-md */
 }
 
 /* border-1 border-[rgba(0, 29, 110, 0.4)] focus:!border-1 focus:!border-[rgba(0, 29, 110, 0.7)] */
@@ -277,16 +277,20 @@ main,
   margin: 0;
   -webkit-tap-highlight-color: transparent;
   display: block;
-  min-width: 0;
+  min-width: 83%;
   width: fit-content !important;
   animation-name: mui-auto-fill-cancel;
   animation-duration: 10ms;
   color: black;
   /* padding: 16.5px 14px; */
   padding-left: 50px !important;
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 16.5px 14px;
-  /* border: 1px solid #eee; */
+  border: 1px solid #d8d8dd !important;
+  /* width: 100% !important; */
+}
+.dark .react-tel-input .form-control {
+  @apply bg-dark-primary
 }
 
 .dark .react-tel-input .form-control {
@@ -296,10 +300,12 @@ main,
 
 .react-tel-input .flag-dropdown {
   border-radius: 5px 0 0 5px;
+  /* border: black; */
+  /* border: 1px solid black; */
 }
 
 .dark .react-tel-input .flag-dropdown {
-  @apply bg-darkModeColor
+  @apply bg-dark-primary border-[#555d64]
 }
 
 .react-tel-input .selected-flag {
@@ -541,7 +547,9 @@ main,
 
 
 .MuiInputBase-input {
-  border-radius: 9px;
+  border-radius: 8px;
+  padding-top:15.5px ;
+  border: 1px solid #555d64;
 }
 
 .animate-\[spin_2\.5s_linear_infinite\] {
@@ -908,6 +916,9 @@ input::placeholder,
   color: rgb(161, 149, 149);
   opacity: 1;
 
+}
+input , select {
+  border: #555d64 !important;
 }
 
 .dark .MuiInputBase-input::placeholder,

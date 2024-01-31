@@ -36,32 +36,28 @@ export default function SelectFacilities({ name, label, required, className }) {
             name={name}
             value={selectedCountry}
             // placeholder={t("Chose facility")}
-            placeholder={<div className="select-placeholder-text">{t("Chose facility")}</div>} 
+            placeholder={
+              <div className="select-placeholder-text">
+                {t("Chose facility")}
+              </div>
+            }
             noOptionsMessage={() => t("Not Found Data")}
             onBlur={handleBlur}
             onChange={(option) => setFieldValue(name, option.value)}
             styles={{
               control: (baseStyles) => ({
                 ...baseStyles,
-                padding: "10px 0",
+                padding: "9.5px 0",
                 borderRadius: " 8px",
                 borderWidth: "1px",
-                // borderColor:"#555d64",
                 background: "white",
                 margin: "0",
               }),
               option: (baseStyles) => ({
                 ...baseStyles,
                 background: "white",
-                // color: "black",
               }),
-              // menu: (baseStyles) => ({
-              //   ...baseStyles,
-              //   background:"white",
-              //   zIndex: 999, // Add z-index here
-              // }),
             }}
-            
             theme={(theme) => ({
               ...theme,
               borderRadius: 0,
@@ -76,7 +72,6 @@ export default function SelectFacilities({ name, label, required, className }) {
               control: () => "dark:bg-dark-primary dark:border-[#555d64]",
               option: () => "dark:bg-dark-primary dark:text-white  ",
               menu: () => " bg-white dark:bg-dark-primary dark:text-white  ",
-
             }}
             maxMenuHeight={200}
             menuShouldScrollIntoView
