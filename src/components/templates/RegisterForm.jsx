@@ -74,25 +74,26 @@ export default function RegisterForm() {
     attachments: [],
     organization_id: orgData?.organizations?.id,
   };
+  const handleSubmit = (values) => {
+    const validAttachments = values.attachments
+      .map((file, index) => ({ index, file }))
+      .filter((item) => typeof item.file !== "undefined");
+    const attachments = validAttachments.map((item) => ({
+      [`attachments[${item?.index}]`]: item?.file,
+    }));
+
+    const combinedObject = {
+      ...values,
+      ...Object.assign({}, ...attachments),
+    };
+    delete combinedObject.attachments;
+    sendRegister(combinedObject);
+  };
 
   return (
     <div>
       <Formik
-        onSubmit={(values) => {
-          const validAttachments = values.attachments
-            .map((file, index) => ({ index, file }))
-            .filter((item) => typeof item.file !== "undefined");
-          const attachments = validAttachments.map((item) => ({
-            [`attachments[${item?.index}]`]: item?.file,
-          }));
-
-          const combinedObject = {
-            ...values,
-            ...Object.assign({}, ...attachments),
-          };
-          delete combinedObject.attachments;
-          sendRegister(combinedObject);
-        }}
+        onSubmit={(values) => handleSubmit(values)}
         validationSchema={ValidationSchema}
         initialValues={initialValues}
       >

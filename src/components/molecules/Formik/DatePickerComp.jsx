@@ -29,6 +29,7 @@ export default function DatePickerComp({
   images,
 }) {
   const { setFieldValue, values } = useFormikContext();
+  console.log("🚀 ~ values:", values)
   const [valueGregorian, setValueGregorian] = useState();
   const [valueHijri, setValueHijri] = useState(values[name_hj]);
   const [date, setDate] = useState(
@@ -38,6 +39,25 @@ export default function DatePickerComp({
   const { i18n } = useTranslation();
 
   const langObj = { ar };
+  function convertHijriToEnglishNumbers(hijriDate) {
+    const arabicNumbers = '٠١٢٣٤٥٦٧٨٩';
+    const englishNumbers = '0123456789';
+  
+    let convertedDate = '';
+    for (let i = 0; i < hijriDate.length; i++) {
+      const char = hijriDate[i];
+      const indexOfChar = arabicNumbers.indexOf(char);
+      if (indexOfChar !== -1) {
+        // If the character is an Arabic number, replace it with the corresponding English number
+        convertedDate += englishNumbers[indexOfChar];
+      } else {
+        // If the character is not an Arabic number, keep it as is
+        convertedDate += char;
+      }
+    }
+  
+    return convertedDate;
+  }
   useEffect(() => {
     if (valueGregorian) {
       // Convert the Gregorian date to Hijri

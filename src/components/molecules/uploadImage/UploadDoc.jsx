@@ -32,6 +32,7 @@ function UploadDoc({
   nameLabel,
 }) {
   const { setFieldValue, values } = useFormikContext();
+  console.log("🚀 ~ values:", values)
   const theme = useTheme();
   const [invalidFormat, setInvalidFormat] = useState(false);
   let filename = nameLabel;
@@ -82,7 +83,7 @@ function UploadDoc({
     const uploadedFiles = files;
     const filtered = uploadedFiles?.filter((i) => i.name !== file.name);
     setFiles([...filtered]);
-    setFieldValue(name, null);
+    setFieldValue(name, `deleted`);
     document.getElementsByName(name)[0].value = "";
   };
   const shouldShowUploadIcon = !files?.length || files.every((file) => !file);

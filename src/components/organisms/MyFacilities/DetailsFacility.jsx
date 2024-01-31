@@ -14,9 +14,9 @@ import AdditionalInformationData from "./AditionalInformationData";
 import AttachmentsData from "./AttachmentsData";
 import DetailsFacilityData from "./DetailsFacilityData";
 import NationalAdressData from "./NationalAdressData";
-import { t } from "i18next";
+import i18next, { t } from "i18next";
 
-export default function DetailsFacility({ data, className , style }) {
+export default function DetailsFacility({ data, className, style }) {
   const theme = useTheme();
   const mainColor = theme?.palette?.primary?.main;
   const [value, setValue] = useState("1");
@@ -55,9 +55,20 @@ export default function DetailsFacility({ data, className , style }) {
 
   return (
     <div>
-      <div className="mt-8 px-">
-        <TabContext value={value} className="!w-fit">
-          <div className="flex mt-5 overflow-hidden" style={{height:"calc(90vh - 5rem)"}}>
+      <div className="mt-8 px- detailsFacility">
+        <TabContext
+          value={value}
+          className="!w-fit"
+          sx={{
+            "& .MuiTabs-indicator": {
+              right: 0,
+            },
+          }}
+        >
+          <div
+            className="flex mt-5 overflow-hidden"
+            style={{ height: "calc(90vh - 5rem)" }}
+          >
             <TabList
               onChange={handleChange}
               aria-label="nav tabs example"
@@ -68,6 +79,7 @@ export default function DetailsFacility({ data, className , style }) {
                 <Tab
                   value={item?.value}
                   key={index}
+                  className=" :aria-selected"
                   component="a"
                   style={{ alignItems: "start" }}
                   label={
@@ -82,6 +94,15 @@ export default function DetailsFacility({ data, className , style }) {
                       </h2>
                     </div>
                   }
+                  sx={{
+                    // Add your custom styles for the selected Tab here
+                    "&.Mui-selected": {
+                      backgroundColor: mainColor,
+                    },
+                    "&.MuiTabs-indicator": {
+                      right: 0,
+                    },
+                  }}
                 />
               ))}
             </TabList>

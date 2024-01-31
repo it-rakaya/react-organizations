@@ -2,10 +2,10 @@
 /* eslint-disable react/prop-types */
 import { Grid } from "@mui/material";
 import { useFormikContext } from "formik";
-import ButtonComp from "../../components/atoms/buttons/ButtonComp";
 import { t } from "i18next";
-import { useTheme } from "@mui/material/styles";
+import ButtonComp from "../../components/atoms/buttons/ButtonComp";
 import { notify } from "../../utils/toast";
+import { checkAttachments } from "../../utils/helpers";
 
 function AfterAndBeforeFacility({
   activeStep,
@@ -14,11 +14,9 @@ function AfterAndBeforeFacility({
   steps,
   attachments_facilities,
   update,
+  DetailsFacilities,
 }) {
   const { values, errors } = useFormikContext();
-  console.log("🚀 ~ values:", values)
-  console.log("🚀 ~ errors:", errors)
-  const theme = useTheme();
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -26,9 +24,9 @@ function AfterAndBeforeFacility({
   const formatErrorMessage = (errors) => {
     return Object.entries(errors)
       .map(([key, error]) => `${t(key)}: ${error}`)
-      .join(', ');
+      .join(", ");
   };
-  
+
   const showErrorNotification = () => {
     const errorMessage = formatErrorMessage(errors);
     notify("error", errorMessage);
@@ -86,7 +84,7 @@ function AfterAndBeforeFacility({
     sub_number: "",
     district_id: "",
     city_id: "",
-    neighborhood:""
+    neighborhood: "",
   };
   const initialCase2 = {
     employee_number: "",
@@ -121,10 +119,19 @@ function AfterAndBeforeFacility({
           attachments_facilities?.attachment_labels
             ?.filter((item) => item?.is_required === "1")
             ?.map((item) => item?.id) || [];
+        const attachmentIdsUpdate = DetailsFacilities?.map(
+          (item) => item?.attachment_label_id
+        );
+
+        const checkAttachmentsResult = checkAttachments(
+          requiredInputs,
+          attachmentIdsUpdate,
+          values
+        );
 
         const validAttachments = values?.attachments
           ?.map((file, index) => ({ index, file }))
-          ?.filter((item) => typeof item?.file !== "undefined");
+          ?.filter((item) =>  typeof item?.file !== "undefined" && item.file !== "deleted");
         const attachments = validAttachments?.map((item) => ({
           [`attachments[${item?.index}]`]: item?.file,
         }));
@@ -136,7 +143,7 @@ function AfterAndBeforeFacility({
             attachmentItem && attachmentItem[`attachments[${id}]`] !== null
           );
         });
-        return update ? "" : !isValid;
+        return update ? !checkAttachmentsResult : !isValid;
       default:
         return false;
     }

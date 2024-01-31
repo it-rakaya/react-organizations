@@ -5,7 +5,7 @@ import Spinner from "../Spinner";
 import { useTheme } from "@mui/material/styles";
 
 const ButtonComp = ({
-  variant = "contained" || "outlined",
+  variant = "contained" || "outline",
   children,
   className,
   disabled,
@@ -28,11 +28,13 @@ const ButtonComp = ({
           variant == "contained"
             ? theme?.palette?.primary?.main
             : "transparent",
-        color: variant == "outlined" ? theme?.palette?.primary?.main : "white",
+        color: variant == "outline" ? theme?.palette?.primary?.main : "white",
+        borderColor: theme?.palette?.primary?.main,
+
         opacity: disabled ? "1" : "1",
       }}
       variant={variant}
-      className={`${className}  text-white  hover:!bg-${theme?.palette?.primary?.main}
+      className={`${className}   border  hover:!bg-${theme?.palette?.primary?.main}
        disabled:cursor-not-allowed disabled:text-[${theme?.palette?.primary?.main}] !disabled:opacity-6 ltr:mt-5 mt-5 `}
       // sx={{ mb: 7 }}
       disabled={disabled}

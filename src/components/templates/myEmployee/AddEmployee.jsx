@@ -86,31 +86,15 @@ export default function AddEmployee({
         validationSchema={validationSchema}
         onSubmit={(values) => handleSubmit(values)}
       >
-        {({ errors, values }) => (
+        {() => (
           <>
             <Form>
               <EmployeeMainData
                 showSelectFacility={showSelectFacility}
                 attachments_facility_employees={attachments_facility_employees}
+                loadingEmployee={loadingEmployee}
               />
-              <div className="flex justify-end  ml-[21px]">
-                <ButtonComp
-                  loading={loadingEmployee}
-                  type="submit"
-                  variant="contained"
-                  className=" !rounded-md  !w-auto  mt-5"
-                  disabled={
-                    values?.national_id == "" ||
-                    Object.entries(errors).length > 0 ||
-                    values?.attachments?.filter(
-                      (item) => item !== undefined && item !== null
-                    ).length !==
-                      attachments_facility_employees?.attachment_labels?.length
-                  }
-                >
-                  {t("Add")}
-                </ButtonComp>
-              </div>
+             
             </Form>
           </>
         )}

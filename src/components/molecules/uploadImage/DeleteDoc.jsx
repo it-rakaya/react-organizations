@@ -18,7 +18,7 @@ function DeleteDoc({ setOpenModal, handleRemoveFile, files }) {
         <Grid xs={12} sm={12} md={12} xl={12}>
           <ButtonComp
             variant="contained"
-            className="!mx-1 !border-2 !border-solid !border-contained !bg-contained !w-[120px] !h-[40px] !mt-0 text-black dark:text-white"
+            className="!mx-1  !border-solid !w-[120px] !h-[40px] !mt-0 text-black dark:text-white"
             action={() => {
               handleRemoveFile(files[0]);
               setOpenModal(false);
@@ -27,7 +27,7 @@ function DeleteDoc({ setOpenModal, handleRemoveFile, files }) {
             {t("Agree")}
           </ButtonComp>
           <ButtonComp
-            className="!mx-1 !border-2 !border-solid !border-contained !text-contained !w-[120px] !h-[40px] !mt-0  dark:text-white"
+            className="!mx-1 !border-solid !w-[120px] !h-[40px] !mt-0  dark:!text-white"
             action={() => setOpenModal(false)}
             variant="outline"
           >

@@ -38,7 +38,9 @@ export default function MyEmployees() {
       minWidth: 180,
       field: "name",
       headerName: t("name"),
-      cellClassName: "!bg-transparent",
+      cellClassName: "!bg-transparent ",
+      
+    
       headerAlign: "center",
       renderCell: ({ row }) => {
         const { name, attachmentUrl } = row;
@@ -144,7 +146,7 @@ export default function MyEmployees() {
               display: "flex",
               justifyContent: "center",
               flexWrap: "wrap",
-              gap: "2px",
+              gap: "5px",
               // marginTop:"50px",
               // marginBottom:"50px"
             }}

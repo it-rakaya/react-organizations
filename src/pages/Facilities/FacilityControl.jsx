@@ -10,13 +10,14 @@ import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import { useNavigate } from "react-router-dom";
 
-function FacilityControl({ setOpen, open, update, idFacility }) {
+function FacilityControl({ setOpen, open, update, idFacility , DetailsFacilities }) {
   const [checked, setChecked] = useState(false);
   const { values } = useFormikContext();
   const { orgData } = UseOrg();
   const navigate = useNavigate();
   const endpoint = `facilities`;
   const updateEndpoint = `facilities/${idFacility}`;
+  const AllAttachmentsId = DetailsFacilities?.map((item)=>item?.attachment_label_id)
 
   const { mutate: addFacility, isPending: loadingAddFacility } = useMutate({
     mutationKey: [`add_facilities`],
@@ -65,6 +66,11 @@ function FacilityControl({ setOpen, open, update, idFacility }) {
                   validAttachments?.map((item) => ({
                     [`attachments[${item?.index}]`]: item?.file,
                   })) || [];
+                  const attachmentsToDelete = values?.attachments
+                  ?.map((file, index) => ({ file, index }))
+                  ?.filter(item => item.file === "deleted" && AllAttachmentsId.includes(item.index))
+                  .map(item => ({ [`del_attachments[]`]: item.index }));
+                
 
                 const combinedObject = {
                   ...values,
@@ -73,6 +79,7 @@ function FacilityControl({ setOpen, open, update, idFacility }) {
                   ...Object?.assign({}, ...attachments),
                 };
                 delete combinedObject?.attachments;
+                console.log("🚀 ~ FacilityControl ~ combinedObject:", combinedObject)
                 addFacility(combinedObject);
               }}
               loading={loadingAddFacility}

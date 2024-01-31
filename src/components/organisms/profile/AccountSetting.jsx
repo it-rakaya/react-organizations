@@ -10,9 +10,22 @@ import { notify } from "../../../utils/toast";
 import MainHeader from "../../atoms/MainHeader";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import AccountSettingMainData from "./AccountSettingMainData";
+import useFetch from "../../../hooks/useFetch";
 
-export default function AccountSetting({ userData, setEditUser, setUser , refetch }) {
+export default function AccountSetting({
+  userData,
+  setEditUser,
+  setUser,
+  refetch,
+}) {
+  const { data: attachments_register } = useFetch({
+    endpoint: `attachments-labels/users`,
+    queryKey: ["attachments_register"],
+  });
 
+  const AllAttachmentsId = attachments_register?.attachment_labels?.map(
+    (item) => item?.id
+  );
 
   const initialValue = {
     name: userData?.name,
@@ -63,7 +76,7 @@ export default function AccountSetting({ userData, setEditUser, setUser , refetc
     mutationKey: [`users_update`],
     endpoint: `users/update`,
     onSuccess: (data) => {
-      refetch()
+      refetch();
       notify("success", "تم التعديل بنجاح");
       setEditUser(false);
       setUser(data?.data?.user);
@@ -78,20 +91,34 @@ export default function AccountSetting({ userData, setEditUser, setUser , refetc
     const validAttachments =
       values?.attachments
         ?.map((file, index) => ({ index, file }))
-        .filter((item) => typeof item?.file !== "undefined") || [];
+        .filter(
+          (item) => typeof item?.file !== "undefined" && item.file !== "deleted"
+        ) || [];
+
     const attachments =
       validAttachments?.map((item) => ({
         [`attachments[${item?.index}]`]: item?.file,
       })) || [];
 
+    const attachmentsToDelete = values?.attachments
+      ?.map((file, index) => ({ file, index }))
+      ?.filter(
+        (item) =>
+          item.file == "deleted" && AllAttachmentsId.includes(item.index)
+      )
+      .map((item) => ({
+        [`del_attachments[${item?.index}]`]: item.index,
+      }));
+
     const combinedObject = {
       ...values,
+      ...Object?.assign({}, ...attachmentsToDelete),
       ...Object?.assign({}, ...attachments),
     };
     delete combinedObject?.attachments;
+
     UpdateUser(combinedObject);
   };
-
 
   return (
     <div>
@@ -105,12 +132,11 @@ export default function AccountSetting({ userData, setEditUser, setUser , refetc
         validationSchema={ValidationSchema}
       >
         <Form>
-          <AccountSettingMainData userData={userData} />
-          <div className="flex justify-end col-span-2 px-8">
-            <ButtonComp className="!w-auto" loading={isPending}>
-              {t("Edit")}
-            </ButtonComp>
-          </div>
+          <AccountSettingMainData
+            userData={userData}
+            isPending={isPending}
+            attachments_register={attachments_register}
+          />
         </Form>
       </Formik>
     </div>

@@ -6,6 +6,7 @@ import useFetch from "../../hooks/useFetch";
 import Spinner from "../atoms/Spinner";
 import CardInfo from "./CardInfo";
 import Label from "./Label";
+import { useIsRTL } from "../../hooks/useIsRTL";
 
 export default function SelectDistrict({
   name,
@@ -20,6 +21,8 @@ export default function SelectDistrict({
   images,
 }) {
   const { setFieldValue, values } = useFormikContext();
+  console.log("🚀 ~ values:", values[name])
+  const isRTL = useIsRTL();
   const { data: district, isLoading } = useFetch({
     endpoint: `saudi-districts`,
     queryKey: [`district`],
@@ -27,12 +30,13 @@ export default function SelectDistrict({
   });
 
   const filteredOptions = district?.districts
-    ?.filter((item) => item.city_id == values.city_id)
-    ?.map((item) => ({
-      value: item.id,
-      label: item.name_ar,
-      city_id: item.city_id,
-    }));
+  ?.filter((item) => item.city_id == values.city_id)
+  ?.map((item) => ({
+    value: item.id,
+    label: isRTL ? item.name_ar : item.name_en,
+    city_id: item.city_id,
+  }));
+  console.log("🚀 ~ filteredOptions:", filteredOptions)
   const other = district?.districts.find(
     (option) => option?.name_en == "Other"
   );
@@ -48,6 +52,7 @@ export default function SelectDistrict({
     (option) => option?.value == values[name]
   );
 
+  console.log("🚀 ~ selectedDistrict:", selectedDistrict)
   return (
     <div className={className}>
       <Label>

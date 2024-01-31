@@ -14,10 +14,6 @@ import SelectCountry from "../molecules/SelectCountry";
 import UploadDoc from "../molecules/uploadImage/UploadDoc";
 
 function RegistrationMainData({ attachments_register, setOpen, isPending }) {
-  console.log(
-    "🚀 ~ RegistrationMainData ~ attachments_register:",
-    attachments_register
-  );
   const { setFieldValue, values, errors } = useFormikContext();
   const [checked, setChecked] = useState(false);
 

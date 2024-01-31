@@ -35,7 +35,8 @@ export default function SelectFacilities({ name, label, required, className }) {
             options={options}
             name={name}
             value={selectedCountry}
-            placeholder={t("Chose facility")}
+            // placeholder={t("Chose facility")}
+            placeholder={<div className="select-placeholder-text">{t("Chose facility")}</div>} 
             noOptionsMessage={() => t("Not Found Data")}
             onBlur={handleBlur}
             onChange={(option) => setFieldValue(name, option.value)}

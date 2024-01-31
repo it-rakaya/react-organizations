@@ -5,19 +5,19 @@ import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
 import { FormikError } from "./Formik/FormikError";
 import Label from "./Label";
+import { useIsRTL } from "../../hooks/useIsRTL";
 
 export default function SelectPositions({ name, label, className ,required }) {
   const { setFieldValue,  values,  handleBlur } =
     useFormikContext();
-
+const isRTL = useIsRTL()
   const { data: positions } = useFetch({
     endpoint: `employees-positions`,
     queryKey: ["employees-positions"],
   });
-  console.log("🚀 ~ SelectPositions ~ positions:", positions)
   const options = positions?.positions.map((item) => ({
     value: item.id,
-    label: item.name,
+    label: isRTL ?  item.name_ar : item?.name_en,
   }));
 
   const selectedCountry = options?.find(
@@ -37,7 +37,9 @@ export default function SelectPositions({ name, label, className ,required }) {
           options={options}
           name={name}
           value={selectedCountry}
-          placeholder={t("Chose position")}
+          placeholder={<div className="select-placeholder-text">{t("Chose position")}</div>} 
+
+          // placeholder={t("Chose position")}
           noOptionsMessage={() => t("Not Found Data")}
           onBlur={handleBlur}
           onChange={(option) => setFieldValue(name, option.value)}

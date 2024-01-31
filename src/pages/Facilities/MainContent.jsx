@@ -70,6 +70,7 @@ function MainContent({
           steps={steps}
           attachments_facilities={attachments_facilities}
           update={update}
+          DetailsFacilities={DetailsFacilities}
         />
       </div>
       <FacilityControl
@@ -77,6 +78,7 @@ function MainContent({
         setOpen={setOpen}
         update={update}
         idFacility={idFacility}
+        DetailsFacilities={DetailsFacilities}
       />
     </div>
   );

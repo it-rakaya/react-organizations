@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useIsRTL } from "./useIsRTL";
 
 export function useMutate({
   endpoint,
@@ -14,6 +15,7 @@ export function useMutate({
   const user_token = Cookies.get("token");
   const token = user_token;
   const authorizationHeader = `Bearer ${token}`;
+  const isRTL = useIsRTL();
 
   const {
     data,
@@ -34,10 +36,13 @@ export function useMutate({
           ? {
               "Content-Type": "multipart/form-data",
               Authorization: authorizationHeader,
+              "Accept-Language": isRTL ? "ar" : "en",
             }
           : {
               "Content-Type": "application/json; charset=utf-8",
               Authorization: authorizationHeader,
+              "Accept-Language": isRTL ? "ar" : "en",
+
             },
       };
 
