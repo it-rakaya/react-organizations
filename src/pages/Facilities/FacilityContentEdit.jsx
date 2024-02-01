@@ -132,8 +132,8 @@ function FacilityContentEdit({
           // address: Yup.string().trim().required(t("address is  required")),
           tax_certificate: Yup.string()
             .trim()
-            .required(t("Tax registration number is required"))
-            .length(15, t("the Tax registration number must be equal 15 digits")),
+            .required(t("Vat Registration Number is required"))
+            .length(15, t("the Vat Registration Number must be equal 15 digits")),
             account_name: Yup.string()
             .trim()
             .required(t("the account name required")),

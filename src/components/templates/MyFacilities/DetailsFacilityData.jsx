@@ -6,7 +6,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
   return (
     <div className={parentSection}>
       <div className="block col-span-2 md:hidden">
-        <h2 className="text-black dark:text-white" >{t("Facility Data")}</h2>
+        <h2 className="text-black dark:text-white" >{t("Facility Information")}</h2>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
@@ -23,7 +23,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("registration source name")}
+          {t("Commercial Registration Source")}
         </p>
         <p className="mt-1 dark:text-white">{data?.registration_source_name}</p>
       </div>

@@ -6,7 +6,7 @@ import FacilityWrapper from "./FacilityWrapper";
 
 const steps = [
   {
-    title: `1.Facility Data`,
+    title: `1.Facility Information`,
   },
   {
     title: "2.National Adress",

@@ -34,7 +34,7 @@ export default function DetailsFacility({ data, className }) {
     {
       value: "1",
       icon: mdiOfficeBuildingOutline,
-      label: t("Facility Data"),
+      label: t("Facility Information"),
     },
     {
       value: "2",

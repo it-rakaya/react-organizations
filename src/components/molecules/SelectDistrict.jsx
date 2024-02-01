@@ -85,7 +85,7 @@ export default function SelectDistrict({
               </div>
             ) : (
               <div className="select-placeholder-text">
-                {t("Chose city is first")}
+                {t("Choose City is first")}
               </div>
             )
           }

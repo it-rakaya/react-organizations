@@ -20,7 +20,7 @@ export default function AddFacility() {
       <div className="grid items-start grid-cols-1 md:grid-cols-2">
         <div className="col-span-2">
           <Typography className={`font-bold  !text-black dark:!text-white `}>
-            1. {t("Facility data")}
+            1. {t("Facility Information")}
           </Typography>
         </div>
 
@@ -58,7 +58,7 @@ export default function AddFacility() {
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="w-full col-span-6 md:w-1/2">
             <SelectCitiesSaudi
-              label={t("registration source name")}
+              label={t("Commercial Registration Source")}
               name="registration_source"
               required
               showIcon

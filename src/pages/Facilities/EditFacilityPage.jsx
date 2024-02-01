@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 
 const steps = [
   {
-    title: `1.Facility Data`,
+    title: `1.Facility Information `,
     // subtitle: "ادخل بيانات منشاتك",
   },
   {
