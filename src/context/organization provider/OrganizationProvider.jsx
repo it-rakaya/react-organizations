@@ -24,20 +24,16 @@ export const OrganizationProvider = ({ children }) => {
     isRefetching,
     isSuccess,
     isLoading,
-    throwOnError,
-    isLoadingError,
     isError,
     error,
   } = useFetch({
     endpoint: `organizations?organizationDomain=${baseUrl}`,
     queryKey: ["organization_info"],
   });
-    console.log("🚀 ~ OrganizationProvider ~ isError:", isError)
   useEffect(() => {
     if (isSuccess) {
       setOrgData(data);
-    }else if (error){
-      console.log(error)
+    } else if (error) {
       if (error?.response?.data?.message == "Unauthenticated.") {
         localStorage.removeItem("user");
         navigate("/404");
@@ -45,7 +41,7 @@ export const OrganizationProvider = ({ children }) => {
         notify("error");
       }
     }
-  }, [isSuccess , isError]);
+  }, [isSuccess, isError]);
   useEffect(() => {
     // refetch();
   }, [refetch]);

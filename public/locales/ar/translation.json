@@ -201,6 +201,7 @@
   "kitchen space required": "مساحة المطبخ مطلوبة",
   "Choose City is first": "اختر المدينة اولا",
   "Modified successfully":"تم التعديل بنجاح",
+  
   "chose District": "اختر الحي",
   "District name": "اسم الحي",
   "Please upload a file no larger than 5 MP": "الرجاء رفع ملف لايزيد حجمه عن 5  mp ",
@@ -267,7 +268,7 @@
   "1.Facility Information": "1. بيانات المنشأة ",
   "Resend the code later": "اعادة ارسال الرمز بعد",
   "national source is required": "مصدر الهوية مطلوب",
-  "A facility has been updated successfully": "A facility has been updated successfully",
+  "A facility has been updated successfully": "تم تعديل المنشأة بنجاح",
   "The data required to be recorded is the information of the facility owner and I promise Register it correctly": " البيانات المطلوب تسجيلها هي المعلومات الخاصة بمالك المنشأة وأتعهد بتسجيلها بشكل صحيح",
   "Endorsement": "إقرار",
   "account name": "اسم الحساب",
