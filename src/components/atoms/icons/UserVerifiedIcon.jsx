@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { useTheme } from "@mui/material/styles";
-
 function UserVerifiedIcon({ className }) {
   const theme = useTheme();
 
@@ -222,18 +221,15 @@ function UserVerifiedIcon({ className }) {
           d="M289.343 341.079H285.513C284.945 341.079 284.484 341.54 284.484 342.108V349.163C284.484 349.731 284.945 350.192 285.513 350.192H289.343C289.911 350.192 290.372 349.731 290.372 349.163V342.108C290.372 341.54 289.911 341.079 289.343 341.079Z"
           fill="#C5B279"
           style={{ fill: theme?.palette?.primary?.main }}
-          style={{ fill: theme?.palette?.primary?.main }}
         />
         <path
           d="M297.605 337.52H293.775C293.207 337.52 292.746 337.98 292.746 338.548V349.147C292.746 349.715 293.207 350.176 293.775 350.176H297.605C298.173 350.176 298.634 349.715 298.634 349.147V338.548C298.634 337.98 298.173 337.52 297.605 337.52Z"
           fill="#C5B279"
           style={{ fill: theme?.palette?.primary?.main }}
-          style={{ fill: theme?.palette?.primary?.main }}
         />
         <path
           d="M305.629 334.467H301.799C301.231 334.467 300.77 334.927 300.77 335.495V349.148C300.77 349.715 301.231 350.176 301.799 350.176H305.629C306.197 350.176 306.658 349.715 306.658 349.148V335.495C306.658 334.927 306.197 334.467 305.629 334.467Z"
           fill="#C5B279"
-          style={{ fill: theme?.palette?.primary?.main }}
           style={{ fill: theme?.palette?.primary?.main }}
         />
         <path
