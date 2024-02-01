@@ -916,7 +916,7 @@ input:-webkit-autofill:active {
 .MuiInputBase-input::placeholder,
 input::placeholder,
 .select-placeholder-text {
-  color: rgb(161, 149, 149);
+  color: rgb(158, 158, 158) !important;
   opacity: 1;
 
 }
@@ -929,7 +929,7 @@ select {
 .dark .MuiInputBase-input::placeholder,
 .dark input::placeholder,
 .dark .select-placeholder-text {
-  color: rgb(194, 185, 185) !important;
+  color: rgb(158, 158, 158) !important;
   opacity: 1;
 
 }
