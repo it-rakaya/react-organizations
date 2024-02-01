@@ -212,7 +212,7 @@ export default function MyFacilities() {
             </ButtonComp>
             <ButtonComp
               className="!w-2/3 !px-10 !mt-0"
-              variant="outlined"
+              variant="outline"
               action={() => {
                 setSecundModal(false);
                 setOpenAddEmployee(false);

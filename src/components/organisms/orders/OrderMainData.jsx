@@ -113,7 +113,7 @@ export default function OrderMainData({ setShow, show, isPending }) {
         <div className="flex justify-end gap-5 ml-5 mt-1d">
           <ButtonComp
             className={"!w-auto"}
-            variant="outlined"
+            variant="outline"
             action={() => setShow(true)}
           >
             {t("Back")}

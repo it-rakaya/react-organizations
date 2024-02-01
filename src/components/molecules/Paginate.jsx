@@ -7,7 +7,7 @@ function Paginate({ page, totalPages, handleChange }) {
       <Pagination
         count={totalPages}
         page={page}
-        variant="outlined"
+        variant="outline"
         color="primary"
         shape="rounded"
         onChange={handleChange}
