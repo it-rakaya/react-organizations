@@ -110,11 +110,18 @@ export default function AccountSetting({
         [`del_attachments[${item?.index}]`]: item.index,
       }));
 
-    const combinedObject = {
-      ...values,
-      ...Object?.assign({}, ...attachmentsToDelete),
-      ...Object?.assign({}, ...attachments),
-    };
+      let combinedObject = {
+        ...values,
+        ...Object?.assign({}, ...attachments),
+      };
+    
+      if (attachmentsToDelete?.length > 0) {
+        combinedObject = {
+          ...combinedObject,
+          ...Object?.assign({}, ...attachmentsToDelete)
+        };
+      }
+    
     delete combinedObject?.attachments;
 
     UpdateUser(combinedObject);
