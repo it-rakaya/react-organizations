@@ -165,7 +165,7 @@ function AfterAndBeforeFacility({
         type="button"
         disabled={activeStep === 0}
         action={handleBack}
-        variant="outlined"
+        variant="outline"
         className={`!w-[130px] px-1  !mt-0 ${
           activeStep === 0 ? "!hidden" : "block"
         } `}
