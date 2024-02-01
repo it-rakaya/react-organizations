@@ -7,6 +7,7 @@ import defaultImage from "../../../../public/profile pic1.png";
 import { convertArabicToEnglish, convertToHijri } from "../../../utils/helpers";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 
 const ProfilePicture = styled("img")(({ theme }) => ({
   width: 150,
@@ -22,14 +23,13 @@ const ProfilePicture = styled("img")(({ theme }) => ({
 }));
 
 const UserProfileHeader = ({ user, setEditUser, theme }) => {
+  const isRTL = useIsRTL();
+
   return (
     <div>
       <Card className="flex flex-col items-center justify-center !bg-transparent !shadow-none">
         <ProfilePicture
-          src={
-            (user?.profile_photo) ||
-            defaultImage
-          }
+          src={user?.profile_photo || defaultImage}
           alt="profile-picture"
         />
         <div className="flex flex-col items-center gap-2 mt-2">
@@ -111,7 +111,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
           <div className="flex flex-col col-span-2 gap-2 py-2 mt-5 border-b md:col-span-1">
             <p style={{ color: theme.palette.primary?.main }}>{t("Country")}</p>
             <p className="text-black dark:text-white">
-              {user?.nationality_name}
+              {isRTL ? user?.country.name_ar : user?.country.name_en}
             </p>
           </div>
         </div>

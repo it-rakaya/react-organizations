@@ -5,6 +5,9 @@ import darkModeLogo from "../../assets/refadaLogos/Group-2.png";
 import default_image from "../../assets/refadaLogos/default.jpeg";
 import useFetch from "../../hooks/useFetch";
 import { UseLocalStorage } from "../../hooks/useLocalStorage";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { notify } from "../../utils/toast";
 const OrgContext = createContext();
 export const OrganizationProvider = ({ children }) => {
   const url = window.location.href;
@@ -13,16 +16,36 @@ export const OrganizationProvider = ({ children }) => {
   const baseUrl = new URL(url).origin;
   const savedMode = localStorage.getItem("darkMode");
   const [orgData, setOrgData] = UseLocalStorage("organization");
+  const navigate = useNavigate();
   // http://localhost:5173/
-  const { data, refetch, isRefetching, isSuccess, isLoading } = useFetch({
+  const {
+    data,
+    refetch,
+    isRefetching,
+    isSuccess,
+    isLoading,
+    throwOnError,
+    isLoadingError,
+    isError,
+    error,
+  } = useFetch({
     endpoint: `organizations?organizationDomain=${baseUrl}`,
     queryKey: ["organization_info"],
   });
+    console.log("🚀 ~ OrganizationProvider ~ isError:", isError)
   useEffect(() => {
     if (isSuccess) {
       setOrgData(data);
+    }else if (error){
+      console.log(error)
+      if (error?.response?.data?.message == "Unauthenticated.") {
+        localStorage.removeItem("user");
+        navigate("/404");
+        Cookies.remove("token");
+        notify("error");
+      }
     }
-  }, [isSuccess]);
+  }, [isSuccess , isError]);
   useEffect(() => {
     // refetch();
   }, [refetch]);

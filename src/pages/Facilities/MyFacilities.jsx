@@ -22,6 +22,7 @@ import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMe
 import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import useFetch from "../../hooks/useFetch";
 import { notify } from "../../utils/toast";
+import { useIsRTL } from "../../hooks/useIsRTL";
 
 export default function MyFacilities() {
   const [open, setOpen] = useState(false);
@@ -33,6 +34,7 @@ export default function MyFacilities() {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 8;
   const [openSecundModal, setSecundModal] = useState(false);
+  const isRTL = useIsRTL();
 
   const {
     data: facilities,
@@ -41,8 +43,7 @@ export default function MyFacilities() {
     refetch,
   } = useFetch({
     endpoint: `facilities`,
-    queryKey: ["facilities"],
-
+    queryKey: [`facilities${isRTL}`],
   });
 
   const filteredFacilities = facilities?.user_facilities?.filter((item) =>
@@ -207,9 +208,7 @@ export default function MyFacilities() {
               variant="contained"
               action={() => navigate("/dashboard/employee")}
             >
-              <p className="text-white">
-                {t("Moving on to employees")}
-              </p>
+              <p className="text-white">{t("Moving on to employees")}</p>
             </ButtonComp>
             <ButtonComp
               className="!w-2/3 !px-10 !mt-0"

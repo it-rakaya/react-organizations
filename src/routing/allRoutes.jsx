@@ -30,14 +30,14 @@ export const AllRoutesProvider = () => {
   return (
     <Routes>
       <Route path="/" element={<Landing title={t("Landing")} />} />
+      <Route path="*" element={<ErrorPage />} />
       <Route
-        errorElement={<ErrorPage />}
+        // errorElement={<ErrorPage />}
         path="/login"
         element={<Login title={t("login")} />}
       />
-      <Route path="/dashboard" element={<Root />} errorElement={<ErrorPage />}>
+      <Route path="/dashboard" element={<Root />} >
         <Route index element={<Home title={t("home")} />} />
-        <Route path="*" element={<ErrorPage />} />
         <Route path="/dashboard/facilities" element={<MyFacilities />} />
         <Route
           path="/dashboard/facilities/create-facility"
