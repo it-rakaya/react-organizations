@@ -89,7 +89,7 @@ export default function SelectCountry({
             },
           })}
           classNames={{
-            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+            control: () => "dark:bg-dark-primary dark:border-[#555d64] px-1",
             option: () => "dark:bg-dark-primary dark:text-white  ",
           }}
         />
