@@ -32,7 +32,6 @@ function UploadDoc({
   nameLabel,
 }) {
   const { setFieldValue, values } = useFormikContext();
-  console.log("🚀 ~ values:", values)
   const theme = useTheme();
   const [invalidFormat, setInvalidFormat] = useState(false);
   let filename = nameLabel;

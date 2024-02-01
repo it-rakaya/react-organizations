@@ -4,13 +4,12 @@ import { Form, Formik } from "formik";
 import { t } from "i18next";
 import { isValidSaudiID } from "saudi-id-validator";
 import * as Yup from "yup";
+import useFetch from "../../../hooks/useFetch";
 import { useMutate } from "../../../hooks/useMutate";
 import { convertToHijri } from "../../../utils/helpers";
 import { notify } from "../../../utils/toast";
 import MainHeader from "../../atoms/MainHeader";
-import ButtonComp from "../../atoms/buttons/ButtonComp";
 import AccountSettingMainData from "./AccountSettingMainData";
-import useFetch from "../../../hooks/useFetch";
 
 export default function AccountSetting({
   userData,
@@ -77,7 +76,7 @@ export default function AccountSetting({
     endpoint: `users/update`,
     onSuccess: (data) => {
       refetch();
-      notify("success", "تم التعديل بنجاح");
+      notify("success", t("Modified successfully"));
       setEditUser(false);
       setUser(data?.data?.user);
     },
@@ -110,18 +109,18 @@ export default function AccountSetting({
         [`del_attachments[${item?.index}]`]: item.index,
       }));
 
-      let combinedObject = {
-        ...values,
-        ...Object?.assign({}, ...attachments),
+    let combinedObject = {
+      ...values,
+      ...Object?.assign({}, ...attachments),
+    };
+
+    if (attachmentsToDelete?.length > 0) {
+      combinedObject = {
+        ...combinedObject,
+        ...Object?.assign({}, ...attachmentsToDelete),
       };
-    
-      if (attachmentsToDelete?.length > 0) {
-        combinedObject = {
-          ...combinedObject,
-          ...Object?.assign({}, ...attachmentsToDelete)
-        };
-      }
-    
+    }
+
     delete combinedObject?.attachments;
 
     UpdateUser(combinedObject);

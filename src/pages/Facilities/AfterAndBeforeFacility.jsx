@@ -36,7 +36,6 @@ function AfterAndBeforeFacility({
     const checkErrorsForKeys = (initialCase) =>
       Object.keys(initialCase).some((key) => values[key] === "" || errors[key]);
 
-    // Check for validation errors for the current step
     const hasValidationErrors =
       activeStep === 0
         ? checkErrorsForKeys(initialCase0)
@@ -45,7 +44,6 @@ function AfterAndBeforeFacility({
         : activeStep === 2
         ? checkErrorsForKeys(initialCase2)
         : false;
-
     // If there are validation errors, handle them (notify, etc.)
     if (hasValidationErrors) {
       showErrorNotification();
@@ -104,17 +102,6 @@ function AfterAndBeforeFacility({
       case 2:
         return checkErrorsForKeys(initialCase2);
       case 3:
-        // Filter out undefined values from attachments_facilities
-        // const filteredAttachmentLabels =
-        //   values?.attachments?.filter(
-        //     (value) => value !== undefined && value !== null
-        //   ) || [];
-
-        // const attachmentsLength =
-        //   attachments_facilities?.attachment_labels.length || 0;
-        // const actualAttachmentsLength = filteredAttachmentLabels?.length || 0;
-
-        // return update ? "" : attachmentsLength !== actualAttachmentsLength;
         const requiredInputs =
           attachments_facilities?.attachment_labels
             ?.filter((item) => item?.is_required === "1")

@@ -10,14 +10,22 @@ import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import { useNavigate } from "react-router-dom";
 
-function FacilityControl({ setOpen, open, update, idFacility , DetailsFacilities }) {
+function FacilityControl({
+  setOpen,
+  open,
+  update,
+  idFacility,
+  DetailsFacilities,
+}) {
   const [checked, setChecked] = useState(false);
   const { values } = useFormikContext();
   const { orgData } = UseOrg();
   const navigate = useNavigate();
   const endpoint = `facilities`;
   const updateEndpoint = `facilities/${idFacility}`;
-  const AllAttachmentsId = DetailsFacilities?.map((item)=>item?.attachment_label_id)
+  const AllAttachmentsId = DetailsFacilities?.map(
+    (item) => item?.attachment_label_id
+  );
 
   const { mutate: addFacility, isPending: loadingAddFacility } = useMutate({
     mutationKey: [`add_facilities`],
@@ -61,25 +69,39 @@ function FacilityControl({ setOpen, open, update, idFacility , DetailsFacilities
                 const validAttachments =
                   values?.attachments
                     ?.map((file, index) => ({ index, file }))
-                    .filter((item) => typeof item?.file !== "undefined") || [];
+                    .filter(
+                      (item) =>
+                        typeof item?.file !== "undefined" &&
+                        item.file !== "deleted"
+                    ) || [];
                 const attachments =
                   validAttachments?.map((item) => ({
                     [`attachments[${item?.index}]`]: item?.file,
                   })) || [];
-                  const attachmentsToDelete = values?.attachments
+                const attachmentsToDelete = values?.attachments
                   ?.map((file, index) => ({ file, index }))
-                  ?.filter(item => item.file === "deleted" && AllAttachmentsId.includes(item.index))
-                  .map(item => ({ [`del_attachments[]`]: item.index }));
-                
+                  ?.filter(
+                    (item) =>
+                      item.file == "deleted" &&
+                      AllAttachmentsId.includes(item.index)
+                  )
+                  .map((item) => ({
+                    [`del_attachments[${item?.index}]`]: item.index,
+                  }));
 
-                const combinedObject = {
+                let combinedObject = {
                   ...values,
                   iban: updatedIban,
                   organization_id: orgData?.organizations?.id,
                   ...Object?.assign({}, ...attachments),
                 };
+                if (attachmentsToDelete?.length > 0) {
+                  combinedObject = {
+                    ...combinedObject,
+                    ...Object?.assign({}, ...attachmentsToDelete),
+                  };
+                }
                 delete combinedObject?.attachments;
-                console.log("🚀 ~ FacilityControl ~ combinedObject:", combinedObject)
                 addFacility(combinedObject);
               }}
               loading={loadingAddFacility}
