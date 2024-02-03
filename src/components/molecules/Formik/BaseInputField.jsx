@@ -49,8 +49,6 @@ export default function BaseInputField({
     if (maxNum && value.length > maxNum) {
       value = value.slice(0, maxNum);
     }
-
-    // For IBAN, remove spaces before setting the value
     setFieldValue(name, value);
   };
 
@@ -140,6 +138,8 @@ export default function BaseInputField({
             name={name}
             style={{
               borderColor: !!touched[name] && !!errors[name] ? "red" : "",
+              height: "59px",
+
             }}
             sty
             className={`${className} d "my-3 code " ${

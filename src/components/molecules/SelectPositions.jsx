@@ -50,7 +50,8 @@ export default function SelectPositions({ name, label, className, required }) {
               // borderColor:"#555d64",
               background: "white",
               margin: "0",
-              // zIndex:"9999999"
+              height: "59px",
+
             }),
             option: (baseStyles) => ({
               ...baseStyles,

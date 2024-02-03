@@ -61,10 +61,9 @@ export default function SelectCitiesSaudi({
               padding: "10px 0",
               borderRadius: " 8px",
               borderWidth: "1px",
-              // borderColor:"#555d64",
               background: "white",
               margin: "0",
-              // zIndex:"9999999"
+              height: "59px",
             }),
             option: (baseStyles) => ({
               ...baseStyles,

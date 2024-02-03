@@ -62,6 +62,8 @@ export default function OrganizationServices({
                 borderWidth: "1px",
                 background: "white",
                 margin: "0",
+                height: "59px",
+
               }),
               option: (baseStyles) => ({
                 ...baseStyles,

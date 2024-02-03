@@ -7,6 +7,7 @@ import Spinner from "../atoms/Spinner";
 import CardInfo from "./CardInfo";
 import Label from "./Label";
 import { useIsRTL } from "../../hooks/useIsRTL";
+import { useEffect } from "react";
 
 export default function SelectDistrict({
   name,
@@ -21,7 +22,6 @@ export default function SelectDistrict({
   images,
 }) {
   const { setFieldValue, values } = useFormikContext();
-  console.log("🚀 ~ values:", values[name])
   const isRTL = useIsRTL();
   const { data: district, isLoading } = useFetch({
     endpoint: `saudi-districts`,
@@ -29,14 +29,38 @@ export default function SelectDistrict({
     // enabled: !!values?.city_id,
   });
 
+  useEffect(() => {
+    if (district && district.districts && values.city_id) {
+      const districtsInCity = district.districts.filter(
+        (item) => item.city_id == values.city_id
+      );
+
+      if (districtsInCity.length === 0) {
+        const otherDistrict = district.districts.find(
+          (item) => item.name_en.toLowerCase() === "other"
+        );
+        if (otherDistrict) {
+          setFieldValue(name, otherDistrict.id);
+        }
+      } else {
+        const districtExists = districtsInCity.some(
+          (item) => item.id == values[name]
+        );
+        if (!districtExists) {
+          setFieldValue(name, "");
+        }
+      }
+    }
+  }, [values.city_id, district, setFieldValue, name, values[name], isRTL]);
+
+
   const filteredOptions = district?.districts
-  ?.filter((item) => item.city_id == values.city_id)
-  ?.map((item) => ({
-    value: item.id,
-    label: isRTL ? item.name_ar : item.name_en,
-    city_id: item.city_id,
-  }));
-  console.log("🚀 ~ filteredOptions:", filteredOptions)
+    ?.filter((item) => item.city_id == values.city_id)
+    ?.map((item) => ({
+      value: item.id,
+      label: isRTL ? item.name_ar : item.name_en,
+      city_id: item.city_id,
+    }));
   const other = district?.districts.find(
     (option) => option?.name_en == "Other"
   );
@@ -52,7 +76,6 @@ export default function SelectDistrict({
     (option) => option?.value == values[name]
   );
 
-  console.log("🚀 ~ selectedDistrict:", selectedDistrict)
   return (
     <div className={className}>
       <Label>
@@ -100,6 +123,8 @@ export default function SelectDistrict({
               // borderColor:district?.districts?.length ? "red" : "#555d64",
               background: !values?.city_id ? "#cecfcf" : "white",
               margin: "0",
+              height: "59px",
+
             }),
             option: (baseStyles) => ({
               ...baseStyles,

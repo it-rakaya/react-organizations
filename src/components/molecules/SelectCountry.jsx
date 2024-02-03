@@ -61,6 +61,7 @@ export default function SelectCountry({
             </div>
           }
           noOptionsMessage={() => t("Not Found Data")}
+          isDisabled={values.national_id.startsWith("1")}
           onBlur={handleBlur}
           onChange={(option) => setFieldValue(name, option.value)}
           styles={{
@@ -72,6 +73,8 @@ export default function SelectCountry({
               // borderColor:"#555d64" ,
               background: "white",
               margin: "0",
+              height: "59px",
+
             }),
             option: (baseStyles) => ({
               ...baseStyles,

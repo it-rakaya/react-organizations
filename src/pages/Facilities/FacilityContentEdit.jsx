@@ -147,6 +147,9 @@ function FacilityContentEdit({
           street_name: Yup.string()
             .trim()
             .required(t("the street name required")),
+            district_id: Yup.string()
+            .trim()
+            .required(t("the street name required")),
           building_number: Yup.string()
             .trim()
             .required(t("tax building number is required"))

@@ -552,6 +552,7 @@ main,
   border-radius: 8px;
   padding-top: 15.5px;
   border: 1px solid #cccccc7d ;
+  height: 24.53px !important;
 }
 
 
@@ -924,6 +925,10 @@ input::placeholder,
 input,
 select {
   border: #555d64 !;
+  /* height: 50px; */
+}
+input{
+  /* height: 57px; */
 }
 
 .dark .MuiInputBase-input::placeholder,
