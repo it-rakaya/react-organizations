@@ -42,7 +42,7 @@ const Hero = () => {
         {/* description */}
         <div
           dangerouslySetInnerHTML={{ __html: orgData?.organizations?.about_us }}
-          className="w-full mt-5 overflow-scroll text-xl font-bold text-center md:text-start 3xl:text-2xl scroll_main"
+          className="w-full mt-5 overflow-scroll text-xl font-bold text-center md:text-start 3xl:text-2xl scroll_main decryption_orga"
           style={{ height: "calc(100vh - 43rem)" }}
         ></div>
         <div

@@ -545,13 +545,13 @@ main,
 .dark .MuiInputBase-input {
   border-radius: 8px;
   padding-top: 15.5px;
-  border: 1px solid #555d64 ;
+  border: 1px solid #555d64;
 }
 
 .MuiInputBase-input {
   border-radius: 8px;
   padding-top: 15.5px;
-  border: 1px solid #cccccc7d ;
+  border: 1px solid #cccccc7d;
   height: 24.53px !important;
 }
 
@@ -812,11 +812,12 @@ input:-webkit-autofill:active {
 
 .MuiTablePagination-selectLabel {
   /* display: none !important; */
-  color: black ;
+  color: black;
 }
+
 .dark .MuiTablePagination-selectLabel {
   /* display: none !important; */
-  color: white ;
+  color: white;
 }
 
 .footer_shadow {
@@ -931,7 +932,8 @@ select {
   border: #555d64 !;
   /* height: 50px; */
 }
-input{
+
+input {
   /* height: 57px; */
 }
 
@@ -1027,12 +1029,19 @@ input {
 .dark select {
   @apply !bg-transparent !text-white
 }
-.dark .MuiTablePagination-displayedRows{
+
+.dark .MuiTablePagination-displayedRows {
   color: white !important;
 }
-.dark .MuiSelect-select.MuiTablePagination-select{
+
+.dark .MuiSelect-select.MuiTablePagination-select {
   color: white
 }
-.select-placeholder-text{
-padding: 0 5px;
+
+.select-placeholder-text {
+  padding: 0 5px;
+}
+
+.dark .decryption_orga p {
+  color: white;
 }
