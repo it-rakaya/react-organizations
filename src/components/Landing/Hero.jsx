@@ -21,7 +21,7 @@ const Hero = () => {
   const isRTL = useIsRTL();
 
   return (
-    <div className="px-3 lg:w-1/2 2xl:ps-36 2xl:px-36 xl:ps-12">
+    <div className="px-3 lg:w-1/2 2xl:ps-36 2xl:px-36 lg:ps-36">
       <div dir={i18n.dir(language)}>
         {/* title */}
         <div className="flex flex-col items-center justify-between w-full gap-5 xl:flex-row-reverse xl:gap-0">
@@ -43,10 +43,10 @@ const Hero = () => {
         <div
           dangerouslySetInnerHTML={{ __html: orgData?.organizations?.about_us }}
           className="w-full mt-5 overflow-scroll text-xl font-bold text-center md:text-start 3xl:text-2xl scroll_main decryption_orga"
-          style={{ height: "calc(100vh - 43rem)" }}
+          // style={{ height: "calc(100vh - 43rem)" }}
         ></div>
         <div
-          className={`flex flex-col gap-4 mt-10 ${!user ? " xl:flex-row" : ""}`}
+          className={`flex flex-col gap-4 mt-5 ${!user ? " xl:flex-row" : ""}`}
         >
           {!token ? (
             <>

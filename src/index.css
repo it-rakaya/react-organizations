@@ -1057,3 +1057,15 @@ input {
 .MuiTablePagination-displayedRows {
   direction: ltr;
 }
+
+.decryption_orga {
+  height: max-content;
+  min-height: 2rem;
+  max-height: 25rem;
+}
+
+@media (max-width :1400px) {
+  .decryption_orga {
+    /* height: calc(100vh - 33rem) */
+  }
+}
