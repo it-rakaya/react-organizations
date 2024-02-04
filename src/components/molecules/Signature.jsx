@@ -51,7 +51,7 @@ function Signature() {
                   className="pt-0 pb-0"
                 />
               }
-              label={t("I agree with this statement")}
+              label={t("I agree with this acknowledgment")}
             />
           </RadioGroup>
         </FormControl>

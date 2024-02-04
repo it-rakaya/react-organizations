@@ -37,7 +37,7 @@
     "for": "to "
   },
   "registration": {
-    "nameLabel": "Quad name",
+    "nameLabel": "Full name",
     "namePleaceholder": "Ali Ahmed Mohmed Ahmed",
     "IDNumberLabel": "National ID Number",
     "IDNumberPleaceholder": "",
