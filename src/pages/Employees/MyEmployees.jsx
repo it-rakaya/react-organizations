@@ -39,8 +39,7 @@ export default function MyEmployees() {
       field: "name",
       headerName: t("name"),
       cellClassName: "!bg-transparent ",
-      
-    
+
       headerAlign: "center",
       renderCell: ({ row }) => {
         const { name, attachmentUrl } = row;
@@ -57,9 +56,12 @@ export default function MyEmployees() {
               <div className="flex items-center gap-3">
                 <img
                   src={attachmentUrl[1]?.value}
-                  className="w-[40px]  h-[40px] rounded-full"
+                  className="w-[40px]  h-[40px] rounded-full border  border-solid"
+                  style={{ borderColor: theme?.palette?.primary.main }}
                 />
-                <p className="text-black dark:text-white">{name?.length > 30 ? `${name?.slice(0,20)}...` : name}</p>
+                <p className="text-black dark:text-white">
+                  {name?.length > 30 ? `${name?.slice(0, 20)}...` : name}
+                </p>
               </div>
             </Box>
           </Box>
