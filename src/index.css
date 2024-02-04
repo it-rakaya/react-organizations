@@ -1033,3 +1033,6 @@ input {
 .dark .MuiSelect-select.MuiTablePagination-select{
   color: white
 }
+.select-placeholder-text{
+padding: 0 5px;
+}
