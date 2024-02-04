@@ -36,7 +36,7 @@ function AccountSettingMainData({ userData, isPending, attachments_register }) {
       <div className="grid items-start grid-cols-2 gap-2 !overflow-y-scroll   !overflow-x-hidden !shadow-none h-[27rem]  scroll_main m-3 md:p-5">
         <h1 className="flex items-center col-span-2 gap-1 py-2 text-xl font-medium dark:text-white">
           <Icon path={mdiAccountBoxOutline} size={1} />
-          {t("personal Data")}:
+          {t("PERSONAL INFO")}:
         </h1>
         <div className="col-span-2 md:col-span-1 ">
           <BaseInputField

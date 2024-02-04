@@ -69,7 +69,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       <div className="col-span-2">
         <h1 className="flex items-center col-span-12 gap-1 pt-2 pb-3 font-medium md:text-xl dark:text-white">
           {/* {t("Commercial activity license data")}: */}
-          {t("Commercial Activity Licence (balady)")}:
+          {t("Commercial Activity Licence Information (balady)")}:
         </h1>
       </div>
       <div className={childSection}>

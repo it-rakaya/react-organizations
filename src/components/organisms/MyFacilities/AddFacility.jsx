@@ -124,7 +124,7 @@ export default function AddFacility() {
         </div>
         <h1 className="flex items-center col-span-12 gap-1 pb-3 text-xl font-medium dark:text-white">
           {/* <Icon path={mdiAccountBoxOutline} size={1} /> */}
-          {t("Commercial Activity Licence (balady)")}:
+          {t("Commercial Activity Licence Information (balady)")}:
         </h1>
 
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
