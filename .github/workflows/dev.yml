@@ -27,5 +27,6 @@ jobs:
           source ~/.nvm/nvm.sh
           cd /var/www/html/react/africa-dev.rmcc.sa/react-organizations
           git pull
+          yarn cache clean
           yarn 
           yarn build
