@@ -14,6 +14,7 @@ import { notify } from "../../utils/toast";
 import ModalComp from "../atoms/ModalComp";
 import TermsAndCondition from "../molecules/TermsAndCondition";
 import RegistrationMainData from "./RegistrationMainData";
+import { isEmail } from "../../utils/helpers";
 
 export default function RegisterForm() {
   const { login } = useAuth();
@@ -48,7 +49,9 @@ export default function RegisterForm() {
           message: t("Invalid Saudi ID"),
         })
         .required(t("This field is required")),
-      email: Yup.string().trim().required(t("email is required")),
+      email: Yup.string()
+        .required(t("email is required"))
+        .matches(isEmail, t("Please enter a valid email address")),
       birthday: Yup.date().required(t("birthday is required")),
       phone: Yup.string()
         .matches(/^\d{9}$/, t("The phone number must be exactly 10 digits"))

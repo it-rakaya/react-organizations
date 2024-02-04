@@ -6,7 +6,7 @@ import { isValidSaudiID } from "saudi-id-validator";
 import * as Yup from "yup";
 import useFetch from "../../../hooks/useFetch";
 import { useMutate } from "../../../hooks/useMutate";
-import { convertToHijri } from "../../../utils/helpers";
+import { convertToHijri, isEmail } from "../../../utils/helpers";
 import { notify } from "../../../utils/toast";
 import MainHeader from "../../atoms/MainHeader";
 import AccountSettingMainData from "./AccountSettingMainData";
@@ -57,7 +57,9 @@ export default function AccountSetting({
           message: t("Invalid Saudi ID"),
         })
         .required(t("This field is required")),
-      email: Yup.string().trim().required(t("email is required")),
+        email: Yup.string()
+        .required(t("email is required"))
+        .matches(isEmail, t("Please enter a valid email address")),
       birthday: Yup.date().required(t("birthday is required")),
       phone: Yup.string()
         .matches(/^\d{9}$/, t("The phone number must be exactly 10 digits"))

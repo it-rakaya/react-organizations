@@ -45,3 +45,4 @@ export function checkAttachments(requiredInputs, attachmentIdsUpdate, values) {
 
   return areAllRequiredInputsUpdated && !hasDeletedRequiredAttachments;
 }
+export const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
