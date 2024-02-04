@@ -18,8 +18,8 @@ function NotesOrder({ notes }) {
           <Timeline>
             <TimelineItem>
               <TimelineSeparator>
-                <TimelineDot color={"primary"} />
-                <TimelineConnector />
+                <TimelineDot color={"primary"}  />
+                <TimelineConnector className=" dark:!bg-white" />
               </TimelineSeparator>
               <TimelineContent>
                 <Box
@@ -32,20 +32,20 @@ function NotesOrder({ notes }) {
                   }}
                 >
                   <div>
-                    <Typography variant="caption" className="font-semibold">
+                    <Typography
+                      variant="caption"
+                      className="font-semibold text-black dark:text-white"
+                    >
                       {item?.user_name}{" "}
                     </Typography>
-                    <div
-                      key={item?.id}
-                      dangerouslySetInnerHTML={{
-                        __html: item?.content,
-                      }}
-                    ></div>
+                    <div className="text-black dark:text-white">{item?.content}</div>
                   </div>
 
                   <div className="flex flex-col gap-1">
-                    <Typography variant="caption">{item?.since}</Typography>
-                    <Typography variant="caption">
+                    <Typography variant="caption text-black dark:text-white">
+                      {item?.since}
+                    </Typography>
+                    <Typography variant="caption text-black dark:text-white">
                       {item?.created_at?.slice(0, 10)}
                     </Typography>
                   </div>
@@ -59,7 +59,7 @@ function NotesOrder({ notes }) {
   ) : (
     <div className="mt-10 text-2xl font-bold text-black dark:text-white">
       {" "}
-     {t("There is no notes")}
+      {t("There is no notes")}
     </div>
   );
 }

@@ -44,7 +44,7 @@ export default function DetailsFacility({ data, className }) {
     {
       value: "3",
       icon: mdiFormatListBulleted,
-      label: t("Additional information"),
+      label: t("Additional Information"),
     },
     {
       value: "4",

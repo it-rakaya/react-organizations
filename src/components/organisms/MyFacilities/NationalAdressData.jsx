@@ -10,37 +10,37 @@ function NationalAdressData({ data, childSection, colorHead, parentSection }) {
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("street name")}
+          {t("Street")}
         </p>
         <p className="mt-1 dark:text-white">{data?.street_name}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("District name")}
+          {t("District")}
         </p>
         <p className="mt-1 dark:text-white">{data?.district}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("city")}
+          {t("City")}
         </p>
         <p className="mt-1 dark:text-white">{data?.city}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("building number")}
+          {t("Building Number")}
         </p>
         <p className="mt-1 dark:text-white">{data?.building_number}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("postal code")}
+          {t("Postal Code")}
         </p>
         <p className="mt-1 dark:text-white">{data?.postal_code}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("sub number")}
+          {t("Secondary Number")}
         </p>
         <p className="mt-1 dark:text-white">{data?.sub_number}</p>
       </div>

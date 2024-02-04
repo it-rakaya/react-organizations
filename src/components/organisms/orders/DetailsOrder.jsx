@@ -8,10 +8,13 @@ import { convertArabicToEnglish, convertToHijri } from "../../../utils/helpers";
 import MainHeader from "../../atoms/MainHeader";
 import NotesOrder from "../../molecules/NotesOrder";
 import DetailsFacility from "../MyFacilities/DetailsFacility";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 
 export default function DetailsOrder({ data }) {
+  console.log("🚀 ~ DetailsOrder ~ data:", data)
   const [value, setValue] = useState("1");
   const theme = useTheme();
+  const isRTL = useIsRTL()
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -31,7 +34,7 @@ export default function DetailsOrder({ data }) {
         <div className="grid grid-cols-1 px-10 mt-5 md:px-20 md:grid-cols-2 ">
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
             <p className="font-bold dark:text-white">{t("service type")}</p>
-            <p className="dark:text-white">{data?.service?.name}</p>
+            <p className="dark:text-white">{ isRTL ?  data?.service?.name_ar : data?.service?.name_en }</p>
           </div>
           <div className="flex items-center col-span-2 gap-4 mt-5 md:col-span-1 ">
             <p className="font-bold dark:text-white">{t("Order status")}</p>
@@ -39,7 +42,7 @@ export default function DetailsOrder({ data }) {
               className="px-2 py-1 text-white rounded-md"
               style={{ backgroundColor: data?.status?.color }}
             >
-              {data?.status?.name}
+              {isRTL ? data?.status?.name_ar : data?.status?.name_en}
             </p>
           </div>
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">

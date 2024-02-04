@@ -18,13 +18,13 @@ function NationalAddressData() {
     <div className="grid items-start grid-cols-2">
       <div className="">
         <Typography className={`font-bold !text-black dark:!text-white `}>
-          2. {t("National address data")}
+          2. {t("National Address Information")}
         </Typography>
       </div>
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
         <div className="w-full md:w-1/2">
           <SelectCitiesSaudi
-            label={t("city name")}
+            label={t("City")}
             name="city_id"
             required
             showIcon
@@ -36,7 +36,7 @@ function NationalAddressData() {
         </div>
         <div className="w-full md:w-1/2">
           <SelectDistrict
-            label={t("District name")}
+            label={t("District")}
             name="district_id"
             required
             showIcon
@@ -52,7 +52,7 @@ function NationalAddressData() {
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
         <div className="w-full md:w-1/2">
           <BaseInputField
-            label={t("street name")}
+            label={t("Street")}
             placeholder="شارع الهدى والنور"
             name="street_name"
             required
@@ -66,7 +66,7 @@ function NationalAddressData() {
         </div>
         <div className="w-full md:w-1/2">
           <BaseInputField
-            label={t("building number")}
+            label={t("Building Number")}
             placeholder="xxxx"
             name="building_number"
             type="custom"
@@ -84,7 +84,7 @@ function NationalAddressData() {
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
         <div className="w-full md:w-1/2">
           <BaseInputField
-            label={t("postal code")}
+            label={t("Postal Code")}
             placeholder="xxxxx"
             name="postal_code"
             type="custom"
@@ -100,7 +100,7 @@ function NationalAddressData() {
         </div>
         <div className="w-full md:w-1/2">
           <BaseInputField
-            label={t("sub number")}
+            label={t("Secondary Number")}
             placeholder="xxxx"
             name="sub_number"
             type="custom"
