@@ -138,7 +138,7 @@ export default function RegisterForm() {
         onClose={() => setOpen(false)}
         Children={
           <>
-            <TermsAndCondition hidden={true} />
+            <TermsAndCondition hidden={true} style={{height:"calc(100vh - 20rem)"}} />
           </>
         }
       />

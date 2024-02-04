@@ -9,7 +9,7 @@ import {
   RadioGroup,
 } from "@mui/material";
 
-function TermsAndCondition({ checked, setChecked, hidden }) {
+function TermsAndCondition({ checked, setChecked, hidden , style }) {
   const { orgData } = UseOrg();
 
   return (
@@ -25,7 +25,8 @@ function TermsAndCondition({ checked, setChecked, hidden }) {
 
       {orgData?.organizations?.policies ? (
         <div
-          className="main_content max-h-[450px] overflow-y-scroll scroll_main mt-5"
+          className="mt-5 overflow-y-scroll main_content scroll_main"
+          style={style}
           dangerouslySetInnerHTML={{
             __html: orgData?.organizations?.policies,
           }}
