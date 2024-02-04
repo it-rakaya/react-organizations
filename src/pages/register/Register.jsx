@@ -118,7 +118,7 @@ const Register = () => {
                     variant="h5"
                   >{`${t(
                     "Welcome to"
-                  )} ${organizationName}! 👋🏻`}</TypographyStyled>
+                  )} ${organizationName}`}</TypographyStyled>
                 </Box>
               </Box>
               <BoxWrapper>

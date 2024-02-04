@@ -26,6 +26,8 @@ export default function VerifyUser({ userData, dataValue, setOpen, sendOTP }) {
 
     onError: (err) => {
       notify("error", err?.response?.data.message);
+      notify("error", err?.response?.data.message?.original?.message);
+
     },
   });
 

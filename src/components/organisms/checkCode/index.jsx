@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
 import { Button } from "@mui/material";
-import { useState } from "react";
-import { PinInput } from "react-input-pin-code";
-import ResendCode from "../../molecules/Formik/ResendCode";
-import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import { useTheme } from "@mui/material/styles";
 import { t } from "i18next";
+import { useState } from "react";
+import { PinInput } from "react-input-pin-code";
+import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import { useIsRTL } from "../../../hooks/useIsRTL";
-import { hexToRGBA } from "../../../utils/helpers";
+import ResendCode from "../../molecules/Formik/ResendCode";
 export default function CheckCode({
   number,
   valuesForm,
@@ -30,6 +29,7 @@ export default function CheckCode({
 
   const handleSendTime = () => {
     if (availableResetCode) {
+      setAvailableResetCode(false)
       if (login) {
         sendOTP({
           ...valuesForm,
@@ -69,21 +69,23 @@ export default function CheckCode({
               validBorderColor={colorPinInput}
               focusBorderColor={theme?.palette?.primary.main}
               borderColor={colorPinInput}
-              inputStyle={{ userSelect: "none" , border:`1px solid ${theme?.palette?.primary.main}` , }}
-              
+              inputStyle={{
+                userSelect: "none",
+                border: `1px solid ${theme?.palette?.primary.main}`,
+              }}
               placeholder="x"
               onChange={(value, index, values) => {
                 setValues(values);
                 if (values.join("").length == 4) {
                   setValueOTP(values.join(""));
-                  setColorPinInput((theme?.palette?.primary?.main));
+                  setColorPinInput(theme?.palette?.primary?.main);
                 } else {
                   // setColorPinInput("rgb(220,53,69)");
                 }
               }}
               onComplete={(values) => {
                 if (values.join("").length === 4) {
-                  setColorPinInput((theme?.palette?.primary?.main));
+                  setColorPinInput(theme?.palette?.primary?.main);
                 } else {
                   setColorPinInput("rgb(220,53,69)");
                 }
@@ -95,13 +97,15 @@ export default function CheckCode({
               inputClassName={`!focus:border-1 !focus:border-[rgb(159,150,133)] selection:outline-none !border  rounded-[8px]`}
             />
           </div>
-          <ResendCode
-            available={availableResetCode}
-            timerStart={timerStarted}
-            setAvailableResetCode={setAvailableResetCode}
-            setTimerStarted={setTimerStarted}
-            setValues={setValues}
-          />
+          {!availableResetCode && (
+            <ResendCode
+              available={availableResetCode}
+              timerStart={timerStarted}
+              setAvailableResetCode={setAvailableResetCode}
+              setTimerStarted={setTimerStarted}
+              setValues={setValues}
+            />
+          )} 
           {availableResetCode && (
             <Button
               className={`w-[160px] h-[40px] !rounded-md !border !border-solid hover:shadow-lg hover:!text-white dark:text-white`}
