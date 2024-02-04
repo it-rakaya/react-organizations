@@ -13,22 +13,13 @@ import { useFormikContext } from "formik";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import { checkAttachments } from "../../../utils/helpers";
 
-function AccountSettingMainData({ userData, isPending , attachments_register }) {
-  const { values } = useFormikContext();
-
+function AccountSettingMainData({ userData, isPending, attachments_register }) {
+  const { values ,  dirty } = useFormikContext();
 
   const requiredInputs =
     attachments_register?.attachment_labels
       ?.filter((item) => item?.is_required === "1")
       .map((item) => item?.id) || [];
-
-  // const validAttachments = values?.attachments
-  //   ?.map((file, index) => ({ index, file }))
-  //   ?.filter((item) => typeof item.file !== "undefined");
-
-  // const attachments = validAttachments?.map((item) => ({
-  //   [`attachments[${item?.index}]`]: item?.file,
-  // }));
   const attachmentIdsUpdate = attachments_register?.attachment_labels?.map(
     (item) => item?.id
   );
@@ -39,13 +30,6 @@ function AccountSettingMainData({ userData, isPending , attachments_register }) 
     values
   );
 
-
-  // const isValid = requiredInputs?.every((id) => {
-  //   const attachmentItem = attachments?.find(
-  //     (item) => item[`attachments[${id}]`] !== undefined
-  //   );
-  //   return attachmentItem && attachmentItem[`attachments[${id}]`] !== null;
-  // });
 
   return (
     <>
@@ -140,7 +124,11 @@ function AccountSettingMainData({ userData, isPending , attachments_register }) 
           })}
       </div>
       <div className="flex justify-end col-span-2 px-8">
-        <ButtonComp className="!w-auto" loading={isPending} disabled={!checkAttachmentsResult}>
+        <ButtonComp
+          className="!w-auto"
+          loading={isPending}
+          disabled={!checkAttachmentsResult || !dirty}
+        >
           {t("Edit")}
         </ButtonComp>
       </div>
