@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <ApexChartWrapper>
       <div className="match-height">
-        {user?.is_verified ? (
+        {!user?.is_verified ? (
           <>
             <UserVerified />
           </>
