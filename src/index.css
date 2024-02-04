@@ -1045,3 +1045,9 @@ input {
 .dark .decryption_orga p {
   color: white;
 }
+.dark .MuiList-root.MuiList-padding.MuiMenu-list{
+  @apply bg-dark-primary text-white
+}
+.MuiSelect-select.MuiTablePagination-select.MuiSelect-standard:focus{
+background-color: transparent;
+}

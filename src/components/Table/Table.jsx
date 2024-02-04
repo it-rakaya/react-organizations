@@ -87,7 +87,9 @@ const Table = ({
               },
               "& .MuiSelect-select.MuiTablePagination-select": {
                 color:"black"
-              }
+              },
+           
+
             }}
             
           />
