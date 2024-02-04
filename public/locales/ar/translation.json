@@ -271,6 +271,7 @@
   "The data required to be recorded is the information of the facility owner and I promise Register it correctly": " البيانات المطلوب تسجيلها هي المعلومات الخاصة بمالك المنشأة وأتعهد بتسجيلها بشكل صحيح",
   "Endorsement": "إقرار",
   "Account name": "اسم الحساب",
+  "rows per page":"عدد الصفوف في الصفحه",
   "Please enter a valid email address":"يرجى إدخال عنوان بريد إلكتروني صالح",
   "Commercial Registration Information":"بيانات السجل التجاري",
   "Commercial Activity Licence (balady)":"بيانات رخصة النشاط التجاري (بلدي) ",

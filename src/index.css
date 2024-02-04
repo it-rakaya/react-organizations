@@ -811,9 +811,13 @@ input:-webkit-autofill:active {
 }
 
 .MuiTablePagination-selectLabel {
-  display: none !important;
+  /* display: none !important; */
+  color: black ;
 }
-
+.dark .MuiTablePagination-selectLabel {
+  /* display: none !important; */
+  color: white ;
+}
 
 .footer_shadow {
   box-shadow: 0px 2px 10px 0px rgba(76, 78, 100, 0.22);
@@ -1022,4 +1026,10 @@ input {
 .dark input,
 .dark select {
   @apply !bg-transparent !text-white
+}
+.dark .MuiTablePagination-displayedRows{
+  color: white !important;
+}
+.dark .MuiSelect-select.MuiTablePagination-select{
+  color: white
 }

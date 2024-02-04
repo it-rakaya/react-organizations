@@ -36,6 +36,7 @@ const Table = ({
 
   const customLocaleText = {
     noRowsLabel: t("Not Found Data"),
+
   };
 
   return (
@@ -54,6 +55,8 @@ const Table = ({
             autoHeight
             rows={filteredRows}
             columns={columns}
+            
+            
             // checkboxSelection
             disableRowSelectionOnClick
             pageSizeOptions={[10, 25, 50]}
@@ -67,6 +70,11 @@ const Table = ({
             disableColumnMenu={true}
             i18nIsDynamicList={isRTL}
             localeText={customLocaleText}
+            componentsProps={{
+              pagination: {
+                labelRowsPerPage: t('rows per page')
+              }
+            }}
             // className="dark:!bg-[#2c3639]"
             class
             sx={{
@@ -74,6 +82,12 @@ const Table = ({
                 borderRadius: 0,
                 width: "100%",
               },
+              "& .MuiTablePagination-displayedRows": {
+                color:"black"
+              },
+              "& .MuiSelect-select.MuiTablePagination-select": {
+                color:"black"
+              }
             }}
             
           />
