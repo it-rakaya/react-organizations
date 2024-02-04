@@ -14,9 +14,9 @@ import AdditionalInformationData from "./AditionalInformationData";
 import AttachmentsData from "./AttachmentsData";
 import DetailsFacilityData from "./DetailsFacilityData";
 import NationalAdressData from "./NationalAdressData";
-import { t } from "i18next";
+import i18next, { t } from "i18next";
 
-export default function DetailsFacility({ data, className }) {
+export default function DetailsFacility({ data, className, style }) {
   const theme = useTheme();
   const mainColor = theme?.palette?.primary?.main;
   const [value, setValue] = useState("1");
@@ -34,7 +34,7 @@ export default function DetailsFacility({ data, className }) {
     {
       value: "1",
       icon: mdiOfficeBuildingOutline,
-      label: t("Facility Data"),
+      label: t("Facility Information"),
     },
     {
       value: "2",
@@ -44,7 +44,7 @@ export default function DetailsFacility({ data, className }) {
     {
       value: "3",
       icon: mdiFormatListBulleted,
-      label: t("Additional information"),
+      label: t("Additional Information"),
     },
     {
       value: "4",
@@ -55,9 +55,20 @@ export default function DetailsFacility({ data, className }) {
 
   return (
     <div>
-      <div className="mt-8 px-">
-        <TabContext value={value} className="!w-fit">
-          <div className="flex mt-5">
+      <div className="mt-8 px- detailsFacility">
+        <TabContext
+          value={value}
+          className="!w-fit"
+          sx={{
+            "& .MuiTabs-indicator": {
+              right: 0,
+            },
+          }}
+        >
+          <div
+            className="flex mt-5 overflow-hidden"
+            style={{ height: "calc(90vh - 5rem)" }}
+          >
             <TabList
               onChange={handleChange}
               aria-label="nav tabs example"
@@ -68,6 +79,7 @@ export default function DetailsFacility({ data, className }) {
                 <Tab
                   value={item?.value}
                   key={index}
+                  className=" :aria-selected"
                   component="a"
                   style={{ alignItems: "start" }}
                   label={
@@ -82,11 +94,21 @@ export default function DetailsFacility({ data, className }) {
                       </h2>
                     </div>
                   }
+                  sx={{
+                    // Add your custom styles for the selected Tab here
+                    "&.Mui-selected": {
+                      backgroundColor: mainColor,
+                    },
+                    "&.MuiTabs-indicator": {
+                      right: 0,
+                    },
+                  }}
                 />
               ))}
             </TabList>
             <div
-              className={`${className} !overflow-y-scroll !shadow-none  max-h-[44rem]  scroll_main w-full`}
+              className={`${className} !overflow-y-scroll !shadow-none   scroll_main w-full`}
+              style={style}
             >
               <TabPanel value="1" className="pt-0">
                 <DetailsFacilityData

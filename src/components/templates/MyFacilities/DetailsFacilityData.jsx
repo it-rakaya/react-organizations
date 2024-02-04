@@ -6,7 +6,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
   return (
     <div className={parentSection}>
       <div className="block col-span-2 md:hidden">
-        <h2 className="text-black dark:text-white" >{t("Facility Data")}</h2>
+        <h2 className="text-black dark:text-white" >{t("Facility Information")}</h2>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
@@ -23,7 +23,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("registration source name")}
+          {t("Commercial Registration Source")}
         </p>
         <p className="mt-1 dark:text-white">{data?.registration_source_name}</p>
       </div>
@@ -36,7 +36,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {" "}
-          {t("Date of issuance of the commercial register in AD")}{" "}
+          {t("Commercial Registration Release Date")}{" "}
         </p>
         <p className="mt-1 dark:text-white">
           {data?.version_date} / {convertArabicToEnglish(data?.version_date_hj)}
@@ -46,7 +46,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
         <p className="font-medium " style={{ color: colorHead }}>
           {" "}
           {t(
-            "Commercial registration expiration date in Gregorian calendar"
+            "Commercial Registration Expiration Data"
           )}{" "}
         </p>
         <p className="mt-1 dark:text-white">
@@ -55,14 +55,14 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("license")}
+          {t("Licence")}
         </p>
         <p className="mt-1 dark:text-white">{data?.license}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {" "}
-          {t("license expired")}
+          {t("Licence expired")}
         </p>
         <p className="mt-1 dark:text-white">
           {data?.license_expired} /{" "}
@@ -71,7 +71,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("capacity")}
+          {t("Capacity")}
         </p>
         <p className="mt-1 dark:text-white">{data?.capacity}</p>
       </div>

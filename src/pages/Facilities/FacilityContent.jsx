@@ -57,7 +57,7 @@ function FacilityContent({
           end_date: Yup.string().trim().required(t("the  end date required")),
           license_expired: Yup.string()
             .trim()
-            .required(t("the  license expired required")),
+            .required(t("the  Licence expired required")),
           registration_source: Yup.string()
             .trim()
             .required(t("the registration source required")),
@@ -69,14 +69,14 @@ function FacilityContent({
 
             license: Yup.string()
             .trim()
-            .required(t("the license number required"))
-            .min(10, t("the license number must be between 10 and 11 digits"))
-            .max(11, t("the license number must be between 10 and 11 digits")),
+            .required(t("the Licence number required"))
+            .min(10, t("the Licence number must be between 10 and 11 digits"))
+            .max(11, t("the Licence number must be between 10 and 11 digits")),
           // address: Yup.string().trim().required(t("address is  required")),
           tax_certificate: Yup.string()
             .trim()
-            .required(t("Tax registration number is required"))
-            .length(15, t("the Tax registration number must be equal 15 digits")),
+            .required(t("Vat Registration Number is required"))
+            .length(15, t("the Vat Registration Number must be equal 15 digits")),
             account_name: Yup.string()
             .trim()
             .required(t("the account name required")),
@@ -90,30 +90,33 @@ function FacilityContent({
           street_name: Yup.string()
             .trim()
             .required(t("the street name required")),
+            district_id: Yup.string()
+            .trim()
+            .required(t("the street name required")),
           building_number: Yup.string()
             .trim()
-            .required(t("tax building number is required"))
-            .length(4, t("the tax building number must be equal 4 digits")),
+            .required(t("tax Building Number is required"))
+            .length(4, t("the tax Building Number must be equal 4 digits")),
           postal_code: Yup.string()
             .trim()
             .required(t("tax postal code is required"))
             .length(5, t("the tax postal code must be equal 5 digits")),
           sub_number: Yup.string()
             .trim()
-            .required(t("tax sub number is required"))
-            .length(4, t("the tax sub number must be equal 4 digits")),
+            .required(t("tax Secondary Number is required"))
+            .length(4, t("the tax Secondary Number must be equal 4 digits")),
         });
       case 2:
         return Yup.object({
           employee_number: Yup.string()
             .trim()
-            .required(t("employee number is required")),
+            .required(t("Employees Number is required")),
           chefs_number: Yup.string()
             .trim()
-            .required(t("chefs number is required")),
+            .required(t("Chefs Number is required")),
           kitchen_space: Yup.string()
             .trim()
-            .required(t("kitchen space required")),
+            .required(t("Kitchen Space required")),
           
         });
       default:
@@ -125,7 +128,7 @@ function FacilityContent({
     <Card
       sx={{
         mt: 4,
-        height: {  md: "calc(100vh - 280px)" },
+        height: {  md: "calc(100vh - 282px)" },
         overflowY: "scroll",
       }}
       className="!bg-transparent !shadow-none scroll_main"

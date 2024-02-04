@@ -6,6 +6,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
+import { hexToRGBA } from "../../../utils/helpers";
 
 const CardStatsHorizontal = (props) => {
   const { item, className, classNameBox } = props;
@@ -19,8 +20,17 @@ const CardStatsHorizontal = (props) => {
           className={classNameBox}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <div className="bg-[#c5b27917] rounded-md h-[40px] w-[40px] flex items-center justify-center ltr:!mr-2 rtl:!ml-2  rtl:md:ml-6 ">
-              <Icon path={item?.icon} size={1}  style={{color: theme?.palette?.primary?.main}} />
+            <div
+              style={{
+                background: hexToRGBA(theme?.palette?.primary?.main, 0.2),
+              }}
+              className=" rounded-md h-[40px] w-[40px] flex items-center justify-center ltr:!mr-2 rtl:!ml-2  rtl:md:ml-6 "
+            >
+              <Icon
+                path={item?.icon}
+                size={1}
+                style={{ color: theme?.palette?.primary?.main }}
+              />
             </div>
 
             <Box sx={{ display: "flex", flexDirection: "column" }}>

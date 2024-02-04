@@ -35,7 +35,12 @@ export default function SelectFacilities({ name, label, required, className }) {
             options={options}
             name={name}
             value={selectedCountry}
-            placeholder={t("Chose facility")}
+            // placeholder={t("Chose facility")}
+            placeholder={
+              <div className="select-placeholder-text">
+                {t("Chose facility")}
+              </div>
+            }
             noOptionsMessage={() => t("Not Found Data")}
             onBlur={handleBlur}
             onChange={(option) => setFieldValue(name, option.value)}
@@ -44,38 +49,32 @@ export default function SelectFacilities({ name, label, required, className }) {
                 ...baseStyles,
                 padding: "10px 0",
                 borderRadius: " 8px",
-                borderWidth: "1px",
-                // borderColor:"#555d64",
+                // borderWidth: "1px",
+                // borderColor:"#555d64" ,
                 background: "white",
                 margin: "0",
+                height: "59px",
+
               }),
               option: (baseStyles) => ({
                 ...baseStyles,
                 background: "white",
-                // color: "black",
+                color: "black",
               }),
-              // menu: (baseStyles) => ({
-              //   ...baseStyles,
-              //   background:"white",
-              //   zIndex: 999, // Add z-index here
-              // }),
             }}
-            
             theme={(theme) => ({
               ...theme,
               borderRadius: 0,
-
               colors: {
-                // ...theme.colors,
+                ...theme.colors,
                 primary25: `#eee`,
                 primary: "#eee",
               },
             })}
             classNames={{
-              control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+              control: () => "dark:bg-transparent dark:border-[#555d64] ",
               option: () => "dark:bg-dark-primary dark:text-white  ",
               menu: () => " bg-white dark:bg-dark-primary dark:text-white  ",
-
             }}
             maxMenuHeight={200}
             menuShouldScrollIntoView

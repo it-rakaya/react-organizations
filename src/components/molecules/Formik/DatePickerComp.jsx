@@ -38,6 +38,7 @@ export default function DatePickerComp({
   const { i18n } = useTranslation();
 
   const langObj = { ar };
+
   useEffect(() => {
     if (valueGregorian) {
       // Convert the Gregorian date to Hijri
@@ -62,11 +63,7 @@ export default function DatePickerComp({
     <>
       <LocalizationProvider
         dateAdapter={AdapterDateFns}
-        // locale={arSA}
-        // localeText={
-        //   deDE.components.MuiLocalizationProvider.defaultProps.localeText
-        // }
-        // key={localizationKey}
+
       >
         <div className="w-full">
           <Label>
@@ -86,18 +83,12 @@ export default function DatePickerComp({
           )}
           <DatePickerWrapper>
             <DatePicker
-              className="bg-white dark:bg-dark-primary rounded-[10px] w-full dark:border dark:!border-solid dark:!border-1 dark:!border-[#555d64]"
+              className="bg-white dark:bg-dark-primary rounded-[10px] w-full ]"
               name={name}
               selected={date}
-              // locale="ar-SA"
               placeholderText="MM/DD/YYYY"
-              // isClearable
               locale={i18n.language}
-              // localeText={{
-              //   cancelButtonLabel: t("cancel"),
-              //   okButtonLabel: t("OK"),
-              //   toolbarTitle: t("Select Date"),
-              // }}
+  
               sx={{
                 // cursor:"pointer",
                 background: "white",

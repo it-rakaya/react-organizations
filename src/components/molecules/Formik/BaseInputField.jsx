@@ -49,8 +49,6 @@ export default function BaseInputField({
     if (maxNum && value.length > maxNum) {
       value = value.slice(0, maxNum);
     }
-
-    // For IBAN, remove spaces before setting the value
     setFieldValue(name, value);
   };
 
@@ -116,14 +114,8 @@ export default function BaseInputField({
             fullWidth
             value={values[name]}
             sx={{
-              background: "white",
-              borderRadius: "11px",
-              // border:"1px",
-              borderStyle:"solid",
-              // borderColor:"white",
+              background: "transparent",
               "& .MuiInputBase-input::placeholder": {
-                // Adding this line
-                // color:"black",
                 opacity: 1,
               },
             }}
@@ -146,10 +138,11 @@ export default function BaseInputField({
             name={name}
             style={{
               borderColor: !!touched[name] && !!errors[name] ? "red" : "",
-              // borderRadius: "10px",
+              height: "59px",
+
             }}
             sty
-            className={`${className} dark:border-[1px] border-[#555d64] "my-3 code " ${
+            className={`${className} d "my-3 code " ${
               !!touched[name] && !!errors[name] && "border-red-500 "
             }`}
           />

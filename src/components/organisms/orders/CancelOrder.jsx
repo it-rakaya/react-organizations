@@ -41,7 +41,7 @@ export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
             <ButtonComp
               className="!mx-2 !border-2 border-solid border-contained !text-contained !w-[90px] !h-[40px]"
               action={() => setOpenCancelOrder(false)}
-              variant="outlined"
+              variant="outline"
             >
               {t("cancel")}
             </ButtonComp>

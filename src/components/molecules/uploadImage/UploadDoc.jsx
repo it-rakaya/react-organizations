@@ -61,7 +61,7 @@ function UploadDoc({
     const selectedFile = event.target.files[0];
     const isLarge = selectedFile?.size > 5242880;
     setIsLargeFile(isLarge);
-    const isFileFormatValid = modifyAccept.includes(
+    const isFileFormatValid = modifyAccept?.includes(
       `.${selectedFile?.type.split("/")[1]}`
     );
 
@@ -82,7 +82,7 @@ function UploadDoc({
     const uploadedFiles = files;
     const filtered = uploadedFiles?.filter((i) => i.name !== file.name);
     setFiles([...filtered]);
-    setFieldValue(name, null);
+    setFieldValue(name, `deleted`);
     document.getElementsByName(name)[0].value = "";
   };
   const shouldShowUploadIcon = !files?.length || files.every((file) => !file);
@@ -100,7 +100,7 @@ function UploadDoc({
           type="file"
           accept={modifyAccept}
           name={name}
-          className="absolute w-full h-full opacity-0 cursor-pointer z-[999]"
+          className="absolute w-full h-full opacity-0 cursor-pointer z-[9]"
           onChange={handleFileChange}
         />
         <div
@@ -236,11 +236,22 @@ function UploadDoc({
           files[0]?.type?.startsWith("application/") &&
           updateImage?.value ? (
           <div className="w-full">
-            <div className="mt-4 flex items-center px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
-              <PreviewPdf item={files[0]} />
-              <p className="!text-black  dark:!text-white">
-                {filename.length > 20 ? filename.slice(0, 30) : filename.length}
-              </p>
+            <div className="mt-4 flex items-center justify-between px-5 border border-solid rounded-[12px] border-[#9f968575] w-full p-2">
+              <div className="flex items-center ">
+                <PreviewPdf item={files[0]} />
+                <p className="!text-black  dark:!text-white">
+                  {filename.length > 20
+                    ? filename.slice(0, 30)
+                    : filename.length}
+                </p>
+              </div>
+              <div onClick={() => setOpenModal(true)}>
+                <IconifyIcon
+                  icon="mdi:close"
+                  fontSize={20}
+                  className="cursor-pointer dark:text-white"
+                />
+              </div>
             </div>
           </div>
         ) : isLargeFile ? (

@@ -23,14 +23,14 @@ function Signature() {
           <TermsConditionIcon className={""} />
         </div>
         <h1 className="text-xl font-bold dark:text-white ">
-          {t("Endorsement")}
+          {t("Acknowledgment")}
         </h1>
       </div>
 
       <div className="main_content max-h-[450px] overflow-y-scroll scroll_main mt-5">
         <p className="text-center dark:text-white">
           {t(
-            "The data required to be recorded is the information of the facility owner and I promise Register it correctly"
+            "The required information to be recorded is the information of the facility owner and I promise to register it correctly"
           )}
         </p>
       </div>
@@ -51,7 +51,7 @@ function Signature() {
                   className="pt-0 pb-0"
                 />
               }
-              label={t("I agree with this statement")}
+              label={t("I agree with this acknowledgment")}
             />
           </RadioGroup>
         </FormControl>

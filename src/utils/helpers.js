@@ -34,3 +34,15 @@ export function convertToHijri(valueGregorian) {
 
   return hijriDateWithoutHeh;
 }
+export function checkAttachments(requiredInputs, attachmentIdsUpdate, values) {
+  const areAllRequiredInputsUpdated = requiredInputs?.every((id) =>
+    attachmentIdsUpdate?.includes(id)
+  );
+
+  const hasDeletedRequiredAttachments = requiredInputs?.some(
+    (id) => values?.attachments?.[id] === "deleted"
+  );
+
+  return areAllRequiredInputsUpdated && !hasDeletedRequiredAttachments;
+}
+export const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;

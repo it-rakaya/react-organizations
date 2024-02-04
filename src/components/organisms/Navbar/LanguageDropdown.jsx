@@ -44,7 +44,7 @@ const LanguageDropdown = ({ settings, saveSettings }) => {
           },
         },
         {
-          text: t("Arabic"),
+          text: "عربي",
           menuItemProps: {
             sx: { py: 2 },
             selected: i18n.language === "ar",

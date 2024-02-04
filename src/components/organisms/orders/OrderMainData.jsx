@@ -12,6 +12,7 @@ import SelectCountryOrganizations from "../../molecules/Selects/SelectCountryOrg
 
 export default function OrderMainData({ setShow, show, isPending }) {
   const { values } = useFormikContext();
+  console.log("🚀 ~ OrderMainData ~ values:", values)
   const theme = useTheme();
   const { data: extra_questions } = useFetch({
     endpoint: `orders/create?organization_service_id=${values.organization_service_id}`,
@@ -23,6 +24,7 @@ export default function OrderMainData({ setShow, show, isPending }) {
       .filter((item) => item?.is_required === "1")
       .map((item) => item?.id) || [];
 
+      console.log("🚀 ~ OrderMainData ~ extra_questions:", extra_questions)
   const allRequiredQuestionsFound = requiredQuestionIds?.every(
     (id) =>
       Object.keys(values).includes(`answers${id}`) &&
@@ -36,7 +38,7 @@ export default function OrderMainData({ setShow, show, isPending }) {
         styleHead={{ color: theme.palette.primary.main }}
       />
 
-      <div className="mt-10 px-5 max-h-[25rem]  scroll_main ">
+      <div className="mt-10 px-5 max-h-[26rem]   h-full overflow-y-scroll scroll_main ">
         {show ? (
           <>
             <div className="grid grid-cols-1 gap-2 md:grid-cols-2 ">
@@ -56,7 +58,7 @@ export default function OrderMainData({ setShow, show, isPending }) {
                   required
                 />
               </div>
-              <div className="mb-3">
+              <div className="col-span-2 mb-3">
                 <SelectCountryOrganizations
                   label={t("Country")}
                   name="country_ids"
@@ -110,10 +112,10 @@ export default function OrderMainData({ setShow, show, isPending }) {
         )}
       </div>
       {!show && (
-        <div className="flex justify-end gap-5 ml-5 mt-1d">
+        <div className="flex justify-end gap-5 px-3 md:px-8">
           <ButtonComp
             className={"!w-auto"}
-            variant="outlined"
+            variant="outline"
             action={() => setShow(true)}
           >
             {t("Back")}

@@ -3,9 +3,10 @@
 import { Button } from "@mui/material";
 import Spinner from "../Spinner";
 import { useTheme } from "@mui/material/styles";
+import { hexToRGBA } from "../../../utils/helpers";
 
 const ButtonComp = ({
-  variant = "contained" || "outlined",
+  variant = "contained" || "outline",
   children,
   className,
   disabled,
@@ -26,14 +27,25 @@ const ButtonComp = ({
       style={{
         backgroundColor:
           variant == "contained"
-            ? theme?.palette?.primary?.main
+            ? disabled
+              ? hexToRGBA(theme?.palette?.primary?.main, 0.3)
+              : theme?.palette?.primary?.main
             : "transparent",
-        color: variant == "outlined" ? theme?.palette?.primary?.main : "white",
+        color: variant == "outline" ? theme?.palette?.primary?.main : "white",
+        borderColor: disabled
+          ? hexToRGBA(theme?.palette?.primary?.main, 0.2)
+          : theme?.palette?.primary?.main,
+        borderStyle: variant == "outline" ? "solid" : "",
+
         opacity: disabled ? "1" : "1",
       }}
       variant={variant}
-      className={`${className}  text-white  hover:!bg-${theme?.palette?.primary?.main}
-       disabled:cursor-not-allowed disabled:text-[${theme?.palette?.primary?.main}] !disabled:opacity-6 ltr:mt-5 mt-5 `}
+      className={`${className}  ${
+        variant == "outline" && " dark:!text-white"
+      } border    hover:!bg-${theme?.palette?.primary?.main}
+       disabled:!cursor-not-allowed disabled:text-[${
+         theme?.palette?.primary?.main
+       }] ltr:mt-5 mt-5 `}
       // sx={{ mb: 7 }}
       disabled={disabled}
       onClick={action}

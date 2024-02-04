@@ -40,6 +40,7 @@ export default function QuestionBaseInput({
   ...props
 }) {
   const { setFieldValue, values, errors } = useFormikContext();
+  console.log("🚀 ~ errors:", errors)
   const [showPassword, setShowPassword] = useState(false);
   const [valueRadio, setValueRadio] = useState("");
   const [files, setFiles] = useState([]);
@@ -69,16 +70,6 @@ export default function QuestionBaseInput({
     setFieldValue(`answers${name}`, selectedValues);
   };
   //file
-  const { getRootProps, getInputProps } = useDropzone({
-    multiple: false,
-    accept: ["image/*", ".pdf", ".doc", ".docx"],
-
-    onDrop: (acceptedFiles) => {
-      setFiles(acceptedFiles.map((file) => Object.assign(file)));
-      setFieldValue(`answers${name}`, acceptedFiles[0]);
-    },
-  });
-  const isLargeFile = files?.length && files[0]?.size > 524288000;
 
   const multiSelectOptions = options?.map((item) => ({
     value: item?.content,
@@ -88,6 +79,23 @@ export default function QuestionBaseInput({
     value: item?.content,
     label: item?.content,
   }));
+  const handleChangeNumber = (e) => {
+    let value = e.target.value;
+  
+    // Convert to string for length check if necessary
+    const valueAsString = value.toString();
+  
+    // Check for numeric value and length restriction
+    if (!/^[0-9]+$/.test(valueAsString) || valueAsString.length > 10) {
+      // Invalid input: Reset field or set to last valid value
+      setFieldValue(`answers${name}`, "");
+    } else {
+      // Valid input: Update the field value
+      setFieldValue(`answers${name}`, value);
+    }
+  };
+  
+
   return (
     <div>
       {type == "password" ? (
@@ -159,7 +167,7 @@ export default function QuestionBaseInput({
             option: () => "dark:bg-dark-primary dark:text-white  ",
           }}
         />
-      ) : type == "radio" ? (
+      ) : type == "radio" || type == "Yes_No" ? (
         <>
           <FormControl>
             <RadioGroup
@@ -185,18 +193,17 @@ export default function QuestionBaseInput({
           <TextField
             autoFocus
             {...props}
+            // type="number"
             fullWidth
             value={values[name]}
             sx={{ mb: 4 }}
-            placeholder={placeholder}
             name={name}
-            className={className}
-            onChange={(e) => {
-              // if (values[name] !== undefined) {
-              // setFieldValueState(e.target.value)
-              setFieldValue(`answers${name}`, e.target.value);
-              // }
+            inputProps={{
+              maxLength: 10, // This is not effective for type="number", consider using 'max' for value limit
+              onChange: handleChangeNumber,
             }}
+            className={className}
+            // onChange={(e) => handleChangeNumber(e)}
           />
         </div>
       ) : type == "text" ? (
@@ -242,6 +249,7 @@ export default function QuestionBaseInput({
             autoFocus
             {...props}
             fullWidth
+            type="email"
             value={values[name]}
             sx={{ mb: 4 }}
             placeholder={placeholder}
@@ -256,7 +264,11 @@ export default function QuestionBaseInput({
           />
         </div>
       ) : type == "file" ? (
-        <UploadDoc dynamic={true} name={name} />
+        <UploadDoc
+          dynamic={true}
+          name={name}
+          accept={["pdf", "jpg", "png", "jpeg"]}
+        />
       ) : type == "checkbox" ? (
         <FormGroup row onChange={handleChangeCheckbox}>
           {options?.map((option) => (

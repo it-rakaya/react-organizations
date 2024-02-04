@@ -54,8 +54,14 @@ export default function SelectCountry({
           options={options}
           name={name}
           value={selectedCountry}
-          placeholder={t("Chose Country")}
+          // placeholder={t("Chose Country")}
+          placeholder={
+            <div className="select-placeholder-text">
+             {t("Chose Country")}
+            </div>
+          }
           noOptionsMessage={() => t("Not Found Data")}
+          isDisabled={values.national_id.startsWith("1")}
           onBlur={handleBlur}
           onChange={(option) => setFieldValue(name, option.value)}
           styles={{
@@ -67,6 +73,8 @@ export default function SelectCountry({
               // borderColor:"#555d64" ,
               background: "white",
               margin: "0",
+              height: "59px",
+
             }),
             option: (baseStyles) => ({
               ...baseStyles,
@@ -84,7 +92,7 @@ export default function SelectCountry({
             },
           })}
           classNames={{
-            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+            control: () => "dark:bg-dark-primary dark:border-[#555d64] px-1",
             option: () => "dark:bg-dark-primary dark:text-white  ",
           }}
         />

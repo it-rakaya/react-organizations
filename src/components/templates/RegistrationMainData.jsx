@@ -14,10 +14,6 @@ import SelectCountry from "../molecules/SelectCountry";
 import UploadDoc from "../molecules/uploadImage/UploadDoc";
 
 function RegistrationMainData({ attachments_register, setOpen, isPending }) {
-  console.log(
-    "🚀 ~ RegistrationMainData ~ attachments_register:",
-    attachments_register
-  );
   const { setFieldValue, values, errors } = useFormikContext();
   const [checked, setChecked] = useState(false);
 
@@ -28,6 +24,7 @@ function RegistrationMainData({ attachments_register, setOpen, isPending }) {
       setFieldValue("nationality", "");
     }
   }, [values.national_id, setFieldValue]);
+  
   const LinkStyled = styled(Link)(({ theme }) => ({
     textDecoration: "none",
     color: theme.palette.primary.main,
@@ -40,7 +37,7 @@ function RegistrationMainData({ attachments_register, setOpen, isPending }) {
 
   const validAttachments = values.attachments
     .map((file, index) => ({ index, file }))
-    .filter((item) => typeof item.file !== "undefined");
+    .filter((item) =>typeof item?.file !== "undefined" && item.file !== "deleted");
 
   const attachments = validAttachments.map((item) => ({
     [`attachments[${item?.index}]`]: item?.file,
@@ -65,7 +62,7 @@ function RegistrationMainData({ attachments_register, setOpen, isPending }) {
       />
       <BaseInputField
         label={t("registration.IDNumberLabel")}
-        placeholder="********10"
+        placeholder="xxxxxxxxxx"
         name="national_id"
         type="custom"
         maxNum={10}

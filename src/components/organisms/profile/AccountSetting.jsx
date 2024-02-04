@@ -4,15 +4,27 @@ import { Form, Formik } from "formik";
 import { t } from "i18next";
 import { isValidSaudiID } from "saudi-id-validator";
 import * as Yup from "yup";
+import useFetch from "../../../hooks/useFetch";
 import { useMutate } from "../../../hooks/useMutate";
-import { convertToHijri } from "../../../utils/helpers";
+import { convertToHijri, isEmail } from "../../../utils/helpers";
 import { notify } from "../../../utils/toast";
 import MainHeader from "../../atoms/MainHeader";
-import ButtonComp from "../../atoms/buttons/ButtonComp";
 import AccountSettingMainData from "./AccountSettingMainData";
 
-export default function AccountSetting({ userData, setEditUser, setUser , refetch }) {
+export default function AccountSetting({
+  userData,
+  setEditUser,
+  setUser,
+  refetch,
+}) {
+  const { data: attachments_register } = useFetch({
+    endpoint: `attachments-labels/users`,
+    queryKey: ["attachments_register"],
+  });
 
+  const AllAttachmentsId = attachments_register?.attachment_labels?.map(
+    (item) => item?.id
+  );
 
   const initialValue = {
     name: userData?.name,
@@ -45,7 +57,9 @@ export default function AccountSetting({ userData, setEditUser, setUser , refetc
           message: t("Invalid Saudi ID"),
         })
         .required(t("This field is required")),
-      email: Yup.string().trim().required(t("email is required")),
+        email: Yup.string()
+        .required(t("email is required"))
+        .matches(isEmail, t("Please enter a valid email address")),
       birthday: Yup.date().required(t("birthday is required")),
       phone: Yup.string()
         .matches(/^\d{9}$/, t("The phone number must be exactly 10 digits"))
@@ -63,8 +77,8 @@ export default function AccountSetting({ userData, setEditUser, setUser , refetc
     mutationKey: [`users_update`],
     endpoint: `users/update`,
     onSuccess: (data) => {
-      refetch()
-      notify("success", "تم التعديل بنجاح");
+      refetch();
+      notify("success", t("Modified successfully"));
       setEditUser(false);
       setUser(data?.data?.user);
     },
@@ -78,20 +92,41 @@ export default function AccountSetting({ userData, setEditUser, setUser , refetc
     const validAttachments =
       values?.attachments
         ?.map((file, index) => ({ index, file }))
-        .filter((item) => typeof item?.file !== "undefined") || [];
+        .filter(
+          (item) => typeof item?.file !== "undefined" && item.file !== "deleted"
+        ) || [];
+
     const attachments =
       validAttachments?.map((item) => ({
         [`attachments[${item?.index}]`]: item?.file,
       })) || [];
 
-    const combinedObject = {
+    const attachmentsToDelete = values?.attachments
+      ?.map((file, index) => ({ file, index }))
+      ?.filter(
+        (item) =>
+          item.file == "deleted" && AllAttachmentsId.includes(item.index)
+      )
+      .map((item) => ({
+        [`del_attachments[${item?.index}]`]: item.index,
+      }));
+
+    let combinedObject = {
       ...values,
       ...Object?.assign({}, ...attachments),
     };
+
+    if (attachmentsToDelete?.length > 0) {
+      combinedObject = {
+        ...combinedObject,
+        ...Object?.assign({}, ...attachmentsToDelete),
+      };
+    }
+
     delete combinedObject?.attachments;
+
     UpdateUser(combinedObject);
   };
-
 
   return (
     <div>
@@ -105,12 +140,11 @@ export default function AccountSetting({ userData, setEditUser, setUser , refetc
         validationSchema={ValidationSchema}
       >
         <Form>
-          <AccountSettingMainData userData={userData} />
-          <div className="flex justify-end col-span-2 px-8">
-            <ButtonComp className="!w-auto" loading={isPending}>
-              {t("Edit")}
-            </ButtonComp>
-          </div>
+          <AccountSettingMainData
+            userData={userData}
+            isPending={isPending}
+            attachments_register={attachments_register}
+          />
         </Form>
       </Formik>
     </div>

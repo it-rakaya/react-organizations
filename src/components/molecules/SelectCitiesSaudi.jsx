@@ -51,7 +51,8 @@ export default function SelectCitiesSaudi({
           options={options}
           name={name}
           value={selectedCity}
-          placeholder={t("Chose city")}
+          // placeholder={t("Chose city")}
+          placeholder={<div className="select-placeholder-text">{t("Chose city")}</div>} 
           onChange={(option) => setFieldValue(name, option.value)}
           noOptionsMessage={() => t("Not Found Data")}
           styles={{
@@ -60,20 +61,16 @@ export default function SelectCitiesSaudi({
               padding: "10px 0",
               borderRadius: " 8px",
               borderWidth: "1px",
-              // borderColor:"#555d64",
               background: "white",
               margin: "0",
-              // zIndex:"9999999"
+              height: "59px",
             }),
             option: (baseStyles) => ({
               ...baseStyles,
               background: "white",
               color: "black",
             }),
-            // placeholder: (baseStyles) => ({
-            //   ...baseStyles,
-            //   color: 'white', // Replace 'desiredColor' with the color you want
-            // }),
+
           }}
           theme={(theme) => ({
             ...theme,

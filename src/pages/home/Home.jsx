@@ -24,6 +24,7 @@ const Home = () => {
       notify("success", t("Verification code has been sent successfully"));
     },
     onError: (err) => {
+      console.log("🚀 ~ Home ~ err:", err)
       notify("error", err?.response?.data.message);
     },
   });

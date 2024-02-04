@@ -12,17 +12,16 @@ const Hero = () => {
   const btnStyles =
     "basis-1/2 py-4 rounded-lg font-bold text-lg 3xl:text-2xl shadow";
   const { i18n, t } = useTranslation();
-  const { user , token  } = useAuth();
+  const { user, token } = useAuth();
 
   const { orgData } = UseOrg();
-  console.log("🚀 ~ Hero ~ orgData:", orgData)
   const theme = useTheme();
   const language = i18n.language;
   const [open, setOpen] = useState(false);
-  const isRTL = useIsRTL()
+  const isRTL = useIsRTL();
 
   return (
-    <div className="px-3 lg:w-1/2 2xl:ps-56 2xl:px-80 xl:ps-12">
+    <div className="px-3 lg:w-1/2 2xl:ps-36 2xl:px-36 xl:ps-12">
       <div dir={i18n.dir(language)}>
         {/* title */}
         <div className="flex flex-col items-center justify-between w-full gap-5 xl:flex-row-reverse xl:gap-0">
@@ -35,13 +34,16 @@ const Hero = () => {
           {/* </h1> */}
           <h1 className="text-2xl font-bold 3xl:text-3xl dark:text-white">
             {!orgData?.organizations?.name && t("landing.organizationName")}
-            {isRTL ? orgData?.organizations?.name_ar : orgData?.organizations?.name_en}
+            {isRTL
+              ? orgData?.organizations?.name_ar
+              : orgData?.organizations?.name_en}
           </h1>
         </div>
         {/* description */}
         <div
           dangerouslySetInnerHTML={{ __html: orgData?.organizations?.about_us }}
-          className="mt-5 text-xl font-bold text-center md:text-start 3xl:text-2xl"
+          className="w-full mt-5 overflow-scroll text-xl font-bold text-center md:text-start 3xl:text-2xl scroll_main decryption_orga"
+          style={{ height: "calc(100vh - 43rem)" }}
         ></div>
         <div
           className={`flex flex-col gap-4 mt-10 ${!user ? " xl:flex-row" : ""}`}

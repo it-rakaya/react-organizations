@@ -17,13 +17,13 @@ function AdditionalInfo() {
     <div className="grid items-start grid-cols-2">
       <div className="">
         <Typography className={`font-bold  !text-black dark:!text-white `}>
-          3.{t("Additional information")}
+          3.{t("Additional Information")}
         </Typography>
       </div>
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
         <div className="w-full md:w-1/2">
           <BaseInputField
-            label={t("employee number")}
+            label={t("Employees Number")}
             placeholder="20"
             name="employee_number"
             type="custom"
@@ -33,7 +33,7 @@ function AdditionalInfo() {
         </div>
         <div className="w-full md:w-1/2">
           <BaseInputField
-            label={t("chefs number")}
+            label={t("Chefs Number")}
             placeholder="4"
             name="chefs_number"
             type="custom"
@@ -44,9 +44,9 @@ function AdditionalInfo() {
       </div>
 
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
-        <div className="w-full md:w-1/2">
+        <div className="w-full ">
           <BaseInputField
-            label={t("kitchen space")}
+            label={t("Kitchen Space")}
             placeholder="500"
             name="kitchen_space"
             type="custom"

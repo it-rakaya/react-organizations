@@ -21,17 +21,17 @@ export default function AddFacility() {
       <div className="grid items-start grid-cols-1 md:grid-cols-2">
         <div className="col-span-2">
           <Typography className={`font-bold  !text-black dark:!text-white `}>
-            1. {t("Facility data")}
+            1. {t("Facility Information")}
           </Typography>
         </div>
         <h1 className="flex items-center col-span-12 gap-1 pt-5 pb-3 text-xl font-medium dark:text-white">
-          {t("Commercial registry data")}:
+          {t("Commercial Registration Information")}:
         </h1>
 
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="relative w-full md:w-1/2">
             <BaseInputField
-              label={t("Facility commercial name")}
+              label={t("Facility Trade Name")}
               placeholder={t("Rakaya Kitchen for Catering Services")}
               name="name"
               showIcon
@@ -62,7 +62,7 @@ export default function AddFacility() {
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="w-full col-span-6 md:w-1/2">
             <SelectCitiesSaudi
-              label={t("registration source name")}
+              label={t("Commercial Registration Source")}
               name="registration_source"
               required
               showIcon
@@ -74,7 +74,7 @@ export default function AddFacility() {
           </div>
           <div className="w-full md:w-1/2">
             <BaseInputField
-              label={t("Tax registration number")}
+              label={t("Vat Registration Number")}
               placeholder="xxxxxxxxxxxxxxx"
               name="tax_certificate"
               type="custom"
@@ -93,7 +93,7 @@ export default function AddFacility() {
             <DatePickerComp
               name="version_date"
               name_hj="version_date_hj"
-              label={t("Date of issuance of the commercial register in AD")}
+              label={t("Commercial Registration Release Date")}
               required
               showIcon
               setShow={setShow}
@@ -108,7 +108,7 @@ export default function AddFacility() {
               name="end_date"
               name_hj="end_date_hj"
               label={t(
-                "Commercial registration expiration date in Gregorian calendar"
+                "Commercial Registration Expiration Data"
               )}
               required
               showIcon
@@ -124,13 +124,13 @@ export default function AddFacility() {
         </div>
         <h1 className="flex items-center col-span-12 gap-1 pb-3 text-xl font-medium dark:text-white">
           {/* <Icon path={mdiAccountBoxOutline} size={1} /> */}
-          {t("Commercial activity license data (my country)")}:
+          {t("Commercial Activity Licence Information (balady)")}:
         </h1>
 
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="w-full md:col-span-6">
             <BaseInputField
-              label={t("license")}
+              label={t("Licence")}
               placeholder="xxxxxxxxxxx"
               name="license"
               type="custom"
@@ -147,7 +147,7 @@ export default function AddFacility() {
             <DatePickerComp
               name="license_expired"
               name_hj="license_expired_hj"
-              label={t("license expired")}
+              label={t("Licence expired")}
               required
               showIcon
               setShow={setShow}
@@ -161,7 +161,7 @@ export default function AddFacility() {
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="w-full ">
             <BaseInputField
-              label={t("capacity")}
+              label={t("Capacity")}
               placeholder="xxxxx"
               name="capacity"
               type="custom"
@@ -180,8 +180,8 @@ export default function AddFacility() {
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="w-full md:w-1/2">
             <BaseInputField
-              label={t("account name")}
-              placeholder="احمد محمد"
+              label={t("Account name")}
+              placeholder={t("Rakaya Kitchen for Catering Services")}
               name="account_name"
               required
               showIcon

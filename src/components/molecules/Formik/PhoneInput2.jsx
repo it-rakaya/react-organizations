@@ -4,11 +4,9 @@ import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { tv } from "tailwind-variants";
+import CardInfo from "../CardInfo";
 import Label from "../Label";
 import { FormikError } from "./FormikError";
-import Icon from "@mdi/react";
-import { mdiInformationOutline } from "@mdi/js";
-import CardInfo from "../CardInfo";
 
 const PhoneInput2 = ({ label, required, showIcon, messageInfo }) => {
   const [phone, setPhone] = useState("");
@@ -43,20 +41,7 @@ const PhoneInput2 = ({ label, required, showIcon, messageInfo }) => {
             {required == "1" ? "*" : ""}
           </span>
         </Label>
-        {/* {showIcon && (
-            <div
-              className="my-1 cursor-pointer w-fit"
-            >
-              <div className="flex items-center gap-1">
-                <>
-                  <span className="text-[10px] text-[#80b3f0]">
-                    {messageInfo ? messageInfo : " }
-                  </span>
-                  <Icon path={mdiInformationOutline} size={0.7} />
-                </>
-              </div>
-            </div>
-          )} */}
+
         {showIcon && <CardInfo messageInfo={messageInfo} />}
 
         <PhoneInput

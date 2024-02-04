@@ -16,12 +16,14 @@ import { UseOrg } from "../../context/organization provider/OrganizationProvider
 import useFetch from "../../hooks/useFetch";
 import { convertArabicToEnglish, convertToHijri } from "../../utils/helpers";
 import { notify } from "../../utils/toast";
+import { useIsRTL } from "../../hooks/useIsRTL";
 export default function Orders() {
   const [openAddFaculty, setOpenAddFaculty] = useState(false);
   const [openDetailsOrder, setOpenDetailsOrder] = useState(false);
   const [openCancelOrder, setOpenCancelOrder] = useState(false);
   const [orderId, setOrderId] = useState();
   const [detailsOrder, setDetailsOrder] = useState("");
+  const isRTL= useIsRTL()
 
   const { orgData } = UseOrg();
 
@@ -35,6 +37,7 @@ export default function Orders() {
     queryKey: ["my_orders"],
     enabled: !!orgData?.organizations?.id,
   });
+    console.log("🚀 ~ Orders ~ Orders:", Orders)
 
   const Canceled = 7;
   const Rejected = 5;
@@ -84,7 +87,7 @@ export default function Orders() {
             variant="body2"
             className="text-black dark:text-white"
           >
-            {row.service?.name}
+            {isRTL ? row.service?.name_ar : row.service?.name_en}
           </Typography>
         );
       },
@@ -133,7 +136,7 @@ export default function Orders() {
             }}
             className="text-white"
           >
-            {row.status?.name_ar}
+            {isRTL ? row.status?.name_ar :row.status?.name_en}
           </Typography>
         );
       },

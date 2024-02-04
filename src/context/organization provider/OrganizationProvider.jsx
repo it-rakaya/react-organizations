@@ -1,35 +1,47 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect } from "react";
-import useFetch from "../../hooks/useFetch";
-import { UseLocalStorage } from "../../hooks/useLocalStorage";
 import lightModeLogo from "../../assets/refadaLogos/Group-1.png";
 import darkModeLogo from "../../assets/refadaLogos/Group-2.png";
 import default_image from "../../assets/refadaLogos/default.jpeg";
-import { useIsRTL } from "../../hooks/useIsRTL";
+import useFetch from "../../hooks/useFetch";
+import { UseLocalStorage } from "../../hooks/useLocalStorage";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { notify } from "../../utils/toast";
 const OrgContext = createContext();
 export const OrganizationProvider = ({ children }) => {
   const url = window.location.href;
   // const local = "http://localhost:5173";
- 
+
   const baseUrl = new URL(url).origin;
   const savedMode = localStorage.getItem("darkMode");
   const [orgData, setOrgData] = UseLocalStorage("organization");
-  console.log(
-    "🚀 ~ OrganizationProvider ~ orgData:",
-    orgData?.organizations?.background_image == undefined
-  );
+  const navigate = useNavigate();
   // http://localhost:5173/
-  const { data, refetch, isRefetching, isSuccess, isLoading  } = useFetch({
+  const {
+    data,
+    refetch,
+    isRefetching,
+    isSuccess,
+    isLoading,
+    isError,
+    error,
+  } = useFetch({
     endpoint: `organizations?organizationDomain=${baseUrl}`,
     queryKey: ["organization_info"],
   });
-  const isRTL = useIsRTL()
-  console.log("🚀 ~ OrganizationProvider ~ isSuccess:", isSuccess)
   useEffect(() => {
     if (isSuccess) {
       setOrgData(data);
+    } else if (error) {
+      if (error?.response?.data?.message == "Unauthenticated.") {
+        localStorage.removeItem("user");
+        navigate("/404");
+        Cookies.remove("token");
+        notify("error");
+      }
     }
-  }, [isSuccess]);
+  }, [isSuccess, isError]);
   useEffect(() => {
     // refetch();
   }, [refetch]);
@@ -52,8 +64,7 @@ export const OrganizationProvider = ({ children }) => {
           return {
             ...prev,
             organizations: {
-              ...prev,
-              // background_image: default_image,
+              ...prev?.organizations,
               logo: !savedMode ? lightModeLogo : darkModeLogo,
             },
           };
@@ -67,7 +78,6 @@ export const OrganizationProvider = ({ children }) => {
           };
         });
       }
-
     }
   }, [orgData, savedMode]);
 

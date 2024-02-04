@@ -18,7 +18,7 @@ return (withTouched ? !!error && isTouched : !!error)
 
     ? createElement(
         as,
-        { className: twMerge(className, "text-red-500 text-[0.75rem] text-right") },
+        { className: twMerge(className, "text-red-500 text-[0.75rem] text-right flex") },
         error?.toString()
       )
     : null
