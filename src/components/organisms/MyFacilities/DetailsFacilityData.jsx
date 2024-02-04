@@ -5,7 +5,6 @@ import { Divider } from "@mui/material";
 import { useIsRTL } from "../../../hooks/useIsRTL";
 
 function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
-  console.log("🚀 ~ DetailsFacilityData ~ data:", data)
   const isRTL = useIsRTL();
 
   return (

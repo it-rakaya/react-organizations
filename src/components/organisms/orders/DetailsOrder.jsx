@@ -114,7 +114,10 @@ export default function DetailsOrder({ data }) {
               </div>
             </TabPanel>
             <TabPanel value="2">
-              <div className="grid grid-cols-2 gap-4 px-4 mt-5">
+              <div
+                className="grid w-full grid-cols-2 gap-4 px-4 mt-5 scroll_main !overflow-y-scroll"
+                style={{ height: "calc(-28rem + 100vh)" }}
+              >
                 {data?.answers?.length ? (
                   data?.answers?.map((item) => (
                     <div
@@ -143,7 +146,7 @@ export default function DetailsOrder({ data }) {
                   <DetailsFacility
                     data={data?.facility}
                     className="detailsOrderFacility"
-                    style={{height:"calc(100vh - 28rem)"}}
+                    style={{ height: "calc(100vh - 28rem)" }}
                   />
                 </div>
               </div>

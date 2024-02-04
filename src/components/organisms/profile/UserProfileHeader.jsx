@@ -31,6 +31,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
         <ProfilePicture
           src={user?.profile_photo || defaultImage}
           alt="profile-picture"
+          style={{ backgroundColor: theme?.palette?.primary?.main }}
         />
         <div className="flex flex-col items-center gap-2 mt-2">
           <h1 className="text-2xl font-extrabold dark:text-white">

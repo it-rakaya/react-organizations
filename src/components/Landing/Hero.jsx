@@ -15,14 +15,13 @@ const Hero = () => {
   const { user , token  } = useAuth();
 
   const { orgData } = UseOrg();
-  console.log("🚀 ~ Hero ~ orgData:", orgData)
   const theme = useTheme();
   const language = i18n.language;
   const [open, setOpen] = useState(false);
   const isRTL = useIsRTL()
 
   return (
-    <div className="px-3 lg:w-1/2 2xl:ps-56 2xl:px-80 xl:ps-12">
+    <div className="px-3 lg:w-1/2 2xl:ps-36 2xl:px-36 xl:ps-12">
       <div dir={i18n.dir(language)}>
         {/* title */}
         <div className="flex flex-col items-center justify-between w-full gap-5 xl:flex-row-reverse xl:gap-0">
@@ -41,7 +40,8 @@ const Hero = () => {
         {/* description */}
         <div
           dangerouslySetInnerHTML={{ __html: orgData?.organizations?.about_us }}
-          className="mt-5 text-xl font-bold text-center md:text-start 3xl:text-2xl"
+          className="w-full mt-5 overflow-scroll text-xl font-bold text-center md:text-start 3xl:text-2xl scroll_main"
+          style={{height:"calc(100vh - 20rem)"}}
         ></div>
         <div
           className={`flex flex-col gap-4 mt-10 ${!user ? " xl:flex-row" : ""}`}
