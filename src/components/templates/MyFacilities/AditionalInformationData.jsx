@@ -22,7 +22,7 @@ function AdditionalInformationData({
 
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("Employees Number")}
+          {t("Number Of Employees")}
         </p>
         <p className="mt-1 dark:text-white">{data?.employee_number}</p>
       </div>

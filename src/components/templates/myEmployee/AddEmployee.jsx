@@ -53,7 +53,7 @@ export default function AddEmployee({
         ?.test({
           name: "isValidSaudiID",
           test: (value) => isValidSaudiID(value),
-          message: t("Invalid Saudi ID"),
+          message: t("Please enter a valid ID number"),
         }),
     });
   const handleSubmit = (values) => {

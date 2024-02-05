@@ -54,7 +54,7 @@ export default function AccountSetting({
         .test({
           name: "isValidSaudiID",
           test: (value) => isValidSaudiID(value),
-          message: t("Invalid Saudi ID"),
+          message: t("Please enter a valid ID number"),
         })
         .required(t("This field is required")),
         email: Yup.string()

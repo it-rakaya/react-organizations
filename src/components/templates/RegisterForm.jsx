@@ -15,11 +15,13 @@ import ModalComp from "../atoms/ModalComp";
 import TermsAndCondition from "../molecules/TermsAndCondition";
 import RegistrationMainData from "./RegistrationMainData";
 import { isEmail } from "../../utils/helpers";
+import { styled, useTheme } from "@mui/material/styles";
 
 export default function RegisterForm() {
   const { login } = useAuth();
   const { orgData } = UseOrg();
   const [open, setOpen] = useState(false);
+  const theme = useTheme();
 
   const { mutate: sendRegister, isPending } = useMutate({
     endpoint: `register`,
@@ -46,7 +48,7 @@ export default function RegisterForm() {
         .test({
           name: "isValidSaudiID",
           test: (value) => isValidSaudiID(value),
-          message: t("Invalid Saudi ID"),
+          message: t("Please enter a valid ID number"),
         })
         .required(t("This field is required")),
       email: Yup.string()
@@ -117,14 +119,14 @@ export default function RegisterForm() {
             }}
           >
             <Typography
-              sx={{ mr: 2, color: "text.secondary" }}
-              className=" dark:text-white"
+              sx={{ mx: 2, color: "text.secondary" }}
+              className="text-black dark:text-white"
             >
               {t("Already have an account?")}
             </Typography>
             <Link
               to="/login"
-              sx={{ color: "primary.main", textDecoration: "none" }}
+              style={{ color: theme.palette.primary.main, textDecoration: "none" }}
               className=" dark:text-white"
             >
               {t("Sign in instead")}

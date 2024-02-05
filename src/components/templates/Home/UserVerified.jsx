@@ -59,8 +59,8 @@ function UserVerified() {
         className="grid grid-cols-12 px-2 py-10 bg-white dark:bg-dark-primary md:px-5 md:m-20 rounded-2xl"
         style={{ boxShadow: "0 0 27px -20px" }}
       >
-        <div className="flex flex-col justify-center col-span-12 md:col-span-7 ">
-          <div className="flex">
+        <div className="grid grid-cols-12 col-span-12">
+          <div className="flex items-center col-span-12 md:col-span-6">
             <h1 className="text-xl font-bold text-black md:text-3xl dark:text-white">
               {t("Welcome")}
             </h1>
@@ -69,41 +69,44 @@ function UserVerified() {
             </h1>
           </div>
 
-          <div className="flex flex-wrap justify-between gap-1 md:justify-normal md:gap-2 xs:flex-nowrap ">
+          <div className="flex flex-wrap items-center justify-between col-span-12 gap-1 md:col-span-6 md:justify-normal md:gap-2 xs:flex-nowrap">
             <Link
               to={`https://wa.me/${orgData?.organizations?.phone}/`}
-              className="w-1/2"
+              className="w-full"
             >
               <ButtonComp
-                className={"  !text-[10px] md:!text-[14px] md:!w-[full]"}
+                className={"  !text-[10px] md:!text-[14px] md:!w-[full] !mt-0"}
               >
                 {t("customers service")}
               </ButtonComp>
             </Link>
-            <Link to={"/dashboard/profile"} className="w-1/2">
+            <Link to={"/dashboard/profile"} className="w-full">
               <ButtonComp
-                className={" !text-[10px] md:!text-[14px] md:!w-[full]"}
+                className={" !text-[10px] md:!text-[14px] md:!w-[full] !mt-0"}
                 variant="outline"
               >
                 {t("PERSONAL INFO")}
               </ButtonComp>
             </Link>
           </div>
-          <div className="flex justify-between mt-5">
+        </div>
+        <div className="grid grid-cols-12 col-span-12 mt-10 ">
+          <div className="flex justify-center col-span-12 mt-5 md:flex-wrap md:col-span-6">
             {data?.map((item, index) => (
-              <Grid xs={3} md={3} sm={3} item key={index}>
+              <div className="flex justify-center w-1/2" key={index}>
                 <CardStatsHorizontal
                   item={item}
                   className="!bg-transparent !shadow-none"
-                  classNameBox="!pr-0 !pl-0   "
-                
+                  classNameMain="!pr-0 !pl-0   "
+                  // classNameBox={"flex-wrap"}
+                  // itemClassName={"w-1/2"}
                 />
-              </Grid>
+              </div>
             ))}
           </div>
-        </div>
-        <div className="col-span-12 md:col-span-5">
-          <UserVerifiedIcon className="w-full" />
+          <div className="col-span-12 md:col-span-6">
+            <UserVerifiedIcon className="w-3/4 m-auto" />
+          </div>
         </div>
       </div>
     </div>

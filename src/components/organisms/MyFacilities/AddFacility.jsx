@@ -175,12 +175,12 @@ export default function AddFacility() {
         </div>
         <h1 className="flex items-center col-span-12 gap-1 pb-3 text-xl font-medium dark:text-white">
           {/* <Icon path={mdiAccountBoxOutline} size={1} /> */}
-          {t("Bank data of the facility")}:
+          {t("Facility's Bank Information:")}:
         </h1>
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="w-full md:w-1/2">
             <BaseInputField
-              label={t("Account name")}
+              label={t("Account Name")}
               placeholder={t("Rakaya Kitchen for Catering Services")}
               name="account_name"
               required
@@ -192,7 +192,7 @@ export default function AddFacility() {
             <SelectBank
               name="bank_id"
               required={true}
-              label={t("Chose bank")}
+              label={t("Choose Bank")}
               showIcon
               messageInfo={t("Please select the facility's bank")}
             />
@@ -201,14 +201,14 @@ export default function AddFacility() {
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="w-full">
             <BaseInputField
-              label={t("IBAN number")}
+              label={t("IBAN Number")}
               placeholder="xxxxxxxxxxxxxxxxxxxxxxxx"
               name="iban"
               type="IBAN"
               required
               maxNum="29"
               showIcon
-              messageInfo={t("Please enter the establishment's IBAN number")}
+              messageInfo={t("Please enter the facility's IBAN number")}
             />
           </div>
         </div>

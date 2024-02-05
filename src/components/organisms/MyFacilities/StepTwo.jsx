@@ -20,7 +20,7 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
       <div className="grid w-full grid-cols-12 col-span-12 mt-3 md:gap-x-10 ">
         <div className="col-span-12">
           <Typography className={`font-bold  !text-black dark:!text-white`}>
-            4.{t("Upload files")}
+            4.{t("Upload Files")}
           </Typography>
         </div>
         {detailsFacilitiesData?.map((attachmentLabel) => {

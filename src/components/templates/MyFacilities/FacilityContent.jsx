@@ -71,8 +71,8 @@ function FacilityContent({
           // address: Yup.string().trim().required(t("address is  required")),
           tax_certificate: Yup.string()
             .trim()
-            .required(t("tax certificate is required"))
-            .length(9, t("the tax certificate number must be equal 9 digits")),
+            .required(t("certificate is required"))
+            .length(9, t("the certificate number must be equal 9 digits")),
         });
       case 1:
         return Yup.object({
@@ -84,22 +84,22 @@ function FacilityContent({
             .required(t("the neighborhood required")),
           building_number: Yup.string()
             .trim()
-            .required(t("tax Building Number is required"))
-            .length(4, t("the tax Building Number must be equal 4 digits")),
+            .required(t("Building Number is required"))
+            .length(4, t("the Building Number must be equal 4 digits")),
           postal_code: Yup.string()
             .trim()
-            .required(t("tax postal code is required"))
-            .length(6, t("the tax postal code must be equal 6 digits")),
+            .required(t("postal code is required"))
+            .length(6, t("the postal code must be equal 6 digits")),
           sub_number: Yup.string()
             .trim()
-            .required(t("tax Secondary Number is required"))
-            .length(6, t("the tax Secondary Number must be equal 6 digits")),
+            .required(t("Secondary Number is required"))
+            .length(6, t("the Secondary Number must be equal 6 digits")),
         });
       case 2:
         return Yup.object({
           employee_number: Yup.string()
             .trim()
-            .required(t("Employees Number is required")),
+            .required(t("Number Of Employees is required")),
           chefs_number: Yup.string()
             .trim()
             .required(t("Chefs Number is required")),

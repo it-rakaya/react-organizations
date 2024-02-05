@@ -38,7 +38,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("tax certificate")}
+          {t("certificate")}
         </p>
         <p className="mt-1 dark:text-white">{data?.tax_certificate}</p>
       </div>
@@ -100,12 +100,12 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
 
       <div className="col-span-2">
         <h1 className="flex items-center col-span-12 gap-1 pt-2 pb-3 font-medium md:text-xl dark:text-white">
-          {t("Bank data of the facility")}:
+          {t("Facility's Bank Information:")}
         </h1>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("Account name")}
+          {t("Account Name")}
         </p>
         <p className="mt-1 dark:text-white">
           {data?.bank_information?.account_name}
@@ -113,7 +113,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("IBAN number")}
+          {t("IBAN Number")}
         </p>
         <p className="mt-1 dark:text-white">{data?.bank_information?.iban}</p>
       </div>

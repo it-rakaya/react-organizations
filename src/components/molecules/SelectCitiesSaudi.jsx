@@ -52,7 +52,7 @@ export default function SelectCitiesSaudi({
           name={name}
           value={selectedCity}
           // placeholder={t("Chose city")}
-          placeholder={<div className="select-placeholder-text">{t("Chose city")}</div>} 
+          placeholder={<div className="select-placeholder-text">{t("Choose City")}</div>} 
           onChange={(option) => setFieldValue(name, option.value)}
           noOptionsMessage={() => t("Not Found Data")}
           styles={{

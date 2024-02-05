@@ -141,7 +141,7 @@ export default function MyFacilities() {
                           setFacultyID(item?.id);
                         }}
                       >
-                        {t("Add Employ")}
+                        {t("ADD EMPLOYEE")}
                       </ButtonComp>
                     </Card>
                   </Grid>
@@ -208,7 +208,7 @@ export default function MyFacilities() {
               variant="contained"
               action={() => navigate("/dashboard/employee")}
             >
-              <p className="text-white">{t("Moving on to employees")}</p>
+              <p className="text-white">{t("Go to Employees")}</p>
             </ButtonComp>
             <ButtonComp
               className="!w-2/3 !px-10 !mt-0"

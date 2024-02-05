@@ -59,7 +59,7 @@ export default function SelectBank({
           name={name}
           value={selectedCountry}
           // placeholder={t("Chose bank")}
-          placeholder={<div className="select-placeholder-text">{t("Chose bank")}</div>} 
+          placeholder={<div className="select-placeholder-text">{t("Choose Bank")}</div>} 
 
           noOptionsMessage={() => t("Not Found Data")}
           onBlur={handleBlur}

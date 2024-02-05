@@ -245,7 +245,7 @@ export default function MyEmployees() {
             columns={columns || []}
             rows={employees?.employees || []}
             placeholderSearch={t("search in employee")}
-            textButton={t("Add Employee")}
+            textButton={t("ADD EMPLOYEE")}
             actionButton={() => setOpenAddEmployee(true)}
           />
         )}

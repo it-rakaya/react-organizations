@@ -34,7 +34,7 @@ export default function OrderMainData({ setShow, show, isPending }) {
   return (
     <div>
       <MainHeader
-        title={t("Add orders")}
+        title={t("NEW ORDER")}
         styleHead={{ color: theme.palette.primary.main }}
       />
 
@@ -52,9 +52,9 @@ export default function OrderMainData({ setShow, show, isPending }) {
               </div>
               <div className="mb-3">
                 <OrganizationServices
-                  label={t("Choose the type of service provided")}
+                  label={t("Choose The Provided Service")}
                   name="organization_service_id"
-                  placeholder={t("Choose the type of service provided")}
+                  placeholder={t("Choose The Provided Service")}
                   required
                 />
               </div>

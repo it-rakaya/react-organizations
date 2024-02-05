@@ -6,6 +6,7 @@ import useFetch from "../../hooks/useFetch";
 import CardInfo from "./CardInfo";
 import { FormikError } from "./Formik/FormikError";
 import Label from "./Label";
+import { useIsRTL } from "../../hooks/useIsRTL";
 
 export default function SelectCountry({
   name,
@@ -20,6 +21,7 @@ export default function SelectCountry({
   setShow
 }) {
   const { setFieldValue, values, handleBlur } = useFormikContext();
+  const isRTL = useIsRTL()
 
   const { data: countries } = useFetch({
     endpoint: `countries`,
@@ -27,9 +29,10 @@ export default function SelectCountry({
   });
   const options = countries?.countries.map((item) => ({
     value: item.id,
-    label: item.name_ar,
+    label:isRTL ?  item.name_ar : item?.name_en,
   }));
 
+  console.log("🚀 ~ countries:", countries)
   const selectedCountry = options?.find(
     (option) => option?.value == values[name]
   );

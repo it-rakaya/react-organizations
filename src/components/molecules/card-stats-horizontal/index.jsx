@@ -9,7 +9,7 @@ import { useTheme } from "@mui/material/styles";
 import { hexToRGBA } from "../../../utils/helpers";
 
 const CardStatsHorizontal = (props) => {
-  const { item, className, classNameBox } = props;
+  const { item, className, classNameMain , classNameBox , itemClassName } = props;
   const theme = useTheme();
 
   return (
@@ -17,14 +17,14 @@ const CardStatsHorizontal = (props) => {
       <Card className={className}>
         <CardContent
           sx={{ py: (theme) => `${theme.spacing(4.125)} !important ` }}
-          className={classNameBox}
+          className={classNameMain}
         >
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <div className={`${classNameBox} flex items-center`}>
             <div
               style={{
                 background: hexToRGBA(theme?.palette?.primary?.main, 0.2),
               }}
-              className=" rounded-md h-[40px] w-[40px] flex items-center justify-center ltr:!mr-2 rtl:!ml-2  rtl:md:ml-6 "
+              className={`${itemClassName} rounded-md h-[40px] w-[40px] flex items-center justify-center ltr:!mr-2 rtl:!ml-2  rtl:md:ml-6 `}
             >
               <Icon
                 path={item?.icon}
@@ -55,7 +55,7 @@ const CardStatsHorizontal = (props) => {
                 {item?.title}
               </Typography>
             </Box>
-          </Box>
+          </div>
         </CardContent>
       </Card>
     </>

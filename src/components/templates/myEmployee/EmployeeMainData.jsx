@@ -42,7 +42,7 @@ export default function EmployeeMainData({
     <>
       <div className="">
         <MainHeader
-          title={t("Add Employee")}
+          title={t("ADD EMPLOYEE")}
           styleHead={{ color: theme.palette.primary.main }}
         />
         <div className="grid items-start grid-cols-2 gap-2 md:px-5 max-h-[26rem] h-full overflow-y-scroll scroll_main px-2">
