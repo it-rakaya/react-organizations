@@ -48,7 +48,7 @@ export default function OrganizationServices({
             // placeholder={t("Chose service")}
             placeholder={
               <div className="select-placeholder-text">
-                {t("Chose service")}
+                {t("Choose The Provided Service")}
               </div>
             }
             noOptionsMessage={() => t("Not Found Data")}

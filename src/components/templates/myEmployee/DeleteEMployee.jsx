@@ -36,7 +36,7 @@ function DeleteEMployee({ refetch, employeeId, setModelDeleteEMployee }) {
             action={() => DeleteEMployee({})}
             loading={isPending}
           >
-            {t("Agree")}
+            {t("CONFIRM")}
           </ButtonComp>
           <ButtonComp
             className="!mx-1  !border-solid  !w-[120px] !h-[40px] !mt-0  dark:!text-white"

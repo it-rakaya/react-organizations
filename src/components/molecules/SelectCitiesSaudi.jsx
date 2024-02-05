@@ -6,6 +6,7 @@ import useFetch from "../../hooks/useFetch";
 import CardInfo from "./CardInfo";
 import Label from "./Label";
 import { useIsRTL } from "../../hooks/useIsRTL";
+import ReactSelect from "./Selects/ReactSelect";
 
 export default function SelectCitiesSaudi({
   name,
@@ -33,7 +34,7 @@ export default function SelectCitiesSaudi({
 
   return (
     <div className={className}>
-      <Label>
+      {/* <Label>
         {label}
         <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
       </Label>
@@ -45,14 +46,16 @@ export default function SelectCitiesSaudi({
           setShow={setShow}
           images={images}
         />
-      )}
-      <div className="">
+      )} */}
+      {/* <div className="">
         <Select
           options={options}
           name={name}
           value={selectedCity}
           // placeholder={t("Chose city")}
-          placeholder={<div className="select-placeholder-text">{t("Choose City")}</div>} 
+          placeholder={
+            <div className="select-placeholder-text">{t("Choose City")}</div>
+          }
           onChange={(option) => setFieldValue(name, option.value)}
           noOptionsMessage={() => t("Not Found Data")}
           styles={{
@@ -65,12 +68,17 @@ export default function SelectCitiesSaudi({
               margin: "0",
               height: "59px",
             }),
-            option: (baseStyles) => ({
+            option: (baseStyles, { isFocused, isSelected }) => ({
               ...baseStyles,
-              background: "white",
+              background: isSelected ? "red" : isFocused ? "#eee" : "white",
               color: "black",
+              ":active": {
+                ...baseStyles[":active"],
+                backgroundColor: isSelected
+                  ? "red"
+                  : baseStyles[":active"].backgroundColor,
+              },
             }),
-
           }}
           theme={(theme) => ({
             ...theme,
@@ -87,7 +95,21 @@ export default function SelectCitiesSaudi({
           }}
           // defaultValue={{ value: values[name] , label:values[name] }}
         />
-      </div>
+      </div> */}
+      <ReactSelect
+        options={options}
+        selectedValue={selectedCity}
+        placeholder={t("Choose City")}
+        name={name}
+        label={label}
+        index={index}
+        setIndex={setIndex}
+        messageInfo={messageInfo}
+        setShow={setShow}
+        images={images}
+        required={required}
+        showIcon={showIcon}
+      />
     </div>
   );
 }

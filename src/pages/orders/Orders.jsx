@@ -23,7 +23,7 @@ export default function Orders() {
   const [openCancelOrder, setOpenCancelOrder] = useState(false);
   const [orderId, setOrderId] = useState();
   const [detailsOrder, setDetailsOrder] = useState("");
-  const isRTL= useIsRTL()
+  const isRTL = useIsRTL();
 
   const { orgData } = UseOrg();
 
@@ -37,10 +37,9 @@ export default function Orders() {
     queryKey: ["my_orders"],
     enabled: !!orgData?.organizations?.id,
   });
-    console.log("🚀 ~ Orders ~ Orders:", Orders)
 
   const Canceled = 7;
-  const Rejected = 5;
+  const Rejected = 6;
 
   const columns = [
     {
@@ -136,7 +135,7 @@ export default function Orders() {
             }}
             className="text-white"
           >
-            {isRTL ? row.status?.name_ar :row.status?.name_en}
+            {isRTL ? row.status?.name_ar : row.status?.name_en}
           </Typography>
         );
       },
@@ -155,10 +154,6 @@ export default function Orders() {
             noWrap
             sx={{
               textTransform: "capitalize",
-              // backgroundColor: row?.status?.color,
-              // color: "white",
-              // borderRadius: "5px",
-              // padding: "0 10px",
             }}
             className="text-black dark:text-white"
           >
@@ -167,7 +162,7 @@ export default function Orders() {
                 {row?.created_at?.slice(0, 10)}
               </p>
               /
-              <p className="text-[15px] dark:text-white">
+              <p className="text-[15px] dark:text-white" dir="rtl">
                 {convertArabicToEnglish(
                   convertToHijri(row?.created_at?.slice(0, 10))
                 )}
@@ -211,35 +206,58 @@ export default function Orders() {
                       ? "cursor-not-allowed"
                       : "cursor-pointer"
                   }
-                  options={[
-                    {
-                      text: t("Details"),
-
-                      details: "Additional details here",
-                      function: () => {
-                        if (row.status_id == Canceled) {
-                          return notify("worning", t("cant Canceled order"));
-                        } else {
-                          setOpenDetailsOrder(true);
-                          setDetailsOrder(row);
-                        }
-                      },
-                    },
+                  options={
                     row.status_id !== Rejected
-                      ? {
-                          text: t("Cancel"),
-                          details: "Additional details here",
-                          function: () => {
-                            if (row.status_id == Canceled) {
-                              return console.log("ddd");
-                            } else {
-                              setOrderId(row.id);
-                              setOpenCancelOrder(true);
-                            }
+                      ? [
+                          {
+                            text: t("Details"),
+
+                            details: "Additional details here",
+                            function: () => {
+                              if (row.status_id == Canceled) {
+                                return notify(
+                                  "worning",
+                                  t("cant Canceled order")
+                                );
+                              } else {
+                                setOpenDetailsOrder(true);
+                                setDetailsOrder(row);
+                              }
+                            },
                           },
-                        }
-                      : "",
-                  ]}
+
+                          {
+                            text: t("Cancel"),
+                            details: "Additional details here",
+                            function: () => {
+                              if (row.status_id == Canceled) {
+                                return console.log("ddd");
+                              } else {
+                                setOrderId(row.id);
+                                setOpenCancelOrder(true);
+                              }
+                            },
+                          },
+                        ]
+                      : [
+                          {
+                            text: t("Details"),
+
+                            details: "Additional details here",
+                            function: () => {
+                              if (row.status_id == Canceled) {
+                                return notify(
+                                  "worning",
+                                  t("cant Canceled order")
+                                );
+                              } else {
+                                setOpenDetailsOrder(true);
+                                setDetailsOrder(row);
+                              }
+                            },
+                          },
+                        ]
+                  }
                 />
               </div>
             )}

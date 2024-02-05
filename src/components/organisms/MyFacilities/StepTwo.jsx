@@ -7,6 +7,7 @@ import UploadDoc from "../../molecules/uploadImage/UploadDoc";
 
 export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
   const detailsFacilitiesData = attachments_facilities?.attachment_labels;
+  console.log("🚀 ~ StepTwo ~ detailsFacilitiesData:", detailsFacilitiesData)
   const images = [
     { path: "/nationalAddress.png" },
     { path: "/LancesWork.png" },
@@ -47,27 +48,7 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
             </div>
           );
         })}
-        {/* {detailsFacilitiesData?.map((item, index) => (
-          <div
-            key={index}
-            className="w-full col-span-12 m-auto md:m-0 md:col-span-6 xl:col-span-4 2xl:col-span-3"
-          >
-            <UploadDoc
-              name={`attachments[${item?.id ? item?.id : item?.attachment_id}]`}
-              label={item?.placeholder ? item?.placeholder : item?.label}
-              nameValue={item?.id ? item?.id : item?.attachment_id}
-              className="!justify-center"
-              value={item?.value}
-              isRequired={item?.is_required == 1 ? true : false}
-              accept={item?.extensions || []}
-              showIcon
-              setShow={setShow}
-              setIndex={setIndex}
-              index={index}
-            />
-            <p>{errors[`attachments[${item.id || item.attachment_id}]`]}</p>
-          </div>
-        ))} */}
+
       </div>
       {images[index]?.path && (
         <ModalComp

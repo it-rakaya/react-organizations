@@ -19,7 +19,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("facility name")}
+          {t("Facility Trade Name")}
         </p>
         <p className="mt-1 dark:text-white">{data?.name}</p>
       </div>
@@ -38,7 +38,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("certificate")}
+          {t("Vat Registration Number")}
         </p>
         <p className="mt-1 dark:text-white">{data?.tax_certificate}</p>
       </div>

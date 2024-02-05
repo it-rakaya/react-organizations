@@ -5,6 +5,7 @@ import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
 import { FormikError } from "./Formik/FormikError";
 import Label from "./Label";
+import ReactSelect from "./Selects/ReactSelect";
 
 export default function SelectFacilities({ name, label, required, className }) {
   const { values, setFieldValue, handleBlur } = useFormikContext();
@@ -24,7 +25,7 @@ export default function SelectFacilities({ name, label, required, className }) {
   return (
     <div>
       <div className={`${className} mt-2`}>
-        <Label>
+        {/* <Label>
           {label}
           <span className="mx-1 text-red-500">
             {required == "1" ? "*" : ""}
@@ -38,7 +39,7 @@ export default function SelectFacilities({ name, label, required, className }) {
             // placeholder={t("Chose facility")}
             placeholder={
               <div className="select-placeholder-text">
-                {t("Chose facility")}
+                {t("Choose The Facility Name")}
               </div>
             }
             noOptionsMessage={() => t("Not Found Data")}
@@ -56,10 +57,14 @@ export default function SelectFacilities({ name, label, required, className }) {
                 height: "59px",
 
               }),
-              option: (baseStyles) => ({
+              option: (baseStyles , { isFocused, isSelected }) => ({
                 ...baseStyles,
-                background: "white",
+                background: isSelected ? "red" : isFocused ? "#eee" : "white",
                 color: "black",
+                ':active': {
+                  ...baseStyles[':active'],
+                  backgroundColor: isSelected ? "red" : baseStyles[':active'].backgroundColor,
+                },
               }),
             }}
             theme={(theme) => ({
@@ -83,7 +88,15 @@ export default function SelectFacilities({ name, label, required, className }) {
           <div>
             <FormikError name={name} />
           </div>
-        </div>
+        </div> */}
+        <ReactSelect
+        options={options}
+        selectedValue={selectedCountry}
+        placeholder={t("Chose facility")}
+        name={name}
+        label={label}
+        required={required}
+      />
       </div>
     </div>
   );

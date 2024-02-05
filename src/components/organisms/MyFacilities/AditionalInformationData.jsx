@@ -16,17 +16,18 @@ function AdditionalInformationData({
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
+          {t("Number Of Employees")}
+        </p>
+        <p className="mt-1 dark:text-white">{data?.employee_number}</p>
+      </div>
+      <div className={childSection}>
+        <p className="font-medium " style={{ color: colorHead }}>
           {t("Chefs Number")}
         </p>
         <p className="mt-1 dark:text-white">{data?.chefs_number}</p>
       </div>
 
-      <div className={childSection}>
-        <p className="font-medium " style={{ color: colorHead }}>
-          {t("Number Of Employees")}
-        </p>
-        <p className="mt-1 dark:text-white">{data?.employee_number}</p>
-      </div>
+      
 
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>

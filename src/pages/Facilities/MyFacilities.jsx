@@ -128,7 +128,7 @@ export default function MyFacilities() {
                               className="!my-2 text-center mx-1 !text-black dark:!text-white
                               "
                             >
-                              { item?.name.length > 30 ? `${item?.name.slice(0,30) }...`: item?.name}
+                              { item?.name.length > 20 ? `${item?.name.slice(0,20) }...`: item?.name}
                             </Typography>
                           </div>
                         </Box>

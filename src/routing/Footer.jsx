@@ -2,6 +2,7 @@
 import { useTheme } from "@mui/material/styles";
 import { t } from "i18next";
 import { UseOrg } from "../context/organization provider/OrganizationProvider";
+import Heart from "../components/atoms/icons/Heart";
 
 const Footer = () => {
   const theme = useTheme();
@@ -27,10 +28,17 @@ const Footer = () => {
             <span className=" text-[14px]">{new Date().getUTCFullYear()}</span>
           </h2> */}
           <h2 className="text-[12px] md:text-[14px]  text-center text-black dark:text-white">
-            {t(
-              "All rights reserved at Rakaya Management and Food Consulting Company © 2024"
-            )}
+            {t(`All rights reserved`)}
           </h2>
+          <span>
+            <Heart />
+          </span>
+          <span className="text-[12px] md:text-[14px]  text-center text-black dark:text-white">
+            {t("at Rakaya Management and Food Consulting Company ©")}
+          </span>
+          <span className="text-[12px] md:text-[14px]  text-center text-black dark:text-white">
+            {new Date().getFullYear()}
+          </span>
         </div>
       </div>
     </div>

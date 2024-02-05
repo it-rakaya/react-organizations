@@ -53,9 +53,9 @@ export default function EmployeeMainData({
           {showSelectFacility && (
             <div className="col-span-12">
               <SelectFacilities
-                label={t("Choose the facility name")}
+                label={t("Facility Name")}
                 name="facility_id"
-                placeholder={t("Choose the facility name")}
+                placeholder={t("Choose The Facility Name")}
                 required
               />
             </div>

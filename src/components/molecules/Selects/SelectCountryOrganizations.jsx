@@ -7,6 +7,7 @@ import useFetch from "../../../hooks/useFetch";
 import Label from "../Label";
 import CardInfo from "../CardInfo";
 import { FormikError } from "../Formik/FormikError";
+import ReactSelect from "./ReactSelect";
 
 export default function SelectCountryOrganizations({
   name,
@@ -39,7 +40,7 @@ export default function SelectCountryOrganizations({
 
   return (
     <div className={`${className} mt-2`}>
-      <Label>
+      {/* <Label>
         {label}
         <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
       </Label>
@@ -103,7 +104,21 @@ export default function SelectCountryOrganizations({
         <div>
           <FormikError name={name} />
         </div>
-      </div>
+      </div> */}
+      <ReactSelect
+        options={options}
+        selectedValue={selectedCountry}
+        placeholder={t("Chose Country")}
+        name={name}
+        label={label}
+        index={index}
+        setIndex={setIndex}
+        messageInfo={messageInfo}
+        setShow={setShow}
+        images={images}
+        required={required}
+        showIcon={showIcon}
+      />
     </div>
   );
 }

@@ -10,9 +10,9 @@ function NationalAdressData({ data, childSection, colorHead, parentSection }) {
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("Street")}
+          {t("City")}
         </p>
-        <p className="mt-1 dark:text-white">{data?.street_name}</p>
+        <p className="mt-1 dark:text-white">{data?.city}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
@@ -22,10 +22,12 @@ function NationalAdressData({ data, childSection, colorHead, parentSection }) {
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("City")}
+          {t("Street")}
         </p>
-        <p className="mt-1 dark:text-white">{data?.city}</p>
+        <p className="mt-1 dark:text-white">{data?.street_name}</p>
       </div>
+    
+     
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {t("Building Number")}

@@ -59,8 +59,8 @@ function UserVerified() {
         className="grid grid-cols-12 px-2 py-10 bg-white dark:bg-dark-primary md:px-5 md:m-20 rounded-2xl"
         style={{ boxShadow: "0 0 27px -20px" }}
       >
-        <div className="grid grid-cols-12 col-span-12">
-          <div className="flex items-center col-span-12 md:col-span-6">
+        <div className="grid grid-cols-12 col-span-12 ">
+          <div className="flex items-center col-span-12 mb-3 md:col-span-6 md:mb-0">
             <h1 className="text-xl font-bold text-black md:text-3xl dark:text-white">
               {t("Welcome")}
             </h1>
@@ -69,7 +69,7 @@ function UserVerified() {
             </h1>
           </div>
 
-          <div className="flex flex-wrap items-center justify-between col-span-12 gap-1 md:col-span-6 md:justify-normal md:gap-2 xs:flex-nowrap">
+          <div className="flex flex-wrap items-center justify-between col-span-12 gap-1 gap-2 md:col-span-6 md:justify-normal xs:flex-nowrap">
             <Link
               to={`https://wa.me/${orgData?.organizations?.phone}/`}
               className="w-full"
@@ -90,13 +90,13 @@ function UserVerified() {
             </Link>
           </div>
         </div>
-        <div className="grid grid-cols-12 col-span-12 mt-10 ">
-          <div className="flex justify-center col-span-12 mt-5 md:flex-wrap md:col-span-6">
+        <div className="grid grid-cols-12 col-span-12 md:mt-10 ">
+          <div className="grid justify-center grid-cols-12 col-span-12 md:mt-5 md:flex md:flex-wrap md:col-span-6">
             {data?.map((item, index) => (
-              <div className="flex justify-center w-1/2" key={index}>
+              <div className="flex justify-center w-1/2 col-span-12" key={index}>
                 <CardStatsHorizontal
                   item={item}
-                  className="!bg-transparent !shadow-none"
+                  className="!bg-transparent !shadow-none "
                   classNameMain="!pr-0 !pl-0   "
                   // classNameBox={"flex-wrap"}
                   // itemClassName={"w-1/2"}
@@ -105,7 +105,7 @@ function UserVerified() {
             ))}
           </div>
           <div className="col-span-12 md:col-span-6">
-            <UserVerifiedIcon className="w-3/4 m-auto" />
+            <UserVerifiedIcon className="w-full m-auto md:w-3/4" />
           </div>
         </div>
       </div>

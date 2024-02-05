@@ -44,17 +44,16 @@ export default function OrderMainData({ setShow, show, isPending }) {
             <div className="grid grid-cols-1 gap-2 md:grid-cols-2 ">
               <div className="mb-3">
                 <SelectFacilities
-                  label={t("Choose the facility name")}
+                  label={t("Facility Name")}
                   name={"facility_id"}
-                  placeholder={t("Choose the facility name")}
                   required
                 />
               </div>
               <div className="mb-3">
                 <OrganizationServices
-                  label={t("Choose The Provided Service")}
+                  label={t("Provided Service")}
                   name="organization_service_id"
-                  placeholder={t("Choose The Provided Service")}
+                  
                   required
                 />
               </div>
