@@ -140,7 +140,7 @@ const Login = () => {
                   }}
                 >
                   <Typography
-                    sx={{ mr: 2 }}
+                    sx={{ mx: 2 }}
                     className="!text-black dark:!text-white"
                   >
                     {t("New on our platform?")}
