@@ -92,7 +92,7 @@ export default function SelectFacilities({ name, label, required, className }) {
         <ReactSelect
         options={options}
         selectedValue={selectedCountry}
-        placeholder={t("Chose facility")}
+        placeholder={t("Choose facility")}
         name={name}
         label={label}
         required={required}

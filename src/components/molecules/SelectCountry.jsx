@@ -106,7 +106,7 @@ export default function SelectCountry({
       <ReactSelect
         options={options}
         selectedValue={selectedCountry}
-        placeholder={t("Chose Country")}
+        placeholder={t("Choose Country")}
         name={name}
         label={label}
         index={index}

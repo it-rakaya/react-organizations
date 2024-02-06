@@ -55,7 +55,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
         <p className="font-medium " style={{ color: colorHead }}>
           {" "}
           {t(
-            "Commercial Registration Expiration Data"
+            ""
           )}{" "}
         </p>
         <p className="mt-1 dark:text-white">

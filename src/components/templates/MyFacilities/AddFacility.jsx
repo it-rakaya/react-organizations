@@ -104,7 +104,7 @@ export default function AddFacility() {
               name="end_date"
               name_hj="end_date_hj"
               label={t(
-                "Commercial Registration Expiration Data"
+                "Commercial Registration Expiration Date"
               )}
               required
               showIcon

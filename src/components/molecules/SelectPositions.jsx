@@ -82,7 +82,7 @@ export default function SelectPositions({ name, label, className, required }) {
       <ReactSelect
         options={options}
         selectedValue={selectedPosition}
-        placeholder={t("Chose position")}
+        placeholder={t("Choose position")}
         name={name}
         label={label}
         required={required}

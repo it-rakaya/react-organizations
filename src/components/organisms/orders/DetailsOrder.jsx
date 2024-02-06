@@ -57,13 +57,13 @@ export default function DetailsOrder({ data }) {
               <p className="dark:text-white">
                 {data?.created_at?.slice(0, 10)}
               </p>
-              <span className="font-black-bold text dark:text-white"> /</span>
+              <span className="text-black font-black-bold dark:text-white"> /</span>
               <p className="dark:text-white">
                 {convertArabicToEnglish(
                   convertToHijri(data?.created_at?.slice(0, 10))
                 )}
               </p>
-              <span className="font-black-bold text dark:text-white">
+              <span className="text-black font-black-bold dark:text-white">
                 {t("H")}
               </span>
             </div>

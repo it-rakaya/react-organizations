@@ -47,7 +47,7 @@ export default function ReactSelect({
           name={name}
           value={selectedValue}
           placeholder={
-            <div className="select-placeholder-text">{placeholder}</div>
+            <div className="capitalize select-placeholder-text">{placeholder}</div>
           }
           noOptionsMessage={() => t("Not Found Data")}
           isMulti={isMulti}
@@ -101,7 +101,7 @@ export default function ReactSelect({
             },
           })}
           classNames={{
-            control: () => "dark:bg-dark-primary  dark:border-[#555d64]",
+            control: () => "dark:bg-transparent  dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",
             menu: () =>
               " bg-white dark:bg-dark-primary dark:text-white border rounded-md ",

@@ -11,6 +11,7 @@ import SelectPositions from "../../molecules/SelectPositions";
 import UploadDoc from "../../molecules/uploadImage/UploadDoc";
 import { useFormikContext } from "formik";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 export default function EmployeeMainData({
   showSelectFacility,
   attachments_facility_employees,
@@ -19,6 +20,7 @@ export default function EmployeeMainData({
   console.log("🚀 ~ attachments_facility_employees:", attachments_facility_employees)
   const theme = useTheme();
   const { values, errors } = useFormikContext();
+  const isRTL = useIsRTL()
   const requiredInputs =
     attachments_facility_employees?.attachment_labels
       ?.filter((item) => item?.is_required === "1")
@@ -43,7 +45,7 @@ export default function EmployeeMainData({
     <>
       <div className="">
         <MainHeader
-          title={t("ADD EMPLOYEE")}
+          title={t("Add Employee")}
           styleHead={{ color: theme.palette.primary.main }}
         />
         <div className="grid items-start grid-cols-2 gap-2 md:px-5 max-h-[26rem] h-full overflow-y-scroll scroll_main px-2">
@@ -103,7 +105,7 @@ export default function EmployeeMainData({
               // <div className="" >
               <UploadDoc
                 key={item?.id}
-                label={item?.placeholder}
+                label={isRTL ? item?.placeholder_ar :item?.placeholder_en }
                 name={`attachments[${item?.id}]`}
                 placeholder={t("please upload photo")}
                 className="!justify-start mt-1 rounded-md text-start"

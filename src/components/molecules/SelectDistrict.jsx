@@ -106,7 +106,7 @@ export default function SelectDistrict({
               <Spinner />
             ) : values?.city_id ? (
               <div className="select-placeholder-text">
-                {t("chose District")}
+                {t("Choose District")}
               </div>
             ) : (
               <div className="select-placeholder-text">

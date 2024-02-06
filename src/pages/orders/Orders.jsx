@@ -292,7 +292,7 @@ export default function Orders() {
           <Table
             columns={columns || []}
             rows={Orders?.all_user_orders || []}
-            textButton={t("NEW ORDER")}
+            textButton={t("New Order")}
             actionButton={() => setOpenAddFaculty(true)}
             placeholderSearch={t("Search in orders")}
             disabled={closeRegister}

@@ -75,17 +75,17 @@ function UserVerified() {
               className="w-full"
             >
               <ButtonComp
-                className={"  !text-[10px] md:!text-[14px] md:!w-[full] !mt-0"}
+                className={"  !text-[10px] md:!text-[14px] md:!w-[full] !mt-0 "}
               >
                 {t("customers service")}
               </ButtonComp>
             </Link>
             <Link to={"/dashboard/profile"} className="w-full">
               <ButtonComp
-                className={" !text-[10px] md:!text-[14px] md:!w-[full] !mt-0"}
+                className={" !text-[10px] md:!text-[14px] md:!w-[full] !mt-0 "}
                 variant="outline"
               >
-                {t("PERSONAL INFO")}
+                {t("Personal Info")}
               </ButtonComp>
             </Link>
           </div>

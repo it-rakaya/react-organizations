@@ -17,11 +17,11 @@ export default function LoginForm() {
   const [dataValue, setDataValue] = useState();
   const [valueOTP, setValueOTP] = useState();
   const { orgData } = UseOrg();
- 
+
   const { mutate: LoginData, isPending: loadingLogin } = useMutate({
     mutationKey: [`login_data`],
     formData: true,
-    endpoint: 'login/providor',
+    endpoint: "login/providor",
     onSuccess: (data) => {
       login(data.data);
       notify("success", ` ${t("Welcome")} ${data?.data?.user.name}`);
@@ -84,17 +84,15 @@ export default function LoginForm() {
               login={true}
             />
           )}
-          <div>
-          <ButtonComp
-            loading={loadingLogin || isPending}
-            disabled={valueOTP && valueOTP?.length != 4 ? true : false}
-            className={"ltr:!mt-5"}
-          >
-            {t("LOGIN")}
-          </ButtonComp>
+          <div className="bg-transparent rounded-xl">
+            <ButtonComp
+              loading={loadingLogin || isPending}
+              disabled={valueOTP && valueOTP?.length != 4 ? true : false}
+              className={"ltr:!mt-5 "}
+            >
+              {t("login")}
+            </ButtonComp>
           </div>
-          
-
         </Form>
       </Formik>
     </div>

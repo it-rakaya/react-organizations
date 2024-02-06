@@ -42,10 +42,10 @@ const ButtonComp = ({
       variant={variant}
       className={`${className}  ${
         variant == "outline" && " dark:!text-white"
-      } border    hover:!bg-${theme?.palette?.primary?.main}
+      } border capitalize   hover:!bg-${theme?.palette?.primary?.main}
        disabled:!cursor-not-allowed disabled:text-[${
          theme?.palette?.primary?.main
-       }] ltr:mt-5 mt-5 `}
+       }] ltr:mt-5 mt-5 shadow-none hover:shadow-none  !capitalize`}
       // sx={{ mb: 7 }}
       disabled={disabled}
       onClick={action}

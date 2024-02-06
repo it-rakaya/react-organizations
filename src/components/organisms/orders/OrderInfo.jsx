@@ -43,7 +43,7 @@ function OrderInfo({ Orders }) {
 
     {
       trendNumber: "8.1",
-      title: t("Rejected"),
+      title: t("Rejected Orders"),
       stats: numberOfRejected,
       icon: mdiClose,
     },

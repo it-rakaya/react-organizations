@@ -153,7 +153,7 @@ const Login = () => {
                     }}
                     className="cursor-pointer"
                     onClick={() =>
-                      closeRegistration ? setOpenModal(true) : setOpen(true)
+                      closeRegistration == 1 ? setOpenModal(true) : setOpen(true)
                     }
                   >
                     {t("Create an account")}
