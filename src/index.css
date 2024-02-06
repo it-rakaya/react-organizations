@@ -1079,10 +1079,7 @@ input {
   margin: 0 5px;
 }
 
-.dark .decryption_orga {
-  background-color: white;
-  border-radius: 10px;
-}
+
 .dark .decryption_orga div  {
   padding: 10px 5px 2px ;
   text-align: start;
