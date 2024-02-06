@@ -12,10 +12,13 @@ import UploadDoc from "../../molecules/uploadImage/UploadDoc";
 import { useFormikContext } from "formik";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import { checkAttachments } from "../../../utils/helpers";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 
 function AccountSettingMainData({ userData, isPending, attachments_register }) {
-  const { values, dirty } = useFormikContext();
-
+  const { values, dirty ,  } = useFormikContext();
+  console.log("🚀 ~ AccountSettingMainData ~ values:", values)
+  console.log("🚀 ~ AccountSettingMainData ~ dirty:", dirty)
+const isRTL = useIsRTL()
   const requiredInputs =
     attachments_register?.attachment_labels
       ?.filter((item) => item?.is_required === "1")
@@ -24,12 +27,14 @@ function AccountSettingMainData({ userData, isPending, attachments_register }) {
     (item) => item?.id
   );
 
+  console.log("🚀 ~ AccountSettingMainData ~ attachmentIdsUpdate:", attachmentIdsUpdate)
   const checkAttachmentsResult = checkAttachments(
     requiredInputs,
     attachmentIdsUpdate,
     values
   );
 
+  console.log("🚀 ~ AccountSettingMainData ~ checkAttachmentsResult:", checkAttachmentsResult)
   return (
     <>
       <div className="grid items-start grid-cols-2 gap-2 !overflow-y-scroll   !overflow-x-hidden !shadow-none h-[27rem]  scroll_main m-3 md:p-5">
@@ -110,7 +115,7 @@ function AccountSettingMainData({ userData, isPending, attachments_register }) {
                 <div key={attachmentLabel.id}>
                   <UploadDoc
                     name={`attachments[${attachmentLabel.id}]`}
-                    label={attachmentLabel.placeholder}
+                    label={isRTL ? attachmentLabel.placeholder_ar : attachmentLabel.placeholder_en}
                     nameValue={attachmentLabel?.id}
                     id={attachmentLabel.id}
                     accept={attachmentLabel.extensions}

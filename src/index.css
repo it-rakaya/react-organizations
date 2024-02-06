@@ -273,8 +273,10 @@ main,
   margin: 0;
   -webkit-tap-highlight-color: transparent;
   display: block;
-  min-width: 82%;
-  width: fit-content !important;
+  max-width: 83%;
+  /* min-width: 82%; */
+
+  width:100% !important;
   animation-name: mui-auto-fill-cancel;
   animation-duration: 10ms;
   color: black;
@@ -285,7 +287,12 @@ main,
   border: 1px solid #d8d8dd !important;
   /* width: 100% !important; */
 }
+@media (max-width:550px) {
+  .react-tel-input .form-control{
+  max-width: 81%;
 
+  }
+}
 .dark .react-tel-input .form-control {
   @apply bg-dark-primary
 }
