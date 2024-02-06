@@ -56,7 +56,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
         <div>
           <div className="flex flex-col col-span-2 gap-2 py-2 border-b md:col-span-1">
             <p style={{ color: theme.palette.primary?.main }}>
-              {t("phone number")}
+              {t("Phone Number")}
             </p>
             <p className=" dark:text-white">{user?.phone}</p>
           </div>

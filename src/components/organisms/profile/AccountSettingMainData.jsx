@@ -14,7 +14,7 @@ import ButtonComp from "../../atoms/buttons/ButtonComp";
 import { checkAttachments } from "../../../utils/helpers";
 
 function AccountSettingMainData({ userData, isPending, attachments_register }) {
-  const { values ,  dirty } = useFormikContext();
+  const { values, dirty } = useFormikContext();
 
   const requiredInputs =
     attachments_register?.attachment_labels
@@ -29,7 +29,6 @@ function AccountSettingMainData({ userData, isPending, attachments_register }) {
     attachmentIdsUpdate,
     values
   );
-
 
   return (
     <>
@@ -57,7 +56,7 @@ function AccountSettingMainData({ userData, isPending, attachments_register }) {
           />
         </div>
         <div className="col-span-2 md:col-span-1 ">
-          <PhoneInput2 name="phone" label={t("phone number")} />
+          <PhoneInput2 name="phone" label={t("Phone Number")}  required/>
         </div>
         <div className="col-span-2 md:col-span-1 ">
           <BaseInputField
@@ -100,28 +99,30 @@ function AccountSettingMainData({ userData, isPending, attachments_register }) {
             {t("attachments")}:
           </h1>
         </div>
-
-        {attachments_register?.attachment_labels
-          ?.filter((item) => item.id !== 3)
-          .map((attachmentLabel) => {
-            const userAttachment = userData?.attachmentUrl?.find(
-              (ua) => ua.attachment_label_id === attachmentLabel.id
-            );
-            return (
-              <UploadDoc
-                key={attachmentLabel.id}
-                name={`attachments[${attachmentLabel.id}]`}
-                label={attachmentLabel.placeholder}
-                nameValue={attachmentLabel?.id}
-                id={attachmentLabel.id}
-                accept={attachmentLabel.extensions}
-                placeholder={attachmentLabel.placeholder}
-                isRequired={attachmentLabel.is_required == "1"}
-                value={userAttachment ? userAttachment.value : null}
-                nameLabel={userAttachment?.name}
-              />
-            );
-          })}
+        <div className="grid grid-cols-1 col-span-2 gap-3 col md:grid-cols-2">
+          {attachments_register?.attachment_labels
+            ?.filter((item) => item.id !== 3)
+            .map((attachmentLabel) => {
+              const userAttachment = userData?.attachmentUrl?.find(
+                (ua) => ua.attachment_label_id === attachmentLabel.id
+              );
+              return (
+                <div key={attachmentLabel.id}>
+                  <UploadDoc
+                    name={`attachments[${attachmentLabel.id}]`}
+                    label={attachmentLabel.placeholder}
+                    nameValue={attachmentLabel?.id}
+                    id={attachmentLabel.id}
+                    accept={attachmentLabel.extensions}
+                    placeholder={attachmentLabel.placeholder}
+                    isRequired={attachmentLabel.is_required == "1"}
+                    value={userAttachment ? userAttachment.value : null}
+                    nameLabel={userAttachment?.name}
+                  />
+                </div>
+              );
+            })}
+        </div>
       </div>
       <div className="flex justify-end col-span-2 px-8">
         <ButtonComp

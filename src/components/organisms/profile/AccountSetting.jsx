@@ -22,6 +22,7 @@ export default function AccountSetting({
     queryKey: ["attachments_register"],
   });
 
+  console.log("🚀 ~ attachments_register:", attachments_register)
   const AllAttachmentsId = attachments_register?.attachment_labels?.map(
     (item) => item?.id
   );

@@ -38,7 +38,7 @@ function CardInfo({ setShow, setIndex, messageInfo, index, images }) {
             size={0.7}
             className="!text-[#80b3f0]"
           />
-          <span className="text-[10px] text-[#80b3f0]">
+          <span className="text-[10px] text-[#80b3f0] lowercase">
             {messageInfo ? (
               messageInfo
             ) : (
