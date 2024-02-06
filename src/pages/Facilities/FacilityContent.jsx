@@ -49,7 +49,7 @@ function FacilityContent({
             .required(t("the facility name is required")),
           registration_number: Yup.string()
             .trim()
-            .required(t("the registration number required"))
+            .required(t("the Commercial Registration Number required"))
             .length(10, t("the registration number must be equal 10 digits")),
           version_date: Yup.string()
             .trim()
