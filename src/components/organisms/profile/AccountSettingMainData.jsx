@@ -15,10 +15,10 @@ import { checkAttachments } from "../../../utils/helpers";
 import { useIsRTL } from "../../../hooks/useIsRTL";
 
 function AccountSettingMainData({ userData, isPending, attachments_register }) {
-  const { values, dirty ,  } = useFormikContext();
-  console.log("🚀 ~ AccountSettingMainData ~ values:", values)
-  console.log("🚀 ~ AccountSettingMainData ~ dirty:", dirty)
-const isRTL = useIsRTL()
+  const { values, dirty, initialValues } = useFormikContext();
+  console.log("🚀 ~ AccountSettingMainData ~ values:", values);
+  console.log("🚀 ~ AccountSettingMainData ~ dirty:", dirty);
+  const isRTL = useIsRTL();
   const requiredInputs =
     attachments_register?.attachment_labels
       ?.filter((item) => item?.is_required === "1")
@@ -27,14 +27,28 @@ const isRTL = useIsRTL()
     (item) => item?.id
   );
 
-  console.log("🚀 ~ AccountSettingMainData ~ attachmentIdsUpdate:", attachmentIdsUpdate)
   const checkAttachmentsResult = checkAttachments(
     requiredInputs,
     attachmentIdsUpdate,
     values
   );
+  function findChangedValues(values, initialValues) {
+    // قائمة بالمفاتيح التي يجب تجاهلها
+    const ignoreKeys = ['birthday_hj', 'national_id_expired_hj'];
+    
+    const changedValues = Object.keys(values).reduce((acc, key) => {
+      // تجاهل التغييرات في المفاتيح المحددة
+      if (!ignoreKeys.includes(key) && values[key] !== initialValues[key]) {
+        acc[key] = values[key];
+      }
+      return acc;
+    }, {});
+  
+    return changedValues;
+  }
+  const changedValues = findChangedValues(values, initialValues);
+  console.log("🚀 ~ AccountSettingMainData ~ changedValues:", changedValues)
 
-  console.log("🚀 ~ AccountSettingMainData ~ checkAttachmentsResult:", checkAttachmentsResult)
   return (
     <>
       <div className="grid items-start grid-cols-2 gap-2 !overflow-y-scroll   !overflow-x-hidden !shadow-none h-[27rem]  scroll_main m-3 md:p-5">
@@ -61,7 +75,7 @@ const isRTL = useIsRTL()
           />
         </div>
         <div className="col-span-2 md:col-span-1 ">
-          <PhoneInput2 name="phone" label={t("Phone Number")}  required/>
+          <PhoneInput2 name="phone" label={t("Phone Number")} required />
         </div>
         <div className="col-span-2 md:col-span-1 ">
           <BaseInputField
@@ -115,7 +129,11 @@ const isRTL = useIsRTL()
                 <div key={attachmentLabel.id}>
                   <UploadDoc
                     name={`attachments[${attachmentLabel.id}]`}
-                    label={isRTL ? attachmentLabel.placeholder_ar : attachmentLabel.placeholder_en}
+                    label={
+                      isRTL
+                        ? attachmentLabel.placeholder_ar
+                        : attachmentLabel.placeholder_en
+                    }
                     nameValue={attachmentLabel?.id}
                     id={attachmentLabel.id}
                     accept={attachmentLabel.extensions}
@@ -133,7 +151,7 @@ const isRTL = useIsRTL()
         <ButtonComp
           className="!w-auto"
           loading={isPending}
-          disabled={!checkAttachmentsResult || !dirty}
+          disabled={!checkAttachmentsResult || !Object.entries(changedValues).length}
         >
           {t("Edit")}
         </ButtonComp>

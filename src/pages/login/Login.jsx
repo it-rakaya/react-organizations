@@ -26,6 +26,7 @@ const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
 
 const RightWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
+
   [theme.breakpoints.up("md")]: {
     maxWidth: 400,
   },
@@ -93,6 +94,7 @@ const Login = () => {
                 height: "100vh",
                 overflowY: "scroll",
                 overflowX: "hidden",
+                padding:" 0 15px",
               }}
               className="scroll_main dark:bg-darkModeColor"
             >
