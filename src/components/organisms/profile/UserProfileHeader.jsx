@@ -26,6 +26,7 @@ const ProfilePicture = styled("img")(({ theme }) => ({
 }));
 
 const UserProfileHeader = ({ user, setEditUser, theme }) => {
+  console.log("🚀 ~ UserProfileHeader ~ user:", user);
   const isRTL = useIsRTL();
 
   return (
@@ -52,7 +53,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               />
             </ButtonComp>
             <div>
-            {/* <div className="" >
+              {/* <div className="" >
                 {!user?.value?.toLowerCase().endsWith(".pdf") ? (
                   <div
                     className="rounded-sm "
@@ -83,8 +84,51 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                 )}
               </div> */}
               {/* <PreviewID /> */}
-              <BiDetail className='w-[45px] h-[45px]'/>
-             
+              <div className="">
+                {!user?.national_id_attachment
+                  ?.toLowerCase()
+                  .endsWith(".pdf") ? (
+                  <div
+                    className="rounded-[8px] "
+                    style={{ background: theme?.palette?.primary.main }}
+                  >
+                    <PadgePreview
+                      url={user?.national_id_attachment}
+                      label={
+                        <BiDetail
+                          className="w-[40px] h-[40px] text-white rounded-md p-2  cursor-pointer "
+                          style={{
+                            backgroundColor: theme?.palette?.primary?.main,
+                          }}
+                        />
+                      }
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className="px-1 rounded-[8px] bg-primary"
+                    style={{
+                      background: theme?.palette?.primary.main,
+                      opacity: "0,8",
+                    }}
+                  >
+                    <a
+                      href={user?.national_id_attachment}
+                      download={user?.national_id_attachment}
+                      className=""
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <BiDetail
+                        className="w-[40px] h-[40px] text-white rounded-md p-2  cursor-pointer"
+                        style={{
+                          backgroundColor: theme?.palette?.primary?.main,
+                        }}
+                      />
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
