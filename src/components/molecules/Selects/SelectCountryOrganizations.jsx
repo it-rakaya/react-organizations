@@ -1,8 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useFormikContext } from "formik";
 import { t } from "i18next";
+import Select from "react-select";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import useFetch from "../../../hooks/useFetch";
+import Label from "../Label";
+import CardInfo from "../CardInfo";
+import { FormikError } from "../Formik/FormikError";
 import ReactSelect from "./ReactSelect";
 
 export default function SelectCountryOrganizations({
@@ -31,13 +35,13 @@ export default function SelectCountryOrganizations({
     label: item.country_name,
   }));
 
-  console.log("🚀 ~ countries:", countries)
   const selectedCountry = options?.find(
     (option) => option?.value == values[name]
   );
 
   return (
     <div className={`${className} mt-2`}>
+  
       <ReactSelect
         options={options}
         selectedValue={selectedCountry}
@@ -45,6 +49,7 @@ export default function SelectCountryOrganizations({
         name={name}
         label={label}
         index={index}
+        isMulti
         setIndex={setIndex}
         messageInfo={messageInfo}
         setShow={setShow}

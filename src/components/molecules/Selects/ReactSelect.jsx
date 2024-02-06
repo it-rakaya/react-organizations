@@ -20,6 +20,7 @@ export default function ReactSelect({
   images,
   options,
   selectedValue,
+  isMulti,
   placeholder,
 }) {
   const { setFieldValue, handleBlur } = useFormikContext();
@@ -49,8 +50,16 @@ export default function ReactSelect({
             <div className="select-placeholder-text">{placeholder}</div>
           }
           noOptionsMessage={() => t("Not Found Data")}
+          isMulti={isMulti}
           onBlur={handleBlur}
-          onChange={(option) => setFieldValue(name, option.value)}
+          onChange={(option) =>
+            isMulti
+              ? setFieldValue(
+                  name,
+                  option.map((item) => item.value)
+                )
+              : setFieldValue(name, option.value)
+          }
           styles={{
             control: (baseStyles, { isFocused }) => ({
               ...baseStyles,
