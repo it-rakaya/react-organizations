@@ -51,7 +51,7 @@ function Landing() {
         </div>
       </div>
       {/* page content */}
-      <Navbar />
+      <Navbar  className="fixed bg-[#F7F7F9]"/>
       {/* content */}
       <div className="pt-[13%]">
         <Hero />

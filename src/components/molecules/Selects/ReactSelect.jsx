@@ -1,17 +1,13 @@
 /* eslint-disable react/prop-types */
-import { mdiInformationOutline } from "@mdi/js";
-import Icon from "@mdi/react";
 import { useFormikContext } from "formik";
 import { t } from "i18next";
 import Select from "react-select";
-import useFetch from "../../../hooks/useFetch";
+import CardInfo from "../CardInfo";
 import { FormikError } from "../Formik/FormikError";
 import Label from "../Label";
-import { useIsRTL } from "../../../hooks/useIsRTL";
-import CardInfo from "../CardInfo";
-import ReactSelect from "./ReactSelect";
+import { useTheme } from "@mui/material/styles";
 
-export default function SelectBank({
+export default function ReactSelect({
   name,
   label,
   className,
@@ -22,26 +18,16 @@ export default function SelectBank({
   setIndex,
   setShow,
   images,
+  options,
+  selectedValue,
+  placeholder,
 }) {
-  const { setFieldValue, values, handleBlur } = useFormikContext();
-  const isRTL = useIsRTL();
-
-  const { data: banks } = useFetch({
-    endpoint: `banks`,
-    queryKey: ["banks"],
-  });
-  const options = banks?.banks.map((item) => ({
-    value: item.id,
-    label: isRTL ? item.name_ar : item?.name_en,
-  }));
-
-  const selectedBack = options?.find(
-    (option) => option?.value == values[name]
-  );
+  const { setFieldValue, handleBlur } = useFormikContext();
+  const theme = useTheme();
 
   return (
     <div className={`${className} mt-2`}>
-      {/* <Label>
+      <Label>
         {label}
         <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
       </Label>
@@ -58,34 +44,47 @@ export default function SelectBank({
         <Select
           options={options}
           name={name}
-          value={selectedBack}
-          // placeholder={t("Chose bank")}
-          placeholder={<div className="select-placeholder-text">{t("Choose Bank")}</div>} 
-
+          value={selectedValue}
+          placeholder={
+            <div className="select-placeholder-text">{placeholder}</div>
+          }
           noOptionsMessage={() => t("Not Found Data")}
           onBlur={handleBlur}
           onChange={(option) => setFieldValue(name, option.value)}
           styles={{
-            control: (baseStyles) => ({
+            control: (baseStyles, { isFocused }) => ({
               ...baseStyles,
-              padding: "10px 0",
+              padding: "10px 5px",
               borderRadius: " 8px",
               borderWidth: "1px",
-              // borderColor:"#555d64" ,
+              //   borderColor:"#555d64" ,
               background: "white",
               margin: "0",
               height: "59px",
-
+              width: "100%",
             }),
-            option: (baseStyles) => ({
-              ...baseStyles,
-              background: "white",
-              color: "black",
+
+            option: (defaultStyles, { isFocused, isSelected }) => ({
+              ...defaultStyles,
+              padding: "10px 10px",
+              width: "100%",
+              background: isSelected
+                ? theme.palette.primary?.main
+                : isFocused
+                ? "#eee"
+                : "000",
+              color: isSelected ? "white" : "black",
+              ":active": {
+                ...defaultStyles[":active"],
+                backgroundColor: isSelected
+                  ? theme.palette.primary?.main
+                  : defaultStyles[":active"].backgroundColor,
+              },
             }),
           }}
           theme={(theme) => ({
             ...theme,
-            borderRadius: 0,
+            backgroundColor: "red",
             colors: {
               ...theme.colors,
               primary25: `#eee`,
@@ -93,8 +92,10 @@ export default function SelectBank({
             },
           })}
           classNames={{
-            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+            control: () => "dark:bg-dark-primary  dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",
+            menu: () =>
+              " bg-white dark:bg-dark-primary dark:text-white border rounded-md ",
           }}
           maxMenuHeight={250}
           menuShouldScrollIntoView
@@ -102,21 +103,7 @@ export default function SelectBank({
         <div>
           <FormikError name={name} />
         </div>
-      </div> */}
-      <ReactSelect
-        options={options}
-        selectedValue={selectedBack}
-        placeholder={t("Choose Bank")}
-        name={name}
-        label={label}
-        index={index}
-        setIndex={setIndex}
-        messageInfo={messageInfo}
-        setShow={setShow}
-        images={images}
-        required={required}
-        showIcon={showIcon}
-      />
+      </div>
     </div>
   );
 }

@@ -13,6 +13,7 @@ import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import DeleteEMployee from "../../components/templates/myEmployee/DeleteEMployee";
 import useFetch from "../../hooks/useFetch";
 import { useIsRTL } from "../../hooks/useIsRTL";
+import defaultImage from "../../../public/profile pic1.png";
 
 export default function MyEmployees() {
   const isRTL = useIsRTL();
@@ -26,6 +27,7 @@ export default function MyEmployees() {
     endpoint: `facility-employees`,
     queryKey: [`facility_employees ${isRTL}`],
   });
+    console.log("🚀 ~ MyEmployees ~ employees:", employees)
 
   const [openAddEmployee, setOpenAddEmployee] = useState(false);
   const [employeeId, setEmployeeId] = useState();
@@ -55,7 +57,7 @@ export default function MyEmployees() {
             >
               <div className="flex items-center gap-3">
                 <img
-                  src={attachmentUrl[1]?.value}
+                  src={attachmentUrl[1]?.value.endsWith(".pdf") ? defaultImage :attachmentUrl[1]?.value}
                   className="w-[40px]  h-[40px] rounded-full border  border-solid"
                   style={{ borderColor: theme?.palette?.primary.main }}
                 />
@@ -161,7 +163,7 @@ export default function MyEmployees() {
                     className="rounded-sm "
                     style={{ background: theme?.palette?.primary.main }}
                   >
-                    <PadgePreview url={item?.value} label={item?.label} />
+                    <PadgePreview url={item?.value} label={isRTL ? item?.label_ar :item?.label_en } />
                   </div>
                 ) : (
                   <div
@@ -179,7 +181,7 @@ export default function MyEmployees() {
                       rel="noreferrer"
                     >
                       <p className="text-[10px] text-white px-1">
-                        {item?.label}
+                        {isRTL ? item?.label_ar :item?.label_en}
                       </p>
                     </a>
                   </div>
@@ -245,7 +247,7 @@ export default function MyEmployees() {
             columns={columns || []}
             rows={employees?.employees || []}
             placeholderSearch={t("search in employee")}
-            textButton={t("Add Employee")}
+            textButton={t("ADD EMPLOYEE")}
             actionButton={() => setOpenAddEmployee(true)}
           />
         )}

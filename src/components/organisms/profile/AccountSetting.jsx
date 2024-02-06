@@ -22,6 +22,7 @@ export default function AccountSetting({
     queryKey: ["attachments_register"],
   });
 
+  console.log("🚀 ~ attachments_register:", attachments_register)
   const AllAttachmentsId = attachments_register?.attachment_labels?.map(
     (item) => item?.id
   );
@@ -54,7 +55,7 @@ export default function AccountSetting({
         .test({
           name: "isValidSaudiID",
           test: (value) => isValidSaudiID(value),
-          message: t("Invalid Saudi ID"),
+          message: t("Please enter a valid ID number"),
         })
         .required(t("This field is required")),
         email: Yup.string()

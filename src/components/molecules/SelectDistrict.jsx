@@ -8,6 +8,7 @@ import CardInfo from "./CardInfo";
 import Label from "./Label";
 import { useIsRTL } from "../../hooks/useIsRTL";
 import { useEffect } from "react";
+import { useTheme } from "@mui/material/styles";
 
 export default function SelectDistrict({
   name,
@@ -28,6 +29,7 @@ export default function SelectDistrict({
     queryKey: [`district`],
     // enabled: !!values?.city_id,
   });
+  const theme = useTheme();
 
   useEffect(() => {
     if (district && district.districts && values.city_id) {
@@ -108,43 +110,57 @@ export default function SelectDistrict({
               </div>
             ) : (
               <div className="select-placeholder-text">
-                {t("Choose City is first")}
+                {t("Choose city first")}
               </div>
             )
           }
           className="$"
           onChange={(option) => setFieldValue(name, option.value)}
           styles={{
-            control: (baseStyles) => ({
+            control: (baseStyles, { isFocused }) => ({
               ...baseStyles,
-              padding: "10px 0",
+              padding: "10px 5px",
               borderRadius: " 8px",
               borderWidth: "1px",
-              // borderColor:district?.districts?.length ? "red" : "#555d64",
-              background: !values?.city_id ? "#cecfcf" : "white",
+              //   borderColor:"#555d64" ,
+              background: "white",
               margin: "0",
               height: "59px",
-
+              width: "100%",
             }),
-            option: (baseStyles) => ({
-              ...baseStyles,
-              background: "white",
-              color: "black",
+
+            option: (defaultStyles, { isFocused, isSelected }) => ({
+              ...defaultStyles,
+              padding: "10px 10px",
+              width: "100%",
+              background: isSelected
+                ? theme.palette.primary?.main
+                : isFocused
+                ? "#eee"
+                : "000",
+              color: isSelected ? "white" : "black",
+              ":active": {
+                ...defaultStyles[":active"],
+                backgroundColor: isSelected
+                  ? theme.palette.primary?.main
+                  : defaultStyles[":active"].backgroundColor,
+              },
             }),
           }}
           theme={(theme) => ({
             ...theme,
-            borderRadius: 0,
+            backgroundColor: "red",
             colors: {
-              // ...theme.colors,
+              ...theme.colors,
               primary25: `#eee`,
               primary: "#eee",
             },
           })}
           classNames={{
-            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+            control: () => "dark:bg-dark-primary  dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",
-            menu: () => " bg-white dark:bg-dark-primary dark:text-white  ",
+            menu: () =>
+              " bg-white dark:bg-dark-primary dark:text-white border rounded-md ",
           }}
         />
       </div>

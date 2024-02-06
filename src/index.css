@@ -93,10 +93,15 @@ div {
 }
 
 p,
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: black;
+  text-transform: capitalize;
 }
-
 
 
 
@@ -1056,4 +1061,19 @@ input {
 
 .MuiTablePagination-displayedRows {
   direction: ltr;
+}
+
+.decryption_orga {
+  height: max-content;
+  min-height: 2rem;
+  max-height: 25rem;
+}
+
+@media (max-width :1400px) {
+  .decryption_orga {
+    /* height: calc(100vh - 33rem) */
+  }
+}
+.rtl-1dimb5e-singleValue{
+  margin: 0 5px;
 }

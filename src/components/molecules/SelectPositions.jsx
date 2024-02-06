@@ -6,6 +6,7 @@ import useFetch from "../../hooks/useFetch";
 import { FormikError } from "./Formik/FormikError";
 import Label from "./Label";
 import { useIsRTL } from "../../hooks/useIsRTL";
+import ReactSelect from "./Selects/ReactSelect";
 
 export default function SelectPositions({ name, label, className, required }) {
   const { setFieldValue, values, handleBlur } = useFormikContext();
@@ -19,13 +20,13 @@ export default function SelectPositions({ name, label, className, required }) {
     label: isRTL ? item.name_ar : item?.name_en,
   }));
 
-  const selectedCountry = options?.find(
+  const selectedPosition = options?.find(
     (option) => option?.value == values[name]
   );
 
   return (
     <div className={`${className} mt-2`}>
-      <Label>
+      {/* <Label>
         {label}
         <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
       </Label>
@@ -33,7 +34,7 @@ export default function SelectPositions({ name, label, className, required }) {
         <Select
           options={options}
           name={name}
-          value={selectedCountry}
+          value={selectedPosition}
           placeholder={
             <div className="select-placeholder-text">{t("Chose position")}</div>
           }
@@ -77,7 +78,15 @@ export default function SelectPositions({ name, label, className, required }) {
         <div>
           <FormikError name={name} />
         </div>
-      </div>
+      </div> */}
+      <ReactSelect
+        options={options}
+        selectedValue={selectedPosition}
+        placeholder={t("Chose position")}
+        name={name}
+        label={label}
+        required={required}
+      />
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,11 +9,9 @@ const App = () => {
   const isRTL = useIsRTL();
   useEffect(() => {
     if (isRTL) {
-      // document.documentElement.dir = "rtl";
       document.documentElement.lang = "ar";
       document.documentElement.setAttribute("dir", "rtl");
     } else {
-      // document.documentElement.dir = "ltr";
       document.documentElement.lang = "en";
       document.documentElement.setAttribute("dir", "ltr");
     }

@@ -28,9 +28,10 @@ const TableHeader = (props) => {
         size="small"
         value={value}
         // sx={{ mr: 6 }}
-        className="dark:!border-white  ml-2 ltr:md:mr-6 md:ml-6"
+        className="dark:!border-white   ml-2 ltr:md:mr-6 md:ml-6"
         placeholder={placeholderSearch}
         onChange={(e) => handleFilter(e.target.value)}
+        style={{padding:"10px"}}
       />
    
         <ButtonComp

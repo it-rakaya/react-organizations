@@ -53,7 +53,7 @@ function NationalAddressData() {
         <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("Street")}
-            placeholder="شارع الهدى والنور"
+            placeholder={t("King Fahad")}
             name="street_name"
             required
             showIcon

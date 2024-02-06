@@ -16,6 +16,7 @@ export default function EmployeeMainData({
   attachments_facility_employees,
   loadingEmployee,
 }) {
+  console.log("🚀 ~ attachments_facility_employees:", attachments_facility_employees)
   const theme = useTheme();
   const { values, errors } = useFormikContext();
   const requiredInputs =
@@ -42,7 +43,7 @@ export default function EmployeeMainData({
     <>
       <div className="">
         <MainHeader
-          title={t("Add Employee")}
+          title={t("ADD EMPLOYEE")}
           styleHead={{ color: theme.palette.primary.main }}
         />
         <div className="grid items-start grid-cols-2 gap-2 md:px-5 max-h-[26rem] h-full overflow-y-scroll scroll_main px-2">
@@ -53,9 +54,9 @@ export default function EmployeeMainData({
           {showSelectFacility && (
             <div className="col-span-12">
               <SelectFacilities
-                label={t("Choose the facility name")}
+                label={t("Facility Name")}
                 name="facility_id"
-                placeholder={t("Choose the facility name")}
+                placeholder={t("Choose The Facility Name")}
                 required
               />
             </div>

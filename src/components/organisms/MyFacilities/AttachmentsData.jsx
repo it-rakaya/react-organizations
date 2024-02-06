@@ -5,8 +5,11 @@ import PreviewImageLink from "../../molecules/PreviewImageLink";
 import { mdiTrayArrowDown } from "@mdi/js";
 import PreviewPdf from "../../molecules/PreviewPdf";
 import { t } from "i18next";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 
 function AttachmentsData({ data, colorHead }) {
+  console.log("🚀 ~ AttachmentsData ~ data:", data)
+  const isRTL = useIsRTL()
   return (
     <div className="pt-5 md:pt-7">
           <div className="block col-span-2 md:hidden">
@@ -35,7 +38,7 @@ function AttachmentsData({ data, colorHead }) {
                 className="font-medium text-[16px] "
                 style={{ color: colorHead }}
               >
-                {item?.label}{" "}
+                {isRTL ? item?.label_ar :item?.label_en}{" "}
               </p>
             </div>
 

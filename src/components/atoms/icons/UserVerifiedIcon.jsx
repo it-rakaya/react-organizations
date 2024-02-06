@@ -842,18 +842,22 @@ function UserVerifiedIcon({ className }) {
           <path
             d="M420.471 298.998H407.99V317.982H424.492V303.017L420.471 298.998ZM420.694 300.294L423.196 302.795H420.694V300.294ZM423.733 317.223H408.749V299.757H419.934V303.554H423.733L423.733 317.223Z"
             fill="#CAB272"
+            style={{ fill: theme?.palette?.primary?.main }}
           />
           <path
             d="M418.918 311.796V316.036H422.479V311.796H418.918ZM421.719 315.276H419.678V312.555H421.719V315.276Z"
             fill="#CAB272"
+            style={{ fill: theme?.palette?.primary?.main }}
           />
           <path
             d="M414.46 309.518V316.036H418.021V309.518H414.46ZM417.262 315.276H415.22V310.277H417.262V315.276Z"
             fill="#CAB272"
+            style={{ fill: theme?.palette?.primary?.main }}
           />
           <path
             d="M410.003 307.24V316.036H413.564V307.24H410.003ZM412.804 315.276H410.763V307.999H412.804V315.276Z"
             fill="#CAB272"
+            style={{ fill: theme?.palette?.primary?.main }}
           />
         </g>
         <path

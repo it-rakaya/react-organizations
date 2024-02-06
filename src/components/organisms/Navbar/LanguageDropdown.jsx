@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import OptionsMenu from "./option-menu/OptionsMenu";
 import { t } from "i18next";
-const LanguageDropdown = ({ settings, saveSettings }) => {
+const LanguageDropdown = () => {
   const { i18n } = useTranslation();
   const language = i18n.language;
   useEffect(() => {

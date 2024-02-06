@@ -22,7 +22,7 @@ function AdditionalInfo() {
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
         <div className="w-full md:w-1/2">
           <BaseInputField
-            label={t("Employees Number")}
+            label={t("Number Of Employees")}
             placeholder="20"
             name="employee_number"
             type="custom"

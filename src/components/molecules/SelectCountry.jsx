@@ -6,6 +6,8 @@ import useFetch from "../../hooks/useFetch";
 import CardInfo from "./CardInfo";
 import { FormikError } from "./Formik/FormikError";
 import Label from "./Label";
+import { useIsRTL } from "../../hooks/useIsRTL";
+import ReactSelect from "./Selects/ReactSelect";
 
 export default function SelectCountry({
   name,
@@ -20,6 +22,7 @@ export default function SelectCountry({
   setShow
 }) {
   const { setFieldValue, values, handleBlur } = useFormikContext();
+  const isRTL = useIsRTL()
 
   const { data: countries } = useFetch({
     endpoint: `countries`,
@@ -27,7 +30,7 @@ export default function SelectCountry({
   });
   const options = countries?.countries.map((item) => ({
     value: item.id,
-    label: item.name_ar,
+    label:isRTL ?  item.name_ar : item?.name_en,
   }));
 
   const selectedCountry = options?.find(
@@ -36,7 +39,7 @@ export default function SelectCountry({
 
   return (
     <div className={`${className} mt-2`}>
-      <Label>
+      {/* <Label>
         {label}
         <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
       </Label>
@@ -99,7 +102,21 @@ export default function SelectCountry({
         <div>
           <FormikError name={name} />
         </div>
-      </div>
+      </div> */}
+      <ReactSelect
+        options={options}
+        selectedValue={selectedCountry}
+        placeholder={t("Chose Country")}
+        name={name}
+        label={label}
+        index={index}
+        setIndex={setIndex}
+        messageInfo={messageInfo}
+        setShow={setShow}
+        images={images}
+        required={required}
+        showIcon={showIcon}
+      />
     </div>
   );
 }

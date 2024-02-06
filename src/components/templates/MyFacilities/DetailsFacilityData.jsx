@@ -29,7 +29,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
-          {t("tax certificate")}
+          {t("certificate")}
         </p>
         <p className="mt-1 dark:text-white">{data?.tax_certificate}</p>
       </div>

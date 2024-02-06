@@ -13,6 +13,7 @@ import { t } from "i18next";
 import Loading from "../../components/molecules/Loading";
 import Navbar from "../../components/Landing/Navbar";
 import { useIsRTL } from "../../hooks/useIsRTL";
+import { Alert } from "@mui/material";
 
 const RegisterIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -21,8 +22,6 @@ const RegisterIllustrationWrapper = styled(Box)(({ theme }) => ({
     padding: theme.spacing(10),
   },
 }));
-
-
 
 const RightWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -50,13 +49,14 @@ const Register = () => {
   const navigate = useNavigate();
   const { orgData, isSuccess, isRefetching } = UseOrg();
   const isRTL = useIsRTL();
+  console.log("🚀 ~ Register ~ orgData:", orgData);
+  const closeRegistration = orgData?.organizations?.close_registeration 
+  console.log("🚀 ~ Register ~ closeRegistration:", closeRegistration);
 
   const name = isRTL
     ? orgData?.organizations?.name_ar
     : orgData?.organizations?.name_en;
-  const organizationName = !name
-    ? t("landing.organizationName")
-    : name;
+  const organizationName = !name ? t("landing.organizationName") : name;
 
   const TypographyStyled = styled(Typography)(({ theme }) => ({
     fontWeight: 600,
@@ -77,6 +77,7 @@ const Register = () => {
         <div className="absolute rtl:left-0 ltr:right-0 z-[99]">
           <Navbar hidden={true} />
         </div>
+
         <Box className="flex content-right">
           <RightWrapper
             sx={
@@ -116,14 +117,29 @@ const Register = () => {
                   <TypographyStyled
                     className="!text-black dark:!text-white"
                     variant="h5"
-                  >{`${t(
-                    "Welcome to"
-                  )} ${organizationName}`}</TypographyStyled>
+                  >{`${t("Welcome to")} ${organizationName}`}</TypographyStyled>
                 </Box>
               </Box>
-              <BoxWrapper>
-                <RegisterForm />
-              </BoxWrapper>
+              {closeRegistration == 1 ? (
+                <div className="flex items-center justify-center "
+                style={{height:"calc(100vh - 190px)"}}
+                >
+                  <Alert
+                    severity="warning"
+                    className="flex items-center justify-center !bg-transparent mt-[-14px]"
+                  >
+                    <div className="flex items-center gap-5 ">
+                      <p className="p-0 m-0 text-xl font-bold text-red-500">
+                        {t("Registration period is closed")}
+                      </p>
+                    </div>
+                  </Alert>
+                </div>
+              ) : (
+                <BoxWrapper>
+                  <RegisterForm />
+                </BoxWrapper>
+              )}
             </Box>
           </RightWrapper>
           {!hidden ? (

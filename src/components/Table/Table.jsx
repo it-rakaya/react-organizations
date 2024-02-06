@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useCallback, useState } from "react";
 import TableHeader from "./TableHeader";
 import { useIsRTL } from "../../hooks/useIsRTL";
@@ -36,7 +36,6 @@ const Table = ({
 
   const customLocaleText = {
     noRowsLabel: t("Not Found Data"),
-
   };
 
   return (
@@ -55,27 +54,20 @@ const Table = ({
             autoHeight
             rows={filteredRows}
             columns={columns}
-            
-            
-            // checkboxSelection
             disableRowSelectionOnClick
             pageSizeOptions={[10, 25, 50]}
             paginationModel={paginationModel}
             style={{ width: "99%", background: "transparent" }}
             onPaginationModelChange={setPaginationModel}
             disableColumnFilter={true}
-            // hideFooter
-            // hideFooterSelectedRowCount={true}
-            // hideFooterPagination
             disableColumnMenu={true}
             i18nIsDynamicList={isRTL}
             localeText={customLocaleText}
             componentsProps={{
               pagination: {
-                labelRowsPerPage: t('rows per page')
-              }
+                labelRowsPerPage: t("rows per page"),
+              },
             }}
-            // className="dark:!bg-[#2c3639]"
             class
             sx={{
               "& .MuiDataGrid-columnHeaders": {
@@ -83,15 +75,12 @@ const Table = ({
                 width: "100%",
               },
               "& .MuiTablePagination-displayedRows": {
-                color:"black"
+                color: "black",
               },
               "& .MuiSelect-select.MuiTablePagination-select": {
-                color:"black"
+                color: "black",
               },
-           
-
             }}
-            
           />
         </Card>
       </Grid>
