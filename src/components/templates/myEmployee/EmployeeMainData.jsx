@@ -16,6 +16,7 @@ export default function EmployeeMainData({
   attachments_facility_employees,
   loadingEmployee,
 }) {
+  console.log("🚀 ~ attachments_facility_employees:", attachments_facility_employees)
   const theme = useTheme();
   const { values, errors } = useFormikContext();
   const requiredInputs =

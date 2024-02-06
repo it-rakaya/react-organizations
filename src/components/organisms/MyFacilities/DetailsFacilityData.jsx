@@ -17,11 +17,11 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
           {t("Commercial Registration Information")}:
         </h1>
       </div>
-      <div className={childSection}>
+      <div className={`${childSection} `}>
         <p className="font-medium " style={{ color: colorHead }}>
           {t("Facility Trade Name")}
         </p>
-        <p className="mt-1 dark:text-white">{data?.name}</p>
+        <p className="mt-1 overflow-hidden dark:text-white">{data?.name}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>

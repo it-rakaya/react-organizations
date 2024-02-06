@@ -266,7 +266,7 @@ export default function Orders() {
       },
     },
   ];
-  const closeRegister = orgData?.organizations?.close_registeration == "1";
+  const closeRegister = orgData?.organizations?.close_order == "1";
 
   return (
     <div>

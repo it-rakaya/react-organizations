@@ -8,6 +8,9 @@ import { convertArabicToEnglish, convertToHijri } from "../../../utils/helpers";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import { useIsRTL } from "../../../hooks/useIsRTL";
+import PreviewID from "../../atoms/icons/PreviewID";
+import PadgePreview from "../../molecules/PadgePreview";
+import { BiDetail } from "react-icons/bi";
 
 const ProfilePicture = styled("img")(({ theme }) => ({
   width: 150,
@@ -37,7 +40,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
           <h1 className="text-2xl font-extrabold dark:text-white">
             {user?.name}
           </h1>
-          <div className="flex items-center">
+          <div className="flex items-center gap-1">
             <ButtonComp
               className={"!m-0 py-2 px-3"}
               action={() => setEditUser(true)}
@@ -48,6 +51,41 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                 className="w-[20px] h-[20px]  rtl:mr-2 ltr:ml-2 cursor-pointer text-white"
               />
             </ButtonComp>
+            <div>
+            {/* <div className="" >
+                {!user?.value?.toLowerCase().endsWith(".pdf") ? (
+                  <div
+                    className="rounded-sm "
+                    style={{ background: theme?.palette?.primary.main }}
+                  >
+                    <PadgePreview url={item?.value} label={item?.label} />
+                  </div>
+                ) : (
+                  <div
+                    className="px-1 rounded-sm bg-primary"
+                    style={{
+                      background: theme?.palette?.primary.main,
+                      opacity: "0,8",
+                    }}
+                  >
+                    <a
+                      href={item?.value}
+                      download={item?.value}
+                      className=""
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <p className="text-[10px] text-white px-1">
+                        {item?.label}
+                      </p>
+                    </a>
+                  </div>
+                )}
+              </div> */}
+              {/* <PreviewID /> */}
+              <BiDetail className='w-[45px] h-[45px]'/>
+             
+            </div>
           </div>
         </div>
       </Card>

@@ -163,7 +163,7 @@ export default function MyEmployees() {
                     className="rounded-sm "
                     style={{ background: theme?.palette?.primary.main }}
                   >
-                    <PadgePreview url={item?.value} label={item?.label} />
+                    <PadgePreview url={item?.value} label={isRTL ? item?.label_ar :item?.label_en } />
                   </div>
                 ) : (
                   <div
@@ -181,7 +181,7 @@ export default function MyEmployees() {
                       rel="noreferrer"
                     >
                       <p className="text-[10px] text-white px-1">
-                        {item?.label}
+                        {isRTL ? item?.label_ar :item?.label_en}
                       </p>
                     </a>
                   </div>

@@ -4,6 +4,7 @@ import { t } from "i18next";
 import { useState } from "react";
 import ModalComp from "../../atoms/ModalComp";
 import UploadDoc from "../../molecules/uploadImage/UploadDoc";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 
 export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
   const detailsFacilitiesData = attachments_facilities?.attachment_labels;
@@ -15,6 +16,7 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
   ];
   const [show, setShow] = useState(false);
   const [index] = useState(0);
+  const isRTL = useIsRTL()
 
   return (
     <>
@@ -36,11 +38,11 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
               <UploadDoc
                 key={attachmentLabel.id}
                 name={`attachments[${attachmentLabel.id}]`}
-                label={attachmentLabel.placeholder}
+                label={isRTL ?attachmentLabel.placeholder_ar : attachmentLabel.placeholder_en}
                 nameValue={attachmentLabel?.id}
                 id={attachmentLabel.id}
                 accept={attachmentLabel.extensions}
-                placeholder={attachmentLabel.placeholder}
+                placeholder={isRTL ?attachmentLabel.placeholder_ar : attachmentLabel.placeholder_en}
                 isRequired={attachmentLabel.is_required == "1"}
                 value={userAttachment ? userAttachment.value : null}
                 nameLabel={userAttachment?.name}
