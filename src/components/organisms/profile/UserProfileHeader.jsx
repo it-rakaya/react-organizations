@@ -4,13 +4,12 @@ import Card from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
 import { t } from "i18next";
 import defaultImage from "../../../../public/profile pic1.png";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 import { convertArabicToEnglish, convertToHijri } from "../../../utils/helpers";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
-import { useIsRTL } from "../../../hooks/useIsRTL";
 import PreviewID from "../../atoms/icons/PreviewID";
 import PadgePreview from "../../molecules/PadgePreview";
-import { BiDetail } from "react-icons/bi";
 
 const ProfilePicture = styled("img")(({ theme }) => ({
   width: 150,
@@ -94,14 +93,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                   >
                     <PadgePreview
                       url={user?.national_id_attachment}
-                      label={
-                        <BiDetail
-                          className="w-[40px] h-[40px] text-white rounded-md p-2  cursor-pointer "
-                          style={{
-                            backgroundColor: theme?.palette?.primary?.main,
-                          }}
-                        />
-                      }
+                      label={<PreviewID />}
                     />
                   </div>
                 ) : (
@@ -119,12 +111,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <BiDetail
-                        className="w-[40px] h-[40px] text-white rounded-md p-2  cursor-pointer"
-                        style={{
-                          backgroundColor: theme?.palette?.primary?.main,
-                        }}
-                      />
+                      <PreviewID />
                     </a>
                   </div>
                 )}

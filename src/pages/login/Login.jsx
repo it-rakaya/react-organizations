@@ -4,7 +4,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { t } from "i18next";
 import Cookies from "js-cookie";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Landing/Navbar";
 import LoginIcon from "../../components/atoms/icons/LoginIcon";
@@ -12,6 +12,9 @@ import Loading from "../../components/molecules/Loading";
 import LoginForm from "../../components/templates/LoginForm";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useIsRTL } from "../../hooks/useIsRTL";
+import ModalComp from "../../components/atoms/ModalComp";
+import Signature from "../../components/molecules/Signature";
+import RegistrationClosed from "../../components/molecules/RegistrationClosed";
 
 const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -54,9 +57,9 @@ const Login = () => {
   const isRTL = useIsRTL();
 
   const name = isRTL
-  ? orgData?.organizations?.name_ar
+    ? orgData?.organizations?.name_ar
     : orgData?.organizations?.name_en;
-  console.log("🚀 ~ Login ~ name:", name)
+  console.log("🚀 ~ Login ~ name:", name);
   // const { skin } = settings;
   const token = Cookies.get("token");
   const organizationName = !name ? t("landing.organizationName") : name;
@@ -65,6 +68,10 @@ const Login = () => {
       navigate("/");
     }
   }, [navigate, token]);
+  const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const closeRegistration = orgData?.organizations?.close_registeration;
+
   if (!isSuccess || isRefetching) return <Loading />;
   if (!token) {
     return (
@@ -74,13 +81,7 @@ const Login = () => {
         </div>
 
         <Box className="flex content-right">
-          <RightWrapper
-          // sx={
-          //   skin === "bordered" && !hidden
-          //     ? { borderLeft: `1px solid ${theme.palette.divider}` }
-          //     : {}
-          // }
-          >
+          <RightWrapper>
             <Box
               sx={{
                 p: 7,
@@ -144,13 +145,19 @@ const Login = () => {
                   >
                     {t("New on our platform?")}
                   </Typography>
-                  <Link
-                    to="/register"
-                    sx={{ color: "primary.main", textDecoration: "none" }}
-                    className="!text-black dark:!text-white"
+                  <Typography
+                    // to="/register"
+                    sx={{
+                      color: theme?.palette?.primary?.main,
+                      textDecoration: "none",
+                    }}
+                    className="cursor-pointer"
+                    onClick={() =>
+                      closeRegistration ? setOpenModal(true) : setOpen(true)
+                    }
                   >
                     {t("Create an account")}
-                  </Link>
+                  </Typography>
                 </Box>
               </BoxWrapper>
             </Box>
@@ -174,6 +181,18 @@ const Login = () => {
             </Box>
           ) : null}
         </Box>
+        <ModalComp
+          open={open}
+          className="!max-w-[500px] !block  "
+          onClose={() => setOpen(false)}
+          Children={<Signature />}
+        />
+        <ModalComp
+          open={openModal}
+          className="!max-w-[500px] !block  "
+          onClose={() => setOpenModal(false)}
+          Children={<RegistrationClosed />}
+        />
       </div>
     );
   } else {

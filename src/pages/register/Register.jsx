@@ -49,9 +49,7 @@ const Register = () => {
   const navigate = useNavigate();
   const { orgData, isSuccess, isRefetching } = UseOrg();
   const isRTL = useIsRTL();
-  console.log("🚀 ~ Register ~ orgData:", orgData);
-  const closeRegistration = orgData?.organizations?.close_registeration 
-  console.log("🚀 ~ Register ~ closeRegistration:", closeRegistration);
+  const closeRegistration = orgData?.organizations?.close_registeration;
 
   const name = isRTL
     ? orgData?.organizations?.name_ar
@@ -66,10 +64,12 @@ const Register = () => {
   }));
 
   useEffect(() => {
-    if (token) {
+    if (token || closeRegistration == 1) {
       navigate("/");
     }
-  }, [navigate, token]);
+  }, [closeRegistration, navigate, token]);
+  if (closeRegistration == 1) return navigate("/");
+
   if (!isSuccess || isRefetching) return <Loading />;
   if (!token) {
     return (
@@ -121,8 +121,9 @@ const Register = () => {
                 </Box>
               </Box>
               {closeRegistration == 1 ? (
-                <div className="flex items-center justify-center "
-                style={{height:"calc(100vh - 190px)"}}
+                <div
+                  className="flex items-center justify-center "
+                  style={{ height: "calc(100vh - 190px)" }}
                 >
                   <Alert
                     severity="warning"
