@@ -63,7 +63,7 @@ const Hero = () => {
 
               <button
                 onClick={() =>
-                  closeRegistration ? setOpenModal(true) : setOpen(true)
+                  closeRegistration ==1 ? setOpenModal(true) : setOpen(true)
                 }
                 style={{
                   borderColor: theme?.palette?.primary?.main,
