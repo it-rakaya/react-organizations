@@ -1,12 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useFormikContext } from "formik";
 import { t } from "i18next";
-import Select from "react-select";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import useFetch from "../../../hooks/useFetch";
-import Label from "../Label";
-import CardInfo from "../CardInfo";
-import { FormikError } from "../Formik/FormikError";
 import ReactSelect from "./ReactSelect";
 
 export default function SelectCountryOrganizations({
@@ -21,9 +17,8 @@ export default function SelectCountryOrganizations({
   images,
   setShow,
 }) {
-  const { setFieldValue, values, handleBlur } = useFormikContext();
+  const { values } = useFormikContext();
   const { orgData } = UseOrg();
-  console.log("🚀 ~ orgData:", orgData)
 
   const { data: countries } = useFetch({
     endpoint: `order-countries?organization_id=${orgData?.organizations?.id}`,
@@ -41,7 +36,6 @@ export default function SelectCountryOrganizations({
 
   return (
     <div className={`${className} mt-2`}>
-  
       <ReactSelect
         options={options}
         selectedValue={selectedCountry}

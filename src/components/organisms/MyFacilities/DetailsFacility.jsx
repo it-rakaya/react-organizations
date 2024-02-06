@@ -15,11 +15,13 @@ import AttachmentsData from "./AttachmentsData";
 import DetailsFacilityData from "./DetailsFacilityData";
 import NationalAdressData from "./NationalAdressData";
 import i18next, { t } from "i18next";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 
 export default function DetailsFacility({ data, className, style }) {
   const theme = useTheme();
   const mainColor = theme?.palette?.primary?.main;
   const [value, setValue] = useState("1");
+  const isRTL = useIsRTL()
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

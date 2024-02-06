@@ -57,15 +57,14 @@ export default function DetailsOrder({ data }) {
               <p className="dark:text-white">
                 {data?.created_at?.slice(0, 10)}
               </p>
-              <span className="text-black dark:text-white">/</span>
+              <span className="font-black-bold text dark:text-white"> /</span>
               <p className="dark:text-white">
                 {convertArabicToEnglish(
                   convertToHijri(data?.created_at?.slice(0, 10))
                 )}
               </p>
-              <span className="text-black dark:text-white">
-              {t("H")}
-                
+              <span className="font-black-bold text dark:text-white">
+                {t("H")}
               </span>
             </div>
           </div>
@@ -88,7 +87,7 @@ export default function DetailsOrder({ data }) {
                 </h2>
               }
             />
-            {Rejected !== data?.status?.id && (
+            {/* {Rejected !== data?.status?.id && (
               <Tab
                 value="2"
                 component="a"
@@ -100,7 +99,7 @@ export default function DetailsOrder({ data }) {
                   </h2>
                 }
               />
-            )}
+            )} */}
             {Rejected !== data?.status?.id && (
               <Tab
                 value="3"
