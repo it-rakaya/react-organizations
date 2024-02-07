@@ -4,11 +4,16 @@ import { Divider, Tab } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { t } from "i18next";
 import { useState } from "react";
-import { convertArabicToEnglish, convertToHijri } from "../../../utils/helpers";
+import {
+  convertArabicToEnglish,
+  convertToHijri,
+  padWithZero,
+} from "../../../utils/helpers";
 import MainHeader from "../../atoms/MainHeader";
 import NotesOrder from "../../molecules/NotesOrder";
 import DetailsFacility from "../MyFacilities/DetailsFacility";
 import { useIsRTL } from "../../../hooks/useIsRTL";
+import Line from "../../atoms/Line";
 
 export default function DetailsOrder({ data }) {
   console.log("🚀 ~ DetailsOrder ~ data:", data);
@@ -19,8 +24,11 @@ export default function DetailsOrder({ data }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  console.log(data?.status?.name_en == "Rejected");
   // const mainColor = theme?.palette?.primary?.main;
-  const Rejected = 6;
+  const Rejected = data?.status?.name_en == "Rejected";
+  // const Rejected =6;
+
   return (
     <div className="overflow-hidden" style={{ height: "calc(90vh - 2rem)" }}>
       <div className="mt-10 md:px-10 ">
@@ -57,12 +65,14 @@ export default function DetailsOrder({ data }) {
               <p className="dark:text-white text-[15px]">
                 {data?.created_at?.slice(0, 10)}
               </p>
-              <span className="text-black font-black-bold dark:text-white"> /</span>
+              <span className="text-black font-black-bold dark:text-white">
+                {" "}
+                /
+              </span>
               <p className="dark:text-white text-[15px]" dir="rtl">
-              
-                {convertToHijri(data?.created_at).hy}-{" "}
-                {convertToHijri(data?.created_at).hd}-{" "}
-                {convertToHijri(data?.created_at).hm}
+                {convertToHijri(data?.created_at).hy}-
+                {padWithZero(convertToHijri(data?.created_at).hm)}-
+                {padWithZero(convertToHijri(data?.created_at).hd)}
               </p>
               <span className="text-black font-black-bold dark:text-white">
                 {t("H")}
@@ -72,7 +82,7 @@ export default function DetailsOrder({ data }) {
         </div>
       </div>
       <div className="my-5">
-        <Divider />
+        <Line />
       </div>
 
       <TabContext value={value}>
@@ -101,7 +111,7 @@ export default function DetailsOrder({ data }) {
                 }
               />
             )} */}
-            {Rejected !== data?.status?.id && (
+            {!Rejected && (
               <Tab
                 value="3"
                 component="a"

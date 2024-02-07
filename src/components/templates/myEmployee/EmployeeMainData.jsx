@@ -12,6 +12,7 @@ import UploadDoc from "../../molecules/uploadImage/UploadDoc";
 import { useFormikContext } from "formik";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import { useIsRTL } from "../../../hooks/useIsRTL";
+import Line from "../../atoms/Line";
 export default function EmployeeMainData({
   showSelectFacility,
   attachments_facility_employees,
@@ -93,7 +94,7 @@ export default function EmployeeMainData({
             </div>
           </div>
           <div className="col-span-12 pb-8 pt-9">
-            <Divider />
+          <Line/>
           </div>
           <h1 className="flex col-span-12 gap-1 pb-3 text-xl font-medium item-center dark:text-white">
             <Icon path={mdiFileDocumentOutline} size={1} />

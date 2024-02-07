@@ -15,9 +15,7 @@ import { checkAttachments } from "../../../utils/helpers";
 import { useIsRTL } from "../../../hooks/useIsRTL";
 
 function AccountSettingMainData({ userData, isPending, attachments_register }) {
-  const { values, dirty, initialValues } = useFormikContext();
-  console.log("🚀 ~ AccountSettingMainData ~ values:", values);
-  console.log("🚀 ~ AccountSettingMainData ~ dirty:", dirty);
+  const { values, initialValues , errors } = useFormikContext();
   const isRTL = useIsRTL();
   const requiredInputs =
     attachments_register?.attachment_labels
@@ -33,21 +31,18 @@ function AccountSettingMainData({ userData, isPending, attachments_register }) {
     values
   );
   function findChangedValues(values, initialValues) {
-    // قائمة بالمفاتيح التي يجب تجاهلها
-    const ignoreKeys = ['birthday_hj', 'national_id_expired_hj'];
-    
+    const ignoreKeys = ["birthday_hj", "national_id_expired_hj"];
+
     const changedValues = Object.keys(values).reduce((acc, key) => {
-      // تجاهل التغييرات في المفاتيح المحددة
       if (!ignoreKeys.includes(key) && values[key] !== initialValues[key]) {
         acc[key] = values[key];
       }
       return acc;
     }, {});
-  
+
     return changedValues;
   }
   const changedValues = findChangedValues(values, initialValues);
-  console.log("🚀 ~ AccountSettingMainData ~ changedValues:", changedValues)
 
   return (
     <>
@@ -151,7 +146,10 @@ function AccountSettingMainData({ userData, isPending, attachments_register }) {
         <ButtonComp
           className="!w-auto"
           loading={isPending}
-          disabled={!checkAttachmentsResult || !Object.entries(changedValues).length}
+          disabled={
+            Object.entries(errors).length > 0 ||
+            !checkAttachmentsResult || !Object.entries(changedValues).length
+          }
         >
           {t("Edit")}
         </ButtonComp>

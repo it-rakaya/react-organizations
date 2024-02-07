@@ -14,9 +14,9 @@ import DetailsOrder from "../../components/organisms/orders/DetailsOrder";
 import OrderInfo from "../../components/organisms/orders/OrderInfo";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import useFetch from "../../hooks/useFetch";
-import { convertArabicToEnglish, convertToHijri } from "../../utils/helpers";
-import { notify } from "../../utils/toast";
 import { useIsRTL } from "../../hooks/useIsRTL";
+import { convertToHijri, padWithZero } from "../../utils/helpers";
+import { notify } from "../../utils/toast";
 export default function Orders() {
   const [openAddFaculty, setOpenAddFaculty] = useState(false);
   const [openDetailsOrder, setOpenDetailsOrder] = useState(false);
@@ -163,9 +163,9 @@ export default function Orders() {
               </p>
               /
               <p className="text-[15px] dark:text-white" dir="rtl">
-                {convertToHijri(row?.created_at).hy}-{" "}
-                {convertToHijri(row?.created_at).hd}-{" "}
-                {convertToHijri(row?.created_at).hm}
+                {convertToHijri(row?.created_at).hy}-
+                {padWithZero(convertToHijri(row?.created_at).hm)}-
+                {padWithZero(convertToHijri(row?.created_at).hd)}
               </p>
               {t("H")}
             </div>
