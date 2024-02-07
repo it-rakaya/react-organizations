@@ -102,7 +102,7 @@ function FacilityContentEdit({
           end_date: Yup.string().trim().required(t("the  end date required")),
           license_expired: Yup.string()
             .trim()
-            .required(t("the  Licence expired required")),
+            .required(t("the  licence expired required")),
           registration_source: Yup.string()
             .trim()
             .required(t("the registration source required")),

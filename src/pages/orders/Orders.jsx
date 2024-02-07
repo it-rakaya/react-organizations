@@ -14,9 +14,9 @@ import DetailsOrder from "../../components/organisms/orders/DetailsOrder";
 import OrderInfo from "../../components/organisms/orders/OrderInfo";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import useFetch from "../../hooks/useFetch";
-import { convertArabicToEnglish, convertToHijri } from "../../utils/helpers";
-import { notify } from "../../utils/toast";
 import { useIsRTL } from "../../hooks/useIsRTL";
+import { convertToHijri, padWithZero } from "../../utils/helpers";
+import { notify } from "../../utils/toast";
 export default function Orders() {
   const [openAddFaculty, setOpenAddFaculty] = useState(false);
   const [openDetailsOrder, setOpenDetailsOrder] = useState(false);
@@ -38,9 +38,14 @@ export default function Orders() {
     enabled: !!orgData?.organizations?.id,
   });
 
-  const Canceled = 7;
-  const Rejected = 6;
-
+  const Canceled = Orders?.all_user_orders?.filter(
+    (obj) => obj.status?.name_en == "Canceled"
+  );
+  const Accepted = Orders?.all_user_orders?.filter(
+    (obj) => obj.status?.name_en == "Accepted"
+  );
+  
+  const closeRegister = orgData?.organizations?.close_order == "1";
   const columns = [
     {
       flex: 0.2,
@@ -163,9 +168,9 @@ export default function Orders() {
               </p>
               /
               <p className="text-[15px] dark:text-white" dir="rtl">
-                {convertToHijri(row?.created_at).hy}-{" "}
-                {convertToHijri(row?.created_at).hd}-{" "}
-                {convertToHijri(row?.created_at).hm}
+                {convertToHijri(row?.created_at).hy}-
+                {padWithZero(convertToHijri(row?.created_at).hm)}-
+                {padWithZero(convertToHijri(row?.created_at).hd)}
               </p>
               {t("H")}
             </div>
@@ -193,7 +198,7 @@ export default function Orders() {
             }}
             className="items-center justify-center w-full "
           >
-            {row.status_id == Canceled ? (
+            {row.status?.name_en == "Canceled" ? (
               <Icon path={mdiDotsVertical} size={1} />
             ) : (
               <div className="flex justify-center cursor-pointer ">
@@ -202,12 +207,33 @@ export default function Orders() {
                     size: "small",
                   }}
                   className={
-                    row.status_id == Canceled
+                    row.status?.name_en == "Canceled"
                       ? "cursor-not-allowed"
                       : "cursor-pointer"
                   }
                   options={
-                    row.status_id !== Rejected
+                    row.status?.name_en == "Accepted" || row.status?.name_en == "Approved" ? 
+                    [
+                      {
+                        text: t("Details"),
+
+                        details: "Additional details here",
+                        function: () => {
+                          if (row.status_id == Canceled) {
+                            return notify(
+                              "worning",
+                              t("cant Canceled order")
+                            );
+                          } else {
+                            setOpenDetailsOrder(true);
+                            setDetailsOrder(row);
+                          }
+                        },
+                      },
+                     
+                    ]
+                    :
+                    row.status?.name_en  !== "Rejected"
                       ? [
                           {
                             text: t("Details"),
@@ -225,13 +251,12 @@ export default function Orders() {
                               }
                             },
                           },
-
                           {
                             text: t("Cancel"),
                             details: "Additional details here",
                             function: () => {
                               if (row.status_id == Canceled) {
-                                return console.log("ddd");
+                                return;
                               } else {
                                 setOrderId(row.id);
                                 setOpenCancelOrder(true);
@@ -266,7 +291,6 @@ export default function Orders() {
       },
     },
   ];
-  const closeRegister = orgData?.organizations?.close_order == "1";
 
   return (
     <div>

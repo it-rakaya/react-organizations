@@ -1,5 +1,4 @@
 import { mdiPoll } from "@mdi/js";
-import { Grid } from "@mui/material";
 import { t } from "i18next";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../context/auth-and-perm/AuthProvider";
@@ -8,12 +7,12 @@ import useFetch from "../../../hooks/useFetch";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import UserVerifiedIcon from "../../atoms/icons/UserVerifiedIcon";
 import CardStatsHorizontal from "../../molecules/card-stats-horizontal";
-import { useTheme } from "@mui/material/styles";
+import Loading from "../../molecules/Loading";
 
 function UserVerified() {
   const { user } = useAuth();
   const { orgData } = UseOrg();
-  const { data: Orders } = useFetch({
+  const { data: Orders, isFetching } = useFetch({
     endpoint: `orders?organization_id=${orgData?.organizations?.id}`,
     queryKey: ["my_orders"],
     enabled: !!orgData?.organizations?.id,
@@ -30,7 +29,6 @@ function UserVerified() {
   const AllOrder = Orders?.all_user_orders.length;
   const AllFacilities = facilities?.user_facilities.length;
   const AllEmployee = employees?.employees.length;
-  const theme = useTheme();
 
   const data = [
     {
@@ -52,7 +50,7 @@ function UserVerified() {
       icon: mdiPoll,
     },
   ];
-
+  if (isFetching) return <Loading />;
   return (
     <div>
       <div

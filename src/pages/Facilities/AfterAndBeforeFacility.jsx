@@ -17,8 +17,6 @@ function AfterAndBeforeFacility({
   DetailsFacilities,
 }) {
   const { values, errors } = useFormikContext();
-  console.log("🚀 ~ errors:", errors)
-  console.log("🚀 ~ values:", values)
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -117,7 +115,6 @@ function AfterAndBeforeFacility({
           attachmentIdsUpdate,
           values
         );
-        console.log(checkAttachmentsResult)
 
         const validAttachments = values?.attachments
           ?.map((file, index) => ({ index, file }))
@@ -126,7 +123,6 @@ function AfterAndBeforeFacility({
           [`attachments[${item?.index}]`]: item?.file,
         }));
         const isValid = requiredInputs?.every((id) => {
-          console.log("🚀 ~ isSaveDisabled ~ checkAttachmentsResult:", checkAttachmentsResult)
           const attachmentItem = attachments?.find(
             (item) => item[`attachments[${id}]`] !== undefined
           );

@@ -8,7 +8,7 @@ import { useIsRTL } from "../../../hooks/useIsRTL";
 
 export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
   const detailsFacilitiesData = attachments_facilities?.attachment_labels;
-  console.log("🚀 ~ StepTwo ~ detailsFacilitiesData:", detailsFacilitiesData)
+  console.log("🚀 ~ StepTwo ~ detailsFacilitiesData:", detailsFacilitiesData);
   const images = [
     { path: "/nationalAddress.png" },
     { path: "/LancesWork.png" },
@@ -16,7 +16,7 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
   ];
   const [show, setShow] = useState(false);
   const [index] = useState(0);
-  const isRTL = useIsRTL()
+  const isRTL = useIsRTL();
 
   return (
     <>
@@ -30,6 +30,7 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
           const userAttachment = DetailsFacilities?.find(
             (ua) => ua.attachment_label_id === attachmentLabel.id
           );
+
           return (
             <div
               key={index}
@@ -38,20 +39,27 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
               <UploadDoc
                 key={attachmentLabel.id}
                 name={`attachments[${attachmentLabel.id}]`}
-                label={isRTL ?attachmentLabel.placeholder_ar : attachmentLabel.placeholder_en}
+                label={
+                  isRTL
+                    ? attachmentLabel.placeholder_ar
+                    : attachmentLabel.placeholder_en
+                }
                 nameValue={attachmentLabel?.id}
                 id={attachmentLabel.id}
                 accept={attachmentLabel.extensions}
-                placeholder={isRTL ?attachmentLabel.placeholder_ar : attachmentLabel.placeholder_en}
+                placeholder={
+                  isRTL
+                    ? attachmentLabel.placeholder_ar
+                    : attachmentLabel.placeholder_en
+                }
                 isRequired={attachmentLabel.is_required == "1"}
                 value={userAttachment ? userAttachment.value : null}
                 nameLabel={userAttachment?.name}
-                labelClassName={ 'h-[48px]' }
+                labelClassName={"h-[48px]"}
               />
             </div>
           );
         })}
-
       </div>
       {images[index]?.path && (
         <ModalComp

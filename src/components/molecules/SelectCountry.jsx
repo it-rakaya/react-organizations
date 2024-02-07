@@ -115,6 +115,7 @@ export default function SelectCountry({
         setShow={setShow}
         images={images}
         required={required}
+        isDisabled={values.national_id.startsWith("1")}
         showIcon={showIcon}
       />
     </div>

@@ -6,6 +6,7 @@ import BaseInputField from "../../molecules/Formik/BaseInputField";
 import DatePickerComp from "../../molecules/Formik/DatePickerComp";
 import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
 import SelectBank from "../../molecules/Selects/SelectBank";
+import Line from "../../atoms/Line";
 
 export default function AddFacility() {
   const images = [
@@ -120,7 +121,7 @@ export default function AddFacility() {
           </div>
         </div>
         <div className="col-span-12 pb-8 pt-9">
-          <Divider />
+         <Line/>
         </div>
         <h1 className="flex items-center col-span-12 gap-1 pb-3 text-xl font-medium dark:text-white">
           {/* <Icon path={mdiAccountBoxOutline} size={1} /> */}
@@ -132,7 +133,7 @@ export default function AddFacility() {
             <BaseInputField
               label={t("Licence")}
               placeholder="xxxxxxxxxxx"
-              name="license"
+              name=""
               type="custom"
               maxNum="11"
               required
@@ -147,7 +148,7 @@ export default function AddFacility() {
             <DatePickerComp
               name="license_expired"
               name_hj="license_expired_hj"
-              label={t("Licence expired")}
+              label={t("Licence Expiration Date")}
               required
               showIcon
               setShow={setShow}
@@ -171,7 +172,7 @@ export default function AddFacility() {
           </div>
         </div>
         <div className="col-span-12 pb-8 pt-9">
-          <Divider />
+         <Line/>
         </div>
         <h1 className="flex items-center col-span-12 gap-1 pb-3 text-xl font-medium dark:text-white">
           {/* <Icon path={mdiAccountBoxOutline} size={1} /> */}

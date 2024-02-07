@@ -5,7 +5,11 @@ import { styled } from "@mui/material/styles";
 import { t } from "i18next";
 import defaultImage from "../../../../public/profile pic1.png";
 import { useIsRTL } from "../../../hooks/useIsRTL";
-import { convertArabicToEnglish, convertToHijri } from "../../../utils/helpers";
+import {
+  convertArabicToEnglish,
+  convertToHijri,
+  padWithZero,
+} from "../../../utils/helpers";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import PreviewID from "../../atoms/icons/PreviewID";
@@ -143,9 +147,9 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               <p className=" dark:text-white">{user?.birthday}</p>
               <span className=" dark:text-white">/</span>
               <p className="dark:text-white" dir="rtl">
-                {convertToHijri(user?.birthday).hy}-{" "}
-                {convertToHijri(user?.birthday).hd}-{" "}
-                {convertToHijri(user?.birthday).hm}
+                {convertToHijri(user?.birthday).hy}-
+                {padWithZero(convertToHijri(user?.birthday).hm)}-
+                {padWithZero(convertToHijri(user?.birthday).hd)}
                 {t("H")}
               </p>
             </div>
@@ -171,9 +175,9 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                   {/* {user?.national_id_expired !== "0000-00-00"
                     ? convertToHijri(user?.national_id_expired)
                     : ""} */}
-                  {convertToHijri(user?.national_id_expired).hy}-{" "}
-                  {convertToHijri(user?.national_id_expired).hd}-{" "}
-                  {convertToHijri(user?.national_id_expired).hm}
+                  {convertToHijri(user?.national_id_expired).hy}-
+                  {padWithZero(convertToHijri(user?.national_id_expired).hm)}-
+                  {padWithZero(convertToHijri(user?.national_id_expired).hd)}
                   {t("H")}
                 </p>
               </div>

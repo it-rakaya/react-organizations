@@ -15,7 +15,6 @@ const ModeToggler = (props) => {
     const savedMode = localStorage.getItem("darkMode");
     return savedMode === "true";
   });
-  console.log("🚀 ~ const[isDarkMode,setIsDarkMode]=useState ~ isDarkMode:", isDarkMode)
   const handleDarkMode = () => {
     const newMode = !isDarkMode;
     setIsDarkMode(newMode);

@@ -51,7 +51,6 @@ const UploadImageTwo = ({
 
   const [invalidFormat, setInvalidFormat] = useState(false);
   const isLargeFile = files?.length && files[0]?.size > 5242880;
-  console.log("🚀 ~ file: UploadImageTwo.jsx:54 ~ isLargeFile:", isLargeFile);
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,

@@ -49,7 +49,6 @@ export default function AddOrder({ setOpenAddFaculty }) {
             organization_service_id: values.organization_service_id,
             ...answers,
           };
-          console.log("🚀 ~ formData:", formData)
           AddOrder(formData);
         }}
       >

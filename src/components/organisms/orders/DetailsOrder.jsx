@@ -4,14 +4,19 @@ import { Divider, Tab } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { t } from "i18next";
 import { useState } from "react";
-import { convertArabicToEnglish, convertToHijri } from "../../../utils/helpers";
+import {
+  convertArabicToEnglish,
+  convertToHijri,
+  padWithZero,
+} from "../../../utils/helpers";
 import MainHeader from "../../atoms/MainHeader";
 import NotesOrder from "../../molecules/NotesOrder";
 import DetailsFacility from "../MyFacilities/DetailsFacility";
 import { useIsRTL } from "../../../hooks/useIsRTL";
+import Line from "../../atoms/Line";
+import NationalitiesOrder from "../../molecules/NationalitiesOrder";
 
 export default function DetailsOrder({ data }) {
-  console.log("🚀 ~ DetailsOrder ~ data:", data);
   const [value, setValue] = useState("1");
   const theme = useTheme();
   const isRTL = useIsRTL();
@@ -20,10 +25,12 @@ export default function DetailsOrder({ data }) {
     setValue(newValue);
   };
   // const mainColor = theme?.palette?.primary?.main;
-  const Rejected = 6;
+  const Rejected = data?.status?.name_en == "Rejected";
+  // const Rejected =6;
+
   return (
     <div className="overflow-hidden" style={{ height: "calc(90vh - 2rem)" }}>
-      <div className="mt-10 md:px-10 ">
+      <div className="mt-10 md:px-0 ">
         <div className="col-span-2">
           <MainHeader
             title={t("Details Order")}
@@ -57,12 +64,14 @@ export default function DetailsOrder({ data }) {
               <p className="dark:text-white text-[15px]">
                 {data?.created_at?.slice(0, 10)}
               </p>
-              <span className="text-black font-black-bold dark:text-white"> /</span>
+              <span className="text-black font-black-bold dark:text-white">
+                {" "}
+                /
+              </span>
               <p className="dark:text-white text-[15px]" dir="rtl">
-              
-                {convertToHijri(data?.created_at).hy}-{" "}
-                {convertToHijri(data?.created_at).hd}-{" "}
-                {convertToHijri(data?.created_at).hm}
+                {convertToHijri(data?.created_at).hy}-
+                {padWithZero(convertToHijri(data?.created_at).hm)}-
+                {padWithZero(convertToHijri(data?.created_at).hd)}
               </p>
               <span className="text-black font-black-bold dark:text-white">
                 {t("H")}
@@ -72,11 +81,11 @@ export default function DetailsOrder({ data }) {
         </div>
       </div>
       <div className="my-5">
-        <Divider />
+        <Line />
       </div>
 
       <TabContext value={value}>
-        <div className="mt-5 md:px-10">
+        <div className="mt-5 md:px-0">
           <TabList onChange={handleChange} aria-label="nav tabs example">
             <Tab
               value="1"
@@ -101,7 +110,18 @@ export default function DetailsOrder({ data }) {
                 }
               />
             )} */}
-            {Rejected !== data?.status?.id && (
+            {!Rejected && (
+              <Tab
+                value="4"
+                component="a"
+                label={
+                  <h2 className="font-bold text-black dark:text-white">
+                    {t("Nationalities")}
+                  </h2>
+                }
+              />
+            )}
+            {!Rejected && (
               <Tab
                 value="3"
                 component="a"
@@ -156,6 +176,13 @@ export default function DetailsOrder({ data }) {
                     className="detailsOrderFacility"
                     style={{ height: "calc(100vh - 28rem)" }}
                   />
+                </div>
+              </div>
+            </TabPanel>
+            <TabPanel value="4" className="pt-0">
+              <div>
+                <div className="">
+                  <NationalitiesOrder data={data?.country_organization} />
                 </div>
               </div>
             </TabPanel>

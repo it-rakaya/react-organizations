@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { t } from "i18next";
-import { convertArabicToEnglish } from "../../../utils/helpers";
-import { Divider } from "@mui/material";
 import { useIsRTL } from "../../../hooks/useIsRTL";
+import { convertArabicToEnglish, formatIban } from "../../../utils/helpers";
+import Line from "../../atoms/Line";
 
 function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
   const isRTL = useIsRTL();
@@ -63,7 +63,8 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
         </p>
       </div>
       <div className="col-span-2 pt-10 pb-8">
-        <Divider  />
+        {/* <Divider  /> */}
+        <Line/>
       </div>
 
       <div className="col-span-2">
@@ -81,7 +82,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {" "}
-          {t("Licence expired")}
+          {t("Licence Expiration Date")}
         </p>
         <p className="mt-1 dark:text-white">
           {data?.license_expired} /{" "}
@@ -95,7 +96,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
         <p className="mt-1 dark:text-white">{data?.capacity}</p>
       </div>
       <div className="col-span-2 pt-10 pb-8">
-        <Divider />
+      <Line/>
       </div>
 
       <div className="col-span-2">
@@ -115,7 +116,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
         <p className="font-medium " style={{ color: colorHead }}>
           {t("IBAN Number")}
         </p>
-        <p className="mt-1 dark:text-white">{data?.bank_information?.iban}</p>
+        <p className="mt-1 dark:text-white">{formatIban(data?.bank_information?.iban)}</p>
       </div>
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>

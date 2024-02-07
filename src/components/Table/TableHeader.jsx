@@ -29,7 +29,7 @@ const TableHeader = (props) => {
         size="small"
         value={value}
         // sx={{ mr: 6 }}
-        className="dark:!border-white   ml-2 ltr:md:mr-6 md:ml-6"
+        className="dark:!border-white   mx-2 ltr:md:mr-6 md:ml-6 w-full md:w-auto"
         placeholder={placeholderSearch}
         onChange={(e) => handleFilter(e.target.value)}
         style={{padding:"10px"}}
@@ -39,7 +39,7 @@ const TableHeader = (props) => {
           variant="contained"
           sx={{ mb: 2 }}
           action={actionButton}
-          className={"!w-auto !mt-0"}
+          className={"!w-full  md:!w-auto !mt-0 mx-[17px] md:mx-0"}
           disabled={disabled}
         >
           {textButton}

@@ -40,7 +40,6 @@ export default function QuestionBaseInput({
   ...props
 }) {
   const { setFieldValue, values, errors } = useFormikContext();
-  console.log("🚀 ~ errors:", errors)
   const [showPassword, setShowPassword] = useState(false);
   const [valueRadio, setValueRadio] = useState("");
   const [files, setFiles] = useState([]);

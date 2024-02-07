@@ -36,9 +36,21 @@ export function convertArabicToEnglish(arabicNumber) {
 
 //   return hijriDateWithoutHeh;
 // }
+export const padWithZero = (number) => {
+  let numStr = number.toString();
+  if (numStr.length === 1) {
+    numStr = "0" + numStr;
+  }
+  return numStr;
+};
+
 export const convertToHijri = (date) => {
-  let hijriDate = new Date(date)
-  return toHijri(hijriDate.getFullYear(), hijriDate.getMonth() + 1, hijriDate.getDate());
+  let hijriDate = new Date(date);
+  return toHijri(
+     hijriDate.getFullYear(),
+      hijriDate.getMonth() + 1,
+    hijriDate.getDate()
+  );
 };
 
 export function checkAttachments(requiredInputs, attachmentIdsUpdate, values) {
@@ -53,3 +65,12 @@ export function checkAttachments(requiredInputs, attachmentIdsUpdate, values) {
   return areAllRequiredInputsUpdated && !hasDeletedRequiredAttachments;
 }
 export const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
+
+export const  formatIban = (value) => {
+  const hasSpaces = /\s/.test(value);
+  if (hasSpaces) {
+    return value;
+  }
+  return value.replace(/(.{4})/g, "$1 ").trim();
+};

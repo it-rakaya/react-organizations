@@ -5,18 +5,19 @@ import { t } from "i18next";
 import CardStatsHorizontal from "../../molecules/card-stats-horizontal";
 
 function OrderInfo({ Orders }) {
-  console.log("🚀 ~ OrderInfo ~ Orders:", Orders);
 
   const NewOrders = Orders?.all_user_orders?.filter(
     (obj) => obj.status?.name_en == "New"
   );
   const approvedOrders = Orders?.all_user_orders?.filter(
-    (obj) => obj.status?.name_en == "Approved"
+    (obj) => obj.status?.name_en == "Accepted"
   );
   const rejectedOrders = Orders?.all_user_orders?.filter(
     (obj) => obj.status?.name_en == "Rejected"
   );
-
+  const ApprovedOrder = Orders?.all_user_orders?.filter(
+    (obj) => obj.status?.name_en == "Approved"
+  );
   const numberOfOrders = NewOrders?.length;
   const numberOfApproved = approvedOrders?.length;
   const numberOfRejected = rejectedOrders?.length;

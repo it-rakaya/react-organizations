@@ -47,7 +47,6 @@ const Footer = () => {
     minutes: null,
   });
   const [prayer, setPrayer] = useState("");
-  console.log("🚀 ~ Footer ~ prayer:", prayer)
   const [timeLeft, setTimeLeft] = useState({ months: "3", days: "20", hours: "9" });
   useEffect(() => {
     getPrayerTime(setNextPrayerTime, setPrayer);

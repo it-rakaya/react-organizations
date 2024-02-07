@@ -58,7 +58,7 @@ function Signature() {
       </div>
       <div className="flex justify-center">
         <ButtonComp disabled={!checked} action={() => navigate("/register")} className={"!w-[173px]"}>
-          {t("landing.register")}
+          {t("Register")}
         </ButtonComp>
       </div>
     </div>

@@ -22,7 +22,6 @@ export default function AccountSetting({
     queryKey: ["attachments_register"],
   });
 
-  console.log("🚀 ~ attachments_register:", attachments_register)
   const AllAttachmentsId = attachments_register?.attachment_labels?.map(
     (item) => item?.id
   );
@@ -36,14 +35,10 @@ export default function AccountSetting({
     nationality: userData?.nationality,
     national_source: userData?.national_source,
     birthday: userData?.birthday,
-    birthday_hj: convertToHijri(userData?.birthday),
+    birthday_hj: userData?.birthday,
     // photo: userData?.photo,
     national_id_expired: userData?.national_id_expired,
-    national_id_expired_hj: convertToHijri(
-      userData?.national_id_expired !== "0000-00-00"
-        ? userData?.national_id_expired
-        : "0"
-    ),
+    national_id_expired_hj: userData?.national_id_expired,
     // favourit_organizations: userData?.favourit_organizations,
   };
 
@@ -58,7 +53,7 @@ export default function AccountSetting({
           message: t("Please enter a valid ID number"),
         })
         .required(t("This field is required")),
-        email: Yup.string()
+      email: Yup.string()
         .required(t("email is required"))
         .matches(isEmail, t("Please enter a valid email address")),
       birthday: Yup.date().required(t("birthday is required")),

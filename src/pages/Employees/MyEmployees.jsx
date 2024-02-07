@@ -27,7 +27,6 @@ export default function MyEmployees() {
     endpoint: `facility-employees`,
     queryKey: [`facility_employees ${isRTL}`],
   });
-    console.log("🚀 ~ MyEmployees ~ employees:", employees)
 
   const [openAddEmployee, setOpenAddEmployee] = useState(false);
   const [employeeId, setEmployeeId] = useState();

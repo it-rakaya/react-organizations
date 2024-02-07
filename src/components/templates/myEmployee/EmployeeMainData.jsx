@@ -12,12 +12,12 @@ import UploadDoc from "../../molecules/uploadImage/UploadDoc";
 import { useFormikContext } from "formik";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import { useIsRTL } from "../../../hooks/useIsRTL";
+import Line from "../../atoms/Line";
 export default function EmployeeMainData({
   showSelectFacility,
   attachments_facility_employees,
   loadingEmployee,
 }) {
-  console.log("🚀 ~ attachments_facility_employees:", attachments_facility_employees)
   const theme = useTheme();
   const { values, errors } = useFormikContext();
   const isRTL = useIsRTL()
@@ -93,7 +93,7 @@ export default function EmployeeMainData({
             </div>
           </div>
           <div className="col-span-12 pb-8 pt-9">
-            <Divider />
+          <Line/>
           </div>
           <h1 className="flex col-span-12 gap-1 pb-3 text-xl font-medium item-center dark:text-white">
             <Icon path={mdiFileDocumentOutline} size={1} />
@@ -117,7 +117,7 @@ export default function EmployeeMainData({
           </div>
         </div>
       </div>
-      <div className="flex justify-end px-3 md:px-9">
+      <div className="flex justify-end px-3 md:px-8">
         <ButtonComp
           loading={loadingEmployee}
           type="submit"
