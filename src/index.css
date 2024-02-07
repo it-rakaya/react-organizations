@@ -1146,3 +1146,11 @@ text-transform: capitalize;
   /* border-color: #9f968559; */
   border-width: 1px;
 }
+
+@media (max-width:550px) {
+  .attachmentFacility{
+    height: calc(75vh);
+    overflow: scroll;
+    margin-top: 26px;
+  }
+}

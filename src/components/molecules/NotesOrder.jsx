@@ -8,6 +8,7 @@ import {
 } from "@mui/lab";
 import { Box, CardContent, Typography } from "@mui/material";
 import { t } from "i18next";
+import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
 
 /* eslint-disable react/prop-types */
 function NotesOrder({ notes }) {
@@ -18,7 +19,7 @@ function NotesOrder({ notes }) {
           <Timeline>
             <TimelineItem>
               <TimelineSeparator>
-                <TimelineDot color={"primary"}  />
+                <TimelineDot color={"primary"} />
                 <TimelineConnector className=" dark:!bg-white" />
               </TimelineSeparator>
               <TimelineContent>
@@ -38,7 +39,9 @@ function NotesOrder({ notes }) {
                     >
                       {item?.user_name}{" "}
                     </Typography>
-                    <div className="text-black dark:text-white">{item?.content}</div>
+                    <div className="text-black dark:text-white">
+                      {item?.content}
+                    </div>
                   </div>
 
                   <div className="flex flex-col gap-1">
@@ -57,9 +60,11 @@ function NotesOrder({ notes }) {
       </>
     ))
   ) : (
-    <div className="mt-10 text-2xl font-bold text-black dark:text-white">
-      {" "}
-      {t("There is no notes")}
+    <div className="flex flex-col mt-10 text-2xl font-bold justify-center items-center h-[42vh] ">
+      <div>
+        <TermsConditionIcon />
+      </div>
+      <p className="mt-10 text-black dark:text-white ">{t("There is no notes")}</p>
     </div>
   );
 }
