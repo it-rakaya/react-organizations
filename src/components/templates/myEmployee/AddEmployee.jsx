@@ -48,6 +48,9 @@ export default function AddEmployee({
       facility_employee_position_id: Yup.string()
         .trim()
         .required(t("position name is required")),
+      facility_id: showSelectFacility
+        ? Yup.string().trim().required(t("facility name is required"))
+        : Yup.string().trim(),
       national_id: Yup.string()
         ?.matches(/^\d{10}$/, t("The ID number must be exactly 10 digits"))
         ?.test({
@@ -94,7 +97,6 @@ export default function AddEmployee({
                 attachments_facility_employees={attachments_facility_employees}
                 loadingEmployee={loadingEmployee}
               />
-             
             </Form>
           </>
         )}
