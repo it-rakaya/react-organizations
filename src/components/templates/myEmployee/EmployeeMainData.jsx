@@ -117,7 +117,7 @@ export default function EmployeeMainData({
           </div>
         </div>
       </div>
-      <div className="flex justify-end px-3 md:px-9">
+      <div className="flex justify-end px-3 md:px-8">
         <ButtonComp
           loading={loadingEmployee}
           type="submit"

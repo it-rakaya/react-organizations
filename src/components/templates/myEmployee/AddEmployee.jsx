@@ -1,14 +1,13 @@
 /* eslint-disable react/prop-types */
 import { Form, Formik } from "formik";
 import { t } from "i18next";
-import * as Yup from "yup";
-import { useMutate } from "../../../hooks/useMutate";
-import { notify } from "../../../utils/toast";
-import ButtonComp from "../../atoms/buttons/ButtonComp";
-import EmployeeMainData from "./EmployeeMainData";
 import { isValidSaudiID } from "saudi-id-validator";
+import * as Yup from "yup";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import useFetch from "../../../hooks/useFetch";
+import { useMutate } from "../../../hooks/useMutate";
+import { notify } from "../../../utils/toast";
+import EmployeeMainData from "./EmployeeMainData";
 
 export default function AddEmployee({
   facultyID,
