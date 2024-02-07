@@ -82,7 +82,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {" "}
-          {t("Licence expired")}
+          {t("Licence Expiration Date")}
         </p>
         <p className="mt-1 dark:text-white">
           {data?.license_expired} /{" "}

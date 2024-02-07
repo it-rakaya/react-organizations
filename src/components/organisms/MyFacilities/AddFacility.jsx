@@ -133,7 +133,7 @@ export default function AddFacility() {
             <BaseInputField
               label={t("Licence")}
               placeholder="xxxxxxxxxxx"
-              name="license"
+              name=""
               type="custom"
               maxNum="11"
               required
@@ -148,7 +148,7 @@ export default function AddFacility() {
             <DatePickerComp
               name="license_expired"
               name_hj="license_expired_hj"
-              label={t("Licence expired")}
+              label={t("Licence Expiration Date")}
               required
               showIcon
               setShow={setShow}

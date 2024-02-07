@@ -136,7 +136,7 @@ export default function AddFacility() {
             <DatePickerComp
               name="license_expired"
               name_hj="license_expired_hj"
-              label={t("Licence expired")}
+              label={t("Licence Expiration Date")}
               required
               showIcon
               setShow={setShow}
