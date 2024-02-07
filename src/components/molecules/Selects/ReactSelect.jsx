@@ -22,6 +22,7 @@ export default function ReactSelect({
   selectedValue,
   isMulti,
   placeholder,
+  isDisabled
 }) {
   const { setFieldValue, handleBlur } = useFormikContext();
   const theme = useTheme();
@@ -46,6 +47,7 @@ export default function ReactSelect({
           options={options}
           name={name}
           value={selectedValue}
+          isDisabled={isDisabled}
           placeholder={
             <div className="capitalize select-placeholder-text">{placeholder}</div>
           }
