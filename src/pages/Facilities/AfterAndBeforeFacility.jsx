@@ -17,6 +17,8 @@ function AfterAndBeforeFacility({
   DetailsFacilities,
 }) {
   const { values, errors } = useFormikContext();
+  console.log("🚀 ~ values:", values)
+  console.log("🚀 ~ errors:", errors)
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);

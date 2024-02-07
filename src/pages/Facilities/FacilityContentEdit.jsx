@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import MainContent from "./MainContent";
 import useFetch from "../../hooks/useFetch";
 import Loading from "../../components/molecules/Loading";
+import { formatIban } from "../../utils/helpers";
 
 function FacilityContentEdit({
   activeStep,
@@ -23,6 +24,7 @@ function FacilityContentEdit({
     endpoint: `facilities/${idFacility}`,
     queryKey: ["facilities_update"],
   });
+    console.log("🚀 ~ DetailsFacilities:", DetailsFacilities)
   const initialFormValues = {
     name: DetailsFacilities?.facility ? DetailsFacilities?.facility?.name : "",
     registration_number: DetailsFacilities?.facility
@@ -93,7 +95,7 @@ function FacilityContentEdit({
       ? DetailsFacilities?.facility?.bank_information?.bank_id
       : "",
     iban: DetailsFacilities?.facility?.bank_information
-      ? DetailsFacilities?.facility?.bank_information?.iban
+      ? formatIban(DetailsFacilities?.facility?.bank_information?.iban)
       : "",
 
   };
@@ -140,7 +142,7 @@ function FacilityContentEdit({
             iban: Yup.string()
             .trim()
             .required(t("this field is required"))
-            .length(24, t("the IBAN number must be equal 24 digits")),
+            .length(29, t("the IBAN number must be equal 24 digits")),
         });
       case 1:
         return Yup.object({

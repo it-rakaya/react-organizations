@@ -133,7 +133,7 @@ export default function AddFacility() {
             <BaseInputField
               label={t("Licence")}
               placeholder="xxxxxxxxxxx"
-              name=""
+              name="license"
               type="custom"
               maxNum="11"
               required

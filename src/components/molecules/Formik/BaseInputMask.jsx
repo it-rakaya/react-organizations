@@ -5,7 +5,7 @@ import { forwardRef, useState } from "react";
 const BaseInputMask = forwardRef(() => {
   const { setFieldValue, values, touched, errors, handleBlur } =
     useFormikContext();
-
+console.log(values?.iban)
   const formatIban = (value) => {
     const hasSpaces = /\s/.test(value);
     if (hasSpaces) {
