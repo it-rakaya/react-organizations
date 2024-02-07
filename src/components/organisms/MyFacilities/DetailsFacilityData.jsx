@@ -10,7 +10,9 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
   return (
     <div className={parentSection}>
       <div className="block col-span-2 md:hidden">
-        <h2 className="text-black dark:text-white">{t("Facility Information")}</h2>
+        <h2 className="text-black dark:text-white">
+          {t("Facility Information")}
+        </h2>
       </div>
       <div className="col-span-2">
         <h1 className="flex items-center col-span-12 gap-1 pt-5 pb-3 font-medium md:text-xl dark:text-white">
@@ -54,9 +56,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
       <div className={childSection}>
         <p className="font-medium " style={{ color: colorHead }}>
           {" "}
-          {t(
-            ""
-          )}{" "}
+          {t("Commercial Registration Expiration Date")}{" "}
         </p>
         <p className="mt-1 dark:text-white">
           {data?.end_date} / {convertArabicToEnglish(data?.end_date_hj)}
