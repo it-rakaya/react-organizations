@@ -20,7 +20,7 @@ export default function SelectCitiesSaudi({
   messageInfo,
   images,
 }) {
-  const { setFieldValue, values } = useFormikContext();
+  const { values } = useFormikContext();
   const isRTL = useIsRTL();
   const { data: cities } = useFetch({
     endpoint: `saudi-cities`,

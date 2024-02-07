@@ -49,7 +49,7 @@ const Footer = () => {
   const [prayer, setPrayer] = useState("");
   const [timeLeft, setTimeLeft] = useState({ months: "3", days: "20", hours: "9" });
   useEffect(() => {
-    getPrayerTime(setNextPrayerTime, setPrayer);
+    // getPrayerTime(setNextPrayerTime, setPrayer);
     getTimeLeftToHajj(setTimeLeft);
   }, []);
 

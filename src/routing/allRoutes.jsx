@@ -19,6 +19,7 @@ const Home = lazy(() => import("../pages/home/Home"));
 export const AllRoutesProvider = () => {
   const { i18n } = useTranslation();
   const { orgData } = UseOrg();
+  console.log("🚀 ~ AllRoutesProvider ~ orgData:", orgData);
 
   useEffect(() => {
     if (!orgData?.organizations?.name_ar) {
@@ -26,7 +27,23 @@ export const AllRoutesProvider = () => {
     } else {
       document.title = orgData?.organizations?.name_ar;
     }
-  }, [i18n.language, orgData?.organizations?.name_ar]);
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement("meta");
+      metaDescription.setAttribute("name", "description");
+      document.getElementsByTagName("head")[0].appendChild(metaDescription);
+    }
+
+    // Assuming you have a translation function similar to `t` for descriptions
+    if (!orgData?.organizations?.about_us) {
+      metaDescription.setAttribute(
+        "content",
+        t("landing.organizationDescription")
+      );
+    } else {
+      metaDescription.setAttribute("content", orgData?.organizations?.about_us);
+    }
+  }, [i18n.language, orgData?.organizations?.name_ar, orgData?.organizations?.description_ar, t]);
   return (
     <Routes>
       <Route path="/" element={<Landing title={t("Landing")} />} />
@@ -36,7 +53,7 @@ export const AllRoutesProvider = () => {
         path="/login"
         element={<Login title={t("login")} />}
       />
-      <Route path="/dashboard" element={<Root />} >
+      <Route path="/dashboard" element={<Root />}>
         <Route index element={<Home title={t("home")} />} />
         <Route path="/dashboard/facilities" element={<MyFacilities />} />
         <Route

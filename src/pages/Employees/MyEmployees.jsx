@@ -14,6 +14,7 @@ import DeleteEMployee from "../../components/templates/myEmployee/DeleteEMployee
 import useFetch from "../../hooks/useFetch";
 import { useIsRTL } from "../../hooks/useIsRTL";
 import defaultImage from "../../../public/profile pic1.png";
+import { Helmet } from "react-helmet-async";
 
 export default function MyEmployees() {
   const isRTL = useIsRTL();
@@ -237,6 +238,10 @@ export default function MyEmployees() {
 
   return (
     <>
+       <Helmet>
+        <title>{t("Employee")}</title>
+        <meta name="description" content="This home page" />
+      </Helmet>
       <div>
         <MainHeader title={t("Employee")} />
         {isLoading || isRefetching ? (
