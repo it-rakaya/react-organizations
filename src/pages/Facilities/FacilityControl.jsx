@@ -17,6 +17,7 @@ function FacilityControl({
   idFacility,
   DetailsFacilities,
 }) {
+  console.log("🚀 ~ DetailsFacilities:", DetailsFacilities)
   const [checked, setChecked] = useState(update ? true : false);
   const { values } = useFormikContext();
   const { orgData } = UseOrg();

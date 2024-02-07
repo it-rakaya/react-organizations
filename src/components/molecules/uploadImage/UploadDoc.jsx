@@ -30,7 +30,7 @@ function UploadDoc({
   isRequired,
   dynamic = false,
   nameLabel,
-  labelClassName
+  labelClassName,
 }) {
   const { setFieldValue, values } = useFormikContext();
   const theme = useTheme();
@@ -46,13 +46,23 @@ function UploadDoc({
     type: value?.endsWith(".pdf") ? "application/pdf" : "image/",
     update: true,
   };
-  const [files, setFiles] = useState(
-    values?.attachments?.length
-      ? [values?.attachments[nameValue]]
-      : value
-      ? [updateImage]
-      : []
-  );
+  const [files, setFiles] = useState(() => {
+    if (values?.attachments?.[nameValue] === "deleted") {
+      return [null];
+    } else if (updateImage?.value && value && value !== "deleted") {
+      return [updateImage];
+    } else if (
+      values?.attachments?.[nameValue] &&
+      values.attachments[nameValue] !== "deleted"
+      ) {
+      const attachmentValue = values.attachments[nameValue];
+      
+      return [attachmentValue];
+    }
+    return [];
+  });
+  console.log("🚀 ~ const[files,setFiles]=useState ~ files:", files)
+
   const modifyAccept = accept?.map((item) => `.${item}`);
   const textAccept = accept?.map((item) => ` -${item} `);
   // const isLargeFile = files?.length && files[0]?.size > 5242880;
@@ -87,6 +97,7 @@ function UploadDoc({
     document.getElementsByName(name)[0].value = "";
   };
   const shouldShowUploadIcon = !files?.length || files.every((file) => !file);
+  const validImage = files?.length && files.every((file) => file)
 
   return (
     <div className="w-full">
@@ -135,7 +146,7 @@ function UploadDoc({
               t("File size is large")
             ) : invalidFormat ? (
               t("Invalid file format, please choose a PDF or image file")
-            ) : files?.length ? (
+            ) : validImage? (
               <div className="flex flex-col items-center justify-center ">
                 <p className=" dark:text-white">
                   {" "}

@@ -17,8 +17,7 @@ function AfterAndBeforeFacility({
   DetailsFacilities,
 }) {
   const { values, errors } = useFormikContext();
-  console.log("🚀 ~ values:", values)
-  console.log("🚀 ~ errors:", errors)
+  console.log("🚀 ~ values:", values);
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -117,26 +116,33 @@ function AfterAndBeforeFacility({
           attachmentIdsUpdate,
           values
         );
+        console.log("🚀 ~ isSaveDisabled ~ checkAttachmentsResult:", checkAttachmentsResult)
 
         const validAttachments = values?.attachments
-          ?.map((file, index) => ({ index, file }))
-          ?.filter((item) =>  typeof item?.file !== "undefined" && item.file !== "deleted");
+        ?.map((file, index) => ({ index, file }))
+        ?.filter(
+          (item) =>
+          typeof item?.file !== "undefined" && item.file !== "deleted"
+          );
         const attachments = validAttachments?.map((item) => ({
           [`attachments[${item?.index}]`]: item?.file,
         }));
+
         const isValid = requiredInputs?.every((id) => {
           const attachmentItem = attachments?.find(
-            (item) => item[`attachments[${id}]`] !== undefined
-          );
-          return (
-            attachmentItem && attachmentItem[`attachments[${id}]`] !== null
-          );
-        });
-        return update ? !checkAttachmentsResult : !isValid;
+            (item) => item[`attachments[${id}]`] !== undefined && item[`attachments[${id}]`] !== null
+            );
+            return (
+              attachmentItem && attachmentItem[`attachments[${id}]`] !== null
+              );
+            });
+
+        return update ? !checkAttachmentsResult  : !isValid;
       default:
         return false;
     }
   };
+  console.log("🚀 ~ isSaveDisabled ~ isSaveDisabled:", isSaveDisabled());
 
   return (
     <Grid

@@ -47,14 +47,27 @@ export const padWithZero = (number) => {
 export const convertToHijri = (date) => {
   let hijriDate = new Date(date);
   return toHijri(
-     hijriDate.getFullYear(),
-      hijriDate.getMonth() + 1,
+    hijriDate.getFullYear(),
+    hijriDate.getMonth() + 1,
     hijriDate.getDate()
   );
 };
 
 export function checkAttachments(requiredInputs, attachmentIdsUpdate, values) {
-  const areAllRequiredInputsUpdated = requiredInputs?.every((id) =>
+  const areAllRequiredInputsValid =
+    values?.attachments &&
+    requiredInputs.every(
+      (id) =>
+        // values?.attachments?.[id] !== undefined &&
+        values?.attachments?.[id] !== null &&
+        values?.attachments?.[id] !== "deleted"
+    );
+
+  if (areAllRequiredInputsValid == false) {
+    return false;
+  }
+
+  const areAllRequiredInputsUpdated = requiredInputs.every((id) =>
     attachmentIdsUpdate?.includes(id)
   );
 
@@ -64,10 +77,10 @@ export function checkAttachments(requiredInputs, attachmentIdsUpdate, values) {
 
   return areAllRequiredInputsUpdated && !hasDeletedRequiredAttachments;
 }
+
 export const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-
-export const  formatIban = (value) => {
+export const formatIban = (value) => {
   const hasSpaces = /\s/.test(value);
   if (hasSpaces) {
     return value;

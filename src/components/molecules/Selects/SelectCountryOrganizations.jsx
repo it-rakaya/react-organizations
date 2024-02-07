@@ -26,7 +26,7 @@ export default function SelectCountryOrganizations({
     enabled: !!orgData?.organizations?.id,
   });
   const options = countries?.country_organization.map((item) => ({
-    value: item.country_id,
+    value: item.id,
     label: item.country_name,
   }));
 

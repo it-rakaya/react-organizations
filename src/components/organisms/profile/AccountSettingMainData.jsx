@@ -13,8 +13,10 @@ import { useFormikContext } from "formik";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import { checkAttachments } from "../../../utils/helpers";
 import { useIsRTL } from "../../../hooks/useIsRTL";
+import { object } from "yup";
 
 function AccountSettingMainData({ userData, isPending, attachments_register }) {
+  console.log("🚀 ~ AccountSettingMainData ~ attachments_register:", attachments_register)
   const { values, initialValues , errors } = useFormikContext();
   const isRTL = useIsRTL();
   const requiredInputs =
@@ -117,9 +119,10 @@ function AccountSettingMainData({ userData, isPending, attachments_register }) {
           {attachments_register?.attachment_labels
             ?.filter((item) => item.id !== 3)
             .map((attachmentLabel) => {
-              const userAttachment = userData?.attachmentUrl?.find(
+              const userAttachment = [userData?.attachmentUrl]?.find(
                 (ua) => ua.attachment_label_id === attachmentLabel.id
               );
+              console.log("🚀 ~ .map ~ userAttachment:", userAttachment)
               return (
                 <div key={attachmentLabel.id}>
                   <UploadDoc
