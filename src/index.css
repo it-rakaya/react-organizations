@@ -1056,9 +1056,7 @@ input {
   padding: 0 5px;
 }
 
-.dark .decryption_orga p {
-  color: white;
-}
+
 
 .dark .MuiList-root.MuiList-padding.MuiMenu-list {
   @apply bg-dark-primary text-white
@@ -1089,8 +1087,8 @@ input {
 }
 
 
-.dark .decryption_orga div {
-  padding: 10px 5px 2px;
+.dark .decryption_orga div , .dark .decryption_orga p {
+  padding: 10px 10px ;
   text-align: start;
 }
 

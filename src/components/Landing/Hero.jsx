@@ -46,7 +46,7 @@ const Hero = () => {
         {/* description */}
         <div
           dangerouslySetInnerHTML={{ __html: orgData?.organizations?.about_us }}
-          className={`w-full mt-5 overflow-scroll text-xl font-bold text-center rounded-[10px] md:text-start 3xl:text-2xl scroll_main ${orgData?.organizations?.about_us ? "dark:bg-white" :""} `}
+          className={`w-full mt-5 decryption_orga overflow-scroll text-xl font-bold text-center rounded-[10px] md:text-start 3xl:text-2xl scroll_main ${orgData?.organizations?.about_us ? "dark:bg-white" :""} `}
         ></div>
         <div
           className={`flex flex-col gap-4 mt-5 ${!user ? " xl:flex-row" : ""}`}
