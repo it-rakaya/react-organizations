@@ -1143,3 +1143,8 @@ rtl-1xc3v61-indicatorContainer{
  .MuiDataGrid-columnHeaderTitle{
 text-transform: capitalize;
 }
+.MuiDivider-root.MuiDivider-fullWidth{
+  border-style: dashed;
+  border-color: #9f968559;
+  border-width: 1px;
+}

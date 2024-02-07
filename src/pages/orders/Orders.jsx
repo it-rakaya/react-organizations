@@ -163,9 +163,9 @@ export default function Orders() {
               </p>
               /
               <p className="text-[15px] dark:text-white" dir="rtl">
-                {convertArabicToEnglish(
-                  convertToHijri(row?.created_at?.slice(0, 10))
-                )}
+                {convertToHijri(row?.created_at).hy}-{" "}
+                {convertToHijri(row?.created_at).hd}-{" "}
+                {convertToHijri(row?.created_at).hm}
               </p>
               {t("H")}
             </div>

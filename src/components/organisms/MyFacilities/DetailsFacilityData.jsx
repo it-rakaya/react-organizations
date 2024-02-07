@@ -63,7 +63,7 @@ function DetailsFacilityData({ data, childSection, colorHead, parentSection }) {
         </p>
       </div>
       <div className="col-span-2 pt-10 pb-8">
-        <Divider />
+        <Divider  />
       </div>
 
       <div className="col-span-2">

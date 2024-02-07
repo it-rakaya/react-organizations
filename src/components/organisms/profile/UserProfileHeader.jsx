@@ -141,14 +141,11 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
             </p>
             <div className="flex gap-1">
               <p className=" dark:text-white">{user?.birthday}</p>
-              <span className=" dark:text-white">
-              /
-                
-              </span>
+              <span className=" dark:text-white">/</span>
               <p className="dark:text-white" dir="rtl">
-                {user?.birthday
-                  ? convertArabicToEnglish(convertToHijri(user?.birthday))
-                  : ""}
+                {convertToHijri(user?.birthday).hy}-{" "}
+                {convertToHijri(user?.birthday).hd}-{" "}
+                {convertToHijri(user?.birthday).hm}
                 {t("H")}
               </p>
             </div>
@@ -164,18 +161,19 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
           </div>
           <div className="">
             <div className="flex flex-col col-span-2 gap-2 py-2 mt-5 border-b md:col-span-1">
-              <p style={{ color: theme.palette.primary?.main }} >
+              <p style={{ color: theme.palette.primary?.main }}>
                 {t("National ID Expired")}
               </p>
               <div className="flex gap-1">
                 <p className="dark:text-white">{user?.national_id_expired} /</p>
 
                 <p className="dark:text-white" dir="rtl">
-                  {convertArabicToEnglish(
-                    user?.national_id_expired !== "0000-00-00"
-                      ? convertToHijri(user?.national_id_expired)
-                      : ""
-                  )}
+                  {/* {user?.national_id_expired !== "0000-00-00"
+                    ? convertToHijri(user?.national_id_expired)
+                    : ""} */}
+                  {convertToHijri(user?.national_id_expired).hy}-{" "}
+                  {convertToHijri(user?.national_id_expired).hd}-{" "}
+                  {convertToHijri(user?.national_id_expired).hm}
                   {t("H")}
                 </p>
               </div>

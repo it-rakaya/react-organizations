@@ -59,9 +59,10 @@ export default function DetailsOrder({ data }) {
               </p>
               <span className="text-black font-black-bold dark:text-white"> /</span>
               <p className="dark:text-white text-[15px]" dir="rtl">
-                {convertArabicToEnglish(
-                 convertToHijri(data?.created_at?.slice(0, 10))
-                )}
+              
+                {convertToHijri(data?.created_at).hy}-{" "}
+                {convertToHijri(data?.created_at).hd}-{" "}
+                {convertToHijri(data?.created_at).hm}
               </p>
               <span className="text-black font-black-bold dark:text-white">
                 {t("H")}
