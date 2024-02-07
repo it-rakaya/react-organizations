@@ -30,7 +30,7 @@ export default function DetailsOrder({ data }) {
 
   return (
     <div className="overflow-hidden" style={{ height: "calc(90vh - 2rem)" }}>
-      <div className="mt-10 md:px-10 ">
+      <div className="mt-10 md:px-0 ">
         <div className="col-span-2">
           <MainHeader
             title={t("Details Order")}
@@ -85,7 +85,7 @@ export default function DetailsOrder({ data }) {
       </div>
 
       <TabContext value={value}>
-        <div className="mt-5 md:px-10">
+        <div className="mt-5 md:px-0">
           <TabList onChange={handleChange} aria-label="nav tabs example">
             <Tab
               value="1"

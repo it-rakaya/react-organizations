@@ -15,28 +15,18 @@ const Footer = () => {
     <div className=" w-[100%]  mt-5 rounded-md ">
       <div className="w-[98%] overflow-hidden m">
         <div
-          className={` flex  justify-center flex-col md:flex-row items-center  p-2 gap-1`}
+          className={` flex  justify-center  md:flex-row items-center  p-2 gap-1`}
         >
-          {/* <h2 className="text-sm text-center text-black md:text-base dark:text-white">
-            <span className=" text-[14px]">
-              {t("landing.rights")} لدى شركة ركايا
-            </span>
-            <span></span>{" "}
-            <span className="text-xs text-black dark:text-white  text-[14px]">
-              &copy;
-            </span>
-            <span className=" text-[14px]">{new Date().getUTCFullYear()}</span>
-          </h2> */}
-          <h2 className="text-[12px] md:text-[14px]  text-center text-black dark:text-white">
+          <h2 className="text-[8px] md:text-[14px]  text-center text-black dark:text-white">
             {t(`All rights reserved`)}
           </h2>
           <span>
             <Heart />
           </span>
-          <span className="text-[12px] md:text-[14px]  text-center text-black dark:text-white">
+          <span className="text-[8px] md:text-[14px]  text-center text-black dark:text-white">
             {t("at Rakaya Management and Food Consulting Company ©")}
           </span>
-          <span className="text-[12px] md:text-[14px]  text-center text-black dark:text-white">
+          <span className="text-[8px] md:text-[14px]  text-center text-black dark:text-white">
             {new Date().getFullYear()}
           </span>
         </div>

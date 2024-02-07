@@ -9,13 +9,13 @@ import Icon from "@mdi/react";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Tab } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { t } from "i18next";
 import { useState } from "react";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 import AdditionalInformationData from "./AditionalInformationData";
 import AttachmentsData from "./AttachmentsData";
 import DetailsFacilityData from "./DetailsFacilityData";
 import NationalAdressData from "./NationalAdressData";
-import i18next, { t } from "i18next";
-import { useIsRTL } from "../../../hooks/useIsRTL";
 
 export default function DetailsFacility({ data, className, style }) {
   const theme = useTheme();
@@ -27,7 +27,7 @@ export default function DetailsFacility({ data, className, style }) {
     setValue(newValue);
   };
   const parentSection =
-    "grid grid-cols-1 p-4 md:px-5 md:grid-cols-2 md:gap-x-20";
+    "grid grid-cols-1 p-4 md:px-5 md:grid-cols-2 md:gap-x-5";
   const childSection =
     "flex flex-col col-span-2 py-2 mt-5 border-b gap-2 md:col-span-1";
 
