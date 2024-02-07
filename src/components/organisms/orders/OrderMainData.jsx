@@ -12,7 +12,6 @@ import SelectCountryOrganizations from "../../molecules/Selects/SelectCountryOrg
 
 export default function OrderMainData({ setShow, show, isPending }) {
   const { values } = useFormikContext();
-  console.log("🚀 ~ OrderMainData ~ values:", values)
   const theme = useTheme();
   const { data: extra_questions } = useFetch({
     endpoint: `orders/create?organization_service_id=${values.organization_service_id}`,
@@ -24,7 +23,6 @@ export default function OrderMainData({ setShow, show, isPending }) {
       .filter((item) => item?.is_required === "1")
       .map((item) => item?.id) || [];
 
-      console.log("🚀 ~ OrderMainData ~ extra_questions:", extra_questions)
   const allRequiredQuestionsFound = requiredQuestionIds?.every(
     (id) =>
       Object.keys(values).includes(`answers${id}`) &&

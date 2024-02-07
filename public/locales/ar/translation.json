@@ -288,6 +288,8 @@
   "Please select the facility's bank":"يرجى اختيار البنك الخاص بالمنشأة",
   "Please enter the facility's IBAN number":"يرجى ادخال رقم الايبان الخاص بالمنشأة",
   "IBAN Number": "رقم الايبان",
+  "Nationalities":"الجنسيات",
+  "There is no nationalities":"لايوجد جنسيات",
   "Arabic": "عربي",
   "Choose Bank": "اختر البنك",
   "the account name required": "اسم الحساب مطلوب",

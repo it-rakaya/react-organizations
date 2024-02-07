@@ -17,7 +17,7 @@ function FacilityControl({
   idFacility,
   DetailsFacilities,
 }) {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(update ? true : false);
   const { values } = useFormikContext();
   const { orgData } = UseOrg();
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ function FacilityControl({
   });
   useEffect(() => {
     if (!open) {
-      setChecked(false);
+      setChecked(update ?true :false);
     }
   }, [open]);
 
@@ -58,7 +58,11 @@ function FacilityControl({
         onClose={() => setOpen(false)}
         Children={
           <div className="pt-10 !flex gap-3 !items-center !justify-center !flex-col">
-            <TermsAndCondition checked={checked} setChecked={setChecked} style={{height:"calc(100vh - 26rem)"}}/>
+            <TermsAndCondition
+              checked={checked}
+              setChecked={setChecked}
+              style={{ height: "calc(100vh - 26rem)" }}
+            />
 
             <ButtonComp
               type={"submit"}
@@ -109,7 +113,7 @@ function FacilityControl({
               disabled={!checked}
               variant="contained"
             >
-              {t("Save")}
+              {update ? t("Edit") : t("Save")}
             </ButtonComp>
           </div>
         }

@@ -60,8 +60,7 @@ const Login = () => {
   const name = isRTL
     ? orgData?.organizations?.name_ar
     : orgData?.organizations?.name_en;
-  console.log("🚀 ~ Login ~ name:", name);
-  // const { skin } = settings;
+
   const token = Cookies.get("token");
   const organizationName = !name ? t("landing.organizationName") : name;
   useEffect(() => {

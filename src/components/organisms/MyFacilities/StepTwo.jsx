@@ -8,7 +8,6 @@ import { useIsRTL } from "../../../hooks/useIsRTL";
 
 export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
   const detailsFacilitiesData = attachments_facilities?.attachment_labels;
-  console.log("🚀 ~ StepTwo ~ detailsFacilitiesData:", detailsFacilitiesData)
   const images = [
     { path: "/nationalAddress.png" },
     { path: "/LancesWork.png" },

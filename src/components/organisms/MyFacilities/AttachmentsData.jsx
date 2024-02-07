@@ -8,7 +8,6 @@ import { t } from "i18next";
 import { useIsRTL } from "../../../hooks/useIsRTL";
 
 function AttachmentsData({ data, colorHead }) {
-  console.log("🚀 ~ AttachmentsData ~ data:", data)
   const isRTL = useIsRTL()
   return (
     <div className="pt-5 md:pt-7">

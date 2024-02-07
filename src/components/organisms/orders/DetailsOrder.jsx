@@ -14,9 +14,9 @@ import NotesOrder from "../../molecules/NotesOrder";
 import DetailsFacility from "../MyFacilities/DetailsFacility";
 import { useIsRTL } from "../../../hooks/useIsRTL";
 import Line from "../../atoms/Line";
+import NationalitiesOrder from "../../molecules/NationalitiesOrder";
 
 export default function DetailsOrder({ data }) {
-  console.log("🚀 ~ DetailsOrder ~ data:", data);
   const [value, setValue] = useState("1");
   const theme = useTheme();
   const isRTL = useIsRTL();
@@ -24,7 +24,6 @@ export default function DetailsOrder({ data }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log(data?.status?.name_en == "Rejected");
   // const mainColor = theme?.palette?.primary?.main;
   const Rejected = data?.status?.name_en == "Rejected";
   // const Rejected =6;
@@ -113,6 +112,17 @@ export default function DetailsOrder({ data }) {
             )} */}
             {!Rejected && (
               <Tab
+                value="4"
+                component="a"
+                label={
+                  <h2 className="font-bold text-black dark:text-white">
+                    {t("Nationalities")}
+                  </h2>
+                }
+              />
+            )}
+            {!Rejected && (
+              <Tab
                 value="3"
                 component="a"
                 label={
@@ -166,6 +176,13 @@ export default function DetailsOrder({ data }) {
                     className="detailsOrderFacility"
                     style={{ height: "calc(100vh - 28rem)" }}
                   />
+                </div>
+              </div>
+            </TabPanel>
+            <TabPanel value="4" className="pt-0">
+              <div>
+                <div className="">
+                  <NationalitiesOrder data={data?.country_organization} />
                 </div>
               </div>
             </TabPanel>

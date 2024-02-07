@@ -5,7 +5,6 @@ import { t } from "i18next";
 import CardStatsHorizontal from "../../molecules/card-stats-horizontal";
 
 function OrderInfo({ Orders }) {
-  console.log("🚀 ~ OrderInfo ~ Orders:", Orders);
 
   const NewOrders = Orders?.all_user_orders?.filter(
     (obj) => obj.status?.name_en == "New"

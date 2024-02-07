@@ -231,7 +231,7 @@ export default function Orders() {
                             details: "Additional details here",
                             function: () => {
                               if (row.status_id == Canceled) {
-                                return console.log("ddd");
+                                return;
                               } else {
                                 setOrderId(row.id);
                                 setOpenCancelOrder(true);
