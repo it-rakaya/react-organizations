@@ -1,22 +1,23 @@
 /* eslint-disable react/prop-types */
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { Typography } from "@mui/material";
+import { t } from "i18next";
 import IconifyIcon from "../atoms/icons/IconifyIcon";
 import ViewICon from "../atoms/icons/ViewICon";
 import Fancybox from "./Fancybox";
-import { t } from "i18next";
 
 export default function PreviewImageLink({
   url,
   eyeIcon,
   info,
   messageInfo,
-  nameLabel,
+  nameLabel ,
   setOpenModal,
 }) {
   let filename = nameLabel;
-  filename = filename?.replace(/[0-9().]/g, "");
-  filename = filename?.replace(/_/g, " ")?.slice(0, -4);
+  filename = filename?.substring(filename.indexOf('_') + 1);
+  
+  // filename = filename?.replace(/_/g, " ")?.slice(0, -4);
   return (
     <div className="">
       <Fancybox

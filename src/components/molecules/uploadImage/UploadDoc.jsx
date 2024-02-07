@@ -37,7 +37,7 @@ function UploadDoc({
   const [invalidFormat, setInvalidFormat] = useState(false);
   let filename = nameLabel;
   filename = filename?.replace(/[0-9().-]/g, "");
-  filename = filename?.replace(/_/g, " ")?.slice(0, -4);
+  // filename = filename;
   const [openModal, setOpenModal] = useState(false);
   const [isLargeFile, setIsLargeFile] = useState(false);
 
