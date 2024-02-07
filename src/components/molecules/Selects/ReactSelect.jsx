@@ -51,6 +51,7 @@ export default function ReactSelect({
           }
           noOptionsMessage={() => t("Not Found Data")}
           isMulti={isMulti}
+          clos
           onBlur={handleBlur}
           onChange={(option) =>
             isMulti
@@ -97,6 +98,7 @@ export default function ReactSelect({
             }),
             multiValueRemove: (styles, { data }) => ({
               ...styles,
+              color: 'white',
               background:theme.palette.primary?.main,
               ':hover': {
                 backgroundColor: data.color,
