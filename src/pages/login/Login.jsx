@@ -141,15 +141,15 @@ const Login = () => {
                     marginTop: "10px",
                   }}
                 >
-                  <Typography
-                    sx={{ mx: 2 }}
-                    className="!text-black dark:!text-white"
+                  <span
+                 
+                    className="!text-black dark:!text-white mx-2"
                   >
                     {t("Don't have an account yet ?")}
-                  </Typography>
-                  <Typography
+                  </span>
+                  <span
                     // to="/register"
-                    sx={{
+                    style={{
                       color: theme?.palette?.primary?.main,
                       textDecoration: "none",
                     }}
@@ -159,7 +159,7 @@ const Login = () => {
                     }
                   >
                     {t("Create an account")}
-                  </Typography>
+                  </span>
                 </Box>
               </BoxWrapper>
             </Box>

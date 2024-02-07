@@ -985,7 +985,7 @@ input {
 }
 
 [dir="ltr"] .MuiStepConnector-root.MuiStepConnector-horizontal.MuiStepConnector-alternativeLabel {
-  transform: translateX(-113%);
+  transform: translateX(-117%);
 }
 
 @media (max-width:1300px) {
@@ -1136,4 +1136,10 @@ input {
 .react-datepicker__navigation.react-datepicker__navigation--previous, .react-datepicker__navigation.react-datepicker__navigation--next {
   background-color: rgb(255, 255, 255);
   border-radius: 50%;
+}
+rtl-1xc3v61-indicatorContainer{
+
+}
+ .MuiDataGrid-columnHeaderTitle{
+text-transform: capitalize;
 }

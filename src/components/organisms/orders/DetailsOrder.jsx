@@ -20,7 +20,7 @@ export default function DetailsOrder({ data }) {
     setValue(newValue);
   };
   // const mainColor = theme?.palette?.primary?.main;
-  const Rejected = 5;
+  const Rejected = 6;
   return (
     <div className="overflow-hidden" style={{ height: "calc(90vh - 2rem)" }}>
       <div className="mt-10 md:px-10 ">
@@ -52,15 +52,15 @@ export default function DetailsOrder({ data }) {
             <p className="dark:text-white">{data?.code}</p>
           </div>
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold dark:text-white"> {t("Date created")}</p>
+            <p className="font-bold dark:text-white"> {t("Creation Date")}</p>
             <div className="flex gap-1">
-              <p className="dark:text-white">
+              <p className="dark:text-white text-[15px]">
                 {data?.created_at?.slice(0, 10)}
               </p>
               <span className="text-black font-black-bold dark:text-white"> /</span>
-              <p className="dark:text-white">
+              <p className="dark:text-white text-[15px]" dir="rtl">
                 {convertArabicToEnglish(
-                  convertToHijri(data?.created_at?.slice(0, 10))
+                 convertToHijri(data?.created_at?.slice(0, 10))
                 )}
               </p>
               <span className="text-black font-black-bold dark:text-white">

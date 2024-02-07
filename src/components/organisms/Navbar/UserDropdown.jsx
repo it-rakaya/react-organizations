@@ -117,7 +117,7 @@ const UserDropdown = (props) => {
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Badge
               overlap="circular"
-              badgeContent={<BadgeContentSpan />}
+              // badgeContent={<BadgeContentSpan />}
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "right",

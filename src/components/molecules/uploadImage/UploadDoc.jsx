@@ -30,6 +30,7 @@ function UploadDoc({
   isRequired,
   dynamic = false,
   nameLabel,
+  labelClassName
 }) {
   const { setFieldValue, values } = useFormikContext();
   const theme = useTheme();
@@ -88,8 +89,8 @@ function UploadDoc({
   const shouldShowUploadIcon = !files?.length || files.every((file) => !file);
 
   return (
-    <div>
-      <Label className={"text-center"}>
+    <div className="w-full">
+      <Label className={`text-center ${labelClassName} `}>
         {label}
         <span className="mx-1 text-red-500">
           {isRequired == "1" ? "*" : ""}
