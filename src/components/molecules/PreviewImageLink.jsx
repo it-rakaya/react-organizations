@@ -12,12 +12,11 @@ export default function PreviewImageLink({
   info,
   messageInfo,
   nameLabel ,
-  setOpenModal,
+
 }) {
   let filename = nameLabel;
   filename = filename?.substring(filename.indexOf('_') + 1);
-  
-  // filename = filename?.replace(/_/g, " ")?.slice(0, -4);
+  filename = filename?.slice(0, -4);
   return (
     <div className="">
       <Fancybox
