@@ -80,19 +80,15 @@ export default function DatePickerComp({
               className="bg-white dark:bg-dark-primary rounded-[10px] w-full ]"
               selected={date}
               id="month-year-dropdown"
-              // placeholderText="MM-DD-YYYY"
               placeholderText="MM/DD/YYYY"
               locale={i18n.language}
               sx={{
-                // cursor:"pointer",
                 background: "white",
                 borderRadius: "10px",
                 "& .MuiInputBase-input::placeholder": {
-                  // Adding this line
                   opacity: 1,
                 },
               }}
-              // popperPlacement={popperPlacement}
               onChange={(newValue) => {
                 if (newValue === null) {
                   // Clear the fields and set the date to null

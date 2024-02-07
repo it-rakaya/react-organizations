@@ -90,6 +90,19 @@ export default function ReactSelect({
                   : defaultStyles[":active"].backgroundColor,
               },
             }),
+            multiValueLabel: (styles, { data }) => ({
+              ...styles,
+              background:theme.palette.primary?.main,
+              color:"white"
+            }),
+            multiValueRemove: (styles, { data }) => ({
+              ...styles,
+              background:theme.palette.primary?.main,
+              ':hover': {
+                backgroundColor: data.color,
+                color: 'white',
+              },
+            }),
           }}
           theme={(theme) => ({
             ...theme,
@@ -100,6 +113,7 @@ export default function ReactSelect({
               primary: "#eee",
             },
           })}
+          
           classNames={{
             control: () => "dark:bg-transparent  dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",

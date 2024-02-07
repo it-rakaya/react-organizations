@@ -133,7 +133,7 @@ export default function RegisterForm() {
               }}
               className=" dark:text-white"
             >
-              {t("Sign in instead")}
+              {t("Login")}
             </Link>
           </Box>
         </Form>

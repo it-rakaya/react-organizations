@@ -276,7 +276,7 @@ main,
   max-width: 83%;
   /* min-width: 82%; */
 
-  width:100% !important;
+  width: 100% !important;
   animation-name: mui-auto-fill-cancel;
   animation-duration: 10ms;
   color: black;
@@ -287,12 +287,14 @@ main,
   border: 1px solid #d8d8dd !important;
   /* width: 100% !important; */
 }
+
 @media (max-width:550px) {
-  .react-tel-input .form-control{
-  max-width: 81%;
+  .react-tel-input .form-control {
+    max-width: 81%;
 
   }
 }
+
 .dark .react-tel-input .form-control {
   @apply bg-dark-primary
 }
@@ -1087,7 +1089,51 @@ input {
 }
 
 
-.dark .decryption_orga div  {
-  padding: 10px 5px 2px ;
+.dark .decryption_orga div {
+  padding: 10px 5px 2px;
   text-align: start;
+}
+
+.inputTable .MuiInputBase-input {
+  padding: 8px !important;
+}
+
+.react-datepicker__current-month {
+  display: none;
+}
+
+.react-datepicker__header__dropdown {
+  margin: 6px 0;
+}
+
+.react-datepicker__year-read-view,
+.react-datepicker__month-read-view {
+  visibility: visible !important;
+}
+
+.dark .react-datepicker__month-container,
+.dark .react-datepicker__month-dropdown,
+.dark .react-datepicker__year-dropdown {
+  @apply !bg-dark-primary
+}
+
+.dark .react-datepicker__header {
+  @apply !bg-dark-primary
+}
+
+.dark .react-datepicker__day, .dark .react-datepicker__month-read-view--selected-month,.dark .react-datepicker__year-read-view--selected-year, .dark .react-datepicker__day-name, .dark .react-datepicker__month-option, .dark .react-datepicker__year-option {
+  @apply !text-white
+}
+
+.dark .react-datepicker__month-read-view--down-arrow, .dark .react-datepicker__year-read-view--down-arrow, .dark .react-datepicker__navigation {
+  border-color: white !important
+}
+
+.dark .react-datepicker__triangle {
+  @apply !fill-dark-primary !text-dark-primary
+}
+
+.react-datepicker__navigation.react-datepicker__navigation--previous, .react-datepicker__navigation.react-datepicker__navigation--next {
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
 }

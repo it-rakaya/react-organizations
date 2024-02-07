@@ -69,7 +69,7 @@ export default function SelectDistrict({
   if (!filteredOptions || filteredOptions.length === 0) {
     filteredOptions?.push({
       value: other?.id,
-      label: other?.name_ar,
+      label:isRTL ?  other?.name_ar :  other?.name_en,
       city_id: values.city_id,
     });
   }

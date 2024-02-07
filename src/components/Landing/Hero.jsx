@@ -58,7 +58,7 @@ const Hero = () => {
                 style={{ backgroundColor: theme?.palette?.primary?.main }}
                 className={`${btnStyles} text-white transition-shadow duration-300 hover:shadow-lg `}
               >
-                {t("login")}
+                {t("Login")}
               </button>
 
               <button
@@ -71,7 +71,7 @@ const Hero = () => {
                 }}
                 className={`${btnStyles} border-2  transition-shadow duration-300 hover:shadow-lg`}
               >
-                {t("landing.register")}
+                {t("Register")}
               </button>
             </>
           ) : (

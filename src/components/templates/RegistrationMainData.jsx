@@ -15,7 +15,6 @@ import UploadDoc from "../molecules/uploadImage/UploadDoc";
 import { useIsRTL } from "../../hooks/useIsRTL";
 
 function RegistrationMainData({ attachments_register, setOpen, isPending }) {
-  console.log("🚀 ~ RegistrationMainData ~ attachments_register:", attachments_register)
   const { setFieldValue, values, errors } = useFormikContext();
   const [checked, setChecked] = useState(false);
 const isRTL = useIsRTL()
@@ -178,7 +177,7 @@ const isRTL = useIsRTL()
         }
         className={"!mt-0"}
       >
-        {t("Sign up")}
+        {t("Register")}
       </ButtonComp>
     </div>
   );

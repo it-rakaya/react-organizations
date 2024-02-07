@@ -145,7 +145,7 @@ const Login = () => {
                     sx={{ mx: 2 }}
                     className="!text-black dark:!text-white"
                   >
-                    {t("New on our platform?")}
+                    {t("Don't have an account yet ?")}
                   </Typography>
                   <Typography
                     // to="/register"
@@ -153,7 +153,7 @@ const Login = () => {
                       color: theme?.palette?.primary?.main,
                       textDecoration: "none",
                     }}
-                    className="cursor-pointer"
+                    className="cursor-pointer "
                     onClick={() =>
                       closeRegistration == 1 ? setOpenModal(true) : setOpen(true)
                     }

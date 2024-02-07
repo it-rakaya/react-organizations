@@ -36,7 +36,7 @@ export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
               action={() => CancelOrder({})}
               loading={isPending}
             >
-              {t("CONFIRM")}
+              {t("Confirm")}
             </ButtonComp>
             <ButtonComp
               className="!mx-2 !border-2 border-solid border-contained !text-contained !w-[90px] !h-[40px]"

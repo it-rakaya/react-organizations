@@ -15,6 +15,7 @@ const TableHeader = (props) => {
 
   return (
     <Box
+    className='inputTable'
       sx={{
         p: 5,
         pb: 3,

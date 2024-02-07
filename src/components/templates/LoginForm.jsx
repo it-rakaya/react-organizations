@@ -90,7 +90,7 @@ export default function LoginForm() {
               disabled={valueOTP && valueOTP?.length != 4 ? true : false}
               className={"ltr:!mt-5 "}
             >
-              {t("login")}
+              {t("Login")}
             </ButtonComp>
           </div>
         </Form>

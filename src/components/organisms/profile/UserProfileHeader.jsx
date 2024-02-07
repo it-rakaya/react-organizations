@@ -88,7 +88,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                   ?.toLowerCase()
                   .endsWith(".pdf") ? (
                   <div
-                    className="rounded-[8px] "
+                    className="rounded-[8px] w-[40px] h-[40px] flex items-center justify-center cursor-pointer"
                     style={{ background: theme?.palette?.primary.main }}
                   >
                     <PadgePreview
@@ -98,7 +98,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                   </div>
                 ) : (
                   <div
-                    className="px-1 rounded-[8px] bg-primary"
+                    className="rounded-[8px] w-[40px] h-[40px] flex items-center justify-center cursor-pointer"
                     style={{
                       background: theme?.palette?.primary.main,
                       opacity: "0,8",
