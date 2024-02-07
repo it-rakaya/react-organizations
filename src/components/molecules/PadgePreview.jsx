@@ -11,8 +11,9 @@ export default function PadgePreview({ url, label }) {
             infinite: false,
           },
         }}
+
       >
-        <a data-fancybox="gallery" href={url} className="text-[10px] text-white px-1 py-0 flex">
+        <a data-fancybox="gallery" href={url} className="text-[10px] text-white px-1 py-0 flex rounded-md ">
           {label}
         </a>
       </Fancybox>

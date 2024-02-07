@@ -41,7 +41,8 @@ export default function BaseInputField({
     let value = e.target.value;
     if (type === "custom") {
       const numericRegex = /^[0-9]+$/;
-      if (!numericRegex.test(value)) {
+      value = value.replace(/^0+/, ''); 
+      if (!numericRegex.test(value) || value === '') {
         setFieldValue(name, "");
         return;
       }

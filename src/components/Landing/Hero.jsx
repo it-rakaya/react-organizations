@@ -7,6 +7,7 @@ import { UseOrg } from "../../context/organization provider/OrganizationProvider
 import ModalComp from "../atoms/ModalComp";
 import Signature from "../molecules/Signature";
 import { useIsRTL } from "../../hooks/useIsRTL";
+import RegistrationClosed from "../molecules/RegistrationClosed";
 const Hero = () => {
   const navigate = useNavigate();
   const btnStyles =
@@ -18,6 +19,9 @@ const Hero = () => {
   const theme = useTheme();
   const language = i18n.language;
   const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const closeRegistration = orgData?.organizations?.close_registeration;
+
   const isRTL = useIsRTL();
 
   return (
@@ -42,8 +46,7 @@ const Hero = () => {
         {/* description */}
         <div
           dangerouslySetInnerHTML={{ __html: orgData?.organizations?.about_us }}
-          className="w-full mt-5 overflow-scroll text-xl font-bold text-center md:text-start 3xl:text-2xl scroll_main decryption_orga"
-          // style={{ height: "calc(100vh - 43rem)" }}
+          className={`w-full mt-5 overflow-scroll text-xl font-bold text-center rounded-[10px] md:text-start 3xl:text-2xl scroll_main ${orgData?.organizations?.about_us ? "dark:bg-white" :""} `}
         ></div>
         <div
           className={`flex flex-col gap-4 mt-5 ${!user ? " xl:flex-row" : ""}`}
@@ -55,18 +58,20 @@ const Hero = () => {
                 style={{ backgroundColor: theme?.palette?.primary?.main }}
                 className={`${btnStyles} text-white transition-shadow duration-300 hover:shadow-lg `}
               >
-                {t("landing.login")}
+                {t("Login")}
               </button>
 
               <button
-                onClick={() => setOpen(true)}
+                onClick={() =>
+                  closeRegistration ==1 ? setOpenModal(true) : setOpen(true)
+                }
                 style={{
                   borderColor: theme?.palette?.primary?.main,
                   color: theme?.palette?.primary?.main,
                 }}
                 className={`${btnStyles} border-2  transition-shadow duration-300 hover:shadow-lg`}
               >
-                {t("landing.register")}
+                {t("Register")}
               </button>
             </>
           ) : (
@@ -85,6 +90,12 @@ const Hero = () => {
         className="!max-w-[500px] !block  "
         onClose={() => setOpen(false)}
         Children={<Signature />}
+      />
+      <ModalComp
+        open={openModal}
+        className="!max-w-[500px] !block  "
+        onClose={() => setOpenModal(false)}
+        Children={<RegistrationClosed />}
       />
     </div>
   );

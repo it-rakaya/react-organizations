@@ -53,7 +53,7 @@ function Landing() {
       {/* page content */}
       <Navbar  className="fixed bg-[#F7F7F9]"/>
       {/* content */}
-      <div className="pt-[13%]">
+      <div className="pt-[13%] mt-10 md:mt-0">
         <Hero />
         <div className="my-20">
           <Footer />

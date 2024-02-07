@@ -78,7 +78,7 @@ function CardFacility({paginatedFacilities , setOpen , setDetailsItem , setOpenA
                 setFacultyID(item?.id);
               }}
             >
-              {t("ADD EMPLOYEE")}
+              {t("Add Employee")}
             </ButtonComp>
           </Card>
         </Grid>

@@ -24,7 +24,7 @@ function DeleteDoc({ setOpenModal, handleRemoveFile, files }) {
               setOpenModal(false);
             }}
           >
-            {t("CONFIRM")}
+            {t("Confirm")}
           </ButtonComp>
           <ButtonComp
             className="!mx-1 !border-solid !w-[120px] !h-[40px] !mt-0  dark:!text-white"

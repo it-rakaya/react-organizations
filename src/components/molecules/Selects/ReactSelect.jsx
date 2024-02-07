@@ -20,6 +20,7 @@ export default function ReactSelect({
   images,
   options,
   selectedValue,
+  isMulti,
   placeholder,
 }) {
   const { setFieldValue, handleBlur } = useFormikContext();
@@ -46,11 +47,20 @@ export default function ReactSelect({
           name={name}
           value={selectedValue}
           placeholder={
-            <div className="select-placeholder-text">{placeholder}</div>
+            <div className="capitalize select-placeholder-text">{placeholder}</div>
           }
           noOptionsMessage={() => t("Not Found Data")}
+          isMulti={isMulti}
+          clos
           onBlur={handleBlur}
-          onChange={(option) => setFieldValue(name, option.value)}
+          onChange={(option) =>
+            isMulti
+              ? setFieldValue(
+                  name,
+                  option.map((item) => item.value)
+                )
+              : setFieldValue(name, option.value)
+          }
           styles={{
             control: (baseStyles, { isFocused }) => ({
               ...baseStyles,
@@ -81,6 +91,20 @@ export default function ReactSelect({
                   : defaultStyles[":active"].backgroundColor,
               },
             }),
+            multiValueLabel: (styles, { data }) => ({
+              ...styles,
+              background:theme.palette.primary?.main,
+              color:"white"
+            }),
+            multiValueRemove: (styles, { data }) => ({
+              ...styles,
+              color: 'white',
+              background:theme.palette.primary?.main,
+              ':hover': {
+                backgroundColor: data.color,
+                color: 'white',
+              },
+            }),
           }}
           theme={(theme) => ({
             ...theme,
@@ -91,8 +115,9 @@ export default function ReactSelect({
               primary: "#eee",
             },
           })}
+          
           classNames={{
-            control: () => "dark:bg-dark-primary  dark:border-[#555d64]",
+            control: () => "dark:bg-transparent  dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",
             menu: () =>
               " bg-white dark:bg-dark-primary dark:text-white border rounded-md ",

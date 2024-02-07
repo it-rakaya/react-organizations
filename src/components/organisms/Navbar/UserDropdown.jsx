@@ -83,12 +83,13 @@ const UserDropdown = (props) => {
       <Badge
         overlap="circular"
         onClick={handleDropdownOpen}
-        sx={{ mx: 2, cursor: "pointer" }}
-        badgeContent={<BadgeContentSpan />}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
+        sx={{ mx: 2, cursor: "pointer" , }}
+        // badgeContent={<BadgeContentSpan />}
+        // anchorOrigin={{
+        //   vertical: "bottom",
+        //   horizontal: "right",
+          
+        // }}
       >
         <Avatar
           alt="John Doe"
@@ -116,7 +117,7 @@ const UserDropdown = (props) => {
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Badge
               overlap="circular"
-              badgeContent={<BadgeContentSpan />}
+              // badgeContent={<BadgeContentSpan />}
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "right",

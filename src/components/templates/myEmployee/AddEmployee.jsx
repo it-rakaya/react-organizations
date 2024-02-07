@@ -83,7 +83,7 @@ export default function AddEmployee({
           national_id: "",
           facility_id: "",
         }}
-        // validationSchema={validationSchema}
+        validationSchema={validationSchema}
         onSubmit={(values) => handleSubmit(values)}
       >
         {() => (

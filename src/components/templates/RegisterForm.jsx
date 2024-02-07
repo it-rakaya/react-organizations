@@ -126,10 +126,14 @@ export default function RegisterForm() {
             </Typography>
             <Link
               to="/login"
-              style={{ color: theme.palette.primary.main, textDecoration: "none" }}
+              style={{
+                color: theme.palette.primary.main,
+                textDecoration: "none",
+                mx: 2,
+              }}
               className=" dark:text-white"
             >
-              {t("Sign in instead")}
+              {t("Login")}
             </Link>
           </Box>
         </Form>
@@ -140,7 +144,10 @@ export default function RegisterForm() {
         onClose={() => setOpen(false)}
         Children={
           <>
-            <TermsAndCondition hidden={true} style={{height:"calc(100vh - 20rem)"}} />
+            <TermsAndCondition
+              hidden={true}
+              style={{ height: "calc(100vh - 20rem)" }}
+            />
           </>
         }
       />

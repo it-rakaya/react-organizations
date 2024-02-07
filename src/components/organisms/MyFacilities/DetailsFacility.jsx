@@ -15,11 +15,13 @@ import AttachmentsData from "./AttachmentsData";
 import DetailsFacilityData from "./DetailsFacilityData";
 import NationalAdressData from "./NationalAdressData";
 import i18next, { t } from "i18next";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 
 export default function DetailsFacility({ data, className, style }) {
   const theme = useTheme();
   const mainColor = theme?.palette?.primary?.main;
   const [value, setValue] = useState("1");
+  const isRTL = useIsRTL()
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -34,17 +36,17 @@ export default function DetailsFacility({ data, className, style }) {
     {
       value: "1",
       icon: mdiOfficeBuildingOutline,
-      label: t("Facility Information"),
+      label: t("Facility Info"),
     },
     {
       value: "2",
       icon: mdiMapMarkerOutline,
-      label: t("National address"),
+      label: t("National address info"),
     },
     {
       value: "3",
       icon: mdiFormatListBulleted,
-      label: t("Additional Information"),
+      label: t("Additional Info"),
     },
     {
       value: "4",
@@ -73,7 +75,7 @@ export default function DetailsFacility({ data, className, style }) {
               onChange={handleChange}
               aria-label="nav tabs example"
               orientation="vertical"
-              className=" !min-w-[2%] md:w-[30%] tab_facility border-l-transparent ltr:border-r-transparent w-[80px]  ml-0 "
+              className=" !min-w-[2%] md:w-[37%] tab_facility border-l-transparent ltr:border-r-transparent w-[80px]  ml-0 "
             >
               {tabsItems?.map((item, index) => (
                 <Tab

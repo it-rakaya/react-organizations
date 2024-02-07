@@ -34,7 +34,7 @@ export default function OrderMainData({ setShow, show, isPending }) {
   return (
     <div>
       <MainHeader
-        title={t("NEW ORDER")}
+        title={t("New Order")}
         styleHead={{ color: theme.palette.primary.main }}
       />
 

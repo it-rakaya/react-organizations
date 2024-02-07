@@ -17,9 +17,8 @@ export default function SelectCountryOrganizations({
   images,
   setShow,
 }) {
-  const { setFieldValue, values, handleBlur } = useFormikContext();
+  const { values } = useFormikContext();
   const { orgData } = UseOrg();
-  console.log("🚀 ~ orgData:", orgData)
 
   const { data: countries } = useFetch({
     endpoint: `order-countries?organization_id=${orgData?.organizations?.id}`,
@@ -31,7 +30,6 @@ export default function SelectCountryOrganizations({
     label: item.country_name,
   }));
 
-  console.log("🚀 ~ countries:", countries)
   const selectedCountry = options?.find(
     (option) => option?.value == values[name]
   );
@@ -41,10 +39,11 @@ export default function SelectCountryOrganizations({
       <ReactSelect
         options={options}
         selectedValue={selectedCountry}
-        placeholder={t("Chose Country")}
+        placeholder={t("Choose Country")}
         name={name}
         label={label}
         index={index}
+        isMulti
         setIndex={setIndex}
         messageInfo={messageInfo}
         setShow={setShow}

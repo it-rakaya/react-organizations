@@ -141,7 +141,7 @@ export default function MyFacilities() {
                           setFacultyID(item?.id);
                         }}
                       >
-                        {t("ADD EMPLOYEE")}
+                        {t("Add Employee")}
                       </ButtonComp>
                     </Card>
                   </Grid>

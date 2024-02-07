@@ -33,7 +33,7 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
           return (
             <div
               key={index}
-              className="w-full col-span-12 m-auto md:m-0 md:col-span-6 xl:col-span-4 2xl:col-span-4"
+              className={`w-full col-span-12 m-auto md:m-0 md:col-span-6 xl:col-span-4 2xl:col-span-4 !mt-5`}
             >
               <UploadDoc
                 key={attachmentLabel.id}
@@ -46,6 +46,7 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
                 isRequired={attachmentLabel.is_required == "1"}
                 value={userAttachment ? userAttachment.value : null}
                 nameLabel={userAttachment?.name}
+                labelClassName={ 'h-[48px]' }
               />
             </div>
           );

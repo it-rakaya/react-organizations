@@ -12,11 +12,12 @@ import PhoneInput2 from "../molecules/Formik/PhoneInput2";
 import SelectCitiesSaudi from "../molecules/SelectCitiesSaudi";
 import SelectCountry from "../molecules/SelectCountry";
 import UploadDoc from "../molecules/uploadImage/UploadDoc";
+import { useIsRTL } from "../../hooks/useIsRTL";
 
 function RegistrationMainData({ attachments_register, setOpen, isPending }) {
   const { setFieldValue, values, errors } = useFormikContext();
   const [checked, setChecked] = useState(false);
-
+const isRTL = useIsRTL()
   useEffect(() => {
     if (values.national_id.startsWith("1")) {
       setFieldValue("nationality", "192");
@@ -127,10 +128,10 @@ function RegistrationMainData({ attachments_register, setOpen, isPending }) {
             <UploadDoc
               key={item.id}
               name={`attachments[${item?.id}]`}
-              label={item?.placeholder}
+              label={isRTL ? item?.placeholder_ar : item?.placeholder_en}
               id={item?.id}
               accept={item?.extensions}
-              placeholder={item?.placeholder}
+              placeholder={isRTL ? item?.placeholder_ar : item?.placeholder_en}
               isRequired={item?.is_required == 1 ? true : false}
             />
           ))}
@@ -176,7 +177,7 @@ function RegistrationMainData({ attachments_register, setOpen, isPending }) {
         }
         className={"!mt-0"}
       >
-        {t("Sign up")}
+        {t("Register")}
       </ButtonComp>
     </div>
   );

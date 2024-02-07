@@ -1,3 +1,5 @@
+import { toHijri } from "hijri-converter";
+
 export const hexToRGBA = (hex, opacity) => {
   hex = hex.replace("#", "");
   const r = parseInt(hex.substring(0, 2), 16);
@@ -20,20 +22,25 @@ export function convertArabicToEnglish(arabicNumber) {
   return convertedNumber;
 }
 
-export function convertToHijri(valueGregorian) {
-  const gregorianDate = new Date(valueGregorian);
-  const hijriFormatter = new Intl.DateTimeFormat("ar-SA-u-ca-islamic", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
-  const formattedHijriDate = hijriFormatter?.format(gregorianDate);
-  const hijriDateWithoutHeh = formattedHijriDate
-    .replace("هـ", "")
-    .replace(/\//g, "-");
+// export function convertToHijri(valueGregorian) {
+//   const gregorianDate = new Date(valueGregorian);
+//   const hijriFormatter = new Intl.DateTimeFormat("ar-SA-u-ca-islamic", {
+//     year: "numeric",
+//     month: "2-digit",
+//     day: "2-digit",
+//   });
+//   const formattedHijriDate = hijriFormatter?.format(gregorianDate);
+//   const hijriDateWithoutHeh = formattedHijriDate
+//     .replace("هـ", "")
+//     .replace(/\//g, "-");
 
-  return hijriDateWithoutHeh;
-}
+//   return hijriDateWithoutHeh;
+// }
+export const convertToHijri = (date) => {
+  let hijriDate = new Date(date)
+  return toHijri(hijriDate.getFullYear(), hijriDate.getMonth() + 1, hijriDate.getDate());
+};
+
 export function checkAttachments(requiredInputs, attachmentIdsUpdate, values) {
   const areAllRequiredInputsUpdated = requiredInputs?.every((id) =>
     attachmentIdsUpdate?.includes(id)

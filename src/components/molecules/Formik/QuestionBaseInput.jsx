@@ -135,7 +135,7 @@ export default function QuestionBaseInput({
           options={selectOptions}
           onChange={(option) => setFieldValue(`answers${name}`, option?.value)}
           // className="border rounded-md"
-          placeholder={t("Chose Country")}
+          placeholder={t("Choose Country")}
           noOptionsMessage={() => t("Not Found Data")}
           styles={{
             control: (baseStyles) => ({
@@ -290,7 +290,7 @@ export default function QuestionBaseInput({
           }
           isMulti
           // className="border rounded-md"
-          placeholder={t("Chose Country")}
+          placeholder={t("Choose Country")}
           noOptionsMessage={() => t("Not Found Data")}
           styles={{
             control: (baseStyles) => ({

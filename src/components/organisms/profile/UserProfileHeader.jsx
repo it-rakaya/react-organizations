@@ -4,13 +4,12 @@ import Card from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
 import { t } from "i18next";
 import defaultImage from "../../../../public/profile pic1.png";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 import { convertArabicToEnglish, convertToHijri } from "../../../utils/helpers";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
-import { useIsRTL } from "../../../hooks/useIsRTL";
 import PreviewID from "../../atoms/icons/PreviewID";
 import PadgePreview from "../../molecules/PadgePreview";
-import { BiDetail } from "react-icons/bi";
 
 const ProfilePicture = styled("img")(({ theme }) => ({
   width: 150,
@@ -52,7 +51,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               />
             </ButtonComp>
             <div>
-            {/* <div className="" >
+              {/* <div className="" >
                 {!user?.value?.toLowerCase().endsWith(".pdf") ? (
                   <div
                     className="rounded-sm "
@@ -83,8 +82,39 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
                 )}
               </div> */}
               {/* <PreviewID /> */}
-              <BiDetail className='w-[45px] h-[45px]'/>
-             
+              <div className="">
+                {!user?.national_id_attachment
+                  ?.toLowerCase()
+                  .endsWith(".pdf") ? (
+                  <div
+                    className="rounded-[8px] w-[40px] h-[40px] flex items-center justify-center cursor-pointer"
+                    style={{ background: theme?.palette?.primary.main }}
+                  >
+                    <PadgePreview
+                      url={user?.national_id_attachment}
+                      label={<PreviewID />}
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className="rounded-[8px] w-[40px] h-[40px] flex items-center justify-center cursor-pointer"
+                    style={{
+                      background: theme?.palette?.primary.main,
+                      opacity: "0,8",
+                    }}
+                  >
+                    <a
+                      href={user?.national_id_attachment}
+                      download={user?.national_id_attachment}
+                      className=""
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <PreviewID />
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -110,11 +140,12 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               {t("Birthday")}
             </p>
             <div className="flex gap-1">
-              <p className=" dark:text-white">{user?.birthday}</p>/
-              <p className="dark:text-white">
-                {user?.birthday
-                  ? convertArabicToEnglish(convertToHijri(user?.birthday))
-                  : ""}
+              <p className=" dark:text-white">{user?.birthday}</p>
+              <span className=" dark:text-white">/</span>
+              <p className="dark:text-white" dir="rtl">
+                {convertToHijri(user?.birthday).hy}-{" "}
+                {convertToHijri(user?.birthday).hd}-{" "}
+                {convertToHijri(user?.birthday).hm}
                 {t("H")}
               </p>
             </div>
@@ -136,12 +167,13 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               <div className="flex gap-1">
                 <p className="dark:text-white">{user?.national_id_expired} /</p>
 
-                <p className="dark:text-white">
-                  {convertArabicToEnglish(
-                    user?.national_id_expired !== "0000-00-00"
-                      ? convertToHijri(user?.national_id_expired)
-                      : ""
-                  )}
+                <p className="dark:text-white" dir="rtl">
+                  {/* {user?.national_id_expired !== "0000-00-00"
+                    ? convertToHijri(user?.national_id_expired)
+                    : ""} */}
+                  {convertToHijri(user?.national_id_expired).hy}-{" "}
+                  {convertToHijri(user?.national_id_expired).hd}-{" "}
+                  {convertToHijri(user?.national_id_expired).hm}
                   {t("H")}
                 </p>
               </div>
