@@ -38,9 +38,14 @@ export default function Orders() {
     enabled: !!orgData?.organizations?.id,
   });
 
-  const Canceled = 7;
-  const Rejected = 6;
-
+  const Canceled = Orders?.all_user_orders?.filter(
+    (obj) => obj.status?.name_en == "Canceled"
+  );
+  const Accepted = Orders?.all_user_orders?.filter(
+    (obj) => obj.status?.name_en == "Accepted"
+  );
+  
+  const closeRegister = orgData?.organizations?.close_order == "1";
   const columns = [
     {
       flex: 0.2,
@@ -193,7 +198,7 @@ export default function Orders() {
             }}
             className="items-center justify-center w-full "
           >
-            {row.status_id == Canceled ? (
+            {row.status?.name_en == "Canceled" ? (
               <Icon path={mdiDotsVertical} size={1} />
             ) : (
               <div className="flex justify-center cursor-pointer ">
@@ -202,12 +207,33 @@ export default function Orders() {
                     size: "small",
                   }}
                   className={
-                    row.status_id == Canceled
+                    row.status?.name_en == "Canceled"
                       ? "cursor-not-allowed"
                       : "cursor-pointer"
                   }
                   options={
-                    row.status_id !== Rejected
+                    row.status?.name_en == "Accepted" || row.status?.name_en == "Approved" ? 
+                    [
+                      {
+                        text: t("Details"),
+
+                        details: "Additional details here",
+                        function: () => {
+                          if (row.status_id == Canceled) {
+                            return notify(
+                              "worning",
+                              t("cant Canceled order")
+                            );
+                          } else {
+                            setOpenDetailsOrder(true);
+                            setDetailsOrder(row);
+                          }
+                        },
+                      },
+                     
+                    ]
+                    :
+                    row.status?.name_en  !== "Rejected"
                       ? [
                           {
                             text: t("Details"),
@@ -225,7 +251,6 @@ export default function Orders() {
                               }
                             },
                           },
-
                           {
                             text: t("Cancel"),
                             details: "Additional details here",
@@ -266,7 +291,6 @@ export default function Orders() {
       },
     },
   ];
-  const closeRegister = orgData?.organizations?.close_order == "1";
 
   return (
     <div>
