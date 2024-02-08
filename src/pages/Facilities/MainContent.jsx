@@ -16,7 +16,6 @@ function MainContent({
   update,
   idFacility,
 }) {
-  console.log("🚀 ~ DetailsFacilities:", DetailsFacilities)
   const [open, setOpen] = useState(false);
   const { data: attachments_facilities } = useFetch({
     endpoint: `attachments-labels/facilities`,

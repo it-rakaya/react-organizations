@@ -24,7 +24,7 @@ function AdditionalInfo() {
         <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("Employees Number")}
-            placeholder="20"
+            placeholder="xxx"
             name="employee_number"
             type="custom"
             maxNum="3"
@@ -34,7 +34,7 @@ function AdditionalInfo() {
         <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("Chefs Number")}
-            placeholder="4"
+            placeholder="xxxx"
             name="chefs_number"
             type="custom"
             maxNum="3"
@@ -47,7 +47,7 @@ function AdditionalInfo() {
         <div className="w-full ">
           <BaseInputField
             label={t("Kitchen Space")}
-            placeholder="500"
+            placeholder="xxxxxxxxxx"
             name="kitchen_space"
             type="custom"
             images={images}
