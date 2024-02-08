@@ -119,7 +119,7 @@ function AccountSettingMainData({ userData, isPending, attachments_register }) {
           {attachments_register?.attachment_labels
             ?.filter((item) => item.id !== 3)
             .map((attachmentLabel) => {
-              const userAttachment = [userData?.attachmentUrl]?.find(
+              const userAttachment = userData?.attachmentUrl?.find(
                 (ua) => ua.attachment_label_id === attachmentLabel.id
               );
               console.log("🚀 ~ .map ~ userAttachment:", userAttachment)
