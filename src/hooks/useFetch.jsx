@@ -39,12 +39,12 @@ function useFetch({
     throwOnError,
 
     onError: (error) => {
-      if (error?.response?.data?.message == "Unauthenticated.") {
-        localStorage.removeItem("user");
-        navigate("/");
-        Cookies.remove("token");
-        notify("error");
-      }
+      // if (error?.response?.data?.message == "Unauthenticated.") {
+      //   localStorage.removeItem("user");
+      //   navigate("/");
+      //   Cookies.remove("token");
+      //   notify("error");
+      // }
       if (onError) {
         onError(error);
       }
