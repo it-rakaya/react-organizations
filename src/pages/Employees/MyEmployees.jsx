@@ -134,7 +134,7 @@ export default function MyEmployees() {
     },
     {
       flex: 0.15,
-      minWidth: 180,
+      minWidth: 200,
       headerName: t("attachment"),
       field: "",
       cellClassName: "flex !px-0 !justify-center !h-[100px]",
