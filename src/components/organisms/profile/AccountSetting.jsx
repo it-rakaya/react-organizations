@@ -6,7 +6,7 @@ import { isValidSaudiID } from "saudi-id-validator";
 import * as Yup from "yup";
 import useFetch from "../../../hooks/useFetch";
 import { useMutate } from "../../../hooks/useMutate";
-import { convertToHijri, isEmail } from "../../../utils/helpers";
+import { isEmail } from "../../../utils/helpers";
 import { notify } from "../../../utils/toast";
 import MainHeader from "../../atoms/MainHeader";
 import AccountSettingMainData from "./AccountSettingMainData";
