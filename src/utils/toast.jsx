@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-extra-boolean-cast */
+import { t } from "i18next";
 import { toast } from "react-toastify";
 
 const toastOptions = {
@@ -20,7 +21,7 @@ const STYLES = {
 };
 
 export const notify = (type = "success", msg, position = "top-right") => {
-  let message = msg || "تمت العملية بنجاح";
+  let message = msg || t("operation accomplished successfully");
 
   if (type === "error" && !!!msg) {
     message = "حدث خطأ ما ، حاول لاحقاً";
