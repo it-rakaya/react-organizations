@@ -22,7 +22,7 @@ export default function AddEmployee({
     mutationKey: [`facility_employees`],
     endpoint: `facility-employees`,
     onSuccess: () => {
-      notify("success");
+      notify("success", t("An employee has been added successfully"));
 
       if (showSelectFacility) {
         setOpenAddEmployee(false);
