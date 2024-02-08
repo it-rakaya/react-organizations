@@ -17,16 +17,16 @@ const Footer = () => {
         <div
           className={` flex  justify-center  md:flex-row items-center  p-2 gap-1`}
         >
-          <h2 className="text-[8px] md:text-[14px]  text-center text-black dark:text-white">
+          <h2 className="text-[7px] md:text-[14px]  text-center text-black dark:text-white">
             {t(`All rights reserved`)}
           </h2>
           <span>
             <Heart />
           </span>
-          <span className="text-[8px] md:text-[14px]  text-center text-black dark:text-white">
+          <span className="text-[7px] md:text-[14px]  text-center text-black dark:text-white">
             {t("at Rakaya Management and Food Consulting Company ©")}
           </span>
-          <span className="text-[8px] md:text-[14px]  text-center text-black dark:text-white">
+          <span className="text-[7px] md:text-[14px]  text-center text-black dark:text-white">
             {new Date().getFullYear()}
           </span>
         </div>
