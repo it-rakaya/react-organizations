@@ -165,6 +165,7 @@ export default function DetailsOrder({ data }) {
                   <div className="text-2xl font-bold text-black dark:text-white">
                     {t("There are no questions")}
                   </div>
+                  
                 )}
               </div>
             </TabPanel>

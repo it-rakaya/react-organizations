@@ -243,14 +243,14 @@ export default function MyEmployees() {
         <meta name="description" content="This home page" />
       </Helmet>
       <div>
-        <MainHeader title={t("Employee")} />
+        <MainHeader title={t("Employees")} />
         {isLoading || isRefetching ? (
           <Loading />
         ) : (
           <Table
             columns={columns || []}
             rows={employees?.employees || []}
-            placeholderSearch={t("search in employee")}
+            placeholderSearch={t("search in employees")}
             textButton={t("Add Employee")}
             actionButton={() => setOpenAddEmployee(true)}
           />
