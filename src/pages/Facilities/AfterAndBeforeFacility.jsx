@@ -17,7 +17,6 @@ function AfterAndBeforeFacility({
   DetailsFacilities,
 }) {
   const { values, errors } = useFormikContext();
-  console.log("🚀 ~ values:", values);
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -142,7 +141,6 @@ function AfterAndBeforeFacility({
         return false;
     }
   };
-  console.log("🚀 ~ isSaveDisabled ~ isSaveDisabled:", isSaveDisabled());
 
   return (
     <Grid

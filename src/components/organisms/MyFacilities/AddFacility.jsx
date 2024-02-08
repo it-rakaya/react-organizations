@@ -1,12 +1,12 @@
-import { Divider, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { t } from "i18next";
 import { useState } from "react";
+import Line from "../../atoms/Line";
 import ModalComp from "../../atoms/ModalComp";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
 import DatePickerComp from "../../molecules/Formik/DatePickerComp";
 import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
 import SelectBank from "../../molecules/Selects/SelectBank";
-import Line from "../../atoms/Line";
 
 export default function AddFacility() {
   const images = [

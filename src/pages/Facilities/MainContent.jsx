@@ -36,7 +36,8 @@ function MainContent({
       case 1:
         return (
           <Fragment key={step}>
-            <NationalAddressData />
+            <NationalAddressData  />
+            
           </Fragment>
         );
       case 2:
