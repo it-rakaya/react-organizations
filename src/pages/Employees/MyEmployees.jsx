@@ -161,10 +161,10 @@ export default function MyEmployees() {
             className="text-black dark:text-white"
           >
             {row?.attachmentUrl.map((item) => (
-              <div className="" key={item?.id}>
+              <div className="w-[87px] text-center" key={item?.id}>
                 {!item?.value?.toLowerCase().endsWith(".pdf") ? (
                   <div
-                    className="rounded-sm "
+                    className="flex justify-center rounded-sm"
                     style={{ background: theme?.palette?.primary.main }}
                   >
                     <PadgePreview
@@ -174,7 +174,7 @@ export default function MyEmployees() {
                   </div>
                 ) : (
                   <div
-                    className="px-1 rounded-sm bg-primary"
+                    className="px-1 text-center rounded-sm bg-primary"
                     style={{
                       background: theme?.palette?.primary.main,
                       opacity: "0,8",
@@ -183,11 +183,11 @@ export default function MyEmployees() {
                     <a
                       href={item?.value}
                       download={item?.value}
-                      className=""
                       target="_blank"
+                      className='text-center '
                       rel="noreferrer"
                     >
-                      <p className="!text-[10px] text-white px-1">
+                      <p className="!text-[10px] text-white px-1 flex justify-center ">
                         {isRTL ? item?.label_ar : item?.label_en}
                       </p>
                     </a>

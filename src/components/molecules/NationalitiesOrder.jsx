@@ -2,7 +2,6 @@
 import { t } from "i18next";
 import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
 import { useTheme } from "@mui/material/styles";
-import Line from "../atoms/Line";
 
 function NationalitiesOrder({ data }) {
   const theme = useTheme();
