@@ -3,10 +3,10 @@ import { Icon } from "@iconify/react";
 import { useTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import { calculateHajjRemainingTimeFormatted } from "../../utils/helpers";
 import { getTimeLeftToHajj } from "../../utils/landing/HajjTimeCalc";
 import { getPrayerTime } from "../../utils/landing/prayerTimeCalc";
-import { UseOrg } from "../../context/organization provider/OrganizationProvider";
-import { calculateHajjRemainingTime } from "../../utils/helpers";
 
 const FooterComponent = ({ title, children, last = false }) => {
   const { i18n } = useTranslation();
@@ -41,12 +41,11 @@ const FooterComponent = ({ title, children, last = false }) => {
 
 const textStyle = `font-semibold`;
 const Footer = () => {
-  // const [timeRemaining, setTimeRemaining] = useState({daysRemaining: 0, monthsRemaining: 0});
-  // console.log("🚀 ~ Footer ~ setTimeRemaining:", setTimeRemaining)
-  // console.log("🚀 ~ Footer ~ timeRemaining:", timeRemaining)
-  // useEffect(() => {
-  //   setTimeRemaining(calculateHajjRemainingTime());
-  // }, []);
+  const [timeRemaining, setTimeRemaining] = useState({daysRemaining: 0, monthsRemaining: 0});
+  console.log("🚀 ~ Footer ~ timeRemaining:", timeRemaining)
+  useEffect(() => {
+    setTimeRemaining(calculateHajjRemainingTimeFormatted());
+  }, []);
   const { t } = useTranslation();
   const { orgData } = UseOrg();
   const [nextPrayerTime, setNextPrayerTime] = useState({
@@ -86,8 +85,8 @@ const Footer = () => {
         )}
         <FooterComponent title={t("landing.remainingTimeToHajj")}>
           <h1 className={`${textStyle} tracking-wider dark:text-white`}>
-            {timeLeft.months + " "} {t("landing.months")} {timeLeft.days + " "}{" "}
-            {t("landing.days")} {timeLeft.hours + " "}
+            {timeRemaining.monthsRemaining + " "} {t("landing.months")} {timeRemaining.daysAfterMonths + " "}{" "}
+            {t("landing.days")} {timeRemaining.hoursRemaining + " "}
             {t("landing.hours")}
           </h1>
           
