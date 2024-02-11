@@ -80,7 +80,7 @@ const Hero = () => {
               style={{ backgroundColor: theme?.palette?.primary?.main }}
               className={`${btnStyles} text-white transition-shadow duration-300 hover:shadow-lg w-full `}
             >
-              {t("landing.Dashboard")}
+              {t("Home")}
             </button>
           )}
         </div>
