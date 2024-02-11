@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import StepperCustomDot from "../../components/theme/StepperCustomDot";
-import FacilityContent from "./FacilityContent";
-import FacilityWrapper from "./FacilityWrapper";
+import FacilityWrapper from "../../components/templates/MyFacilities/FacilityWrapper";
+import FacilityContent from "../../components/templates/MyFacilities/FacilityContent";
 
 const steps = [
   {

@@ -1,29 +1,45 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
+import { useFormikContext } from "formik";
+import { t } from "i18next";
+import { useNavigate } from "react-router-dom";
 import ModalComp from "../../atoms/ModalComp";
 import TermsAndCondition from "../../molecules/TermsAndCondition";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
-import { useFormikContext } from "formik";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
-import { t } from "i18next";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
-import { useNavigate } from "react-router-dom";
 
-function FacilityControl({ setOpen, open, update, idFacility  }) {
-
-  const [checked, setChecked] = useState(false);
-  const { values } = useFormikContext();
+function FacilityControl({
+  setOpen,
+  open,
+  update,
+  idFacility,
+  DetailsFacilities,
+  updateData,
+}) {
+  console.log("🚀 ~ updateData:", updateData);
+  const [checked, setChecked] = useState(update ? true : false);
+  const { values, dirty } = useFormikContext();
+ 
   const { orgData } = UseOrg();
   const navigate = useNavigate();
   const endpoint = `facilities`;
   const updateEndpoint = `facilities/${idFacility}`;
+  const AllAttachmentsId = DetailsFacilities?.map(
+    (item) => item?.attachment_label_id
+  );
 
   const { mutate: addFacility, isPending: loadingAddFacility } = useMutate({
     mutationKey: [`add_facilities`],
     endpoint: update ? updateEndpoint : endpoint,
     onSuccess: () => {
-      notify("success", t("A facility has been added successfully"));
+      notify(
+        "success",
+        update
+          ? t("A facility has been updated successfully")
+          : t("A facility has been added successfully")
+      );
       navigate("/dashboard/facilities");
     },
     onError: (err) => {
@@ -32,12 +48,69 @@ function FacilityControl({ setOpen, open, update, idFacility  }) {
     formData: true,
   });
   useEffect(() => {
-    if(!open){
-      setChecked(false)
+    if (!open) {
+      setChecked(update ? true : false);
     }
-   
-  }, [open])
-  
+  }, [open]);
+
+  const handleSubmit = () => {
+    const updatedIban = values.iban.replace(/-/g, "").replace(/\s+/g, "");
+    const changedValues = {};
+    const bankInformationKeys = ["account_name", "bank_id", "iban"];
+    if (update) {
+      Object.entries(values).forEach(([key, value]) => {
+        if (!bankInformationKeys.includes(key)) {
+          if (value !== updateData?.facility[key]) {
+            changedValues[key] = value;
+          }
+        }
+      });
+
+      const originalIban =
+        updateData?.facility?.bank_information?.iban?.replace(/\s+/g, "");
+      if (updatedIban !== originalIban) {
+        changedValues.iban = updatedIban;
+        notify("success", t("IBAN has been updated successfully."));
+      }
+    }
+    const validAttachments =
+      values?.attachments
+        ?.map((file, index) => ({ index, file }))
+        .filter(
+          (item) => typeof item?.file !== "undefined" && item.file !== "deleted"
+        ) || [];
+
+    const attachments =
+      validAttachments?.map((item) => ({
+        [`attachments[${item?.index}]`]: item?.file,
+      })) || [];
+    const attachmentsToDelete = values.attachments
+      ?.map((file, index) => ({ file, index }))
+      ?.filter(
+        (item) =>
+          item.file === "deleted" && AllAttachmentsId.includes(item.index)
+      )
+      .map((item) => ({
+        [`del_attachments[${item.index}]`]: item.index,
+      }));
+
+    let combinedObject = update
+      ? { ...changedValues }
+      : { ...values, iban: updatedIban, ...Object?.assign({}, ...attachments) };
+    combinedObject.organization_id = orgData?.organizations?.id;
+
+    if (attachmentsToDelete?.length > 0) {
+      combinedObject = {
+        ...combinedObject,
+        ...Object.assign({}, ...attachmentsToDelete),
+      };
+    }
+    delete combinedObject?.attachments;
+
+
+    addFacility(combinedObject);
+  };
+
   return (
     <div>
       <ModalComp
@@ -46,32 +119,21 @@ function FacilityControl({ setOpen, open, update, idFacility  }) {
         onClose={() => setOpen(false)}
         Children={
           <div className="pt-10 !flex gap-3 !items-center !justify-center !flex-col">
-            <TermsAndCondition checked={checked} setChecked={setChecked} />
+            <TermsAndCondition
+              checked={checked}
+              setChecked={setChecked}
+              style={{ height: "calc(100vh - 26rem)" }}
+            />
 
             <ButtonComp
               type={"submit"}
-              action={() => {
-                const validAttachments = values?.attachments
-                  ?.map((file, index) => ({ index, file }))
-                  .filter((item) => typeof item?.file !== "undefined") || [];
-                const attachments = validAttachments?.map((item) => ({
-                  [`attachments[${item?.index}]`]: item?.file,
-                })) || [];
-
-                const combinedObject = {
-                  ...values,
-                  organization_id: orgData?.organizations?.id,
-                  ...Object?.assign({}, ...attachments ),
-                };
-                delete combinedObject?.attachments;
-                addFacility(combinedObject);
-              }}
+              action={handleSubmit}
               loading={loadingAddFacility}
               className={"w-auto mt-1"}
-              disabled={!checked}
+              disabled={!checked || !dirty}
               variant="contained"
             >
-              {t("Save")}
+              {update ? t("Edit") : t("Save")}
             </ButtonComp>
           </div>
         }

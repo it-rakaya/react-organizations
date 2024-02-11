@@ -81,7 +81,8 @@ export default function DatePickerComp({
               selected={date}
               id="month-year-dropdown"
               placeholderText="MM/DD/YYYY"
-              maxDate={new Date('01-01-2071')}
+              maxDate={new Date('12-31-2070')}
+              minDate={new Date('01-01-1940')}
               locale={i18n.language}
               sx={{
                 background: "white",

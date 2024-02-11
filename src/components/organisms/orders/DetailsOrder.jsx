@@ -1,20 +1,19 @@
 /* eslint-disable react/prop-types */
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { Divider, Tab } from "@mui/material";
+import { Tab } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { t } from "i18next";
 import { useState } from "react";
-import {
-  convertArabicToEnglish,
-  convertToHijri,
-  padWithZero,
-} from "../../../utils/helpers";
-import MainHeader from "../../atoms/MainHeader";
-import NotesOrder from "../../molecules/NotesOrder";
-import DetailsFacility from "../MyFacilities/DetailsFacility";
 import { useIsRTL } from "../../../hooks/useIsRTL";
+import {
+  convertToHijri,
+  padWithZero
+} from "../../../utils/helpers";
 import Line from "../../atoms/Line";
+import MainHeader from "../../atoms/MainHeader";
 import NationalitiesOrder from "../../molecules/NationalitiesOrder";
+import NotesOrder from "../../molecules/NotesOrder";
+import DetailsFacility from "../../templates/MyFacilities/DetailsFacility";
 
 export default function DetailsOrder({ data }) {
   const [value, setValue] = useState("1");

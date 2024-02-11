@@ -43,7 +43,7 @@ export default function ModalComp({
       >
         <Box sx={style} className={`scroll_main px-0 md:px-4 dark:!bg-dark-primary  ${classNameBox}`}>
           <div
-            className={`absolute ltr:!right-[20px] ltr:left-auto left-[20px] cursor-pointer top-[39px] ${
+            className={`absolute ltr:!right-[20px] ltr:left-auto left-[20px] cursor-pointer top-[18px] ${
               hidden ? "md:hidden" : ""
             } `}
             onClick={onClose}
@@ -53,8 +53,11 @@ export default function ModalComp({
               style={{ color: theme.palette.primary?.main }}
             />
           </div>
+          <div>
 
           {Children}
+          </div>
+
         </Box>
       </Modal>
     </div>

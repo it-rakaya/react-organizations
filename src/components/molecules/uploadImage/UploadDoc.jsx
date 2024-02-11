@@ -61,7 +61,6 @@ function UploadDoc({
     }
     return [];
   });
-  console.log("🚀 ~ const[files,setFiles]=useState ~ files:", files)
 
   const modifyAccept = accept?.map((item) => `.${item}`);
   const textAccept = accept?.map((item) => ` -${item} `);

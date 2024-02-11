@@ -22,48 +22,41 @@ function AdditionalInfo() {
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
         <div className="w-full md:w-1/2">
           <BaseInputField
-            label={t("Number Of Employees")}
-            placeholder="20"
+            label={t("Employees Number")}
+            placeholder="xxx"
             name="employee_number"
             type="custom"
             maxNum="3"
             required
-
-            // showIcon
-            // setShow={setShow}
-            // setIndex={setIndex}
-            // index={0}
           />
         </div>
         <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("Chefs Number")}
-            placeholder="4"
+            placeholder="xxxx"
             name="chefs_number"
             type="custom"
             maxNum="3"
             required
-
-            // showIcon
-            // setShow={setShow}
-            // setIndex={setIndex}
-            // index={0}
           />
         </div>
       </div>
 
       <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
-        <div className="w-full">
+        <div className="w-full ">
           <BaseInputField
             label={t("Kitchen Space")}
-            placeholder="500"
+            placeholder="xxxxxxxxxx"
             name="kitchen_space"
             type="custom"
             images={images}
             required
           />
         </div>
+       
       </div>
+    
+      {/* <BaseInputMask/> */}
       <ModalComp
         open={show}
         className="!max-w-[700px] m-auto    "

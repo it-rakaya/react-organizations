@@ -23,19 +23,20 @@ function FacilityContent({
     license: "",
     license_expired: "",
     license_expired_hj: "",
-    address: "",
     tax_certificate: "",
     employee_number: "",
     chefs_number: "",
     kitchen_space: "",
     street_name: "",
     district_id: "",
-    city: "",
     building_number: "",
     postal_code: "",
     sub_number: "",
-    signature: "",
     capacity: "",
+    account_name:"",
+    iban:"",
+    bank_id:""
+    
   };
 
   const validationSchema = (step) => {
@@ -62,26 +63,35 @@ function FacilityContent({
           capacity: Yup.string()
             .trim()
             .required(t("the capacity number required"))
-            .length(5, t("the capacity must be equal 5 digits")),
+            .min(1, t("the capacity must be from 1 to 5 numbers"))
+            .max(5, t("the capacity must be from 1 to 5 numbers")),
 
-          license: Yup.string()
+            license: Yup.string()
             .trim()
             .required(t("the Licence number required"))
-            .length(10, t("the Licence number must be equal 10 digits")),
+            .min(10, t("the Licence number must be between 10 and 11 digits"))
+            .max(11, t("the Licence number must be between 10 and 11 digits")),
           // address: Yup.string().trim().required(t("address is  required")),
           tax_certificate: Yup.string()
             .trim()
-            .required(t("certificate is required"))
-            .length(9, t("the certificate number must be equal 9 digits")),
+            .required(t("Vat Registration Number is required"))
+            .length(15, t("the Vat Registration Number must be equal 15 digits")),
+            account_name: Yup.string()
+            .trim()
+            .required(t("the account name required")),
+            iban: Yup.string()
+            .trim()
+            .required(t("this field is required"))
+            .length(29, t("the IBAN number must be equal 24 digits")),
         });
       case 1:
         return Yup.object({
           street_name: Yup.string()
             .trim()
             .required(t("the street name required")),
-          neighborhood: Yup.string()
+            district_id: Yup.string()
             .trim()
-            .required(t("the neighborhood required")),
+            .required(t("the street name required")),
           building_number: Yup.string()
             .trim()
             .required(t("Building Number is required"))
@@ -89,11 +99,11 @@ function FacilityContent({
           postal_code: Yup.string()
             .trim()
             .required(t("postal code is required"))
-            .length(6, t("the postal code must be equal 6 digits")),
+            .length(5, t("the postal code must be equal 5 digits")),
           sub_number: Yup.string()
             .trim()
             .required(t("Secondary Number is required"))
-            .length(6, t("the Secondary Number must be equal 6 digits")),
+            .length(4, t("the Secondary Number must be equal 4 digits")),
         });
       case 2:
         return Yup.object({
@@ -106,6 +116,7 @@ function FacilityContent({
           kitchen_space: Yup.string()
             .trim()
             .required(t("Kitchen Space required")),
+          
         });
       default:
         return Yup.object({});
@@ -116,14 +127,9 @@ function FacilityContent({
     <Card
       sx={{
         mt: 4,
-        height: {  md: "calc(100vh - 280px)" },
+        height: {  md: "calc(100vh - 282px)" },
         overflowY: "scroll",
       }}
-      // md={{
-      //   mt: 4,
-      //   height: "calc(100vh - 280px)",
-      //   overflowY: "scroll",
-      // }}
       className="!bg-transparent !shadow-none scroll_main"
     >
       <CardContent className="h-full !px-0 pt-0 bg-transparent  ">
@@ -141,7 +147,7 @@ function FacilityContent({
                   checked={checked}
                   setChecked={setChecked}
                   setActiveStep={setActiveStep}
-                  // setFormValues={setFormValues}
+                  
                 />
               </Form>
             </>

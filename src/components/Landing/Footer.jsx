@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { getTimeLeftToHajj } from "../../utils/landing/HajjTimeCalc";
 import { getPrayerTime } from "../../utils/landing/prayerTimeCalc";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import { calculateHajjRemainingTime } from "../../utils/helpers";
 
 const FooterComponent = ({ title, children, last = false }) => {
   const { i18n } = useTranslation();
@@ -40,6 +41,12 @@ const FooterComponent = ({ title, children, last = false }) => {
 
 const textStyle = `font-semibold`;
 const Footer = () => {
+  // const [timeRemaining, setTimeRemaining] = useState({daysRemaining: 0, monthsRemaining: 0});
+  // console.log("🚀 ~ Footer ~ setTimeRemaining:", setTimeRemaining)
+  // console.log("🚀 ~ Footer ~ timeRemaining:", timeRemaining)
+  // useEffect(() => {
+  //   setTimeRemaining(calculateHajjRemainingTime());
+  // }, []);
   const { t } = useTranslation();
   const { orgData } = UseOrg();
   const [nextPrayerTime, setNextPrayerTime] = useState({
@@ -56,6 +63,7 @@ const Footer = () => {
   return (
     <div className="2xl:pe-[18%] 3xl:pe-[26%]">
       <div className="flex flex-col w-full gap-3 lg:flex-row">
+        
         {orgData?.organizations?.profile_file ? (
           <FooterComponent title={t("landing.userManual")}>
             <a
@@ -82,6 +90,7 @@ const Footer = () => {
             {t("landing.days")} {timeLeft.hours + " "}
             {t("landing.hours")}
           </h1>
+          
         </FooterComponent>
         <FooterComponent
           title={`${t("landing.timeLeftTo")} ${t(`landing.prayers.${prayer}`)}`}

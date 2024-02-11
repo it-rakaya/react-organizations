@@ -1,4 +1,4 @@
-import { toHijri } from "hijri-converter";
+import { toGregorian, toHijri } from "hijri-converter";
 
 export const hexToRGBA = (hex, opacity) => {
   hex = hex.replace("#", "");
@@ -86,4 +86,36 @@ export const formatIban = (value) => {
     return value;
   }
   return value.replace(/(.{4})/g, "$1 ").trim();
+};
+
+
+
+export const calculateHajjRemainingTime = () => {
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth() + 1; // JavaScript months are 0-indexed.
+  const currentDate = today.getDate();
+  
+  const todayHijri = toHijri(currentYear, currentMonth, currentDate);
+  let hajjYear = todayHijri.hy;
+  
+  // تقدير تاريخ الحج في 9 ذو الحجة. قد يحتاج لتعديل بناءً على الرؤية القمرية.
+  let hajjHijriDate = { hy: hajjYear, hm: 12, hd: 9 }; // 9 ذو الحجة
+  let hajjGregorian = toGregorian(hajjHijriDate.hy, hajjHijriDate.hm, hajjHijriDate.hd);
+  let hajjDate = new Date(hajjGregorian.gy, hajjGregorian.gm - 1, hajjGregorian.gd);
+  
+  if (today > hajjDate) {
+    hajjYear++;
+    hajjHijriDate.hy = hajjYear;
+    hajjGregorian = toGregorian(hajjHijriDate.hy, hajjHijriDate.hm, hajjHijriDate.hd);
+    hajjDate = new Date(hajjGregorian.gy, hajjGregorian.gm - 1, hajjGregorian.gd);
+  }
+  
+  const oneDay = 24 * 60 * 60 * 1000; // milliseconds in one day
+  const daysRemaining = Math.round((hajjDate - today) / oneDay);
+  
+  // Calculate months remaining, approximated by dividing days by 30
+  const monthsRemaining = Math.floor(daysRemaining / 30);
+  
+  return { daysRemaining, monthsRemaining };
 };

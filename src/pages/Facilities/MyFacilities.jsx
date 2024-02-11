@@ -16,7 +16,6 @@ import Loading from "../../components/molecules/Loading";
 import DataNotFound from "../../components/molecules/NotFound";
 import Paginate from "../../components/molecules/Paginate";
 import Search from "../../components/molecules/Search";
-import DetailsFacility from "../../components/organisms/MyFacilities/DetailsFacility";
 import StepperFacility from "./AddFacilityPage";
 import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
@@ -24,6 +23,7 @@ import useFetch from "../../hooks/useFetch";
 import { notify } from "../../utils/toast";
 import { useIsRTL } from "../../hooks/useIsRTL";
 import { Helmet } from "react-helmet-async";
+import DetailsFacility from "../../components/templates/MyFacilities/DetailsFacility";
 
 export default function MyFacilities() {
   const [open, setOpen] = useState(false);
