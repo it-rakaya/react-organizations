@@ -8,15 +8,15 @@ function NationalitiesOrder({ data }) {
 
   // تقسيم البيانات إلى صفوف، حيث كل صف يحتوي على 3 عناصر
   const rows = [];
-  for (let i = 0; i < data.length; i += 5) {
-    rows.push(data.slice(i, i + 5));
+  for (let i = 0; i < data.length; i += 4) {
+    rows.push(data.slice(i, i + 4));
   }
 
   return (
     <div className="mt-5">
       {data?.length ? (
         rows.map((row, rowIndex) => (
-          <div key={rowIndex} className="flex flex-wrap gap-3 mb-5">
+          <div key={rowIndex} className="flex flex-wrap justify-center gap-3 mb-5">
             {row.map((item, index) => (
               <div
                 className="p-1 px-2 rounded-md w-[160px] text-center"

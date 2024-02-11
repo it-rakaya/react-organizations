@@ -1154,3 +1154,6 @@ text-transform: capitalize;
     margin-top: 26px;
   }
 }
+.selectOrganization .rtl-15ipeh0-MultiValueRemove svg{
+color: white !important;
+}

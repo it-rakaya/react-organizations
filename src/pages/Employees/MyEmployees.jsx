@@ -59,12 +59,16 @@ export default function MyEmployees() {
                 <img
                   src={
                     attachmentUrl[1]?.value.endsWith(".pdf")
-                      ? defaultImage
+                      ? 'https://front-api.rmcc.sa/build/images/users/32/person.png'
                       : attachmentUrl[1]?.value
                   }
                   className="w-[40px]  h-[40px] rounded-full border  border-solid"
-                  style={{ borderColor: theme?.palette?.primary.main }}
+                  style={{
+                    borderColor: theme?.palette?.primary.main,
+                    backgroundColor: theme?.palette?.primary.main,
+                  }}
                 />
+
                 <p className="text-black dark:text-white">
                   {name?.length > 30 ? `${name?.slice(0, 20)}...` : name}
                 </p>
@@ -184,7 +188,7 @@ export default function MyEmployees() {
                       href={item?.value}
                       download={item?.value}
                       target="_blank"
-                      className='text-center '
+                      className="text-center "
                       rel="noreferrer"
                     >
                       <p className="!text-[10px] text-white px-1 flex justify-center ">

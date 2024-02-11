@@ -35,7 +35,7 @@ export default function SelectCountryOrganizations({
   );
 
   return (
-    <div className={`${className} mt-2`}>
+    <div className={`${className} mt-2 selectOrganization`}>
       <ReactSelect
         options={options}
         selectedValue={selectedCountry}
@@ -45,11 +45,12 @@ export default function SelectCountryOrganizations({
         index={index}
         isMulti
         setIndex={setIndex}
-        messageInfo={messageInfo}
+        messageInfo={t("Please select the nationalities of the pilgrims you want to serve")}
         setShow={setShow}
         images={images}
         required={required}
         showIcon={showIcon}
+        closeMenuOnSelect={false}
       />
     </div>
   );

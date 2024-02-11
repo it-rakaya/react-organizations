@@ -23,6 +23,7 @@ export default function ReactSelect({
   isMulti,
   placeholder,
   isDisabled,
+  ...props
 }) {
   const { setFieldValue, handleBlur } = useFormikContext();
   const theme = useTheme();
@@ -44,6 +45,7 @@ export default function ReactSelect({
       )}
       <div className="">
         <Select
+          {...props}
           options={options}
           name={name}
           value={selectedValue}
@@ -75,7 +77,9 @@ export default function ReactSelect({
               background: "white",
               margin: "0",
               height: "59px",
-              boxShadow:isFocused ? `0 0 0px 1px ${theme.palette.primary?.main}`:"",
+              boxShadow: isFocused
+                ? `0 0 0px 1px ${theme.palette.primary?.main}`
+                : "",
               width: "100%",
             }),
 
@@ -103,10 +107,10 @@ export default function ReactSelect({
             }),
             multiValueRemove: (styles, { data }) => ({
               ...styles,
-              color: "white",
+              color: "#fff",
               background: theme.palette.primary?.main,
               ":hover": {
-                backgroundColor: data.color,
+                backgroundColor: theme.palette.primary?.main,
                 color: "white",
               },
             }),

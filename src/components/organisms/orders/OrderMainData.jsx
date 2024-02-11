@@ -51,13 +51,13 @@ export default function OrderMainData({ setShow, show, isPending }) {
                 <OrganizationServices
                   label={t("Provided Service")}
                   name="organization_service_id"
-                  
                   required
                 />
               </div>
               <div className="col-span-2 mb-3">
                 <SelectCountryOrganizations
-                  label={t("Country")}
+                  label={t("Nationalities of Pilgrims")}
+                  showIcon
                   name="country_ids"
                 />
               </div>

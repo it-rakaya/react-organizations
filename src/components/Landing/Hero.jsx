@@ -94,8 +94,9 @@ const Hero = () => {
       <ModalComp
         open={openModal}
         className="!max-w-[350px] !block  "
+        // classNameBox={'!pr-8'}
         onClose={() => setOpenModal(false)}
-        Children={<RegistrationClosed />}
+        Children={<RegistrationClosed  />}
       />
     </div>
   );
