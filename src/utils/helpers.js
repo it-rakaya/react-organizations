@@ -97,7 +97,7 @@ export const calculateHajjRemainingTimeFormatted = () => {
   const todayHijri = toHijri(currentYear, currentMonth, currentDate);
   let hajjYear = todayHijri.hy;
 
-  let hajjHijriDate = { hy: hajjYear, hm: 12, hd: 10 };
+  let hajjHijriDate = { hy: hajjYear, hm: 12, hd: 8 };
   let hajjGregorian = toGregorian(
     hajjHijriDate.hy,
     hajjHijriDate.hm,

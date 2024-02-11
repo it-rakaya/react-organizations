@@ -60,6 +60,7 @@ function TermsAndCondition({ checked, setChecked, hidden , style }) {
             </li>
           </ul>
           
+          
         </div>
       )}
       {hidden ? (

@@ -57,7 +57,11 @@ export default function MyEmployees() {
             >
               <div className="flex items-center gap-3">
                 <img
-                  src={attachmentUrl[1]?.value.endsWith(".pdf") ? defaultImage :attachmentUrl[1]?.value}
+                  src={
+                    attachmentUrl[1]?.value.endsWith(".pdf")
+                      ? defaultImage
+                      : attachmentUrl[1]?.value
+                  }
                   className="w-[40px]  h-[40px] rounded-full border  border-solid"
                   style={{ borderColor: theme?.palette?.primary.main }}
                 />
@@ -163,7 +167,10 @@ export default function MyEmployees() {
                     className="rounded-sm "
                     style={{ background: theme?.palette?.primary.main }}
                   >
-                    <PadgePreview url={item?.value} label={isRTL ? item?.label_ar :item?.label_en } />
+                    <PadgePreview
+                      url={item?.value}
+                      label={isRTL ? item?.label_ar : item?.label_en}
+                    />
                   </div>
                 ) : (
                   <div
@@ -180,8 +187,8 @@ export default function MyEmployees() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <p className="text-[10px] text-white px-1">
-                        {isRTL ? item?.label_ar :item?.label_en}
+                      <p className="!text-[10px] text-white px-1">
+                        {isRTL ? item?.label_ar : item?.label_en}
                       </p>
                     </a>
                   </div>
@@ -238,7 +245,7 @@ export default function MyEmployees() {
 
   return (
     <>
-       <Helmet>
+      <Helmet>
         <title>{t("Employee")}</title>
         <meta name="description" content="This home page" />
       </Helmet>

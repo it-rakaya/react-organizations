@@ -6,7 +6,7 @@ function RegistrationClosed() {
   return (
     <div className="">
       {" "}
-      <div className="mt-5 h-[160px] ">
+      <div className="mt-5 h-[160px] flex flex-col justify-center items-center" >
         <div className="flex flex-col items-center justify-center gap-5">
           <div className="">
             <ExcuseMeIcon className={""} />

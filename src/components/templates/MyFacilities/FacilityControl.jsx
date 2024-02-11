@@ -18,7 +18,6 @@ function FacilityControl({
   DetailsFacilities,
   updateData,
 }) {
-  console.log("🚀 ~ updateData:", updateData);
   const [checked, setChecked] = useState(update ? true : false);
   const { values, dirty } = useFormikContext();
  
@@ -70,7 +69,6 @@ function FacilityControl({
         updateData?.facility?.bank_information?.iban?.replace(/\s+/g, "");
       if (updatedIban !== originalIban) {
         changedValues.iban = updatedIban;
-        notify("success", t("IBAN has been updated successfully."));
       }
     }
     const validAttachments =
@@ -95,7 +93,7 @@ function FacilityControl({
       }));
 
     let combinedObject = update
-      ? { ...changedValues }
+      ? { ...changedValues , ...Object?.assign({}, ...attachments) }
       : { ...values, iban: updatedIban, ...Object?.assign({}, ...attachments) };
     combinedObject.organization_id = orgData?.organizations?.id;
 
