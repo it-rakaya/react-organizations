@@ -52,16 +52,22 @@ const BaseInputMask = forwardRef(() => {
           setIsFocused(false); // Reset focus on blur
         }}
         style={{
-          borderColor: !!touched.iban && !!errors.iban ? "red" : "",
+          borderColor:
+            !!touched.iban && !!errors.iban
+              ? "red"
+              : isFocused
+              ? theme.palette.primary.main
+              : "",
           // borderRadius: "9px",
           height: "59px",
         }}
         className={`
+        ${isFocused ? "border" :""}
         
-        ${isFocused ? "!border-primary" : ""} 
+        
         "my-3 code p-[18px] w-full focus-visible:!outline-none 
          dark:!text-white rounded-[8px] dark:!border dark:!border-solid
-          !border-[#555d64] " ${
+          border-[#555d64] " ${
             !!touched.iban && !!errors.iban && "border-red-500 "
           }  `}
       />

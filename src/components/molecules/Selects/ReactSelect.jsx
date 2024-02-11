@@ -71,10 +71,11 @@ export default function ReactSelect({
               padding: "10px 5px",
               borderRadius: " 8px",
               borderWidth: "1px",
-              // borderColor: isSelected ? "red" : "",
+              // borderColor: isFocused ? "red" : "",
               background: "white",
               margin: "0",
               height: "59px",
+              boxShadow:isFocused ? `0 0 0px 1px ${theme.palette.primary?.main}`:"",
               width: "100%",
             }),
 

@@ -19,7 +19,7 @@ export default function AddFacility() {
 
   return (
     <div className="relative">
-      <div className="grid items-start grid-cols-1 md:grid-cols-2">
+      <div className="grid items-start grid-cols-1 px-1 md:grid-cols-2">
         <div className="col-span-2">
           <Typography className={`font-bold  !text-black dark:!text-white `}>
             1. {t("Facility Information")}
