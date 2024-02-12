@@ -16,10 +16,10 @@ function NationalitiesOrder({ data }) {
     <div className="mt-5">
       {data?.length ? (
         rows.map((row, rowIndex) => (
-          <div key={rowIndex} className="flex flex-wrap justify-center gap-3 mb-5">
+          <div key={rowIndex} className="grid grid-cols-4 gap-3 mb-5 ify-center">
             {row.map((item, index) => (
               <div
-                className="p-1 px-2 rounded-md w-[160px] text-center"
+                className="col-span-1 p-1 px-2 text-center rounded-md"
                 key={index}
                 style={{
                   background: theme?.palette?.primary.main,
