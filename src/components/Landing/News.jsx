@@ -29,7 +29,7 @@ function News() {
       >
         {news.map((val, index) => {
           return (
-            <div key={index}> 
+            <>
               {index != 0 && (
                 <h4 className={`${marqueeElementStyle} px-2`}>|</h4>
               )}
@@ -42,7 +42,7 @@ function News() {
                     )}${organizationName} ${new Date().getUTCFullYear()}`
                   : ""}
               </h4>
-            </div>
+            </>
           );
         })}
       </div>
