@@ -395,7 +395,7 @@ export default function Orders() {
             }}
             className="text-black dark:text-white"
           >
-            <div className="flex justify-center gap-1 text-center dark:text-white">
+            <div className="flex items-center justify-center gap-1 text-center dark:text-white">
               <p className="text-[15px] dark:text-white ">
                 {info?.row?.original.created_at?.slice(0, 10)}
               </p>
