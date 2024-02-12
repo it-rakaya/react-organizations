@@ -82,11 +82,11 @@ function FacilityControl({
       validAttachments?.map((item) => ({
         [`attachments[${item?.index}]`]: item?.file,
       })) || [];
-    const attachmentsToDelete = values.attachments
+    const attachmentsToDelete = values?.attachments
       ?.map((file, index) => ({ file, index }))
       ?.filter(
         (item) =>
-          item.file === "deleted" && AllAttachmentsId.includes(item.index)
+          item.file === "deleted" && AllAttachmentsId?.includes(item.index)
       )
       .map((item) => ({
         [`del_attachments[${item.index}]`]: item.index,

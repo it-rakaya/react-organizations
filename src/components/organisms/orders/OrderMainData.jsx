@@ -36,9 +36,9 @@ export default function OrderMainData({ setShow, show, isPending }) {
         styleHead={{ color: theme.palette.primary.main }}
       />
 
-      <div className="mt-10 px-5 max-h-[26rem]   h-full overflow-y-scroll scroll_main ">
+      <div className="mt-10 px-5 md:max-h-[26rem]   h-full overflow-y-scroll scroll_main ">
         {show ? (
-          <>
+          <div className="">
             <div className="grid grid-cols-2 gap-2 md:grid-cols-2 ">
               <div className="col-span-2 mb-3 md:col-span-1">
                 <SelectFacilities
@@ -79,7 +79,7 @@ export default function OrderMainData({ setShow, show, isPending }) {
                 {t("Continue")}
               </ButtonComp>
             </div>
-          </>
+          </div>
         ) : extra_questions?.questions?.length ? (
           extra_questions?.questions?.map((item) => (
             <ul key={item?.id}>

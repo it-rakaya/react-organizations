@@ -305,6 +305,8 @@
   "the capacity must be from 1 to 5 numbers": "الطاقة الاستيعابية المصرحه يجب ان تكون من 1  الى 5  ارقام",
   "The verification number is required to complete the process.Verification code has been sent to you": "رقم التحقق مطلوب لإكمال العملية. تم إرسال رمز التحقق في رسالة إليك",
   "Login": "تسجيل الدخول",
+  "Page":"صفحة",
+  "of":"من",
   "Register": "تسجيل",
   "landing": {
     "organizationName": "اسم المنظمة",

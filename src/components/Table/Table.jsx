@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useCallback, useState } from "react";
-import TableHeader from "./TableHeader";
 import { useIsRTL } from "../../hooks/useIsRTL";
-import { t } from "i18next";
+import TableComp from "../tantable/TableComp";
+import TableHeader from "./TableHeader";
+import { useMemo } from "react";
 
 const Table = ({
   columns,
@@ -28,15 +28,19 @@ const Table = ({
     setPaginationModel((prevModel) => ({ ...prevModel, page: 0 }));
   }, []);
 
-  // Filter rows based on the "name" property
-  const filteredRows = rows.filter((row) => {
-    const nameValue = String(row.name).toLowerCase();
-    return nameValue.includes(value.toLowerCase());
-  });
+  const filteredRows = useMemo(() => {
+    if (!value) return rows;
+    return rows.filter((row) =>
+      columns.some((column) => {
+        const cellValue = row[column.accessor];
+        if (typeof cellValue === "string" || typeof cellValue === "number") {
+          return cellValue.toString().toLowerCase().includes(value);
+        }
+        return false;
+      })
+    );
+  }, [value, rows, columns]);
 
-  const customLocaleText = {
-    noRowsLabel: t("Not Found Data"),
-  };
 
   return (
     <>
@@ -50,7 +54,7 @@ const Table = ({
             placeholderSearch={placeholderSearch}
             disabled={disabled}
           />
-          <DataGrid
+          {/* <DataGrid
             autoHeight
             rows={filteredRows}
             
@@ -82,7 +86,11 @@ const Table = ({
                 color: "black",
               },
             }}
-          />
+          /> */}
+          <div className="px-2 pt-3 overflow-x-scroll">
+          <TableComp columns={columns || []} data={filteredRows || []}/>
+
+          </div>
         </Card>
       </Grid>
     </>
