@@ -42,7 +42,6 @@ const FooterComponent = ({ title, children, last = false }) => {
 const textStyle = `font-semibold`;
 const Footer = () => {
   const [timeRemaining, setTimeRemaining] = useState({daysRemaining: 0, monthsRemaining: 0});
-  console.log("🚀 ~ Footer ~ timeRemaining:", timeRemaining)
   useEffect(() => {
     setTimeRemaining(calculateHajjRemainingTimeFormatted());
   }, []);

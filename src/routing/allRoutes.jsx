@@ -19,7 +19,6 @@ const Home = lazy(() => import("../pages/home/Home"));
 export const AllRoutesProvider = () => {
   const { i18n } = useTranslation();
   const { orgData } = UseOrg();
-  console.log("🚀 ~ AllRoutesProvider ~ orgData:", orgData);
 
   useEffect(() => {
     if (!orgData?.organizations?.name_ar) {
