@@ -16,8 +16,6 @@ function TableComp({ data, columns }) {
     canPreviousPage,
     canNextPage,
     pageOptions,
-    pageCount,
-    gotoPage,
     nextPage,
     previousPage,
     setPageSize,
