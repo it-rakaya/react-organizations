@@ -51,7 +51,7 @@ export default function MyEmployees() {
         );
         const profilePictureUrl = profilePictureAttachment
           ? profilePictureAttachment?.value
-          : defaultImage;
+          : "https://front-api.rmcc.sa/build/images/users/32/person.png";
 
         const { name } = row;
         return (
