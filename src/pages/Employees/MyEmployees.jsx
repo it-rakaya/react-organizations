@@ -28,15 +28,11 @@ export default function MyEmployees() {
     endpoint: `facility-employees`,
     queryKey: [`facility_employees ${isRTL}`],
   });
-  console.log("🚀 ~ MyEmployees ~ employees:", employees);
 
   const [openAddEmployee, setOpenAddEmployee] = useState(false);
   const [employeeId, setEmployeeId] = useState();
   const [openModelDeleteEmployee, setModelDeleteEMployee] = useState(false);
   const theme = useTheme();
-  // const imgEMployee = employees?.employees?.map((ele) => ele?.attachmentUrl?.find((ele)=>ele.label_en == "Profile Picture"));
-  // const imageEMployee = {...imgEMployee[0].value}
-  // console.log("🚀 ~ MyEmployees ~ imageEMployee:", imageEMployee)
 
   const columns = [
     {
@@ -48,13 +44,13 @@ export default function MyEmployees() {
 
       headerAlign: "center",
       renderCell: ({ row }) => {
-        const profilePictureAttachment = row.attachmentUrl.find(
+        const profilePictureAttachment = row?.attachmentUrl?.find(
           (attachment) =>
-            attachment.label_en === "Profile Picture" ||
-            attachment.label_ar === "صورة الملف الشخصي"
+            attachment?.label_en === "Profile Picture" ||
+            attachment?.label_ar === "صورة الملف الشخصي"
         );
         const profilePictureUrl = profilePictureAttachment
-          ? profilePictureAttachment.value
+          ? profilePictureAttachment?.value
           : defaultImage;
 
         const { name } = row;
