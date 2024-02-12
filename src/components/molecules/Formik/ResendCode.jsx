@@ -38,6 +38,7 @@ const ResendCode = ({
     <>
       <div className="flex justify-center gap-2 ">
         <button
+          disabled
           className={`font-[futuraMed,sans-serif]  ${
             !available
               ? "text-[#777] dark:text-white"
