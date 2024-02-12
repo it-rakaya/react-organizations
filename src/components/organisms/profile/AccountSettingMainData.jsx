@@ -141,7 +141,7 @@ function AccountSettingMainData({ userData, isPending, attachments_register }) {
             })}
         </div>
       </div>
-      <div className="flex justify-end col-span-2 px-[47px]">
+      <div className="flex justify-end col-span-2  px-[14px] md:px-[47px]">
         <ButtonComp
           className="!w-auto"
           loading={isPending}

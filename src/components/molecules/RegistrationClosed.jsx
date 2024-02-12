@@ -14,7 +14,7 @@ function RegistrationClosed() {
 
         <div
           className="flex items-center justify-center mt-5 overflow-y-scroll main_content scroll_main"
-          style={{ height: "calc(100% - 120px)" }}
+          style={{ height: "calc(100% - 111px)" }}
         >
           <p className="p-0 m-0 text-xl font-bold text-center text-black dark:text-white">
             {t("Sorry , Registration period is closed")}
