@@ -22,7 +22,8 @@ export default function ReactSelect({
   selectedValue,
   isMulti,
   placeholder,
-  isDisabled
+  isDisabled,
+  ...props
 }) {
   const { setFieldValue, handleBlur } = useFormikContext();
   const theme = useTheme();
@@ -44,12 +45,15 @@ export default function ReactSelect({
       )}
       <div className="">
         <Select
+          {...props}
           options={options}
           name={name}
           value={selectedValue}
           isDisabled={isDisabled}
           placeholder={
-            <div className="capitalize select-placeholder-text">{placeholder}</div>
+            <div className="capitalize select-placeholder-text">
+              {placeholder}
+            </div>
           }
           noOptionsMessage={() => t("Not Found Data")}
           isMulti={isMulti}
@@ -64,15 +68,18 @@ export default function ReactSelect({
               : setFieldValue(name, option.value)
           }
           styles={{
-            control: (baseStyles, { isFocused }) => ({
+            control: (baseStyles, { isFocused, isSelected }) => ({
               ...baseStyles,
               padding: "10px 5px",
               borderRadius: " 8px",
               borderWidth: "1px",
-              //   borderColor:"#555d64" ,
+              // borderColor: isFocused ? "red" : "",
               background: "white",
               margin: "0",
               height: "59px",
+              boxShadow: isFocused
+                ? `0 0 0px 1px ${theme.palette.primary?.main}`
+                : "",
               width: "100%",
             }),
 
@@ -95,16 +102,16 @@ export default function ReactSelect({
             }),
             multiValueLabel: (styles, { data }) => ({
               ...styles,
-              background:theme.palette.primary?.main,
-              color:"white"
+              background: theme.palette.primary?.main,
+              color: "white",
             }),
             multiValueRemove: (styles, { data }) => ({
               ...styles,
-              color: 'white',
-              background:theme.palette.primary?.main,
-              ':hover': {
-                backgroundColor: data.color,
-                color: 'white',
+              color: "#fff",
+              background: theme.palette.primary?.main,
+              ":hover": {
+                backgroundColor: theme.palette.primary?.main,
+                color: "white",
               },
             }),
           }}
@@ -117,7 +124,6 @@ export default function ReactSelect({
               primary: "#eee",
             },
           })}
-          
           classNames={{
             control: () => "dark:bg-transparent  dark:border-[#555d64]",
             option: () => "dark:bg-dark-primary dark:text-white  ",

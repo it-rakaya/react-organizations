@@ -39,25 +39,25 @@ export default function OrderMainData({ setShow, show, isPending }) {
       <div className="mt-10 px-5 max-h-[26rem]   h-full overflow-y-scroll scroll_main ">
         {show ? (
           <>
-            <div className="grid grid-cols-1 gap-2 md:grid-cols-2 ">
-              <div className="mb-3">
+            <div className="grid grid-cols-2 gap-2 md:grid-cols-2 ">
+              <div className="col-span-2 mb-3 md:col-span-1">
                 <SelectFacilities
                   label={t("Facility Name")}
                   name={"facility_id"}
                   required
                 />
               </div>
-              <div className="mb-3">
+              <div className="col-span-2 mb-3 md:col-span-1">
                 <OrganizationServices
                   label={t("Provided Service")}
                   name="organization_service_id"
-                  
                   required
                 />
               </div>
               <div className="col-span-2 mb-3">
                 <SelectCountryOrganizations
-                  label={t("Country")}
+                  label={t("Nationalities of Pilgrims")}
+                  showIcon
                   name="country_ids"
                 />
               </div>

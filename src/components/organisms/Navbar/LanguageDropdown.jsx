@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import OptionsMenu from "./option-menu/OptionsMenu";
-import { t } from "i18next";
 const LanguageDropdown = () => {
   const { i18n } = useTranslation();
   const language = i18n.language;
@@ -36,6 +35,7 @@ const LanguageDropdown = () => {
 
           menuItemProps: {
             sx: { py: 2 },
+            disabled: i18n.language === "en",
             selected: i18n.language === "en",
             onClick: () => {
               handleLangItemClick("en");
@@ -48,9 +48,9 @@ const LanguageDropdown = () => {
           menuItemProps: {
             sx: { py: 2 },
             selected: i18n.language === "ar",
+            disabled: i18n.language === "ar", // This disables the Arabic option if the current language is Arabic
             onClick: () => {
               handleLangItemClick("ar");
-              // saveSettings({ ...settings, direction: "rtl" });
             },
           },
         },

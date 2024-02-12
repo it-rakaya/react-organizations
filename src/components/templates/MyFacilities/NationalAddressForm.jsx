@@ -6,7 +6,7 @@ import { t } from "i18next";
 import ModalComp from "../../atoms/ModalComp";
 import { useState } from "react";
 
-function NationalAddressData() {
+function NationalAddressForm() {
   const images = [
     { path: "/nationalAddress.png" },
     { path: "/tax_certificate.png" },
@@ -67,7 +67,7 @@ function NationalAddressData() {
         <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("Building Number")}
-            placeholder="3654"
+            placeholder="xxxx"
             name="building_number"
             type="custom"
             maxNum="4"
@@ -85,10 +85,10 @@ function NationalAddressData() {
         <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("Postal Code")}
-            placeholder="568750"
+            placeholder="xxxxx"
             name="postal_code"
             type="custom"
-            maxNum="6"
+            maxNum="5"
             required
             showIcon
             setShow={setShow}
@@ -101,10 +101,10 @@ function NationalAddressData() {
         <div className="w-full md:w-1/2">
           <BaseInputField
             label={t("Secondary Number")}
-            placeholder="698547"
+            placeholder="xxxx"
             name="sub_number"
             type="custom"
-            maxNum="6"
+            maxNum="4"
             required
             showIcon
             setShow={setShow}
@@ -134,4 +134,4 @@ function NationalAddressData() {
   );
 }
 
-export default NationalAddressData;
+export default NationalAddressForm;

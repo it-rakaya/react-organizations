@@ -59,6 +59,8 @@ function TermsAndCondition({ checked, setChecked, hidden , style }) {
               إشعارك بذلك.
             </li>
           </ul>
+          
+          
         </div>
       )}
       {hidden ? (

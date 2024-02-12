@@ -28,11 +28,12 @@ function NotesOrder({ notes }) {
                     // mb: 2,
                     display: "flex",
                     flexWrap: "wrap",
-                    alignItems: "center",
+                    alignItems: "start",
+                    gap:"10px",
                     justifyContent: "space-between",
                   }}
                 >
-                  <div>
+                  <div className="w-[85%]">
                     <Typography
                       variant="caption"
                       className="font-semibold text-black dark:text-white"

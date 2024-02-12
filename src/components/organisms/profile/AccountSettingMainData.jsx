@@ -1,18 +1,17 @@
 /* eslint-disable react/prop-types */
 import { mdiAccountBoxOutline, mdiFileDocumentOutline } from "@mdi/js";
 import Icon from "@mdi/react";
+import { useFormikContext } from "formik";
 import { t } from "i18next";
-import useFetch from "../../../hooks/useFetch";
+import { useIsRTL } from "../../../hooks/useIsRTL";
+import { checkAttachments } from "../../../utils/helpers";
+import ButtonComp from "../../atoms/buttons/ButtonComp";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
 import DatePickerComp from "../../molecules/Formik/DatePickerComp";
 import PhoneInput2 from "../../molecules/Formik/PhoneInput2";
 import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
 import SelectCountry from "../../molecules/SelectCountry";
 import UploadDoc from "../../molecules/uploadImage/UploadDoc";
-import { useFormikContext } from "formik";
-import ButtonComp from "../../atoms/buttons/ButtonComp";
-import { checkAttachments } from "../../../utils/helpers";
-import { useIsRTL } from "../../../hooks/useIsRTL";
 
 function AccountSettingMainData({ userData, isPending, attachments_register }) {
   const { values, initialValues , errors } = useFormikContext();
@@ -142,7 +141,7 @@ function AccountSettingMainData({ userData, isPending, attachments_register }) {
             })}
         </div>
       </div>
-      <div className="flex justify-end col-span-2 px-8">
+      <div className="flex justify-end col-span-2 px-[47px]">
         <ButtonComp
           className="!w-auto"
           loading={isPending}

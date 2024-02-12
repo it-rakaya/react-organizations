@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // ** React Imports
 import { useState } from 'react'
 
@@ -63,7 +64,7 @@ const OptionsMenu = props => {
 
   return (
     <>
-      <IconButton aria-haspopup='true' onClick={handleClick} {...iconButtonProps}>
+      <IconButton aria-haspopup='true' name='element' aria-label="Toggle dark mode"  onClick={handleClick} {...iconButtonProps}>
         {icon ? icon : <IconifyIcon icon='mdi:dots-vertical' {...iconProps} />}
       </IconButton>
       <Menu

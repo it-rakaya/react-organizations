@@ -9,14 +9,14 @@ import Icon from "@mdi/react";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Tab } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { t } from "i18next";
 import { useState } from "react";
 import AdditionalInformationData from "./AditionalInformationData";
 import AttachmentsData from "./AttachmentsData";
 import DetailsFacilityData from "./DetailsFacilityData";
 import NationalAdressData from "./NationalAdressData";
-import { t } from "i18next";
 
-export default function DetailsFacility({ data, className }) {
+export default function DetailsFacility({ data, className, style }) {
   const theme = useTheme();
   const mainColor = theme?.palette?.primary?.main;
   const [value, setValue] = useState("1");
@@ -25,7 +25,7 @@ export default function DetailsFacility({ data, className }) {
     setValue(newValue);
   };
   const parentSection =
-    "grid grid-cols-1 p-4 md:px-5 md:grid-cols-2 md:gap-x-20";
+    "grid grid-cols-1 p-4 md:px-5 md:grid-cols-2 md:gap-x-5";
   const childSection =
     "flex flex-col col-span-2 py-2 mt-5 border-b gap-2 md:col-span-1";
 
@@ -34,17 +34,17 @@ export default function DetailsFacility({ data, className }) {
     {
       value: "1",
       icon: mdiOfficeBuildingOutline,
-      label: t("Facility Information"),
+      label: t("Facility Info"),
     },
     {
       value: "2",
       icon: mdiMapMarkerOutline,
-      label: t("National address"),
+      label: t("National address info"),
     },
     {
       value: "3",
       icon: mdiFormatListBulleted,
-      label: t("Additional Information"),
+      label: t("Additional Info"),
     },
     {
       value: "4",
@@ -55,19 +55,31 @@ export default function DetailsFacility({ data, className }) {
 
   return (
     <div>
-      <div className="mt-8 px-">
-        <TabContext value={value} className="!w-fit">
-          <div className="flex mt-5">
+      <div className="mt-8 px- detailsFacility">
+        <TabContext
+          value={value}
+          className="!w-fit"
+          sx={{
+            "& .MuiTabs-indicator": {
+              right: 0,
+            },
+          }}
+        >
+          <div
+            className="flex mt-5 overflow-hidden"
+            style={{ height: "calc(90vh - 5rem)" }}
+          >
             <TabList
               onChange={handleChange}
               aria-label="nav tabs example"
               orientation="vertical"
-              className=" !min-w-[2%] md:w-[30%] tab_facility border-l-transparent ltr:border-r-transparent w-[80px]  ml-0 "
+              className=" !min-w-[2%] md:w-[37%] tab_facility border-l-transparent ltr:border-r-transparent w-[80px]  ml-0 "
             >
               {tabsItems?.map((item, index) => (
                 <Tab
                   value={item?.value}
                   key={index}
+                  className=" :aria-selected"
                   component="a"
                   style={{ alignItems: "start" }}
                   label={
@@ -82,11 +94,21 @@ export default function DetailsFacility({ data, className }) {
                       </h2>
                     </div>
                   }
+                  sx={{
+                    // Add your custom styles for the selected Tab here
+                    "&.Mui-selected": {
+                      backgroundColor: mainColor,
+                    },
+                    "&.MuiTabs-indicator": {
+                      right: 0,
+                    },
+                  }}
                 />
               ))}
             </TabList>
             <div
-              className={`${className} !overflow-y-scroll !shadow-none  max-h-[43rem]  scroll_main w-full`}
+              className={`${className} !overflow-y-scroll !shadow-none   scroll_main w-full`}
+              style={style}
             >
               <TabPanel value="1" className="pt-0">
                 <DetailsFacilityData

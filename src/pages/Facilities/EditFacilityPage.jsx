@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import StepperCustomDot from "../../components/theme/StepperCustomDot";
-import FacilityContentEdit from "./FacilityContentEdit";
-import FacilityWrapper from "./FacilityWrapper";
 import { useParams } from "react-router-dom";
+import FacilityWrapper from "../../components/templates/MyFacilities/FacilityWrapper";
+import FacilityContentEdit from "../../components/templates/MyFacilities/FacilityContentEdit";
 
 const steps = [
   {

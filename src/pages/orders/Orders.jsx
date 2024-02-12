@@ -17,6 +17,7 @@ import useFetch from "../../hooks/useFetch";
 import { useIsRTL } from "../../hooks/useIsRTL";
 import { convertToHijri, padWithZero } from "../../utils/helpers";
 import { notify } from "../../utils/toast";
+import { Helmet } from "react-helmet-async";
 export default function Orders() {
   const [openAddFaculty, setOpenAddFaculty] = useState(false);
   const [openDetailsOrder, setOpenDetailsOrder] = useState(false);
@@ -44,7 +45,7 @@ export default function Orders() {
   const Accepted = Orders?.all_user_orders?.filter(
     (obj) => obj.status?.name_en == "Accepted"
   );
-  
+
   const closeRegister = orgData?.organizations?.close_order == "1";
   const columns = [
     {
@@ -212,28 +213,27 @@ export default function Orders() {
                       : "cursor-pointer"
                   }
                   options={
-                    row.status?.name_en == "Accepted" || row.status?.name_en == "Approved" ? 
-                    [
-                      {
-                        text: t("Details"),
+                    row.status?.name_en == "Accepted" ||
+                    row.status?.name_en == "Approved"
+                      ? [
+                          {
+                            text: t("Details"),
 
-                        details: "Additional details here",
-                        function: () => {
-                          if (row.status_id == Canceled) {
-                            return notify(
-                              "worning",
-                              t("cant Canceled order")
-                            );
-                          } else {
-                            setOpenDetailsOrder(true);
-                            setDetailsOrder(row);
-                          }
-                        },
-                      },
-                     
-                    ]
-                    :
-                    row.status?.name_en  !== "Rejected"
+                            details: "Additional details here",
+                            function: () => {
+                              if (row.status_id == Canceled) {
+                                return notify(
+                                  "worning",
+                                  t("cant Canceled order")
+                                );
+                              } else {
+                                setOpenDetailsOrder(true);
+                                setDetailsOrder(row);
+                              }
+                            },
+                          },
+                        ]
+                      : row.status?.name_en !== "Rejected"
                       ? [
                           {
                             text: t("Details"),
@@ -293,63 +293,72 @@ export default function Orders() {
   ];
 
   return (
-    <div>
-      <MainHeader title={t("Orders")} />
-      {isLoading || isRefetching ? (
-        <Loading />
-      ) : (
-        <>
-          {closeRegister && (
-            <Alert
-              severity="warning"
-              className="flex items-center !bg-transparent mt-[-14px]"
-            >
-              <div className="flex items-center gap-5 ">
-                <p className="p-0 m-0 font-bold text-red-500">
-                  {t("Receiving orders is closed")}
-                </p>
-              </div>
-            </Alert>
-          )}
-          <OrderInfo Orders={Orders} />
+    <>
+      <Helmet>
+        <title>{t("Orders")}</title>
+        <meta name="description" content="This home page" />
+      </Helmet>
+      <div>
+        <MainHeader title={t("Orders")} />
+        {isLoading || isRefetching ? (
+          <Loading />
+        ) : (
+          <>
+            {closeRegister && (
+              <Alert
+                severity="warning"
+                className="flex items-center !bg-transparent mt-[-14px]"
+              >
+                <div className="flex items-center gap-5 ">
+                  <p className="p-0 m-0 font-bold text-red-500">
+                    {t("Receiving orders is closed")}
+                  </p>
+                </div>
+              </Alert>
+            )}
+            <OrderInfo Orders={Orders} />
 
-          <Table
-            columns={columns || []}
-            rows={Orders?.all_user_orders || []}
-            textButton={t("New Order")}
-            actionButton={() => setOpenAddFaculty(true)}
-            placeholderSearch={t("Search in orders")}
-            disabled={closeRegister}
-          />
-        </>
-      )}
+            <Table
+              columns={columns || []}
+              rows={Orders?.all_user_orders || []}
+              textButton={t("New Order")}
+              actionButton={() => setOpenAddFaculty(true)}
+              placeholderSearch={t("Search in orders")}
+              disabled={closeRegister}
+            />
+          </>
+        )}
 
-      <ModalComp
-        open={openAddFaculty}
-        onClose={() => setOpenAddFaculty(false)}
-        Children={<AddOrder setOpenAddFaculty={setOpenAddFaculty} />}
-      />
-      <ModalComp
-        open={openDetailsOrder}
-        classNameBox={"!h-full"}
-        onClose={() => setOpenDetailsOrder(false)}
-        className={"max-w-[1120px]"}
-        Children={
-          <DetailsOrder data={detailsOrder} setDetailsOrder={setDetailsOrder} />
-        }
-      />
-      <ModalComp
-        open={openCancelOrder}
-        className="!max-w-[450px]  "
-        onClose={() => setOpenCancelOrder(false)}
-        Children={
-          <CancelOrder
-            refetch={refetch}
-            setOpenCancelOrder={setOpenCancelOrder}
-            orderId={orderId}
-          />
-        }
-      />
-    </div>
+        <ModalComp
+          open={openAddFaculty}
+          onClose={() => setOpenAddFaculty(false)}
+          Children={<AddOrder setOpenAddFaculty={setOpenAddFaculty} />}
+        />
+        <ModalComp
+          open={openDetailsOrder}
+          classNameBox={"!h-full"}
+          onClose={() => setOpenDetailsOrder(false)}
+          className={"max-w-[1120px]"}
+          Children={
+            <DetailsOrder
+              data={detailsOrder}
+              setDetailsOrder={setDetailsOrder}
+            />
+          }
+        />
+        <ModalComp
+          open={openCancelOrder}
+          className="!max-w-[450px]  "
+          onClose={() => setOpenCancelOrder(false)}
+          Children={
+            <CancelOrder
+              refetch={refetch}
+              setOpenCancelOrder={setOpenCancelOrder}
+              orderId={orderId}
+            />
+          }
+        />
+      </div>
+    </>
   );
 }

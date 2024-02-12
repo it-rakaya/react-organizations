@@ -1,4 +1,4 @@
-import { toHijri } from "hijri-converter";
+import { toGregorian, toHijri } from "hijri-converter";
 
 export const hexToRGBA = (hex, opacity) => {
   hex = hex.replace("#", "");
@@ -47,14 +47,27 @@ export const padWithZero = (number) => {
 export const convertToHijri = (date) => {
   let hijriDate = new Date(date);
   return toHijri(
-     hijriDate.getFullYear(),
-      hijriDate.getMonth() + 1,
+    hijriDate.getFullYear(),
+    hijriDate.getMonth() + 1,
     hijriDate.getDate()
   );
 };
 
 export function checkAttachments(requiredInputs, attachmentIdsUpdate, values) {
-  const areAllRequiredInputsUpdated = requiredInputs?.every((id) =>
+  const areAllRequiredInputsValid =
+    values?.attachments &&
+    requiredInputs.every(
+      (id) =>
+        // values?.attachments?.[id] !== undefined &&
+        values?.attachments?.[id] !== null &&
+        values?.attachments?.[id] !== "deleted"
+    );
+
+  if (areAllRequiredInputsValid == false) {
+    return false;
+  }
+
+  const areAllRequiredInputsUpdated = requiredInputs.every((id) =>
     attachmentIdsUpdate?.includes(id)
   );
 
@@ -64,13 +77,60 @@ export function checkAttachments(requiredInputs, attachmentIdsUpdate, values) {
 
   return areAllRequiredInputsUpdated && !hasDeletedRequiredAttachments;
 }
+
 export const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-
-export const  formatIban = (value) => {
+export const formatIban = (value) => {
   const hasSpaces = /\s/.test(value);
   if (hasSpaces) {
     return value;
   }
   return value.replace(/(.{4})/g, "$1 ").trim();
+};
+
+export const calculateHajjRemainingTimeFormatted = () => {
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth() + 1; // JavaScript months are 0-indexed.
+  const currentDate = today.getDate();
+
+  const todayHijri = toHijri(currentYear, currentMonth, currentDate);
+  let hajjYear = todayHijri.hy;
+
+  let hajjHijriDate = { hy: hajjYear, hm: 12, hd: 8 };
+  let hajjGregorian = toGregorian(
+    hajjHijriDate.hy,
+    hajjHijriDate.hm,
+    hajjHijriDate.hd
+  );
+  let hajjDate = new Date(
+    hajjGregorian.gy,
+    hajjGregorian.gm - 1,
+    hajjGregorian.gd
+  );
+
+  if (today > hajjDate) {
+    hajjYear++;
+    hajjHijriDate.hy = hajjYear;
+    hajjGregorian = toGregorian(
+      hajjHijriDate.hy,
+      hajjHijriDate.hm,
+      hajjHijriDate.hd
+    );
+    hajjDate = new Date(
+      hajjGregorian.gy,
+      hajjGregorian.gm - 1,
+      hajjGregorian.gd
+    );
+  }
+
+  const oneDay = 24 * 60 * 60 * 1000;
+  const oneHour = 60 * 60 * 1000;
+  const diff = hajjDate - today;
+  const daysRemaining = Math.floor(diff / oneDay);
+  const hoursRemaining = Math.floor((diff % oneDay) / oneHour);
+  const monthsRemaining = Math.floor(daysRemaining / 30);
+  const daysAfterMonths = daysRemaining % 30;
+
+  return { monthsRemaining, daysAfterMonths, hoursRemaining };
 };

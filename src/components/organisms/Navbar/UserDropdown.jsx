@@ -67,9 +67,7 @@ const UserDropdown = (props) => {
     onSuccess: () => {
       notify("success", t("see you soon"));
     },
-    onError: (err) => {
-      notify("error", err?.response?.data.message);
-    },
+
   });
 
   const handleLogout = () => {

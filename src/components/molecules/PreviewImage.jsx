@@ -4,12 +4,7 @@ import Fancybox from "./Fancybox";
 import IconifyIcon from "../atoms/icons/IconifyIcon";
 import { Typography } from "@mui/material";
 
-export default function PreviewImage({
-  files,
-  bgMain,
-  setOpenModal,
-  handleRemoveFile,
-}) {
+export default function PreviewImage({ files, setOpenModal }) {
   // Extract the URLs from the files array
   const imageUrls = files?.map((file) => URL.createObjectURL(file));
 
@@ -45,7 +40,11 @@ export default function PreviewImage({
               </div>
             </a>
             <div onClick={() => setOpenModal(true)}>
-              <IconifyIcon icon="mdi:close" fontSize={20} className="cursor-pointer dark:text-white" />
+              <IconifyIcon
+                icon="mdi:close"
+                fontSize={20}
+                className="cursor-pointer dark:text-white"
+              />
             </div>
           </div>
         ))}

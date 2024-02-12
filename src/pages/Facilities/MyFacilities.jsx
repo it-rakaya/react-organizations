@@ -16,13 +16,14 @@ import Loading from "../../components/molecules/Loading";
 import DataNotFound from "../../components/molecules/NotFound";
 import Paginate from "../../components/molecules/Paginate";
 import Search from "../../components/molecules/Search";
-import DetailsFacility from "../../components/organisms/MyFacilities/DetailsFacility";
 import StepperFacility from "./AddFacilityPage";
 import OptionsMenu from "../../components/organisms/Navbar/option-menu/OptionsMenu";
 import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import useFetch from "../../hooks/useFetch";
 import { notify } from "../../utils/toast";
 import { useIsRTL } from "../../hooks/useIsRTL";
+import { Helmet } from "react-helmet-async";
+import DetailsFacility from "../../components/templates/MyFacilities/DetailsFacility";
 
 export default function MyFacilities() {
   const [open, setOpen] = useState(false);
@@ -58,171 +59,178 @@ export default function MyFacilities() {
   };
   const navigate = useNavigate();
   return (
-    <div>
-      <MainHeader title={t("Facilities")} />
+    <>
+      <Helmet>
+        <title>{t("Facilities")}</title>
+        <meta name="description" content="This home page" />
+      </Helmet>
+      <div>
+        <MainHeader title={t("Facilities")} />
 
-      <Search
-        setSearchQuery={setSearchQuery}
-        placeholder={t("Search facilities...")}
-        addTitle={t("Add Facility")}
-        action={() => navigate("/dashboard/facilities/create-facility")}
-      />
-      {/* <button className="my-5" onClick={()=>notify("success")}>test</button> */}
-      <div className="flex flex-col items-center justify-between ">
-        {isLoading || isRefetching ? (
-          <Loading />
-        ) : filteredFacilities?.length ? (
-          <>
-            <Grid container spacing={6}>
-              {paginatedFacilities?.map((item) => (
-                <>
-                  <Grid item xs={12} sm={4} md={3} key={item?.id}>
-                    <Card
-                      sx={{ position: "relative", height: "190px" }}
-                      className="flex flex-col items-center justify-end"
-                    >
-                      <OptionsMenu
-                        iconButtonProps={{
-                          size: "small",
-                          sx: { top: 12, right: 12, position: "absolute" },
-                        }}
-                        options={[
-                          {
-                            text: t("Details"),
-                            details: "Additional details here",
-                            function: () => {
-                              setOpen(true);
-                              setDetailsItem(item);
-                            },
-                          },
-
-                          {
-                            text: t("Edit"),
-                            function: () => {
-                              navigate(
-                                `/dashboard/facilities/edit-facility/${item?.id}`
-                              );
-                            },
-                          },
-                        ]}
-                      />
-                      <CardContent
-                        className=" pt-5 !pb-0 !pl-0 !pr-0 cursor-pointer"
-                        onClick={() => {
-                          setOpen(true);
-                          setDetailsItem(item);
-                        }}
+        <Search
+          setSearchQuery={setSearchQuery}
+          placeholder={t("Search facilities...")}
+          addTitle={t("Add Facility")}
+          action={() => navigate("/dashboard/facilities/create-facility")}
+        />
+        <div className="flex flex-col items-center justify-between ">
+          {isLoading || isRefetching ? (
+            <Loading />
+          ) : filteredFacilities?.length ? (
+            <>
+              <Grid container spacing={6}>
+                {paginatedFacilities?.map((item) => (
+                  <>
+                    <Grid item xs={12} sm={4} md={3} key={item?.id}>
+                      <Card
+                        sx={{ position: "relative", height: "190px" }}
+                        className="flex flex-col items-center justify-end"
                       >
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            flexDirection: "column",
+                        <OptionsMenu
+                          iconButtonProps={{
+                            size: "small",
+                            sx: { top: 12, right: 12, position: "absolute" },
+                          }}
+                          options={[
+                            {
+                              text: t("Details"),
+                              details: "Additional details here",
+                              function: () => {
+                                setOpen(true);
+                                setDetailsItem(item);
+                              },
+                            },
+
+                            {
+                              text: t("Edit"),
+                              function: () => {
+                                navigate(
+                                  `/dashboard/facilities/edit-facility/${item?.id}`
+                                );
+                              },
+                            },
+                          ]}
+                        />
+                        <CardContent
+                          className=" pt-5 !pb-0 !pl-0 !pr-0 cursor-pointer"
+                          onClick={() => {
+                            setOpen(true);
+                            setDetailsItem(item);
                           }}
                         >
-                          <div className="flex flex-col items-center justify-center">
-                            <FacilityIcon />
-                            <Typography
-                              variant="h6"
-                              sx={{ fontWeight: 500, marginTop: 1 }}
-                              className="!my-2 text-center mx-1 !text-black dark:!text-white
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <div className="flex flex-col items-center justify-center">
+                              <FacilityIcon />
+                              <Typography
+                                variant="h6"
+                                sx={{ fontWeight: 500, marginTop: 1 }}
+                                className="!my-2 text-center mx-1 !text-black dark:!text-white
                               "
-                            >
-                              { item?.name.length > 20 ? `${item?.name.slice(0,20) }...`: item?.name}
-                            </Typography>
-                          </div>
-                        </Box>
-                      </CardContent>
-                      <ButtonComp
-                        variant="contained"
-                        className={"!m-0 !rounded-l-none !rounded-r-none"}
-                        action={() => {
-                          setOpenAddEmployee(true);
-                          setFacultyID(item?.id);
-                        }}
-                      >
-                        {t("Add Employee")}
-                      </ButtonComp>
-                    </Card>
-                  </Grid>
-                </>
-              ))}
-            </Grid>
-            {filteredFacilities?.length > 8 && (
-              <Paginate
-                page={currentPage}
-                totalPages={totalPages}
-                handleChange={handlePageChange}
-              />
-            )}
-          </>
-        ) : (
-          <DataNotFound title={t("Not Found Facilities")} />
-        )}
-      </div>
+                              >
+                                {item?.name.length > 20
+                                  ? `${item?.name.slice(0, 20)}...`
+                                  : item?.name}
+                              </Typography>
+                            </div>
+                          </Box>
+                        </CardContent>
+                        <ButtonComp
+                          variant="contained"
+                          className={"!m-0 !rounded-l-none !rounded-r-none"}
+                          action={() => {
+                            setOpenAddEmployee(true);
+                            setFacultyID(item?.id);
+                          }}
+                        >
+                          {t("Add Employee")}
+                        </ButtonComp>
+                      </Card>
+                    </Grid>
+                  </>
+                ))}
+              </Grid>
+              {filteredFacilities?.length > 8 && (
+                <Paginate
+                  page={currentPage}
+                  totalPages={totalPages}
+                  handleChange={handlePageChange}
+                />
+              )}
+            </>
+          ) : (
+            <DataNotFound title={t("Not Found Facilities")} />
+          )}
+        </div>
 
-      <ModalComp
-        open={open}
-        classNameBox={"!h-full "}
-        className={"max-w-[900px]"}
-        onClose={() => setOpen(false)}
-        Children={<DetailsFacility data={detailsItem} />}
-      />
-      <ModalComp
-        open={openAddFaculty}
-        className={"  "}
-        onClose={() => setOpenAddFaculty(false)}
-        Children={
-          <StepperFacility
-            setOpenAddFaculty={setOpenAddFaculty}
-            updateData={detailsItem}
-          />
-        }
-      />
-      <ModalComp
-        open={openAddEmployee}
-        className={"  "}
-        onClose={() => setOpenAddEmployee(false)}
-        Children={
-          <AddEmployee
-            facultyID={facultyID}
-            refetch={refetch}
-            setOpenAddEmployee={setOpenAddEmployee}
-            setSecundModal={setSecundModal}
-          />
-        }
-      />
-      <ModalComp
-        open={openSecundModal}
-        hidden
-        className="!max-w-[500px]"
-        onClose={() => setSecundModal(true)}
-        Children={
-          <div className="flex flex-col items-center justify-center gap-4 p-3">
-            <CheckIcon className="stroke-contained" />
-            <h1 className="font-bold text-black dark:text-white">
-              {t("An employee has been added successfully")}
-            </h1>
-            <ButtonComp
-              className="!w-2/3 !mb-0 "
-              variant="contained"
-              action={() => navigate("/dashboard/employee")}
-            >
-              <p className="text-white">{t("Go to Employees")}</p>
-            </ButtonComp>
-            <ButtonComp
-              className="!w-2/3 !px-10 !mt-0"
-              variant="outline"
-              action={() => {
-                setSecundModal(false);
-                setOpenAddEmployee(false);
-              }}
-            >
-              {t("Back")}
-            </ButtonComp>
-          </div>
-        }
-      />
-    </div>
+        <ModalComp
+          open={open}
+          classNameBox={"!h-full "}
+          className={"max-w-[900px]"}
+          onClose={() => setOpen(false)}
+          Children={<DetailsFacility data={detailsItem} />}
+        />
+        <ModalComp
+          open={openAddFaculty}
+          className={"  "}
+          onClose={() => setOpenAddFaculty(false)}
+          Children={
+            <StepperFacility
+              setOpenAddFaculty={setOpenAddFaculty}
+              updateData={detailsItem}
+            />
+          }
+        />
+        <ModalComp
+          open={openAddEmployee}
+          className={"  "}
+          onClose={() => setOpenAddEmployee(false)}
+          Children={
+            <AddEmployee
+              facultyID={facultyID}
+              refetch={refetch}
+              setOpenAddEmployee={setOpenAddEmployee}
+              setSecundModal={setSecundModal}
+            />
+          }
+        />
+        <ModalComp
+          open={openSecundModal}
+          hidden
+          className="!max-w-[500px]"
+          onClose={() => setSecundModal(true)}
+          Children={
+            <div className="flex flex-col items-center justify-center gap-4 p-3">
+              <CheckIcon className="stroke-contained" />
+              <h1 className="font-bold text-black dark:text-white">
+                {t("An employee has been added successfully")}
+              </h1>
+              <ButtonComp
+                className="!w-2/3 !mb-0 "
+                variant="contained"
+                action={() => navigate("/dashboard/employee")}
+              >
+                <p className="text-white">{t("Go to Employees")}</p>
+              </ButtonComp>
+              <ButtonComp
+                className="!w-2/3 !px-10 !mt-0"
+                variant="outline"
+                action={() => {
+                  setSecundModal(false);
+                  setOpenAddEmployee(false);
+                }}
+              >
+                {t("Back")}
+              </ButtonComp>
+            </div>
+          }
+        />
+      </div>
+    </>
   );
 }

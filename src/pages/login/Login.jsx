@@ -190,7 +190,9 @@ const Login = () => {
         />
         <ModalComp
           open={openModal}
-          className="!max-w-[500px] !block  "
+          className="!max-w-[350px] !block  "
+          // classNameBox={'!pr-8'}
+
           onClose={() => setOpenModal(false)}
           Children={<RegistrationClosed />}
         />

@@ -16,7 +16,7 @@ export default function PreviewImageLink({
 }) {
   let filename = nameLabel;
   filename = filename?.substring(filename.indexOf('_') + 1);
-  filename = filename?.slice(0, -4);
+  // filename = filename?.slice(0, -4);
   return (
     <div className="">
       <Fancybox
@@ -51,9 +51,9 @@ export default function PreviewImageLink({
                   )}
                   {filename && (
                     <div className="">
-                      <Typography className="file-name !text-black dark:!text-white">
+                      <span className="file-name !text-black dark:!text-white ">
                         {filename}
-                      </Typography>
+                      </span>
                      
                     </div>
                   )}

@@ -2,7 +2,7 @@
 // we need to know what year in hijri are we
 const getYear = async (inc=false)=>{
     const now = new Date()
-    const request = await fetch(`http://api.aladhan.com/v1/gToH/${now.getDate()}-${now.getMonth()+1}-${now.getFullYear()}`);
+    const request = await fetch(`https://api.aladhan.com/v1/gToH/${now.getDate()}-${now.getMonth()+1}-${now.getFullYear()}`);
     const response = (await request.json()).data
     return response.hijri.year;
 }
@@ -18,7 +18,7 @@ function monthDiff(d1, d2) {
 }
 
 const getHajjDate = async (inc=false)=>{
-    const request = await fetch(`http://api.aladhan.com/v1/hToG/01-12-${await getYear()}`);
+    const request = await fetch(`https://api.aladhan.com/v1/hToG/01-12-${await getYear()}`);
     let georgianDate = (await request.json()).data.gregorian.date
     const [day, month, year] = georgianDate.split('-');
     return new Date(year,month-1, day);

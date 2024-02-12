@@ -14,6 +14,7 @@ import DeleteEMployee from "../../components/templates/myEmployee/DeleteEMployee
 import useFetch from "../../hooks/useFetch";
 import { useIsRTL } from "../../hooks/useIsRTL";
 import defaultImage from "../../../public/profile pic1.png";
+import { Helmet } from "react-helmet-async";
 
 export default function MyEmployees() {
   const isRTL = useIsRTL();
@@ -43,7 +44,16 @@ export default function MyEmployees() {
 
       headerAlign: "center",
       renderCell: ({ row }) => {
-        const { name, attachmentUrl } = row;
+        const profilePictureAttachment = row?.attachmentUrl?.find(
+          (attachment) =>
+            attachment?.label_en === "Profile Picture" ||
+            attachment?.label_ar === "صورة الملف الشخصي"
+        );
+        const profilePictureUrl = profilePictureAttachment
+          ? profilePictureAttachment?.value
+          : defaultImage;
+
+        const { name } = row;
         return (
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box
@@ -56,10 +66,18 @@ export default function MyEmployees() {
             >
               <div className="flex items-center gap-3">
                 <img
-                  src={attachmentUrl[1]?.value.endsWith(".pdf") ? defaultImage :attachmentUrl[1]?.value}
+                  src={
+                    profilePictureUrl?.endsWith(".pdf")
+                      ? "https://front-api.rmcc.sa/build/images/users/32/person.png"
+                      : profilePictureUrl
+                  }
                   className="w-[40px]  h-[40px] rounded-full border  border-solid"
-                  style={{ borderColor: theme?.palette?.primary.main }}
+                  style={{
+                    borderColor: theme?.palette?.primary.main,
+                    backgroundColor: theme?.palette?.primary.main,
+                  }}
                 />
+
                 <p className="text-black dark:text-white">
                   {name?.length > 30 ? `${name?.slice(0, 20)}...` : name}
                 </p>
@@ -133,7 +151,7 @@ export default function MyEmployees() {
     },
     {
       flex: 0.15,
-      minWidth: 180,
+      minWidth: 200,
       headerName: t("attachment"),
       field: "",
       cellClassName: "flex !px-0 !justify-center !h-[100px]",
@@ -156,17 +174,20 @@ export default function MyEmployees() {
             className="text-black dark:text-white"
           >
             {row?.attachmentUrl.map((item) => (
-              <div className="" key={item?.id}>
+              <div className="w-[87px] text-center" key={item?.id}>
                 {!item?.value?.toLowerCase().endsWith(".pdf") ? (
                   <div
-                    className="rounded-sm "
+                    className="flex justify-center rounded-sm"
                     style={{ background: theme?.palette?.primary.main }}
                   >
-                    <PadgePreview url={item?.value} label={isRTL ? item?.label_ar :item?.label_en } />
+                    <PadgePreview
+                      url={item?.value}
+                      label={isRTL ? item?.label_ar : item?.label_en}
+                    />
                   </div>
                 ) : (
                   <div
-                    className="px-1 rounded-sm bg-primary"
+                    className="px-1 text-center rounded-sm bg-primary"
                     style={{
                       background: theme?.palette?.primary.main,
                       opacity: "0,8",
@@ -175,12 +196,12 @@ export default function MyEmployees() {
                     <a
                       href={item?.value}
                       download={item?.value}
-                      className=""
                       target="_blank"
+                      className="text-center "
                       rel="noreferrer"
                     >
-                      <p className="text-[10px] text-white px-1">
-                        {isRTL ? item?.label_ar :item?.label_en}
+                      <p className="!text-[10px] text-white px-1 flex justify-center ">
+                        {isRTL ? item?.label_ar : item?.label_en}
                       </p>
                     </a>
                   </div>
@@ -237,15 +258,19 @@ export default function MyEmployees() {
 
   return (
     <>
+      <Helmet>
+        <title>{t("Employee")}</title>
+        <meta name="description" content="This home page" />
+      </Helmet>
       <div>
-        <MainHeader title={t("Employee")} />
+        <MainHeader title={t("Employees")} />
         {isLoading || isRefetching ? (
           <Loading />
         ) : (
           <Table
             columns={columns || []}
             rows={employees?.employees || []}
-            placeholderSearch={t("search in employee")}
+            placeholderSearch={t("search in employees")}
             textButton={t("Add Employee")}
             actionButton={() => setOpenAddEmployee(true)}
           />

@@ -1,25 +1,42 @@
 /* eslint-disable react/prop-types */
 import { t } from "i18next";
+import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
+import { useTheme } from "@mui/material/styles";
 
 function NationalitiesOrder({ data }) {
+  const theme = useTheme();
+
+  // تقسيم البيانات إلى صفوف، حيث كل صف يحتوي على 3 عناصر
+  const rows = [];
+  for (let i = 0; i < data.length; i += 4) {
+    rows.push(data.slice(i, i + 4));
+  }
+
   return (
-    <div>
+    <div className="mt-5">
       {data?.length ? (
-        data?.map((item) => (
-          <>
-            <ul>
-              <li className="m-5 font-semibold text-black dark:text-white" style={{listStyle:"disc"}}>
-                <p className="font-semibold text-black dark:text-white">
-                  {item}
-                </p>
-              </li>
-            </ul>
-          </>
+        rows.map((row, rowIndex) => (
+          <div key={rowIndex} className="flex flex-wrap justify-center gap-3 mb-5">
+            {row.map((item, index) => (
+              <div
+                className="p-1 px-2 rounded-md w-[160px] text-center"
+                key={index}
+                style={{
+                  background: theme?.palette?.primary.main,
+                  opacity: 0.8,
+                }}
+              >
+                <p className="font-semibold text-black dark:text-white">{item}</p>
+              </div>
+            ))}
+          </div>
         ))
       ) : (
-        <div className="mt-10 text-2xl font-bold text-black dark:text-white">
-          {" "}
-          {t("There is no nationalities")}
+        <div className="flex flex-col mt-10 text-2xl font-bold justify-center items-center h-[42vh]">
+          <TermsConditionIcon />
+          <p className="mt-10 text-black dark:text-white">
+            {t("There is no nationalities")}
+          </p>
         </div>
       )}
     </div>

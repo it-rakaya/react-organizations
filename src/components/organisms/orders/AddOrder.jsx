@@ -7,6 +7,7 @@ import { UseOrg } from "../../../context/organization provider/OrganizationProvi
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import OrderMainData from "./OrderMainData";
+import { t } from "i18next";
 
 export default function AddOrder({ setOpenAddFaculty }) {
   const [show, setShow] = useState(true);
@@ -18,7 +19,7 @@ export default function AddOrder({ setOpenAddFaculty }) {
     endpoint: `orders`,
     onSuccess: (data) => {
       queryClient.refetchQueries(["my_orders"]);
-      notify("success");
+      notify("success"  , t("Order added successfully"));
       setOpenAddFaculty(false);
     },
     onError: (err) => {

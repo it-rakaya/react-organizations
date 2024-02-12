@@ -3,9 +3,10 @@ import { Icon } from "@iconify/react";
 import { useTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getTimeLeftToHajj } from "../../utils/landing/HajjTimeCalc";
-import { getPrayerTime } from "../../utils/landing/prayerTimeCalc";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import { calculateHajjRemainingTimeFormatted } from "../../utils/helpers";
+// import { getTimeLeftToHajj } from "../../utils/landing/HajjTimeCalc";
+import { getPrayerTime } from "../../utils/landing/prayerTimeCalc";
 
 const FooterComponent = ({ title, children, last = false }) => {
   const { i18n } = useTranslation();
@@ -40,6 +41,10 @@ const FooterComponent = ({ title, children, last = false }) => {
 
 const textStyle = `font-semibold`;
 const Footer = () => {
+  const [timeRemaining, setTimeRemaining] = useState({daysRemaining: 0, monthsRemaining: 0});
+  useEffect(() => {
+    setTimeRemaining(calculateHajjRemainingTimeFormatted());
+  }, []);
   const { t } = useTranslation();
   const { orgData } = UseOrg();
   const [nextPrayerTime, setNextPrayerTime] = useState({
@@ -47,15 +52,16 @@ const Footer = () => {
     minutes: null,
   });
   const [prayer, setPrayer] = useState("");
-  const [timeLeft, setTimeLeft] = useState({ months: "3", days: "20", hours: "9" });
+  // const [timeLeft, setTimeLeft] = useState({ months: "3", days: "20", hours: "9" });
   useEffect(() => {
     getPrayerTime(setNextPrayerTime, setPrayer);
-    getTimeLeftToHajj(setTimeLeft);
+    // getTimeLeftToHajj(setTimeLeft);
   }, []);
 
   return (
     <div className="2xl:pe-[18%] 3xl:pe-[26%]">
       <div className="flex flex-col w-full gap-3 lg:flex-row">
+        
         {orgData?.organizations?.profile_file ? (
           <FooterComponent title={t("landing.userManual")}>
             <a
@@ -78,10 +84,11 @@ const Footer = () => {
         )}
         <FooterComponent title={t("landing.remainingTimeToHajj")}>
           <h1 className={`${textStyle} tracking-wider dark:text-white`}>
-            {timeLeft.months + " "} {t("landing.months")} {timeLeft.days + " "}{" "}
-            {t("landing.days")} {timeLeft.hours + " "}
+            {timeRemaining.monthsRemaining + " "} {t("landing.months")} {timeRemaining.daysAfterMonths + " "}{" "}
+            {t("landing.days")} {timeRemaining.hoursRemaining + " "}
             {t("landing.hours")}
           </h1>
+          
         </FooterComponent>
         <FooterComponent
           title={`${t("landing.timeLeftTo")} ${t(`landing.prayers.${prayer}`)}`}

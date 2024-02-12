@@ -5,6 +5,8 @@ import { t } from "i18next";
 import * as Yup from "yup";
 import MainContent from "./MainContent";
 import useFetch from "../../../hooks/useFetch";
+import Loading from "../../molecules/Loading";
+import { formatIban } from "../../../utils/helpers";
 
 function FacilityContentEdit({
   activeStep,
@@ -14,10 +16,15 @@ function FacilityContentEdit({
   setActiveStep,
   idFacility,
 }) {
-  const { data: DetailsFacilities, isSuccess } = useFetch({
+  const {
+    data: DetailsFacilities,
+    isRefetching,
+    isSuccess,
+  } = useFetch({
     endpoint: `facilities/${idFacility}`,
     queryKey: ["facilities_update"],
   });
+
   const initialFormValues = {
     name: DetailsFacilities?.facility ? DetailsFacilities?.facility?.name : "",
     registration_number: DetailsFacilities?.facility
@@ -47,9 +54,7 @@ function FacilityContentEdit({
     license_expired_hj: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.license_expired_hj
       : "",
-    // address: DetailsFacilities?.facility
-    //   ? DetailsFacilities?.facility?.address
-    //   : "",
+
     tax_certificate: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.tax_certificate
       : "",
@@ -83,8 +88,16 @@ function FacilityContentEdit({
     capacity: DetailsFacilities?.facility
       ? DetailsFacilities?.facility?.capacity
       : "",
+    account_name: DetailsFacilities?.facility?.bank_information
+      ? DetailsFacilities?.facility?.bank_information?.account_name
+      : "",
+    bank_id: DetailsFacilities?.facility?.bank_information
+      ? DetailsFacilities?.facility?.bank_information?.bank_id
+      : "",
+    iban: DetailsFacilities?.facility?.bank_information
+      ? formatIban(DetailsFacilities?.facility?.bank_information?.iban)
+      : "",
   };
-
   const validationSchema = (step) => {
     switch (step) {
       case 0:
@@ -109,26 +122,38 @@ function FacilityContentEdit({
           capacity: Yup.string()
             .trim()
             .required(t("the capacity number required"))
-            .length(5, t("the capacity must be equal 5 digits")),
+            .min(1, t("the capacity must be from 1 to 5 numbers"))
+            .max(5, t("the capacity must be from 1 to 5 numbers")),
 
           license: Yup.string()
             .trim()
             .required(t("the Licence number required"))
-            .length(10, t("the Licence number must be equal 10 digits")),
+            .min(10, t("the Licence number must be between 10 and 11 digits"))
+            .max(11, t("the Licence number must be between 10 and 11 digits")),
           // address: Yup.string().trim().required(t("address is  required")),
           tax_certificate: Yup.string()
             .trim()
-            .required(t("certificate is required"))
-            .length(9, t("the certificate number must be equal 9 digits")),
+            .required(t("Vat Registration Number is required"))
+            .length(
+              15,
+              t("the Vat Registration Number must be equal 15 digits")
+            ),
+          account_name: Yup.string()
+            .trim()
+            .required(t("the account name required")),
+          iban: Yup.string()
+            .trim()
+            .required(t("this field is required"))
+            .length(29, t("the IBAN number must be equal 24 digits")),
         });
       case 1:
         return Yup.object({
           street_name: Yup.string()
             .trim()
             .required(t("the street name required")),
-          neighborhood: Yup.string()
+          district_id: Yup.string()
             .trim()
-            .required(t("the neighborhood required")),
+            .required(t("the street name required")),
           building_number: Yup.string()
             .trim()
             .required(t("Building Number is required"))
@@ -136,11 +161,11 @@ function FacilityContentEdit({
           postal_code: Yup.string()
             .trim()
             .required(t("postal code is required"))
-            .length(6, t("the postal code must be equal 6 digits")),
+            .length(5, t("the postal code must be equal 5 digits")),
           sub_number: Yup.string()
             .trim()
             .required(t("Secondary Number is required"))
-            .length(6, t("the Secondary Number must be equal 6 digits")),
+            .length(4, t("the Secondary Number must be equal 4 digits")),
         });
       case 2:
         return Yup.object({
@@ -158,45 +183,44 @@ function FacilityContentEdit({
         return Yup.object({});
     }
   };
-  if (isSuccess)
-    return (
-      <Card
-        sx={{
-          mt: 4,
-          height: "calc(100vh - 280px)",
-          overflowY: "scroll",
-        }}
-        className="!bg-transparent !shadow-none scroll_main"
-      >
-        <CardContent className="h-full !px-0 pt-0 bg-transparent ">
-          <Formik
-            initialValues={initialFormValues}
-            validationSchema={validationSchema(activeStep)}
-            onSubmit={() => {}}
-          >
-            {() => (
-              <>
-                <Form className="h-full">
-                  <MainContent
-                    activeStep={activeStep}
-                    steps={steps}
-                    checked={checked}
-                    setChecked={setChecked}
-                    setActiveStep={setActiveStep}
-                    // setFormValues={setFormValues}
-                    update={true}
-                    DetailsFacilities={
-                      DetailsFacilities?.facility?.attachmentUrl
-                    }
-                    idFacility={idFacility}
-                  />
-                </Form>
-              </>
-            )}
-          </Formik>
-        </CardContent>
-      </Card>
-    );
+  if (!isSuccess || isRefetching) return <Loading />;
+  return (
+    <Card
+      sx={{
+        mt: 4,
+        height: "calc(100vh - 287px)",
+        overflowY: "scroll",
+      }}
+      className="!bg-transparent !shadow-none scroll_main"
+    >
+      <CardContent className="h-full !px-0 pt-0 bg-transparent ">
+        <Formik
+          initialValues={initialFormValues}
+          validationSchema={validationSchema(activeStep)}
+          onSubmit={() => {}}
+        >
+          {() => (
+            <>
+              <Form className="h-full">
+                <MainContent
+                  activeStep={activeStep}
+                  steps={steps}
+                  checked={checked}
+                  setChecked={setChecked}
+                  setActiveStep={setActiveStep}
+                  // setFormValues={setFormValues}
+                  update={true}
+                  DetailsFacilities={DetailsFacilities?.facility?.attachmentUrl}
+                  updateData={DetailsFacilities}
+                  idFacility={idFacility}
+                />
+              </Form>
+            </>
+          )}
+        </Formik>
+      </CardContent>
+    </Card>
+  );
 }
 
 export default FacilityContentEdit;

@@ -18,15 +18,17 @@ function Landing() {
         <div className="relative w-full h-full ">
           {/* big */}
           <img
-            alt=""
+            alt="bg_organization"
             srcSet={bg2}
+            loading="lazy"
             // src={orgData?.organizations?.background}
             className="animated-box absolute md:top-[-20%] lg:top-[-40%] xl:top-[-50%] 3xl:top-[-15%] 3xl:right-[-10%] right-[-20%] z-[-10000]"
           />
           {/* small */}
           <img
-            alt=""
+            alt="bg_organization"
             srcSet={bg2}
+            loading="lazy"
             className="animated-box absolute top-[10%] xl:top-[20%] 3xl:top-[40%] right-8 pe-[10vw] z-[-10000]"
           />
         </div>
@@ -51,7 +53,7 @@ function Landing() {
         </div>
       </div>
       {/* page content */}
-      <Navbar  className="fixed bg-[#F7F7F9]"/>
+      <Navbar className="fixed bg-[#F7F7F9]" />
       {/* content */}
       <div className="pt-[13%] mt-10 md:mt-0">
         <Hero />

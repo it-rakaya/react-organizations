@@ -33,7 +33,7 @@ export const sideBarItems: MenuItem_TP[] = [
   },
   {
     id: crypto.randomUUID(),
-    label: `${"Employee"}`,
+    label: `${"Employees"}`,
     icon: BiUser,
     link: "/dashboard/employee",
   },

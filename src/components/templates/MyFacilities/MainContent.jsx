@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { Fragment, useEffect, useState } from "react";
+import AfterAndBeforeFacility from "./AfterAndBeforeFacility";
+import FacilityControl from "./FacilityControl";
 import AddFacility from "./AddFacility";
 import AdditionalInfo from "./AdditionalInfo";
-import NationalAddressData from "./NationalAddressData";
-import StepTwo from "./StepTwo";
-import AfterAndBeforeFacility from "./AfterAndBeforeFacility";
+import NationalAddressForm from "./NationalAddressForm";
 import useFetch from "../../../hooks/useFetch";
-import FacilityControl from "./FacilityControl";
+import StepTwo from "./StepTwo";
 
 function MainContent({
   activeStep,
@@ -15,6 +15,7 @@ function MainContent({
   DetailsFacilities,
   update,
   idFacility,
+  updateData,
 }) {
   const [open, setOpen] = useState(false);
   const { data: attachments_facilities } = useFetch({
@@ -36,7 +37,7 @@ function MainContent({
       case 1:
         return (
           <Fragment key={step}>
-            <NationalAddressData />
+            <NationalAddressForm />
           </Fragment>
         );
       case 2:
@@ -65,18 +66,22 @@ function MainContent({
         {getStepContent(activeStep)}
         <AfterAndBeforeFacility
           activeStep={activeStep}
+          updateData={updateData}
           setActiveStep={setActiveStep}
           setOpen={setOpen}
           steps={steps}
           attachments_facilities={attachments_facilities}
           update={update}
+          DetailsFacilities={DetailsFacilities}
         />
       </div>
       <FacilityControl
         open={open}
         setOpen={setOpen}
         update={update}
+        updateData={updateData}
         idFacility={idFacility}
+        DetailsFacilities={DetailsFacilities}
       />
     </div>
   );

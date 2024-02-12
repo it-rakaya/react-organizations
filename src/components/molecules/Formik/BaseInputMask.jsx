@@ -1,11 +1,12 @@
 /* eslint-disable react/display-name */
 import { useFormikContext } from "formik";
 import { forwardRef, useState } from "react";
+import { useTheme } from "@mui/material/styles";
+import { hexToRGBA } from "../../../utils/helpers";
 
 const BaseInputMask = forwardRef(() => {
   const { setFieldValue, values, touched, errors, handleBlur } =
     useFormikContext();
-
   const formatIban = (value) => {
     const hasSpaces = /\s/.test(value);
     if (hasSpaces) {
@@ -14,6 +15,8 @@ const BaseInputMask = forwardRef(() => {
     return value.replace(/(.{4})/g, "$1 ").trim();
   };
   const [inputValue, setInputValue] = useState(formatIban(values?.iban));
+  const [isFocused, setIsFocused] = useState(false);
+  const theme = useTheme();
 
   const handleInputChange = (event) => {
     const oldValue = inputValue.replace(/ /g, "");
@@ -43,16 +46,30 @@ const BaseInputMask = forwardRef(() => {
         onChange={handleInputChange}
         placeholder="xxxx xxxx xxxx xxxx xxxx xxxx"
         name="iban"
-        onBlur={handleBlur}
+        onFocus={() => setIsFocused(true)}
+        onBlur={(e) => {
+          handleBlur(e);
+          setIsFocused(false); // Reset focus on blur
+        }}
         style={{
-          borderColor: !!touched.iban && !!errors.iban ? "red" : "",
+          borderColor:
+            !!touched.iban && !!errors.iban
+              ? "red"
+              : isFocused
+              ? theme.palette.primary.main
+              : "",
           // borderRadius: "9px",
           height: "59px",
-
         }}
-        className={`"my-3 code p-[18px] w-full focus-visible:!outline-none  dark:!text-white rounded-[8px] dark:!border dark:!border-solid !border-[#555d64] " ${
-          !!touched.iban && !!errors.iban && "border-red-500 "
-        }`}
+        className={`
+        ${isFocused ? "border" :""}
+        
+        
+        "my-3 code p-[18px] w-full focus-visible:!outline-none 
+         dark:!text-white rounded-[8px] dark:!border dark:!border-solid
+          border-[#555d64] " ${
+            !!touched.iban && !!errors.iban && "border-red-500 "
+          }  `}
       />
       {/* <div>{<FormikError name="iban" />}</div> */}
     </div>
