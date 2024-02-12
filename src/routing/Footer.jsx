@@ -1,15 +1,9 @@
 /* eslint-disable react/prop-types */
-import { useTheme } from "@mui/material/styles";
 import { t } from "i18next";
-import { UseOrg } from "../context/organization provider/OrganizationProvider";
 import Heart from "../components/atoms/icons/Heart";
 
 const Footer = () => {
-  const theme = useTheme();
-  const { orgData } = UseOrg();
-  const organizationName = !orgData?.organizations?.name_ar
-    ? t("landing.organizationName")
-    : orgData?.organizations?.name_ar;
+
 
   return (
     <div className=" w-[100%]  mt-5 rounded-md ">

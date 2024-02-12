@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { calculateHajjRemainingTimeFormatted } from "../../utils/helpers";
-import { getTimeLeftToHajj } from "../../utils/landing/HajjTimeCalc";
+// import { getTimeLeftToHajj } from "../../utils/landing/HajjTimeCalc";
 import { getPrayerTime } from "../../utils/landing/prayerTimeCalc";
 
 const FooterComponent = ({ title, children, last = false }) => {
@@ -52,10 +52,10 @@ const Footer = () => {
     minutes: null,
   });
   const [prayer, setPrayer] = useState("");
-  const [timeLeft, setTimeLeft] = useState({ months: "3", days: "20", hours: "9" });
+  // const [timeLeft, setTimeLeft] = useState({ months: "3", days: "20", hours: "9" });
   useEffect(() => {
     getPrayerTime(setNextPrayerTime, setPrayer);
-    getTimeLeftToHajj(setTimeLeft);
+    // getTimeLeftToHajj(setTimeLeft);
   }, []);
 
   return (
