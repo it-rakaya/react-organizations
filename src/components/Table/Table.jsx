@@ -88,7 +88,7 @@ const Table = ({
             }}
           /> */}
           <div className="px-2 pt-3 overflow-x-scroll">
-          <TableComp columns={columns || []} data={filteredRows || []}/>
+          <TableComp columns={columns} data={filteredRows}/>
 
           </div>
         </Card>
