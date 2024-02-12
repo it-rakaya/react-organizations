@@ -28,11 +28,15 @@ export default function MyEmployees() {
     endpoint: `facility-employees`,
     queryKey: [`facility_employees ${isRTL}`],
   });
+  console.log("🚀 ~ MyEmployees ~ employees:", employees);
 
   const [openAddEmployee, setOpenAddEmployee] = useState(false);
   const [employeeId, setEmployeeId] = useState();
   const [openModelDeleteEmployee, setModelDeleteEMployee] = useState(false);
   const theme = useTheme();
+  // const imgEMployee = employees?.employees?.map((ele) => ele?.attachmentUrl?.find((ele)=>ele.label_en == "Profile Picture"));
+  // const imageEMployee = {...imgEMployee[0].value}
+  // console.log("🚀 ~ MyEmployees ~ imageEMployee:", imageEMployee)
 
   const columns = [
     {
@@ -44,7 +48,16 @@ export default function MyEmployees() {
 
       headerAlign: "center",
       renderCell: ({ row }) => {
-        const { name, attachmentUrl } = row;
+        const profilePictureAttachment = row.attachmentUrl.find(
+          (attachment) =>
+            attachment.label_en === "Profile Picture" ||
+            attachment.label_ar === "صورة الملف الشخصي"
+        );
+        const profilePictureUrl = profilePictureAttachment
+          ? profilePictureAttachment.value
+          : defaultImage;
+
+        const { name } = row;
         return (
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box
@@ -58,9 +71,9 @@ export default function MyEmployees() {
               <div className="flex items-center gap-3">
                 <img
                   src={
-                    attachmentUrl[1]?.value.endsWith(".pdf")
-                      ? 'https://front-api.rmcc.sa/build/images/users/32/person.png'
-                      : attachmentUrl[1]?.value
+                    profilePictureUrl?.endsWith(".pdf")
+                      ? "https://front-api.rmcc.sa/build/images/users/32/person.png"
+                      : profilePictureUrl
                   }
                   className="w-[40px]  h-[40px] rounded-full border  border-solid"
                   style={{

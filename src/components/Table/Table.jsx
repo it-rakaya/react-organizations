@@ -41,7 +41,7 @@ const Table = ({
   return (
     <>
       <Grid item xs={12}>
-        <Card>
+        <Card  dir={isRTL ? "rtl"  : "ltr"}>
           <TableHeader
             handleFilter={handleFilter}
             value={value}
@@ -53,6 +53,7 @@ const Table = ({
           <DataGrid
             autoHeight
             rows={filteredRows}
+            
             columns={columns}
             disableRowSelectionOnClick
             pageSizeOptions={[10, 25, 50]}
