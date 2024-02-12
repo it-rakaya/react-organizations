@@ -38,7 +38,6 @@ export default function Orders() {
     queryKey: ["my_orders"],
     enabled: !!orgData?.organizations?.id,
   });
-  console.log("🚀 ~ Orders ~ Orders:", Orders);
 
   const Canceled = Orders?.all_user_orders?.filter(
     (obj) => obj.status?.name_en == "Canceled"
