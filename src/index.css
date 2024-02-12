@@ -1015,11 +1015,13 @@ input {
 .rtl-1dimb5e-singleValue {
   margin: 0 5px;
 }
-
+.decryption_orga {
+  padding: 10px 10px 0 0px;
+}
 
 .dark .decryption_orga div,
 .dark .decryption_orga p {
-  padding: 10px 10px;
+
   text-align: start;
 }
 
