@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
 import { t } from "i18next";
-import { useTable, usePagination } from "react-table";
+import { usePagination, useTable } from "react-table";
 import ArrowLeft from "../atoms/icons/ArrowLeft";
 import ArrowRight from "../atoms/icons/ArrowRight";
-import { useIsRTL } from "../../hooks/useIsRTL";
 
 function TableComp({ data, columns }) {
   const {

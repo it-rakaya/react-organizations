@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import { useCallback, useState } from "react";
 import { useIsRTL } from "../../hooks/useIsRTL";
-import TableComp from "../tantable/Table";
+import TableComp from "../tantable/TableComp";
 import TableHeader from "./TableHeader";
 import { useMemo } from "react";
 
