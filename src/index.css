@@ -18,13 +18,11 @@ body {
 }
 
 body {
-  /* overflow-y: scroll; */
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   max-height: 100vh;
   overflow-x: hidden !important;
-  /* overflow-y: hidden; */
 
 }
 
@@ -67,12 +65,10 @@ body::-webkit-scrollbar-track {
 
 svg {
   color: black;
-  /* @apply  text-contained */
 }
 
 .dark svg {
   color: white;
-  /* @apply  text-contained */
 }
 
 div {
@@ -175,7 +171,6 @@ body[class="dark"] .ps-menu-button.ps-open .ps-menu-icon {
 }
 
 .ps-menu-label {
-  /* color: #a7aaad !important; */
   color: black !important;
 
   font-weight: 400;
@@ -183,7 +178,6 @@ body[class="dark"] .ps-menu-button.ps-open .ps-menu-icon {
   line-height: 1.5;
   text-overflow: ellipsis;
   white-space: nowrap;
-  /* color: rgba(76, 78, 100, 0.87); */
 }
 
 .ps-menu-label.ps-active {
@@ -226,15 +220,12 @@ li.ps-active {
 main::-webkit-scrollbar,
 .css-dip3t8::-webkit-scrollbar {
   display: none;
-  /* Safari and Chrome */
 }
 
 main,
 .css-dip3t8 {
   -ms-overflow-style: none;
-  /* Internet Explorer 10+ */
   scrollbar-width: none;
-  /* Firefox */
 }
 
 .dark .css-dip3t8 {
@@ -250,7 +241,6 @@ main,
 }
 
 .scroll_main::-webkit-scrollbar-track {
-  /* background-color: #787eff; */
   @apply bg-contained
 }
 
@@ -274,18 +264,14 @@ main,
   -webkit-tap-highlight-color: transparent;
   display: block;
   max-width: 83%;
-  /* min-width: 82%; */
-
   width: 100% !important;
   animation-name: mui-auto-fill-cancel;
   animation-duration: 10ms;
   color: black;
-  /* padding: 16.5px 14px; */
   padding-left: 50px !important;
   border-radius: 8px;
   padding: 16.5px 14px;
   border: 1px solid #d8d8dd !important;
-  /* width: 100% !important; */
 }
 
 @media (max-width:550px) {
@@ -310,8 +296,6 @@ main,
 
 .react-tel-input .flag-dropdown {
   border-radius: 5px 0 0 5px;
-  /* border: black; */
-  /* border: 1px solid black; */
 }
 
 .dark .react-tel-input .flag-dropdown {
@@ -353,11 +337,9 @@ main,
 
 
 .MuiBox-root {
-  /* padding: 0 !important; ; */
   backdrop-filter: inherit !important;
 }
 
-/* //////////////////////////////////////////////////////////////////////////////// */
 .light-style .menu .app-brand.demo {
   height: 64px;
 }
@@ -375,7 +357,6 @@ main,
   font-size: 1.25rem;
 }
 
-/* ! For .layout-navbar-fixed added fix padding top tpo .layout-page */
 .layout-navbar-fixed .layout-wrapper:not(.layout-without-menu) .layout-page {
   padding-top: 64px !important;
 }
@@ -397,7 +378,6 @@ main,
   margin: 1rem 0.375rem 0 0 !important;
 }
 
-/* ? .demo-vertical-spacing class is used to have vertical margins between elements. To remove margin-top from the first-child, use .demo-only-element class with .demo-vertical-spacing class. For example, we have used this class in forms-input-groups.html file. */
 .demo-vertical-spacing>* {
   margin-top: 1.25rem !important;
   margin-bottom: 0 !important;
@@ -491,7 +471,6 @@ main,
 .point::before {
   content: '';
   position: absolute;
-  /* border-color: transparent #787EFF transparent transparent; */
 
   top: 7px;
   right: -13px;
@@ -500,21 +479,7 @@ main,
 
 }
 
-/* .MuiTabs-indicator{
-  @apply bg-contained
-}
 
-.rtl-16ohm2w .MuiStepConnector-root.Mui-disabled .MuiStepConnector-line{
-  @apply border-contained
-}
-.rtl-1kb9sjj{
-  @apply border-contained
-
-}
-.rtl-yt6b2j{
-  @apply border-contained
-
-} */
 .rtl-16ohm2w .MuiStepper-alternativeLabel .MuiStepConnector-root {
   top: 8px !important;
 }
@@ -631,9 +596,7 @@ main,
   left: 15px !important;
 }
 
-.rtl-1xc3v61-indicatorContainer {
-  /* padding-left: 0 !important; */
-}
+
 
 [dir="ltr"] .search_icon {
   right: 15px !important;
@@ -700,20 +663,14 @@ input:-webkit-autofill:active {
 @media (max-width:900px) {
 
   .loading {
-    /* left: calc(50% - 54px) !important;
-    top: calc(50% - -27px) !important; */
+
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
 }
 
-/* .MuiTab-root.MuiTab-textColorPrimary.Mui-selected{
-@apply bg-contained
-} */
-.tab_facility .MuiTab-root.MuiTab-textColorPrimary.Mui-selected {
-  /* @apply bg-contained text-white */
-}
+
 
 .tab_facility .MuiTab-root.MuiTab-textColorPrimary.Mui-selected h2 {
   @apply text-white
@@ -815,9 +772,6 @@ input:-webkit-autofill:active {
 
 }
 
-/* .dark ::placeholder {
-  color: white !important;
-} */
 
 .dark .rtl-1g0ciz2-singleValue,
 .dark .css-1g0ciz2-singleValue {
@@ -825,12 +779,10 @@ input:-webkit-autofill:active {
 }
 
 .MuiTablePagination-selectLabel {
-  /* display: none !important; */
   color: black;
 }
 
 .dark .MuiTablePagination-selectLabel {
-  /* display: none !important; */
   color: white;
 }
 
@@ -842,23 +794,13 @@ input:-webkit-autofill:active {
   box-shadow: 0px 0px 0px 0px transparent;
 }
 
-@media (max-width: 979px) {
-  .main_container {
-    /* max-height: calc(100vh - 80px); */
-    /* overflow-y: hidden; */
-  }
-}
 
 .MuiDataGrid-columnHeaders.MuiDataGrid-withBorderColor {
   background-color: transparent !important;
 }
 
 
-@media (max-width:660px) {
-  .layout-page-content {
-    /* max-height: calc(100vh - 35px); */
-  }
-}
+
 
 .MuiBackdrop-root.MuiModal-backdrop {
   background-color: rgba(0, 0, 0, 0.5) !important;
@@ -882,17 +824,14 @@ input:-webkit-autofill:active {
 }
 
 .dark input::-webkit-input-placeholder {
-  /* WebKit, Blink, Edge */
   color: white;
 }
 
 .dark input:-moz-placeholder {
-  /* Mozilla Firefox 4 to 18 */
   color: white !important;
 }
 
 .dark input::-moz-placeholder {
-  /* Mozilla Firefox 19+ */
   color: white !important;
 }
 
@@ -944,12 +883,9 @@ input::placeholder,
 input,
 select {
   border: #555d64 !;
-  /* height: 50px; */
 }
 
-input {
-  /* height: 57px; */
-}
+
 
 .dark .MuiInputBase-input::placeholder,
 .dark input::placeholder,
@@ -1036,7 +972,6 @@ input {
 
 input {
   background-color: white !important;
-  /* border:1px solid red !important; */
 }
 
 .dark input,
@@ -1076,19 +1011,15 @@ input {
   max-height: 25rem;
 }
 
-@media (max-width :1400px) {
-  .decryption_orga {
-    /* height: calc(100vh - 33rem) */
-  }
-}
 
 .rtl-1dimb5e-singleValue {
   margin: 0 5px;
 }
 
 
-.dark .decryption_orga div , .dark .decryption_orga p {
-  padding: 10px 10px ;
+.dark .decryption_orga div,
+.dark .decryption_orga p {
+  padding: 10px 10px;
   text-align: start;
 }
 
@@ -1119,7 +1050,7 @@ input {
   @apply !bg-dark-primary
 }
 
-.dark .react-datepicker__day, .dark .react-datepicker__month-read-view--selected-month,.dark .react-datepicker__year-read-view--selected-year, .dark .react-datepicker__day-name, .dark .react-datepicker__month-option, .dark .react-datepicker__year-option {
+.dark .react-datepicker__day, .dark .react-datepicker__month-read-view--selected-month, .dark .react-datepicker__year-read-view--selected-year, .dark .react-datepicker__day-name, .dark .react-datepicker__month-option, .dark .react-datepicker__year-option {
   @apply !text-white
 }
 
@@ -1135,25 +1066,25 @@ input {
   background-color: rgb(255, 255, 255);
   border-radius: 50%;
 }
-rtl-1xc3v61-indicatorContainer{
 
+
+.MuiDataGrid-columnHeaderTitle {
+  text-transform: capitalize;
 }
- .MuiDataGrid-columnHeaderTitle{
-text-transform: capitalize;
-}
-.Line{
+
+.Line {
   border-style: dashed;
-  /* border-color: #9f968559; */
   border-width: 1px;
 }
 
 @media (max-width:550px) {
-  .attachmentFacility{
+  .attachmentFacility {
     height: calc(75vh);
     overflow: scroll;
     margin-top: 26px;
   }
 }
-.selectOrganization .rtl-15ipeh0-MultiValueRemove svg{
-color: white !important;
+
+.selectOrganization .rtl-15ipeh0-MultiValueRemove svg {
+  color: white !important;
 }
