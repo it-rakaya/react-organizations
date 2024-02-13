@@ -20,7 +20,7 @@ const PickersComponent = forwardRef(({ ...props }, ref) => {
       }}
       inputRef={ref}
       {...props}
-      label={label || ""}
+      label={label || "test"}
       {...(readOnly && { inputProps: { readOnly: true } })}
     />
   );
