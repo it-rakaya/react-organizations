@@ -47,7 +47,7 @@ function Navbar({ hidden ,className }) {
 
   return (
     <nav
-      className={`${className} flex justify-between w-full px-5 py-3 bg-w layout-navbar dark:bg-dark-primary`}
+      className={`${className} flex justify-between w-full px-5 py-3 bg-w layout-navbar bg-[#F7F7F9]   dark:bg-dark-primary md:!bg-transparent`}
       dir={i18n.dir(language)}
     >
       {hidden ? (
