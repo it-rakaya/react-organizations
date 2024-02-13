@@ -50,7 +50,7 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
           </thead>
 
           <tbody {...getTableBodyProps()}>
-            {data.length ? (
+            {!data.length ? (
               rows.map((row) => {
                 prepareRow(row);
                 return (
@@ -74,7 +74,7 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
               })
             ) : (
               <tr className=" capitalize border-y border-[#e9e9ec] dark:border-dark-primary h-[100px] text-center w-full relative">
-                <p className="absolute   text-black dark:text-white top-[35%] left-[45%]">
+                <p className="absolute   text-black dark:text-white top-[43%] left-[49%]">
                   {t("not found data")}
                 </p>
               </tr>
