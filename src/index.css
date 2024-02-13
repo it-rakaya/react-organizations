@@ -1108,3 +1108,6 @@ input {
 .react-datepicker__month {
   margin-top: 0 !important;
 }
+.react-datepicker__day-names{
+display: none;
+}
