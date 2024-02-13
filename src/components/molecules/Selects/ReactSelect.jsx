@@ -76,11 +76,17 @@ export default function ReactSelect({
               // borderColor: isFocused ? "red" : "",
               background: "white",
               margin: "0",
-              height: "59px",
+              maxHeight:"500px",
+              minHeight: "59px",
               boxShadow: isFocused
                 ? `0 0 0px 1px ${theme.palette.primary?.main}`
                 : "",
               width: "100%",
+            }),
+            valueContainer: (base) => ({
+              ...base,
+              maxHeight: 500,
+              overflowY: "auto"
             }),
 
             option: (defaultStyles, { isFocused, isSelected }) => ({
