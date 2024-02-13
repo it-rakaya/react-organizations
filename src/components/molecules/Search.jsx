@@ -11,7 +11,7 @@ function Search({ setSearchQuery, placeholder, addTitle, action }) {
             type="text"
             placeholder={placeholder}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full !p-3 outline-none dark:!border dark:!border-solid text-white rounded-xl"
+            className="w-full !p-3 outline-none dark:!border dark:!border-solid text-black dark:text-white rounded-xl"
           />
           <div className="absolute  search_icon  left-[10px]  top-[14px] w-[20px] ">
             <SearchIcon />
