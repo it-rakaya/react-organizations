@@ -33,7 +33,7 @@ export default function BaseInputField({
   images,
   ...props
 }) {
-  const { setFieldValue, values, touched, errors, handleBlur, handleChange  } =
+  const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
     useFormikContext();
   const [showPassword, setShowPassword] = useState(false);
   const ibanRef = useRef();
@@ -156,43 +156,41 @@ export default function BaseInputField({
               !!touched[name] && !!errors[name] && "border-red-500 "
             }`}
           /> */}
-          <input
-            type="text"
-            value={values[name]}
-            onChange={
-              type === "custom"
-                ? handleChangeNumber
-                : type === "IBAN"
-                ? handleChangeNumber
-                : handleChange
-            }
-            placeholder={placeholder}
-            name={name}
-            onFocus={() => setIsFocused(true)}
-            onBlur={(e) => {
-              handleBlur(e);
-              setIsFocused(false); // Reset focus on blur
-            }}
-            style={{
-              borderColor:
-                !!touched[name] && !!errors[name]
-                  ? "red"
-                  : isFocused
-                  ? theme.palette.primary.main
-                  : "",
-              // borderRadius: "9px",
-              height: "59px",
-            }}
-            className={`
-        ${isFocused ? "border" : ""}
+          {type == "IBAN" ? (
+            <BaseInputMask />
+          ) : (
+            <input
+              type="text"
+              value={values[name]}
+              onChange={type === "custom" ? handleChangeNumber : handleChange}
+              placeholder={placeholder}
+              name={name}
+              onFocus={() => setIsFocused(true)}
+              onBlur={(e) => {
+                handleBlur(e);
+                setIsFocused(false); // Reset focus on blur
+              }}
+              style={{
+                borderColor:
+                  !!touched[name] && !!errors[name]
+                    ? "red"
+                    : isFocused
+                    ? theme.palette.primary.main
+                    : " ",
+                // borderRadius: "9px",
+                height: "59px",
+              }}
+              className={`  
+        ${isFocused ? "border" : " border border-[#cccccc]"}
         
         
         "my-3 code p-[18px] w-full focus-visible:!outline-none 
-         dark:!text-white rounded-[8px] dark:!border dark:!border-solid
-          border-[#555d64] " ${
-            !!touched.iban && !!errors.iban && "border-red-500 "
-          }  `}
-          />
+        dark:!text-white rounded-[8px] dark:!border dark:!border-solid
+        border-[#cccccc] dark:border-[#555d64] " ${
+          !!touched[name] && !!errors[name] && "border-red-500 "
+        }  `}
+            />
+          )}
           <div>{<FormikError name={name} />}</div>
         </>
       )}

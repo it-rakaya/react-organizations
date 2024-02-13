@@ -62,12 +62,12 @@ const BaseInputMask = forwardRef(() => {
           height: "59px",
         }}
         className={`
-        ${isFocused ? "border" :""}
+        ${isFocused ? "border" :" border border-[#cccccc]"}
         
         
         "my-3 code p-[18px] w-full focus-visible:!outline-none 
          dark:!text-white rounded-[8px] dark:!border dark:!border-solid
-          border-[#555d64] " ${
+         border-[#cccccc] dark:border-[#555d64] " ${
             !!touched.iban && !!errors.iban && "border-red-500 "
           }  `}
       />
