@@ -79,7 +79,7 @@ export default function DatePickerComp({
             <DatePicker
               showYearDropdown
               showMonthDropdown
-              className="bg-white dark:bg-dark-primary rounded-[10px] w-full ]"
+              className="bg-white dark:bg-dark-primary rounded-[10px] w-full p-[18px] border border-[#cccccc] dark:border-[#555d64] "
               selected={date}              
               id="month-year-dropdown"
               placeholderText="MM/DD/YYYY"
@@ -114,7 +114,7 @@ export default function DatePickerComp({
                 }
                 // setDate(newValue ? new Date(newValue) : null);
               }}
-              customInput={<CustomInput />}
+             
             />
             {/* </Box> */}
           </DatePickerWrapper>
