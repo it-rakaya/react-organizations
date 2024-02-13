@@ -114,7 +114,7 @@ export default function BaseInputField({
             {...props}
             error={touched[name] && !!errors[name]}
             fullWidth
-            label={placeholder}
+            // label={placeholder}
             value={values[name]}
     
       
@@ -142,9 +142,9 @@ export default function BaseInputField({
             }
             name={name}
             style={{
-              '&  .MuiInputLabel-formControl': {
-                color:"red",
-            },
+            //   '&  .MuiInputLabel-formControl': {
+            //     color:"red",
+            // },
               borderColor: !!touched[name] && !!errors[name] ? "red" : "",
               height: "59px",
 
