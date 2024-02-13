@@ -18,7 +18,8 @@ const Footer = () => {
             <Heart />
           </span>
           <span className="text-[7px] md:text-[14px]  text-center text-black dark:text-white">
-            {t("at Rakaya Management and Food Consulting Company ©")}
+            {t("at Rakaya Management and Food Consulting Company")}
+            <span className="mx-[3px]">&copy;</span>
           </span>
           <span className="text-[7px] md:text-[14px]  text-center text-black dark:text-white">
             {new Date().getFullYear()}
