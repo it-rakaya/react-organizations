@@ -201,7 +201,7 @@ export default function DatePickerComp({
                       "my-3 code p-[18px] w-full focus-visible:!outline-none 
                       dark:!text-white rounded-[8px] dark:!border dark:!border-solid
                       border-[#cccccc] dark:border-[#555d64] " ${
-                        !!touched[name] && !!errors[name] && "border-red-500 "
+                        !!touched[name] && !!errors[name] && "!border-red-500 "
                       }  `}
               // id="month-year-dropdown"
               placeholderText="MM/DD/YYYY"
