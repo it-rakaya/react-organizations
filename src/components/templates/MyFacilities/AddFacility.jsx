@@ -28,7 +28,7 @@ export default function AddFacility() {
         <h1 className="flex items-center col-span-12 gap-1 pt-5 pb-3 text-xl font-medium dark:text-white">
           {t("Commercial Registration Information")}:
         </h1>
-
+        <input name="text" className="w-full p-2 border rounded-md bg-red- 300" placeholder="test"/>
         <div className="flex flex-wrap items-start col-span-12 gap-2 md:flex-nowrap">
           <div className="relative w-full md:w-1/2">
             <BaseInputField
