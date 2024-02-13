@@ -87,7 +87,7 @@ const Table = ({
               },
             }}
           /> */}
-          <div className="px-2 pt-3 overflow-x-scroll">
+          <div className="relative px-2 pt-3  pb-[10px]">
           <TableComp columns={columns} data={filteredRows}/>
 
           </div>

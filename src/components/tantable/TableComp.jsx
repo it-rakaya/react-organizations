@@ -30,6 +30,7 @@ function TableComp({ data, columns }) {
   );
   return (
     <>
+    <div className="overflow-x-scroll">
       <table {...getTableProps()} className="w-full ">
         <thead className="w-full px-4">
           {headerGroups.map((headerGroup) => (
@@ -71,7 +72,9 @@ function TableComp({ data, columns }) {
           })}
         </tbody>
       </table>
-      <div className="flex justify-end w-full gap-5 pt-2 pagination flex-end md:px-[66px]">
+      
+    </div>
+      <div className="flex ltr:justify-start rtl:justify-end items-center w-full gap-5 pt-2 pagination flex-end md:px-[66px]  ">
         <div className="flex items-center gap-2 text-[10px] md:text-[14px] ">
           <p className="text-black dark:text-white !text-[12px] md:!text-[14px]"> {t("rows per page")}</p>
           <select
@@ -117,7 +120,7 @@ function TableComp({ data, columns }) {
               {pageOptions.length}
             </strong>{" "}
           </span>
-          <div dir={"ltr"}>
+          <div className="flex items-center justify-center" dir={"ltr"}>
             <button
               onClick={() => previousPage()}
               disabled={!canPreviousPage}
