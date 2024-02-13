@@ -17,6 +17,7 @@ import CustomInput from "./PickersCustomInput";
 import { toHijri } from "hijri-converter";
 import DatePickerWrapper from ".";
 import { useIsRTL } from "../../../hooks/useIsRTL";
+import { ArrowLeftIcon, ArrowRightIcon } from "@mui/x-date-pickers";
 export default function DatePickerComp({
   name,
   name_hj,
@@ -56,8 +57,8 @@ export default function DatePickerComp({
 
   registerLocale(i18n.language, langObj[i18n.language]);
   const years = Array.from(
-    { length: new Date().getFullYear() - 1990 + 1 },
-    (_, index) => 1990 + index
+    { length: 2070 - 1940 + 1 },
+    (_, index) => 1940 + index
   );
   const months = [
     t("June"),
@@ -73,6 +74,21 @@ export default function DatePickerComp({
     t("November"),
     t("December"),
   ];
+  const daysOfWeek = {
+    en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    ar: ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"],
+  };
+  const currentLanguage = i18n.language;
+  const renderDaysOfWeek = () => {
+  
+    return (
+      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '18px' }}>
+      {daysOfWeek[currentLanguage].map((day) => (
+        <span className="text-[10px] " key={day}>{day}</span>
+      ))}
+    </div>
+    );
+  }
   const CustomHeader = ({
     date,
     changeYear,
@@ -82,9 +98,10 @@ export default function DatePickerComp({
     prevMonthButtonDisabled,
     nextMonthButtonDisabled,
   }) => (
+    <>
     <div style={{ margin: 10, display: "flex", justifyContent: "space-between" }}>
       <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
-        {"<"}
+        <ArrowRightIcon/>
       </button>
       <select
       className="p-1 border border-[#cccccc] rounded-md"
@@ -111,10 +128,13 @@ export default function DatePickerComp({
       </select>
 
       <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
-        {">"}
+        <ArrowLeftIcon/>
       </button>
     </div>
+    {renderDaysOfWeek(currentLanguage)}
+    </>
   );
+ 
 
   return (
     <>
@@ -139,13 +159,20 @@ export default function DatePickerComp({
             <DatePicker
               // showYearDropdown
               // showMonthDropdown
+              day
               className="bg-white dark:bg-dark-primary rounded-[10px] w-full p-[18px] border border-[#cccccc] dark:border-[#555d64] "
               selected={date}              
               // id="month-year-dropdown"
               placeholderText="MM/DD/YYYY"
-              maxDate={new Date('12-31-2070')}
-              minDate={new Date('01-01-1940')}
+              // maxDate={new Date('12-31-2070')}
+              // minDate={new Date('01-01-1940')}
               renderCustomHeader={CustomHeader}
+              renderDayContents={(day, date) => {
+                // يمكنك هنا تخصيص عرض اليوم
+                // `day` هو رقم اليوم من الشهر
+                // `date` هو الكائن Date الخاص باليوم
+                return <div>{day}</div>;
+              }}
               locale={isRTL ? "ar" :"en"}
               sx={{
                 background: "white",
