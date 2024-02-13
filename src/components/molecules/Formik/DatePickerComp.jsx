@@ -55,6 +55,66 @@ export default function DatePickerComp({
   }, [date, setFieldValue, name_hj]);
 
   registerLocale(i18n.language, langObj[i18n.language]);
+  const years = Array.from(
+    { length: new Date().getFullYear() - 1990 + 1 },
+    (_, index) => 1990 + index
+  );
+  const months = [
+    t("June"),
+    t("February"),
+    t("March"),
+    t("April"),
+    t("May"),
+    t("Jun"),
+    t("July"),
+    t("August"),
+    t("September"),
+    t("October"),
+    t("November"),
+    t("December"),
+  ];
+  const CustomHeader = ({
+    date,
+    changeYear,
+    changeMonth,
+    decreaseMonth,
+    increaseMonth,
+    prevMonthButtonDisabled,
+    nextMonthButtonDisabled,
+  }) => (
+    <div style={{ margin: 10, display: "flex", justifyContent: "space-between" }}>
+      <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+        {"<"}
+      </button>
+      <select
+      className="p-1 border border-[#cccccc] rounded-md"
+        value={date.getFullYear()}
+        onChange={({ target: { value } }) => changeYear(value)}
+      >
+        {years.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+
+      <select
+       className="p-1 border border-[#cccccc] rounded-md"
+        value={months[date.getMonth()]}
+        onChange={({ target: { value } }) => changeMonth(months.indexOf(value))}
+      >
+        {months.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+
+      <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+        {">"}
+      </button>
+    </div>
+  );
 
   return (
     <>
@@ -77,14 +137,15 @@ export default function DatePickerComp({
           )}
           <DatePickerWrapper>
             <DatePicker
-              showYearDropdown
-              showMonthDropdown
+              // showYearDropdown
+              // showMonthDropdown
               className="bg-white dark:bg-dark-primary rounded-[10px] w-full p-[18px] border border-[#cccccc] dark:border-[#555d64] "
               selected={date}              
-              id="month-year-dropdown"
+              // id="month-year-dropdown"
               placeholderText="MM/DD/YYYY"
               maxDate={new Date('12-31-2070')}
               minDate={new Date('01-01-1940')}
+              renderCustomHeader={CustomHeader}
               locale={isRTL ? "ar" :"en"}
               sx={{
                 background: "white",
