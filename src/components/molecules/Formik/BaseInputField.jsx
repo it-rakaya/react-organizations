@@ -116,9 +116,8 @@ export default function BaseInputField({
             fullWidth
             label={placeholder}
             value={values[name]}
-            InputLabelProps={{
-              style: { visibility: 'hidden', display: 'none' },
-            }}
+    
+      
             sx={{
               background: "transparent",
               "& .MuiInputBase-input::placeholder": {
