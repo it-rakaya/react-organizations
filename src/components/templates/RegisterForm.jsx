@@ -65,7 +65,7 @@ export default function RegisterForm() {
 
       national_id_expired: Yup.string()
         .trim()
-        .required(t("birthday is required")),
+        .required(t("national ID is required")),
     });
   const initialValues = {
     name: "",

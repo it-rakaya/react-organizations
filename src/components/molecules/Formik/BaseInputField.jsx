@@ -3,18 +3,16 @@ import {
   FormControl,
   IconButton,
   InputAdornment,
-  OutlinedInput,
-  TextField,
+  OutlinedInput
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { useFormikContext } from "formik";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import CardInfo from "../CardInfo";
 import Label from "../Label";
-import { FormikError } from "./FormikError";
 import BaseInputMask from "./BaseInputMask";
-import { t } from "i18next";
-import { useTheme } from "@mui/material/styles";
+import { FormikError } from "./FormikError";
 
 export default function BaseInputField({
   label,
@@ -36,7 +34,6 @@ export default function BaseInputField({
   const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
     useFormikContext();
   const [showPassword, setShowPassword] = useState(false);
-  const ibanRef = useRef();
   const [isFocused, setIsFocused] = useState(false);
   // !! type custom == type number ==> but im used this type in other name because in type number is MUI is given is problem
   const handleChangeNumber = (e) => {

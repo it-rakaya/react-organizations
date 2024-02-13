@@ -1,23 +1,24 @@
 /* eslint-disable react/prop-types */
 import { mdiCalendarMonthOutline } from "@mdi/js";
 import Icon from "@mdi/react";
-import { format } from "date-fns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { useTheme } from "@mui/material/styles";
+import { ArrowLeftIcon, ArrowRightIcon } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { format } from "date-fns";
 import ar from "date-fns/locale/ar-SA";
 import { useFormikContext } from "formik";
+import { toHijri } from "hijri-converter";
 import { useEffect, useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { useTranslation } from "react-i18next";
+import DatePickerWrapper from ".";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 import { convertArabicToEnglish } from "../../../utils/helpers";
 import CardInfo from "../CardInfo";
 import Label from "../Label";
 import { FormikError } from "./FormikError";
-import CustomInput from "./PickersCustomInput";
-import { toHijri } from "hijri-converter";
-import DatePickerWrapper from ".";
-import { useIsRTL } from "../../../hooks/useIsRTL";
-import { ArrowLeftIcon, ArrowRightIcon } from "@mui/x-date-pickers";
+
 export default function DatePickerComp({
   name,
   name_hj,
@@ -30,15 +31,19 @@ export default function DatePickerComp({
   messageInfo,
   images,
 }) {
-  const { setFieldValue, values } = useFormikContext();
+  const { setFieldValue, values, touched, errors, handleBlur } =
+    useFormikContext();
   const [valueHijri, setValueHijri] = useState(values[name_hj]);
   const [date, setDate] = useState(
     values[name] ? new Date(values[name]) : null
   );
+  const theme = useTheme();
+
   const { t } = useTranslation();
   const { i18n } = useTranslation();
-  const isRTL = useIsRTL()
+  const isRTL = useIsRTL();
   const langObj = { ar };
+  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     if (date) {
@@ -76,19 +81,34 @@ export default function DatePickerComp({
   ];
   const daysOfWeek = {
     en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    ar: ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"],
+    ar: [
+      "الأحد",
+      "الإثنين",
+      "الثلاثاء",
+      "الأربعاء",
+      "الخميس",
+      "الجمعة",
+      "السبت",
+    ],
   };
   const currentLanguage = i18n.language;
   const renderDaysOfWeek = () => {
-  
     return (
-      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '18px' }}>
-      {daysOfWeek[currentLanguage].map((day) => (
-        <span className="text-[10px] " key={day}>{day}</span>
-      ))}
-    </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "18px",
+        }}
+      >
+        {daysOfWeek[currentLanguage].map((day) => (
+          <span className="text-[10px] " key={day}>
+            {day}
+          </span>
+        ))}
+      </div>
     );
-  }
+  };
   const CustomHeader = ({
     date,
     changeYear,
@@ -99,42 +119,45 @@ export default function DatePickerComp({
     nextMonthButtonDisabled,
   }) => (
     <>
-    <div style={{ margin: 10, display: "flex", justifyContent: "space-between" }}>
-      <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
-        <ArrowRightIcon/>
-      </button>
-      <select
-      className="p-1 border border-[#cccccc] rounded-md"
-        value={date.getFullYear()}
-        onChange={({ target: { value } }) => changeYear(value)}
+      <div
+        style={{ margin: 10, display: "flex", justifyContent: "space-between" }}
       >
-        {years.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
+        <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+          <ArrowRightIcon />
+        </button>
+        <select
+          className="p-1 border border-[#cccccc] rounded-md"
+          value={date.getFullYear()}
+          onChange={({ target: { value } }) => changeYear(value)}
+        >
+          {years.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
 
-      <select
-       className="p-1 border border-[#cccccc] rounded-md"
-        value={months[date.getMonth()]}
-        onChange={({ target: { value } }) => changeMonth(months.indexOf(value))}
-      >
-        {months.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
+        <select
+          className="p-1 border border-[#cccccc] rounded-md"
+          value={months[date.getMonth()]}
+          onChange={({ target: { value } }) =>
+            changeMonth(months.indexOf(value))
+          }
+        >
+          {months.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
 
-      <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
-        <ArrowLeftIcon/>
-      </button>
-    </div>
-    {renderDaysOfWeek(currentLanguage)}
+        <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+          <ArrowLeftIcon />
+        </button>
+      </div>
+      {renderDaysOfWeek(currentLanguage)}
     </>
   );
- 
 
   return (
     <>
@@ -157,23 +180,35 @@ export default function DatePickerComp({
           )}
           <DatePickerWrapper>
             <DatePicker
-              // showYearDropdown
-              // showMonthDropdown
-              day
-              className="bg-white dark:bg-dark-primary rounded-[10px] w-full p-[18px] border border-[#cccccc] dark:border-[#555d64] "
-              selected={date}              
+              // className="bg-white dark:bg-dark-primary rounded-[10px] w-full p-[18px] border border-[#cccccc] dark:border-[#555d64] "
+              selected={date}
+              name={name}
+              onFocus={() => setIsFocused(true)}
+              onBlur={(e) => {
+                handleBlur(e);
+                setIsFocused(false); // Reset focus on blur
+              }}
+              style={{
+                borderColor:
+                  !!touched[name] && !!errors[name]
+                    ? "red"
+                    : isFocused
+                    ? theme.palette.primary.main
+                    : " ",
+                // borderRadius: "9px",
+                height: "59px",
+              }}
+              className={`  
+                     ${isFocused ? "border" : " border border-[#cccccc]"}
+                      "my-3 code p-[18px] w-full focus-visible:!outline-none 
+                      dark:!text-white rounded-[8px] dark:!border dark:!border-solid
+                      border-[#cccccc] dark:border-[#555d64] " ${
+                        !!touched[name] && !!errors[name] && "border-red-500 "
+                      }  `}
               // id="month-year-dropdown"
               placeholderText="MM/DD/YYYY"
-              // maxDate={new Date('12-31-2070')}
-              // minDate={new Date('01-01-1940')}
               renderCustomHeader={CustomHeader}
-              renderDayContents={(day, date) => {
-                // يمكنك هنا تخصيص عرض اليوم
-                // `day` هو رقم اليوم من الشهر
-                // `date` هو الكائن Date الخاص باليوم
-                return <div>{day}</div>;
-              }}
-              locale={isRTL ? "ar" :"en"}
+              locale={isRTL ? "ar" : "en"}
               sx={{
                 background: "white",
                 borderRadius: "10px",
@@ -202,7 +237,6 @@ export default function DatePickerComp({
                 }
                 // setDate(newValue ? new Date(newValue) : null);
               }}
-             
             />
             {/* </Box> */}
           </DatePickerWrapper>

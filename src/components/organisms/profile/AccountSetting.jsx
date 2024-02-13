@@ -67,7 +67,7 @@ export default function AccountSetting({
 
       national_id_expired: Yup.string()
         .trim()
-        .required(t("birthday is required")),
+        .required(t("national ID is required")),
     });
   const { mutate: UpdateUser, isPending } = useMutate({
     mutationKey: [`users_update`],
