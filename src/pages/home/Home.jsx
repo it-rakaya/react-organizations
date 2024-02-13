@@ -52,7 +52,7 @@ const Home = () => {
         </div>
         <ModalComp
           open={open}
-          hidden
+          hiddenMobile={true}
           onClose={() => {}}
           className="!max-w-[550px]  "
           Children={

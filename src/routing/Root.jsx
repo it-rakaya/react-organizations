@@ -1,19 +1,18 @@
 /* eslint-disable react/prop-types */
-import { Box, styled } from "@mui/material";
+import { Box } from "@mui/material";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import { useNavigate } from "react-router";
 import { Outlet } from "react-router-dom";
+import Loading from "../components/molecules/Loading";
 import AppBarContent from "../components/organisms/Navbar/AppBarContent";
 import LayoutAppBar from "../components/organisms/Navbar/appBar/LayoutAppBar";
 import { SideBar } from "../components/organisms/Sidebar/Sidebar";
 import { useAuth } from "../context/auth-and-perm/AuthProvider";
+import { UseOrg } from "../context/organization provider/OrganizationProvider";
 import { useSettings } from "../hooks/useSettings";
 import Footer from "./Footer";
-import Navbar from "../components/Landing/Navbar";
-import { UseOrg } from "../context/organization provider/OrganizationProvider";
-import Loading from "../components/molecules/Loading";
 
 export const Root = ({ props }) => {
   const [openSide, setOpenSide] = useState(false);
@@ -57,9 +56,7 @@ export const Root = ({ props }) => {
   }, [navigate, token]);
 
   const toggleNavVisibility = () => setNavVisible(!navVisible);
-  // const isFacilityRoute = location.pathname.startsWith(
-  //   "/dashboard/facilities/create-facility"
-  // );
+
   if (!isSuccess || isRefetching) return <Loading />;
   if (token) {
     return (
@@ -129,14 +126,7 @@ export const Root = ({ props }) => {
                 }
               />
               <main
-                // sx={{
-                //   flexGrow: 1,
-                //   width: "100%",
-                //   transition: "padding .25s ease-in-out",
-                //   mx: "auto",
-                //   "@media (min-width:1440px)": { maxWidth: 1440 },
-                //   "@media (min-width:1200px)": { maxWidth: "100%" },
-                // }}
+             
                 className="flex p-6  flex-col justify-between !pb-1 layout-page-content  md:max-h-[91vh] lg:max-w-full overflow-scroll md:max-w-screen-lg flex-grow w-full mx-auto transition-padding"
               >
                 <Outlet />

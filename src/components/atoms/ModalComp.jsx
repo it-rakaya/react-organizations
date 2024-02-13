@@ -28,6 +28,7 @@ export default function ModalComp({
   Children,
   className,
   hidden,
+  hiddenMobile,
   classNameBox,
 }) {
   const theme = useTheme();
@@ -41,10 +42,13 @@ export default function ModalComp({
         aria-describedby="modal-modal-description"
         className={`max-w-[950px] m-4  md:m-auto ${className}`}
       >
-        <Box sx={style} className={`scroll_main px-0 md:px-4 rtl:md:!pr-8 dark:!bg-dark-primary  ${classNameBox}`}>
+        <Box
+          sx={style}
+          className={`scroll_main px-0 md:px-4 rtl:md:!pr-8 dark:!bg-dark-primary  ${classNameBox}`}
+        >
           <div
             className={`absolute ltr:!right-[20px] ltr:left-auto left-[20px] cursor-pointer top-[18px] ${
-              hidden ? "md:hidden" : ""
+              hidden ? "md:hidden" :hiddenMobile ? "hidden" : ""
             } `}
             onClick={onClose}
           >
@@ -53,11 +57,7 @@ export default function ModalComp({
               style={{ color: theme.palette.primary?.main }}
             />
           </div>
-          <div className="my-10">
-
-          {Children}
-          </div>
-
+          <div className="my-10">{Children}</div>
         </Box>
       </Modal>
     </div>
