@@ -50,7 +50,7 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
           </thead>
 
           <tbody {...getTableBodyProps()}>
-            {rows ? (
+            {data.length ? (
               rows.map((row) => {
                 prepareRow(row);
                 return (
