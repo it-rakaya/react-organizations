@@ -14,6 +14,7 @@ import Label from "../Label";
 import { FormikError } from "./FormikError";
 import BaseInputMask from "./BaseInputMask";
 import { t } from "i18next";
+import { useTheme } from "@mui/material/styles";
 
 export default function BaseInputField({
   label,
@@ -32,18 +33,18 @@ export default function BaseInputField({
   images,
   ...props
 }) {
-  const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
+  const { setFieldValue, values, touched, errors, handleBlur, handleChange  } =
     useFormikContext();
   const [showPassword, setShowPassword] = useState(false);
   const ibanRef = useRef();
-
+  const [isFocused, setIsFocused] = useState(false);
   // !! type custom == type number ==> but im used this type in other name because in type number is MUI is given is problem
   const handleChangeNumber = (e) => {
     let value = e.target.value;
     if (type === "custom") {
       const numericRegex = /^[0-9]+$/;
-      value = value.replace(/^0+/, ''); 
-      if (!numericRegex.test(value) || value === '') {
+      value = value.replace(/^0+/, "");
+      if (!numericRegex.test(value) || value === "") {
         setFieldValue(name, "");
         return;
       }
@@ -53,6 +54,7 @@ export default function BaseInputField({
     }
     setFieldValue(name, value);
   };
+  const theme = useTheme();
 
   return (
     <div>
@@ -109,7 +111,7 @@ export default function BaseInputField({
               images={images}
             />
           )}
-          <TextField
+          {/* <TextField
             placeholder={placeholder}
             {...props}
             error={touched[name] && !!errors[name]}
@@ -153,6 +155,43 @@ export default function BaseInputField({
             className={`${className} d "my-3 code " ${
               !!touched[name] && !!errors[name] && "border-red-500 "
             }`}
+          /> */}
+          <input
+            type="text"
+            value={values[name]}
+            onChange={
+              type === "custom"
+                ? handleChangeNumber
+                : type === "IBAN"
+                ? handleChangeNumber
+                : handleChange
+            }
+            placeholder={placeholder}
+            name={name}
+            onFocus={() => setIsFocused(true)}
+            onBlur={(e) => {
+              handleBlur(e);
+              setIsFocused(false); // Reset focus on blur
+            }}
+            style={{
+              borderColor:
+                !!touched[name] && !!errors[name]
+                  ? "red"
+                  : isFocused
+                  ? theme.palette.primary.main
+                  : "",
+              // borderRadius: "9px",
+              height: "59px",
+            }}
+            className={`
+        ${isFocused ? "border" : ""}
+        
+        
+        "my-3 code p-[18px] w-full focus-visible:!outline-none 
+         dark:!text-white rounded-[8px] dark:!border dark:!border-solid
+          border-[#555d64] " ${
+            !!touched.iban && !!errors.iban && "border-red-500 "
+          }  `}
           />
           <div>{<FormikError name={name} />}</div>
         </>
