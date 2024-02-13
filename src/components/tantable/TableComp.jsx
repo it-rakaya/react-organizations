@@ -50,27 +50,35 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
           </thead>
 
           <tbody {...getTableBodyProps()}>
-            {rows.map((row) => {
-              prepareRow(row);
-              return (
-                <tr
-                  {...row.getRowProps()}
-                  className="border-y border-[#e9e9ec] dark:border-dark-primary"
-                >
-                  {row.cells.map((cell) => {
-                    return (
-                      <td
-                        {...cell.getCellProps()}
-                        style={{ fontWeight: "400" }}
-                        className="px-4 py-1 text-center text-[1rem] !text-black dark:!text-white capitalize "
-                      >
-                        {cell.render("Cell")}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
+            {rows ? (
+              rows.map((row) => {
+                prepareRow(row);
+                return (
+                  <tr
+                    {...row.getRowProps()}
+                    className="border-y border-[#e9e9ec] dark:border-dark-primary"
+                  >
+                    {row.cells.map((cell) => {
+                      return (
+                        <td
+                          {...cell.getCellProps()}
+                          style={{ fontWeight: "400" }}
+                          className="px-4 py-1 text-center text-[1rem] !text-black dark:!text-white capitalize "
+                        >
+                          {cell.render("Cell")}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })
+            ) : (
+              <tr className=" capitalize border-y border-[#e9e9ec] dark:border-dark-primary h-[100px] text-center w-full relative">
+                <p className="absolute text-xl font-bold text-black dark:text-white top-[35%] left-[45%]">
+                  {t("not found data")}
+                </p>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

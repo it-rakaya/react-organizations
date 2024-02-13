@@ -68,7 +68,7 @@ export default function ReactSelect({
               : setFieldValue(name, option.value)
           }
           styles={{
-            control: (baseStyles, { isFocused, isSelected }) => ({
+            control: (baseStyles, { isFocused }) => ({
               ...baseStyles,
               padding: "10px 5px",
               borderRadius: " 8px",
