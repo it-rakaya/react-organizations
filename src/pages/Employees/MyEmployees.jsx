@@ -251,7 +251,7 @@ export default function MyEmployees() {
   const columns = useMemo(
     () => [
       {
-        Header: t("code"),
+        Header: t("name"),
         Cell: (info) => {
           // Logic to determine the profile picture URL
           const profilePictureAttachment = info.row.original.attachmentUrl.find(
