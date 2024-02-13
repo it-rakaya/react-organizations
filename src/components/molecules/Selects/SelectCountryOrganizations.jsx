@@ -39,7 +39,7 @@ export default function SelectCountryOrganizations({
       <ReactSelect
         options={options}
         selectedValue={selectedCountry}
-        placeholder={t("Choose Country")}
+        placeholder={t("Choose Nationalists")}
         name={name}
         label={label}
         index={index}
