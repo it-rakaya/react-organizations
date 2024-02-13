@@ -33,14 +33,14 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
     <>
       <div className="overflow-x-scroll">
         <table {...getTableProps()} className="w-full ">
-          <thead className="w-full px-4">
+          <thead className="w-full px-4 ">
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th
                     {...column.getHeaderProps()}
                     style={{ fontWeight: "400" }}
-                    className="px-4  py-2 pb-4 text-center text-[0.75rem] !text-black dark:!text-white capitalize "
+                    className="px-4  py-2 text-center text-[0.75rem] !text-black dark:!text-white capitalize headerTable"
                   >
                     {column.render("Header")}
                   </th>
@@ -74,7 +74,7 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
               })
             ) : (
               <tr className=" capitalize border-y border-[#e9e9ec] dark:border-dark-primary h-[100px] text-center w-full relative">
-                <p className="absolute text-xl font-bold text-black dark:text-white top-[35%] left-[45%]">
+                <p className="absolute   text-black dark:text-white top-[35%] left-[45%]">
                   {t("not found data")}
                 </p>
               </tr>

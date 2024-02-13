@@ -1108,6 +1108,22 @@ input {
 .react-datepicker__month {
   margin-top: 0 !important;
 }
-.react-datepicker__day-names{
-display: none;
+
+.react-datepicker__day-names {
+  display: none;
+}
+
+.headerTable {
+  position: relative;
+}
+
+.headerTable::before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  padding: 1px;
+  border-left: 1px solid #cececece;
+  left: -1px;
+  top: 25%;
+
 }
