@@ -325,7 +325,7 @@ export default function MyEmployees() {
             <span>{info?.row?.original.national_id}</span>
           </div>
         ),
-        cellSize: { width: "170px", height: "50px", margin: "auto"  , alignItems:"center" , display:"flex" , justifyContent:"center" },
+        cellSize: { width: "120px", height: "50px", margin: "auto"  , alignItems:"center" , display:"flex" , justifyContent:"center" },
 
         accessor: "national_id",
       },
@@ -336,7 +336,7 @@ export default function MyEmployees() {
             <span>{info?.row?.original.position_name}</span>
           </div>
         ),
-        cellSize: { width: "170px", height: "50px", margin: "auto" , alignItems:"center" , display:"flex" , justifyContent:"center"  },
+        cellSize: { width: "120px", height: "50px", margin: "auto" , alignItems:"center" , display:"flex" , justifyContent:"center"  },
 
         accessor: "position_name",
       },

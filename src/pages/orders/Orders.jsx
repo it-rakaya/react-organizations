@@ -321,7 +321,7 @@ export default function Orders() {
             </Box>
           </Box>
         ),
-        cellSize: { width: "170px", height: "50px", margin: "auto" , alignItems:"center" , display:"flex" , justifyContent:"center"  },
+        cellSize: { width: "120px", height: "50px", margin: "auto" , alignItems:"center" , display:"flex" , justifyContent:"center"  },
         accessor: "code",
       },
       {
@@ -338,7 +338,7 @@ export default function Orders() {
               : info?.row?.original?.service?.name_en}
           </Typography>
         ),
-        cellSize: { width: "170px", height: "50px", margin: "auto"   , alignItems:"center" , display:"flex" , justifyContent:"center" },
+        cellSize: { width: "150px", height: "50px", margin: "auto"   , alignItems:"center" , display:"flex" , justifyContent:"center" },
         accessor: "service",
       },
       {
@@ -355,7 +355,7 @@ export default function Orders() {
               : info?.row?.original?.facility?.name}
           </Typography>
         ),
-        cellSize: { width: "170px", height: "50px", margin: "auto"  , alignItems:"center" , display:"flex" , justifyContent:"center"  },
+        cellSize: { width: "150px", height: "50px", margin: "auto"  , alignItems:"center" , display:"flex" , justifyContent:"center"  },
         accessor: "facility",
       },
 
@@ -380,7 +380,7 @@ export default function Orders() {
               : info?.row?.original.status?.name_en}
           </Typography>
         ),
-        cellSize: { width: "150px", height: "", margin: "auto"   , alignItems:"center" , display:"flex" , justifyContent:"center" },
+        cellSize: { width: "100px", height: "", margin: "auto"   , alignItems:"center" , display:"flex" , justifyContent:"center" },
         accessor: "status",
       },
       {
@@ -410,7 +410,7 @@ export default function Orders() {
             </div>
           </Typography>
         ),
-        cellSize: { width: "17=80px", height: "50px", margin: "auto"  , alignItems:"center" , display:"flex" , justifyContent:"center"  },
+        cellSize: { width: "200px", height: "50px", margin: "auto"  , alignItems:"center" , display:"flex" , justifyContent:"center"  },
         accessor: "created_at",
       },
 
