@@ -426,7 +426,7 @@ export default function MyEmployees() {
         accessor: "d",
       },
     ],
-    [isRTL]
+    [theme?.palette?.primary.main, isRTL]
   );
 
   return (

@@ -522,7 +522,7 @@ export default function Orders() {
         accessor: "d",
       },
     ],
-    [isRTL]
+    [Orders, isRTL]
   );
   return (
     <>
