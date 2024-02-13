@@ -10,13 +10,15 @@ import { UseOrg } from "../../context/organization provider/OrganizationProvider
 import { useMutate } from "../../hooks/useMutate";
 import { notify } from "../../utils/toast";
 import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
 
 const Home = () => {
   const [open, setOpen] = useState(false);
   const [dataValue, setDataValue] = useState();
-  const { user } = useAuth();
-  const { orgData , error } = UseOrg();
-  console.log("🚀 ~ Home ~ error:", error)
+  const { user, logout } = useAuth();
+  const { orgData, error, isError } = UseOrg();
+  console.log("🚀 ~ Home ~ isError:", isError);
+  console.log("🚀 ~ Home ~ error:", error);
 
   const { mutate: sendOTP } = useMutate({
     mutationKey: [`send-otp`],
@@ -29,6 +31,11 @@ const Home = () => {
       notify("error", err?.response?.data.message);
     },
   });
+  useEffect(() => {
+    if (error?.response?.data?.message == "Unauthenticated.") {
+      logout();
+    }
+  }, [error, logout]);
 
   return (
     <>
