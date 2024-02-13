@@ -14,7 +14,7 @@ function PreviewPdf({ item, eyeIcon  }) {
         rel="noreferrer"
       >
         <div
-          className={` flex items-center w-full  p-1  cursor-pointer rounded-md  `}
+          className={` flex items-center w-full  p-2  cursor-pointer rounded-md  `}
         >
           {eyeIcon ? (
             // <Icon path={mdiEyeOutline} size={1} className="text-black dark:text-white " />
