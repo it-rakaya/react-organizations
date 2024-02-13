@@ -102,6 +102,7 @@ export const OrganizationProvider = ({ children }) => {
       value={{
         orgData,
         refetch,
+        error,
         isRefetching,
         updateLogo,
         isLoading,
