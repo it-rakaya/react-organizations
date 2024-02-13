@@ -5,6 +5,7 @@ import { forwardRef } from "react";
 
 // ** MUI Imports
 import TextField from "@mui/material/TextField";
+import { t } from "i18next";
 
 const PickersComponent = forwardRef(({ ...props }, ref) => {
   // ** Props
@@ -20,7 +21,7 @@ const PickersComponent = forwardRef(({ ...props }, ref) => {
       }}
       inputRef={ref}
       {...props}
-      label={label || "test"}
+      label={label || t("")}
       {...(readOnly && { inputProps: { readOnly: true } })}
     />
   );

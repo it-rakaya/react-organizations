@@ -13,6 +13,7 @@ import CardInfo from "../CardInfo";
 import Label from "../Label";
 import { FormikError } from "./FormikError";
 import BaseInputMask from "./BaseInputMask";
+import { t } from "i18next";
 
 export default function BaseInputField({
   label,
@@ -113,6 +114,7 @@ export default function BaseInputField({
             {...props}
             error={touched[name] && !!errors[name]}
             fullWidth
+            label={t("")}
             value={values[name]}
             sx={{
               background: "transparent",
