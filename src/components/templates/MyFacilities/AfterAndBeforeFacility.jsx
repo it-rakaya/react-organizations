@@ -15,9 +15,8 @@ function AfterAndBeforeFacility({
   attachments_facilities,
   update,
   DetailsFacilities,
-  updateData
 }) {
-  const { values, errors  , dirty } = useFormikContext();
+  const { values, errors } = useFormikContext();
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -118,10 +117,10 @@ function AfterAndBeforeFacility({
         );
 
         const validAttachments = values?.attachments
-        ?.map((file, index) => ({ index, file }))
-        ?.filter(
-          (item) =>
-          typeof item?.file !== "undefined" && item.file !== "deleted"
+          ?.map((file, index) => ({ index, file }))
+          ?.filter(
+            (item) =>
+              typeof item?.file !== "undefined" && item.file !== "deleted"
           );
         const attachments = validAttachments?.map((item) => ({
           [`attachments[${item?.index}]`]: item?.file,
@@ -129,14 +128,16 @@ function AfterAndBeforeFacility({
 
         const isValid = requiredInputs?.every((id) => {
           const attachmentItem = attachments?.find(
-            (item) => item[`attachments[${id}]`] !== undefined && item[`attachments[${id}]`] !== null
-            );
-            return (
-              attachmentItem && attachmentItem[`attachments[${id}]`] !== null
-              );
-            });
+            (item) =>
+              item[`attachments[${id}]`] !== undefined &&
+              item[`attachments[${id}]`] !== null
+          );
+          return (
+            attachmentItem && attachmentItem[`attachments[${id}]`] !== null
+          );
+        });
 
-        return update ? !checkAttachmentsResult  : !isValid;
+        return update ? !checkAttachmentsResult : !isValid;
       default:
         return false;
     }
@@ -171,7 +172,7 @@ function AfterAndBeforeFacility({
         type="button"
         className={"!w-[130px] py-2  px-1 md:py-3 !mt-0 "}
         variant="contained"
-        disabled={isSaveDisabled() }
+        disabled={isSaveDisabled()}
       >
         {activeStep === steps.length - 1 ? t("Save") : t("Next")}
       </ButtonComp>

@@ -79,18 +79,16 @@ export default function DatePickerComp({
     t("November"),
     t("December"),
   ];
-  const daysOfWeek = {
-    en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    ar: [
-      "الأحد",
-      "الإثنين",
-      "الثلاثاء",
-      "الأربعاء",
-      "الخميس",
-      "الجمعة",
-      "السبت",
-    ],
-  };
+  const daysOfWeek = [
+    t("Sun"),
+    t("Mon"),
+    t("Tue"),
+    t("Wed"),
+    t("Thu"),
+    t("Fri"),
+    t("Sat"),
+  ];
+
   const currentLanguage = i18n.language;
   const renderDaysOfWeek = () => {
     return (
@@ -101,7 +99,7 @@ export default function DatePickerComp({
           padding: "18px",
         }}
       >
-        {daysOfWeek[currentLanguage].map((day) => (
+        {daysOfWeek.map((day) => (
           <span className="text-[10px] " key={day}>
             {day}
           </span>
