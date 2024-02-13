@@ -309,7 +309,7 @@ export default function MyEmployees() {
           <div style={{ ...info.column.cellSize }}>
             <span>
               {info?.row?.original.facility_name.length > 30
-                ? info?.row?.original.facility_name.slice(0, 15)
+                ? `${info?.row?.original.facility_name.slice(0, 15)}...`
                 : info?.row?.original.facility_name}
             </span>
           </div>
@@ -336,7 +336,7 @@ export default function MyEmployees() {
             <span>{info?.row?.original.position_name}</span>
           </div>
         ),
-        cellSize: { width: "120px", height: "50px", margin: "auto" , alignItems:"center" , display:"flex" , justifyContent:"center"  },
+        cellSize: { width: "fit-content", height: "50px", margin: "auto" , alignItems:"center" , display:"flex" , justifyContent:"center"  },
 
         accessor: "position_name",
       },
