@@ -121,7 +121,7 @@ export default function DatePickerComp({
         style={{ margin: 10, display: "flex", justifyContent: "space-between" }}
       >
         <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
-          <ArrowRightIcon />
+    {    isRTL ?     <ArrowRightIcon /> :  <ArrowLeftIcon />}
         </button>
         <select
           className="p-1 border border-[#cccccc] rounded-md"
@@ -150,7 +150,7 @@ export default function DatePickerComp({
         </select>
 
         <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
-          <ArrowLeftIcon />
+      {  isRTL  ?    <ArrowLeftIcon /> : <ArrowRightIcon />}
         </button>
       </div>
       {renderDaysOfWeek(currentLanguage)}
