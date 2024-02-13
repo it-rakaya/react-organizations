@@ -45,7 +45,7 @@ export default function SelectCountryOrganizations({
         index={index}
         isMulti
         setIndex={setIndex}
-        messageInfo={t("Please select the nationalities of the pilgrims you want to serve")}
+        messageInfo={t("Please select the nationalities of the pilgrims you want to serve")}
         setShow={setShow}
         images={images}
         required={required}
