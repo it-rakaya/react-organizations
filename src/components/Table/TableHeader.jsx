@@ -24,6 +24,7 @@ const TableHeader = (props) => {
         flexWrap: "wrap",
         alignItems: "center",
         justifyContent: "end",
+      
       }}
     >
       {/* <TextField
@@ -35,7 +36,7 @@ const TableHeader = (props) => {
         onChange={(e) => handleFilter(e.target.value)}
         style={{padding:"10px"}}
       /> */}
-      <div className="relative ">
+      <div className="relative w-full md:w-auto">
         <input
           type="text"
           value={value}
