@@ -16,6 +16,7 @@ import { FormikError } from "./FormikError";
 import CustomInput from "./PickersCustomInput";
 import { toHijri } from "hijri-converter";
 import DatePickerWrapper from ".";
+import { useIsRTL } from "../../../hooks/useIsRTL";
 export default function DatePickerComp({
   name,
   name_hj,
@@ -35,6 +36,7 @@ export default function DatePickerComp({
   );
   const { t } = useTranslation();
   const { i18n } = useTranslation();
+  const isRTL = useIsRTL()
   const langObj = { ar };
 
   useEffect(() => {
@@ -78,12 +80,12 @@ export default function DatePickerComp({
               showYearDropdown
               showMonthDropdown
               className="bg-white dark:bg-dark-primary rounded-[10px] w-full ]"
-              selected={date}
+              selected={date}              
               id="month-year-dropdown"
               placeholderText="MM/DD/YYYY"
               maxDate={new Date('12-31-2070')}
               minDate={new Date('01-01-1940')}
-              locale={i18n.language}
+              locale={isRTL ? "ar" :"en"}
               sx={{
                 background: "white",
                 borderRadius: "10px",
