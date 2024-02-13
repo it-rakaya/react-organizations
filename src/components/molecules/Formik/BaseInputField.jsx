@@ -114,7 +114,7 @@ export default function BaseInputField({
             {...props}
             error={touched[name] && !!errors[name]}
             fullWidth
-            label={t("")}
+            label={placeholder}
             value={values[name]}
             sx={{
               background: "transparent",
@@ -140,6 +140,9 @@ export default function BaseInputField({
             }
             name={name}
             style={{
+              '&  .MuiInputLabel-formControl': {
+                color:"red",
+            },
               borderColor: !!touched[name] && !!errors[name] ? "red" : "",
               height: "59px",
 
