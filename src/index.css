@@ -1093,9 +1093,7 @@ input {
   }
 }
 
-.selectOrganization .rtl-15ipeh0-MultiValueRemove svg {
-  color: white !important;
-}
+
 
 [dir="ltr"] .react-datepicker__month-dropdown-container {
   margin-left: 0 !important;

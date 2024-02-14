@@ -58,7 +58,7 @@ function UserVerified() {
         style={{ boxShadow: "0px 8px 27px -15px #000000d1" }}
       >
         <div className="grid grid-cols-12 col-span-12 ">
-          <div className="flex items-center col-span-12 mb-3 mx:col-span-6 mx:mb-0">
+          <div className="flex flex-wrap items-center col-span-12 mb-3 mx:col-span-6 mx:mb-0">
             <h1 className="text-xl font-bold text-black mx:text-3xl dark:text-white">
               {t("Welcome")}
             </h1>
