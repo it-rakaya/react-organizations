@@ -26,7 +26,30 @@ export default function CheckCode({
   const isRTL = useIsRTL();
 
   const { orgData } = UseOrg();
-
+  
+  if ('OTPCredential' in window) {
+    window.addEventListener('DOMContentLoaded', e => {
+      const input = document.querySelector('input[autocomplete="one-time-code"]');
+      if (!input) return;
+      const ac = new AbortController();
+      const form = input.closest('form');
+      if (form) {
+        form.addEventListener('submit', e => {
+          ac.abort();
+        });
+      }
+      navigator.credentials.get({
+        otp: { transport:['sms'] },
+        signal: ac.signal
+      }).then(otp => {
+        input.value = otp.code;
+        if (form) form.submit();
+      }).catch(err => {
+        console.log(err);
+      });
+    });
+  }
+  
   const handleSendTime = () => {
     if (availableResetCode) {
       setAvailableResetCode(false)
@@ -69,6 +92,7 @@ export default function CheckCode({
               validBorderColor={colorPinInput}
               focusBorderColor={theme?.palette?.primary.main}
               borderColor={colorPinInput}
+              autocomplete="one-time-code"
               inputStyle={{
                 userSelect: "none",
                 border: `1px solid ${theme?.palette?.primary.main}`,

@@ -11,7 +11,7 @@ import { useSettings } from "../../hooks/useSettings";
 import LanguageDropdown from "../organisms/Navbar/LanguageDropdown";
 import ModeToggler from "../organisms/Navbar/ModeToggler";
 
-function Navbar({ hidden ,className }) {
+function Navbar({ hidden, className }) {
   const { i18n } = useTranslation();
   const language = i18n.language;
   const { orgData } = UseOrg();
@@ -42,12 +42,10 @@ function Navbar({ hidden ,className }) {
     logout();
     LogOut();
   };
-  
-
 
   return (
     <nav
-      className={`${className} flex justify-between w-full px-5 py-3 bg-w layout-navbar dark:bg-dark-primary`}
+      className={`${className} flex justify-between w-full px-5 py-3 bg-w layout-navbar bg-[#F7F7F9]   dark:bg-dark-primary `}
       dir={i18n.dir(language)}
     >
       {hidden ? (

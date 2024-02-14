@@ -2,6 +2,7 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import ButtonComp from "../atoms/buttons/ButtonComp";
+import SearchIcon from "../atoms/icons/SearchIcon";
 
 const TableHeader = (props) => {
   const {
@@ -15,7 +16,7 @@ const TableHeader = (props) => {
 
   return (
     <Box
-    className='inputTable'
+      className="inputTable"
       sx={{
         p: 5,
         pb: 3,
@@ -23,9 +24,10 @@ const TableHeader = (props) => {
         flexWrap: "wrap",
         alignItems: "center",
         justifyContent: "end",
+      
       }}
     >
-      <TextField
+      {/* <TextField
         size="small"
         value={value}
         // sx={{ mr: 6 }}
@@ -33,17 +35,27 @@ const TableHeader = (props) => {
         placeholder={placeholderSearch}
         onChange={(e) => handleFilter(e.target.value)}
         style={{padding:"10px"}}
-      />
-   
-        <ButtonComp
-          variant="contained"
-          sx={{ mb: 2 }}
-          action={actionButton}
-          className={"!w-full  md:!w-auto !mt-0 mx-[17px] md:mx-0"}
-          disabled={disabled}
-        >
-          {textButton}
-        </ButtonComp>
+      /> */}
+      <div className="relative w-full md:w-auto">
+        <input
+          type="text"
+          value={value}
+          placeholder={placeholderSearch}
+          onChange={(e) => handleFilter(e.target.value)}
+          
+          className="dark:!border-white w-full outline-none mb-2 md:mb-0  md:mx-2 ltr:md:mr-6  md:ml-6 md:w-auto border !border-[#cecece] p-[9px]  rounded-[10px]"
+        />
+      </div>
+
+      <ButtonComp
+        variant="contained"
+        sx={{ mb: 2 }}
+        action={actionButton}
+        className={"!w-full  md:!w-auto !mt-0 mx-0 "}
+        disabled={disabled}
+      >
+        {textButton}
+      </ButtonComp>
     </Box>
   );
 };

@@ -29,23 +29,30 @@ const Table = ({
   }, []);
 
   const filteredRows = useMemo(() => {
-    if (!value) return rows;
-    return rows.filter((row) =>
-      columns.some((column) => {
-        const cellValue = row[column.accessor];
-        if (typeof cellValue === "string" || typeof cellValue === "number") {
-          return cellValue.toString().toLowerCase().includes(value);
-        }
-        return false;
-      })
-    );
-  }, [value, rows, columns]);
+    const searchFiltered = !value
+      ? rows
+      : rows.filter((row) =>
+          columns.some((column) => {
+            const cellValue = row[column.accessor];
+            return typeof cellValue === "string" ||
+              typeof cellValue === "number"
+              ? cellValue.toString().toLowerCase().includes(value.toLowerCase())
+              : false;
+          })
+        );
 
+    const startIndex = paginationModel.page * paginationModel.pageSize;
+    const paginatedItems = searchFiltered.slice(
+      startIndex,
+      startIndex + paginationModel.pageSize
+    );
+    return paginatedItems;
+  }, [value, rows, columns, paginationModel]);
 
   return (
     <>
       <Grid item xs={12}>
-        <Card  dir={isRTL ? "rtl"  : "ltr"}>
+        <Card dir={isRTL ? "rtl" : "ltr"}>
           <TableHeader
             handleFilter={handleFilter}
             value={value}
@@ -87,9 +94,13 @@ const Table = ({
               },
             }}
           /> */}
-          <div className="px-2 pt-3 overflow-x-scroll">
-          <TableComp columns={columns || []} data={filteredRows || []}/>
-
+          <div className="relative px-2 pt-3  pb-[10px]">
+            <TableComp
+              columns={columns}
+              data={filteredRows}
+              setPaginationModel={setPaginationModel}
+              paginationModel={paginationModel}
+            />
           </div>
         </Card>
       </Grid>

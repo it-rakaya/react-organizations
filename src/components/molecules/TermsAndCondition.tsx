@@ -9,7 +9,7 @@ import {
   RadioGroup,
 } from "@mui/material";
 
-function TermsAndCondition({ checked, setChecked, hidden , style }) {
+function TermsAndCondition({ checked, setChecked, hidden, style }) {
   const { orgData } = UseOrg();
 
   return (
@@ -40,27 +40,35 @@ function TermsAndCondition({ checked, setChecked, hidden , style }) {
           </p>
           <ul className="mx-4 text-start">
             <li className="my-2 text-[15px] text-black dark:text-white">
-              جميع البيانات والمرفقات المدخلة من قبلكم صحيحة ومحدثة ولا تتحمل
-              المنصة أدنى مسؤولية في حالة كونها غير صحيحة أو غير مطابقة.
+             
+              {t(
+                "All data and attachments entered by you are accurate and up to date, and the platform bears no responsibility if they are incorrect or not matching"
+              )}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
-              في حالة إرفاق ملف في غير محله لغرض مِلء المتطلبات لن يتم النظر
-              إليه ولن يتم قبولكم في المنصة.
+             
+              {t(
+                "If a file is attached in the wrong place for the purpose of fulfilling the requirements, it will not be considered, and you will not be accepted on the platform."
+              )}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
-              يجب أن يكون مستخدم المنصة يقدم خدمات الإعاشة ومصرح له بذلك.
+              {t(
+                "The platform user must be providing sustenance services and be authorized to do so."
+              )}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
-              يحق للمنصة الإطلاع على البيانات المرفقة من قبلكم وحفظها لديها
-              لأغراض تطوير المنصة.
+           
+              {t(
+                "The platform has the right to view the data provided by you and save it for the purpose of developing the platform."
+              )}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
-              يخضع المسجل في المنصة لأحكامها وفي حالة تحديثها أو تعديلها سيتم
-              إشعارك بذلك.
+          
+              {t(
+                "The registered user on the platform is subject to its terms, and in case of their update or amendment, you will be notified of that."
+              )}
             </li>
           </ul>
-          
-          
         </div>
       )}
       {hidden ? (

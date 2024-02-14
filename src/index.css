@@ -1015,9 +1015,15 @@ input {
 .rtl-1dimb5e-singleValue {
   margin: 0 5px;
 }
-.decryption_orga {
-  padding: 10px 10px 0 0px;
+
+[dir="rtl"] .decryption_orga {
+  padding: 10px 10px 0 0px !important;
 }
+
+[dir="ltr"] .decryption_orga {
+  padding: 10px 0px 0 10px;
+}
+
 
 .dark .decryption_orga div,
 .dark .decryption_orga p {
@@ -1089,4 +1095,35 @@ input {
 
 .selectOrganization .rtl-15ipeh0-MultiValueRemove svg {
   color: white !important;
+}
+
+[dir="ltr"] .react-datepicker__month-dropdown-container {
+  margin-left: 0 !important;
+}
+
+.MuiInputLabel-root {
+  color: rgb(201, 191, 191) !important;
+}
+
+.react-datepicker__month {
+  margin-top: 0 !important;
+}
+
+.react-datepicker__day-names {
+  display: none;
+}
+
+.headerTable {
+  position: relative;
+}
+
+.headerTable::before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  padding: 1px;
+  border-left: 1px solid #cececece;
+  left: -1px;
+  top: 25%;
+
 }

@@ -38,7 +38,6 @@ export default function Orders() {
     queryKey: ["my_orders"],
     enabled: !!orgData?.organizations?.id,
   });
-  console.log("🚀 ~ Orders ~ Orders:", Orders);
 
   const Canceled = Orders?.all_user_orders?.filter(
     (obj) => obj.status?.name_en == "Canceled"
@@ -322,7 +321,14 @@ export default function Orders() {
             </Box>
           </Box>
         ),
-        cellSize: { width: "170px", height: "50px", margin: "auto" , alignItems:"center" , display:"flex" , justifyContent:"center"  },
+        cellSize: {
+          width: "120px",
+          height: "50px",
+          margin: "auto",
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+        },
         accessor: "code",
       },
       {
@@ -339,7 +345,14 @@ export default function Orders() {
               : info?.row?.original?.service?.name_en}
           </Typography>
         ),
-        cellSize: { width: "170px", height: "50px", margin: "auto"   , alignItems:"center" , display:"flex" , justifyContent:"center" },
+        cellSize: {
+          width: "150px",
+          height: "50px",
+          margin: "auto",
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+        },
         accessor: "service",
       },
       {
@@ -352,11 +365,18 @@ export default function Orders() {
             style={{ ...info.column.cellSize }}
           >
             {info?.row?.original?.facility?.name.length > 20
-              ? info?.row?.original?.facility?.name.slice(0, 15)
+              ? `${info?.row?.original?.facility?.name.slice(0, 15)}...`
               : info?.row?.original?.facility?.name}
           </Typography>
         ),
-        cellSize: { width: "170px", height: "50px", margin: "auto"  , alignItems:"center" , display:"flex" , justifyContent:"center"  },
+        cellSize: {
+          width: "150px",
+          height: "50px",
+          margin: "auto",
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+        },
         accessor: "facility",
       },
 
@@ -381,7 +401,14 @@ export default function Orders() {
               : info?.row?.original.status?.name_en}
           </Typography>
         ),
-        cellSize: { width: "150px", height: "", margin: "auto"   , alignItems:"center" , display:"flex" , justifyContent:"center" },
+        cellSize: {
+          width: "100px",
+          height: "",
+          margin: "auto",
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+        },
         accessor: "status",
       },
       {
@@ -396,7 +423,7 @@ export default function Orders() {
             }}
             className="text-black dark:text-white"
           >
-            <div className="flex justify-center gap-1 text-center dark:text-white">
+            <div className="flex items-center justify-center gap-1 text-center dark:text-white">
               <p className="text-[15px] dark:text-white ">
                 {info?.row?.original.created_at?.slice(0, 10)}
               </p>
@@ -411,7 +438,14 @@ export default function Orders() {
             </div>
           </Typography>
         ),
-        cellSize: { width: "17=80px", height: "50px", margin: "auto"  , alignItems:"center" , display:"flex" , justifyContent:"center"  },
+        cellSize: {
+          width: "200px",
+          height: "50px",
+          margin: "auto",
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+        },
         accessor: "created_at",
       },
 
@@ -523,7 +557,7 @@ export default function Orders() {
         accessor: "d",
       },
     ],
-    [isRTL]
+    [Orders, isRTL]
   );
   return (
     <>

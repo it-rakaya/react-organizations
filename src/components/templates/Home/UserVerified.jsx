@@ -92,7 +92,7 @@ function UserVerified() {
           <div className="grid justify-center grid-cols-12 col-span-12 md:mt-5 md:flex md:flex-wrap md:col-span-6">
             {data?.map((item, index) => (
               <div
-                className="flex justify-center w-1/2 col-span-12"
+                className="flex justify-start col-span-12 mx-5 md:mx-0 md:w-1/2 md:justify-center"
                 key={index}
               >
                 <CardStatsHorizontal

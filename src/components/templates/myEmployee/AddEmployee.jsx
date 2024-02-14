@@ -61,7 +61,7 @@ export default function AddEmployee({
   const handleSubmit = (values) => {
     const validAttachments = values?.attachments
       .map((file, index) => ({ index, file }))
-      .filter((item) => typeof item.file !== "undefined");
+      .filter((item) => typeof item.file !== "undefined" && item.file !== "deleted");
     const attachments = validAttachments.map((item) => ({
       [`attachments[${item?.index}]`]: item?.file,
     }));

@@ -18,7 +18,7 @@ function Signature() {
 
   return (
     <div className="">
-      <div className="flex flex-col items-center justify-center gap-5">
+      <div className="flex flex-col items-center justify-center gap-5 ">
         <div className="">
           <TermsConditionIcon className={""} />
         </div>

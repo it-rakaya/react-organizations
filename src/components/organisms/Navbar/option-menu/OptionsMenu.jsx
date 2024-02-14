@@ -104,7 +104,10 @@ const OptionsMenu = props => {
               >
                 <MenuItemWrapper option={option}>
                   {option.icon ? option.icon : null}
+                  <p className='text-black dark:text-white'>
+                    
                   {option.text}
+                  </p>
                 </MenuItemWrapper>
               </MenuItem>
             )

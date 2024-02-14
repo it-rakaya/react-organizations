@@ -3,16 +3,16 @@ import {
   FormControl,
   IconButton,
   InputAdornment,
-  OutlinedInput,
-  TextField,
+  OutlinedInput
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { useFormikContext } from "formik";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import CardInfo from "../CardInfo";
 import Label from "../Label";
-import { FormikError } from "./FormikError";
 import BaseInputMask from "./BaseInputMask";
+import { FormikError } from "./FormikError";
 
 export default function BaseInputField({
   label,
@@ -34,15 +34,14 @@ export default function BaseInputField({
   const { setFieldValue, values, touched, errors, handleBlur, handleChange } =
     useFormikContext();
   const [showPassword, setShowPassword] = useState(false);
-  const ibanRef = useRef();
-
+  const [isFocused, setIsFocused] = useState(false);
   // !! type custom == type number ==> but im used this type in other name because in type number is MUI is given is problem
   const handleChangeNumber = (e) => {
     let value = e.target.value;
     if (type === "custom") {
       const numericRegex = /^[0-9]+$/;
-      value = value.replace(/^0+/, ''); 
-      if (!numericRegex.test(value) || value === '') {
+      value = value.replace(/^0+/, "");
+      if (!numericRegex.test(value) || value === "") {
         setFieldValue(name, "");
         return;
       }
@@ -52,6 +51,7 @@ export default function BaseInputField({
     }
     setFieldValue(name, value);
   };
+  const theme = useTheme();
 
   return (
     <div>
@@ -108,12 +108,15 @@ export default function BaseInputField({
               images={images}
             />
           )}
-          <TextField
+          {/* <TextField
             placeholder={placeholder}
             {...props}
             error={touched[name] && !!errors[name]}
             fullWidth
+            // label={placeholder}
             value={values[name]}
+    
+      
             sx={{
               background: "transparent",
               "& .MuiInputBase-input::placeholder": {
@@ -130,7 +133,7 @@ export default function BaseInputField({
                   }
                 : type === "IBAN"
                 ? {
-                    inputComponent: BaseInputMask,
+                    // inputComponent: BaseInputMask,
                     inputProps: { ref: ibanRef },
                     onChange: handleChangeNumber,
                   }
@@ -138,6 +141,9 @@ export default function BaseInputField({
             }
             name={name}
             style={{
+            //   '&  .MuiInputLabel-formControl': {
+            //     color:"red",
+            // },
               borderColor: !!touched[name] && !!errors[name] ? "red" : "",
               height: "59px",
 
@@ -146,7 +152,42 @@ export default function BaseInputField({
             className={`${className} d "my-3 code " ${
               !!touched[name] && !!errors[name] && "border-red-500 "
             }`}
-          />
+          /> */}
+          {type == "IBAN" ? (
+            <BaseInputMask />
+          ) : (
+            <input
+              type="text"
+              value={values[name]}
+              onChange={type === "custom" ? handleChangeNumber : handleChange}
+              placeholder={placeholder}
+              name={name}
+              onFocus={() => setIsFocused(true)}
+              onBlur={(e) => {
+                handleBlur(e);
+                setIsFocused(false); // Reset focus on blur
+              }}
+              style={{
+                borderColor:
+                  !!touched[name] && !!errors[name]
+                    ? "red"
+                    : isFocused
+                    ? theme.palette.primary.main
+                    : " ",
+                // borderRadius: "9px",
+                height: "59px",
+              }}
+              className={`  
+        ${isFocused ? "border" : " border border-[#cccccc]"}
+        
+        
+        "my-3 code p-[18px] w-full focus-visible:!outline-none 
+        dark:!text-white rounded-[8px] dark:!border dark:!border-solid
+        border-[#cccccc] dark:border-[#555d64] " ${
+          !!touched[name] && !!errors[name] && "border-red-500 "
+        }  `}
+            />
+          )}
           <div>{<FormikError name={name} />}</div>
         </>
       )}

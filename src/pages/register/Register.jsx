@@ -74,8 +74,8 @@ const Register = () => {
   if (!token) {
     return (
       <>
-        <div className="absolute rtl:left-0 ltr:right-0 z-[99]">
-          <Navbar hidden={true} />
+        <div className="absolute rtl:left-0 ltr:right-0 z-[99] w-full md:!w-auto">
+          <Navbar hidden={true}  className={"!justify-end md:!bg-transparent"}/>
         </div>
 
         <Box className="flex content-right">
@@ -94,7 +94,7 @@ const Register = () => {
                 overflowY: "scroll",
                 overflowX: "hidden",
               }}
-              className="scroll_main dark:bg-darkModeColor"
+              className="mt-10 md:mt-0 scroll_main dark:bg-darkModeColor"
             >
               <Box
                 sx={{

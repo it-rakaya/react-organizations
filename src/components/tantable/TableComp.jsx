@@ -5,7 +5,7 @@ import { usePagination, useTable } from "react-table";
 import ArrowLeft from "../atoms/icons/ArrowLeft";
 import ArrowRight from "../atoms/icons/ArrowRight";
 
-function TableComp({ data, columns }) {
+function TableComp({ data, columns, setPaginationModel, paginationModel }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -16,8 +16,6 @@ function TableComp({ data, columns }) {
     canPreviousPage,
     canNextPage,
     pageOptions,
-    pageCount,
-    gotoPage,
     nextPage,
     previousPage,
     setPageSize,
@@ -30,52 +28,66 @@ function TableComp({ data, columns }) {
     },
     usePagination
   );
+
   return (
     <>
-      <table {...getTableProps()} className="w-full ">
-        <thead className="w-full px-4">
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th
-                  {...column.getHeaderProps()}
-                  style={{ fontWeight: "400" }}
-                  className="px-4  py-2 pb-4 text-center text-[0.75rem] !text-black dark:!text-white capitalize "
-                >
-                  {column.render("Header")}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row);
-            return (
-              <tr
-                {...row.getRowProps()}
-                className="border-y border-[#e9e9ec] dark:border-dark-primary"
-              >
-                {row.cells.map((cell) => {
-                  return (
-                    <td
-                      {...cell.getCellProps()}
-                      style={{ fontWeight: "400" }}
-                      className="px-4 py-1 text-center text-[1rem] !text-black dark:!text-white capitalize "
-                    >
-                      {cell.render("Cell")}
-                    </td>
-                  );
-                })}
+      <div className="overflow-x-scroll">
+        <table {...getTableProps()} className="w-full ">
+          <thead className="w-full px-4 ">
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th
+                    {...column.getHeaderProps()}
+                    style={{ fontWeight: "400" }}
+                    className="px-4  py-4 text-center text-[0.75rem] !text-black dark:!text-white capitalize headerTable"
+                  >
+                    {column.render("Header")}
+                  </th>
+                ))}
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <div className="flex justify-end w-full gap-5 pt-2 pagination flex-end md:px-[66px]">
+            ))}
+          </thead>
+
+          <tbody {...getTableBodyProps()}>
+            {data.length ? (
+              rows.map((row) => {
+                prepareRow(row);
+                return (
+                  <tr
+                    {...row.getRowProps()}
+                    className="border-y  border-[#e9e9ec] dark:border-dark-primary"
+                  >
+                    {row.cells.map((cell) => {
+                      return (
+                        <td
+                          {...cell.getCellProps()}
+                          style={{ fontWeight: "400" }}
+                          className="px-4 py-1 text-center text-[1rem] !text-black dark:!text-white capitalize "
+                        >
+                          {cell.render("Cell")}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })
+            ) : (
+              <tr className=" capitalize border-y border-[#e9e9ec] dark:border-dark-primary h-[100px] text-center w-full relative">
+                <p style={{transform:"translate(-50% , -50%)"}} className="absolute   text-black dark:text-white top-[50%] left-[50%]">
+                  {t("not found data")}
+                </p>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+      <div className="flex justify-end items-center w-full gap-5 pt-2 pagination flex-end md:px-[66px]  ">
         <div className="flex items-center gap-2 text-[10px] md:text-[14px] ">
-          <p className="text-black dark:text-white !text-[12px] md:!text-[14px]"> {t("rows per page")}</p>
+          <p className="text-black dark:text-white !text-[12px] md:!text-[14px]">
+            {" "}
+            {t("rows per page")}
+          </p>
           <select
             value={pageSize}
             onChange={(e) => {
@@ -114,21 +126,31 @@ function TableComp({ data, columns }) {
             <span className="mx-1 text-[12px] md:text-[14px]">{t("Page")}</span>
             <strong>
               {pageIndex + 1}
-              <span className="mx-1 text-[12px] md:text-[14px]"> {t("of")} </span>
+              <span className="mx-1 text-[12px] md:text-[14px]">
+                {" "}
+                {t("of")}{" "}
+              </span>
 
               {pageOptions.length}
             </strong>{" "}
           </span>
-          <div dir={"ltr"}>
+          <div className="flex items-center justify-center" dir={"ltr"}>
             <button
-              onClick={() => previousPage()}
-              disabled={!canPreviousPage}
+              onClick={() =>
+                setPaginationModel((prev) => ({
+                  ...prev,
+                  page: Math.max(0, prev.page - 1),
+                }))
+              }
+              disabled={paginationModel.page === 0}
               className="!text-black dark:!text-white cursor-pointer"
             >
               <ArrowLeft />
             </button>
             <button
-              onClick={() => nextPage()}
+              onClick={() =>
+                setPaginationModel((prev) => ({ ...prev, page: prev.page + 1 }))
+              }
               disabled={!canNextPage}
               className="!text-black dark:!text-white cursor-pointer"
             >

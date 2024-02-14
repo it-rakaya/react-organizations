@@ -1,6 +1,8 @@
+
 {
   "HOME": "home",
   "settings": "Settings",
+  "Arabic":"عربي",
   "required": "This field is required",
   "AUTH.INPUT.USERNAME": "User Name",
   "registration number": "Commercial Registration Number",

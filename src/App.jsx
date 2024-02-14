@@ -3,10 +3,14 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useIsRTL } from "./hooks/useIsRTL";
 import { AllRoutesProvider } from "./routing/allRoutes";
-
+import { registerSW } from "virtual:pwa-register";
 const App = () => {
   ///
   const isRTL = useIsRTL();
+  const updateSW = registerSW({
+    onNeedRefresh() {},
+    onOfflineReady() {},
+  });
   useEffect(() => {
     if (isRTL) {
       document.documentElement.lang = "ar";
@@ -30,8 +34,6 @@ const App = () => {
     <>
       <AllRoutesProvider />
       <ToastContainer rtl={isRTL} />
-      {/* <ReactQueryDevtools initialIsOpen={false} position={"bottom-right"} /> */}
-      {/* </Box> */}
     </>
   );
 };
