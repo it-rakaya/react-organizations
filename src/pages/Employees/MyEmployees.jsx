@@ -306,16 +306,22 @@ export default function MyEmployees() {
       {
         Header: t("facility name"),
         Cell: (info) => (
-          <div style={{ ...info.column.cellSize }}>
+          <Box style={{ ...info.column.cellSize }}>
             <span>
               {info?.row?.original.facility_name.length > 30
                 ? `${info?.row?.original.facility_name.slice(0, 15)}...`
                 : info?.row?.original.facility_name}
             </span>
-          </div>
+          </Box>
         ),
-        cellSize: { width: "170px", height: "50px", margin: "auto" , alignItems:"center" , display:"flex" , justifyContent:"center" },
-
+        cellSize: {
+          width: "170px",
+          height: "50px",
+          margin: "auto",
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+        },
         accessor: "facility_name",
       },
       {
@@ -325,7 +331,14 @@ export default function MyEmployees() {
             <span>{info?.row?.original.national_id}</span>
           </div>
         ),
-        cellSize: { width: "120px", height: "50px", margin: "auto"  , alignItems:"center" , display:"flex" , justifyContent:"center" },
+        cellSize: {
+          width: "120px",
+          height: "50px",
+          margin: "auto",
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+        },
 
         accessor: "national_id",
       },
@@ -336,7 +349,14 @@ export default function MyEmployees() {
             <span>{info?.row?.original.position_name}</span>
           </div>
         ),
-        cellSize: { width: "fit-content", height: "50px", margin: "auto" , alignItems:"center" , display:"flex" , justifyContent:"center"  },
+        cellSize: {
+          width: "200px",
+          height: "50px",
+          margin: "auto",
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+        },
 
         accessor: "position_name",
       },
@@ -396,7 +416,14 @@ export default function MyEmployees() {
             ))}
           </Typography>
         ),
-        cellSize: { width: "180px", height: "50px", margin: "auto" , alignItems:"center" , display:"flex" , justifyContent:"center"  },
+        cellSize: {
+          width: "180px",
+          height: "50px",
+          margin: "auto",
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+        },
         accessor: "attach",
       },
       {
