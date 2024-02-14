@@ -35,7 +35,6 @@ const Home = () => {
     }
   }, [error, logout]);
 
-  
   return (
     <>
       <Helmet>
