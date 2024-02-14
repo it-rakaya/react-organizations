@@ -33,7 +33,7 @@ function News() {
               {index != 0 && (
                 <h4 className={`${marqueeElementStyle} px-2`}>|</h4>
               )}
-              <div className={`${marqueeElementStyle} rtl:flex-row-reverse gap-0 px-2`} key={index}>
+              <div className={`${marqueeElementStyle} rtl:flex-row-reverse !gap-0 px-2`} key={index}>
                 <p>{index == 0 ? `${t("landing.rights")}` : val}</p>
                 <p>
                   {index === 0 && (
