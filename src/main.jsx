@@ -14,11 +14,14 @@ import { AuthProvider } from "./context/auth-and-perm/AuthProvider";
 import Loading from "./components/molecules/Loading";
 import { OrganizationProvider } from "./context/organization provider/OrganizationProvider";
 import { LoadingContextProvider } from "./context/loading";
+
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: { refetchOnWindowFocus: false },
   },
 });
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
     <LoadingContextProvider>
