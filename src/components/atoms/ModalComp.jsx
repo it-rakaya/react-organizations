@@ -57,7 +57,7 @@ export default function ModalComp({
               style={{ color: theme.palette.primary?.main }}
             />
           </div>
-          <div className="my-10">{Children}</div>
+          <div className="my-">{Children}</div>
         </Box>
       </Modal>
     </div>
