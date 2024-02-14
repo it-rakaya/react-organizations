@@ -67,7 +67,7 @@ export default function DetailsFacility({ data, className, style }) {
         >
           <div
             className="flex mt-5 overflow-hidden"
-            style={{ height: "calc(90vh - 5rem)" }}
+            style={{ height: "calc(90vh - 7rem)" }}
           >
             <TabList
               onChange={handleChange}

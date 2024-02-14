@@ -28,8 +28,8 @@ export default function DetailsOrder({ data }) {
   // const Rejected =6;
 
   return (
-    <div className="overflow-hidden" style={{ height: "calc(90vh - 2rem)" }}>
-      <div className="mt-10 md:px-0 ">
+    <div className="overflow-hidden" style={{ height: "calc(90vh - 7rem)" }}>
+      <div className=" md:px-0">
         <div className="col-span-2">
           <MainHeader
             title={t("Details Order")}
@@ -174,7 +174,7 @@ export default function DetailsOrder({ data }) {
                   <DetailsFacility
                     data={data?.facility}
                     className="detailsOrderFacility"
-                    style={{ height: "calc(100vh - 28rem)" }}
+                    style={{ height: "calc(100vh - 30rem)" }}
                   />
                 </div>
               </div>
