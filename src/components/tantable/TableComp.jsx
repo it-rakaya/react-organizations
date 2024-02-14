@@ -40,7 +40,7 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
                   <th
                     {...column.getHeaderProps()}
                     style={{ fontWeight: "400" }}
-                    className="px-4  py-2 text-center text-[0.75rem] !text-black dark:!text-white capitalize headerTable"
+                    className="px-4  py-4 text-center text-[0.75rem] !text-black dark:!text-white capitalize headerTable"
                   >
                     {column.render("Header")}
                   </th>
@@ -56,7 +56,7 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
                 return (
                   <tr
                     {...row.getRowProps()}
-                    className="border-y border-[#e9e9ec] dark:border-dark-primary"
+                    className="border-y  border-[#e9e9ec] dark:border-dark-primary"
                   >
                     {row.cells.map((cell) => {
                       return (
@@ -74,7 +74,7 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
               })
             ) : (
               <tr className=" capitalize border-y border-[#e9e9ec] dark:border-dark-primary h-[100px] text-center w-full relative">
-                <p className="absolute   text-black dark:text-white top-[43%] left-[49%]">
+                <p style={{transform:"translate(-50% , -50%)"}} className="absolute   text-black dark:text-white top-[50%] left-[50%]">
                   {t("not found data")}
                 </p>
               </tr>
