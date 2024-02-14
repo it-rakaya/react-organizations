@@ -25,7 +25,7 @@ const AppBarContent = (props) => {
           className=" actions-left dark:bg-"
           sx={{ mr: 2, display: "flex", alignItems: "center" }}
         >
-          <div className="block md:hidden" onClick={() => setToggled(!toggled)}>
+          <div className="block lg:hidden" onClick={() => setToggled(!toggled)}>
             {toggled
               ? ""
               : user?.is_verified && (

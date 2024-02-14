@@ -10,11 +10,12 @@ import ButtonComp from "../atoms/buttons/ButtonComp";
 import PhoneInput2 from "../molecules/Formik/PhoneInput2";
 import CheckCode from "../organisms/checkCode";
 
-export default function LoginForm() {
+export default function LoginForm({setHideSection}) {
   const [verifyPhone, setVerifyPhone] = useState(false);
   const [valuesForm, setValuesForm] = useState("");
   const { login } = useAuth();
   const [dataValue, setDataValue] = useState();
+  console.log("🚀 ~ LoginForm ~ dataValue:", dataValue)
   const [valueOTP, setValueOTP] = useState();
   const { orgData } = UseOrg();
 
@@ -63,6 +64,7 @@ export default function LoginForm() {
         });
   };
   return (
+    <>
     <div className="w-full overflow-x-hidden">
       <Formik
         onSubmit={(values) => handleSubmit(values)}
@@ -89,6 +91,7 @@ export default function LoginForm() {
               loading={loadingLogin || isPending}
               disabled={valueOTP && valueOTP?.length != 4 ? true : false}
               className={"ltr:!mt-5 "}
+              action={()=>setHideSection(true)}
             >
               {t("Login")}
             </ButtonComp>
@@ -96,5 +99,6 @@ export default function LoginForm() {
         </Form>
       </Formik>
     </div>
+    </>
   );
 }

@@ -1127,3 +1127,18 @@ input {
   top: 25%;
 
 }
+@media  screen and (max-width: 899px) and (min-width: 600px) {
+  .react-tel-input .form-control{
+    max-width: 90%;
+  }
+}
+@media  screen and (max-width: 912px)  and (min-width: 900px) {
+  .react-tel-input .form-control{
+    max-width: 81%;
+  }
+}
+/* @media  screen and (max-width: 600px)  and (min-width: 400px) {
+  .react-tel-input .form-control{
+    max-width: 86%;
+  }
+} */

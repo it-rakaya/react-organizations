@@ -1,13 +1,15 @@
-
 {
   "HOME": "home",
   "settings": "Settings",
-  "Arabic":"عربي",
+  "Arabic": "عربي",
   "required": "This field is required",
   "AUTH.INPUT.USERNAME": "User Name",
   "registration number": "Commercial Registration Number",
   "Professional practice Licence number issued by the Holy Capital Municipality": "Professional practice Licence number issued by the Holy Capital Municipality",
   "Source of commercial register": "Source of commercial register",
+  "TermsOne": "This document refers to the terms and conditions that encompass the use of the platform, as well as any specific agreements, privacy policy, and all agreements that bind us with the client/user. It also includes all contracts directly or indirectly related to the terms and conditions. This agreement encompasses our content published through the platform's homepage, subpages, sent via email, mobile phone, or through our social media pages. This content includes descriptions of services, information, illustrative images, and any mandatory instructions for users.",
+  "TermsTwo":"The platform reserves the right to modify or change these terms and conditions without prior notice, and it is your responsibility as a platform user to regularly review the usage guidelines and terms to be aware of any updates to these terms and conditions.",
+  
   "landing": {
     "organizationName": "Organization Name",
     "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis quo excepturi numquam non veritatis explicabo reprehenderit, culpa expedita illum quod?",
@@ -15,7 +17,7 @@
     "register": "Register",
     "userManual": "User Manual",
     "remainingTimeToHajj": "Remaining Time to Hajj",
-    "Dashboard":"Dashboard",
+    "Dashboard": "Dashboard",
     "timeLeftTo": "Time Left To",
     "prayer": "Prayer",
     "downloadFile": "Download File",
@@ -54,6 +56,6 @@
     "IDDatePleaceholder": "Select date",
     "IDAttachmentLabel": "National ID attachment",
     "personalImgAttachmentLabel": "Personal Image attachment",
-    "nationalSource":"National Source"
+    "nationalSource": "National Source"
   }
 }

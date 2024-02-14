@@ -40,7 +40,7 @@ export default function ModalComp({
         onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        className={`max-w-[950px] m-4  md:m-auto ${className}`}
+        className={`max-w-[950px] z-[9999] m-4  md:m-auto ${className}`}
       >
         <Box
           sx={style}

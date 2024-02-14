@@ -309,13 +309,13 @@ export default function MyEmployees() {
           <Box style={{ ...info.column.cellSize }}>
             <span>
               {info?.row?.original.facility_name.length > 30
-                ? `${info?.row?.original.facility_name.slice(0, 15)}...`
+                ? `${info?.row?.original.facility_name.slice(0, 20)}...`
                 : info?.row?.original.facility_name}
             </span>
           </Box>
         ),
         cellSize: {
-          width: "170px",
+          maxWidth: "190px",
           height: "50px",
           margin: "auto",
           alignItems: "center",
@@ -332,7 +332,7 @@ export default function MyEmployees() {
           </div>
         ),
         cellSize: {
-          width: "120px",
+          width: "fit-content",
           height: "50px",
           margin: "auto",
           alignItems: "center",

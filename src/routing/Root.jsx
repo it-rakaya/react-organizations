@@ -63,23 +63,18 @@ export const Root = ({ props }) => {
       <div
         // style={{height: isFacilityRoute ? "calc(100vh - 64px)" : ""}}
         className={
-          `${
-            toggled
-              ? "flex"
-              : // : collapsed
-                "flex"
-          } `
+          `flex `
           // : "grid grid-cols-12 w-full"
         }
       >
         {user?.is_verified && (
           <div
             className={
-              toggled ? "w-[20%]" : collapsed ? "w-[6%]" : " md:w-[23%]"
+              toggled ? "w-[20%]" : collapsed ? "w-[6%]" : "lg:w-[23%]"
             }
           >
             <OutsideClickHandler onOutsideClick={handleClickOutside}>
-              <div className="fixed z-[9999] md:z-[999]">
+              <div className="fixed z-[9999]">
                 <SideBar
                   handleClickItem={handleClickOutside}
                   isSidebarCollapsed={isSidebarCollapsed}
@@ -127,7 +122,7 @@ export const Root = ({ props }) => {
               />
               <main
              
-                className="flex p-6  flex-col justify-between !pb-1 layout-page-content  md:max-h-[91vh] lg:max-w-full overflow-scroll md:max-w-screen-lg flex-grow w-full mx-auto transition-padding"
+                className="flex p-6  flex-col justify-between !pb-1 layout-page-content  md:max-h-[91vh] md:max-w-full overflow-scroll flex-grow w-full mx-auto transition-padding"
               >
                 <Outlet />
                 <Footer />

@@ -35,7 +35,7 @@ function News() {
               )}
               <h4 className={`${marqueeElementStyle} px-2`} key={index}>
                 {index == 0 ? `${t("landing.rights")}` : val}{" "}
-                {index == 0 && <>&copy;</>}{" "}
+                {index == 0 && <>&copy;</>}
                 {index == 0
                   ? `${t(
                       "landing.for"

@@ -42,18 +42,18 @@ function TermsAndCondition({ checked, setChecked, hidden, style }) {
             <li className="my-2 text-[15px] text-black dark:text-white">
              
               {t(
-                "All data and attachments entered by you are accurate and up to date, and the platform bears no responsibility if they are incorrect or not matching"
+                "TermsOne"
               )}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
              
               {t(
-                "If a file is attached in the wrong place for the purpose of fulfilling the requirements, it will not be considered, and you will not be accepted on the platform."
+                "TermsTwo"
               )}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
               {t(
-                "The platform user must be providing sustenance services and be authorized to do so."
+                "TermsThree"
               )}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
