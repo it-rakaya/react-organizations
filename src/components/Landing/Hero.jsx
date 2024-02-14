@@ -47,10 +47,12 @@ const Hero = () => {
         {/* description */}
         <div
           dangerouslySetInnerHTML={{ __html: orgData?.organizations?.about_us }}
-          className={`w-full mt-5 decryption_orga overflow-scroll text-xl  text-center rounded-[10px] md:text-start 3xl:text-2xl scroll_main ${orgData?.organizations?.about_us ? "dark:bg-white" :""} `}
+          className={`w-full mt-5 decryption_orga overflow-scroll text-xl overflow-x-hidden  text-center rounded-[10px] md:text-start 3xl:text-2xl scroll_main ${
+            orgData?.organizations?.about_us ? "dark:bg-white" : ""
+          } `}
         ></div>
         <div
-          className={`flex flex-col gap-4 mt-5 ${!user ? " xl:flex-row" : ""}`}
+          className={`flex flex-col gap-4 mt-5 ${!user ? " md:flex-row" : ""}`}
         >
           {!token ? (
             <>
@@ -64,7 +66,7 @@ const Hero = () => {
 
               <button
                 onClick={() =>
-                  closeRegistration ==1 ? setOpenModal(true) : setOpen(true)
+                  closeRegistration == 1 ? setOpenModal(true) : setOpen(true)
                 }
                 style={{
                   borderColor: theme?.palette?.primary?.main,
@@ -76,13 +78,15 @@ const Hero = () => {
               </button>
             </>
           ) : (
-            <button
-              onClick={() => navigate("/dashboard")}
-              style={{ backgroundColor: theme?.palette?.primary?.main }}
-              className={`${btnStyles} text-white transition-shadow duration-300 hover:shadow-lg w-full `}
-            >
-              {t("Home")}
-            </button>
+            <div className="">
+              <button
+                onClick={() => navigate("/dashboard")}
+                style={{ backgroundColor: theme?.palette?.primary?.main }}
+                className={`${btnStyles} text-white transition-shadow duration-300 hover:shadow-lg w-full `}
+              >
+                {t("Home")}
+              </button>
+            </div>
           )}
         </div>
       </div>
@@ -97,7 +101,7 @@ const Hero = () => {
         className="!max-w-[350px] !block  "
         // classNameBox={'!pr-8'}
         onClose={() => setOpenModal(false)}
-        Children={<RegistrationClosed  />}
+        Children={<RegistrationClosed />}
       />
     </div>
   );

@@ -9,7 +9,6 @@ const App = () => {
   ///
   const isRTL = useIsRTL();
   const { orgData } = UseOrg();
-  console.log("🚀 ~ App ~ org:", orgData);
   const updateSW = registerSW({
     onNeedRefresh() {},
     onOfflineReady() {},
@@ -34,7 +33,6 @@ const App = () => {
   }, []);
   useEffect(() => {
     var manifestLink = document.querySelector('link[rel="manifest"]');
-    console.log("🚀 ~ useEffect ~ manifestLink:", manifestLink);
     fetch(manifestLink.href)
       .then((response) => response.json())
       .then((manifest) => {

@@ -70,7 +70,7 @@ export const Root = ({ props }) => {
         {user?.is_verified && (
           <div
             className={
-              toggled ? "w-[20%]" : collapsed ? "w-[6%]" : "lg:w-[23%]"
+              toggled ? "w-[%]" : collapsed ? "w-[6%]" : "customSix:w-[23%]"
             }
           >
             <OutsideClickHandler onOutsideClick={handleClickOutside}>

@@ -41,21 +41,36 @@ const calculateTimeLeftUntilNextPrayer = (prayerTimes, setPrayer) => {
   return { hours, minutes };
 };
 
-export const getPrayerTime = async (setNextPrayerTime, setPrayer, inc=false) => {
+export const getPrayerTime = async (setNextPrayerTime, setPrayer, inc = 0) => {
   const now = new Date();
-  const [month, year] = [new Date().getMonth()+1,now.getFullYear()]
-  const response = await fetch(
-    `https://api.aladhan.com/v1/calendarByCity/${year}/${month}?city=Makkah&country=KSA&method=4`
-  );
-  const data = (await response.json()).data;
-  const timeLeft = calculateTimeLeftUntilNextPrayer(
-    data[new Date().getDate() + (inc?0:-1)].timings,
-    setPrayer
-  );
+  now.setDate(now.getDate() + inc);
+  const month = now.getMonth() + 1;
+  const year = now.getFullYear();
+  const date = now.getDate();
 
-  if(timeLeft == null){
-    // rerun the method but increase the 
-    getPrayerTime(setNextPrayerTime, setPrayer, true);
+  try {
+    const response = await fetch(
+      `https://api.aladhan.com/v1/calendarByCity?city=Makkah&country=KSA&method=4&month=${month}&year=${year}`
+    );
+    const data = await response.json();
+    const dayData = data.data.find((d) =>
+      d.date.gregorian.date.startsWith(
+        `${year}-${month.toString().padStart(2, "0")}-${date
+          .toString()
+          .padStart(2, "0")}`
+      )
+    );
+    if (dayData) {
+      const timings = dayData.timings;
+      const timeLeft = calculateTimeLeftUntilNextPrayer(timings, setPrayer);
+
+      if (timeLeft == null && inc === 0) {
+        getPrayerTime(setNextPrayerTime, setPrayer, 1);
+      } else {
+        setNextPrayerTime(timeLeft);
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching prayer times: ", error);
   }
-  setNextPrayerTime(timeLeft);
 };
