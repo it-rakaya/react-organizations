@@ -5,16 +5,16 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { t } from "i18next";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Landing/Navbar";
+import ModalComp from "../../components/atoms/ModalComp";
 import LoginIcon from "../../components/atoms/icons/LoginIcon";
 import Loading from "../../components/molecules/Loading";
+import RegistrationClosed from "../../components/molecules/RegistrationClosed";
+import Signature from "../../components/molecules/Signature";
 import LoginForm from "../../components/templates/LoginForm";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useIsRTL } from "../../hooks/useIsRTL";
-import ModalComp from "../../components/atoms/ModalComp";
-import Signature from "../../components/molecules/Signature";
-import RegistrationClosed from "../../components/molecules/RegistrationClosed";
 
 const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
