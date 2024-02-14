@@ -48,12 +48,26 @@ const App = () => {
   }, []);
   useEffect(() => {
     var manifestLink = document.querySelector('link[rel="manifest"]');
+
     fetch(manifestLink.href)
       .then((response) => response.json())
       .then((manifest) => {
         manifest.short_name = orgData?.organizations?.name || "Rakaya";
         manifest.name = orgData?.organizations?.name || "Rakaya";
         manifest.start_url = orgData?.organizations?.domain;
+
+        manifest.icons = [
+          {
+            src: orgData?.organizations?.logo || "path/to/default/icon.png",
+            sizes: "192x192",
+            type: "image/png",
+            purpose: "any maskable",
+          },
+        ];
+
+        manifest.background_color =
+          orgData?.organizations?.backgroundColor || "#ffffff";
+        manifest.theme_color = orgData?.organizations?.themeColor || "#000000";
 
         var blob = new Blob([JSON.stringify(manifest)], {
           type: "application/json",
