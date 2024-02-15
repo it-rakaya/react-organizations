@@ -3,7 +3,6 @@ import { useFormikContext } from "formik";
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { tv } from "tailwind-variants";
 import CardInfo from "../CardInfo";
 import Label from "../Label";
 import { FormikError } from "./FormikError";
@@ -16,9 +15,10 @@ const PhoneInput2 = ({
   customClass,
 }) => {
   const [phone, setPhone] = useState("");
-  const { setFieldValue, errors, handleBlur, values, touched } =
-    useFormikContext();
+  const { setFieldValue, errors, handleBlur, values, touched, validateField } =
+  useFormikContext();
 
+  
   const handlePhoneChange = (value, selectedCountry, name, number) => {
     const modifiedPhone = +number
       .slice(selectedCountry?.dialCode.length + 2)
@@ -28,6 +28,7 @@ const PhoneInput2 = ({
     setPhone(value);
     setFieldValue("phone", modifiedPhone);
     setFieldValue("phone_code", "+" + selectedCountry?.dialCode);
+    validateField("phone");
   };
 
   // const phoneInput = tv({
@@ -65,7 +66,7 @@ const PhoneInput2 = ({
           id="phone"
           placeholder="رقم الجوال"
           name="phone"
-          onBlur={(e) => handleBlur(e)}
+          onBlur={handleBlur}
           countryCodeEditable={false}
           masks={{ sa: ".. ... ....", at: ".. ... ...." }}
           showDropdown={false}
