@@ -7,9 +7,10 @@ function Paginate({ page, totalPages, handleChange }) {
       <Pagination
         count={totalPages}
         page={page}
-        variant="outline"
+        variant="outlined"
         color="primary"
         shape="rounded"
+        // style={{}}
         onChange={handleChange}
       />
     </div>
