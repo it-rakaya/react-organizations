@@ -40,33 +40,34 @@ function TermsAndCondition({ checked, setChecked, hidden, style }) {
           </p>
           <ul className="mx-4 text-start">
             <li className="my-2 text-[15px] text-black dark:text-white">
-             
-              {t(
-                "TermsOne"
-              )}
+              {t("TermsOne")}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
-             
-              {t(
-                "TermsTwo"
-              )}
+              {t("TermsTwo")}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
-              {t(
-                "TermsThree"
-              )}
+              {t("TermsThree")}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
-           
-              {t(
-                "The platform has the right to view the data provided by you and save it for the purpose of developing the platform."
-              )}
+              {t("TermsFour")}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
-          
-              {t(
-                "The registered user on the platform is subject to its terms, and in case of their update or amendment, you will be notified of that."
-              )}
+              {t("TermsFive")}
+            </li>
+            <li className="my-2 text-[15px] text-black dark:text-white">
+              {t("TermsSix")}
+            </li>
+            <li className="my-2 text-[15px] text-black dark:text-white">
+              {t("TermsSeven")}
+            </li>
+            <li className="my-2 text-[15px] text-black dark:text-white">
+              {t("TermsEight")}
+            </li>
+            <li className="my-2 text-[15px] text-black dark:text-white">
+              {t("TermsNinth")}
+            </li>
+            <li className="my-2 text-[15px] text-black dark:text-white">
+              {t("TermsTen")}
             </li>
           </ul>
         </div>
