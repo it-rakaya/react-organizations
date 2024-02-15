@@ -38,7 +38,8 @@ function useFetch({
     error,
     throwOnError,
 
-    onError: (error) => {
+    onError: () => {
+      // console.log("🚀 ~ :", );
       // if (error?.response?.data?.message == "Unauthenticated.") {
       //   localStorage.removeItem("user");
       //   navigate("/");

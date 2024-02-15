@@ -85,7 +85,7 @@ export const formatIban = (value) => {
   if (hasSpaces) {
     return value;
   }
-  return value.replace(/(.{4})/g, "$1 ").trim();
+  return value?.replace(/(.{4})/g, "$1 ").trim();
 };
 
 export const calculateHajjRemainingTimeFormatted = () => {

@@ -98,6 +98,7 @@ const Table = ({
             <TableComp
               columns={columns}
               data={filteredRows}
+              totalData={rows}
               setPaginationModel={setPaginationModel}
               paginationModel={paginationModel}
             />

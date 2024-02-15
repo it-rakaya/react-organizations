@@ -143,7 +143,6 @@ export const SideBar = ({
           icon={<Item.icon size={15} className="dark:text-white" />}
           active={location?.pathname === Item.link}
           // active={location?.pathname === Item.link || location?.pathname.startsWith(`${Item.link}/`)}
-
         >
           <div className=" dark:text-white">{t(Item.label)}</div>
         </MenuItem>
@@ -194,10 +193,14 @@ export const SideBar = ({
             </div>
           )}
           {!toggled ? (
-            <div className="">
+            <div
+              className={
+                collapsed && "rtl:translate-x-[-8px] ltr:translate-x-[10px]"
+              }
+            >
               <ArrowSideBar_IC
-                className={`cursor-pointer transition-ease collapsed-button-sidebar scale-x-[-1]  ${
-                  collapsed && "scale-x-[1]"
+                className={`cursor-pointer transition-ease collapsed-button-sidebar ltr:scale-x-[1]  rtl:scale-x-[-1]  ${
+                  collapsed && "ltr:!scale-x-[-1] rtl:scale-x-[1] "
                 } `}
                 onClick={() => setCollapsed(!collapsed)}
               />

@@ -18,7 +18,6 @@ export default function BaseInputField({
   label,
   placeholder,
   name,
-  className,
   type = "text",
   password,
   maxNum,

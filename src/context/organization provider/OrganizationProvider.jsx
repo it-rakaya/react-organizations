@@ -26,10 +26,13 @@ export const OrganizationProvider = ({ children }) => {
     isLoading,
     isError,
     error,
+
+    
   } = useFetch({
     endpoint: `organizations?organizationDomain=${baseUrl}`,
     queryKey: ["organization_info"],
   });
+
   useEffect(() => {
     if (isSuccess) {
       setOrgData(data);
