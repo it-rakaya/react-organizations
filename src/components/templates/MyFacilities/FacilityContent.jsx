@@ -115,7 +115,9 @@ function FacilityContent({
             .required(t("Chefs Number is required")),
           kitchen_space: Yup.string()
             .trim()
-            .required(t("Kitchen Space required")),
+            .required(t("Kitchen Space required"))
+            .length(10, t("Kitchen Space must be equal 10 digits")),
+
           
         });
       default:

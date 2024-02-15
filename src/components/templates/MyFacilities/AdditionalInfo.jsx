@@ -51,6 +51,7 @@ function AdditionalInfo() {
             type="custom"
             images={images}
             required
+            maxNum={10}
           />
         </div>
        
