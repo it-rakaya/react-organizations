@@ -89,7 +89,7 @@ export default function MyFacilities() {
                         <OptionsMenu
                           iconButtonProps={{
                             size: "small",
-                            sx: { top: 12, right: 12, position: "absolute" },
+                            sx: { top: 12, right: isRTL && "12px", left: !isRTL &&"12px", position: "absolute" },
                           }}
                           options={[
                             {
