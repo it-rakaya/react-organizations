@@ -63,7 +63,7 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
                 return (
                   <tr
                     {...row.getRowProps()}
-                    className="border-y  border-[#e9e9ec] dark:border-dark-primary"
+                    className="!border-y  !border-[#e9e9ec] dark:!border-dark-primary"
                   >
                     {row.cells.map((cell) => {
                       return (
@@ -83,7 +83,7 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
               <tr className=" capitalize border-y border-[#e9e9ec] dark:border-dark-primary h-[100px] text-center w-full relative">
                 <p
                   style={{ transform: "translate(-50% , -50%)" }}
-                  className={`absolute   text-black dark:text-white  top-[50%] left-[50%] notFoundData `}
+                  className={`absolute   text-black dark:text-white  top-[50%] left-[50%] ${isApple && "top-[60%]"} notFoundData  `}
                 >
                   {t("not found data")}
                 </p>

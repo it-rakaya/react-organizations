@@ -1295,6 +1295,6 @@ z-index: 9999 !important;
   border-width: 1px !important;
 }
 .notFoundData {
-  -webkit-transform: translate(-50%, -50%) !important;
-  transform: translate(-50%, -50%) !important;
+  -webkit-transform: translate(-50%, -50%) ;
+  transform: translate(-50%, -50%) ;
 }
