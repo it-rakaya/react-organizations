@@ -1286,3 +1286,11 @@ input {
 .Toastify{
 z-index: 9999 !important;
 }
+.dark .phone-input-error .form-control  {
+  border-color: #dc2626 !important;
+  border-width: 1px !important;
+}
+.dark .phone-input-error .flag-dropdown  {
+  border-color: #dc2626 !important;
+  border-width: 1px !important;
+}

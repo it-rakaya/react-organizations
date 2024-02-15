@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
 import { Form, Formik } from "formik";
 import { t } from "i18next";
 import { useState } from "react";
@@ -10,12 +11,11 @@ import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import useFetch from "../../hooks/useFetch";
 import { useMutate } from "../../hooks/useMutate";
+import { isEmail } from "../../utils/helpers";
 import { notify } from "../../utils/toast";
 import ModalComp from "../atoms/ModalComp";
 import TermsAndCondition from "../molecules/TermsAndCondition";
 import RegistrationMainData from "./RegistrationMainData";
-import { isEmail } from "../../utils/helpers";
-import { styled, useTheme } from "@mui/material/styles";
 
 export default function RegisterForm() {
   const { login } = useAuth();
