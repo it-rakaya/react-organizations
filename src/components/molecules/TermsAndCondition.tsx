@@ -32,7 +32,7 @@ function TermsAndCondition({ checked, setChecked, hidden, style }) {
           }}
         ></div>
       ) : (
-        <div className="main_content max-h-[300px] md:max-h-[350px] overflow-y-scroll scroll_main mt-5">
+        <div className="main_content max-h-[300px] md:max-h-[290px] overflow-y-scroll scroll_main mt-5">
           <p className="font-semibold text-center dark:text-white">
             {t(
               "By agreeing to register on the platform, you acknowledge and accept the following terms and conditions:"
@@ -40,33 +40,34 @@ function TermsAndCondition({ checked, setChecked, hidden, style }) {
           </p>
           <ul className="mx-4 text-start">
             <li className="my-2 text-[15px] text-black dark:text-white">
-             
-              {t(
-                "All data and attachments entered by you are accurate and up to date, and the platform bears no responsibility if they are incorrect or not matching"
-              )}
+              {t("TermsOne")}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
-             
-              {t(
-                "If a file is attached in the wrong place for the purpose of fulfilling the requirements, it will not be considered, and you will not be accepted on the platform."
-              )}
+              {t("TermsTwo")}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
-              {t(
-                "The platform user must be providing sustenance services and be authorized to do so."
-              )}
+              {t("TermsThree")}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
-           
-              {t(
-                "The platform has the right to view the data provided by you and save it for the purpose of developing the platform."
-              )}
+              {t("TermsFour")}
             </li>
             <li className="my-2 text-[15px] text-black dark:text-white">
-          
-              {t(
-                "The registered user on the platform is subject to its terms, and in case of their update or amendment, you will be notified of that."
-              )}
+              {t("TermsFive")}
+            </li>
+            <li className="my-2 text-[15px] text-black dark:text-white">
+              {t("TermsSix")}
+            </li>
+            <li className="my-2 text-[15px] text-black dark:text-white">
+              {t("TermsSeven")}
+            </li>
+            <li className="my-2 text-[15px] text-black dark:text-white">
+              {t("TermsEight")}
+            </li>
+            <li className="my-2 text-[15px] text-black dark:text-white">
+              {t("TermsNinth")}
+            </li>
+            <li className="my-2 text-[15px] text-black dark:text-white">
+              {t("TermsTen")}
             </li>
           </ul>
         </div>

@@ -21,7 +21,7 @@ function DeleteEMployee({ refetch, employeeId, setModelDeleteEMployee }) {
     formData: true,
   });
   return (
-    <div className="flex flex-col items-center justify-center align-middle gap-7">
+    <div className="flex flex-col items-center justify-center mb-10 align-middle gap-7">
       <div>
         <TermsConditionIcon />
       </div>

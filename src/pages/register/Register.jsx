@@ -36,7 +36,7 @@ const RightWrapper = styled(Box)(({ theme }) => ({
 const BoxWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
   [theme.breakpoints.down("md")]: {
-    maxWidth: 400,
+    maxWidth: 880,
   },
 }));
 

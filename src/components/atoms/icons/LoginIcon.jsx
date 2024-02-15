@@ -4,14 +4,14 @@ function LoginIcon() {
   const theme = useTheme();
 
   return (
-    <div>
+    <div className="w-full">
       <svg
         width="750"
         height="500"
         viewBox="0 0 750 500"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="relative "
+        className="relative w-full"
       >
         <path
           className=" animate afterSetting"

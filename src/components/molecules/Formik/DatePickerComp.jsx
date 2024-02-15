@@ -100,7 +100,7 @@ export default function DatePickerComp({
         }}
       >
         {daysOfWeek.map((day) => (
-          <span className="text-[10px] " key={day}>
+          <span className="text-[10px] text-black dark:text-white " key={day}>
             {day}
           </span>
         ))}
@@ -124,12 +124,12 @@ export default function DatePickerComp({
     {    isRTL ?     <ArrowRightIcon /> :  <ArrowLeftIcon />}
         </button>
         <select
-          className="p-1 border border-[#cccccc] rounded-md"
+          className="p-1 border border-[#cccccc] rounded-md "
           value={date.getFullYear()}
           onChange={({ target: { value } }) => changeYear(value)}
         >
           {years.map((option) => (
-            <option key={option} value={option}>
+            <option key={option} value={option} className="text-black dark:text-white dark:bg-darkModeColor">
               {option}
             </option>
           ))}
@@ -143,7 +143,7 @@ export default function DatePickerComp({
           }
         >
           {months.map((option) => (
-            <option key={option} value={option}>
+            <option key={option} value={option} className="text-black dark:text-white dark:bg-darkModeColor">
               {option}
             </option>
           ))}

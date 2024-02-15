@@ -13,7 +13,7 @@ function UserNotVerified({ user, setOpen, sendOTP, organization_id }) {
             {t("Welcome")} {user?.name} !
           </p>
         </h1>
-        <div className="md:!flex !items-center gap-1 md:gap-5">
+        <div className="md:!flex !items-center gap-1 md:gap-5 mt-5">
           <Alert severity="warning" className="!bg-transparent ">
             <div className="!flex !items-center gap-1 md:gap-5 ">
               <p className="p-0 m-0 font-bold text-black dark:text-white">

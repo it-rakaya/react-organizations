@@ -16,9 +16,7 @@ const Home = () => {
   const [open, setOpen] = useState(false);
   const [dataValue, setDataValue] = useState();
   const { user, logout } = useAuth();
-  const { orgData, error, isError } = UseOrg();
-  console.log("🚀 ~ Home ~ isError:", isError);
-  console.log("🚀 ~ Home ~ error:", error);
+  const { orgData, error } = UseOrg();
 
   const { mutate: sendOTP } = useMutate({
     mutationKey: [`send-otp`],

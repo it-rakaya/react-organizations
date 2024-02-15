@@ -4,9 +4,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useIsRTL } from "./hooks/useIsRTL";
 import { AllRoutesProvider } from "./routing/allRoutes";
 import { registerSW } from "virtual:pwa-register";
+import { UseOrg } from "./context/organization provider/OrganizationProvider";
 const App = () => {
   ///
   const isRTL = useIsRTL();
+  const { orgData } = UseOrg();
   const updateSW = registerSW({
     onNeedRefresh() {},
     onOfflineReady() {},
@@ -29,7 +31,49 @@ const App = () => {
       document.documentElement.classList.remove("dark");
     }
   }, []);
+  useEffect(() => {
+    var manifestLink = document.querySelector('link[rel="manifest"]');
+    fetch(manifestLink.href)
+      .then((response) => response.json())
+      .then((manifest) => {
+        manifest.start_url = window.location.href; // تحديث start_url
+        var blob = new Blob([JSON.stringify(manifest)], {
+          type: "application/json",
+        });
+        var newUrl = URL.createObjectURL(blob);
+        manifestLink.href = newUrl;
+      });
+  }, []);
+  useEffect(() => {
+    var manifestLink = document.querySelector('link[rel="manifest"]');
 
+    fetch(manifestLink.href)
+      .then((response) => response.json())
+      .then((manifest) => {
+        manifest.short_name = orgData?.organizations?.name || "Rakaya";
+        manifest.name = orgData?.organizations?.name || "Rakaya";
+        manifest.start_url = orgData?.organizations?.domain;
+
+        manifest.icons = [
+          {
+            src: orgData?.organizations?.logo || "path/to/default/icon.png",
+            sizes: "192x192",
+            type: "image/png",
+            purpose: "any maskable",
+          },
+        ];
+
+        manifest.background_color =
+          orgData?.organizations?.backgroundColor || "#ffffff";
+        manifest.theme_color = orgData?.organizations?.themeColor || "#000000";
+
+        var blob = new Blob([JSON.stringify(manifest)], {
+          type: "application/json",
+        });
+        var newUrl = URL.createObjectURL(blob);
+        manifestLink.href = newUrl;
+      });
+  }, [orgData]);
   return (
     <>
       <AllRoutesProvider />

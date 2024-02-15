@@ -5,16 +5,16 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { t } from "i18next";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Landing/Navbar";
+import ModalComp from "../../components/atoms/ModalComp";
 import LoginIcon from "../../components/atoms/icons/LoginIcon";
 import Loading from "../../components/molecules/Loading";
+import RegistrationClosed from "../../components/molecules/RegistrationClosed";
+import Signature from "../../components/molecules/Signature";
 import LoginForm from "../../components/templates/LoginForm";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useIsRTL } from "../../hooks/useIsRTL";
-import ModalComp from "../../components/atoms/ModalComp";
-import Signature from "../../components/molecules/Signature";
-import RegistrationClosed from "../../components/molecules/RegistrationClosed";
 
 const LoginIllustrationWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(20),
@@ -56,7 +56,8 @@ const Login = () => {
   // const { settings } = useSettings();
   const hidden = useMediaQuery(theme.breakpoints.down("md"));
   const isRTL = useIsRTL();
-
+  const [hideSection, setHideSection] = useState(false);
+  console.log("🚀 ~ Login ~ hideSection:", hideSection)
   const name = isRTL
     ? orgData?.organizations?.name_ar
     : orgData?.organizations?.name_en;
@@ -77,7 +78,7 @@ const Login = () => {
     return (
       <div className="">
         <div className="absolute rtl:left-0 ltr:right-0 z-[99] w-full md:!w-auto">
-          <Navbar hidden={true}  className={"!justify-end md:!bg-transparent"}/>
+          <Navbar hidden={true} className={"!justify-end md:!bg-transparent"} />
         </div>
 
         <Box className="flex content-right">
@@ -93,7 +94,7 @@ const Login = () => {
                 height: "100vh",
                 overflowY: "scroll",
                 overflowX: "hidden",
-                padding:" 0 15px",
+                padding: " 0 15px",
               }}
               className="scroll_main dark:bg-darkModeColor"
             >
@@ -129,37 +130,37 @@ const Login = () => {
                   {/* <Typography variant="body2" className="text-black dark:text-white" >{"530410927"}</Typography> */}
                 </Box>
 
-                <LoginForm />
-
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    flexWrap: "wrap",
-                    justifyContent: "center",
-                    marginTop: "10px",
-                  }}
-                >
-                  <span
-                 
-                    className="!text-black dark:!text-white mx-2"
-                  >
-                    {t("Don't have an account yet ?")}
-                  </span>
-                  <span
-                    // to="/register"
-                    style={{
-                      color: theme?.palette?.primary?.main,
-                      textDecoration: "none",
+                <LoginForm setHideSection={setHideSection} />
+                {!hideSection && (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      flexWrap: "wrap",
+                      justifyContent: "center",
+                      marginTop: "10px",
                     }}
-                    className="cursor-pointer "
-                    onClick={() =>
-                      closeRegistration == 1 ? setOpenModal(true) : setOpen(true)
-                    }
                   >
-                    {t("Create an account")}
-                  </span>
-                </Box>
+                    <span className="!text-black dark:!text-white mx-2">
+                      {t("Don't have an account yet ?")}
+                    </span>
+                    <span
+                      // to="/register"
+                      style={{
+                        color: theme?.palette?.primary?.main,
+                        textDecoration: "none",
+                      }}
+                      className="cursor-pointer "
+                      onClick={() =>
+                        closeRegistration == 1
+                          ? setOpenModal(true)
+                          : setOpen(true)
+                      }
+                    >
+                      {t("Create an account")}
+                    </span>
+                  </Box>
+                )}
               </BoxWrapper>
             </Box>
           </RightWrapper>
@@ -173,6 +174,7 @@ const Login = () => {
                 justifyContent: "center",
                 height: "100vh",
                 overflow: "hidden",
+                width: "100%",
               }}
             >
               <LoginIllustrationWrapper>

@@ -40,7 +40,7 @@ export default function ModalComp({
         onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        className={`max-w-[950px] m-4  md:m-auto ${className}`}
+        className={`max-w-[750px] mx:max-w-[900px] 2xl:max-w-[950px] z-[9998] m-4  md:m-auto ${className}`}
       >
         <Box
           sx={style}
@@ -57,7 +57,7 @@ export default function ModalComp({
               style={{ color: theme.palette.primary?.main }}
             />
           </div>
-          <div className="my-10">{Children}</div>
+          <div className="mt-10">{Children}</div>
         </Box>
       </Modal>
     </div>

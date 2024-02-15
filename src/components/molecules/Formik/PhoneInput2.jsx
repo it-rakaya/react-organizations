@@ -8,7 +8,13 @@ import CardInfo from "../CardInfo";
 import Label from "../Label";
 import { FormikError } from "./FormikError";
 
-const PhoneInput2 = ({ label, required, showIcon, messageInfo }) => {
+const PhoneInput2 = ({
+  label,
+  required,
+  showIcon,
+  messageInfo,
+  customClass,
+}) => {
   const [phone, setPhone] = useState("");
   const { setFieldValue, errors, handleBlur, values, touched } =
     useFormikContext();
@@ -31,7 +37,14 @@ const PhoneInput2 = ({ label, required, showIcon, messageInfo }) => {
       },
     },
   });
-
+  const generateClassName = () => {
+    const baseClasses = ""; // أساسيات التصميم
+    const errorClasses = "border-red-500 !border"; // فئات تطبق في حالة الخطأ
+    const isError = !!touched.phone && !!errors.phone;
+    
+    // دمج فئات الأساس مع فئات الخطأ والفئة المخصصة
+    return `${baseClasses} ${isError ? errorClasses : ''} ${customClass}`;
+  };
   return (
     <div className="col-span-1 ">
       <div className="flex flex-col ">
@@ -57,10 +70,11 @@ const PhoneInput2 = ({ label, required, showIcon, messageInfo }) => {
           showDropdown={false}
           disableCountryCode={false}
           name="phone"
+          inputStyle={{
+            width: "100%",
+          }}
           disableDropdown={true}
-          className={phoneInput({
-            error: !!touched.phone && !!errors.phone,
-          })}
+          className={generateClassName()}
         />
       </div>
 

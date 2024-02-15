@@ -19,6 +19,9 @@ export default {
       screens: {
         "3xl": "1940px",
         xs: "350px",
+        L: "700px",
+        mx: "915px",
+        customSix:"1330px"
       },
     },
   },

@@ -69,7 +69,7 @@ function AccountSettingMainData({ userData, isPending, attachments_register }) {
           />
         </div>
         <div className="col-span-2 md:col-span-1 ">
-          <PhoneInput2 name="phone" label={t("Phone Number")} required />
+          <PhoneInput2 name="phone" label={t("Phone Number")} required  customClass={"phoneInputAccountSetting"}/>
         </div>
         <div className="col-span-2 md:col-span-1 ">
           <BaseInputField

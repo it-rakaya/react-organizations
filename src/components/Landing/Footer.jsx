@@ -41,7 +41,10 @@ const FooterComponent = ({ title, children, last = false }) => {
 
 const textStyle = `font-semibold`;
 const Footer = () => {
-  const [timeRemaining, setTimeRemaining] = useState({daysRemaining: 0, monthsRemaining: 0});
+  const [timeRemaining, setTimeRemaining] = useState({
+    daysRemaining: 0,
+    monthsRemaining: 0,
+  });
   useEffect(() => {
     setTimeRemaining(calculateHajjRemainingTimeFormatted());
   }, []);
@@ -53,15 +56,17 @@ const Footer = () => {
   });
   const [prayer, setPrayer] = useState("");
   // const [timeLeft, setTimeLeft] = useState({ months: "3", days: "20", hours: "9" });
+  console.log("🚀 ~ Footer ~ nextPrayerTime:", nextPrayerTime)
   useEffect(() => {
-    getPrayerTime(setNextPrayerTime, setPrayer);
+    if (nextPrayerTime ) {
+      getPrayerTime(setNextPrayerTime, setPrayer);
+    }
     // getTimeLeftToHajj(setTimeLeft);
   }, []);
 
   return (
     <div className="2xl:pe-[18%] 3xl:pe-[26%]">
       <div className="flex flex-col w-full gap-3 lg:flex-row">
-        
         {orgData?.organizations?.profile_file ? (
           <FooterComponent title={t("landing.userManual")}>
             <a
@@ -84,23 +89,27 @@ const Footer = () => {
         )}
         <FooterComponent title={t("landing.remainingTimeToHajj")}>
           <h1 className={`${textStyle} tracking-wider dark:text-white`}>
-            {timeRemaining.monthsRemaining + " "} {t("landing.months")} {timeRemaining.daysAfterMonths + " "}{" "}
-            {t("landing.days")} {timeRemaining.hoursRemaining + " "}
+            {timeRemaining.monthsRemaining + " "} {t("landing.months")}{" "}
+            {timeRemaining.daysAfterMonths + " "} {t("landing.days")}{" "}
+            {timeRemaining.hoursRemaining + " "}
             {t("landing.hours")}
           </h1>
-          
         </FooterComponent>
-        <FooterComponent
-          title={`${t("landing.timeLeftTo")} ${t(`landing.prayers.${prayer}`)}`}
-          last
-        >
-          <h1
-            className={`${textStyle} flex items-center gap-4 tracking-wider dark:text-white`}
+        {nextPrayerTime.hours && (
+          <FooterComponent
+            title={`${t("landing.timeLeftTo")} ${t(
+              `landing.prayers.${prayer}`
+            )}`}
+            last
           >
-            {nextPrayerTime?.hours} {t("landing.hrs")} {nextPrayerTime?.minutes}{" "}
-            {t("landing.minutes")}
-          </h1>
-        </FooterComponent>
+            <h1
+              className={`${textStyle} flex items-center gap-4 tracking-wider dark:text-white`}
+            >
+              {nextPrayerTime?.hours} {t("landing.hrs")}{" "}
+              {nextPrayerTime?.minutes} {t("landing.minutes")}
+            </h1>
+          </FooterComponent>
+        )}
       </div>
     </div>
   );
