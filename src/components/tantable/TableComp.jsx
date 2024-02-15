@@ -28,6 +28,13 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
     },
     usePagination
   );
+  function isSafari() {
+    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  }
+  function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  }
+  const isApple = (isSafari() || isIOS()) 
 
   return (
     <>
@@ -76,7 +83,7 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
               <tr className=" capitalize border-y border-[#e9e9ec] dark:border-dark-primary h-[100px] text-center w-full relative">
                 <p
                   style={{ transform: "translate(-50% , -50%)" }}
-                  className="absolute   text-black dark:text-white top-[50%] left-[50%]"
+                  className={`absolute   text-black dark:text-white  top-[50%] left-[50%] notFoundData `}
                 >
                   {t("not found data")}
                 </p>
