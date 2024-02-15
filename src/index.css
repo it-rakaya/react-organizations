@@ -1298,3 +1298,9 @@ z-index: 9999 !important;
   -webkit-transform: translate(-50%, -50%) ;
   transform: translate(-50%, -50%) ;
 }
+
+ .table-class tr {
+  border-bottom: 1px solid #e9e9ec;
+  border-top: 1px solid #e9e9ec;
+
+}

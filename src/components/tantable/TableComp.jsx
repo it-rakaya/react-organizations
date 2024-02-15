@@ -56,14 +56,14 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
             ))}
           </thead>
 
-          <tbody {...getTableBodyProps()}>
+          <tbody {...getTableBodyProps()} className=" table-class">
             {data.length ? (
               rows.map((row) => {
                 prepareRow(row);
                 return (
                   <tr
                     {...row.getRowProps()}
-                    className="!border-y  !border-[#e9e9ec] dark:!border-dark-primary"
+                    className=""
                   >
                     {row.cells.map((cell) => {
                       return (
@@ -80,7 +80,7 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
                 );
               })
             ) : (
-              <tr className=" capitalize !border-y !border-[#e9e9ec] dark:!border-dark-primary h-[100px] text-center w-full relative">
+              <tr className=" capitalize h-[100px] text-center w-full relative">
                 <p
                   style={{ transform: "translate(-50% , -50%)" }}
                   className={`absolute   text-black dark:text-white top-[60%]  xl:top-[50%] left-[50%] ${isApple && "top-[60%]"} notFoundData  `}
