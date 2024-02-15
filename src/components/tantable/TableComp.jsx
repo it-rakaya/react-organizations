@@ -85,7 +85,7 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
                   style={{ transform: "translate(-50% , -50%)" }}
                   className={`absolute   text-black dark:text-white top-[60%]  xl:top-[50%] left-[50%] ${isApple && "top-[60%]"} notFoundData  `}
                 >
-                  {t("not found data")}
+                  {t("not found data test")}
                 </p>
               </tr>
             )}
