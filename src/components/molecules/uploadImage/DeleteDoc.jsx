@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Grid } from "@mui/material";
 import { t } from "i18next";
-import React from "react";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import TermsConditionIcon from "../../atoms/icons/TermsConditionIcon";
 

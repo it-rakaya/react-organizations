@@ -1283,3 +1283,6 @@ input {
     max-width: 78% !important ;
   }
 }
+.Toastify{
+z-index: 9999 !important;
+}
