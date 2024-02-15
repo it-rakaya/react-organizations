@@ -4,38 +4,68 @@ import { t } from "i18next";
 import { usePagination, useTable } from "react-table";
 import ArrowLeft from "../atoms/icons/ArrowLeft";
 import ArrowRight from "../atoms/icons/ArrowRight";
+import { useEffect, useMemo } from "react";
 
-function TableComp({ data, columns, setPaginationModel, paginationModel }) {
+function TableComp({
+  data,
+  columns,
+  setPaginationModel,
+  paginationModel,
+  totalData,
+}) {
+  const pageCount = useMemo(() => {
+    const totalRows = totalData.length;
+    return Math.ceil(totalRows / paginationModel.pageSize);
+  }, [paginationModel.pageSize, totalData.length]);
+
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     rows,
     prepareRow,
-    // Pagination hooks
-    canPreviousPage,
-    canNextPage,
     pageOptions,
     nextPage,
     previousPage,
     setPageSize,
+    gotoPage,
     state: { pageIndex, pageSize },
   } = useTable(
     {
       columns,
       data,
-      initialState: { pageIndex: 0 }, // You can set initial page index here
+      initialState: {
+        pageIndex: paginationModel.page,
+        pageSize: paginationModel.pageSize,
+      },
+      pageCount: pageCount,
     },
     usePagination
   );
+
   function isSafari() {
     return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   }
   function isIOS() {
     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   }
-  const isApple = (isSafari() || isIOS()) 
+  const isApple = isSafari() || isIOS();
 
+  useEffect(() => {
+    setPageSize(paginationModel.pageSize);
+    gotoPage(paginationModel.page);
+  }, [paginationModel, setPageSize, gotoPage]);
+  const handleNextPage = () => {
+    const nextPageIndex = pageIndex + 1;
+    nextPage();
+    setPaginationModel((prev) => ({ ...prev, page: nextPageIndex }));
+  };
+
+  const handlePreviousPage = () => {
+    const previousPageIndex = Math.max(0, pageIndex - 1);
+    previousPage();
+    setPaginationModel((prev) => ({ ...prev, page: previousPageIndex }));
+  };
   return (
     <>
       <div className="overflow-x-scroll">
@@ -61,10 +91,7 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
               rows.map((row) => {
                 prepareRow(row);
                 return (
-                  <tr
-                    {...row.getRowProps()}
-                    className=""
-                  >
+                  <tr {...row.getRowProps()} className="">
                     {row.cells.map((cell) => {
                       return (
                         <td
@@ -83,7 +110,9 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
               <tr className=" capitalize h-[100px] text-center w-full relative">
                 <p
                   style={{ transform: "translate(-50% , -50%)" }}
-                  className={`absolute   text-black dark:text-white top-[60%]  xl:top-[50%] left-[50%] ${isApple && "top-[60%]"} notFoundData  `}
+                  className={`absolute   text-black dark:text-white top-[60%]  xl:top-[50%] left-[50%] ${
+                    isApple && "top-[60%]"
+                  } notFoundData  `}
                 >
                   {t("not found data test")}
                 </p>
@@ -98,23 +127,26 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
             {" "}
             {t("rows per page")}
           </p>
-          <select
-            value={pageSize}
-            onChange={(e) => {
-              setPageSize(Number(e.target.value));
-            }}
-            className="!text-black dark:!text-white border border-[#555d64] rounded-md py-2 px-1"
-          >
-            {[10, 20, 30, 40, 50].map((pageSize) => (
-              <option
-                key={pageSize}
-                value={pageSize}
-                className="!text-black dark:!text-white bg-[#555d64] border-[#555d64] rounded-md "
-              >
-                <p className="!text-black dark:!text-white">{pageSize}</p>
-              </option>
-            ))}
-          </select>
+       <select
+  value={pageSize === totalData?.length ? "all" : pageSize}
+  onChange={(e) => {
+    const value = e.target.value;
+    const newSize = value === "all" ? totalData?.length : Number(value);
+    setPageSize(newSize);
+    setPaginationModel((prev) => ({ ...prev, pageSize: newSize }));
+  }}
+  className="!text-black dark:!text-white border border-[#555d64] rounded-md py-2 px-1"
+>
+  {[10, 20, 30, 40, 50, 100, 1000].map((size) => (
+    <option key={size} value={size}>
+      {size}
+    </option>
+  ))}
+  <option key="all" value="all">
+    {t("All")}
+  </option>
+</select>
+
         </div>
         <div className="flex items-center gap-5 ">
           {/* <button
@@ -141,27 +173,20 @@ function TableComp({ data, columns, setPaginationModel, paginationModel }) {
                 {t("of")}{" "}
               </span>
 
-              {pageOptions.length}
+              {pageCount}
             </strong>{" "}
           </span>
           <div className="flex items-center justify-center" dir={"ltr"}>
             <button
-              onClick={() =>
-                setPaginationModel((prev) => ({
-                  ...prev,
-                  page: Math.max(0, prev.page - 1),
-                }))
-              }
-              disabled={paginationModel.page === 0}
+              onClick={handleNextPage}
+              // disabled={paginationModel.page === 0}
               className="!text-black dark:!text-white cursor-pointer"
             >
               <ArrowLeft />
             </button>
             <button
-              onClick={() =>
-                setPaginationModel((prev) => ({ ...prev, page: prev.page + 1 }))
-              }
-              disabled={!canNextPage}
+              onClick={handlePreviousPage}
+              // disabled={!canNextPage}
               className="!text-black dark:!text-white cursor-pointer"
             >
               <ArrowRight />
