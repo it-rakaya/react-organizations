@@ -127,26 +127,26 @@ function TableComp({
             {" "}
             {t("rows per page")}
           </p>
-       <select
-  value={pageSize === totalData?.length ? "all" : pageSize}
-  onChange={(e) => {
-    const value = e.target.value;
-    const newSize = value === "all" ? totalData?.length : Number(value);
-    setPageSize(newSize);
-    setPaginationModel((prev) => ({ ...prev, pageSize: newSize }));
-  }}
-  className="!text-black dark:!text-white border border-[#555d64] rounded-md py-2 px-1"
->
-  {[10, 20, 30, 40, 50, 100, 1000].map((size) => (
-    <option key={size} value={size}>
-      {size}
-    </option>
-  ))}
-  <option key="all" value="all">
-    {t("All")}
-  </option>
-</select>
-
+          <select
+            value={pageSize === totalData?.length ? "all" : pageSize}
+            onChange={(e) => {
+              const value = e.target.value;
+              const newSize =
+                value === "all" ? totalData?.length : Number(value);
+              setPageSize(newSize);
+              setPaginationModel((prev) => ({ ...prev, pageSize: newSize }));
+            }}
+            className="!text-black dark:!text-white border border-[#555d64] rounded-md py-2 px-1"
+          >
+            {[10, 20, 30, 40, 50, 100, 1000].map((size) => (
+              <option key={size} value={size}>
+                {size}
+              </option>
+            ))}
+            {/* <option key="all" value="all">
+              {t("All")}
+            </option> */}
+          </select>
         </div>
         <div className="flex items-center gap-5 ">
           {/* <button
