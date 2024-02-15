@@ -32,7 +32,7 @@ function TermsAndCondition({ checked, setChecked, hidden, style }) {
           }}
         ></div>
       ) : (
-        <div className="main_content max-h-[300px] md:max-h-[350px] overflow-y-scroll scroll_main mt-5">
+        <div className="main_content max-h-[300px] md:max-h-[290px] overflow-y-scroll scroll_main mt-5">
           <p className="font-semibold text-center dark:text-white">
             {t(
               "By agreeing to register on the platform, you acknowledge and accept the following terms and conditions:"

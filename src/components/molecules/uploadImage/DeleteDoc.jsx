@@ -7,7 +7,7 @@ import TermsConditionIcon from "../../atoms/icons/TermsConditionIcon";
 
 function DeleteDoc({ setOpenModal, handleRemoveFile, files }) {
   return (
-    <div className="flex flex-col items-center justify-center p-10 align-middle gap-7">
+    <div className="flex flex-col items-center justify-center mb-10 ign-middle p- gap-7">
       <div>
         <TermsConditionIcon />
       </div>

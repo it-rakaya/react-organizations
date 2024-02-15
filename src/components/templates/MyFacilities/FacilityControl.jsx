@@ -116,11 +116,11 @@ function FacilityControl({
         className="!max-w-[500px]  "
         onClose={() => setOpen(false)}
         Children={
-          <div className="pt-10 !flex gap-3 !items-center !justify-center !flex-col">
+          <div className=" !flex gap-3 !items-center !justify-center !flex-col">
             <TermsAndCondition
               checked={checked}
               setChecked={setChecked}
-              style={{ height: "calc(100vh - 26rem)" }}
+              style={{ height: "calc(100vh - 3rem)" }}
             />
 
             <ButtonComp
