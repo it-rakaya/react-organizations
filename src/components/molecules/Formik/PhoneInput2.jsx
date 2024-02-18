@@ -43,7 +43,6 @@ const PhoneInput2 = ({
     const errorClasses = "phone-input-error";
     return `${baseClasses} ${isError ? errorClasses : ""} ${customClass}`;
   };
-  const [isFocused, setIsFocused] = useState(false);
   return (
     <div className="col-span-1 ">
       <div className="flex flex-col ">

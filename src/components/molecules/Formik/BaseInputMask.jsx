@@ -1,8 +1,7 @@
 /* eslint-disable react/display-name */
+import { useTheme } from "@mui/material/styles";
 import { useFormikContext } from "formik";
 import { forwardRef, useState } from "react";
-import { useTheme } from "@mui/material/styles";
-import { hexToRGBA } from "../../../utils/helpers";
 
 const BaseInputMask = forwardRef(() => {
   const { setFieldValue, values, touched, errors, handleBlur } =

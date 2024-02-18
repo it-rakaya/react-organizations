@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
 import { t } from "i18next";
+import { useEffect, useMemo } from "react";
 import { usePagination, useTable } from "react-table";
 import ArrowLeft from "../atoms/icons/ArrowLeft";
 import ArrowRight from "../atoms/icons/ArrowRight";
-import { useEffect, useMemo } from "react";
 
 function TableComp({
   data,
@@ -108,14 +108,14 @@ function TableComp({
               })
             ) : (
               <tr className=" capitalize h-[100px] text-center w-full relative">
-                <p
+                <td
                   style={{ transform: "translate(-50% , -50%)" }}
                   className={`absolute   text-black dark:text-white top-[50%]  xl:top-[50%] left-[50%] ${
                     isApple && "top-[60%]"
                   } notFoundData  `}
                 >
                   {t("not found data")}
-                </p>
+                </td>
               </tr>
             )}
           </tbody>
