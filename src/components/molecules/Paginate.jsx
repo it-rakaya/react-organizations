@@ -21,8 +21,10 @@ function Paginate({ page, totalPages, handleChange }) {
     count: totalPages,
     page,
   });
+  console.log("🚀 ~ Paginate ~ page:", page);
   const theme = useTheme();
 
+  console.log("🚀 ~ Paginate ~ items:", items);
   return (
     <div className="mt-5">
       <div>
@@ -68,7 +70,8 @@ function Paginate({ page, totalPages, handleChange }) {
                 children = (
                   <button
                     type="button"
-                    className="flex items-center justify-center   border rounded-md h-[30px] w-[30px]"
+                    className="flex items-center justify-center   border rounded-md h-[30px] w-[30px] disabled:cursor-not-allowed"
+                    disabled={page == 0}
                     style={{
                       background: hexToRGBA(theme.palette.primary?.main, 0.5),
                     }}
@@ -84,6 +87,7 @@ function Paginate({ page, totalPages, handleChange }) {
                     type="button"
                     className="flex items-center justify-center  border rounded-md h-[30px] w-[30px]"
                     onClick={(event) => handleChange(event, page)}
+                    disabled={page == totalPages + 1}
                     style={{
                       background: hexToRGBA(theme.palette.primary?.main, 0.5),
                     }}
