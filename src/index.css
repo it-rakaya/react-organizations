@@ -1126,30 +1126,20 @@ input {
 
 }
 
-@media screen and (max-width: 899px) and (min-width: 600px) {
-  .react-tel-input .form-control {
-    max-width: 90% !important;
-  }
-}
-
-@media screen and (max-width: 912px) and (min-width: 900px) {
-  .react-tel-input .form-control {
-    max-width: 81% !important;
-  }
-}
 
 
 
 @media (max-width:1180px) {
   .react-tel-input .form-control {
-    max-width: 77% !important;
+    max-width: 74% !important;
   }
 }
 @media (max-width:1024px) {
   .react-tel-input .form-control {
-    max-width: 80%;
+    max-width: 82%;
   }
 }
+
 
 @media (max-width:844px) {
   .react-tel-input .form-control {
@@ -1159,7 +1149,7 @@ input {
 
 @media (max-width:820px) {
   .react-tel-input .form-control {
-    max-width: 91% !important;
+    max-width: 83% !important;
   }
 }
 @media (max-width:768px) {
