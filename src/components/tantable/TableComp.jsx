@@ -72,7 +72,7 @@ function TableComp({
         <table {...getTableProps()} className="w-full ">
           <thead className="w-full px-4 ">
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
+              <tr {...headerGroup.getHeaderGroupProps()} className="border-b border-red-500">
                 {headerGroup.headers.map((column) => (
                   <th
                     {...column.getHeaderProps()}
@@ -110,9 +110,9 @@ function TableComp({
               <tr className=" capitalize h-[100px] text-center w-full relative">
                 <td
                   style={{ transform: "translate(-50% , -50%)" }}
-                  className={`absolute   text-black dark:text-white top-[50%]  xl:top-[50%] left-[50%] ${
+                  className={`absolute    text-black dark:text-white top-[50%]  xl:top-[50%] left-[50%] ${
                     isApple && "top-[60%]"
-                  } notFoundData  `}
+                  }   `}
                 >
                   {t("not found data")}
                 </td>
@@ -123,7 +123,7 @@ function TableComp({
       </div>
       <div className="flex justify-end items-center w-full gap-5 pt-2 pagination flex-end md:px-[66px]  ">
         <div className="flex items-center gap-2 text-[10px] md:text-[14px] ">
-          <p className="text-black dark:text-white !text-[12px] md:!text-[14px]">
+          <p className="text-black dark:text-white !text-[10px] md:!text-[14px]">
             {" "}
             {t("rows per page")}
           </p>
@@ -143,27 +143,11 @@ function TableComp({
                 {size}
               </option>
             ))}
-            {/* <option key="all" value="all">
-              {t("All")}
-            </option> */}
+          
           </select>
         </div>
         <div className="flex items-center gap-5 ">
-          {/* <button
-            onClick={() => gotoPage(0)}
-            disabled={!canPreviousPage}
-            className="!text-black dark:!text-white"
-          >
-            {"<<"}
-          </button> */}
-
-          {/* <button
-            onClick={() => gotoPage(pageCount - 1)}
-            disabled={!canNextPage}
-            className="!text-black dark:!text-white"
-          >
-            {">>"}
-          </button> */}
+    
           <span className="!text-black dark:!text-white text-[10px] md:text-[14px]">
             <span className="mx-1 text-[12px] md:text-[14px]">{t("Page")}</span>
             <strong>

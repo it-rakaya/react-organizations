@@ -31,6 +31,7 @@ export const generateColumns = ({
                 display: "flex",
                 alignItems: "flex-start",
                 gap: "5px",
+               
               }}
             >
               <Typography
@@ -50,6 +51,7 @@ export const generateColumns = ({
           alignItems: "center",
           display: "flex",
           justifyContent: "center",
+         
         },
         accessor: "code",
       },
