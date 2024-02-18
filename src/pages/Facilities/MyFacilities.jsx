@@ -75,7 +75,7 @@ export default function MyFacilities() {
           addTitle={t("Add Facility")}
           action={() => navigate("/dashboard/facilities/create-facility")}
         />
-        <div className="flex flex-col items-center justify-between ">
+        <div className="flex flex-col items-center justify-between " >
           {isLoading || isRefetching ? (
             <Loading />
           ) : filteredFacilities?.length ? (

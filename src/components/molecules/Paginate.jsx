@@ -5,6 +5,7 @@ import ArrowLeft from "../atoms/icons/ArrowLeft";
 import ArrowRight from "../atoms/icons/ArrowRight";
 import { useTheme } from "@mui/material/styles";
 import { hexToRGBA } from "../../utils/helpers";
+import { useIsRTL } from "../../hooks/useIsRTL";
 
 const List = styled("ul")({
   listStyle: "none",
@@ -21,10 +22,9 @@ function Paginate({ page, totalPages, handleChange }) {
     count: totalPages,
     page,
   });
-  console.log("🚀 ~ Paginate ~ page:", page);
   const theme = useTheme();
+  const isRTL = useIsRTL();
 
-  console.log("🚀 ~ Paginate ~ items:", items);
   return (
     <div className="mt-5">
       <div>
@@ -78,7 +78,7 @@ function Paginate({ page, totalPages, handleChange }) {
                     onClick={(event) => handleChange(event, page)}
                     // {...item}
                   >
-                    <ArrowRight />
+                    {isRTL ? <ArrowRight /> : <ArrowLeft />}{" "}
                   </button>
                 );
               } else if (type === "next") {
@@ -92,7 +92,7 @@ function Paginate({ page, totalPages, handleChange }) {
                       background: hexToRGBA(theme.palette.primary?.main, 0.5),
                     }}
                   >
-                    <ArrowLeft />
+                    {isRTL ? <ArrowLeft /> : <ArrowRight />}
                   </button>
                 );
               }
