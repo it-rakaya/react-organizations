@@ -32,7 +32,22 @@ function Paginate({ page, totalPages, handleChange }) {
               let children = null;
 
               if (type === "start-ellipsis" || type === "end-ellipsis") {
-                children = "…";
+                children = (
+                  <div className="bg-transparent">
+                    <span
+                      className="bg-transparent"
+                      dangerouslySetInnerHTML={{ __html: "&period;" }}
+                    />
+                    <span
+                      className="bg-transparent"
+                      dangerouslySetInnerHTML={{ __html: "&period;" }}
+                    />
+                    <span
+                      className="bg-transparent"
+                      dangerouslySetInnerHTML={{ __html: "&period;" }}
+                    />
+                  </div>
+                );
               } else if (type == "page") {
                 children = (
                   <button
