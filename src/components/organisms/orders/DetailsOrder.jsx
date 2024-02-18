@@ -59,7 +59,7 @@ export default function DetailsOrder({ data }) {
           </div>
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
             <p className="font-bold dark:text-white"> {t("Creation Date")}</p>
-            <div className="flex gap-1">
+            <div className="flex flex-wrap justify-center gap items-center-1">
               <p className="dark:text-white text-[15px]">
                 {data?.created_at?.slice(0, 10)}
               </p>
