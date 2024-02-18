@@ -72,7 +72,7 @@ function TableComp({
         <table {...getTableProps()} className="w-full ">
           <thead className="w-full px-4 ">
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()} className="border-y border-[#e9e9ec]">
+              <tr {...headerGroup.getHeaderGroupProps()} className="border-b  border-[#e9e9ec]">
                 {headerGroup.headers.map((column) => (
                   <th
                     {...column.getHeaderProps()}
