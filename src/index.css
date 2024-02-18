@@ -1339,8 +1339,8 @@ input {
 }
 
 .table-class tr {
-  border-bottom: 1px solid #e9e9ec !important;
-  border-top: 1px solid #e9e9ec !important;
+  border-bottom: 1px solid #e9e9ec ;
+  border-top: 1px solid #e9e9ec ;
 
 }
 
