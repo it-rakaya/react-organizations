@@ -107,10 +107,10 @@ function TableComp({
                 );
               })
             ) : (
-              <tr className=" capitalize h-[100px] text-center w-full relative !border-t  !border-blue-500">
+              <tr className=" capitalize h-[100px] text-center w-full relative !border-t  !border-red-500">
                 <td
                   style={{ transform: "translate(-50% , -50%)" }}
-                  className={`absolute    text-black dark:text-white top-[50%]  xl:top-[50%] left-[50%] ${
+                  className={`absolute w-full   text-black dark:text-white top-[50%]  xl:top-[50%] left-[50%] ${
                     isApple && "top-[60%]"
                   }   `}
                 >

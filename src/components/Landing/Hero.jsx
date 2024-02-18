@@ -30,12 +30,15 @@ const Hero = () => {
         {/* title */}
         <div className="flex flex-col items-center justify-between w-full gap-5 xl:flex-row-reverse xl:gap-0">
           {/* <h1 className="px-6 py-1 border rounded-lg border-primaryText"> */}
+          <div className="w-[70px] h-[110px] object-fill ">
+            
           <img
             alt="bg_organization"
             src={orgData?.organizations?.logo}
-            className="w-[70px] rounded-xl"
+            className="] rounded-xl object-fill"
             loading="lazy"
           />
+          </div>
           {/* </h1> */}
           <h1 className="text-2xl font-bold 3xl:text-3xl dark:text-white">
             {!orgData?.organizations?.name && t("landing.organizationName")}

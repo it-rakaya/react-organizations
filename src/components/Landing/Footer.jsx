@@ -94,7 +94,7 @@ const Footer = () => {
             {t("landing.hours")}
           </h1>
         </FooterComponent>
-        {nextPrayerTime.hours && (
+        {/* {!!nextPrayerTime.hours && ( */}
           <FooterComponent
             title={`${t("landing.timeLeftTo")} ${t(
               `landing.prayers.${prayer}`
@@ -108,7 +108,7 @@ const Footer = () => {
               {nextPrayerTime?.minutes} {t("landing.minutes")}
             </h1>
           </FooterComponent>
-        )}
+        {/* )} */}
       </div>
     </div>
   );
