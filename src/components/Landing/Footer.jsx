@@ -84,7 +84,7 @@ const Footer = () => {
             </a>
           </FooterComponent>
         ) : (
-          ""
+          <div></div>
         )}
         <FooterComponent title={t("landing.remainingTimeToHajj")}>
           <h1 className={`${textStyle} tracking-wider dark:text-white`}>
