@@ -257,29 +257,24 @@ main,
   letter-spacing: inherit;
   color: currentColor;
   border: 0;
-  box-sizing: content-box;
+  box-sizing: border-box;
   background: none;
   height: 1.4375em;
   margin: 0;
   -webkit-tap-highlight-color: transparent;
   display: block;
-  max-width: 83%;
+  max-width: 100%;
   width: 100% !important;
   animation-name: mui-auto-fill-cancel;
   animation-duration: 10ms;
   color: black;
+  height: 59px;
   padding-left: 50px !important;
   border-radius: 8px;
   padding: 16.5px 14px;
   border: 1px solid #d8d8dd !important;
 }
 
-@media (max-width:550px) {
-  .react-tel-input .form-control {
-    max-width: 81%;
-
-  }
-}
 
 .dark .react-tel-input .form-control {
   @apply bg-dark-primary
@@ -1127,7 +1122,11 @@ input {
 }
 
 
-
+/* @media (max-width:1201px) {
+  .react-tel-input .form-control {
+    max-width: 80% !important;
+  }
+}
 
 @media (max-width:1180px) {
   .react-tel-input .form-control {
@@ -1143,18 +1142,18 @@ input {
 
 @media (max-width:844px) {
   .react-tel-input .form-control {
-    max-width: 91% !important;
+    max-width: 83% !important;
   }
 }
 
 @media (max-width:820px) {
   .react-tel-input .form-control {
-    max-width: 83% !important;
+    max-width: 80% !important;
   }
 }
 @media (max-width:768px) {
   .react-tel-input .form-control {
-    max-width: 83% !important;
+    max-width: 80% !important;
   }
 }
 @media (max-width:720px) {
@@ -1204,7 +1203,7 @@ input {
   .react-tel-input .form-control {
     max-width: 72%;
   }
-}
+} */
 
 @media (max-width:1480px) {
   [dir='ltr'] .afterAndBeforeButton {
@@ -1229,7 +1228,7 @@ input {
     bottom: 69px !important;
   }
 }
-
+/* 
 @media (max-width:1024px) {
   .phoneInputAccountSetting .form-control {
     max-width: 83% !important;
@@ -1318,7 +1317,7 @@ input {
   .phoneInputAccountSetting .form-control {
     max-width: 78% !important;
   }
-}
+} */
 
 .Toastify {
   z-index: 9999 !important;

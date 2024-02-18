@@ -110,7 +110,7 @@ function TableComp({
               <tr className=" capitalize h-[100px] text-center w-full relative">
                 <p
                   style={{ transform: "translate(-50% , -50%)" }}
-                  className={`absolute   text-black dark:text-white top-[60%]  xl:top-[50%] left-[50%] ${
+                  className={`absolute   text-black dark:text-white top-[50%]  xl:top-[50%] left-[50%] ${
                     isApple && "top-[60%]"
                   } notFoundData  `}
                 >
