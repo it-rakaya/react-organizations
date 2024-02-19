@@ -39,6 +39,13 @@ body {
 ::-webkit-scrollbar {
   width: 0.4rem;
 }
+.bg-landing{
+transform: rotate(45deg) !important;
+}
+.bg-landing{
+  -webkit-transform: rotate(45deg) !important; /* لسفاري والمتصفحات القديمة */
+  transform: rotate(45deg) !important; /* لبقية المتصفحات */
+}
 
 /* Make the scrollbar transparent */
 ::-webkit-scrollbar-thumb {
