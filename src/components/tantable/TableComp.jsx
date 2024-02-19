@@ -117,7 +117,7 @@ function TableComp({
               >
                 {isApple ? (
                   <div
-                    className="absolute w-full   text-black dark:text-[#e9e9ec] bottom-[25%]  xl:bottom-[30%] left-[50%] px-3"
+                    className="absolute w-full   text-black dark:text-[#e9e9ec] bottom-[25%]  xl:bottom-[30%] left-[50%] px-2"
                     style={{ transform: "translate(-50% , 0%)" }}
                   >
                     <hr className=" h-[1px]" />
@@ -127,7 +127,7 @@ function TableComp({
                 )}
                 <td
                   style={{ transform: "translate(-50% , -50%)" }}
-                  className={`absolute w-full   text-black dark:text-white top-[50%]  xl:top-[50%] left-[50%] `}
+                  className={`absolute w-full   text-black dark:text-white top-[50%]  xl:top-[50%] left-[50%] ${isApple ? "top-[60%]":""} `}
                 >
                   {t("not found data")}
                 </td>
