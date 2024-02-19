@@ -127,7 +127,9 @@ function TableComp({
                 )}
                 <td
                   style={{ transform: "translate(-50% , -50%)" }}
-                  className={`absolute w-full   text-black dark:text-white top-[50%]  xl:top-[50%] left-[50%] ${isApple ? "top-[60%]":""} `}
+                  className={`absolute w-full   text-black dark:text-white top-[50%]  xl:top-[50%] left-[50%] ${
+                    isApple ? "top-[55%]" : ""
+                  } `}
                 >
                   {t("not found data")}
                 </td>
