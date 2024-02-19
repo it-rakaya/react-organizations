@@ -37,11 +37,11 @@ function Landing() {
       {/* KAABA  */}
       <div className="w-screen flex justify-end pe-[13%] xl:pe-[10%] 3xl:pe-[8%]   lg:my-32 3xl:my-64 absolute z-[-1000]">
         <div
-          className="hidden lg:block w-[15vh] h-[15vh] lg:w-[19vh] lg:h-[19vh] xl:w-[25vh] xl:h-[25vh] rotate-45 overflow-hidden z-[-1000]"
+          className="hidden lg:block !w-[15vh] !h-[15vh] lg:!w-[19vh] lg:!h-[19vh] xl:!w-[25vh] xl:!h-[25vh] rotate-45 !overflow-hidden "
           style={{ borderRadius: 30 }}
         >
           <div
-            className="w-[200%] h-[200%] rotate-[-45deg] absolute top-[-45%] left-[-45%]"
+            className="w-[350px] h-[290px] rotate-[-45deg] absolute top-[-45%] left-[-45%]"
             style={{
               backgroundImage: `url('${orgData?.organizations?.background_image}')`,
               backgroundColor: theme?.palette?.primary?.main,

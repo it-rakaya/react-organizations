@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
 import { t } from "i18next";
+import { useEffect, useMemo } from "react";
 import { usePagination, useTable } from "react-table";
 import ArrowLeft from "../atoms/icons/ArrowLeft";
 import ArrowRight from "../atoms/icons/ArrowRight";
-import { useEffect, useMemo } from "react";
 
 function TableComp({
   data,
@@ -72,7 +72,10 @@ function TableComp({
         <table {...getTableProps()} className="w-full ">
           <thead className="w-full px-4 ">
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
+              <tr
+                {...headerGroup.getHeaderGroupProps()}
+                className="border-b  border-[#e9e9ec]"
+              >
                 {headerGroup.headers.map((column) => (
                   <th
                     {...column.getHeaderProps()}
@@ -108,14 +111,20 @@ function TableComp({
               })
             ) : (
               <tr className=" capitalize h-[100px] text-center w-full relative">
-                <p
-                  style={{ transform: "translate(-50% , -50%)" }}
-                  className={`absolute   text-black dark:text-white top-[60%]  xl:top-[50%] left-[50%] ${
-                    isApple && "top-[60%]"
-                  } notFoundData  `}
+                <div
+                  className="absolute w-full   text-black dark:text-[#e9e9ec] bottom-[10%]  xl:bottom-[15%] left-[50%]"
+                  style={{ transform: "translate(-50% , 0%)" }}
                 >
-                  {t("not found data test")}
-                </p>
+                  <hr className=" h-[1px]" />
+                </div>
+                <td
+                  style={{ transform: "translate(-50% , -50%)" }}
+                  className={`absolute w-full   text-black dark:text-white top-[50%]  xl:top-[50%] left-[50%] ${
+                    isApple && "top-[60%]"
+                  }   `}
+                >
+                  {t("not found data")}
+                </td>
               </tr>
             )}
           </tbody>
@@ -123,47 +132,29 @@ function TableComp({
       </div>
       <div className="flex justify-end items-center w-full gap-5 pt-2 pagination flex-end md:px-[66px]  ">
         <div className="flex items-center gap-2 text-[10px] md:text-[14px] ">
-          <p className="text-black dark:text-white !text-[12px] md:!text-[14px]">
+          <p className="text-black dark:text-white !text-[10px] md:!text-[14px]">
             {" "}
             {t("rows per page")}
           </p>
-       <select
-  value={pageSize === totalData?.length ? "all" : pageSize}
-  onChange={(e) => {
-    const value = e.target.value;
-    const newSize = value === "all" ? totalData?.length : Number(value);
-    setPageSize(newSize);
-    setPaginationModel((prev) => ({ ...prev, pageSize: newSize }));
-  }}
-  className="!text-black dark:!text-white border border-[#555d64] rounded-md py-2 px-1"
->
-  {[10, 20, 30, 40, 50, 100, 1000].map((size) => (
-    <option key={size} value={size}>
-      {size}
-    </option>
-  ))}
-  <option key="all" value="all">
-    {t("All")}
-  </option>
-</select>
-
+          <select
+            value={pageSize === totalData?.length ? "all" : pageSize}
+            onChange={(e) => {
+              const value = e.target.value;
+              const newSize =
+                value === "all" ? totalData?.length : Number(value);
+              setPageSize(newSize);
+              setPaginationModel((prev) => ({ ...prev, pageSize: newSize }));
+            }}
+            className="!text-black dark:!text-white border border-[#555d64] rounded-md py-2 px-1"
+          >
+            {[10, 20, 30, 40, 50, 100, 1000].map((size) => (
+              <option key={size} value={size}>
+                {size}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="flex items-center gap-5 ">
-          {/* <button
-            onClick={() => gotoPage(0)}
-            disabled={!canPreviousPage}
-            className="!text-black dark:!text-white"
-          >
-            {"<<"}
-          </button> */}
-
-          {/* <button
-            onClick={() => gotoPage(pageCount - 1)}
-            disabled={!canNextPage}
-            className="!text-black dark:!text-white"
-          >
-            {">>"}
-          </button> */}
           <span className="!text-black dark:!text-white text-[10px] md:text-[14px]">
             <span className="mx-1 text-[12px] md:text-[14px]">{t("Page")}</span>
             <strong>

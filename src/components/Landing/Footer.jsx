@@ -56,7 +56,6 @@ const Footer = () => {
   });
   const [prayer, setPrayer] = useState("");
   // const [timeLeft, setTimeLeft] = useState({ months: "3", days: "20", hours: "9" });
-  console.log("🚀 ~ Footer ~ nextPrayerTime:", nextPrayerTime)
   useEffect(() => {
     if (nextPrayerTime ) {
       getPrayerTime(setNextPrayerTime, setPrayer);
@@ -85,7 +84,7 @@ const Footer = () => {
             </a>
           </FooterComponent>
         ) : (
-          ""
+          <div></div>
         )}
         <FooterComponent title={t("landing.remainingTimeToHajj")}>
           <h1 className={`${textStyle} tracking-wider dark:text-white`}>
@@ -95,7 +94,7 @@ const Footer = () => {
             {t("landing.hours")}
           </h1>
         </FooterComponent>
-        {nextPrayerTime.hours && (
+        {/* {!!nextPrayerTime.hours && ( */}
           <FooterComponent
             title={`${t("landing.timeLeftTo")} ${t(
               `landing.prayers.${prayer}`
@@ -109,7 +108,7 @@ const Footer = () => {
               {nextPrayerTime?.minutes} {t("landing.minutes")}
             </h1>
           </FooterComponent>
-        )}
+        {/* )} */}
       </div>
     </div>
   );

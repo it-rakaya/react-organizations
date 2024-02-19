@@ -16,9 +16,8 @@ const PhoneInput2 = ({
 }) => {
   const [phone, setPhone] = useState("");
   const { setFieldValue, errors, handleBlur, values, touched, validateField } =
-  useFormikContext();
+    useFormikContext();
 
-  
   const handlePhoneChange = (value, selectedCountry, name, number) => {
     const modifiedPhone = +number
       .slice(selectedCountry?.dialCode.length + 2)
@@ -44,7 +43,6 @@ const PhoneInput2 = ({
     const errorClasses = "phone-input-error";
     return `${baseClasses} ${isError ? errorClasses : ""} ${customClass}`;
   };
-
   return (
     <div className="col-span-1 ">
       <div className="flex flex-col ">
@@ -77,6 +75,7 @@ const PhoneInput2 = ({
           disableDropdown={true}
           className={generateClassName()}
         />
+        
       </div>
 
       <div>

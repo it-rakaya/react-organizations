@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { useMediaQuery } from '@mui/material';
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -23,7 +24,6 @@ import AddEmployee from "../../components/templates/myEmployee/AddEmployee";
 import useFetch from "../../hooks/useFetch";
 import { useIsRTL } from "../../hooks/useIsRTL";
 import StepperFacility from "./AddFacilityPage";
-import { useMediaQuery } from '@mui/material';
 
 export default function MyFacilities() {
   const [open, setOpen] = useState(false);
@@ -75,7 +75,7 @@ export default function MyFacilities() {
           addTitle={t("Add Facility")}
           action={() => navigate("/dashboard/facilities/create-facility")}
         />
-        <div className="flex flex-col items-center justify-between ">
+        <div className="flex flex-col items-center justify-between " >
           {isLoading || isRefetching ? (
             <Loading />
           ) : filteredFacilities?.length ? (
@@ -164,6 +164,7 @@ export default function MyFacilities() {
                   handleChange={handlePageChange}
                 />
               )}
+             
             </>
           ) : (
             <DataNotFound title={t("Not Found Facilities")} />
