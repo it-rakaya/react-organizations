@@ -110,18 +110,17 @@ function TableComp({
                 );
               })
             ) : (
-              
               <tr className=" capitalize h-[100px] text-center w-full relative">
-                <div
-                  className="absolute w-full   text-black dark:text-[#e9e9ec] bottom-[20%]  xl:bottom-[25%] left-[50%]"
-                  style={{ transform: "translate(-50% , 0%)" }}
-                >
-                  {
-                    isApple ? 
+                {isApple ? (
+                  <div
+                    className="absolute w-full   text-black dark:text-[#e9e9ec] bottom-[25%]  xl:bottom-[30%] left-[50%] px-5"
+                    style={{ transform: "translate(-50% , 0%)" }}
+                  >
                     <hr className=" h-[1px]" />
-                    :"test"
-                  }
-                </div>
+                  </div>
+                ) : (
+                  ""
+                )}
                 <td
                   style={{ transform: "translate(-50% , -50%)" }}
                   className={`absolute w-full   text-black dark:text-white top-[50%]  xl:top-[50%] left-[50%] `}
