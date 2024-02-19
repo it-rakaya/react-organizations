@@ -46,6 +46,15 @@ transform: rotate(0.1turn) !important;
   -webkit-transform: rotate(0.1turn) !important ;/* لسفاري والمتصفحات القديمة */
   transform: rotate(45deg) !important; /* لبقية المتصفحات */
 }
+.bg-landing{
+  -webkit-transform:rotate(1rad) !important ;/* لسفاري والمتصفحات القديمة */
+  transform: rotate(45deg) !important; /* لبقية المتصفحات */
+}
+.bg-landing{
+  -webkit-transform:rotate(50grad) !important;/* لسفاري والمتصفحات القديمة */
+  transform: rotate(45deg) !important; /* لبقية المتصفحات */
+}
+
 
 /* Make the scrollbar transparent */
 ::-webkit-scrollbar-thumb {
