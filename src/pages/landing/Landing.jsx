@@ -41,7 +41,7 @@ function Landing() {
           style={{ borderRadius: 30 }}
         >
           <div
-            className="w-[350px] h-[290px] rotate-[-45deg] absolute top-[-45%] left-[-45%]"
+            className="!w-[200%] !h-[200%] rotate-[-45deg] absolute top-[-45%] left-[-45%]"
             style={{
               backgroundImage: `url('${orgData?.organizations?.background_image}')`,
               backgroundColor: theme?.palette?.primary?.main,
