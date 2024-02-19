@@ -40,10 +40,10 @@ body {
   width: 0.4rem;
 }
 .bg-landing{
-transform: rotate(45deg) !important;
+transform: rotate(0.1turn) !important;
 }
 .bg-landing{
-  -webkit-transform: rotate(45deg) !important; /* لسفاري والمتصفحات القديمة */
+  -webkit-transform: rotate(0.1turn) !important ;/* لسفاري والمتصفحات القديمة */
   transform: rotate(45deg) !important; /* لبقية المتصفحات */
 }
 
