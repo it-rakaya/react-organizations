@@ -43,7 +43,7 @@ function Landing() {
           <div
             className="!w-[200%] !h-[200%] rotate-[-45deg] absolute top-[-45%] left-[-45%]"
             style={{
-              backgroundImage: `url('${orgData?.organizations?.background_image}')`,
+              // backgroundImage: `url('${orgData?.organizations?.background_image}')`,
               backgroundColor: theme?.palette?.primary?.main,
               backgroundSize: "cover",
               // backgroundPosition:'center',
@@ -56,7 +56,6 @@ function Landing() {
       <Navbar className="fixed bg-[#F7F7F9]" />
       {/* content */}
       <div className="pt-[13%] mt-10 md:mt-0">
-        
         <Hero />
         <div className="my-20">
           <Footer />
