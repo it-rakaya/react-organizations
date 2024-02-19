@@ -112,7 +112,7 @@ function TableComp({
             ) : (
               <tr className=" capitalize h-[100px] text-center w-full relative">
                 <div
-                  className="absolute w-full   text-black dark:text-[#e9e9ec] bottom-[0%]  xl:bottom-[5%] left-[50%]"
+                  className="absolute w-full   text-black dark:text-[#e9e9ec] bottom-[10%]  xl:bottom-[15%] left-[50%]"
                   style={{ transform: "translate(-50% , 0%)" }}
                 >
                   <hr className=" h-[1px]" />
