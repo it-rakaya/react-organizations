@@ -115,7 +115,7 @@ function TableComp({
                   className="absolute w-full   text-black dark:text-[#e9e9ec] bottom-[0%]  xl:bottom-[5%] left-[50%]"
                   style={{ transform: "translate(-50% , 0%)" }}
                 >
-                  <hr className="border " />
+                  <hr className=" h-[1px]" />
                 </div>
                 <td
                   style={{ transform: "translate(-50% , -50%)" }}
