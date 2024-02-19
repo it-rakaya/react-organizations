@@ -72,7 +72,10 @@ function TableComp({
         <table {...getTableProps()} className="w-full ">
           <thead className="w-full px-4 ">
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()} className="border-b  border-[#e9e9ec]">
+              <tr
+                {...headerGroup.getHeaderGroupProps()}
+                className="border-b  border-[#e9e9ec]"
+              >
                 {headerGroup.headers.map((column) => (
                   <th
                     {...column.getHeaderProps()}
@@ -107,7 +110,13 @@ function TableComp({
                 );
               })
             ) : (
-              <tr className=" capitalize h-[100px] text-center w-full relative !border-t  !border-red-500">
+              <tr className=" capitalize h-[100px] text-center w-full relative">
+                <div
+                  className="absolute w-full   text-black dark:text-[#e9e9ec] bottom-[0%]  xl:bottom-[5%] left-[50%]"
+                  style={{ transform: "translate(-50% , 0%)" }}
+                >
+                  <hr className="border " />
+                </div>
                 <td
                   style={{ transform: "translate(-50% , -50%)" }}
                   className={`absolute w-full   text-black dark:text-white top-[50%]  xl:top-[50%] left-[50%] ${
@@ -143,11 +152,9 @@ function TableComp({
                 {size}
               </option>
             ))}
-          
           </select>
         </div>
         <div className="flex items-center gap-5 ">
-    
           <span className="!text-black dark:!text-white text-[10px] md:text-[14px]">
             <span className="mx-1 text-[12px] md:text-[14px]">{t("Page")}</span>
             <strong>
