@@ -110,18 +110,26 @@ function TableComp({
                 );
               })
             ) : (
-              <tr className=" capitalize h-[100px] text-center w-full relative">
-                <div
-                  className="absolute w-full   text-black dark:text-[#e9e9ec] bottom-[10%]  xl:bottom-[15%] left-[50%]"
-                  style={{ transform: "translate(-50% , 0%)" }}
-                >
-                  <hr className=" h-[1px]" />
-                </div>
+              <tr
+                className={` capitalize h-[100px] text-center w-full relative ${
+                  isApple ? "!border-transparent" : ""
+                }  `}
+              >
+                {isApple ? (
+                  <div
+                    className="absolute w-full   text-black dark:text-[#e9e9ec] bottom-[25%]  xl:bottom-[30%] left-[50%] px-2"
+                    style={{ transform: "translate(-50% , 0%)" }}
+                  >
+                    <hr className=" h-[1px]" />
+                  </div>
+                ) : (
+                  ""
+                )}
                 <td
                   style={{ transform: "translate(-50% , -50%)" }}
                   className={`absolute w-full   text-black dark:text-white top-[50%]  xl:top-[50%] left-[50%] ${
-                    isApple && "top-[60%]"
-                  }   `}
+                    isApple ? "top-[55%]" : ""
+                  } `}
                 >
                   {t("not found data")}
                 </td>
