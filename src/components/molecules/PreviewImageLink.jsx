@@ -52,7 +52,7 @@ export default function PreviewImageLink({
                   {filename && (
                     <div className="">
                       <span className="file-name !text-black dark:!text-white ">
-                        {filename}
+                        {filename?.length > 30 ? filename.slice(0,30) : filename}
                       </span>
                      
                     </div>
