@@ -15,7 +15,6 @@ export default function LoginForm({setHideSection}) {
   const [valuesForm, setValuesForm] = useState("");
   const { login } = useAuth();
   const [dataValue, setDataValue] = useState();
-  console.log("🚀 ~ LoginForm ~ dataValue:", dataValue)
   const [valueOTP, setValueOTP] = useState();
   const { orgData } = UseOrg();
 

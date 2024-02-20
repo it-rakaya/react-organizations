@@ -7,6 +7,7 @@ import { PinInput } from "react-input-pin-code";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import { useIsRTL } from "../../../hooks/useIsRTL";
 import ResendCode from "../../molecules/Formik/ResendCode";
+import { autoReadSMS } from "../../../utils/helpers";
 export default function CheckCode({
   number,
   valuesForm,
@@ -29,11 +30,11 @@ export default function CheckCode({
 
   useEffect(() => {
     if ("OTPCredential" in window) {
+      console.log("first");
       window.addEventListener("DOMContentLoaded", () => {
-        const input = document.querySelector(
-          'input[autocomplete="one-time-code"]'
-        );
+        const input = document.querySelector('input[autocomplete="off"]');
         if (!input) return;
+        console.log("🚀 ~ window.addEventListener ~ input:", input);
 
         const ac = new AbortController();
 
@@ -49,9 +50,10 @@ export default function CheckCode({
             console.log(err);
           });
 
-        return () => ac.abort(); 
+        return () => ac.abort();
       });
     }
+    autoReadSMS();
   }, []);
 
   const handleSendTime = () => {
