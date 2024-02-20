@@ -100,7 +100,11 @@ export default function CheckCode({
               validBorderColor={colorPinInput}
               focusBorderColor={theme?.palette?.primary.main}
               borderColor={colorPinInput}
-              autocomplete="one-time-code"
+              autoComplete="off"
+              id="Hello"
+
+              secure={true}
+              otpType="number"
               inputStyle={{
                 userSelect: "none",
                 border: `1px solid ${theme?.palette?.primary.main}`,
