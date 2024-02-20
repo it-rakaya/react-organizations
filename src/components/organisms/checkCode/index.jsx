@@ -2,7 +2,7 @@
 import { Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { t } from "i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PinInput } from "react-input-pin-code";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import { useIsRTL } from "../../../hooks/useIsRTL";
@@ -26,63 +26,37 @@ export default function CheckCode({
   const isRTL = useIsRTL();
 
   const { orgData } = UseOrg();
-  
-  if ('OTPCredential' in window) {
-    window.addEventListener('DOMContentLoaded', e => {
-      const input = document.querySelector('input[autocomplete="one-time-code"]');
-      if (!input) return;
-      const ac = new AbortController();
-      const form = input.closest('form');
-      if (form) {
-        form.addEventListener('submit', e => {
-          ac.abort();
-        });
-      }
-      navigator.credentials.get({
-        otp: { transport:['sms'] },
-        signal: ac.signal
-      }).then(otp => {
-        input.value = otp.code;
-        if (form) form.submit();
-      }).catch(err => {
-        console.log(err);
+
+  useEffect(() => {
+    if ("OTPCredential" in window) {
+      window.addEventListener("DOMContentLoaded", () => {
+        const input = document.querySelector(
+          'input[autocomplete="one-time-code"]'
+        );
+        if (!input) return;
+
+        const ac = new AbortController();
+
+        navigator.credentials
+          .get({
+            otp: { transport: ["sms"] },
+            signal: ac.signal,
+          })
+          .then((otp) => {
+            input.value = otp.code;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+        return () => ac.abort(); 
       });
-    });
-  }
-  const signal = new AbortController();
-  setTimeout(() => {
-    signal.abort();
-  }, 1 * 60 * 1000);
-  async function main() {
-    if ('OTPCredential' in window) {
-       try {
-          if (navigator.credentials) {
-             try {
-                await navigator.credentials
-                .get({ abort: signal, otp:{ transport: ['sms']}})
-                .then(content => {
-                  if (content && content.code) {
-                    cb(content.code);
-                  }
-                })
-                .catch(e => console.log(e));
-             } 
-             catch (e) {
-               return;
-             }
-          }
-       } 
-       catch (err) {
-         console.log(err);
-       }
-     }
-  }
-  main();
- 
-  
+    }
+  }, []);
+
   const handleSendTime = () => {
     if (availableResetCode) {
-      setAvailableResetCode(false)
+      setAvailableResetCode(false);
       if (login) {
         sendOTP({
           ...valuesForm,
@@ -110,7 +84,9 @@ export default function CheckCode({
             {t("Enter the verification code")}
           </h1>
           <p className="text-center dark:text-white">
-            {t("Verification code is required to complete the registration process")}
+            {t(
+              "Verification code is required to complete the registration process"
+            )}
           </p>
           <p className="text-center dark:text-white mt-[-10px]">
             {t("Verification code has been sent to you")}
@@ -159,7 +135,7 @@ export default function CheckCode({
               setTimerStarted={setTimerStarted}
               setValues={setValues}
             />
-          )} 
+          )}
           {availableResetCode && (
             <Button
               className={`w-[160px] h-[40px] !rounded-md !border !border-solid hover:shadow-lg hover:!text-white dark:text-white`}
