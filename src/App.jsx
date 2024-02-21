@@ -84,7 +84,7 @@ const App = () => {
     } else {
       navigate("/");
     }
-  }, [isLoading, isSuccess]);
+  }, [isLoading, isSuccess, navigate, orgData?.isOrganization, orgData?.organizations?.name_ar]);
 
   return (
     <>
