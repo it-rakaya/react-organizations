@@ -8,7 +8,8 @@ import { useIsRTL } from "./hooks/useIsRTL";
 import { AllRoutesProvider } from "./routing/allRoutes";
 const App = () => {
   const isRTL = useIsRTL();
-  const { orgData, isLoading, isSuccess } = UseOrg();
+  const { orgData, isLoading, isSuccess, isRefetching } = UseOrg();
+  console.log("🚀 ~ App ~ isSuccess:", isSuccess);
   const navigate = useNavigate();
 
   const updateSW = registerSW({
@@ -35,7 +36,6 @@ const App = () => {
     }
   }, []);
   useEffect(() => {
-    
     var manifestLink = document.querySelector('link[rel="manifest"]');
 
     fetch(manifestLink.href)
@@ -50,7 +50,9 @@ const App = () => {
   }, []);
   useEffect(() => {
     const faviconLink = document.querySelector('link[rel="icon"]');
-    const appleTouchIconLink = document.querySelector('link[rel="apple-touch-icon"]');
+    const appleTouchIconLink = document.querySelector(
+      'link[rel="apple-touch-icon"]'
+    );
     if (faviconLink && orgData?.logo) {
       faviconLink.href = orgData.logo;
     }
@@ -101,16 +103,18 @@ const App = () => {
   //   }
   // }, []);
 
-
   useEffect(() => {
-    if (!orgData?.organizations?.name_ar && !isLoading && isSuccess) {
+    if (
+      !orgData?.organizations?.name_ar &&
+      !isLoading &&
+      !isRefetching &&
+      isSuccess
+    ) {
       if (!orgData?.isOrganization) return navigate("/404");
     } else {
       navigate("/");
     }
-  }, [isLoading, isSuccess, navigate, orgData?.isOrganization, orgData?.organizations?.name_ar]);
-
-
+  }, [isLoading, isRefetching, isSuccess, navigate, orgData?.isOrganization, orgData?.organizations?.name_ar]);
 
   return (
     <>
