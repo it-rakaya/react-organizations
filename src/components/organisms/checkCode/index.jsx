@@ -44,7 +44,11 @@ export default function CheckCode({
             signal: ac.signal,
           })
           .then((otp) => {
-            input.value = otp.code;
+            const otpCode = otp.code.split("");
+            setValues(otpCode);
+            if (otpCode.length === 4) {
+              setValueOTP(otp.code);
+            }
           })
           .catch((err) => {
             console.log(err);
@@ -102,7 +106,6 @@ export default function CheckCode({
               borderColor={colorPinInput}
               autoComplete="off"
               id="Hello"
-
               secure={true}
               otpType="number"
               inputStyle={{
