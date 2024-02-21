@@ -160,7 +160,7 @@ export function autoReadSMS(cb) {
            }
         } 
         catch (err) {
-          console.log(err);
+          console.log("err");
         }
       }
    }
