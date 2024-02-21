@@ -8,13 +8,14 @@ import { useIsRTL } from "./hooks/useIsRTL";
 import { AllRoutesProvider } from "./routing/allRoutes";
 const App = () => {
   const isRTL = useIsRTL();
-  const { orgData , isLoading ,  isSuccess } = UseOrg();
+  const { orgData, isLoading, isSuccess } = UseOrg();
   const navigate = useNavigate();
 
   const updateSW = registerSW({
     onNeedRefresh() {},
     onOfflineReady() {},
   });
+
   useEffect(() => {
     if (isRTL) {
       document.documentElement.lang = "ar";
@@ -35,14 +36,14 @@ const App = () => {
   }, []);
   useEffect(() => {
     var manifestLink = document.querySelector('link[rel="manifest"]');
+
     fetch(manifestLink.href)
       .then((response) => response.json())
       .then((manifest) => {
-        manifest.start_url = window.location.href;
         var blob = new Blob([JSON.stringify(manifest)], {
           type: "application/json",
         });
-        var newUrl = URL.createObjectURL(blob);
+        var newUrl = URL.createObjectURL(blob) + "?v=" + new Date().getTime();
         manifestLink.href = newUrl;
       });
   }, []);
@@ -83,7 +84,7 @@ const App = () => {
     } else {
       navigate("/");
     }
-  }, [orgData]);
+  }, [isLoading, isSuccess]);
 
   return (
     <>
