@@ -35,6 +35,7 @@ const App = () => {
     }
   }, []);
   useEffect(() => {
+    
     var manifestLink = document.querySelector('link[rel="manifest"]');
 
     fetch(manifestLink.href)
@@ -48,8 +49,15 @@ const App = () => {
       });
   }, []);
   useEffect(() => {
+    const faviconLink = document.querySelector('link[rel="icon"]');
+    const appleTouchIconLink = document.querySelector('link[rel="apple-touch-icon"]');
+    if (faviconLink && orgData?.logo) {
+      faviconLink.href = orgData.logo;
+    }
+    if (appleTouchIconLink && orgData?.logo) {
+      appleTouchIconLink.href = orgData.logo;
+    }
     var manifestLink = document.querySelector('link[rel="manifest"]');
-
     fetch(manifestLink.href)
       .then((response) => response.json())
       .then((manifest) => {
@@ -77,6 +85,22 @@ const App = () => {
         manifestLink.href = newUrl;
       });
   }, [orgData]);
+  // useEffect(() => {
+
+  //   const manifestLink = document.querySelector('link[rel="manifest"]');
+  //   if (manifestLink) {
+  //     manifestLink.href = "/new/path/to/manifest.json";
+  //   }
+  //   const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  //   if (themeColorMeta) {
+  //     themeColorMeta.content = "#000000"; // لون جديد
+  //   }
+  //   const keywordsMeta = document.querySelector('meta[name="keywords"]');
+  //   if (keywordsMeta) {
+  //     keywordsMeta.content = "كلمات مفتاحية جديدة, تغيير المحتوى";
+  //   }
+  // }, []);
+
 
   useEffect(() => {
     if (!orgData?.organizations?.name_ar && !isLoading && isSuccess) {
@@ -85,6 +109,8 @@ const App = () => {
       navigate("/");
     }
   }, [isLoading, isSuccess, navigate, orgData?.isOrganization, orgData?.organizations?.name_ar]);
+
+
 
   return (
     <>
