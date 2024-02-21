@@ -29,35 +29,34 @@ export default function CheckCode({
   const { orgData } = UseOrg();
 
   useEffect(() => {
-    // if ("OTPCredential" in window) {
-    //   window.addEventListener("DOMContentLoaded", () => {
-    //     const input = document.querySelector('input[autocomplete="off"]');
-    //     if (!input) return;
-    //     console.log("🚀 ~ window.addEventListener ~ input:", input);
+    if ("OTPCredential" in window) {
+      window.addEventListener("DOMContentLoaded", () => {
+        const input = document.querySelector('input[autocomplete="off"]');
+        if (!input) return;
+        const ac = new AbortController();
 
-    //     const ac = new AbortController();
+        navigator.credentials
+          .get({
+            otp: { transport: ["sms"] },
+            signal: ac.signal,
+          })
+          .then((otp) => {
+            input.value = otp.code;
+            const otpCode = input.value.split("");
+            setValues(otpCode);
+            setValueOTP(otp.code);
+            if (otpCode.length == 4) {
+              setValueOTP(otp.code);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
 
-    //     navigator.credentials
-    //       .get({
-    //         otp: { transport: ["sms"] },
-    //         signal: ac.signal,
-    //       })
-    //       .then((otp) => {
-    //         input.value = otp.code;
-    //         const otpCode = input.value.split("");
-    //         setValues(otpCode);
-    //         if (otpCode.length == 4) {
-    //           setValueOTP(otp.code);
-    //         }
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-
-    //     return () => ac.abort();
-    //   });
-    // }
-    autoReadSMS();
+        return () => ac.abort();
+      });
+    }
+    // autoReadSMS(values);
   }, []);
 
   const handleSendTime = () => {
@@ -100,7 +99,7 @@ export default function CheckCode({
           <p className="dark:text-white">{number}</p>
           <div>
             <PinInput
-             key={values.join("")} // فيه مشكلة في الويب لو استخدمن السطر دا 
+            //  key={values.join("")} // فيه مشكلة في الويب لو استخدمن السطر دا 
               values={values}
               validBorderColor={colorPinInput}
               focusBorderColor={theme?.palette?.primary.main}
