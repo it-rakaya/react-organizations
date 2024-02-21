@@ -30,7 +30,6 @@ export default function CheckCode({
 
   useEffect(() => {
     if ("OTPCredential" in window) {
-      console.log("first");
       window.addEventListener("DOMContentLoaded", () => {
         const input = document.querySelector('input[autocomplete="off"]');
         if (!input) return;
@@ -44,6 +43,7 @@ export default function CheckCode({
             signal: ac.signal,
           })
           .then((otp) => {
+            input.value = otp.code;
             const otpCode = otp.code.split("");
             setValues(otpCode);
             if (otpCode.length === 4) {
