@@ -152,7 +152,7 @@ export function autoReadSMS(cb) {
                      cb(content.code);
                    }
                  })
-                 .catch(e => console.log(e));
+                 .catch(() => console.log("e"));
               } 
               catch (e) {
                 return;

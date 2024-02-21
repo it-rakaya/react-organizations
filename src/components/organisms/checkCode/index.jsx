@@ -7,7 +7,6 @@ import { PinInput } from "react-input-pin-code";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import { useIsRTL } from "../../../hooks/useIsRTL";
 import ResendCode from "../../molecules/Formik/ResendCode";
-import { autoReadSMS } from "../../../utils/helpers";
 export default function CheckCode({
   number,
   valuesForm,
@@ -49,9 +48,7 @@ export default function CheckCode({
               setValueOTP(otp.code);
             }
           })
-          .catch((err) => {
-            console.log(err);
-          });
+          .catch(() => {});
 
         return () => ac.abort();
       });
@@ -99,7 +96,7 @@ export default function CheckCode({
           <p className="dark:text-white">{number}</p>
           <div>
             <PinInput
-            //  key={values.join("")} // فيه مشكلة في الويب لو استخدمن السطر دا 
+              //  key={values.join("")} // فيه مشكلة في الويب لو استخدمن السطر دا
               values={values}
               validBorderColor={colorPinInput}
               focusBorderColor={theme?.palette?.primary.main}
