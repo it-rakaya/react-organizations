@@ -9,7 +9,6 @@ import { AllRoutesProvider } from "./routing/allRoutes";
 const App = () => {
   const isRTL = useIsRTL();
   const { orgData, isLoading, isSuccess, isRefetching } = UseOrg();
-  console.log("🚀 ~ App ~ isSuccess:", isSuccess);
   const navigate = useNavigate();
 
   const updateSW = registerSW({
