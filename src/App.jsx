@@ -112,7 +112,7 @@ const App = () => {
     ) {
       if (!orgData?.isOrganization) return navigate("/404");
     } else {
-      navigate("/");
+      // navigate("/");
     }
   }, []);
 
