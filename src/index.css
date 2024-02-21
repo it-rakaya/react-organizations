@@ -40,6 +40,30 @@ body {
   width: 0.4rem;
 }
 
+.bg-landing {
+  transform: rotate(0.1turn) !important;
+}
+
+.bg-landing {
+  -webkit-transform: rotate(0.1turn) !important;
+  /* لسفاري والمتصفحات القديمة */
+  transform: rotate(45deg) !important;
+  overflow: hidden;
+  /* لبقية المتصفحات */
+}
+
+.bg-landing {
+  -webkit-transform: rotate(1rad) !important;
+  overflow: hidden;  transform: rotate(45deg) !important;
+  /* لبقية المتصفحات */
+}
+
+.bg-landing {
+  -webkit-transform: rotate(50grad) !important;
+  overflow: hidden;  transform: rotate(45deg) !important;
+}
+
+
 /* Make the scrollbar transparent */
 ::-webkit-scrollbar-thumb {
   background-color: transparent;
@@ -1228,6 +1252,7 @@ input {
     bottom: 69px !important;
   }
 }
+
 /* 
 @media (max-width:1024px) {
   .phoneInputAccountSetting .form-control {
@@ -1339,8 +1364,8 @@ input {
 }
 
 .table-class tr {
-  border-bottom: 1px solid #e9e9ec ;
-  border-top: 1px solid #e9e9ec ;
+  border-bottom: 1px solid #e9e9ec;
+  border-top: 1px solid #e9e9ec;
 
 }
 
@@ -1348,6 +1373,7 @@ input {
   transform: rotate(180deg) !important;
 
 }
+
 [dir='ltr'] .MuiPagination-ul [aria-label="Go to next page"] {
   transform: rotate(180deg) !important;
 

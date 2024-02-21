@@ -57,7 +57,6 @@ const Login = () => {
   const hidden = useMediaQuery(theme.breakpoints.down("md"));
   const isRTL = useIsRTL();
   const [hideSection, setHideSection] = useState(false);
-  console.log("🚀 ~ Login ~ hideSection:", hideSection)
   const name = isRTL
     ? orgData?.organizations?.name_ar
     : orgData?.organizations?.name_en;

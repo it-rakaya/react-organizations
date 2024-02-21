@@ -35,7 +35,7 @@ const Hero = () => {
           <img
             alt="bg_organization"
             src={orgData?.organizations?.logo}
-            className="] rounded-xl object-fill"
+            className="] rounded-xl object-fill w-[70px]"
             loading="lazy"
           />
           </div>

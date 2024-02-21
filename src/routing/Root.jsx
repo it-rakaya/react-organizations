@@ -40,13 +40,10 @@ export const Root = ({ props }) => {
   const handleCollapsedSideBar = () => {
     setSidebarCollapsed(!isSidebarCollapsed);
   };
-  const { orgData , isSuccess, isRefetching  } = UseOrg();
-  const { settings, saveSettings, contentWidth } = useSettings();
-
+  const { isSuccess, isRefetching } = UseOrg();
+  const { settings, saveSettings } = useSettings();
 
   const [navVisible, setNavVisible] = useState(false);
-
-
 
   useEffect(() => {
     if (!token) {
@@ -95,7 +92,7 @@ export const Root = ({ props }) => {
             collapsed ? "w-full" : user?.is_verified ? "w-full" : "w-full"
           }`}
         >
-          <div className={`h-full flex`} >
+          <div className={`h-full flex`}>
             <Box
               sx={{
                 flexGrow: 1,
@@ -120,10 +117,7 @@ export const Root = ({ props }) => {
                   />
                 }
               />
-              <main
-             
-                className="flex p-6  flex-col justify-between !pb-1 layout-page-content  md:max-h-[91vh] md:max-w-full overflow-scroll flex-grow w-full mx-auto transition-padding"
-              >
+              <main className="flex p-6  flex-col justify-between !pb-1 layout-page-content  md:max-h-[91vh] md:max-w-full overflow-scroll flex-grow w-full mx-auto transition-padding">
                 <Outlet />
                 <Footer />
               </main>

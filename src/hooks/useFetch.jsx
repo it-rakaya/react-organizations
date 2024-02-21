@@ -1,9 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
 import { useIsRTL } from "./useIsRTL";
-import { notify } from "../utils/toast";
 
 function useFetch({
   endpoint,
@@ -18,7 +16,6 @@ function useFetch({
   const user_token = Cookies.get("token");
   const token = user_token;
   const authorizationHeader = `Bearer ${token}`;
-  const navigate = useNavigate();
   const isRTL = useIsRTL();
   const config = {
     headers: {
@@ -39,13 +36,6 @@ function useFetch({
     throwOnError,
 
     onError: () => {
-      // console.log("🚀 ~ :", );
-      // if (error?.response?.data?.message == "Unauthenticated.") {
-      //   localStorage.removeItem("user");
-      //   navigate("/");
-      //   Cookies.remove("token");
-      //   notify("error");
-      // }
       if (onError) {
         onError(error);
       }

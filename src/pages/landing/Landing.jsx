@@ -35,13 +35,13 @@ function Landing() {
       </div>
 
       {/* KAABA  */}
-      <div className="w-screen flex justify-end pe-[13%] xl:pe-[10%] 3xl:pe-[8%]   lg:my-32 3xl:my-64 absolute z-[-1000]">
+      <div className="w-screen flex justify-end pe-[13%] xl:pe-[10%] 3xl:pe-[8%]   lg:my-32 3xl:my-64 absolute z-[-9000]">
         <div
-          className="hidden lg:block !w-[15vh] !h-[15vh] lg:!w-[19vh] lg:!h-[19vh] xl:!w-[25vh] xl:!h-[25vh] rotate-45 !overflow-hidden "
+          className="hidden lg:block !w-[15vh] !h-[15vh] lg:!w-[19vh] lg:!h-[19vh] xl:!w-[25vh] xl:!h-[25vh]  bg-landing  absolute z-[9999]"
           style={{ borderRadius: 30 }}
         >
           <div
-            className="w-[350px] h-[290px] rotate-[-45deg] absolute top-[-45%] left-[-45%]"
+            className="!w-[200%] !h-[200%] rotate-[-45deg] absolute top-[-45%] left-[-45%]"
             style={{
               backgroundImage: `url('${orgData?.organizations?.background_image}')`,
               backgroundColor: theme?.palette?.primary?.main,
@@ -56,7 +56,6 @@ function Landing() {
       <Navbar className="fixed bg-[#F7F7F9]" />
       {/* content */}
       <div className="pt-[13%] mt-10 md:mt-0">
-        
         <Hero />
         <div className="my-20">
           <Footer />

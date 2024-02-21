@@ -18,20 +18,12 @@ export const OrganizationProvider = ({ children }) => {
   const [orgData, setOrgData] = UseLocalStorage("organization");
   const navigate = useNavigate();
   // http://localhost:5173/
-  const {
-    data,
-    refetch,
-    isRefetching,
-    isSuccess,
-    isLoading,
-    isError,
-    error,
-
-    
-  } = useFetch({
-    endpoint: `organizations?organizationDomain=${baseUrl}`,
-    queryKey: ["organization_info"],
-  });
+  const { data, refetch, isRefetching, isSuccess, isLoading, isError, error } =
+    useFetch({
+      endpoint: `organizations?organizationDomain=${baseUrl}`,
+      queryKey: ["organization_info"],
+    });
+  const isOrganization = data?.organizations;
 
   useEffect(() => {
     if (isSuccess) {
@@ -57,6 +49,7 @@ export const OrganizationProvider = ({ children }) => {
             organizations: {
               ...prev?.organizations,
               background_image: default_image,
+              isOrganization,
               // logo: !savedMode ? lightModeLogo : darkModeLogo,
             },
           };

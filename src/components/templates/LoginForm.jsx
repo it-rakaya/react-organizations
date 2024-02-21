@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Form, Formik } from "formik";
 import { t } from "i18next";
 import { useState } from "react";
@@ -10,12 +11,11 @@ import ButtonComp from "../atoms/buttons/ButtonComp";
 import PhoneInput2 from "../molecules/Formik/PhoneInput2";
 import CheckCode from "../organisms/checkCode";
 
-export default function LoginForm({setHideSection}) {
+export default function LoginForm({ setHideSection }) {
   const [verifyPhone, setVerifyPhone] = useState(false);
   const [valuesForm, setValuesForm] = useState("");
   const { login } = useAuth();
   const [dataValue, setDataValue] = useState();
-  console.log("🚀 ~ LoginForm ~ dataValue:", dataValue)
   const [valueOTP, setValueOTP] = useState();
   const { orgData } = UseOrg();
 
@@ -65,40 +65,40 @@ export default function LoginForm({setHideSection}) {
   };
   return (
     <>
-    <div className="w-full overflow-x-hidden">
-      <Formik
-        onSubmit={(values) => handleSubmit(values)}
-        initialValues={{ phone: "", phone_code: "", otp: "" }}
-        validationSchema={ValidationSchema}
-      >
-        <Form>
-          {!verifyPhone && (
-            <>
-              <PhoneInput2 name="phone" />
-            </>
-          )}
-          {verifyPhone && (
-            <CheckCode
-              number={dataValue?.value}
-              valuesForm={valuesForm}
-              setValueOTP={setValueOTP}
-              sendOTP={sendOTP}
-              login={true}
-            />
-          )}
-          <div className="bg-transparent rounded-xl">
-            <ButtonComp
-              loading={loadingLogin || isPending}
-              disabled={valueOTP && valueOTP?.length != 4 ? true : false}
-              className={"ltr:!mt-5 "}
-              action={()=>setHideSection(true)}
-            >
-              {t("Login")}
-            </ButtonComp>
-          </div>
-        </Form>
-      </Formik>
-    </div>
+      <div className="w-full overflow-x-hidden">
+        <Formik
+          onSubmit={(values) => handleSubmit(values)}
+          initialValues={{ phone: "", phone_code: "", otp: "" }}
+          validationSchema={ValidationSchema}
+        >
+          <Form>
+            {!verifyPhone && (
+              <>
+                <PhoneInput2 name="phone" />
+              </>
+            )}
+            {verifyPhone && (
+              <CheckCode
+                number={dataValue?.value}
+                valuesForm={valuesForm}
+                setValueOTP={setValueOTP}
+                sendOTP={sendOTP}
+                login={true}
+              />
+            )}
+            <div className="bg-transparent rounded-xl">
+              <ButtonComp
+                loading={loadingLogin || isPending}
+                disabled={valueOTP && valueOTP?.length != 4 ? true : false}
+                className={"ltr:!mt-5 "}
+                action={() => setHideSection(true)}
+              >
+                {t("Login")}
+              </ButtonComp>
+            </div>
+          </Form>
+        </Formik>
+      </div>
     </>
   );
 }

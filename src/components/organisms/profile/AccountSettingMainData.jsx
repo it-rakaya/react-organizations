@@ -15,7 +15,6 @@ import UploadDoc from "../../molecules/uploadImage/UploadDoc";
 
 function AccountSettingMainData({ userData, isPending, attachments_register }) {
   const { values, initialValues , errors } = useFormikContext();
-  console.log("🚀 ~ AccountSettingMainData ~ errors:", errors)
   const isRTL = useIsRTL();
   const requiredInputs =
     attachments_register?.attachment_labels
