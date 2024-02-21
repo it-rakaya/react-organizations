@@ -104,18 +104,15 @@ const App = () => {
   // }, []);
 
   useEffect(() => {
-    if (
-      !orgData?.organizations?.name_ar &&
-      !isLoading &&
-      !isRefetching &&
-      isSuccess
-    ) {
-      if (!orgData?.isOrganization) return navigate("/404");
-    } else {
-      navigate("/");
+    if (!isLoading && !isRefetching && isSuccess) {
+      if (!orgData?.organizations?.name_ar) {
+        navigate("/404");
+      } else {
+        // navigate("/");
+      }
     }
-  }, [isLoading, isRefetching, isSuccess, navigate, orgData?.isOrganization, orgData?.organizations?.name_ar]);
-
+  }, [isLoading, isRefetching, isSuccess, navigate, orgData?.organizations?.name_ar]);
+  
   return (
     <>
       <AllRoutesProvider />
