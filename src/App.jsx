@@ -9,7 +9,6 @@ import { AllRoutesProvider } from "./routing/allRoutes";
 const App = () => {
   const isRTL = useIsRTL();
   const { orgData, isLoading, isSuccess, isRefetching } = UseOrg();
-  console.log("🚀 ~ App ~ isSuccess:", isSuccess);
   const navigate = useNavigate();
 
   const updateSW = registerSW({
@@ -112,9 +111,9 @@ const App = () => {
     ) {
       if (!orgData?.isOrganization) return navigate("/404");
     } else {
-      navigate("/");
+      // navigate("/");
     }
-  }, [isLoading, isRefetching, isSuccess, navigate, orgData?.isOrganization, orgData?.organizations?.name_ar]);
+  }, []);
 
   return (
     <>
