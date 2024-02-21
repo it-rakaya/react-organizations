@@ -1,24 +1,42 @@
-import { Icon } from "@iconify/react";
+/* eslint-disable react/prop-types */
+import Typography from "@mui/material/Typography";
+import { t } from "i18next";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { useMutate } from "../../hooks/useMutate";
-import { useAuth } from "../../context/auth-and-perm/AuthProvider";
-import { Link } from "react-router-dom";
-import { useTheme } from "@mui/material/styles";
-import { t } from "i18next";
-import Typography from "@mui/material/Typography";
+import { useSettings } from "../../hooks/useSettings";
+import LanguageDropdown from "../organisms/Navbar/LanguageDropdown";
+import ModeToggler from "../organisms/Navbar/ModeToggler";
 
-function Navbar() {
+function Navbar({ hidden, className }) {
   const { i18n } = useTranslation();
   const language = i18n.language;
   const { orgData } = UseOrg();
-  const { logout, user } = useAuth();
-  const theme = useTheme();
+  const { logout, token } = useAuth();
+  const { settings, saveSettings } = useSettings();
 
   const { mutate: LogOut } = useMutate({
     mutationKey: [`Log_out`],
     endpoint: `logout`,
   });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("lang", language);
+    document.documentElement.dir = language == "ar" ? "rtl" : "ltr";
+    document.documentElement.setAttribute(
+      "dir",
+      language == "ar" ? "rtl" : "ltr"
+    );
+  }, [language]);
+
+  useEffect(() => {
+    if (settings.mode == "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  }, [settings.mode]);
 
   const handleLogout = () => {
     logout();
@@ -27,41 +45,44 @@ function Navbar() {
 
   return (
     <nav
-      className="flex justify-between w-full px-5 py-3 layout-navbar"
+      className={`${className} flex justify-between w-full px-5 py-3 bg-w layout-navbar bg-[#F7F7F9]   dark:bg-dark-primary `}
       dir={i18n.dir(language)}
     >
-      <div className="flex gap-10">
-        <a href="">
-          <img
-            alt=""
-            // srcset={bg2}
-            src={orgData?.organizations?.logo}
-            className="animated-box w-[30px] rounded-xl"
-          />
-          {/* Logo */}
-        </a>
-      </div>
+      {hidden ? (
+        ""
+      ) : (
+        <div className="flex gap-10">
+          <a href="">
+            <img
+              alt=""
+              // srcset={bg2}
+              src={orgData?.organizations?.logo}
+              className="animated-box w-[30px] rounded-xl"
+            />
+            {/* Logo */}
+          </a>
+        </div>
+      )}
 
-      <div className="flex items-center gap-5">
-        {!!user && (
-          <Typography>
+      <div className="flex items-center gap-4">
+        {!!token && (
+          <Typography className="text-black dark:text-white">
             <Link href="#" onClick={handleLogout}>
-              Logout
+              {t("Logout")}
             </Link>
           </Typography>
         )}
-        <Typography>
-          <a
-            href={`https://wa.me/${orgData?.organizations?.phone}/`}
-           
-          >
+        <Typography className="text-black dark:text-white">
+          <a href={`https://wa.me/${orgData?.organizations?.phone}/`}>
             {t("landing.contactUs")}
           </a>
         </Typography>
-        <button
-          onClick={() => {
-            i18n.changeLanguage(language == "ar" ? "en" : "ar");
-          }}
+        <ModeToggler settings={settings} saveSettings={saveSettings} />
+        <LanguageDropdown />
+
+        {/* <button
+          onClick={handleLanguage}
+          //
           className={`text-3xl`}
         >
           <Icon
@@ -71,7 +92,7 @@ function Navbar() {
               color: theme?.palette?.primary?.main,
             }}
           />
-        </button>
+        </button> */}
       </div>
     </nav>
   );

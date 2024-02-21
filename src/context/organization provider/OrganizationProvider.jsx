@@ -1,68 +1,111 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect } from "react";
-import useFetch from "../../hooks/useFetch";
-import { UseLocalStorage } from "../../hooks/useLocalStorage";
 import lightModeLogo from "../../assets/refadaLogos/Group-1.png";
 import darkModeLogo from "../../assets/refadaLogos/Group-2.png";
 import default_image from "../../assets/refadaLogos/default.jpeg";
+import useFetch from "../../hooks/useFetch";
+import { UseLocalStorage } from "../../hooks/useLocalStorage";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { notify } from "../../utils/toast";
 const OrgContext = createContext();
 export const OrganizationProvider = ({ children }) => {
   const url = window.location.href;
   // const local = "http://localhost:5173";
-  const baseUrl = new URL(url).origin;
-  
-  // const isDevelopment = true;
-  // const origin = isDevelopment ? local : baseUrl;
 
-  // const local = "africa-dev.rmcc.sa"
+  const baseUrl = new URL(url).origin;
   const savedMode = localStorage.getItem("darkMode");
   const [orgData, setOrgData] = UseLocalStorage("organization");
+  const navigate = useNavigate();
   // http://localhost:5173/
-  const { data, refetch, isRefetching, isSuccess } = useFetch({
-    endpoint: `organizations?organizationDomain=${baseUrl}`,
-    queryKey: ["organization_info"],
+  const { data, refetch, isRefetching, isSuccess, isLoading, isError, error } =
+    useFetch({
+      endpoint: `organizations?organizationDomain=${baseUrl}`,
+      queryKey: ["organization_info"],
+    });
+  const isOrganization = data?.organizations;
 
- 
-  });
   useEffect(() => {
     if (isSuccess) {
-      console.log("تم تحميل البيانات بنجاح");
       setOrgData(data);
+    } else if (error) {
+      if (error?.response?.data?.message == "Unauthenticated.") {
+        localStorage.removeItem("user");
+        navigate("/404");
+        Cookies.remove("token");
+        notify("error");
+      }
     }
-  }, [isSuccess]);
+  }, [isSuccess, isError]);
   useEffect(() => {
     // refetch();
   }, [refetch]);
   useEffect(() => {
-    
-    if (orgData?.organizations?.background_image == undefined) {
-      setOrgData((prev) => {
-        return {
-          ...prev,
-          organizations: {
-            ...prev?.organizations,
-            background_image: default_image,
-            logo: !savedMode ? lightModeLogo : darkModeLogo,
-          },
-        };
-      });
+    if (isSuccess) {
+      if (orgData?.organizations?.background_image == null) {
+        setOrgData((prev) => {
+          return {
+            ...prev,
+            organizations: {
+              ...prev?.organizations,
+              background_image: default_image,
+              isOrganization,
+              // logo: !savedMode ? lightModeLogo : darkModeLogo,
+            },
+          };
+        });
+      }
+      if (orgData?.organizations?.logo == null) {
+        setOrgData((prev) => {
+          return {
+            ...prev,
+            organizations: {
+              ...prev?.organizations,
+              logo: !savedMode ? lightModeLogo : darkModeLogo,
+            },
+          };
+        });
+      }
+      if (orgData?.organizations?.phone == null) {
+        setOrgData((prev) => {
+          return {
+            ...prev,
+            organizations: { ...prev?.organizations, phone: "0570044066" },
+          };
+        });
+      }
     }
-    if(orgData?.organizations?.phone == null){
-      setOrgData((prev)=>{
-        return {...prev, organizations:{...prev?.organizations, phone:'0570044066'}}
-      })
-    }
-  }, [orgData]);
+  }, [orgData, savedMode]);
 
   const updateLogo = (mode) => {
-    
-    setOrgData((prev)=>{
-      if(orgData.organizations.logo != lightModeLogo && orgData.organizations.logo != darkModeLogo) return prev;
-      return {...prev, organizations:{...prev?.organizations, logo:mode? lightModeLogo : darkModeLogo}}
+    setOrgData((prev) => {
+      if (
+        orgData.organizations.logo != lightModeLogo &&
+        orgData.organizations.logo != darkModeLogo
+      )
+        return prev;
+      return {
+        ...prev,
+        organizations: {
+          ...prev?.organizations,
+          logo: mode ? lightModeLogo : darkModeLogo,
+        },
+      };
     });
-  }
+  };
   return (
-    <OrgContext.Provider value={{ orgData, refetch, isRefetching, updateLogo }}>
+    <OrgContext.Provider
+      value={{
+        orgData,
+        refetch,
+        isError,
+        error,
+        isRefetching,
+        updateLogo,
+        isLoading,
+        isSuccess,
+      }}
+    >
       {children}
     </OrgContext.Provider>
   );

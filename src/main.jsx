@@ -13,23 +13,27 @@ import "./query.css";
 import { AuthProvider } from "./context/auth-and-perm/AuthProvider";
 import Loading from "./components/molecules/Loading";
 import { OrganizationProvider } from "./context/organization provider/OrganizationProvider";
+import { LoadingContextProvider } from "./context/loading";
+
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: { refetchOnWindowFocus: false },
   },
 });
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
-    {/* <LoadingContextProvider> */}
-    <LanguageContextProvider>
-      <BrowserRouter>
-        <OrganizationProvider>
-          <SettingsProvider>
-            <SettingsConsumer>
-              {({ settings }) => {
-                return (
-                  <ThemeComponent settings={settings}>
-                    <HelmetProvider>
+    <LoadingContextProvider>
+      <LanguageContextProvider>
+        <BrowserRouter>
+          <OrganizationProvider>
+            <SettingsProvider>
+              <SettingsConsumer>
+                {({ settings }) => {
+                  return (
+                    <ThemeComponent settings={{ ...settings }}>
+                      <HelmetProvider>
                         <AuthProvider>
                           <ProSidebarProvider>
                             <Suspense fallback={<Loading />}>
@@ -37,15 +41,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                             </Suspense>
                           </ProSidebarProvider>
                         </AuthProvider>
-                    </HelmetProvider>
-                  </ThemeComponent>
-                );
-              }}
-            </SettingsConsumer>
-          </SettingsProvider>
-        </OrganizationProvider>
-      </BrowserRouter>
-    </LanguageContextProvider>
-    {/* </LoadingContextProvider> */}
+                      </HelmetProvider>
+                    </ThemeComponent>
+                  );
+                }}
+              </SettingsConsumer>
+            </SettingsProvider>
+          </OrganizationProvider>
+        </BrowserRouter>
+      </LanguageContextProvider>
+    </LoadingContextProvider>
   </QueryClientProvider>
 );

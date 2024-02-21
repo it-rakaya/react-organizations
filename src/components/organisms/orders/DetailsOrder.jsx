@@ -1,108 +1,188 @@
 /* eslint-disable react/prop-types */
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { Divider, Tab } from "@mui/material";
+import { Tab } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { t } from "i18next";
 import { useState } from "react";
-import DetailsFacility from "../MyFacilities/DetailsFacility";
+import { useIsRTL } from "../../../hooks/useIsRTL";
+import {
+  convertToHijri,
+  padWithZero
+} from "../../../utils/helpers";
+import Line from "../../atoms/Line";
+import MainHeader from "../../atoms/MainHeader";
+import NationalitiesOrder from "../../molecules/NationalitiesOrder";
 import NotesOrder from "../../molecules/NotesOrder";
+import DetailsFacility from "../../templates/MyFacilities/DetailsFacility";
 
 export default function DetailsOrder({ data }) {
-  console.log("🚀 ~ file: DetailsOrder.jsx:9 ~ DetailsOrder ~ data:", data);
   const [value, setValue] = useState("1");
   const theme = useTheme();
+  const isRTL = useIsRTL();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const mainColor = theme?.palette?.primary?.main;
+  // const mainColor = theme?.palette?.primary?.main;
+  const Rejected = data?.status?.name_en == "Rejected";
+  // const Rejected =6;
 
   return (
-    <div className="">
-      <div className="px-10 mt-10 ">
+    <div className="overflow-hidden" style={{ height: "calc(90vh - 7rem)" }}>
+      <div className=" md:px-0">
         <div className="col-span-2">
-          <h1 className="font-bold " style={{ color: mainColor }}>
-            تفاصيل الطلب
-          </h1>
+          <MainHeader
+            title={t("Details Order")}
+            styleHead={{ color: theme.palette.primary.main }}
+          />
         </div>
-        <div className="grid grid-cols-1 px-20 mt-5 md:grid-cols-2 ">
+
+        <div className="grid grid-cols-1 px-10 mt-5 md:px-20 md:grid-cols-2 ">
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold ">نوع الخدمه</p>
-            <p>{data?.service?.name}</p>
+            <p className="font-bold dark:text-white">{t("Service Type")}</p>
+            <p className="dark:text-white">
+              {isRTL ? data?.service?.name_ar : data?.service?.name_en}
+            </p>
           </div>
           <div className="flex items-center col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold "> حالة الطلب </p>
+            <p className="font-bold dark:text-white">{t("Order status")}</p>
             <p
               className="px-2 py-1 text-white rounded-md"
               style={{ backgroundColor: data?.status?.color }}
             >
-              {data?.status?.name}
+              {isRTL ? data?.status?.name_ar : data?.status?.name_en}
             </p>
           </div>
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold "> كود الطلب </p>
-            <p>{data?.code}</p>
+            <p className="font-bold dark:text-white"> {t("Order code")}</p>
+            <p className="dark:text-white">{data?.code}</p>
           </div>
           <div className="flex col-span-2 gap-4 mt-5 md:col-span-1 ">
-            <p className="font-bold "> تاريخ الانشاء </p>
-            <p>{data?.created_at?.slice(0, 10)}</p>
+            <p className="font-bold dark:text-white"> {t("Creation Date")}</p>
+            <div className="flex flex-wrap justify-center gap items-center-1">
+              <p className="dark:text-white text-[15px]">
+                {data?.created_at?.slice(0, 10)}
+              </p>
+              <span className="text-black font-black-bold dark:text-white">
+                {" "}
+                /
+              </span>
+              <p className="dark:text-white text-[15px]" dir="rtl">
+                {convertToHijri(data?.created_at).hy}-
+                {padWithZero(convertToHijri(data?.created_at).hm)}-
+                {padWithZero(convertToHijri(data?.created_at).hd)}
+              </p>
+              <span className="text-black font-black-bold dark:text-white">
+                {t("H")}
+              </span>
+            </div>
           </div>
         </div>
       </div>
       <div className="my-5">
-        <Divider />
+        <Line />
       </div>
-      <div></div>
 
       <TabContext value={value}>
-        <div className="px-10 mt-5">
+        <div className="mt-5 md:px-0">
           <TabList onChange={handleChange} aria-label="nav tabs example">
             <Tab
               value="1"
               component="a"
-              label={<h2 className="font-bold text-black">تفاصيل المنشاه </h2>}
+              label={
+                <h2 className="font-bold text-black dark:text-white">
+                  {" "}
+                  {t("Order notes")}
+                </h2>
+              }
             />
-            <Tab
-              value="2"
-              component="a"
-              style={{ alignItems: "start" }}
-              label={<h2 className="font-bold text-black"> الاسئله </h2>}
-            />
-
-            <Tab
-              value="3"
-              component="a"
-              label={<h2 className="font-bold text-black"> ملاحظات الطلب </h2>}
-            />
+            {/* {Rejected !== data?.status?.id && (
+              <Tab
+                value="2"
+                component="a"
+                style={{ alignItems: "center" }}
+                label={
+                  <h2 className="font-bold text-black dark:text-white">
+                    {" "}
+                    {t("Questions")}
+                  </h2>
+                }
+              />
+            )} */}
+            {!Rejected && (
+              <Tab
+                value="4"
+                component="a"
+                label={
+                  <h2 className="font-bold text-black dark:text-white">
+                    {t("Nationalities")}
+                  </h2>
+                }
+              />
+            )}
+            {!Rejected && (
+              <Tab
+                value="3"
+                component="a"
+                label={
+                  <h2 className="font-bold text-black dark:text-white">
+                    {t("Facility Details")}
+                  </h2>
+                }
+              />
+            )}
           </TabList>
-          <div className="main_content max-h-[30rem] overflow-y-scroll scroll_main">
+          <div className="">
             <TabPanel value="1" className="pt-0">
               <div>
                 <div className="">
-                  <DetailsFacility data={data?.facility} className="h-[27rem]" />
+                  <NotesOrder notes={data?.notes} />
                 </div>
               </div>
             </TabPanel>
             <TabPanel value="2">
-              <div className="grid grid-cols-2 p-4 mt-5 gap-y-4">
+              <div
+                className="grid w-full grid-cols-2 gap-4 px-4 mt-5 scroll_main !overflow-y-scroll"
+                style={{ height: "calc(-28rem + 100vh)" }}
+              >
                 {data?.answers?.length ? (
                   data?.answers?.map((item) => (
-                    <div className="flex gap-2" key={item?.id}>
-                      <p className="font-bold text-contained">
-                        {item?.question?.content}؟
+                    <div
+                      className="flex flex-col col-span-2 gap-2 py-2 mt-5 border-b md:col-span-1"
+                      key={item?.id}
+                    >
+                      <p
+                        className="font-bold "
+                        style={{ color: theme.palette.primary.main }}
+                      >
+                        {item?.question?.content}:
                       </p>
-                      <p>{item?.value}</p>
+                      <p className="dark:text-white">{item?.value}</p>
                     </div>
                   ))
                 ) : (
-                  <div className="text-xl font-bold"> لايوجد اساله </div>
+                  <div className="text-2xl font-bold text-black dark:text-white">
+                    {t("There are no questions")}
+                  </div>
+                  
                 )}
               </div>
             </TabPanel>
-
             <TabPanel value="3" className="pt-0">
               <div>
                 <div className="">
-                  <NotesOrder notes={data?.notes}  />
+                  <DetailsFacility
+                    data={data?.facility}
+                    className="detailsOrderFacility"
+                    style={{ height: "calc(100vh - 30rem)" }}
+                  />
+                </div>
+              </div>
+            </TabPanel>
+            <TabPanel value="4" className="pt-0">
+              <div>
+                <div className="">
+                  <NationalitiesOrder data={data?.country_organization} />
                 </div>
               </div>
             </TabPanel>
@@ -111,31 +191,4 @@ export default function DetailsOrder({ data }) {
       </TabContext>
     </div>
   );
-}
-
-{
-  /* <div className="grid grid-cols-2 p-4 gap-y-4">
-<div className="col-span-2"></div>
-<div className="flex gap-2">
-  <p className="font-bold text-contained"> الطلب:</p>
-  <p>{data?.service?.name}</p>
-</div>
-<div className="flex gap-2">
-  <p className="font-bold text-contained">السعر:</p>
-  <p>{data?.service?.price}</p>
-</div>
-<div className="flex gap-2">
-  <p className="font-bold text-contained">الكود:</p>
-  <p>{data?.code}</p>
-</div>
-<div className="flex gap-2">
-  <p className="font-bold text-contained">الحاله:</p>
-  <p
-    style={{ backgroundColor: data?.status?.color }}
-    className="px-2 py-1 text-sm font-bold text-white rounded-md"
-  >
-    {data?.status?.name}
-  </p>
-</div>
-</div> */
 }

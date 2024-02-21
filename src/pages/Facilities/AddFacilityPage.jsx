@@ -1,26 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import StepperCustomDot from "../../components/theme/StepperCustomDot";
-import FacilityContent from "./FacilityContent";
-import FacilityWrapper from "./FacilityWrapper";
+import FacilityWrapper from "../../components/templates/MyFacilities/FacilityWrapper";
+import FacilityContent from "../../components/templates/MyFacilities/FacilityContent";
 
 const steps = [
   {
-    title: "1. بيانات المنشأة",
-    // subtitle: "ادخل بيانات منشاتك",
+    title: `1.Facility Info`,
   },
   {
-    title: "2. بيانات العنوان الوطني",
-    // subtitle: "ادخل بيانات العنوان الوطني",
+    title: "2.National Address Info",
   },
   {
-    title: "3. بيانات  اضافية",
-    // subtitle: "ادخل بيانات العنوان الوطني",
+    title: "3.Additional Info",
   },
 
   {
-    title: "4. تحميل المستندات",
-    // subtitle: "ارفق مستندات منشاتك",
+    title: "4.Upload Files",
   },
 ];
 
@@ -29,7 +25,7 @@ const AddFacilityPage = () => {
 
   return (
     <>
-      <div className="w-full">
+      <div className="w-full px-2">
         <FacilityWrapper
           steps={steps}
           activeStep={activeStep}

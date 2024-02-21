@@ -41,21 +41,26 @@ const calculateTimeLeftUntilNextPrayer = (prayerTimes, setPrayer) => {
   return { hours, minutes };
 };
 
-export const getPrayerTime = async (setNextPrayerTime, setPrayer, inc=false) => {
+export const getPrayerTime = async (setNextPrayerTime, setPrayer, inc = 0) => {
   const now = new Date();
-  const [month, year] = [new Date().getMonth()+1,now.getFullYear()]
+  now.setDate(now.getDate() + inc);
+  const month = now.getMonth() + 1;
+  const year = now.getFullYear();
+  const date = now.getDate();
   const response = await fetch(
     `https://api.aladhan.com/v1/calendarByCity/${year}/${month}?city=Makkah&country=KSA&method=4`
   );
   const data = (await response.json()).data;
   const timeLeft = calculateTimeLeftUntilNextPrayer(
-    data[new Date().getDate() + (inc?0:-1)].timings,
+    data[date - 1].timings, // تأكد من مطابقة المؤشر مع تاريخ اليوم الصحيح بعد التعديل
     setPrayer
   );
 
-  if(timeLeft == null){
-    // rerun the method but increase the 
-    getPrayerTime(setNextPrayerTime, setPrayer, true);
+  if (timeLeft == null) {
+    if (inc < 1) { // تجنب الحلقة اللانهائية بوضع حد لعدد المحاولات
+      getPrayerTime(setNextPrayerTime, setPrayer, inc + 1);
+    }
+  } else {
+    setNextPrayerTime(timeLeft);
   }
-  setNextPrayerTime(timeLeft);
 };

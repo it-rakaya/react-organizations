@@ -1,40 +1,34 @@
 /* eslint-disable react/prop-types */
-import {
-    mdiChartLineVariant,
-    mdiCheck,
-    mdiClose,
-    mdiPoll
-} from "@mdi/js";
+import { mdiChartLineVariant, mdiCheck, mdiClose, mdiPoll } from "@mdi/js";
 import { Grid } from "@mui/material";
 import { t } from "i18next";
 import CardStatsHorizontal from "../../molecules/card-stats-horizontal";
 
 function OrderInfo({ Orders }) {
-  const approved = 3;
-  const New = 6;
-  const rejected = 4;
 
   const NewOrders = Orders?.all_user_orders?.filter(
-    (obj) => obj.status_id == New
+    (obj) => obj.status?.name_en == "New"
   );
   const approvedOrders = Orders?.all_user_orders?.filter(
-    (obj) => obj.status_id == approved
+    (obj) => obj.status?.name_en == "Accepted"
   );
   const rejectedOrders = Orders?.all_user_orders?.filter(
-    (obj) => obj.status_id == rejected
+    (obj) => obj.status?.name_en == "Rejected"
   );
-
+  const ApprovedOrder = Orders?.all_user_orders?.filter(
+    (obj) => obj.status?.name_en == "Approved"
+  );
   const numberOfOrders = NewOrders?.length;
   const numberOfApproved = approvedOrders?.length;
   const numberOfRejected = rejectedOrders?.length;
 
   const data = [
     {
-        trendNumber: "8.1",
-        title: t("All Orders"),
-        stats: Orders?.all_user_orders?.length,
-        icon: mdiPoll,
-      },
+      trendNumber: "8.1",
+      title: t("All Orders"),
+      stats: Orders?.all_user_orders?.length,
+      icon: mdiPoll,
+    },
     {
       trendNumber: "8.1",
       title: t("New Orders"),
@@ -50,7 +44,7 @@ function OrderInfo({ Orders }) {
 
     {
       trendNumber: "8.1",
-      title: t("Rejected"),
+      title: t("Rejected Orders"),
       stats: numberOfRejected,
       icon: mdiClose,
     },

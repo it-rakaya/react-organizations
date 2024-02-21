@@ -56,7 +56,7 @@ const UserDropdown = (props) => {
     color: "text.primary",
     textDecoration: "none",
     "& svg": {
-      mr: 2,
+      mx: 2,
       fontSize: "1.375rem",
       color: "text.primary",
     },
@@ -65,11 +65,9 @@ const UserDropdown = (props) => {
     mutationKey: [`Log_out`],
     endpoint: `logout`,
     onSuccess: () => {
-      notify("success", t("good luck"));
+      notify("success", t("see you soon"));
     },
-    onError: (err) => {
-      notify("error", err?.response?.data.message);
-    },
+
   });
 
   const handleLogout = () => {
@@ -83,22 +81,19 @@ const UserDropdown = (props) => {
       <Badge
         overlap="circular"
         onClick={handleDropdownOpen}
-        sx={{ ml: 2, cursor: "pointer" }}
-        badgeContent={<BadgeContentSpan />}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
+        sx={{ mx: 2, cursor: "pointer" , }}
+        // badgeContent={<BadgeContentSpan />}
+        // anchorOrigin={{
+        //   vertical: "bottom",
+        //   horizontal: "right",
+          
+        // }}
       >
         <Avatar
           alt="John Doe"
           onClick={handleDropdownOpen}
           sx={{ width: 40, height: 40 }}
-          src={
-            user?.attachmentUrl?.length
-              ? user?.attachmentUrl[1]?.value
-              : defaultImage
-          }
+          src={user?.profile_photo ? user?.profile_photo : defaultImage}
           style={{ backgroundColor: theme?.palette?.primary?.main }}
         />
       </Badge>
@@ -120,7 +115,7 @@ const UserDropdown = (props) => {
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Badge
               overlap="circular"
-              badgeContent={<BadgeContentSpan />}
+              // badgeContent={<BadgeContentSpan />}
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "right",
@@ -128,11 +123,7 @@ const UserDropdown = (props) => {
             >
               <Avatar
                 alt="John Doe"
-                src={
-                  user?.attachmentUrl?.length
-                    ? user?.attachmentUrl[1]?.value
-                    : defaultImage
-                }
+                src={user?.profile_photo ? user?.profile_photo : defaultImage}
                 sx={{ width: "2.5rem", height: "2.5rem" }}
                 style={{ backgroundColor: theme?.palette?.primary?.main }}
               />
@@ -140,12 +131,17 @@ const UserDropdown = (props) => {
             <Box
               sx={{
                 display: "flex",
-                ml: 3,
+                mx: 3,
                 alignItems: "flex-start",
                 flexDirection: "column",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>{user?.name}</Typography>
+              <Typography
+                sx={{ fontWeight: 600 }}
+                className="!text-black dark:!text-white"
+              >
+                {user?.name}
+              </Typography>
             </Box>
           </Box>
         </Box>
@@ -153,17 +149,26 @@ const UserDropdown = (props) => {
         {user?.is_verified && (
           <>
             <MenuItem sx={{ p: 0 }} onClick={() => navigate("/")}>
-              <Box sx={styles}>
-                <IconifyIcon icon="uil:home" />
+              <Box sx={styles} className="!text-black dark:!text-white">
+                <IconifyIcon
+                  icon="uil:home"
+                  style={{ color: theme?.palette?.primary?.main }}
+                />
                 {t("Landing")}
               </Box>
             </MenuItem>
             <MenuItem
               sx={{ p: 0 }}
-              onClick={() => navigate("/dashboard/profile/")}
+              onClick={() => {
+                handleDropdownClose();
+                navigate("/dashboard/profile/");
+              }}
             >
-              <Box sx={styles}>
-                <IconifyIcon icon="mdi:account-outline" />
+              <Box sx={styles} className="!text-black dark:!text-white">
+                <IconifyIcon
+                  icon="mdi:account-outline"
+                  style={{ color: theme?.palette?.primary?.main }}
+                />
                 {t("Profile")}
               </Box>
             </MenuItem>
@@ -172,12 +177,17 @@ const UserDropdown = (props) => {
         <Divider />
         <MenuItem
           onClick={handleLogout}
+          className="!text-black dark:!text-white"
           sx={{
             py: 2,
-            "& svg": { mr: 2, fontSize: "1.375rem", color: "text.primary" },
+            "& svg": { mx: 2, fontSize: "1.375rem", color: "text.primary" },
           }}
         >
-          <IconifyIcon icon="mdi:logout-variant" />
+          
+          <IconifyIcon
+            icon="mdi:logout-variant"
+            style={{ color: theme?.palette?.primary?.main }}
+          />
           {t("Logout")}
         </MenuItem>
       </Menu>

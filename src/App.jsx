@@ -1,49 +1,124 @@
-/////////// IMPORTS
-///
-import { useIsRTL } from "./hooks/useIsRTL";
-import { AllRoutesProvider } from "./routing/allRoutes";
-// import { router } from "./routing/allRoutes"
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { registerSW } from "virtual:pwa-register";
+import { UseOrg } from "./context/organization provider/OrganizationProvider";
+import { useIsRTL } from "./hooks/useIsRTL";
+import { AllRoutesProvider } from "./routing/allRoutes";
 const App = () => {
-  /////////// VARIABLES
-  ///
-
-  ///
-  /////////// CUSTOM HOOKS
-  ///
   const isRTL = useIsRTL();
+  const { orgData, isLoading, isSuccess, isRefetching } = UseOrg();
+  const navigate = useNavigate();
 
+  const updateSW = registerSW({
+    onNeedRefresh() {},
+    onOfflineReady() {},
+  });
 
-  useLayoutEffect(() => {
-    document.documentElement.dir = isRTL ? "rtl" : "ltr";
-    document.documentElement.lang = isRTL ? "ar" : "en";
+  useEffect(() => {
+    if (isRTL) {
+      document.documentElement.lang = "ar";
+      document.documentElement.setAttribute("dir", "rtl");
+    } else {
+      document.documentElement.lang = "en";
+      document.documentElement.setAttribute("dir", "ltr");
+    }
+  }, [isRTL]);
+
+  useEffect(() => {
+    const darkModeSetting = localStorage.getItem("darkMode");
+    if (darkModeSetting === "true") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   }, []);
-  /////////// FUNCTIONS | EVENTS | IF CASES
-  ///
+  useEffect(() => {
+    var manifestLink = document.querySelector('link[rel="manifest"]');
 
-  ///
+    fetch(manifestLink.href)
+      .then((response) => response.json())
+      .then((manifest) => {
+        var blob = new Blob([JSON.stringify(manifest)], {
+          type: "application/json",
+        });
+        var newUrl = URL.createObjectURL(blob) + "?v=" + new Date().getTime();
+        manifestLink.href = newUrl;
+      });
+  }, []);
+  useEffect(() => {
+    const faviconLink = document.querySelector('link[rel="icon"]');
+    const appleTouchIconLink = document.querySelector(
+      'link[rel="apple-touch-icon"]'
+    );
+    if (faviconLink && orgData?.logo) {
+      faviconLink.href = orgData.logo;
+    }
+    if (appleTouchIconLink && orgData?.logo) {
+      appleTouchIconLink.href = orgData.logo;
+    }
+    var manifestLink = document.querySelector('link[rel="manifest"]');
+    fetch(manifestLink.href)
+      .then((response) => response.json())
+      .then((manifest) => {
+        manifest.short_name = orgData?.organizations?.name || "Rakaya";
+        manifest.name = orgData?.organizations?.name || "Rakaya";
+        manifest.start_url = orgData?.organizations?.domain;
 
-  // const { visible, toggle, open, close } = useLoadingOverlay();
+        manifest.icons = [
+          {
+            src: orgData?.organizations?.logo || "path/to/default/icon.png",
+            sizes: "192x192",
+            type: "image/png",
+            purpose: "any",
+          },
+        ];
+
+        manifest.background_color =
+          orgData?.organizations?.backgroundColor || "#ffffff";
+        manifest.theme_color = orgData?.organizations?.themeColor || "#000000";
+
+        var blob = new Blob([JSON.stringify(manifest)], {
+          type: "application/json",
+        });
+        var newUrl = URL.createObjectURL(blob);
+        manifestLink.href = newUrl;
+      });
+  }, [orgData]);
+  // useEffect(() => {
+
+  //   const manifestLink = document.querySelector('link[rel="manifest"]');
+  //   if (manifestLink) {
+  //     manifestLink.href = "/new/path/to/manifest.json";
+  //   }
+  //   const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  //   if (themeColorMeta) {
+  //     themeColorMeta.content = "#000000"; // لون جديد
+  //   }
+  //   const keywordsMeta = document.querySelector('meta[name="keywords"]');
+  //   if (keywordsMeta) {
+  //     keywordsMeta.content = "كلمات مفتاحية جديدة, تغيير المحتوى";
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    if (
+      !orgData?.organizations?.name_ar &&
+      !isLoading &&
+      !isRefetching &&
+      isSuccess
+    ) {
+      if (!orgData?.isOrganization) return navigate("/404");
+    } else {
+      // navigate("/");
+    }
+  }, []);
 
   return (
     <>
-      {/* <Breadcrumbs/> */}
-      {/* <Box pos="relative">
-        <LoadingOverlay
-          visible={visible}
-          zIndex={10000}
-          loader={<Spinner />}
-          overlayColor="black"
-          overlayOpacity={0.9}
-        /> */}
       <AllRoutesProvider />
       <ToastContainer rtl={isRTL} />
-      <ReactQueryDevtools initialIsOpen={false} position={"bottom-right"} />
-      {/* </Box> */}
     </>
   );
 };

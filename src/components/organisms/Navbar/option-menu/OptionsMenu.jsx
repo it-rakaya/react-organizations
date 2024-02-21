@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // ** React Imports
 import { useState } from 'react'
 
@@ -63,7 +64,7 @@ const OptionsMenu = props => {
 
   return (
     <>
-      <IconButton aria-haspopup='true' onClick={handleClick} {...iconButtonProps}>
+      <IconButton aria-haspopup='true' name='element' aria-label="Toggle dark mode"  onClick={handleClick} {...iconButtonProps}>
         {icon ? icon : <IconifyIcon icon='mdi:dots-vertical' {...iconProps} />}
       </IconButton>
       <Menu
@@ -80,7 +81,7 @@ const OptionsMenu = props => {
         {options?.map((option, index) => {
           if (typeof option === 'string') {
             return (
-              <MenuItem key={index} onClick={handleClose}>
+              <MenuItem key={index} onClick={handleClose}  className="!text-black dark:!text-white">
                 {option}
               </MenuItem>
             )
@@ -91,6 +92,7 @@ const OptionsMenu = props => {
               <MenuItem
                 key={index}
                 {...option.menuItemProps}
+                className="!text-black dark:!text-white"
                 {...(option.href && { sx: { p: 0 } })}
                 onClick={e => {
                   handleClose();
@@ -102,7 +104,10 @@ const OptionsMenu = props => {
               >
                 <MenuItemWrapper option={option}>
                   {option.icon ? option.icon : null}
+                  <p className='text-black dark:text-white'>
+                    
                   {option.text}
+                  </p>
                 </MenuItemWrapper>
               </MenuItem>
             )

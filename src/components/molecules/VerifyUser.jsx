@@ -15,7 +15,7 @@ export default function VerifyUser({ userData, dataValue, setOpen, sendOTP }) {
   const [valueOTP, setValueOTP] = useState("");
   const { orgData } = UseOrg();
 
-  const { mutate: verify_user, isLoading: loadingVerify } = useMutate({
+  const { mutate: verify_user, isPending: loadingVerify } = useMutate({
     mutationKey: [`verify_user`],
     endpoint: `verify`,
     onSuccess: (data) => {
@@ -26,6 +26,8 @@ export default function VerifyUser({ userData, dataValue, setOpen, sendOTP }) {
 
     onError: (err) => {
       notify("error", err?.response?.data.message);
+      notify("error", err?.response?.data.message?.original?.message);
+
     },
   });
 
@@ -43,7 +45,7 @@ export default function VerifyUser({ userData, dataValue, setOpen, sendOTP }) {
         initialValues={{ phone: "", phone_code: "", otp: "" }}
       >
         <Form>
-          <div className="flex flex-col w-1/2 m-auto text-center ">
+          <div className="flex flex-col m-auto text-center ">
             <CheckCode
               number={dataValue?.value}
               valuesForm={valuesForm}
@@ -56,8 +58,9 @@ export default function VerifyUser({ userData, dataValue, setOpen, sendOTP }) {
               loading={!!loadingVerify}
               type="submit"
               variant="contained"
+              className={"!w-[160px] h-[40px] !m-auto mb-5 !mt-5 "}
             >
-              {t("تفعيل")}
+              {t("Activate")}
             </ButtonComp>
           </div>
         </Form>

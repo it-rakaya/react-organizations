@@ -3,9 +3,10 @@ import { Icon } from "@iconify/react";
 import { useTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getTimeLeftToHajj } from "../../utils/landing/HajjTimeCalc";
-import { getPrayerTime } from "../../utils/landing/prayerTimeCalc";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import { calculateHajjRemainingTimeFormatted } from "../../utils/helpers";
+// import { getTimeLeftToHajj } from "../../utils/landing/HajjTimeCalc";
+import { getPrayerTime } from "../../utils/landing/prayerTimeCalc";
 
 const FooterComponent = ({ title, children, last = false }) => {
   const { i18n } = useTranslation();
@@ -40,55 +41,74 @@ const FooterComponent = ({ title, children, last = false }) => {
 
 const textStyle = `font-semibold`;
 const Footer = () => {
+  const [timeRemaining, setTimeRemaining] = useState({
+    daysRemaining: 0,
+    monthsRemaining: 0,
+  });
+  useEffect(() => {
+    setTimeRemaining(calculateHajjRemainingTimeFormatted());
+  }, []);
   const { t } = useTranslation();
   const { orgData } = UseOrg();
-  console.log("🚀 ~ file: Footer.jsx:45 ~ Footer ~ orgData:", orgData);
-
   const [nextPrayerTime, setNextPrayerTime] = useState({
     hours: null,
     minutes: null,
   });
   const [prayer, setPrayer] = useState("");
-  const [timeLeft, setTimeLeft] = useState({ months: "", days: "", hours: "" });
+  // const [timeLeft, setTimeLeft] = useState({ months: "3", days: "20", hours: "9" });
   useEffect(() => {
-    getPrayerTime(setNextPrayerTime, setPrayer);
-
-    getTimeLeftToHajj(setTimeLeft);
+    if (nextPrayerTime ) {
+      getPrayerTime(setNextPrayerTime, setPrayer);
+    }
+    // getTimeLeftToHajj(setTimeLeft);
   }, []);
 
   return (
     <div className="2xl:pe-[18%] 3xl:pe-[26%]">
       <div className="flex flex-col w-full gap-3 lg:flex-row">
-        <FooterComponent title={t("landing.userManual")}>
-          <a
-            href={orgData?.organizations?.profile_file}
-            download={orgData?.organizations?.profile_file}
-            className="cursor-pointer"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <h1 className={`${textStyle} flex items-center gap-2`}>
-              {t("landing.downloadFile")}
-              <Icon icon="ic:baseline-download" className="" />
-            </h1>
-          </a>
-        </FooterComponent>
+        {orgData?.organizations?.profile_file ? (
+          <FooterComponent title={t("landing.userManual")}>
+            <a
+              href={orgData?.organizations?.profile_file}
+              download={orgData?.organizations?.profile_file}
+              className="cursor-pointer"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <h1
+                className={`${textStyle} flex items-center gap-2 dark:text-white`}
+              >
+                {t("landing.downloadFile")}
+                <Icon icon="ic:baseline-download" className="" />
+              </h1>
+            </a>
+          </FooterComponent>
+        ) : (
+          <div></div>
+        )}
         <FooterComponent title={t("landing.remainingTimeToHajj")}>
-          <h1 className={`${textStyle} tracking-wider`}>
-            {timeLeft.months + " "} {t("landing.months")} {timeLeft.days + " "}{" "}
-            {t("landing.days")} {timeLeft.hours + " "}
+          <h1 className={`${textStyle} tracking-wider dark:text-white`}>
+            {timeRemaining.monthsRemaining + " "} {t("landing.months")}{" "}
+            {timeRemaining.daysAfterMonths + " "} {t("landing.days")}{" "}
+            {timeRemaining.hoursRemaining + " "}
             {t("landing.hours")}
           </h1>
         </FooterComponent>
-        <FooterComponent
-          title={`${t("landing.timeLeftTo")} ${t(`landing.prayers.${prayer}`)}`}
-          last
-        >
-          <h1 className={`${textStyle} flex items-center gap-4 tracking-wider`}>
-            {nextPrayerTime?.hours} {t("landing.hrs")} {nextPrayerTime?.minutes}{" "}
-            {t("landing.minutes")}
-          </h1>
-        </FooterComponent>
+        {/* {!!nextPrayerTime.hours && ( */}
+          <FooterComponent
+            title={`${t("landing.timeLeftTo")} ${t(
+              `landing.prayers.${prayer}`
+            )}`}
+            last
+          >
+            <h1
+              className={`${textStyle} flex items-center gap-4 tracking-wider dark:text-white`}
+            >
+              {nextPrayerTime?.hours} {t("landing.hrs")}{" "}
+              {nextPrayerTime?.minutes} {t("landing.minutes")}
+            </h1>
+          </FooterComponent>
+        {/* )} */}
       </div>
     </div>
   );

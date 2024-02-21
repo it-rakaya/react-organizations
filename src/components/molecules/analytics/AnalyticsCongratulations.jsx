@@ -42,7 +42,7 @@ const AnalyticsCongratulations = ({ userData }) => {
         <Grid container spacing={6}>
           <Grid item xs={12} sm={6}>
             <Typography variant="h5" sx={{ mb: 4.5 }}>
-              <Box component="span" sx={{ fontWeight: "bold" }}>
+              <Box component="span" sx={{ fontWeight: "bold" }} className="text-black dark:text-white">
                 {t("Welcome")} {userData?.name}
               </Box>
               ! 🎉
@@ -61,7 +61,7 @@ const AnalyticsCongratulations = ({ userData }) => {
 
             {user?.is_verified && (
               <Link to={"/dashboard/profile"}>
-                <ButtonComp variant="contained" className={"w-auto"}>
+                <ButtonComp variant="contained" className={"!w-auto"}>
                   {t("My profile")}
                 </ButtonComp>
               </Link>

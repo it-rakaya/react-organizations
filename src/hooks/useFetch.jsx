@@ -1,36 +1,41 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { notify } from "../utils/toast";
-import { useNavigate } from "react-router-dom";
-// import { UseOrg } from "../context/organization provider/OrganizationProvider";
+import { useIsRTL } from "./useIsRTL";
 
-function useFetch({ endpoint, enabled, select, queryKey, onError, onSuccess }) {
+function useFetch({
+  endpoint,
+  enabled,
+  select,
+  queryKey,
+  onError,
+  onSuccess,
+  error,
+  throwOnError,
+}) {
   const user_token = Cookies.get("token");
   const token = user_token;
   const authorizationHeader = `Bearer ${token}`;
-  const navigate = useNavigate();
+  const isRTL = useIsRTL();
   const config = {
     headers: {
       Authorization: authorizationHeader,
+      "Accept-Language": isRTL ? "ar" : "en",
     },
   };
+  const baseURL = import.meta.env.VITE_BASE_URL;
 
   const query = useQuery({
     queryKey,
+
     queryFn: () =>
-      axios
-        .get(`https://admin.rmcc.sa/api/${endpoint}`, config)
-        .then((res) => res.data),
+      axios.get(`${baseURL}/${endpoint}`, config).then((res) => res.data),
     enabled,
     select,
-    onError: (error) => {
-      notify("error", error?.response?.data?.message);
-      if (error?.response?.data?.message == "Unauthenticated.") {
-        localStorage.removeItem("user");
-        navigate("/login");
-        Cookies.remove("token");
-      }
+    error,
+    throwOnError,
+
+    onError: () => {
       if (onError) {
         onError(error);
       }

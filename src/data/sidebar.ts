@@ -1,9 +1,6 @@
-import {
-  BiDetail,
-  BiHome,
-  BiSolidCube,
-  BiUser
-} from "react-icons/bi";
+import { BiDetail, BiHome, BiUser } from "react-icons/bi";
+import { FaRegBuilding } from "react-icons/fa";
+
 import { IconType } from "react-icons/lib";
 
 export type MenuItem_TP = {
@@ -11,7 +8,7 @@ export type MenuItem_TP = {
   icon: IconType;
   label: string;
   link?: string;
-  heading?: string; // Add the heading property
+  heading?: string; 
   items?: {
     id: string;
     icon: IconType;
@@ -31,37 +28,19 @@ export const sideBarItems: MenuItem_TP[] = [
   {
     id: crypto.randomUUID(),
     label: `${"Facilities"}`,
-    icon: BiSolidCube,
+    icon: FaRegBuilding,
     link: "/dashboard/facilities",
   },
   {
     id: crypto.randomUUID(),
-    label: `${"Employee"}`,
+    label: `${"Employees"}`,
     icon: BiUser,
     link: "/dashboard/employee",
   },
-  // {
-  //   id: crypto.randomUUID(),
-  //   label: `${"Facilities"}`,
-  //   icon: BiSolidCube,
-  //   link: "/facilities ",
-  // },
-  // {
-  //   id: crypto.randomUUID(),
-  //   label: `${"Employee"}`,
-  //   icon: BiUser,
-  //   link: "/employee ",
-  // },
   {
     id: crypto.randomUUID(),
     label: `${"Orders"}`,
     icon: BiDetail,
     link: "/dashboard/orders",
-  },
-  {
-    id: crypto.randomUUID(),
-    label: `${"Other"}`,
-    icon: BiDetail,
-    link: "/dashboard/other",
   },
 ];

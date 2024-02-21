@@ -1,21 +1,20 @@
 /* eslint-disable react/prop-types */
 import { Form, Formik } from "formik";
 import { t } from "i18next";
-import * as Yup from "yup";
-import { useMutate } from "../../../hooks/useMutate";
-import { notify } from "../../../utils/toast";
-import ButtonComp from "../../atoms/buttons/ButtonComp";
-import EmployeeMainData from "./EmployeeMainData";
 import { isValidSaudiID } from "saudi-id-validator";
+import * as Yup from "yup";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import useFetch from "../../../hooks/useFetch";
+import { useMutate } from "../../../hooks/useMutate";
+import { notify } from "../../../utils/toast";
+import EmployeeMainData from "./EmployeeMainData";
 
 export default function AddEmployee({
   facultyID,
   setSecundModal,
   showSelectFacility,
   refetch,
-  setOpenAddEmployee
+  setOpenAddEmployee,
 }) {
   const { orgData } = UseOrg();
 
@@ -23,14 +22,13 @@ export default function AddEmployee({
     mutationKey: [`facility_employees`],
     endpoint: `facility-employees`,
     onSuccess: () => {
-      notify("success");
-      
-      if (showSelectFacility) {
-        setOpenAddEmployee(false)
-        refetch();
-      }else{
-        setSecundModal(true);
+      notify("success", t("An employee has been added successfully"));
 
+      if (showSelectFacility) {
+        setOpenAddEmployee(false);
+        refetch();
+      } else {
+        setSecundModal(true);
       }
     },
     onError: (err) => {
@@ -46,19 +44,24 @@ export default function AddEmployee({
   const validationSchema = () =>
     Yup.object({
       name: Yup.string().trim().required(t("employee name is required")),
-      position: Yup.string().trim().required(t("position name is required")),
+      facility_employee_position_id: Yup.string()
+        .trim()
+        .required(t("position name is required")),
+      facility_id: showSelectFacility
+        ? Yup.string().trim().required(t("facility name is required"))
+        : Yup.string().trim(),
       national_id: Yup.string()
         ?.matches(/^\d{10}$/, t("The ID number must be exactly 10 digits"))
         ?.test({
           name: "isValidSaudiID",
           test: (value) => isValidSaudiID(value),
-          message: t("Invalid Saudi ID"),
+          message: t("Please enter a valid ID number"),
         }),
     });
   const handleSubmit = (values) => {
     const validAttachments = values?.attachments
       .map((file, index) => ({ index, file }))
-      .filter((item) => typeof item.file !== "undefined");
+      .filter((item) => typeof item.file !== "undefined" && item.file !== "deleted");
     const attachments = validAttachments.map((item) => ({
       [`attachments[${item?.index}]`]: item?.file,
     }));
@@ -78,47 +81,21 @@ export default function AddEmployee({
       <Formik
         initialValues={{
           name: "",
-          position: "",
+          facility_employee_position_id: "",
           national_id: "",
           facility_id: "",
         }}
         validationSchema={validationSchema}
         onSubmit={(values) => handleSubmit(values)}
       >
-        {({ errors, values }) => (
+        {() => (
           <>
-            {console.log(
-              "testtttttttttt",
-              values?.attachments
-                ?.map((file, index) => ({ index, file }))
-                ?.filter((item) => typeof item?.file !== "undefined")
-            )}
-
             <Form>
               <EmployeeMainData
                 showSelectFacility={showSelectFacility}
                 attachments_facility_employees={attachments_facility_employees}
+                loadingEmployee={loadingEmployee}
               />
-              <div className="flex justify-end">
-                <ButtonComp
-                  loading={loadingEmployee}
-                  type="submit"
-                  variant="contained"
-                  className=" !rounded-md  !w-auto  mt-5"
-                  disabled={
-                    values?.national_id == "" ||
-                    values?.attachments
-                      ?.map((file, index) => ({ index, file }))
-                      ?.filter((item) => typeof item?.file !== "undefined")
-                      .length !==
-                      attachments_facility_employees?.attachment_labels
-                        ?.length ||
-                    Object.entries(errors) > 0
-                  }
-                >
-                  {t("Add")}
-                </ButtonComp>
-              </div>
             </Form>
           </>
         )}

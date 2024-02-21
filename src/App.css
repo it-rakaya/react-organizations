@@ -14,28 +14,50 @@
   animation: marqueeAnimation 40s linear infinite normal;
 }
 
-@keyframes marqueeAnimation {
+[dir="ltr"] .marquee-content {
+
+  animation: marqueeAnimationLtr 40s linear infinite normal;
+}
+[dir="rtl"] .marquee-content {
+
+  animation: marqueeAnimationRtl 40s linear infinite normal;
+}
+
+
+
+@keyframes marqueeAnimationLtr {
   0% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(-100%);
   }
 }
 
+@keyframes marqueeAnimationRtl {
+  0% {
+    transform: translateX(-100%);
+  }
 
-.animated-box{
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+
+.animated-box {
   animation: box-animation 4s ease-in-out alternate infinite;
 }
 
 @keyframes box-animation {
-  0%{
+  0% {
     transform: scale(1.03);
-    /* transform: rotate(1deg); */
   }
-  100%{
+
+  100% {
     transform: scale(1);
-    /* transform: rotate(-1deg); */
 
   }
 }

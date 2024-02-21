@@ -1,25 +1,103 @@
 /* eslint-disable react/prop-types */
+import { useFormikContext } from "formik";
+import { t } from "i18next";
+import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
-import SelectComp from "./Formik/SelectComp";
+import { FormikError } from "./Formik/FormikError";
+import Label from "./Label";
+import ReactSelect from "./Selects/ReactSelect";
 
-export default function SelectFacilities({ name, label }) {
+export default function SelectFacilities({ name, label, required, className }) {
+  const { values, setFieldValue, handleBlur } = useFormikContext();
   const { data: facilities } = useFetch({
     endpoint: `facilities?select=id,name`,
     queryKey: ["select_facilities"],
   });
 
+  const options = facilities?.user_facilities.map((item) => ({
+    value: item.id,
+    label: item.name,
+  }));
+
+  const selectedCountry = options?.find(
+    (option) => option?.value == values[name]
+  );
   return (
     <div>
-      <label className="block my-3">{label}</label>
+      <div className={`${className} mt-2`}>
+        {/* <Label>
+          {label}
+          <span className="mx-1 text-red-500">
+            {required == "1" ? "*" : ""}
+          </span>
+        </Label>
+        <div className="mt-[0.5rem]">
+          <Select
+            options={options}
+            name={name}
+            value={selectedCountry}
+            // placeholder={t("Chose facility")}
+            placeholder={
+              <div className="select-placeholder-text">
+                {t("Choose The Facility Name")}
+              </div>
+            }
+            noOptionsMessage={() => t("Not Found Data")}
+            onBlur={handleBlur}
+            onChange={(option) => setFieldValue(name, option.value)}
+            styles={{
+              control: (baseStyles) => ({
+                ...baseStyles,
+                padding: "10px 0",
+                borderRadius: " 8px",
+                // borderWidth: "1px",
+                // borderColor:"#555d64" ,
+                background: "white",
+                margin: "0",
+                height: "59px",
 
-      <SelectComp
+              }),
+              option: (baseStyles , { isFocused, isSelected }) => ({
+                ...baseStyles,
+                background: isSelected ? "red" : isFocused ? "#eee" : "white",
+                color: "black",
+                ':active': {
+                  ...baseStyles[':active'],
+                  backgroundColor: isSelected ? "red" : baseStyles[':active'].backgroundColor,
+                },
+              }),
+            }}
+            theme={(theme) => ({
+              ...theme,
+              borderRadius: 0,
+              colors: {
+                ...theme.colors,
+                primary25: `#eee`,
+                primary: "#eee",
+              },
+            })}
+            classNames={{
+              control: () => "dark:bg-transparent dark:border-[#555d64] ",
+              option: () => "dark:bg-dark-primary dark:text-white  ",
+              menu: () => " bg-white dark:bg-dark-primary dark:text-white  ",
+            }}
+            maxMenuHeight={200}
+            menuShouldScrollIntoView
+            // minMenuHeight={500}
+          />
+          <div>
+            <FormikError name={name} />
+          </div>
+        </div> */}
+        <ReactSelect
+        options={options}
+        selectedValue={selectedCountry}
+        placeholder={t("Choose facility")}
         name={name}
-        multi={false}
-        data={facilities?.user_facilities ? facilities?.user_facilities : []}
-        className="w-full"
-        placeholder={"placeholder"}
-        idValue={true}
+        label={label}
+        required={required}
       />
+      </div>
     </div>
   );
 }

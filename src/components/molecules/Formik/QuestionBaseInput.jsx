@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import {
-  Box,
   Checkbox,
   FormControl,
   FormControlLabel,
@@ -20,10 +19,7 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Select from "react-select";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
-import PreviewImage from "../PreviewImage";
-import UploadImageIcon from "../../atoms/icons/UploadImageIcon";
-import CheckIcon from "../../atoms/icons/CheckIcon";
-import PdfIcon from "../../atoms/icons/PdfIcon";
+import UploadDoc from "../uploadImage/UploadDoc";
 
 export default function QuestionBaseInput({
   label,
@@ -41,7 +37,6 @@ export default function QuestionBaseInput({
   idQuestion,
   options,
   required = true,
-
   ...props
 }) {
   const { setFieldValue, values, errors } = useFormikContext();
@@ -74,16 +69,6 @@ export default function QuestionBaseInput({
     setFieldValue(`answers${name}`, selectedValues);
   };
   //file
-  const { getRootProps, getInputProps } = useDropzone({
-    multiple: false,
-    accept: ["image/*", ".pdf", ".doc", ".docx"],
-
-    onDrop: (acceptedFiles) => {
-      setFiles(acceptedFiles.map((file) => Object.assign(file)));
-      setFieldValue(`answers${name}`, acceptedFiles[0]); // استخدم acceptedFiles بدلاً من files[0]
-    },
-  });
-  const isLargeFile = files?.length && files[0]?.size > 524288000;
 
   const multiSelectOptions = options?.map((item) => ({
     value: item?.content,
@@ -93,6 +78,23 @@ export default function QuestionBaseInput({
     value: item?.content,
     label: item?.content,
   }));
+  const handleChangeNumber = (e) => {
+    let value = e.target.value;
+  
+    // Convert to string for length check if necessary
+    const valueAsString = value.toString();
+  
+    // Check for numeric value and length restriction
+    if (!/^[0-9]+$/.test(valueAsString) || valueAsString.length > 10) {
+      // Invalid input: Reset field or set to last valid value
+      setFieldValue(`answers${name}`, "");
+    } else {
+      // Valid input: Update the field value
+      setFieldValue(`answers${name}`, value);
+    }
+  };
+  
+
   return (
     <div>
       {type == "password" ? (
@@ -131,38 +133,40 @@ export default function QuestionBaseInput({
         <Select
           options={selectOptions}
           onChange={(option) => setFieldValue(`answers${name}`, option?.value)}
-          className="border rounded-md"
-          placeholder={t("Chose Country")}
+          // className="border rounded-md"
+          placeholder={t("Choose Country")}
           noOptionsMessage={() => t("Not Found Data")}
           styles={{
-            control: (baseStyles, state) => ({
+            control: (baseStyles) => ({
               ...baseStyles,
-              padding: "10px",
+              padding: "10px 0",
               borderRadius: " 8px",
-              borderColor: "white",
+              borderWidth: "1px",
+              // borderColor:"#555d64",
               background: "white",
               margin: "0",
             }),
             option: (baseStyles) => ({
               ...baseStyles,
               // background:"white" ,
-              // borderColor:"#eee",
               color: "black",
             }),
           }}
           theme={(theme) => ({
             ...theme,
             borderRadius: 0,
-
             colors: {
-              ...theme.colors,
+              // ...theme.colors,
               primary25: `#eee`,
               primary: "#eee",
-              // borderColor: "red",
             },
           })}
+          classNames={{
+            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+            option: () => "dark:bg-dark-primary dark:text-white  ",
+          }}
         />
-      ) : type == "radio" ? (
+      ) : type == "radio" || type == "Yes_No" ? (
         <>
           <FormControl>
             <RadioGroup
@@ -188,18 +192,17 @@ export default function QuestionBaseInput({
           <TextField
             autoFocus
             {...props}
+            // type="number"
             fullWidth
             value={values[name]}
             sx={{ mb: 4 }}
-            placeholder={placeholder}
             name={name}
-            className={className}
-            onChange={(e) => {
-              // if (values[name] !== undefined) {
-              // setFieldValueState(e.target.value)
-              setFieldValue(`answers${name}`, e.target.value);
-              // }
+            inputProps={{
+              maxLength: 10, // This is not effective for type="number", consider using 'max' for value limit
+              onChange: handleChangeNumber,
             }}
+            className={className}
+            // onChange={(e) => handleChangeNumber(e)}
           />
         </div>
       ) : type == "text" ? (
@@ -229,7 +232,7 @@ export default function QuestionBaseInput({
             minRows={4}
             placeholder={placeholder}
             // defaultValue="tetarea"
-            className="w-full p-2 border rounded-md"
+            className="w-full p-2 border rounded-md dark:bg-transparent dark:border-[#555d64]"
             onChange={(e) => {
               // if (values[name] !== undefined) {
               // setFieldValueState(e.target.value)
@@ -245,6 +248,7 @@ export default function QuestionBaseInput({
             autoFocus
             {...props}
             fullWidth
+            type="email"
             value={values[name]}
             sx={{ mb: 4 }}
             placeholder={placeholder}
@@ -259,61 +263,11 @@ export default function QuestionBaseInput({
           />
         </div>
       ) : type == "file" ? (
-        <div className="relative my-4">
-          <div className="relative items-center gap-1 mt-3 cursor-pointer">
-            <Box {...getRootProps({ className: "dropzone" })} cl>
-              {/* <label> {label} </label> */}
-
-              <input {...getInputProps()} className="cursor-pointer" />
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: ["column", "column", "row"],
-                  alignItems: "center",
-                }}
-              >
-                <div
-                  style={{ cursor: "pointer", lineHeight: "52px" }}
-                  className={` rounded-[10px]  relative
-              cursor-pointer pr-10 h-[56px] border 
-              text-[#4c4e6478]  border-[#4c4e6478)] bg-[#ebebee73] w-full ${
-                !!errors[name] && "border-red-500 "
-              }`}
-                >
-                  {files.length
-                    ? t("The file was downloaded successfully")
-                    : placeholder}
-                  {!files.length ? (
-                    <div className="absolute top-[3px] right-[5px]">
-                      <UploadImageIcon className={`w-[30px]`} />
-                    </div>
-                  ) : (
-                    <div className="absolute top-[3px] right-[5px]">
-                      <CheckIcon className={`w-[25px]`} />
-                    </div>
-                  )}
-                </div>
-              </Box>
-            </Box>
-            <div className="flex justify-start w-full rounded-md ">
-              {!isLargeFile && files[0]?.type.startsWith("image/") ? (
-                <div className="flex justify-start">
-                  <PreviewImage files={files ? files : []} />
-                </div>
-              ) : files[0]?.type.startsWith("application/") ? (
-                <a
-                  href={URL.createObjectURL(files[0])}
-                  download={files[0].name}
-                  className=""
-                >
-                  <PdfIcon />
-                </a>
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
-        </div>
+        <UploadDoc
+          dynamic={true}
+          name={name}
+          accept={["pdf", "jpg", "png", "jpeg"]}
+        />
       ) : type == "checkbox" ? (
         <FormGroup row onChange={handleChangeCheckbox}>
           {options?.map((option) => (
@@ -334,36 +288,38 @@ export default function QuestionBaseInput({
             )
           }
           isMulti
-          className="border rounded-md"
-          placeholder={t("Chose Country")}
+          // className="border rounded-md"
+          placeholder={t("Choose Country")}
           noOptionsMessage={() => t("Not Found Data")}
           styles={{
-            control: (baseStyles, state) => ({
+            control: (baseStyles) => ({
               ...baseStyles,
-              padding: "10px",
+              padding: "10px 0",
               borderRadius: " 8px",
-              borderColor: "white",
+              borderWidth: "1px",
+              // borderColor:"#555d64",
               background: "white",
               margin: "0",
             }),
             option: (baseStyles) => ({
               ...baseStyles,
               // background:"white" ,
-              // borderColor:"#eee",
               color: "black",
             }),
           }}
           theme={(theme) => ({
             ...theme,
             borderRadius: 0,
-
             colors: {
-              ...theme.colors,
+              // ...theme.colors,
               primary25: `#eee`,
               primary: "#eee",
-              // borderColor: "red",
             },
           })}
+          classNames={{
+            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+            option: () => "dark:bg-dark-primary dark:text-white  ",
+          }}
         />
       ) : (
         ""

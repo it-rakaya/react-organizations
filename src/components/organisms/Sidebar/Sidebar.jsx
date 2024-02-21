@@ -136,14 +136,15 @@ export const SideBar = ({
           key={Item.id}
           onClick={(e) => {
             goTo(e, Item.link);
-            if(toggled){
-              setToggled(!toggled)
+            if (toggled) {
+              setToggled(!toggled);
             }
           }}
-          icon={<Item.icon size={15} />}
+          icon={<Item.icon size={15} className="dark:text-white" />}
           active={location?.pathname === Item.link}
+          // active={location?.pathname === Item.link || location?.pathname.startsWith(`${Item.link}/`)}
         >
-          <div>{t(Item.label)}</div>
+          <div className=" dark:text-white">{t(Item.label)}</div>
         </MenuItem>
       </>
     );
@@ -154,17 +155,18 @@ export const SideBar = ({
         display: "flex",
         height: "100vh",
         minHeight: "400px",
-        direction: "rtl",
+        direction: isRTL ? "rtl" : "ltr",
         position: "relative",
         backgroundColor: toggled
           ? "rgb(249 249 249)"
           : "rgba(249, 249, 249, 0.7)",
       }}
+      className="dark:!bg-[#2c3639]"
     >
       <Sidebar
-        rtl
+        rtl={isRTL}
         toggled={toggled}
-        customBreakPoint="800px"
+        customBreakPoint="1330px"
         backgroundColor={
           toggled ? "rgb(249 249 249)" : "rgba(249, 249, 249, 0.7)"
         }
@@ -190,20 +192,27 @@ export const SideBar = ({
               />
             </div>
           )}
-          {
-            !toggled ?
-          <div className="">
-            <ArrowSideBar_IC
-              className={`cursor-pointer transition-ease collapsed-button-sidebar scale-x-[-1]  ${
-                collapsed && "scale-x-[1]"
-              } `}
-              onClick={() => setCollapsed(!collapsed)}
-            />
-          </div>
-          : <div onClick={()=>setToggled(!toggled)} className="ml-5">
-            <IconifyIcon icon={"iconoir:cancel"}/>
-          </div>
-          }
+          {!toggled ? (
+            <div
+              className={
+                collapsed && "rtl:translate-x-[-8px] ltr:translate-x-[10px]"
+              }
+            >
+              <ArrowSideBar_IC
+                className={`cursor-pointer transition-ease collapsed-button-sidebar ltr:scale-x-[1]  rtl:scale-x-[-1]  ${
+                  collapsed && "ltr:!scale-x-[-1] rtl:scale-x-[1] "
+                } `}
+                onClick={() => setCollapsed(!collapsed)}
+              />
+            </div>
+          ) : (
+            <div onClick={() => setToggled(!toggled)} className="ml-5">
+              <IconifyIcon
+                icon={"iconoir:cancel"}
+                className="dark:text-white"
+              />
+            </div>
+          )}
         </div>
         <Menu>
           {sideBarItems.map((Item) =>
@@ -218,7 +227,8 @@ export const SideBar = ({
                 key={Item.id}
                 label={t(Item.label)}
                 icon={<Item.icon size={15} />}
-                active={location.pathname === Item.link}
+                // active={location.pathname === Item.link}
+                // active={location.pathname.startsWith(Item.link)}
               >
                 {Item.items.map((innerItem) => generateItem(innerItem))}
               </SubMenu>

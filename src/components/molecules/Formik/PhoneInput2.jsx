@@ -3,12 +3,19 @@ import { useFormikContext } from "formik";
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { tv } from "tailwind-variants";
+import CardInfo from "../CardInfo";
+import Label from "../Label";
 import { FormikError } from "./FormikError";
 
-const PhoneInput2 = ({ label }) => {
+const PhoneInput2 = ({
+  label,
+  required,
+  showIcon,
+  messageInfo,
+  customClass,
+}) => {
   const [phone, setPhone] = useState("");
-  const { setFieldValue, errors, handleBlur, values, touched } =
+  const { setFieldValue, errors, handleBlur, values, touched, validateField } =
     useFormikContext();
 
   const handlePhoneChange = (value, selectedCountry, name, number) => {
@@ -20,20 +27,33 @@ const PhoneInput2 = ({ label }) => {
     setPhone(value);
     setFieldValue("phone", modifiedPhone);
     setFieldValue("phone_code", "+" + selectedCountry?.dialCode);
+    validateField("phone");
   };
 
-  const phoneInput = tv({
-    variants: {
-      error: {
-        true: "border-red-500  !border rounded-md",
-      },
-    },
-  });
-
+  // const phoneInput = tv({
+  //   variants: {
+  //     error: {
+  //       true: "border-red-500  !border rounded-md",
+  //     },
+  //   },
+  // });
+  const isError = !!touched.phone && !!errors.phone;
+  const generateClassName = () => {
+    const baseClasses = "your-base-classes";
+    const errorClasses = "phone-input-error";
+    return `${baseClasses} ${isError ? errorClasses : ""} ${customClass}`;
+  };
   return (
     <div className="col-span-1 ">
-      <div className="flex flex-col gap-1 ">
-        <label className="my-[0.6rem]"> {label} </label>
+      <div className="flex flex-col ">
+        <Label>
+          {label}
+          <span className="mx-1 text-red-500">
+            {required == "1" ? "*" : ""}
+          </span>
+        </Label>
+
+        {showIcon && <CardInfo messageInfo={messageInfo} />}
 
         <PhoneInput
           country={"sa"}
@@ -41,18 +61,21 @@ const PhoneInput2 = ({ label }) => {
           value={values?.phone ? values.phone_code + values.phone : phone}
           onChange={handlePhoneChange}
           // enableSearch
+          id="phone"
           placeholder="رقم الجوال"
+          name="phone"
           onBlur={handleBlur}
           countryCodeEditable={false}
           masks={{ sa: ".. ... ....", at: ".. ... ...." }}
           showDropdown={false}
           disableCountryCode={false}
-          name="phone"
+          inputProps={{
+            name: "phone",
+          }}
           disableDropdown={true}
-          className={phoneInput({
-            error: !!touched.phone && !!errors.phone,
-          })}
+          className={generateClassName()}
         />
+        
       </div>
 
       <div>

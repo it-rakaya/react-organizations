@@ -3,24 +3,23 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
 import { useState } from "react";
+import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
-import ButtonComp from "../../atoms/buttons/ButtonComp";
 import OrderMainData from "./OrderMainData";
 import { t } from "i18next";
-import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 
 export default function AddOrder({ setOpenAddFaculty }) {
   const [show, setShow] = useState(true);
   const queryClient = useQueryClient();
   const { orgData } = UseOrg();
-  
+
   const { mutate: AddOrder, isPending } = useMutate({
     mutationKey: [`create_new_orders`],
     endpoint: `orders`,
     onSuccess: (data) => {
       queryClient.refetchQueries(["my_orders"]);
-      notify("success");
+      notify("success"  , t("Order added successfully"));
       setOpenAddFaculty(false);
     },
     onError: (err) => {
@@ -47,34 +46,21 @@ export default function AddOrder({ setOpenAddFaculty }) {
           const formData = {
             facility_id: values.facility_id,
             organization_id: orgData?.organizations?.id,
+            country_ids:values?.country_ids,
             organization_service_id: values.organization_service_id,
             ...answers,
           };
           AddOrder(formData);
-        
         }}
       >
         {({ errors, values }) => (
           <Form>
-            <OrderMainData setShow={setShow} show={show} />
-            {!show && (
-              <div className="flex justify-center gap-5 mt-10">
-                <ButtonComp
-                  className={"w-auto"}
-                  variant="outlined"
-                  action={() => setShow(true)}
-                >
-                  {t("Back")}
-                </ButtonComp>
-                <ButtonComp
-                  className={"w-auto"}
-                  type={"submit"}
-                  loading={isPending}
-                >
-                  {t("Save")}
-                </ButtonComp>
-              </div>
-            )}
+            <OrderMainData
+              setShow={setShow}
+              show={show}
+              isPending={isPending}
+            />
+          
           </Form>
         )}
       </Formik>

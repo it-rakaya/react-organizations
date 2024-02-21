@@ -5,18 +5,32 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
+import { hexToRGBA } from "../../../utils/helpers";
+
 const CardStatsHorizontal = (props) => {
-  const {  item } = props;
+  const { item, className, classNameMain , classNameBox , itemClassName } = props;
+  const theme = useTheme();
 
   return (
     <>
-      <Card>
+      <Card className={className}>
         <CardContent
-          sx={{ py: (theme) => `${theme.spacing(4.125)} !important` }}
+          sx={{ py: (theme) => `${theme.spacing(4.125)} !important ` }}
+          className={classNameMain}
         >
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <div className="bg-[#c5b27917] rounded-md h-[40px] w-[40px] flex items-center justify-center ml-6 ">
-              <Icon path={item?.icon} size={1} className=" text-primary" />
+          <div className={`${classNameBox} flex items-center`}>
+            <div
+              style={{
+                background: hexToRGBA(theme?.palette?.primary?.main, 0.2),
+              }}
+              className={`${itemClassName} rounded-md h-[40px] w-[40px] flex items-center justify-center ltr:!mr-2 rtl:!ml-2  rtl:md:ml-6 `}
+            >
+              <Icon
+                path={item?.icon}
+                size={1}
+                style={{ color: theme?.palette?.primary?.main }}
+              />
             </div>
 
             <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -27,37 +41,21 @@ const CardStatsHorizontal = (props) => {
                   alignItems: "center",
                 }}
               >
-                <Typography variant="h6">{item.stats}</Typography>
-                {/* <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <Box
-                    sx={{
-                      display: "inline-flex",
-                      color:
-                        trend === "positive" ? "success.main" : "error.main",
-                    }}
-                  >
-                    <IconifyIcon
-                      icon={
-                        trend === "positive"
-                          ? "mdi:chevron-up"
-                          : "mdi:chevron-down"
-                      }
-                    />
-                  </Box>
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      color:
-                        trend === "positive" ? "success.main" : "error.main",
-                    }}
-                  >
-                    {item?.trendNumber}
-                  </Typography>
-                </Box> */}
+                <Typography
+                  variant="h6"
+                  className="font-semibold text-black dark:text-white !text-[12px] md:text-[16px]"
+                >
+                  {item.stats}
+                </Typography>
               </Box>
-              <Typography variant="caption">{item?.title}</Typography>
+              <Typography
+                variant="caption"
+                className="text-black dark:text-white text-[12px]"
+              >
+                {item?.title}
+              </Typography>
             </Box>
-          </Box>
+          </div>
         </CardContent>
       </Card>
     </>

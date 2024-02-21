@@ -1,32 +1,27 @@
 import Box from "@mui/material/Box";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import { Form, Formik } from "formik";
 import { t } from "i18next";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { isValidSaudiID } from "saudi-id-validator";
 import * as Yup from "yup";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
-import { useMutate } from "../../hooks/useMutate";
-import { notify } from "../../utils/toast";
-import ButtonComp from "../atoms/buttons/ButtonComp";
-import RegistrationMainData from "./RegistrationMainData";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import useFetch from "../../hooks/useFetch";
+import { useMutate } from "../../hooks/useMutate";
+import { isEmail } from "../../utils/helpers";
+import { notify } from "../../utils/toast";
 import ModalComp from "../atoms/ModalComp";
-import TermsConditionIcon from "../atoms/icons/TermsConditionIcon";
-import { isValidSaudiID } from "saudi-id-validator";
+import TermsAndCondition from "../molecules/TermsAndCondition";
+import RegistrationMainData from "./RegistrationMainData";
 
 export default function RegisterForm() {
-  const LinkStyled = styled(Link)(({ theme }) => ({
-    textDecoration: "none",
-    color: theme.palette.primary.main,
-  }));
   const { login } = useAuth();
-  const [checked, setChecked] = useState(false);
   const { orgData } = UseOrg();
   const [open, setOpen] = useState(false);
+  const theme = useTheme();
 
   const { mutate: sendRegister, isPending } = useMutate({
     endpoint: `register`,
@@ -40,6 +35,10 @@ export default function RegisterForm() {
     },
     formData: true,
   });
+  const { data: attachments_register } = useFetch({
+    endpoint: `attachments-labels/users`,
+    queryKey: ["attachments_register"],
+  });
 
   const ValidationSchema = () =>
     Yup.object({
@@ -49,92 +48,67 @@ export default function RegisterForm() {
         .test({
           name: "isValidSaudiID",
           test: (value) => isValidSaudiID(value),
-          message: t("Invalid Saudi ID"),
+          message: t("Please enter a valid ID number"),
         })
         .required(t("This field is required")),
-      email: Yup.string().trim().required(t("email is required")),
-      birthday: Yup.string().trim().required(t("birthday is required")),
+      email: Yup.string()
+        .required(t("email is required"))
+        .matches(isEmail, t("Please enter a valid email address")),
+      birthday: Yup.date().required(t("birthday is required")),
       phone: Yup.string()
         .matches(/^\d{9}$/, t("The phone number must be exactly 10 digits"))
         .required(t("This field is required")),
       nationality: Yup.string().trim().required(t("country is required")),
+      national_source: Yup.string()
+        .trim()
+        .required(t("national source is required")),
+
       national_id_expired: Yup.string()
         .trim()
-        .required(t("birthday is required")),
+        .required(t("national ID is required")),
     });
   const initialValues = {
     name: "",
     national_id: "",
     email: "",
     phone: "",
-    birthday: Date(),
+    birthday: "",
     nationality: "",
-    national_id_expired: Date(),
+    national_id_expired: "",
+    national_source: "",
     attachments: [],
     organization_id: orgData?.organizations?.id,
+  };
+  const handleSubmit = (values) => {
+    const validAttachments = values.attachments
+      .map((file, index) => ({ index, file }))
+      .filter((item) => typeof item.file !== "undefined" && item.file !== "deleted")
+    const attachments = validAttachments.map((item) => ({
+      [`attachments[${item?.index}]`]: item?.file,
+    }));
+
+    const combinedObject = {
+      ...values,
+      ...Object.assign({}, ...attachments),
+    };
+    delete combinedObject.attachments;
+    sendRegister(combinedObject);
   };
 
   return (
     <div>
       <Formik
-        onSubmit={(values) => {
-          const validAttachments = values.attachments
-            .map((file, index) => ({ index, file }))
-            .filter((item) => typeof item.file !== "undefined");
-          const attachments = validAttachments.map((item) => ({
-            [`attachments[${item?.index}]`]: item?.file,
-          }));
-
-          const combinedObject = {
-            ...values,
-            ...Object.assign({}, ...attachments),
-          };
-          delete combinedObject.attachments;
-          sendRegister(combinedObject);
-        }}
+        onSubmit={(values) => handleSubmit(values)}
         validationSchema={ValidationSchema}
         initialValues={initialValues}
       >
         <Form>
-          <RegistrationMainData />
-
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={checked}
-                onChange={() => setChecked(!checked)}
-              />
-            }
-            sx={{
-              mb: 4,
-              mt: 1.5,
-              "& .MuiFormControlLabel-label": { fontSize: "0.875rem" },
-            }}
-            label={
-              <div>
-                <Typography variant="body2" component="span">
-                  {t("I agree to ")}
-                </Typography>
-                <LinkStyled
-                  href="/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setOpen(true);
-                  }}
-                >
-                  {t("Terms & condition ")}
-                </LinkStyled>
-              </div>
-            }
+          <RegistrationMainData
+            attachments_register={attachments_register}
+            isPending={isPending}
+            setOpen={setOpen}
           />
-          <ButtonComp
-            type={"submit"}
-            loading={isPending}
-            disabled={!checked}
-            className={"!mt-0"}
-          >
-            {t("Sign up")}
-          </ButtonComp>
+
           <Box
             sx={{
               display: "flex",
@@ -144,14 +118,22 @@ export default function RegisterForm() {
               marginTop: "10px",
             }}
           >
-            <Typography sx={{ mr: 2, color: "text.secondary" }}>
+            <Typography
+              sx={{ mx: 2, color: "text.secondary" }}
+              className="text-black dark:text-white"
+            >
               {t("Already have an account?")}
             </Typography>
             <Link
               to="/login"
-              sx={{ color: "primary.main", textDecoration: "none" }}
+              style={{
+                color: theme.palette.primary.main,
+                textDecoration: "none",
+                mx: 2,
+              }}
+              className=" dark:text-white"
             >
-              {t("Sign in instead")}
+              {t("Login")}
             </Link>
           </Box>
         </Form>
@@ -162,49 +144,10 @@ export default function RegisterForm() {
         onClose={() => setOpen(false)}
         Children={
           <>
-            <div className="relative mt-10 ">
-              <div className="flex flex-col items-center justify-center gap-2 mb-3 ">
-                <TermsConditionIcon />
-                <h1 className="text-xl font-bold "> {t("Terms & condition ")}</h1>
-              </div>
-            </div>
-            {orgData?.organizations?.policies ? (
-              <div
-                className="main_content max-h-[450px] overflow-y-scroll scroll_main"
-                dangerouslySetInnerHTML={{
-                  __html: orgData?.organizations?.policies,
-                }}
-              ></div>
-            ) : (
-              <div className="main_content max-h-[450px] overflow-y-scroll scroll_main">
-                <p className="font-semibold text-center">
-                  بموافقتك على التسجيل بالمنصة فإنك تقر وتقبل الشروط والأحكام
-                  التالية:
-                </p>
-                <ul className="mx-4 text-start">
-                  <li className="my-2 text-[15px]">
-                    جميع البيانات والمرفقات المدخلة من قبلكم صحيحة ومحدثة ولا
-                    تتحمل المنصة أدنى مسؤولية في حالة كونها غير صحيحة أو غير
-                    مطابقة.
-                  </li>
-                  <li className="my-2 text-[15px]">
-                    في حالة إرفاق ملف في غير محله لغرض مِلء المتطلبات لن يتم
-                    النظر إليه ولن يتم قبولكم في المنصة.
-                  </li>
-                  <li className="my-2 text-[15px]">
-                    يجب أن يكون مستخدم المنصة يقدم خدمات الإعاشة ومصرح له بذلك.
-                  </li>
-                  <li className="my-2 text-[15px]">
-                    يحق للمنصة الإطلاع على البيانات المرفقة من قبلكم وحفظها
-                    لديها لأغراض تطوير المنصة.
-                  </li>
-                  <li className="my-2 text-[15px]">
-                    يخضع المسجل في المنصة لأحكامها وفي حالة تحديثها أو تعديلها
-                    سيتم إشعارك بذلك.
-                  </li>
-                </ul>
-              </div>
-            )}
+            <TermsAndCondition
+              hidden={true}
+              style={{ height: "calc(100vh - 20rem)" }}
+            />
           </>
         }
       />

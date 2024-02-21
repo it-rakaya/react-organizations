@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
-import { DataGrid } from "@mui/x-data-grid";
 import { useCallback, useState } from "react";
-import TableHeader from "./TableHeader";
 import { useIsRTL } from "../../hooks/useIsRTL";
-import { t } from "i18next";
+import TableComp from "../tantable/TableComp";
+import TableHeader from "./TableHeader";
+import { useMemo } from "react";
 
 const Table = ({
   columns,
@@ -13,6 +13,7 @@ const Table = ({
   textButton,
   actionButton,
   placeholderSearch,
+  disabled,
 }) => {
   const [value, setValue] = useState("");
 
@@ -27,50 +28,81 @@ const Table = ({
     setPaginationModel((prevModel) => ({ ...prevModel, page: 0 }));
   }, []);
 
-  // Filter rows based on the "name" property
-  const filteredRows = rows.filter((row) => {
-    const nameValue = String(row.name).toLowerCase();
-    return nameValue.includes(value.toLowerCase());
-  });
+  const filteredRows = useMemo(() => {
+    const searchFiltered = !value
+      ? rows
+      : rows.filter((row) =>
+          columns.some((column) => {
+            const cellValue = row[column.accessor];
+            return typeof cellValue === "string" ||
+              typeof cellValue === "number"
+              ? cellValue.toString().toLowerCase().includes(value.toLowerCase())
+              : false;
+          })
+        );
 
-  const customLocaleText = {
-    noRowsLabel: t("Not Found Data"),
-    pagination: {
-      rowsPerPage: "ssssssssssssssssssssssssss Rows per page:", // Add your custom "Rows per page" label here
-    },
-  };
+    const startIndex = paginationModel.page * paginationModel.pageSize;
+    const paginatedItems = searchFiltered.slice(
+      startIndex,
+      startIndex + paginationModel.pageSize
+    );
+    return paginatedItems;
+  }, [value, rows, columns, paginationModel]);
 
   return (
     <>
       <Grid item xs={12}>
-        <Card>
+        <Card dir={isRTL ? "rtl" : "ltr"}>
           <TableHeader
             handleFilter={handleFilter}
             value={value}
             textButton={textButton}
             actionButton={actionButton}
             placeholderSearch={placeholderSearch}
+            disabled={disabled}
           />
-          <DataGrid
+          {/* <DataGrid
             autoHeight
             rows={filteredRows}
+            
             columns={columns}
-            checkboxSelection
             disableRowSelectionOnClick
             pageSizeOptions={[10, 25, 50]}
             paginationModel={paginationModel}
-            style={{ width: "99%" }}
+            style={{ width: "99%", background: "transparent" }}
             onPaginationModelChange={setPaginationModel}
             disableColumnFilter={true}
+            disableColumnMenu={true}
             i18nIsDynamicList={isRTL}
             localeText={customLocaleText}
+            componentsProps={{
+              pagination: {
+                labelRowsPerPage: t("rows per page"),
+              },
+            }}
+            class
             sx={{
               "& .MuiDataGrid-columnHeaders": {
                 borderRadius: 0,
                 width: "100%",
               },
+              "& .MuiTablePagination-displayedRows": {
+                color: "black",
+              },
+              "& .MuiSelect-select.MuiTablePagination-select": {
+                color: "black",
+              },
             }}
-          />
+          /> */}
+          <div className="relative px-2 pt-3  pb-[10px]">
+            <TableComp
+              columns={columns}
+              data={filteredRows}
+              totalData={rows}
+              setPaginationModel={setPaginationModel}
+              paginationModel={paginationModel}
+            />
+          </div>
         </Card>
       </Grid>
     </>

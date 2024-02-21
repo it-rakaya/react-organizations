@@ -3,45 +3,81 @@ import { useFormikContext } from "formik";
 import { t } from "i18next";
 import Select from "react-select";
 import useFetch from "../../hooks/useFetch";
+import CardInfo from "./CardInfo";
+import Label from "./Label";
+import { useIsRTL } from "../../hooks/useIsRTL";
+import ReactSelect from "./Selects/ReactSelect";
 
-export default function SelectCitiesSaudi({ name, label, className , required }) {
-  const { setFieldValue , values } = useFormikContext();
+export default function SelectCitiesSaudi({
+  name,
+  label,
+  className,
+  required,
+  showIcon,
+  setShow,
+  setIndex,
+  index,
+  messageInfo,
+  images,
+}) {
+  const { values } = useFormikContext();
+  const isRTL = useIsRTL();
   const { data: cities } = useFetch({
     endpoint: `saudi-cities`,
     queryKey: ["saudi-cities"],
   });
   const options = cities?.cities.map((item) => ({
     value: item.id,
-    label: item.name,
+    label: isRTL ? item.name_ar : item?.name_en,
   }));
-  const selectedCity = options?.find(
-    (option) => option?.value == values[name]
-  );
+  const selectedCity = options?.find((option) => option?.value == values[name]);
 
   return (
     <div className={className}>
-      <label className="block my-[0.75rem]">{label}
-      <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
-      </label>
-      <div className="mt-3">
+      {/* <Label>
+        {label}
+        <span className="mx-1 text-red-500">{required == "1" ? "*" : ""}</span>
+      </Label>
+      {showIcon && (
+        <CardInfo
+          index={index}
+          setIndex={setIndex}
+          messageInfo={messageInfo}
+          setShow={setShow}
+          images={images}
+        />
+      )} */}
+      {/* <div className="">
         <Select
           options={options}
           name={name}
           value={selectedCity}
-          placeholder={t("Chose city")}
+          // placeholder={t("Chose city")}
+          placeholder={
+            <div className="select-placeholder-text">{t("Choose City")}</div>
+          }
           onChange={(option) => setFieldValue(name, option.value)}
+          noOptionsMessage={() => t("Not Found Data")}
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
               padding: "10px 0",
               borderRadius: " 8px",
+              borderWidth: "1px",
               background: "white",
               margin: "0",
+              height: "59px",
             }),
-            option: (baseStyles) => ({
+            option: (baseStyles, { isFocused, isSelected }) => ({
               ...baseStyles,
-              // background:"white" ,
+              background: isSelected ? "red" : isFocused ? "#eee" : "white",
               color: "black",
+              ":active": {
+                ...baseStyles[":active"],
+                backgroundColor: isSelected
+                  ? "red"
+                  : baseStyles[":active"].backgroundColor,
+              },
             }),
           }}
           theme={(theme) => ({
@@ -50,12 +86,30 @@ export default function SelectCitiesSaudi({ name, label, className , required })
             colors: {
               ...theme.colors,
               primary25: `#eee`,
-              primary:'#eee' 
+              primary: "#eee",
             },
           })}
+          classNames={{
+            control: () => "dark:bg-dark-primary dark:border-[#555d64]",
+            option: () => "dark:bg-dark-primary dark:text-white  ",
+          }}
           // defaultValue={{ value: values[name] , label:values[name] }}
         />
-      </div>
+      </div> */}
+      <ReactSelect
+        options={options}
+        selectedValue={selectedCity}
+        placeholder={t("Choose City")}
+        name={name}
+        label={label}
+        index={index}
+        setIndex={setIndex}
+        messageInfo={messageInfo}
+        setShow={setShow}
+        images={images}
+        required={required}
+        showIcon={showIcon}
+      />
     </div>
   );
 }
