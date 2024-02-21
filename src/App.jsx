@@ -36,7 +36,7 @@ const App = () => {
     fetch(manifestLink.href)
       .then((response) => response.json())
       .then((manifest) => {
-        manifest.start_url = window.location.href; // تحديث start_url
+        manifest.start_url = window.location.href;
         var blob = new Blob([JSON.stringify(manifest)], {
           type: "application/json",
         });
@@ -59,7 +59,7 @@ const App = () => {
             src: orgData?.organizations?.logo || "path/to/default/icon.png",
             sizes: "192x192",
             type: "image/png",
-            purpose: "any maskable",
+            purpose: "any",
           },
         ];
 
