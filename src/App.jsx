@@ -58,7 +58,7 @@ const App = () => {
           {
             src: orgData?.organizations?.logo || "path/to/default/icon.png",
             sizes: "192x192",
-            type: "image/png",
+            type: "image/x-icon",
             purpose: "any",
           },
         ];
