@@ -8,7 +8,7 @@ import { useIsRTL } from "./hooks/useIsRTL";
 import { AllRoutesProvider } from "./routing/allRoutes";
 const App = () => {
   const isRTL = useIsRTL();
-  const { orgData } = UseOrg();
+  const { orgData , isLoading ,  isSuccess } = UseOrg();
   const navigate = useNavigate();
 
   const updateSW = registerSW({
@@ -78,7 +78,7 @@ const App = () => {
   }, [orgData]);
 
   useEffect(() => {
-    if (!orgData?.organizations?.name_ar) {
+    if (!orgData?.organizations?.name_ar && !isLoading && isSuccess) {
       if (!orgData?.isOrganization) return navigate("/404");
     } else {
       navigate("/");
