@@ -1,14 +1,16 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useIsRTL } from "./hooks/useIsRTL";
-import { AllRoutesProvider } from "./routing/allRoutes";
 import { registerSW } from "virtual:pwa-register";
 import { UseOrg } from "./context/organization provider/OrganizationProvider";
+import { useIsRTL } from "./hooks/useIsRTL";
+import { AllRoutesProvider } from "./routing/allRoutes";
 const App = () => {
-  ///
   const isRTL = useIsRTL();
   const { orgData } = UseOrg();
+  const navigate = useNavigate();
+
   const updateSW = registerSW({
     onNeedRefresh() {},
     onOfflineReady() {},
@@ -74,6 +76,11 @@ const App = () => {
         manifestLink.href = newUrl;
       });
   }, [orgData]);
+
+  useEffect(() => {
+    if (!orgData?.isOrganization) return navigate("/404");
+  }, [orgData?.isOrganization]);
+
   return (
     <>
       <AllRoutesProvider />
