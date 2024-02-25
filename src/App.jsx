@@ -37,7 +37,6 @@ const App = () => {
   }, []);
   useEffect(() => {
     var manifestLink = document.querySelector('link[rel="manifest"]');
-
     fetch(manifestLink.href)
       .then((response) => response.json())
       .then((manifest) => {
@@ -68,8 +67,7 @@ const App = () => {
           manifestLink.href = newUrl;
         });
     }
-  }, [orgData]); 
-  
+  }, [orgData]);  
   useEffect(() => {
     if (
       !orgData?.organizations?.name_ar &&
