@@ -1,6 +1,6 @@
 {
-    "short_name": "Rakaya",
-    "name": "Rakaya",
+    "short_name": "test short_name",
+    "name": "test name",
     "icons": [
       {
         "src": "favicon.ico",
