@@ -55,15 +55,12 @@ const App = () => {
         .then(response => response.json())
         .then(manifest => {
           manifest.short_name = orgData?.organizations?.name || "Default Short Name";
-          manifest.name = orgData?.organizations?.name || "Default Name";
-  
-          // تحديث الأيقونات بناءً على orgData، إذا لزم الأمر
+          manifest.name = orgData?.organizations?.name || "Default Name";  
           manifest.icons.forEach(icon => {
             if (icon.sizes === "192x192" || icon.sizes === "512x512") {
               icon.src = orgData?.organizations?.logo || "path/to/default/icon.png";
             }
-          });
-  
+          });  
           manifest.background_color = orgData?.organizations?.backgroundColor || "#ffffff";
           manifest.theme_color = orgData?.organizations?.themeColor || "#000000";  
           const blob = new Blob([JSON.stringify(manifest)], { type: "application/json" });
