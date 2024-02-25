@@ -62,8 +62,8 @@ const App = () => {
     fetch(manifestLink.href)
       .then((response) => response.json())
       .then((manifest) => {
-        manifest.short_name = orgData?.organizations?.name || "Rakaya";
-        manifest.name = orgData?.organizations?.name || "Rakaya";
+        manifest.short_name = orgData?.organizations?.name || "test";
+        manifest.name = orgData?.organizations?.name || "test";
         manifest.start_url = orgData?.organizations?.domain;
 
         manifest.icons = [
