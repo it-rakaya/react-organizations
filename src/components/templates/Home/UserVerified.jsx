@@ -26,9 +26,13 @@ function UserVerified() {
     queryKey: ["facility_employees"],
   });
 
-  // تحقق من أن جميع الطلبات قد تم تحميلها وأن البيانات متاحة
-  const dataLoaded = !isFetchingOrders && !isFetchingFacility && !isFetchingEmployee && Orders && facilities && employees;
-
+  const dataLoaded =
+    !isFetchingOrders &&
+    !isFetchingFacility &&
+    !isFetchingEmployee &&
+    Orders &&
+    facilities &&
+    employees;
 
   const AllOrder = Orders?.all_user_orders.length;
   const AllFacilities = facilities?.user_facilities.length;
