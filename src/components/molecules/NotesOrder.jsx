@@ -33,7 +33,7 @@ function NotesOrder({ notes }) {
                     justifyContent: "space-between",
                   }}
                 >
-                  <div className=" w-full md:w-[85%] ltr:text-left ">
+                  <div className=" w-full md:w-[82%] ltr:text-left ">
                     <Typography
                       variant="caption"
                       className="font-semibold text-black dark:text-white"
