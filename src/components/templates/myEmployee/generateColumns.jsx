@@ -75,7 +75,8 @@ export const generateColumns = ({
         </Box>
       ),
       cellSize: {
-        maxWidth: "190px",
+        maxWidth: "200px",
+        width: "200px",
         height: "50px",
         margin: "auto",
         alignItems: "center",

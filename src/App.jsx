@@ -36,7 +36,6 @@ const App = () => {
   }, []);
   useEffect(() => {
     var manifestLink = document.querySelector('link[rel="manifest"]');
-
     fetch(manifestLink.href)
       .then((response) => response.json())
       .then((manifest) => {
@@ -48,60 +47,32 @@ const App = () => {
       });
   }, []);
   useEffect(() => {
-    const faviconLink = document.querySelector('link[rel="icon"]');
-    const appleTouchIconLink = document.querySelector(
-      'link[rel="apple-touch-icon"]'
-    );
-    if (faviconLink && orgData?.logo) {
-      faviconLink.href = orgData.logo;
-    }
-    if (appleTouchIconLink && orgData?.logo) {
-      appleTouchIconLink.href = orgData.logo;
-    }
-    var manifestLink = document.querySelector('link[rel="manifest"]');
-    fetch(manifestLink.href)
-      .then((response) => response.json())
-      .then((manifest) => {
-        manifest.short_name = orgData?.organizations?.name || "test";
-        manifest.name = orgData?.organizations?.name || "test";
-        manifest.start_url = orgData?.organizations?.domain;
-
-        manifest.icons = [
-          {
-            src: orgData?.organizations?.logo || "path/to/default/icon.png",
-            sizes: "192x192",
-            type: "image/png",
-            purpose: "any",
-          },
-        ];
-
-        manifest.background_color =
-          orgData?.organizations?.backgroundColor || "#ffffff";
-        manifest.theme_color = orgData?.organizations?.themeColor || "#000000";
-
-        var blob = new Blob([JSON.stringify(manifest)], {
-          type: "application/json",
+    const manifestLink = document.querySelector('link[rel="manifest"]');
+    if (manifestLink) {
+      fetch(manifestLink.href)
+        .then((response) => response.json())
+        .then((manifest) => {
+          manifest.short_name =
+            orgData?.organizations?.name || "Default Short Name";
+          manifest.name = orgData?.organizations?.name || "Default Name";
+          manifest.icons.forEach((icon) => {
+            if (icon.sizes === "192x192" || icon.sizes === "512x512") {
+              icon.src =
+                orgData?.organizations?.logo || "path/to/default/icon.png";
+            }
+          });
+          manifest.background_color =
+            orgData?.organizations?.backgroundColor || "#ffffff";
+          manifest.theme_color =
+            orgData?.organizations?.themeColor || "#000000";
+          const blob = new Blob([JSON.stringify(manifest)], {
+            type: "application/json",
+          });
+          const newUrl = URL.createObjectURL(blob);
+          manifestLink.href = newUrl;
         });
-        var newUrl = URL.createObjectURL(blob);
-        manifestLink.href = newUrl;
-      });
+    }
   }, [orgData]);
-  // useEffect(() => {
-
-  //   const manifestLink = document.querySelector('link[rel="manifest"]');
-  //   if (manifestLink) {
-  //     manifestLink.href = "/new/path/to/manifest.json";
-  //   }
-  //   const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-  //   if (themeColorMeta) {
-  //     themeColorMeta.content = "#000000"; // لون جديد
-  //   }
-  //   const keywordsMeta = document.querySelector('meta[name="keywords"]');
-  //   if (keywordsMeta) {
-  //     keywordsMeta.content = "كلمات مفتاحية جديدة, تغيير المحتوى";
-  //   }
-  // }, []);
-
   useEffect(() => {
     if (
       !orgData?.organizations?.name_ar &&

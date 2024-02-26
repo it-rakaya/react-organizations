@@ -33,7 +33,7 @@ function NotesOrder({ notes }) {
                     justifyContent: "space-between",
                   }}
                 >
-                  <div className="w-[85%]">
+                  <div className=" w-full md:w-[85%] ltr:text-left ">
                     <Typography
                       variant="caption"
                       className="font-semibold text-black dark:text-white"
@@ -45,7 +45,7 @@ function NotesOrder({ notes }) {
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1 mt-3 md:mt-0 ltr:text-left">
                     <Typography variant="caption text-black dark:text-white">
                       {item?.since}
                     </Typography>

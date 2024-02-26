@@ -21,9 +21,8 @@ export default function Orders() {
   const [orderId, setOrderId] = useState();
   const [detailsOrder, setDetailsOrder] = useState("");
   const isRTL = useIsRTL();
-
+  console.log("🚀 ~ Orders ~ isRTL:", isRTL)
   const { orgData } = UseOrg();
-
   const {
     data: Orders,
     isLoading,
@@ -51,7 +50,7 @@ export default function Orders() {
         setOpenCancelOrder,
         setOrderId,
       }),
-    [Orders, isRTL]
+    [Canceled, isRTL]
   );
 
   return (
