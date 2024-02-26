@@ -26,7 +26,7 @@ function useFetch({
   const baseURL = import.meta.env.VITE_BASE_URL;
 
   const query = useQuery({
-    queryKey,
+    queryKey: [...queryKey, isRTL],
 
     queryFn: () =>
       axios.get(`${baseURL}/${endpoint}`, config).then((res) => res.data),

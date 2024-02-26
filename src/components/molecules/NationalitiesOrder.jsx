@@ -16,7 +16,7 @@ function NationalitiesOrder({ data }) {
     <div className="mt-5">
       {data?.length ? (
         rows.map((row, rowIndex) => (
-          <div key={rowIndex} className="grid grid-cols-4 gap-3 mb-5 ify-center">
+          <div key={rowIndex} className="grid grid-cols-3 gap-3 mb-5 md:grid-cols-4 ify-center">
             {row.map((item, index) => (
               <div
                 className="col-span-1 p-1 px-2 text-center rounded-md"
