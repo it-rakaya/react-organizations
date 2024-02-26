@@ -15,7 +15,7 @@ function NotesOrder({ notes }) {
   return notes?.length ? (
     notes?.map((item) => (
       <>
-        <CardContent style={{ height: " calc(100vh - 33rem)" }} className="overflow-y-scroll">
+        <CardContent style={{ height: " calc(100vh - 32rem)" }} className="overflow-y-scroll">
           <Timeline>
             <TimelineItem>
               <TimelineSeparator>
