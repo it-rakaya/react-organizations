@@ -15,7 +15,7 @@ function NotesOrder({ notes }) {
   return notes?.length ? (
     notes?.map((item) => (
       <>
-        <CardContent>
+        <CardContent style={{ height: " calc(100vh - 33rem)" }} className="overflow-y-scroll">
           <Timeline>
             <TimelineItem>
               <TimelineSeparator>
@@ -29,7 +29,7 @@ function NotesOrder({ notes }) {
                     display: "flex",
                     flexWrap: "wrap",
                     alignItems: "start",
-                    gap:"10px",
+                    gap: "10px",
                     justifyContent: "space-between",
                   }}
                 >
@@ -65,7 +65,9 @@ function NotesOrder({ notes }) {
       <div>
         <TermsConditionIcon />
       </div>
-      <p className="mt-10 text-black dark:text-white ">{t("There is no notes")}</p>
+      <p className="mt-10 text-black dark:text-white ">
+        {t("There is no notes")}
+      </p>
     </div>
   );
 }
