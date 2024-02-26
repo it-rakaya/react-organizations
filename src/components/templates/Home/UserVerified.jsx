@@ -12,16 +12,16 @@ import Loading from "../../molecules/Loading";
 function UserVerified() {
   const { user } = useAuth();
   const { orgData } = UseOrg();
-  const { data: Orders, isFetching } = useFetch({
+  const { data: Orders, isFetching , isSuccess , isPending } = useFetch({
     endpoint: `orders?organization_id=${orgData?.organizations?.id}`,
     queryKey: ["my_orders"],
     enabled: !!orgData?.organizations?.id,
   });
-  const { data: facilities } = useFetch({
+  const { data: facilities , isFetching:FetchingFacility } = useFetch({
     endpoint: `facilities`,
     queryKey: ["facilities"],
   });
-  const { data: employees } = useFetch({
+  const { data: employees , isFetching:FetchingEmployee } = useFetch({
     endpoint: `facility-employees`,
     queryKey: ["facility_employees"],
   });
@@ -50,7 +50,7 @@ function UserVerified() {
       icon: mdiPoll,
     },
   ];
-  if (isFetching) return <Loading />;
+  if ( isFetching && FetchingFacility && FetchingEmployee) return <Loading />;
   return (
     <div>
       <div
