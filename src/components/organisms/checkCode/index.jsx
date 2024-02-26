@@ -14,6 +14,7 @@ export default function CheckCode({
   sendOTP,
   userData,
   login,
+  LoginData,
 }) {
   const [values, setValues] = useState(["", "", "", ""]);
   const [availableResetCode, setAvailableResetCode] = useState(false);
@@ -30,7 +31,9 @@ export default function CheckCode({
   useEffect(() => {
     if ("OTPCredential" in window) {
       window.addEventListener("DOMContentLoaded", () => {
-        const input = document.querySelector('input[autocomplete="one-time-code"]');
+        const input = document.querySelector(
+          'input[autocomplete="one-time-code"]'
+        );
         if (!input) return;
         const ac = new AbortController();
 
@@ -47,6 +50,11 @@ export default function CheckCode({
             if (otpCode.length == 4) {
               setValueOTP(otp.code);
             }
+            LoginData({
+              ...values,
+              otp: otp.code,
+              organization_id: orgData?.organizations?.id,
+            });
           })
           .catch(() => {});
 

@@ -84,6 +84,7 @@ export default function LoginForm({ setHideSection }) {
                 setValueOTP={setValueOTP}
                 sendOTP={sendOTP}
                 login={true}
+                LoginData={LoginData}
               />
             )}
             <div className="bg-transparent rounded-xl">
