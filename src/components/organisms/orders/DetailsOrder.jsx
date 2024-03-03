@@ -132,7 +132,7 @@ export default function DetailsOrder({ data }) {
           <div className="">
             <TabPanel value="1" className="pt-0">
               <div>
-                <div className="overflow-y-scroll" style={{ height: "calc(-30rem + 100vh)" }}>
+                <div className="overflow-y-scroll" style={{ height: "calc(-28rem + 100vh)" }}>
                   <NotesOrder notes={data?.notes} />
                 </div>
               </div>
