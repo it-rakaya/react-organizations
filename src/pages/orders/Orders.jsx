@@ -21,7 +21,6 @@ export default function Orders() {
   const [orderId, setOrderId] = useState();
   const [detailsOrder, setDetailsOrder] = useState("");
   const isRTL = useIsRTL();
-  console.log("🚀 ~ Orders ~ isRTL:", isRTL)
   const { orgData } = UseOrg();
   const {
     data: Orders,
@@ -30,7 +29,7 @@ export default function Orders() {
     refetch,
   } = useFetch({
     endpoint: `orders?organization_id=${orgData?.organizations?.id}`,
-    queryKey: ["my_orders"],
+    queryKey: ["my_orders" , isRTL],
     enabled: !!orgData?.organizations?.id,
   });
 
