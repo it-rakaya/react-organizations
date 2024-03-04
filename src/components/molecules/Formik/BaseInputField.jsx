@@ -3,7 +3,7 @@ import {
   FormControl,
   IconButton,
   InputAdornment,
-  OutlinedInput
+  OutlinedInput,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useFormikContext } from "formik";
@@ -107,51 +107,7 @@ export default function BaseInputField({
               images={images}
             />
           )}
-          {/* <TextField
-            placeholder={placeholder}
-            {...props}
-            error={touched[name] && !!errors[name]}
-            fullWidth
-            // label={placeholder}
-            value={values[name]}
-    
-      
-            sx={{
-              background: "transparent",
-              "& .MuiInputBase-input::placeholder": {
-                opacity: 1,
-              },
-            }}
-            type={type}
-            onBlur={handleBlur}
-            InputProps={
-              type === "custom"
-                ? {
-                    inputProps: { maxLength: maxNum || 10 },
-                    onChange: handleChangeNumber,
-                  }
-                : type === "IBAN"
-                ? {
-                    // inputComponent: BaseInputMask,
-                    inputProps: { ref: ibanRef },
-                    onChange: handleChangeNumber,
-                  }
-                : { onChange: handleChange }
-            }
-            name={name}
-            style={{
-            //   '&  .MuiInputLabel-formControl': {
-            //     color:"red",
-            // },
-              borderColor: !!touched[name] && !!errors[name] ? "red" : "",
-              height: "59px",
 
-            }}
-            sty
-            className={`${className} d "my-3 code " ${
-              !!touched[name] && !!errors[name] && "border-red-500 "
-            }`}
-          /> */}
           {type == "IBAN" ? (
             <BaseInputMask />
           ) : (
@@ -159,6 +115,7 @@ export default function BaseInputField({
               type="text"
               value={values[name]}
               onChange={type === "custom" ? handleChangeNumber : handleChange}
+              inputMode={type == "custom" ? "numeric" : "text"} 
               placeholder={placeholder}
               name={name}
               onFocus={() => setIsFocused(true)}

@@ -6,9 +6,8 @@ import { t } from "i18next";
 import defaultImage from "../../../../public/profile pic1.png";
 import { useIsRTL } from "../../../hooks/useIsRTL";
 import {
-  convertArabicToEnglish,
   convertToHijri,
-  padWithZero,
+  padWithZero
 } from "../../../utils/helpers";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";

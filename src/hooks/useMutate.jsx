@@ -16,6 +16,7 @@ export function useMutate({
   const token = user_token;
   const authorizationHeader = `Bearer ${token}`;
   const isRTL = useIsRTL();
+  const baseURL = import.meta.env.VITE_BASE_URL;
 
   const {
     data,
@@ -30,7 +31,7 @@ export function useMutate({
     mutationFn: (values) => {
       const requestConfig = {
         method: method.toUpperCase(), // Use the specified method
-        url: `https://front-api.rmcc.sa/api/${endpoint}`,
+        url: `${baseURL}/${endpoint}`,
         data: values,
         headers: formData
           ? {
@@ -42,7 +43,6 @@ export function useMutate({
               "Content-Type": "application/json; charset=utf-8",
               Authorization: authorizationHeader,
               "Accept-Language": isRTL ? "ar" : "en",
-
             },
       };
 

@@ -39,34 +39,34 @@ function TermsAndCondition({ checked, setChecked, hidden, style }) {
             )}
           </p>
           <ul className="mx-4 text-start">
-            <li className="my-2 text-[15px] text-black dark:text-white">
+            <li className="my-2 text-[15px] text-black dark:text-white text-justify">
               {t("TermsOne")}
             </li>
-            <li className="my-2 text-[15px] text-black dark:text-white">
+            <li className="my-2 text-[15px] text-black dark:text-white text-justify">
               {t("TermsTwo")}
             </li>
-            <li className="my-2 text-[15px] text-black dark:text-white">
+            <li className="my-2 text-[15px] text-black dark:text-white text-justify">
               {t("TermsThree")}
             </li>
-            <li className="my-2 text-[15px] text-black dark:text-white">
+            <li className="my-2 text-[15px] text-black dark:text-white text-justify">
               {t("TermsFour")}
             </li>
-            <li className="my-2 text-[15px] text-black dark:text-white">
+            <li className="my-2 text-[15px] text-black dark:text-white text-justify">
               {t("TermsFive")}
             </li>
-            <li className="my-2 text-[15px] text-black dark:text-white">
+            <li className="my-2 text-[15px] text-black dark:text-white text-justify">
               {t("TermsSix")}
             </li>
-            <li className="my-2 text-[15px] text-black dark:text-white">
+            <li className="my-2 text-[15px] text-black dark:text-white text-justify">
               {t("TermsSeven")}
             </li>
-            <li className="my-2 text-[15px] text-black dark:text-white">
+            <li className="my-2 text-[15px] text-black dark:text-white text-justify">
               {t("TermsEight")}
             </li>
-            <li className="my-2 text-[15px] text-black dark:text-white">
+            <li className="my-2 text-[15px] text-black dark:text-white text-justify">
               {t("TermsNinth")}
             </li>
-            <li className="my-2 text-[15px] text-black dark:text-white">
+            <li className="my-2 text-[15px] text-black dark:text-white text-justify">
               {t("TermsTen")}
             </li>
           </ul>
