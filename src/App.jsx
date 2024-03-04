@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -9,6 +10,7 @@ import { AllRoutesProvider } from "./routing/allRoutes";
 const App = () => {
   const isRTL = useIsRTL();
   const { orgData, isLoading, isSuccess, isRefetching } = UseOrg();
+
   const navigate = useNavigate();
 
   const updateSW = registerSW({
@@ -78,13 +80,19 @@ const App = () => {
       !orgData?.organizations?.name_ar &&
       !isLoading &&
       !isRefetching &&
-      isSuccess
+      !isSuccess
     ) {
       if (!orgData?.isOrganization) return navigate("/404");
-    } else {
+    } else if (
+      !orgData?.isOrganization?.name &&
+      !isLoading &&
+      !isRefetching &&
+      !isSuccess
+    ) {
       // navigate("/");
+      navigate("/404");
     }
-  }, []);
+  }, [isLoading, isRefetching, isSuccess, navigate, orgData]);
 
   return (
     <>
