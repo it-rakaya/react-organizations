@@ -120,7 +120,7 @@ function FacilityControl({
             <TermsAndCondition
               checked={checked}
               setChecked={setChecked}
-              style={{ height: "calc(100vh - 3rem)" }}
+              style={{ height: "calc(100vh - 25rem)" }}
             />
 
             <ButtonComp
