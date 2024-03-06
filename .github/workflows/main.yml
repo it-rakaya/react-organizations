@@ -26,6 +26,7 @@ jobs:
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
           cd /var/www/html/react/africa.rmcc.sa/react-organizations
+          git restore .
           git pull
           yarn 
           yarn build
