@@ -101,7 +101,7 @@ export default function CheckCode({
           <p className="text-center dark:text-white mt-[-10px]">
             {t("Verification code has been sent to you")}
           </p>
-          <p className="dark:text-white">{number}</p>
+          {/* <p className="dark:text-white">{number}</p> */}
           <div>
             <PinInput
               //  key={values.join("")} // فيه مشكلة في الويب لو استخدمن السطر دا

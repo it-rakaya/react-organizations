@@ -87,53 +87,32 @@ export const formatIban = (value) => {
   }
   return value?.replace(/(.{4})/g, "$1 ").trim();
 };
-
 export const calculateHajjRemainingTimeFormatted = () => {
   const today = new Date();
   const currentYear = today.getFullYear();
   const currentMonth = today.getMonth() + 1; // JavaScript months are 0-indexed.
   const currentDate = today.getDate();
-
   const todayHijri = toHijri(currentYear, currentMonth, currentDate);
   let hajjYear = todayHijri.hy;
-
-  let hajjHijriDate = { hy: hajjYear, hm: 12, hd: 8 };
-  let hajjGregorian = toGregorian(
-    hajjHijriDate.hy,
-    hajjHijriDate.hm,
-    hajjHijriDate.hd
-  );
-  let hajjDate = new Date(
-    hajjGregorian.gy,
-    hajjGregorian.gm - 1,
-    hajjGregorian.gd
-  );
-
+  const hajjHijriDate = { hy: hajjYear, hm: 12, hd: 8 };
+  let hajjGregorian = toGregorian(hajjHijriDate.hy, hajjHijriDate.hm, hajjHijriDate.hd);
+  let hajjDate = new Date(hajjGregorian.gy, hajjGregorian.gm - 1, hajjGregorian.gd);
   if (today > hajjDate) {
     hajjYear++;
-    hajjHijriDate.hy = hajjYear;
-    hajjGregorian = toGregorian(
-      hajjHijriDate.hy,
-      hajjHijriDate.hm,
-      hajjHijriDate.hd
-    );
-    hajjDate = new Date(
-      hajjGregorian.gy,
-      hajjGregorian.gm - 1,
-      hajjGregorian.gd
-    );
+    const nextHajjHijriDate = { hy: hajjYear, hm: 12, hd:8 };
+    const nextHajjGregorian = toGregorian(nextHajjHijriDate.hy, nextHajjHijriDate.hm, nextHajjHijriDate.hd);
+    hajjDate = new Date(nextHajjGregorian.gy, nextHajjGregorian.gm - 1, nextHajjGregorian.gd);
   }
 
-  const oneDay = 24 * 60 * 60 * 1000;
-  const oneHour = 60 * 60 * 1000;
   const diff = hajjDate - today;
-  const daysRemaining = Math.floor(diff / oneDay);
-  const hoursRemaining = Math.floor((diff % oneDay) / oneHour);
-  const monthsRemaining = Math.floor(daysRemaining / 30);
-  const daysAfterMonths = daysRemaining % 30;
+  const daysRemaining = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hoursRemaining = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const monthsRemaining = Math.floor(daysRemaining / 29.53); // Average lunar month length
+  const daysAfterMonths = daysRemaining % 29.53;
 
-  return { monthsRemaining, daysAfterMonths, hoursRemaining };
+  return { monthsRemaining, daysAfterMonths: Math.round(daysAfterMonths), hoursRemaining };
 };
+
 
 export function autoReadSMS(cb) {
    const signal = new AbortController();
