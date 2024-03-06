@@ -5,10 +5,7 @@ import { styled } from "@mui/material/styles";
 import { t } from "i18next";
 import defaultImage from "../../../../public/profile pic1.png";
 import { useIsRTL } from "../../../hooks/useIsRTL";
-import {
-  convertToHijri,
-  padWithZero
-} from "../../../utils/helpers";
+import { convertToHijri, padWithZero } from "../../../utils/helpers";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
 import PreviewID from "../../atoms/icons/PreviewID";
@@ -54,36 +51,6 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
               />
             </ButtonComp>
             <div>
-              {/* <div className="" >
-                {!user?.value?.toLowerCase().endsWith(".pdf") ? (
-                  <div
-                    className="rounded-sm "
-                    style={{ background: theme?.palette?.primary.main }}
-                  >
-                    <PadgePreview url={item?.value} label={item?.label} />
-                  </div>
-                ) : (
-                  <div
-                    className="px-1 rounded-sm bg-primary"
-                    style={{
-                      background: theme?.palette?.primary.main,
-                      opacity: "0,8",
-                    }}
-                  >
-                    <a
-                      href={item?.value}
-                      download={item?.value}
-                      className=""
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <p className="text-[10px] text-white px-1">
-                        {item?.label}
-                      </p>
-                    </a>
-                  </div>
-                )}
-              </div> */}
               {/* <PreviewID /> */}
               <div className="">
                 {!user?.national_id_attachment
