@@ -71,33 +71,40 @@ export default function LoginForm({ setHideSection }) {
           initialValues={{ phone: "", phone_code: "", otp: "" }}
           validationSchema={ValidationSchema}
         >
-          <Form>
-            {!verifyPhone && (
-              <>
-                <PhoneInput2 name="phone" />
-              </>
-            )}
-            {verifyPhone && (
-              <CheckCode
-                number={dataValue?.value}
-                valuesForm={valuesForm}
-                setValueOTP={setValueOTP}
-                sendOTP={sendOTP}
-                login={true}
-                LoginData={LoginData}
-              />
-            )}
-            <div className="bg-transparent rounded-xl">
-              <ButtonComp
-                loading={loadingLogin || isPending}
-                disabled={valueOTP && valueOTP?.length != 4 ? true : false}
-                className={"ltr:!mt-5 "}
-                action={() => setHideSection(true)}
-              >
-                {t("Login")}
-              </ButtonComp>
-            </div>
-          </Form>
+          {(formik) => (
+            <Form
+              onKeyDown={(e) => {
+                // إذا تم الضغط على زر Enter ولم يكن هناك حقل نموذج نشط يمنع إرسال النموذج
+                if (e.key === "Enter" && !e.isDefaultPrevented()) {
+                  e.preventDefault(); // منع السلوك الافتراضي
+                  formik.handleSubmit(); // إرسال النموذج يدويًا
+                }
+              }}
+            >
+              {!verifyPhone && <PhoneInput2 name="phone" />}
+              {verifyPhone && (
+                <CheckCode
+                  number={dataValue?.value}
+                  valuesForm={valuesForm}
+                  setValueOTP={setValueOTP}
+                  sendOTP={sendOTP}
+                  login={true}
+                  LoginData={LoginData}
+                />
+              )}
+              <div className="bg-transparent rounded-xl">
+                <ButtonComp
+                  type="submit"
+                  loading={loadingLogin || isPending}
+                  disabled={valueOTP && valueOTP?.length != 4 ? true : false}
+                  className={"ltr:!mt-5 "}
+                  action={() => setHideSection(true)}
+                >
+                  {t("Login")}
+                </ButtonComp>
+              </div>
+            </Form>
+          )}
         </Formik>
       </div>
     </>
