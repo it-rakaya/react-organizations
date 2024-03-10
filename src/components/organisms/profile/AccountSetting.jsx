@@ -10,6 +10,7 @@ import { isEmail } from "../../../utils/helpers";
 import { notify } from "../../../utils/toast";
 import MainHeader from "../../atoms/MainHeader";
 import AccountSettingMainData from "./AccountSettingMainData";
+import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
 export default function AccountSetting({
   userData,
@@ -21,6 +22,7 @@ export default function AccountSetting({
     endpoint: `attachments-labels/users`,
     queryKey: ["attachments_register"],
   });
+  const { orgData } = UseOrg();
 
   const AllAttachmentsId = attachments_register?.attachment_labels?.map(
     (item) => item?.id
@@ -40,6 +42,7 @@ export default function AccountSetting({
     national_id_expired: userData?.national_id_expired,
     national_id_expired_hj: userData?.national_id_expired,
     // favourit_organizations: userData?.favourit_organizations,
+    organization_id: orgData?.organizations?.id,
   };
 
   const ValidationSchema = () =>
