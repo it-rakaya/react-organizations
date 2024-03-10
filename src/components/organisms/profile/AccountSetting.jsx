@@ -10,7 +10,7 @@ import { isEmail } from "../../../utils/helpers";
 import { notify } from "../../../utils/toast";
 import MainHeader from "../../atoms/MainHeader";
 import AccountSettingMainData from "./AccountSettingMainData";
-import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 
 export default function AccountSetting({
   userData,
