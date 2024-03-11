@@ -57,7 +57,11 @@ function Signature() {
         </FormControl>
       </div>
       <div className="flex justify-center">
-        <ButtonComp disabled={!checked} action={() => navigate("/register")} className={"!w-[173px]"}>
+        <ButtonComp
+          disabled={!checked}
+          action={() => navigate("/register")}
+          className={"!w-[173px]"}
+        >
           {t("Register")}
         </ButtonComp>
       </div>

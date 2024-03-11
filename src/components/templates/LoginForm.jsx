@@ -32,7 +32,7 @@ export default function LoginForm({ setHideSection }) {
     },
   });
 
-  const { mutate: sendOTP, isPending } = useMutate({
+  const { mutate: sendOTP, isPending  , uploadProgress} = useMutate({
     mutationKey: [`send-otp`],
     endpoint: `send-otp`,
     onSuccess: (data) => {
@@ -99,6 +99,7 @@ export default function LoginForm({ setHideSection }) {
                   disabled={valueOTP && valueOTP?.length != 4 ? true : false}
                   className={"ltr:!mt-5 "}
                   action={() => setHideSection(true)}
+                  status={uploadProgress}
                 >
                   {t("Login")}
                 </ButtonComp>

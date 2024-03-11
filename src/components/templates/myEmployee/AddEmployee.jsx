@@ -8,6 +8,7 @@ import useFetch from "../../../hooks/useFetch";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import EmployeeMainData from "./EmployeeMainData";
+import Progress from "../../molecules/Progress";
 
 export default function AddEmployee({
   facultyID,
@@ -18,7 +19,7 @@ export default function AddEmployee({
 }) {
   const { orgData } = UseOrg();
 
-  const { mutate: AddEmployee, isPending: loadingEmployee } = useMutate({
+  const { mutate: AddEmployee, isPending: loadingEmployee , uploadProgress } = useMutate({
     mutationKey: [`facility_employees`],
     endpoint: `facility-employees`,
     onSuccess: () => {
@@ -36,6 +37,7 @@ export default function AddEmployee({
     },
     formData: true,
   });
+  console.log("🚀 ~ uploadProgress:", uploadProgress)
   const { data: attachments_facility_employees } = useFetch({
     endpoint: `attachments-labels/facility_employees`,
     queryKey: ["attachments_facility_employees"],
@@ -95,7 +97,9 @@ export default function AddEmployee({
                 showSelectFacility={showSelectFacility}
                 attachments_facility_employees={attachments_facility_employees}
                 loadingEmployee={loadingEmployee}
+                uploadProgress={uploadProgress}
               />
+              
             </Form>
           </>
         )}

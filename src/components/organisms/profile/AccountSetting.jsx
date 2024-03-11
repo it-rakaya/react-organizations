@@ -72,7 +72,7 @@ export default function AccountSetting({
         .trim()
         .required(t("national ID is required")),
     });
-  const { mutate: UpdateUser, isPending } = useMutate({
+  const { mutate: UpdateUser, isPending , uploadProgress } = useMutate({
     mutationKey: [`users_update`],
     endpoint: `users/update`,
     onSuccess: (data) => {
@@ -143,6 +143,7 @@ export default function AccountSetting({
             userData={userData}
             isPending={isPending}
             attachments_register={attachments_register}
+            uploadProgress={uploadProgress}
           />
         </Form>
       </Formik>

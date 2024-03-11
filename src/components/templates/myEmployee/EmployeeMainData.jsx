@@ -1,26 +1,26 @@
 /* eslint-disable react/prop-types */
 import { mdiAccountBoxOutline, mdiFileDocumentOutline } from "@mdi/js";
 import Icon from "@mdi/react";
-import { Divider } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { useFormikContext } from "formik";
 import { t } from "i18next";
+import { useIsRTL } from "../../../hooks/useIsRTL";
+import Line from "../../atoms/Line";
 import MainHeader from "../../atoms/MainHeader";
+import ButtonComp from "../../atoms/buttons/ButtonComp";
 import BaseInputField from "../../molecules/Formik/BaseInputField";
 import SelectFacilities from "../../molecules/SelectFacilities";
 import SelectPositions from "../../molecules/SelectPositions";
 import UploadDoc from "../../molecules/uploadImage/UploadDoc";
-import { useFormikContext } from "formik";
-import ButtonComp from "../../atoms/buttons/ButtonComp";
-import { useIsRTL } from "../../../hooks/useIsRTL";
-import Line from "../../atoms/Line";
 export default function EmployeeMainData({
   showSelectFacility,
   attachments_facility_employees,
   loadingEmployee,
+  uploadProgress
 }) {
   const theme = useTheme();
   const { values, errors } = useFormikContext();
-  const isRTL = useIsRTL()
+  const isRTL = useIsRTL();
   const requiredInputs =
     attachments_facility_employees?.attachment_labels
       ?.filter((item) => item?.is_required === "1")
@@ -93,7 +93,7 @@ export default function EmployeeMainData({
             </div>
           </div>
           <div className="col-span-12 pb-8 pt-9">
-          <Line/>
+            <Line />
           </div>
           <h1 className="flex col-span-12 gap-1 pb-3 text-xl font-medium item-center dark:text-white">
             <Icon path={mdiFileDocumentOutline} size={1} />
@@ -105,7 +105,7 @@ export default function EmployeeMainData({
               // <div className="" >
               <UploadDoc
                 key={item?.id}
-                label={isRTL ? item?.placeholder_ar :item?.placeholder_en }
+                label={isRTL ? item?.placeholder_ar : item?.placeholder_en}
                 name={`attachments[${item?.id}]`}
                 placeholder={t("please upload photo")}
                 className="!justify-start mt-1 rounded-md text-start"
@@ -117,17 +117,21 @@ export default function EmployeeMainData({
           </div>
         </div>
       </div>
+     
+
       <div className="flex justify-end px-3 md:px-8">
         <ButtonComp
           loading={loadingEmployee}
           type="submit"
           variant="contained"
           className=" !rounded-md  !w-auto  mt-5"
+          status={uploadProgress}
           disabled={
             values?.national_id == "" ||
             Object.entries(errors).length > 0 ||
             !isValid
           }
+          progress
         >
           {t("Add")}
         </ButtonComp>

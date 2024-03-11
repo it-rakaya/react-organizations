@@ -15,7 +15,7 @@ export default function VerifyUser({ userData, dataValue, setOpen, sendOTP }) {
   const [valueOTP, setValueOTP] = useState("");
   const { orgData } = UseOrg();
 
-  const { mutate: verify_user, isPending: loadingVerify } = useMutate({
+  const { mutate: verify_user, isPending: loadingVerify , uploadProgress } = useMutate({
     mutationKey: [`verify_user`],
     endpoint: `verify`,
     onSuccess: (data) => {
@@ -59,6 +59,7 @@ export default function VerifyUser({ userData, dataValue, setOpen, sendOTP }) {
               type="submit"
               variant="contained"
               className={"!w-[160px] h-[40px] !m-auto mb-5 !mt-5 "}
+              status={uploadProgress}
             >
               {t("Activate")}
             </ButtonComp>

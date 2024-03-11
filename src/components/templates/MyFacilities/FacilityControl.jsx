@@ -20,7 +20,7 @@ function FacilityControl({
 }) {
   const [checked, setChecked] = useState(update ? true : false);
   const { values, dirty } = useFormikContext();
- 
+
   const { orgData } = UseOrg();
   const navigate = useNavigate();
   const endpoint = `facilities`;
@@ -29,7 +29,11 @@ function FacilityControl({
     (item) => item?.attachment_label_id
   );
 
-  const { mutate: addFacility, isPending: loadingAddFacility } = useMutate({
+  const {
+    mutate: addFacility,
+    isPending: loadingAddFacility,
+    uploadProgress,
+  } = useMutate({
     mutationKey: [`add_facilities`],
     endpoint: update ? updateEndpoint : endpoint,
     onSuccess: () => {
@@ -93,7 +97,7 @@ function FacilityControl({
       }));
 
     let combinedObject = update
-      ? { ...changedValues , ...Object?.assign({}, ...attachments) }
+      ? { ...changedValues, ...Object?.assign({}, ...attachments) }
       : { ...values, iban: updatedIban, ...Object?.assign({}, ...attachments) };
     combinedObject.organization_id = orgData?.organizations?.id;
 
@@ -105,7 +109,6 @@ function FacilityControl({
     }
     delete combinedObject?.attachments;
 
-
     addFacility(combinedObject);
   };
 
@@ -114,7 +117,8 @@ function FacilityControl({
       <ModalComp
         open={open}
         className="!max-w-[500px]  "
-        onClose={() => setOpen(false)}
+        // hiddenMobile={true}
+        onClose={() => (loadingAddFacility ? {} : setOpen(false))}
         Children={
           <div className=" !flex gap-3 !items-center !justify-center !flex-col">
             <TermsAndCondition
@@ -122,17 +126,20 @@ function FacilityControl({
               setChecked={setChecked}
               style={{ height: "calc(100vh - 25rem)" }}
             />
-
-            <ButtonComp
-              type={"submit"}
-              action={handleSubmit}
-              loading={loadingAddFacility}
-              className={"w-auto mt-1"}
-              disabled={!checked || !dirty}
-              variant="contained"
-            >
-              {update ? t("Edit") : t("Save")}
-            </ButtonComp>
+            <div className="flex justify-center w-full" style={{padding: "0px 15px 0px 23px" }}>
+              <ButtonComp
+                type={"submit"}
+                action={handleSubmit}
+                loading={loadingAddFacility}
+                className={"w-auto mt-1"}
+                disabled={!checked || !dirty}
+                variant="contained"
+                status={uploadProgress}
+                progress
+              >
+                {update ? t("Edit") : t("Save")}
+              </ButtonComp>
+            </div>
           </div>
         }
       />
