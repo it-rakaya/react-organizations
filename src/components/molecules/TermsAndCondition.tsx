@@ -13,7 +13,7 @@ function TermsAndCondition({ checked, setChecked, hidden, style }) {
   const { orgData } = UseOrg();
 
   return (
-    <div className="px-2 ">
+    <div className="px-3">
       <div className="flex flex-col items-center justify-center gap-5">
         <div className="">
           <TermsConditionIcon className={""} />
@@ -25,7 +25,7 @@ function TermsAndCondition({ checked, setChecked, hidden, style }) {
 
       {orgData?.organizations?.policies ? (
         <div
-          className="mt-5 overflow-y-scroll  main_content scroll_main"
+          className="mt-5 overflow-y-scroll main_content scroll_main"
           style={style}
           dangerouslySetInnerHTML={{
             __html: orgData?.organizations?.policies,
