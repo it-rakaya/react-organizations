@@ -230,7 +230,7 @@ function UploadDoc({
                   className="text-xl dark:text-white"
                 />
                 <Typography className="!text-black file-name dark:!text-white">
-                  {files[0]?.name.slice(0, 15)}
+                  {files[0]?.name.slice(0, 18)}
                 </Typography>
                 {/* <span className="text-sm">اضغط هنا لمشاهدة المرفق</span> */}
               </div>

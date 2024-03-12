@@ -7,7 +7,7 @@ import ButtonComp from "../../atoms/buttons/ButtonComp";
 import { t } from "i18next";
 
 export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
-  const { mutate: CancelOrder  , isPending } = useMutate({
+  const { mutate: CancelOrder  , isPending , uploadProgress } = useMutate({
     mutationKey: [`cancel_order${orderId}`],
     endpoint: `orders-cancel/${orderId}`,
     onSuccess: () => {
@@ -35,6 +35,7 @@ export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
               className="!mx-2 bg-contained !w-[90px] !h-[40px]"
               action={() => CancelOrder({})}
               loading={isPending}
+              status={uploadProgress}
             >
               {t("Confirm")}
             </ButtonComp>

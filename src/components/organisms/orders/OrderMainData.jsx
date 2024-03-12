@@ -10,7 +10,12 @@ import MainHeader from "../../atoms/MainHeader";
 import { useTheme } from "@mui/material/styles";
 import SelectCountryOrganizations from "../../molecules/Selects/SelectCountryOrganizations";
 
-export default function OrderMainData({ setShow, show, isPending }) {
+export default function OrderMainData({
+  setShow,
+  show,
+  isPending,
+  uploadProgress,
+}) {
   const { values } = useFormikContext();
   const theme = useTheme();
   const { data: extra_questions } = useFetch({
@@ -121,6 +126,7 @@ export default function OrderMainData({ setShow, show, isPending }) {
             className={"!w-auto"}
             type={"submit"}
             loading={isPending}
+            status={uploadProgress}
             disabled={!allRequiredQuestionsFound}
           >
             {t("Save")}

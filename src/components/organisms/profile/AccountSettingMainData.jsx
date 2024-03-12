@@ -13,7 +13,7 @@ import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
 import SelectCountry from "../../molecules/SelectCountry";
 import UploadDoc from "../../molecules/uploadImage/UploadDoc";
 
-function AccountSettingMainData({ userData, isPending, attachments_register }) {
+function AccountSettingMainData({ userData, isPending, attachments_register , uploadProgress }) {
   const { values, initialValues , errors } = useFormikContext();
   const isRTL = useIsRTL();
   const requiredInputs =
@@ -149,6 +149,9 @@ function AccountSettingMainData({ userData, isPending, attachments_register }) {
             Object.entries(errors).length > 0 ||
             !checkAttachmentsResult || !Object.entries(changedValues).length
           }
+          status={uploadProgress}
+
+          progress
         >
           {t("Edit")}
         </ButtonComp>

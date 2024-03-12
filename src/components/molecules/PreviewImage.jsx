@@ -33,7 +33,7 @@ export default function PreviewImage({ files, setOpenModal }) {
                       className="text-xl dark:text-white "
                     />
                     <Typography className="text-black file-name dark:text-white">
-                      {files[0]?.name.slice(0, 15)}
+                      {files[0]?.name.slice(0, 20)}
                     </Typography>
                   </div>
                 </div>

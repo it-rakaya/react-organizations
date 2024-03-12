@@ -27,7 +27,7 @@ function Signature() {
         </h1>
       </div>
 
-      <div className="main_content max-h-[450px] overflow-y-scroll scroll_main mt-5">
+      <div className="main_content max-h-[450px] overflow-y-scroll scroll_main mt-5 px-3">
         <p className="text-center dark:text-white">
           {t(
             "The required information to be recorded is the information of the facility owner and I promise to register it correctly"
@@ -57,7 +57,11 @@ function Signature() {
         </FormControl>
       </div>
       <div className="flex justify-center">
-        <ButtonComp disabled={!checked} action={() => navigate("/register")} className={"!w-[173px]"}>
+        <ButtonComp
+          disabled={!checked}
+          action={() => navigate("/register")}
+          className={"!w-[173px]"}
+        >
           {t("Register")}
         </ButtonComp>
       </div>

@@ -14,7 +14,7 @@ export default function AddOrder({ setOpenAddFaculty }) {
   const queryClient = useQueryClient();
   const { orgData } = UseOrg();
 
-  const { mutate: AddOrder, isPending } = useMutate({
+  const { mutate: AddOrder, isPending , uploadProgress } = useMutate({
     mutationKey: [`create_new_orders`],
     endpoint: `orders`,
     onSuccess: (data) => {
@@ -58,6 +58,7 @@ export default function AddOrder({ setOpenAddFaculty }) {
             <OrderMainData
               setShow={setShow}
               show={show}
+              uploadProgress={uploadProgress}
               isPending={isPending}
             />
           

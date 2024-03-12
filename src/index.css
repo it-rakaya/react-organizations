@@ -54,13 +54,15 @@ body {
 
 .bg-landing {
   -webkit-transform: rotate(1rad) !important;
-  overflow: hidden;  transform: rotate(45deg) !important;
+  overflow: hidden;
+  transform: rotate(45deg) !important;
   /* لبقية المتصفحات */
 }
 
 .bg-landing {
   -webkit-transform: rotate(50grad) !important;
-  overflow: hidden;  transform: rotate(45deg) !important;
+  overflow: hidden;
+  transform: rotate(45deg) !important;
 }
 
 
@@ -1376,5 +1378,10 @@ input {
 
 [dir='ltr'] .MuiPagination-ul [aria-label="Go to next page"] {
   transform: rotate(180deg) !important;
+
+}
+
+.progress svg {
+  color: inherit;
 
 }
