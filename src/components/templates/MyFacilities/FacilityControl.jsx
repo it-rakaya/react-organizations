@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
 import { useFormikContext } from "formik";
 import { t } from "i18next";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ModalComp from "../../atoms/ModalComp";
-import TermsAndCondition from "../../molecules/TermsAndCondition";
-import ButtonComp from "../../atoms/buttons/ButtonComp";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
+import ModalComp from "../../atoms/ModalComp";
+import ButtonComp from "../../atoms/buttons/ButtonComp";
+import SignatureFacility from "./SignatureFacility";
 
 function FacilityControl({
   setOpen,
@@ -121,10 +121,14 @@ function FacilityControl({
         onClose={() => (loadingAddFacility ? {} : setOpen(false))}
         Children={
           <div className=" !flex gap-3 !items-center !justify-center !flex-col">
-            <TermsAndCondition
+            {/* <TermsAndCondition
               checked={checked}
               setChecked={setChecked}
               style={{ height: "calc(100vh - 25rem)" }}
+            /> */}
+            <SignatureFacility
+              checked={checked}
+              setChecked={setChecked}
             />
             <div className="flex justify-center w-full" style={{padding: "0px 15px 0px 23px" }}>
               <ButtonComp
