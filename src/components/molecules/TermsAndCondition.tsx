@@ -13,7 +13,7 @@ function TermsAndCondition({ checked, setChecked, hidden, style }) {
   const { orgData } = UseOrg();
 
   return (
-    <div className="">
+    <div className="px-2 ">
       <div className="flex flex-col items-center justify-center gap-5">
         <div className="">
           <TermsConditionIcon className={""} />
@@ -25,19 +25,23 @@ function TermsAndCondition({ checked, setChecked, hidden, style }) {
 
       {orgData?.organizations?.policies ? (
         <div
-          className="mt-5 overflow-y-scroll main_content scroll_main"
+          className="mt-5 overflow-y-scroll  main_content scroll_main"
           style={style}
           dangerouslySetInnerHTML={{
             __html: orgData?.organizations?.policies,
           }}
         ></div>
       ) : (
-        <div className="main_content max-h-[300px] md:max-h-[290px] overflow-y-scroll scroll_main mt-5" style={{height:"calc(350px - 65px)"}}>
+        <div
+          className="main_content max-h-[300px] md:max-h-[290px] overflow-y-scroll scroll_main mt-5"
+          style={{ height: "calc(350px - 65px)" }}
+        >
           <p className="font-semibold text-center dark:text-white">
             {t(
               "By agreeing to register on the platform, you acknowledge and accept the following terms and conditions:"
             )}
           </p>
+
           <ul className="mx-4 text-start">
             <li className="my-2 text-[15px] text-black dark:text-white text-justify">
               {t("TermsOne")}
