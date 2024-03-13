@@ -7,6 +7,7 @@ import { registerSW } from "virtual:pwa-register";
 import { UseOrg } from "./context/organization provider/OrganizationProvider";
 import { useIsRTL } from "./hooks/useIsRTL";
 import { AllRoutesProvider } from "./routing/allRoutes";
+import { convertToFavicon } from "./utils/helpers";
 const App = () => {
   const isRTL = useIsRTL();
   const { orgData, isLoading, isSuccess, isRefetching } = UseOrg();
@@ -93,7 +94,11 @@ const App = () => {
       navigate("/404");
     }
   }, [isLoading, isRefetching, isSuccess, navigate, orgData]);
-
+  useEffect(() => {
+    if (orgData?.organizations?.logo) {
+      convertToFavicon(orgData.organizations.logo);
+    }
+  }, [orgData?.organizations?.logo]);
   return (
     <>
       <AllRoutesProvider />
