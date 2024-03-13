@@ -55,13 +55,18 @@ const Footer = () => {
     minutes: null,
   });
   const [prayer, setPrayer] = useState("");
-  // const [timeLeft, setTimeLeft] = useState({ months: "3", days: "20", hours: "9" });
   useEffect(() => {
-    if (nextPrayerTime ) {
-      getPrayerTime(setNextPrayerTime, setPrayer);
-    }
-    // getTimeLeftToHajj(setTimeLeft);
+    const fetchPrayerTimes = async () => {
+      try {
+        await getPrayerTime(setNextPrayerTime, setPrayer);
+      } catch (error) {
+        console.error('Failed to fetch prayer times:', error);
+      }
+    };
+  
+    fetchPrayerTimes();
   }, []);
+  
 
   return (
     <div className="2xl:pe-[18%] 3xl:pe-[26%]">
