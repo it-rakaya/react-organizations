@@ -13,33 +13,40 @@ const filterPrayerTimes = (prayerTimes) => {
 
 const calculateTimeLeftUntilNextPrayer = (prayerTimes, setPrayer) => {
   prayerTimes = filterPrayerTimes(prayerTimes);
-  // Get the current date and time
   const now = new Date();
+  let minTimeDiff = Infinity;
+  let nextPrayerTime = null;
+  let nextPrayerName = "";
 
-  let nextPrayer = null;
-  for (const key in prayerTimes) {
-    const prayerHour = parseInt(prayerTimes[key].substring(0, 2));
-    const prayerMin = parseInt(prayerTimes[key].substring(3, 5));
-    const prayer = new Date();
-    prayer.setHours(prayerHour, prayerMin);
-    if (prayer >= now) {
-      nextPrayer = prayer;
-      setPrayer(key);
-      break;
+  PRAYERS.forEach(prayer => {
+    const time = prayerTimes[prayer].split(" ")[0];
+    const [hour, minute] = time.split(":").map(num => parseInt(num, 10));
+    let prayerTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute);
+    
+    // Adjust for next day's Fajr
+    if (prayer === "Fajr" && prayerTime < now) {
+      prayerTime.setDate(prayerTime.getDate() + 1);
     }
-  }
-  //   no prayers left today
-  if (nextPrayer == null) {
-    return null;
-  }
 
-  // Calculate the time difference
-  const timeDifference = Math.abs(nextPrayer - now);
-  const hours = Math.floor(timeDifference / (1000 * 60 * 60));
-  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    let timeDiff = prayerTime - now;
+    if (timeDiff > 0 && timeDiff < minTimeDiff) {
+      minTimeDiff = timeDiff;
+      nextPrayerTime = prayerTime;
+      nextPrayerName = prayer;
+    }
+  });
+
+  if (!nextPrayerTime) return null;
+
+  setPrayer(nextPrayerName);
+
+  const hours = Math.floor(minTimeDiff / (1000 * 60 * 60));
+  const minutes = Math.floor((minTimeDiff % (1000 * 60 * 60)) / (1000 * 60));
 
   return { hours, minutes };
 };
+
+
 
 export const getPrayerTime = async (setNextPrayerTime, setPrayer, inc = 0) => {
   const now = new Date();
@@ -47,20 +54,26 @@ export const getPrayerTime = async (setNextPrayerTime, setPrayer, inc = 0) => {
   const month = now.getMonth() + 1;
   const year = now.getFullYear();
   const date = now.getDate();
-  const response = await fetch(
-    `https://api.aladhan.com/v1/calendarByCity/${year}/${month}?city=Makkah&country=KSA&method=4`
-  );
-  const data = (await response.json()).data;
-  const timeLeft = calculateTimeLeftUntilNextPrayer(
-    data[date - 1].timings, // تأكد من مطابقة المؤشر مع تاريخ اليوم الصحيح بعد التعديل
-    setPrayer
-  );
-
-  if (timeLeft == null) {
-    if (inc < 1) { // تجنب الحلقة اللانهائية بوضع حد لعدد المحاولات
-      getPrayerTime(setNextPrayerTime, setPrayer, inc + 1);
+  
+  try {
+    const response = await fetch(`https://api.aladhan.com/v1/calendarByCity?city=Makkah&country=KSA&method=4&month=${month}&year=${year}`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
     }
-  } else {
-    setNextPrayerTime(timeLeft);
+    const data = await response.json();
+    const timings = data.data[date - 1]?.timings;
+
+    if (!timings) {
+      throw new Error("No prayer times found for the given date.");
+    }
+
+    const timeLeft = calculateTimeLeftUntilNextPrayer(timings, setPrayer);
+    if (timeLeft) {
+      setNextPrayerTime(timeLeft);
+    } else if (inc === 0) {
+      getPrayerTime(setNextPrayerTime, setPrayer, 1);
+    }
+  } catch (error) {
+    console.error("There was a problem with the fetch operation:", error);
   }
 };
