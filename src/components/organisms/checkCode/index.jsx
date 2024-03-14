@@ -104,7 +104,7 @@ export default function CheckCode({
           {/* <p className="dark:text-white">{number}</p> */}
           <div>
             <PinInput
-              //  key={values.join("")} // فيه مشكلة في الويب لو استخدمن السطر دا
+              //  key={values.join("")} //
               values={values}
               validBorderColor={colorPinInput}
               focusBorderColor={theme?.palette?.primary.main}
