@@ -6,6 +6,7 @@ import Navbar from "../../components/Landing/Navbar";
 import News from "../../components/Landing/News";
 import Loading from "../../components/molecules/Loading";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
+import CustomHead from "../../components/molecules/CustomHead";
 
 function Landing() {
   const { orgData, isLoading } = UseOrg();
@@ -13,6 +14,8 @@ function Landing() {
 
   if (isLoading) return <Loading />;
   return (
+    <>
+    <CustomHead/>
     <div className="relative w-screen overflow-x-hidden lg:h-screen" dir="ltr">
       <div className="w-screen h-full absolute flex justify-end z-[-10000]">
         <div className="relative w-full h-full ">
@@ -64,6 +67,7 @@ function Landing() {
       {/* > 1 because news is always larger than 1 since it has All rights message */}
       <News />
     </div>
+    </>
   );
 }
 
