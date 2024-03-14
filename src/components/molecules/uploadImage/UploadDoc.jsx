@@ -15,7 +15,7 @@ import { Typography } from "@mui/material";
 import PreviewImageLink from "../PreviewImageLink";
 import PreviewImage from "../PreviewImage";
 import Icon from "@mdi/react";
-import { mdiInformationOutline } from "@mdi/js";
+import { mdiCloseOctagonOutline, mdiInformationOutline } from "@mdi/js";
 import ModalComp from "../../atoms/ModalComp";
 import DeleteDoc from "./DeleteDoc";
 
@@ -268,11 +268,11 @@ function UploadDoc({
         ) : isLargeFile ? (
           <div className="flex items-center p-2">
             <Icon
-              path={mdiInformationOutline}
+              path={mdiCloseOctagonOutline}
               size={0.8}
-              className="!text-[#80b3f0]"
+              className="!text-red-500"
             />
-            <p className="text-[12px] px-1 py-0 text-[#80b3f0]">
+            <p className="text-[12px] px-1 py-0 text-red-500">
               {t("Please upload a file no larger than 5MB")}
               {/* {textAccept ? textAccept : "png - jpg - pdf"} */}
             </p>

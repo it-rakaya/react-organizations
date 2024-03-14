@@ -74,10 +74,9 @@ export default function LoginForm({ setHideSection }) {
           {(formik) => (
             <Form
               onKeyDown={(e) => {
-                // إذا تم الضغط على زر Enter ولم يكن هناك حقل نموذج نشط يمنع إرسال النموذج
                 if (e.key === "Enter" && !e.isDefaultPrevented()) {
-                  e.preventDefault(); // منع السلوك الافتراضي
-                  formik.handleSubmit(); // إرسال النموذج يدويًا
+                  e.preventDefault(); 
+                  formik.handleSubmit(); 
                 }
               }}
             >
