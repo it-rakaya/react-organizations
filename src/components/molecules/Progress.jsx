@@ -66,18 +66,23 @@ import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
+import { useIsRTL } from "../../hooks/useIsRTL";
 function LinearProgressWithLabel(props) {
+  const isRTL = useIsRTL();
   return (
     <Box
-      sx={{ display: "flex", alignItems: "center", }}
+      sx={{ display: "flex", alignItems: "center" }}
+      dir={isRTL ? "rtl" : "ltr"}
     >
-      <Box sx={{ width: "100%", mr: 1 }}>
+      <Box sx={{ width: "100%", mr: 1, transform: !isRTL && "rotate(180deg)" }}>
         <LinearProgress variant="determinate" {...props} />
       </Box>
       <Box sx={{ minWidth: 35 }}>
-        <Typography variant="body2" color="text.secondary" className="text-black dark:text-white">{`${Math.round(
-          props.value
-        )}%`}</Typography>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          className="text-black dark:text-white"
+        >{`${Math.round(props.value)}%`}</Typography>
       </Box>
     </Box>
   );

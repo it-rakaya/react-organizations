@@ -8,7 +8,6 @@ import { UseOrg } from "../../../context/organization provider/OrganizationProvi
 import { useIsRTL } from "../../../hooks/useIsRTL";
 import ResendCode from "../../molecules/Formik/ResendCode";
 export default function CheckCode({
-  number,
   valuesForm,
   setValueOTP,
   sendOTP,
