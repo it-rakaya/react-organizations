@@ -21,7 +21,7 @@ export const generateColumns = ({
         );
         const profilePictureUrl = profilePictureAttachment
           ? profilePictureAttachment.value
-          : "https://front-api.rmcc.sa/build/images/users/32/person.png"; // Replace with your actual default image path
+          : "https://admin-dev.rmcc.sa/build/images/users/32/person.png"; 
 
         return (
           <Box
@@ -39,7 +39,7 @@ export const generateColumns = ({
                 <img
                   src={
                     profilePictureUrl?.endsWith(".pdf")
-                      ? "https://front-api.rmcc.sa/build/images/users/32/person.png"
+                      ? "https://admin-dev.rmcc.sa/build/images/users/32/person.png"
                       : profilePictureUrl
                   }
                   alt="Profile"
