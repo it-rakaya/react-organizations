@@ -5,7 +5,7 @@ function CustomHead() {
   const { orgData } = UseOrg();
   const url = window.location.href;
   const baseUrl = new URL(url).origin;
-  console.log("🚀 ~ CustomHead ~ baseUrl:", baseUrl);
+
   const linkUrl = "https://albaitguests-dev.rmcc.sa/";
 
   return (
