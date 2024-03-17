@@ -46,9 +46,9 @@ export default function CheckCode({
             const otpCode = input.value.split("");
             setValues(otpCode);
             setValueOTP(otp.code);
-            if (otpCode.length == 4) {
-              setValueOTP(otp.code);
-            }
+            // if (otpCode.length == 4) {
+            //   setValueOTP(otp.code);
+            // }
             LoginData({
               ...values,
               otp: otp.code,
