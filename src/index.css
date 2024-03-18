@@ -1385,3 +1385,6 @@ input {
   color: inherit;
 
 }
+.f-button svg {
+  fill: white;
+}
