@@ -11,7 +11,7 @@ export default function SelectCountryOrganizations({
   className,
   required,
   showIcon,
-  messageInfo,
+
   setIndex,
   index,
   images,
