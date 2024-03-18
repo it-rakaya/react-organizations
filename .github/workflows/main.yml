@@ -1,4 +1,4 @@
-name: Auto-deploy
+name: Main-Auto-deploy
 
 # Controls when the action will run. 
 on:
@@ -23,9 +23,7 @@ jobs:
         key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          export NVM_DIR=~/.nvm
-          source ~/.nvm/nvm.sh
-          cd /var/www/html/react/africa.rmcc.sa/react-organizations
+          cd /var/www/html/refada/react/organizations/react-organizations
           git restore .
           git pull
           yarn 
