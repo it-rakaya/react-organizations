@@ -14,15 +14,26 @@ export const OrganizationProvider = ({ children }) => {
   // const local = "http://localhost:5173";
 
   const baseUrl = new URL(url).origin;
+  // const baseUrl = 'https://ithraa.rakaya.sa/';
+
   const savedMode = localStorage.getItem("darkMode");
   const [orgData, setOrgData] = UseLocalStorage("organization");
   const navigate = useNavigate();
   // http://localhost:5173/
-  const { data, refetch, isRefetching, isSuccess, isLoading, isError, error } =
-    useFetch({
-      endpoint: `organizations?organizationDomain=${baseUrl}`,
-      queryKey: ["organization_info"],
-    });
+  const {
+    data,
+    refetch,
+    isRefetching,
+    isSuccess,
+    isLoading,
+    isError,
+    error,
+    isFetched,
+    isPending,
+  } = useFetch({
+    endpoint: `organizations?organizationDomain=${baseUrl}`,
+    queryKey: ["organization_info"],
+  });
   const isOrganization = data?.organizations;
 
   useEffect(() => {
@@ -104,6 +115,8 @@ export const OrganizationProvider = ({ children }) => {
         updateLogo,
         isLoading,
         isSuccess,
+        isFetched,
+        isPending,
       }}
     >
       {children}
