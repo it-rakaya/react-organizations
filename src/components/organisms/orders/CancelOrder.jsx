@@ -1,13 +1,20 @@
 /* eslint-disable react/prop-types */
-import { Button, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
+import { t } from "i18next";
+import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
-import TermsConditionIcon from "../../atoms/icons/TermsConditionIcon";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
-import { t } from "i18next";
+import TermsConditionIcon from "../../atoms/icons/TermsConditionIcon";
 
 export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
-  const { mutate: CancelOrder  , isPending , uploadProgress } = useMutate({
+  const { orgData } = UseOrg();
+
+  const {
+    mutate: CancelOrder,
+    isPending,
+    uploadProgress,
+  } = useMutate({
     mutationKey: [`cancel_order${orderId}`],
     endpoint: `orders-cancel/${orderId}`,
     onSuccess: () => {
@@ -28,12 +35,18 @@ export default function CancelOrder({ refetch, setOpenCancelOrder, orderId }) {
           <TermsConditionIcon />
         </div>
         <div className="flex flex-col items-center g">
-          <div className="text-black dark:text-white">{t("Are you sure you want to cancel the order?")}</div>
+          <div className="text-black dark:text-white">
+            {t("Are you sure you want to cancel the order?")}
+          </div>
           <Grid xs={12} sm={12} md={12} xl={12}>
             <ButtonComp
               variant="contained"
               className="!mx-2 bg-contained !w-[90px] !h-[40px]"
-              action={() => CancelOrder({})}
+              action={() =>
+                CancelOrder({
+                  organization_id: orgData?.organizations?.id,
+                })
+              }
               loading={isPending}
               status={uploadProgress}
             >
