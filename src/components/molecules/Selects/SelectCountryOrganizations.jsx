@@ -35,23 +35,31 @@ export default function SelectCountryOrganizations({
   );
 
   return (
-    <div className={`${className} mt-2 selectOrganization`}>
-      <ReactSelect
-        options={options}
-        selectedValue={selectedCountry}
-        placeholder={t("Choose Nationalists")}
-        name={name}
-        label={label}
-        index={index}
-        isMulti
-        setIndex={setIndex}
-        messageInfo={t("Please select the nationalities of the pilgrims you want to serve")}
-        setShow={setShow}
-        images={images}
-        required={required}
-        showIcon={showIcon}
-        closeMenuOnSelect={false}
-      />
-    </div>
+    <>
+      {options?.length ? (
+        <div className={`${className} mt-2 selectOrganization`}>
+          <ReactSelect
+            options={options}
+            selectedValue={selectedCountry}
+            placeholder={t("Choose Nationalists")}
+            name={name}
+            label={label}
+            index={index}
+            isMulti
+            setIndex={setIndex}
+            messageInfo={t(
+              "Please select the nationalities of the pilgrims you want to serve"
+            )}
+            setShow={setShow}
+            images={images}
+            required={required}
+            showIcon={showIcon}
+            closeMenuOnSelect={false}
+          />
+        </div>
+      ) : (
+        ""
+      )}
+    </>
   );
 }
