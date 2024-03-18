@@ -43,7 +43,7 @@ export const AllRoutesProvider = () => {
   
   useEffect(() => {
     if (!orgData?.organizations?.name_ar) {
-      document.title = t("landing.organizationName");
+      document.title = t("");
     } else {
       document.title = orgData?.organizations?.name_ar;
     }

@@ -10,8 +10,7 @@ import { AllRoutesProvider } from "./routing/allRoutes";
 import { convertToFavicon } from "./utils/helpers";
 const App = () => {
   const isRTL = useIsRTL();
-  const { orgData, isLoading, isSuccess, isRefetching, isFetched, isPending } =
-    UseOrg();
+  const { orgData, isLoading, isSuccess } = UseOrg();
 
   const navigate = useNavigate();
 
