@@ -10,7 +10,8 @@ import { AllRoutesProvider } from "./routing/allRoutes";
 import { convertToFavicon } from "./utils/helpers";
 const App = () => {
   const isRTL = useIsRTL();
-  const { orgData, isLoading, isSuccess, isRefetching } = UseOrg();
+  const { orgData, isLoading, isSuccess, isRefetching, isFetched, isPending } =
+    UseOrg();
 
   const navigate = useNavigate();
 
@@ -77,23 +78,13 @@ const App = () => {
     }
   }, [orgData]);
   useEffect(() => {
-    if (
-      !orgData?.organizations?.name_ar &&
-      !isLoading &&
-      !isRefetching &&
-      !isSuccess
-    ) {
-      if (!orgData?.isOrganization) return navigate("/404");
-    } else if (
-      !orgData?.isOrganization?.name &&
-      !isLoading &&
-      !isRefetching &&
-      !isSuccess
-    ) {
-      // navigate("/");
-      navigate("/404");
+    if (!isLoading && isSuccess) {
+      if (orgData?.organizations?.isOrganization === null) {
+        navigate("/404");
+      }
     }
-  }, [isLoading, isRefetching, isSuccess, navigate, orgData]);
+  }, [isLoading, isSuccess, navigate, orgData]);
+
   useEffect(() => {
     if (orgData?.organizations?.logo) {
       convertToFavicon(orgData.organizations.logo);

@@ -153,10 +153,10 @@ function TableComp({
               setPageSize(newSize);
               setPaginationModel((prev) => ({ ...prev, pageSize: newSize }));
             }}
-            className="!text-black dark:!text-white border border-[#555d64] rounded-md py-2 px-1"
+            className="!text-black  border  border-[#555d64] rounded-md py-2 px-1"
           >
             {[10, 20, 30, 40, 50, 100, 1000].map((size) => (
-              <option key={size} value={size}>
+              <option key={size} value={size} className="dark:bg-darkModeColor">
                 {size}
               </option>
             ))}
