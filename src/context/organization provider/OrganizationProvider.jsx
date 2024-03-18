@@ -14,7 +14,7 @@ export const OrganizationProvider = ({ children }) => {
   // const local = "http://localhost:5173";
 
   const baseUrl = new URL(url).origin;
-  // const baseUrl = 'https://ithraa.rakaya.sa/';
+  // const baseUrl = 'https://albaitguests.co/';
 
   const savedMode = localStorage.getItem("darkMode");
   const [orgData, setOrgData] = UseLocalStorage("organization");
