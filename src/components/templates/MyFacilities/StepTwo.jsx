@@ -25,40 +25,42 @@ export default function StepTwo({ DetailsFacilities, attachments_facilities }) {
             4.{t("Upload Files")}
           </Typography>
         </div>
-        {detailsFacilitiesData?.map((attachmentLabel) => {
-          const userAttachment = DetailsFacilities?.find(
-            (ua) => ua.attachment_label_id === attachmentLabel.id
-          );
+        {detailsFacilitiesData
+          ?.sort((a, b) => a?.arrangement - b?.arrangement)
+          ?.map((attachmentLabel) => {
+            const userAttachment = DetailsFacilities?.find(
+              (ua) => ua.attachment_label_id === attachmentLabel.id
+            );
 
-          return (
-            <div
-              key={index}
-              className={`w-full col-span-12 m-auto md:m-0 md:col-span-6 xl:col-span-4 2xl:col-span-4 !mt-5`}
-            >
-              <UploadDoc
-                key={attachmentLabel.id}
-                name={`attachments[${attachmentLabel.id}]`}
-                label={
-                  isRTL
-                    ? attachmentLabel.placeholder_ar
-                    : attachmentLabel.placeholder_en
-                }
-                nameValue={attachmentLabel?.id}
-                id={attachmentLabel.id}
-                accept={attachmentLabel.extensions}
-                placeholder={
-                  isRTL
-                    ? attachmentLabel.placeholder_ar
-                    : attachmentLabel.placeholder_en
-                }
-                isRequired={attachmentLabel.is_required == "1"}
-                value={userAttachment ? userAttachment.value : null}
-                nameLabel={userAttachment?.name}
-                labelClassName={"h-[48px]"}
-              />
-            </div>
-          );
-        })}
+            return (
+              <div
+                key={index}
+                className={`w-full col-span-12 m-auto md:m-0 md:col-span-6 xl:col-span-4 2xl:col-span-4 !mt-5`}
+              >
+                <UploadDoc
+                  key={attachmentLabel.id}
+                  name={`attachments[${attachmentLabel.id}]`}
+                  label={
+                    isRTL
+                      ? attachmentLabel.placeholder_ar
+                      : attachmentLabel.placeholder_en
+                  }
+                  nameValue={attachmentLabel?.id}
+                  id={attachmentLabel.id}
+                  accept={attachmentLabel.extensions}
+                  placeholder={
+                    isRTL
+                      ? attachmentLabel.placeholder_ar
+                      : attachmentLabel.placeholder_en
+                  }
+                  isRequired={attachmentLabel.is_required == "1"}
+                  value={userAttachment ? userAttachment.value : null}
+                  nameLabel={userAttachment?.name}
+                  labelClassName={"h-[48px]"}
+                />
+              </div>
+            );
+          })}
       </div>
       {images[index]?.path && (
         <ModalComp
