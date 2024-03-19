@@ -95,13 +95,29 @@ export const calculateHajjRemainingTimeFormatted = () => {
   const todayHijri = toHijri(currentYear, currentMonth, currentDate);
   let hajjYear = todayHijri.hy;
   const hajjHijriDate = { hy: hajjYear, hm: 12, hd: 8 };
-  let hajjGregorian = toGregorian(hajjHijriDate.hy, hajjHijriDate.hm, hajjHijriDate.hd);
-  let hajjDate = new Date(hajjGregorian.gy, hajjGregorian.gm - 1, hajjGregorian.gd);
+  let hajjGregorian = toGregorian(
+    hajjHijriDate.hy,
+    hajjHijriDate.hm,
+    hajjHijriDate.hd
+  );
+  let hajjDate = new Date(
+    hajjGregorian.gy,
+    hajjGregorian.gm - 1,
+    hajjGregorian.gd
+  );
   if (today > hajjDate) {
     hajjYear++;
-    const nextHajjHijriDate = { hy: hajjYear, hm: 12, hd:8 };
-    const nextHajjGregorian = toGregorian(nextHajjHijriDate.hy, nextHajjHijriDate.hm, nextHajjHijriDate.hd);
-    hajjDate = new Date(nextHajjGregorian.gy, nextHajjGregorian.gm - 1, nextHajjGregorian.gd);
+    const nextHajjHijriDate = { hy: hajjYear, hm: 12, hd: 8 };
+    const nextHajjGregorian = toGregorian(
+      nextHajjHijriDate.hy,
+      nextHajjHijriDate.hm,
+      nextHajjHijriDate.hd
+    );
+    hajjDate = new Date(
+      nextHajjGregorian.gy,
+      nextHajjGregorian.gm - 1,
+      nextHajjGregorian.gd
+    );
   }
 
   const diff = hajjDate - today;
@@ -110,47 +126,52 @@ export const calculateHajjRemainingTimeFormatted = () => {
   const monthsRemaining = Math.floor(daysRemaining / 29.53); // Average lunar month length
   const daysAfterMonths = daysRemaining % 29.53;
 
-  return { monthsRemaining, daysAfterMonths: Math.round(daysAfterMonths), hoursRemaining };
+  return {
+    monthsRemaining,
+    daysAfterMonths: Math.round(daysAfterMonths),
+    hoursRemaining,
+  };
 };
 
-
 export function autoReadSMS(cb) {
-   const signal = new AbortController();
-   setTimeout(() => {
-     signal.abort();
-   }, 1 * 60 * 1000);
-   async function main() {
-     if ('OTPCredential' in window) {
-        try {
-           if (navigator.credentials) {
-              try {
-                 await navigator.credentials
-                 .get({ abort: signal, otp:{ transport: ['sms']}})
-                 .then(content => {
-                   if (content && content.code) {
-                     cb(content.code);
-                   }
-                 })
-                 .catch(() => console.log("e"));
-              } 
-              catch (e) {
-                return;
-              }
-           }
-        } 
-        catch (err) {
-          console.log("err");
+  const signal = new AbortController();
+  setTimeout(() => {
+    signal.abort();
+  }, 1 * 60 * 1000);
+  async function main() {
+    if ("OTPCredential" in window) {
+      try {
+        if (navigator.credentials) {
+          try {
+            await navigator.credentials
+              .get({ abort: signal, otp: { transport: ["sms"] } })
+              .then((content) => {
+                if (content && content.code) {
+                  cb(content.code);
+                }
+              })
+              .catch(() => console.log("e"));
+          } catch (e) {
+            return;
+          }
         }
+      } catch (err) {
+        console.log("err");
       }
-   }
-   main();
+    }
   }
+  main();
+}
 
- export const convertToFavicon = (logoUrl) => {
-    const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
-    link.type = 'image/x-icon';
-    link.rel = 'shortcut icon';
-    link.href = logoUrl;
-    document.getElementsByTagName('head')[0].appendChild(link);
-  };
-  
+export const convertToFavicon = (logoUrl) => {
+  const link =
+    document.querySelector("link[rel*='icon']") ||
+    document.createElement("link");
+  link.type = "image/x-icon";
+  link.rel = "shortcut icon";
+  link.href = logoUrl;
+  document.getElementsByTagName("head")[0].appendChild(link);
+};
+export const numberFormatter = (code, phone) => {
+  return code + phone.slice(0, 2) + "*****" + phone.slice(-2);
+};

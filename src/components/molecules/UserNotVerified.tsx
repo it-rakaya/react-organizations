@@ -3,8 +3,11 @@ import UserNotVerifiedIcon from "../atoms/icons/UserNotVerifiedIcon";
 import ButtonComp from "../atoms/buttons/ButtonComp";
 import { Alert } from "@mui/material";
 import { t } from "i18next";
+import IconifyIcon from "../atoms/icons/IconifyIcon";
+import { useNavigate } from "react-router-dom";
 
 function UserNotVerified({ user, setOpen, sendOTP, organization_id }) {
+  const navigate= useNavigate()
   return (
     <div className="w-full">
       <div className="md:mx-20 ">
@@ -34,6 +37,18 @@ function UserNotVerified({ user, setOpen, sendOTP, organization_id }) {
             }}
           >
             {t("click here")}
+          </ButtonComp>
+          <ButtonComp
+            className={"mt-1 md:!mt-0 py-[9px]  md:py-2 px-3  w-full md:!w-auto"}
+            action={() => navigate('/dashboard/profile/')}
+            variant="contained"
+
+          >
+            <p className="text-white py- ">{t("Edit personal information")}</p>
+            <IconifyIcon
+              icon={"bxs:edit"}
+              className="text-white cursor-pointer rtl:mr-2 ltr:ml-2"
+            />
           </ButtonComp>
         </div>
       </div>

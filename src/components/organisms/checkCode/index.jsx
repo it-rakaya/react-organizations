@@ -7,6 +7,7 @@ import { PinInput } from "react-input-pin-code";
 import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 import { useIsRTL } from "../../../hooks/useIsRTL";
 import ResendCode from "../../molecules/Formik/ResendCode";
+import { numberFormatter } from "../../../utils/helpers";
 export default function CheckCode({
   valuesForm,
   setValueOTP,
@@ -101,6 +102,9 @@ export default function CheckCode({
             {t("Verification code has been sent to you")}
           </p>
           {/* <p className="dark:text-white">{number}</p> */}
+          <p className="text-center dark:text-white mt-[-10px]" dir="ltr">
+            {numberFormatter(userData.phone_code, userData.phone)}
+          </p>
           <div>
             <PinInput
               //  key={values.join("")} //

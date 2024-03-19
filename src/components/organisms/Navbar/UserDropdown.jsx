@@ -67,7 +67,6 @@ const UserDropdown = (props) => {
     onSuccess: () => {
       notify("success", t("see you soon"));
     },
-
   });
 
   const handleLogout = () => {
@@ -81,12 +80,12 @@ const UserDropdown = (props) => {
       <Badge
         overlap="circular"
         onClick={handleDropdownOpen}
-        sx={{ mx: 2, cursor: "pointer" , }}
+        sx={{ mx: 2, cursor: "pointer" }}
         // badgeContent={<BadgeContentSpan />}
         // anchorOrigin={{
         //   vertical: "bottom",
         //   horizontal: "right",
-          
+
         // }}
       >
         <Avatar
@@ -146,34 +145,54 @@ const UserDropdown = (props) => {
           </Box>
         </Box>
         <Divider sx={{ mt: "0 !important" }} />
-        {user?.is_verified && (
-          <>
-            <MenuItem sx={{ p: 0 }} onClick={() => navigate("/")}>
-              <Box sx={styles} className="!text-black dark:!text-white">
-                <IconifyIcon
-                  icon="uil:home"
-                  style={{ color: theme?.palette?.primary?.main }}
-                />
-                {t("Landing")}
-              </Box>
-            </MenuItem>
-            <MenuItem
-              sx={{ p: 0 }}
-              onClick={() => {
-                handleDropdownClose();
-                navigate("/dashboard/profile/");
-              }}
-            >
-              <Box sx={styles} className="!text-black dark:!text-white">
-                <IconifyIcon
-                  icon="mdi:account-outline"
-                  style={{ color: theme?.palette?.primary?.main }}
-                />
-                {t("Profile")}
-              </Box>
-            </MenuItem>
-          </>
-        )}
+        {/* {user?.is_verified && ( */}
+        <>
+          <MenuItem
+            sx={{ p: 0 }}
+            onClick={() => {
+              handleDropdownClose();
+              navigate("/dashboard/");
+            }}
+          >
+            <Box sx={styles} className="!text-black dark:!text-white">
+              <IconifyIcon
+                icon="uil:home"
+                style={{ color: theme?.palette?.primary?.main }}
+              />
+              {t("Home")}
+            </Box>
+          </MenuItem>
+          <Divider />
+
+          <MenuItem sx={{ p: 0 }} onClick={() => navigate("/")}>
+            <Box sx={styles} className="!text-black dark:!text-white">
+              <IconifyIcon
+                icon="uil:home"
+                style={{ color: theme?.palette?.primary?.main }}
+              />
+              {t("Landing")}
+            </Box>
+          </MenuItem>
+
+          {/* <Divider /> */}
+
+          <MenuItem
+            sx={{ p: 0 }}
+            onClick={() => {
+              handleDropdownClose();
+              navigate("/dashboard/profile/");
+            }}
+          >
+            <Box sx={styles} className="!text-black dark:!text-white">
+              <IconifyIcon
+                icon="mdi:account-outline"
+                style={{ color: theme?.palette?.primary?.main }}
+              />
+              {t("Profile")}
+            </Box>
+          </MenuItem>
+        </>
+        {/* )} */}
         <Divider />
         <MenuItem
           onClick={handleLogout}
@@ -183,7 +202,6 @@ const UserDropdown = (props) => {
             "& svg": { mx: 2, fontSize: "1.375rem", color: "text.primary" },
           }}
         >
-          
           <IconifyIcon
             icon="mdi:logout-variant"
             style={{ color: theme?.palette?.primary?.main }}
