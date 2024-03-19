@@ -10,6 +10,7 @@ import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 
 export default function VerifyUser({ userData, dataValue, setOpen, sendOTP }) {
+  console.log("🚀 ~ VerifyUser ~ userData:", userData)
   const [valuesForm, setValuesForm] = useState("");
   const { setUser } = useAuth();
   const [valueOTP, setValueOTP] = useState("");
