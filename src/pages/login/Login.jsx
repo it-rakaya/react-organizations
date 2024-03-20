@@ -53,7 +53,6 @@ const Login = () => {
   const navigate = useNavigate();
   const { orgData, isSuccess, isRefetching } = UseOrg();
   const theme = useTheme();
-  // const { settings } = useSettings();
   const hidden = useMediaQuery(theme.breakpoints.down("md"));
   const isRTL = useIsRTL();
   const [hideSection, setHideSection] = useState(false);
