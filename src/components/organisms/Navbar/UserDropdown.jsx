@@ -6,28 +6,17 @@ import Divider from "@mui/material/Divider";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
-import { styled, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
+import { t } from "i18next";
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import defaultImage from "../../../../public/profile pic1.png";
 import { useAuth } from "../../../context/auth-and-perm/AuthProvider";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import IconifyIcon from "../../atoms/icons/IconifyIcon";
-import { t } from "i18next";
-import defaultImage from "../../../../public/profile pic1.png";
 
-// ** Icon Imports
 
-// ** Context
-
-// ** Styled Components
-const BadgeContentSpan = styled("span")(({ theme }) => ({
-  width: 8,
-  height: 8,
-  borderRadius: "50%",
-  backgroundColor: theme.palette.success.main,
-  boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-}));
 
 const UserDropdown = (props) => {
   const { settings } = props;
