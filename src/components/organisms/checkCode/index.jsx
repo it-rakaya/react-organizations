@@ -16,6 +16,8 @@ export default function CheckCode({
   login,
   LoginData,
 }) {
+  console.log("🚀 ~ valuesForm:", valuesForm);
+  console.log("🚀 ~ userData:", userData);
   const [values, setValues] = useState(["", "", "", ""]);
   const [availableResetCode, setAvailableResetCode] = useState(false);
   const [timerStarted, setTimerStarted] = useState(true);
@@ -102,9 +104,12 @@ export default function CheckCode({
             {t("Verification code has been sent to you")}
           </p>
           {/* <p className="dark:text-white">{number}</p> */}
-          {/* <p className="text-center dark:text-white mt-[-10px]" dir="ltr">
-            {numberFormatter(userData?.phone_code, userData?.phone)}
-          </p> */}
+          <p className="text-center dark:text-white mt-[-10px]" dir="ltr">
+            {/* {numberFormatter(
+              userData ? userData?.phone_code : valuesForm?.phone_code,
+              userData ? userData?.phone : valuesForm?.phone
+            )} */}
+          </p>
           <div>
             <PinInput
               //  key={values.join("")} //

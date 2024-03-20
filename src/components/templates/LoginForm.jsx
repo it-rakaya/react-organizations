@@ -32,13 +32,18 @@ export default function LoginForm({ setHideSection }) {
     },
   });
 
-  const { mutate: sendOTP, isPending  , uploadProgress} = useMutate({
+  const {
+    mutate: sendOTP,
+    isPending,
+    uploadProgress,
+  } = useMutate({
     mutationKey: [`send-otp`],
     endpoint: `send-otp`,
     onSuccess: (data) => {
       notify("success", data?.data?.message);
       setDataValue(data?.data?.verification);
       setVerifyPhone(true);
+      setHideSection(true);
     },
     onError: (err) => {
       notify("error", err?.response?.data.message);
@@ -75,8 +80,8 @@ export default function LoginForm({ setHideSection }) {
             <Form
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !e.isDefaultPrevented()) {
-                  e.preventDefault(); 
-                  formik.handleSubmit(); 
+                  e.preventDefault();
+                  formik.handleSubmit();
                 }
               }}
             >
@@ -97,7 +102,9 @@ export default function LoginForm({ setHideSection }) {
                   loading={loadingLogin || isPending}
                   disabled={valueOTP && valueOTP?.length != 4 ? true : false}
                   className={"ltr:!mt-5 "}
-                  action={() => setHideSection(true)}
+                  // action={() => {
+                  //   setHideSection(true);
+                  // }}
                   status={uploadProgress}
                 >
                   {t("Login")}
