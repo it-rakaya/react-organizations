@@ -173,5 +173,5 @@ export const convertToFavicon = (logoUrl) => {
   document.getElementsByTagName("head")[0].appendChild(link);
 };
 export const numberFormatter = (code, phone) => {
-  return code + phone.slice(0, 2) + "*****" + phone.slice(-2);
+  return code + phone?.slice(0, 2) + "*****" + phone?.slice(-2);
 };
