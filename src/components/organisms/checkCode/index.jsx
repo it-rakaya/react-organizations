@@ -62,7 +62,7 @@ export default function CheckCode({
       });
     }
     // autoReadSMS(values);
-  }, []);
+  }, [LoginData, orgData?.organizations?.id, setValueOTP, values]);
 
   const handleSendTime = () => {
     if (availableResetCode) {

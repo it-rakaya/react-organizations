@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 import { useIsRTL } from "./useIsRTL";
 
 function useFetch({
@@ -10,13 +11,13 @@ function useFetch({
   queryKey,
   onError,
   onSuccess,
-  error,
-  throwOnError,
 }) {
   const user_token = Cookies.get("token");
   const token = user_token;
   const authorizationHeader = `Bearer ${token}`;
   const isRTL = useIsRTL();
+  const navigate = useNavigate();
+
   const config = {
     headers: {
       Authorization: authorizationHeader,
@@ -27,17 +28,30 @@ function useFetch({
 
   const query = useQuery({
     queryKey,
-
     queryFn: () =>
-      axios.get(`${baseURL}/${endpoint}`, config).then((res) => res.data),
+      axios
+        .get(`${baseURL}/${endpoint}`, config)
+        .then((res) => res.data)
+        .catch((err) => {
+          if (err.response.data.message == "Unauthenticated.") {
+            window.localStorage.removeItem("user");
+            window.localStorage.removeItem("token");
+            Cookies.remove("token");
+            navigate("/");
+            throw new Error("unauthenticated");
+          }
+          throw err;
+        }),
     enabled,
     select,
-    error,
-    throwOnError,
+    onError: (error) => {
+      if (error.message === "unauthenticated") {
+        console.log("🚀 ~ error.message:", error.message);
 
-    onError: () => {
+        // Perform specific actions like redirecting the user to the login page.
+      }
       if (onError) {
-        onError(error);
+        onError(error); // Call the onError callback if provided.
       }
     },
     onSuccess,
