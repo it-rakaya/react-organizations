@@ -46,10 +46,10 @@ export default function CheckCode({
             input.value = otp.code;
             const otpCode = input.value.split("");
             setValues(otpCode);
-            setValueOTP(otp.code);
-            // if (otpCode.length == 4) {
-            //   setValueOTP(otp.code);
-            // }
+            // setValueOTP(otp.code);
+            if (otpCode.length == 4) {
+              setValueOTP(otp.code);
+            }
             LoginData({
               ...values,
               otp: otp.code,
