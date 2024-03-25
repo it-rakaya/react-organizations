@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import { toGregorian, toHijri } from "hijri-converter";
 
 export const hexToRGBA = (hex, opacity) => {
@@ -54,24 +55,27 @@ export const convertToHijri = (date) => {
 };
 
 export function checkAttachments(requiredInputs, attachmentIdsUpdate, values) {
-  const areAllRequiredInputsValid =
-    values?.attachments &&
-    requiredInputs.every(
-      (id) =>
-        // values?.attachments?.[id] !== undefined &&
-        values?.attachments?.[id] !== null &&
-        values?.attachments?.[id] !== "deleted"
-    );
+  const areAllRequiredInputsValid = requiredInputs.every((id) => {
+    const isCurrentValid =
+      values?.attachments?.[id] !== null &&
+      values?.attachments?.[id] !== "deleted";
+    const isUpdatedButMissing =
+      attachmentIdsUpdate?.includes(id) &&
+      !values.attachments?.hasOwnProperty(id);
+    return isCurrentValid || isUpdatedButMissing;
+  });
 
-  if (areAllRequiredInputsValid == false) {
+  if (!areAllRequiredInputsValid) {
     return false;
   }
 
-  const areAllRequiredInputsUpdated = requiredInputs.every((id) =>
-    attachmentIdsUpdate?.includes(id)
+  const areAllRequiredInputsUpdated = requiredInputs.every(
+    (id) =>
+      values?.attachments?.hasOwnProperty(id) ||
+      attachmentIdsUpdate?.includes(id)
   );
 
-  const hasDeletedRequiredAttachments = requiredInputs?.some(
+  const hasDeletedRequiredAttachments = requiredInputs.some(
     (id) => values?.attachments?.[id] === "deleted"
   );
 

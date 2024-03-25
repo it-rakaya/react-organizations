@@ -117,20 +117,14 @@ function FacilityControl({
       <ModalComp
         open={open}
         className="!max-w-[500px]  "
-        // hiddenMobile={true}
         onClose={() => (loadingAddFacility ? {} : setOpen(false))}
         Children={
           <div className=" !flex gap-3 !items-center !justify-center !flex-col">
-            {/* <TermsAndCondition
-              checked={checked}
-              setChecked={setChecked}
-              style={{ height: "calc(100vh - 25rem)" }}
-            /> */}
-            <SignatureFacility
-              checked={checked}
-              setChecked={setChecked}
-            />
-            <div className="flex justify-center w-full" style={{padding: "0px 15px 0px 23px" }}>
+            <SignatureFacility checked={checked} setChecked={setChecked} />
+            <div
+              className="flex justify-center w-full"
+              style={{ padding: "0px 15px 0px 23px" }}
+            >
               <ButtonComp
                 type={"submit"}
                 action={handleSubmit}
