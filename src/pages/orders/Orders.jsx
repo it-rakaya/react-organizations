@@ -29,7 +29,7 @@ export default function Orders() {
     refetch,
   } = useFetch({
     endpoint: `orders?organization_id=${orgData?.organizations?.id}`,
-    queryKey: ["my_orders" , isRTL],
+    queryKey: ["my_orders", isRTL],
     enabled: !!orgData?.organizations?.id,
   });
 

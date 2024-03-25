@@ -10,6 +10,7 @@ import MainHeader from "../../atoms/MainHeader";
 import { useTheme } from "@mui/material/styles";
 import SelectCountryOrganizations from "../../molecules/Selects/SelectCountryOrganizations";
 
+
 export default function OrderMainData({
   setShow,
   show,
@@ -19,10 +20,11 @@ export default function OrderMainData({
   const { values } = useFormikContext();
   const theme = useTheme();
   const { data: extra_questions } = useFetch({
-    endpoint: `orders/create?organization_service_id=${values.organization_service_id}`,
-    queryKey: [`extra_questions/${values.organization_service_id}`],
+    endpoint: `orders/create?organization_service_id=${values?.organization_service_id}`,
+    queryKey: [`extra_questions/`],
     enabled: !!values.organization_service_id,
   });
+  
   const requiredQuestionIds =
     extra_questions?.questions
       .filter((item) => item?.is_required === "1")
