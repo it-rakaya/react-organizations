@@ -21,8 +21,8 @@ const Hero = () => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const closeRegistration = orgData?.organizations?.close_registeration;
-
   const isRTL = useIsRTL();
+  
 
   return (
     <div className="px-3 lg:w-1/2 2xl:ps-36 2xl:px-36 lg:ps-36">

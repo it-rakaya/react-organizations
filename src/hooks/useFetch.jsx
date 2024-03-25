@@ -4,14 +4,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { useIsRTL } from "./useIsRTL";
 
-function useFetch({
-  endpoint,
-  enabled,
-  select,
-  queryKey,
-  onError,
-  onSuccess,
-}) {
+function useFetch({ endpoint, enabled, select, queryKey, onError, onSuccess }) {
   const user_token = Cookies.get("token");
   const token = user_token;
   const authorizationHeader = `Bearer ${token}`;
@@ -33,11 +26,18 @@ function useFetch({
         .get(`${baseURL}/${endpoint}`, config)
         .then((res) => res.data)
         .catch((err) => {
-          if (err.response.data.message == "Unauthenticated.") {
+          console.log("🚀 ~ err:", err);
+          if (
+            err.response.data.message == "Unauthenticated." ||
+            err.response.status == 403 ||
+            err.response.status == 401
+          ) {
             window.localStorage.removeItem("user");
             window.localStorage.removeItem("token");
+            window.localStorage.setItem("token", null);
             Cookies.remove("token");
-            navigate("/");
+
+            navigate("/", { replace: true }); 
             throw new Error("unauthenticated");
           }
           throw err;

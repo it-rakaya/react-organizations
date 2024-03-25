@@ -6,7 +6,7 @@ import { UseLocalStorage } from "../../hooks/useLocalStorage";
 const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = UseLocalStorage("user");
-  const [token, setToken] = UseLocalStorage("token");
+  const [token, setToken] = UseLocalStorage("token" , null);
 
   const navigate = useNavigate();
   const login = useCallback(
@@ -36,9 +36,10 @@ export const AuthProvider = ({ children }) => {
       setUser,
       login,
       logout,
-      token
+      token,
+      setToken
     }),
-    [login, logout, user , setUser , token]
+    [login, logout, user , setUser , token , ]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
