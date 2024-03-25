@@ -6,7 +6,8 @@ import { UseLocalStorage } from "../../hooks/useLocalStorage";
 const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = UseLocalStorage("user");
-  const [token, setToken] = UseLocalStorage("token" , null);
+  const [token, setToken] = UseLocalStorage("token", null);
+  console.log("🚀 ~ AuthProvider ~ token:", token)
 
   const navigate = useNavigate();
   const login = useCallback(
@@ -14,19 +15,20 @@ export const AuthProvider = ({ children }) => {
       if (setUser) setUser(data.user);
       Cookies.set("role", data.user.role_name);
       Cookies.set("token", data.token);
-      setToken( data?.token)
+      setToken(data?.token);
       navigate("/dashboard", { replace: true });
     },
     [navigate, setUser]
   );
 
   const logout = useCallback(async () => {
-     setUser(null);
+    setUser(null);
     window.localStorage.removeItem("user");
     window.localStorage.removeItem("token");
-    setToken(null)
+    setToken(null);
     Cookies.remove("role");
     Cookies.remove("token");
+    // window.location.reload();
     navigate("/", { replace: true });
   }, [setUser, navigate]);
 
@@ -37,9 +39,9 @@ export const AuthProvider = ({ children }) => {
       login,
       logout,
       token,
-      setToken
+      setToken,
     }),
-    [login, logout, user , setUser , token , ]
+    [login, logout, user, setUser, token]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

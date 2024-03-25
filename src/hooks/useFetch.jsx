@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { useIsRTL } from "./useIsRTL";
+import { UseLocalStorage } from "./useLocalStorage";
 
 function useFetch({ endpoint, enabled, select, queryKey, onError, onSuccess }) {
   const user_token = Cookies.get("token");
@@ -10,7 +11,8 @@ function useFetch({ endpoint, enabled, select, queryKey, onError, onSuccess }) {
   const authorizationHeader = `Bearer ${token}`;
   const isRTL = useIsRTL();
   const navigate = useNavigate();
-
+  const [, setUser] = UseLocalStorage("user");
+  const [, setToken] = UseLocalStorage("token", null);
   const config = {
     headers: {
       Authorization: authorizationHeader,
@@ -26,18 +28,19 @@ function useFetch({ endpoint, enabled, select, queryKey, onError, onSuccess }) {
         .get(`${baseURL}/${endpoint}`, config)
         .then((res) => res.data)
         .catch((err) => {
-          console.log("🚀 ~ err:", err);
           if (
             err.response.data.message == "Unauthenticated." ||
             err.response.status == 403 ||
             err.response.status == 401
           ) {
+            setUser(null);
             window.localStorage.removeItem("user");
             window.localStorage.removeItem("token");
-            window.localStorage.setItem("token", null);
+            setToken(null);
+            Cookies.remove("role");
             Cookies.remove("token");
-
-            navigate("/", { replace: true }); 
+            window.location.reload();
+            navigate("/", { replace: true });
             throw new Error("unauthenticated");
           }
           throw err;

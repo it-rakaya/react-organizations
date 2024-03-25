@@ -4,17 +4,16 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-and-perm/AuthProvider";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
-import ModalComp from "../atoms/ModalComp";
-import Signature from "../molecules/Signature";
 import { useIsRTL } from "../../hooks/useIsRTL";
+import ModalComp from "../atoms/ModalComp";
 import RegistrationClosed from "../molecules/RegistrationClosed";
+import Signature from "../molecules/Signature";
 const Hero = () => {
   const navigate = useNavigate();
   const btnStyles =
     "basis-1/2 py-4 rounded-lg font-bold text-lg 3xl:text-2xl shadow";
   const { i18n, t } = useTranslation();
   const { user, token } = useAuth();
-
   const { orgData } = UseOrg();
   const theme = useTheme();
   const language = i18n.language;
@@ -22,7 +21,6 @@ const Hero = () => {
   const [openModal, setOpenModal] = useState(false);
   const closeRegistration = orgData?.organizations?.close_registeration;
   const isRTL = useIsRTL();
-  
 
   return (
     <div className="px-3 lg:w-1/2 2xl:ps-36 2xl:px-36 lg:ps-36">
@@ -31,13 +29,12 @@ const Hero = () => {
         <div className="flex flex-col items-center justify-between w-full gap-5 xl:flex-row-reverse xl:gap-0">
           {/* <h1 className="px-6 py-1 border rounded-lg border-primaryText"> */}
           <div className="w-[70px] h-[110px] object-fill ">
-            
-          <img
-            alt="bg_organization"
-            src={orgData?.organizations?.logo}
-            className="] rounded-xl object-fill w-[70px]"
-            loading="lazy"
-          />
+            <img
+              alt="bg_organization"
+              src={orgData?.organizations?.logo}
+              className="] rounded-xl object-fill w-[70px]"
+              loading="lazy"
+            />
           </div>
           {/* </h1> */}
           <h1 className="text-2xl font-bold 3xl:text-3xl dark:text-white">
@@ -57,7 +54,17 @@ const Hero = () => {
         <div
           className={`flex flex-col gap-4 mt-5 ${!user ? " md:flex-row" : ""}`}
         >
-          {!token ? (
+          {token  ? (
+            <div className="">
+              <button
+                onClick={() => navigate("/dashboard")}
+                style={{ backgroundColor: theme?.palette?.primary?.main }}
+                className={`${btnStyles} text-white transition-shadow duration-300 hover:shadow-lg w-full `}
+              >
+                {t("Home")}
+              </button>
+            </div>
+          ) : (
             <>
               <button
                 onClick={() => navigate("/login")}
@@ -80,16 +87,6 @@ const Hero = () => {
                 {t("Register")}
               </button>
             </>
-          ) : (
-            <div className="">
-              <button
-                onClick={() => navigate("/dashboard")}
-                style={{ backgroundColor: theme?.palette?.primary?.main }}
-                className={`${btnStyles} text-white transition-shadow duration-300 hover:shadow-lg w-full `}
-              >
-                {t("Home")}
-              </button>
-            </div>
           )}
         </div>
       </div>
