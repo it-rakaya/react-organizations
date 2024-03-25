@@ -7,7 +7,6 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = UseLocalStorage("user");
   const [token, setToken] = UseLocalStorage("token", null);
-  console.log("🚀 ~ AuthProvider ~ token:", token)
 
   const navigate = useNavigate();
   const login = useCallback(
