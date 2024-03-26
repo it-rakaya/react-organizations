@@ -8,10 +8,10 @@ import useFetch from "../../../hooks/useFetch";
 import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import EmployeeMainData from "./EmployeeMainData";
-import Progress from "../../molecules/Progress";
 
 export default function AddEmployee({
   facultyID,
+  
   setSecundModal,
   showSelectFacility,
   refetch,

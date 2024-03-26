@@ -69,8 +69,8 @@ function FacilityContent({
             license: Yup.string()
             .trim()
             .required(t("the Licence number required"))
-            .min(10, t("the Licence number must be between 10 and 11 digits"))
-            .max(11, t("the Licence number must be between 10 and 11 digits")),
+            .min(10, t("the Licence number must be between 10 and 12 digits"))
+            .max(12, t("the Licence number must be between 10 and 12 digits")),
           // address: Yup.string().trim().required(t("address is  required")),
           tax_certificate: Yup.string()
             .trim()

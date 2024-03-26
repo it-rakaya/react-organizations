@@ -69,7 +69,6 @@ const Register = () => {
     }
   }, [closeRegistration, navigate, token]);
   if (closeRegistration == 1) return navigate("/");
-
   if (!isSuccess || isRefetching) return <Loading />;
   if (!token) {
     return (

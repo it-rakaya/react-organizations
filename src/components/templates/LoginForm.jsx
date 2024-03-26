@@ -102,9 +102,6 @@ export default function LoginForm({ setHideSection }) {
                   loading={loadingLogin || isPending}
                   disabled={valueOTP && valueOTP?.length != 4 ? true : false}
                   className={"ltr:!mt-5 "}
-                  // action={() => {
-                  //   setHideSection(true);
-                  // }}
                   status={uploadProgress}
                 >
                   {t("Login")}
