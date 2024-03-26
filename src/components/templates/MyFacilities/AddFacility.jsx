@@ -131,10 +131,10 @@ export default function AddFacility() {
           <div className="w-full md:col-span-6">
             <BaseInputField
               label={t("Licence")}
-              placeholder="xxxxxxxxxxx"
+              placeholder="xxxxxxxxxxxx"
               name="license"
               type="custom"
-              maxNum="11"
+              maxNum="12"
               required
               showIcon
               setShow={setShow}
