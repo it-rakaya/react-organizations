@@ -11,7 +11,7 @@ import EmployeeMainData from "./EmployeeMainData";
 
 export default function AddEmployee({
   facultyID,
-  
+
   setSecundModal,
   showSelectFacility,
   refetch,
@@ -19,7 +19,11 @@ export default function AddEmployee({
 }) {
   const { orgData } = UseOrg();
 
-  const { mutate: AddEmployee, isPending: loadingEmployee , uploadProgress } = useMutate({
+  const {
+    mutate: AddEmployee,
+    isPending: loadingEmployee,
+    uploadProgress,
+  } = useMutate({
     mutationKey: [`facility_employees`],
     endpoint: `facility-employees`,
     onSuccess: () => {
@@ -37,7 +41,7 @@ export default function AddEmployee({
     },
     formData: true,
   });
-  console.log("🚀 ~ uploadProgress:", uploadProgress)
+  console.log("🚀 ~ uploadProgress:", uploadProgress);
   const { data: attachments_facility_employees } = useFetch({
     endpoint: `attachments-labels/facility_employees`,
     queryKey: ["attachments_facility_employees"],
@@ -63,7 +67,9 @@ export default function AddEmployee({
   const handleSubmit = (values) => {
     const validAttachments = values?.attachments
       .map((file, index) => ({ index, file }))
-      .filter((item) => typeof item.file !== "undefined" && item.file !== "deleted");
+      .filter(
+        (item) => typeof item.file !== "undefined" && item.file !== "deleted"
+      );
     const attachments = validAttachments.map((item) => ({
       [`attachments[${item?.index}]`]: item?.file,
     }));
@@ -99,7 +105,6 @@ export default function AddEmployee({
                 loadingEmployee={loadingEmployee}
                 uploadProgress={uploadProgress}
               />
-              
             </Form>
           </>
         )}
