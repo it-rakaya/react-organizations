@@ -179,7 +179,7 @@ export const generateColumns = ({
       ),
       cellSize: {
         width: "180px",
-        height: "50px",
+        height: "auto",
         margin: "auto",
         alignItems: "center",
         display: "flex",
