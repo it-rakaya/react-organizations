@@ -5,8 +5,11 @@ import { useMutate } from "../../../hooks/useMutate";
 import { notify } from "../../../utils/toast";
 import ButtonComp from "../../atoms/buttons/ButtonComp";
 import TermsConditionIcon from "../../atoms/icons/TermsConditionIcon";
+import { UseOrg } from "../../../context/organization provider/OrganizationProvider";
 
 function DeleteEMployee({ refetch, employeeId, setModelDeleteEMployee }) {
+  const { orgData } = UseOrg();
+
   const { mutate: DeleteEMployee, isPending } = useMutate({
     mutationKey: [`delete-employee${employeeId}`],
     endpoint: `delete-employee/${employeeId}`,
@@ -20,6 +23,7 @@ function DeleteEMployee({ refetch, employeeId, setModelDeleteEMployee }) {
     },
     formData: true,
   });
+
   return (
     <div className="flex flex-col items-center justify-center mb-10 align-middle gap-7">
       <div>
@@ -33,7 +37,11 @@ function DeleteEMployee({ refetch, employeeId, setModelDeleteEMployee }) {
           <ButtonComp
             variant="contained"
             className="!mx-1  !border-solid  !w-[120px] !h-[40px] !mt-0 text-black dark:text-white"
-            action={() => DeleteEMployee({})}
+            action={() =>
+              DeleteEMployee({
+                organization_id: orgData?.organizations?.id,
+              })
+            }
             loading={isPending}
           >
             {t("Confirm")}
@@ -41,7 +49,6 @@ function DeleteEMployee({ refetch, employeeId, setModelDeleteEMployee }) {
           <ButtonComp
             className="!mx-1  !border-solid  !w-[120px] !h-[40px] !mt-0  dark:!text-white"
             action={() => setModelDeleteEMployee(false)}
-            
             variant="outline"
           >
             {t("cancel")}
