@@ -22,8 +22,8 @@ export const AllRoutesProvider = () => {
   useEffect(() => {
     const manifestLink = document.querySelector('link[rel="manifest"]');
     if (manifestLink) {
-      fetch(manifestLink.href)
-        .then(response => response.json())
+      fetch(manifestLink?.href)
+        .then(response => response?.json())
         .then(manifest => {
           manifest.short_name = orgData?.organizations?.name || "Default Short Name";
           manifest.name = orgData?.organizations?.name || "Default Name";  

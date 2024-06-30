@@ -16,12 +16,12 @@ function News() {
   useEffect(() => {
     setNews(["landing.rights"]);
     if (orgData?.organizations?.organization_news)
-      orgData?.organizations?.organization_news.map((val) => {
+      orgData?.organizations?.organization_news?.map((val) => {
         setNews((prev) => [...prev, val.new]);
       });
   }, [orgData]);
   return (
-    <Marquee disabled={news.length <= 1}>
+    <Marquee disabled={news?.length <= 1}>
       <div
         className={`flex items-center ${
           news.length <= 1 ? "justify-center" : "justify-between"

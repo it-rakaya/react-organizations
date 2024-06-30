@@ -152,7 +152,7 @@ const UserProfileHeader = ({ user, setEditUser, theme }) => {
           <div className="flex flex-col col-span-2 gap-2 py-2 mt-5 border-b md:col-span-1">
             <p style={{ color: theme.palette.primary?.main }}>{t("Country")}</p>
             <p className="text-black dark:text-white">
-              {isRTL ? user?.country.name_ar : user?.country.name_en}
+              {isRTL ? user?.country?.name_ar : user?.country?.name_en}
             </p>
           </div>
         </div>

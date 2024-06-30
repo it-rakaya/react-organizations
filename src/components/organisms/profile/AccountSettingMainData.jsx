@@ -117,22 +117,22 @@ function AccountSettingMainData({ userData, isPending, attachments_register , up
             ?.filter((item) => item.id !== 3)
             .map((attachmentLabel) => {
               const userAttachment = userData?.attachmentUrl?.find(
-                (ua) => ua.attachment_label_id === attachmentLabel.id
+                (ua) => ua?.attachment_label_id === attachmentLabel?.id
               );
               return (
-                <div key={attachmentLabel.id}>
+                <div key={attachmentLabel?.id}>
                   <UploadDoc
-                    name={`attachments[${attachmentLabel.id}]`}
+                    name={`attachments[${attachmentLabel?.id}]`}
                     label={
                       isRTL
-                        ? attachmentLabel.placeholder_ar
-                        : attachmentLabel.placeholder_en
+                        ? attachmentLabel?.placeholder_ar
+                        : attachmentLabel?.placeholder_en
                     }
                     nameValue={attachmentLabel?.id}
                     id={attachmentLabel.id}
                     accept={attachmentLabel.extensions}
-                    placeholder={attachmentLabel.placeholder}
-                    isRequired={attachmentLabel.is_required == "1"}
+                    placeholder={attachmentLabel?.placeholder}
+                    isRequired={attachmentLabel?.is_required == "1"}
                     value={userAttachment ? userAttachment.value : null}
                     nameLabel={userAttachment?.name}
                   />
@@ -146,8 +146,8 @@ function AccountSettingMainData({ userData, isPending, attachments_register , up
           className="!w-auto"
           loading={isPending}
           disabled={
-            Object.entries(errors).length > 0 ||
-            !checkAttachmentsResult || !Object.entries(changedValues).length
+            Object.entries(errors)?.length > 0 ||
+            !checkAttachmentsResult || !Object.entries(changedValues)?.length
           }
           status={uploadProgress}
 

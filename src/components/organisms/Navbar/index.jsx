@@ -7,7 +7,6 @@ import OutsideClickHandler from "react-outside-click-handler";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/avatars/1.png";
 import { useLanguageContext } from "../../../context/language";
-import { useIsRTL } from "../../../hooks";
 import DarkModeIcon from "../../atoms/icons/DarkModeIcon";
 import NotificationIcon from "../../atoms/icons/NotificationIcon";
 import TranslateIcon from "../../atoms/icons/TranslateIcon";
@@ -25,17 +24,7 @@ const NavBar = ({
     return savedMode === "true";
   });
 
-  const handleDarkMode = () => {
-    const newMode = !isDarkMode;
-    setIsDarkMode(newMode);
-    if (newMode) {
-      document.body.classList.add("dark");
-    } else {
-      document.body.classList.remove("dark");
-    }
 
-    localStorage.setItem("darkMode", newMode);
-  };
 
   useEffect(() => {
     const savedMode = localStorage.getItem("darkMode");
@@ -61,7 +50,6 @@ const NavBar = ({
     setDropDown(false);
   };
 
-  const isRTL = useIsRTL();
 
   const { changeLang } = useLanguageContext();
 
@@ -74,7 +62,6 @@ const NavBar = ({
       setOpenSide(!openSide);
     }
   };
-  // const { login, user } = useAuth();
   const navigate = useNavigate();
 
   const handleLogOut = () => {
@@ -83,8 +70,7 @@ const NavBar = ({
     Cookies.remove("token");
   };
 
-  // const { user } = useAuth();
-  // useEffect(() => {}, [user]);
+
 
   return (
     <div

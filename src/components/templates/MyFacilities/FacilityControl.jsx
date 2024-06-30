@@ -20,7 +20,6 @@ function FacilityControl({
 }) {
   const [checked, setChecked] = useState(update ? true : false);
   const { values, dirty } = useFormikContext();
-  console.log("🚀 ~ values:", values)
 
   const { orgData } = UseOrg();
   const navigate = useNavigate();
@@ -60,12 +59,12 @@ function FacilityControl({
   const handleSubmit = () => {
     const updatedIban = values.iban.replace(/-/g, "").replace(/\s+/g, "");
     const changedValues = {};
-    console.log("🚀 ~ handleSubmit ~ changedValues:", changedValues)
     const bankInformationKeys = ["account_name", "bank_id", "iban"];
     if (update) {
       Object.entries(values).forEach(([key, value]) => {
-        if (key === 'iban') {
-          const originalIban = updateData?.facility?.bank_information?.iban?.replace(/\s+/g, "");
+        if (key === "iban") {
+          const originalIban =
+            updateData?.facility?.bank_information?.iban?.replace(/\s+/g, "");
           if (updatedIban !== originalIban) {
             changedValues[key] = updatedIban;
           }

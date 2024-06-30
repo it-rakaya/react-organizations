@@ -127,7 +127,7 @@ export const calculateHajjRemainingTimeFormatted = () => {
   const diff = hajjDate - today;
   const daysRemaining = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hoursRemaining = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const monthsRemaining = Math.floor(daysRemaining / 29.53); // Average lunar month length
+  const monthsRemaining = Math.floor(daysRemaining / 29.53); 
   const daysAfterMonths = daysRemaining % 29.53;
 
   return {
@@ -160,7 +160,7 @@ export function autoReadSMS(cb) {
           }
         }
       } catch (err) {
-        console.log("err");
+        // console.log("err");
       }
     }
   }

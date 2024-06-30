@@ -93,19 +93,7 @@ export default function DetailsOrder({ data }) {
                 </h2>
               }
             />
-            {/* {Rejected !== data?.status?.id && (
-              <Tab
-                value="2"
-                component="a"
-                style={{ alignItems: "center" }}
-                label={
-                  <h2 className="font-bold text-black dark:text-white">
-                    {" "}
-                    {t("Questions")}
-                  </h2>
-                }
-              />
-            )} */}
+   
             {!Rejected && (
               <Tab
                 value="4"

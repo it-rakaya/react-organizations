@@ -41,7 +41,6 @@ export default function AddEmployee({
     },
     formData: true,
   });
-  console.log("🚀 ~ uploadProgress:", uploadProgress);
   const { data: attachments_facility_employees } = useFetch({
     endpoint: `attachments-labels/facility_employees`,
     queryKey: ["attachments_facility_employees"],

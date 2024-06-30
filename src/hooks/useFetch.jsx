@@ -49,7 +49,6 @@ function useFetch({ endpoint, enabled, select, queryKey, onError, onSuccess }) {
     select,
     onError: (error) => {
       if (error.message === "unauthenticated") {
-        console.log("🚀 ~ error.message:", error.message);
 
         // Perform specific actions like redirecting the user to the login page.
       }
