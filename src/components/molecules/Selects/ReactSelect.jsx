@@ -76,7 +76,7 @@ export default function ReactSelect({
               // borderColor: isFocused ? "red" : "",
               background: "white",
               margin: "0",
-              maxHeight:"500px",
+              maxHeight: "500px",
               minHeight: "59px",
               boxShadow: isFocused
                 ? `0 0 0px 1px ${theme.palette.primary?.main}`
@@ -86,7 +86,7 @@ export default function ReactSelect({
             valueContainer: (base) => ({
               ...base,
               maxHeight: 500,
-              overflowY: "auto"
+              overflowY: "auto",
             }),
 
             option: (defaultStyles, { isFocused, isSelected }) => ({
@@ -106,12 +106,12 @@ export default function ReactSelect({
                   : defaultStyles[":active"].backgroundColor,
               },
             }),
-            multiValueLabel: (styles, { data }) => ({
+            multiValueLabel: (styles) => ({
               ...styles,
               background: theme.palette.primary?.main,
               color: "white",
             }),
-            multiValueRemove: (styles, { data }) => ({
+            multiValueRemove: (styles) => ({
               ...styles,
               color: "#fff",
               background: theme.palette.primary?.main,

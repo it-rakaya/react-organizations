@@ -29,7 +29,6 @@ export const Root = ({ props }) => {
   }, [openSide]);
 
   const handleClickOutside = () => {
-    // document.body.removeAttribute("drawer-aside-bar");
     setOpenSide(false);
   };
 
@@ -58,10 +57,8 @@ export const Root = ({ props }) => {
   if (token) {
     return (
       <div
-        // style={{height: isFacilityRoute ? "calc(100vh - 64px)" : ""}}
         className={
           `flex `
-          // : "grid grid-cols-12 w-full"
         }
       >
         {user?.is_verified && (
@@ -83,7 +80,6 @@ export const Root = ({ props }) => {
                 />
               </div>
             </OutsideClickHandler>
-            {/* {showOverlay && <Overlay zIndex={1100} />} */}
           </div>
         )}
 
@@ -131,4 +127,3 @@ export const Root = ({ props }) => {
   }
 };
 
-// return <Loading mainTitle={t('loading')} />;

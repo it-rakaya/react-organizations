@@ -97,20 +97,13 @@ function CardOrder({
               }}
             >
               <OrderIcon />
-              {/* {item?.status_id == New && ( */}
                 <div
                   className="absolute left-0 px-1 text-white rounded-r-md top-12 "
                   style={{ backgroundColor: theme?.palette?.primary?.main }}
                 >
                   {item?.status?.name}
                 </div>
-              {/* )} */}
-              {/* <Typography
-                sx={{ mt: 4, color: "text.secondary" }}
-                className={`text-center font-bold px-2 py-1 rounded-md !text-black `}
-              >
-                {item?.status_id !== New && item?.status?.name}
-              </Typography> */}
+             
               <Typography
                 sx={{ color: "text.secondary", marginTop:'5px' }}
                 className={`text-center flex flex-col items-center  font-bold px-2 py-1 rounded-md !text-black `}
@@ -127,7 +120,6 @@ function CardOrder({
                 mt={2}
                 className="w-[275px]"
               >
-                {/* {item.status_id !== Canceled && ( */}
                 <ButtonComp
                   variant="contained"
                   className={`!m-0 rounded-b-md rounded-l-none rounded-r-none w-full ${
@@ -142,7 +134,6 @@ function CardOrder({
                 >
                   تفاصيل طلب
                 </ButtonComp>
-                {/* )} */}
               </Grid>
             </Box>
           </CardContent>

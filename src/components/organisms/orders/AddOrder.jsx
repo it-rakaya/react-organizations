@@ -38,7 +38,6 @@ export default function AddOrder({ setOpenAddFaculty }) {
             (fieldName) => fieldName.startsWith("answers")
           );
 
-          // if (hasFieldStartingWithAnswers.length > 0) {
           hasFieldStartingWithAnswers.forEach((fieldName) => {
             const answerIndex = fieldName.slice(7); // Get the index from the field name
             answers[`answers[${answerIndex}]`] = values[fieldName];

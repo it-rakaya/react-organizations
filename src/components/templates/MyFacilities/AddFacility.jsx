@@ -7,7 +7,6 @@ import BaseInputField from "../../molecules/Formik/BaseInputField";
 import DatePickerComp from "../../molecules/Formik/DatePickerComp";
 import SelectCitiesSaudi from "../../molecules/SelectCitiesSaudi";
 import SelectBank from "../../molecules/Selects/SelectBank";
-import { useFormikContext } from "formik";
 
 export default function AddFacility() {
   const images = [
@@ -17,8 +16,6 @@ export default function AddFacility() {
   ];
   const [show, setShow] = useState(false);
   const [index, setIndex] = useState(0);
-  const {values} = useFormikContext()
-  console.log("🚀 ~ AddFacility ~ values:", values)
 
   return (
     <div className="relative">

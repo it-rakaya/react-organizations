@@ -38,10 +38,8 @@ export default function AccountSetting({
     national_source: userData?.national_source,
     birthday: userData?.birthday,
     birthday_hj: userData?.birthday,
-    // photo: userData?.photo,
     national_id_expired: userData?.national_id_expired,
     national_id_expired_hj: userData?.national_id_expired,
-    // favourit_organizations: userData?.favourit_organizations,
     organization_id: orgData?.organizations?.id,
   };
 

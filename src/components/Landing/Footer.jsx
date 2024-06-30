@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { UseOrg } from "../../context/organization provider/OrganizationProvider";
 import { calculateHajjRemainingTimeFormatted } from "../../utils/helpers";
-// import { getTimeLeftToHajj } from "../../utils/landing/HajjTimeCalc";
 import { getPrayerTime } from "../../utils/landing/prayerTimeCalc";
 
 const FooterComponent = ({ title, children, last = false }) => {
@@ -60,13 +59,12 @@ const Footer = () => {
       try {
         await getPrayerTime(setNextPrayerTime, setPrayer);
       } catch (error) {
-        console.error('Failed to fetch prayer times:', error);
+        console.error("Failed to fetch prayer times:", error);
       }
     };
-  
+
     fetchPrayerTimes();
   }, []);
-  
 
   return (
     <div className="2xl:pe-[18%] 3xl:pe-[26%]">
@@ -100,19 +98,17 @@ const Footer = () => {
           </h1>
         </FooterComponent>
         {/* {!!nextPrayerTime.hours && ( */}
-          <FooterComponent
-            title={`${t("landing.timeLeftTo")} ${t(
-              `landing.prayers.${prayer}`
-            )}`}
-            last
+        <FooterComponent
+          title={`${t("landing.timeLeftTo")} ${t(`landing.prayers.${prayer}`)}`}
+          last
+        >
+          <h1
+            className={`${textStyle} flex items-center gap-4 tracking-wider dark:text-white`}
           >
-            <h1
-              className={`${textStyle} flex items-center gap-4 tracking-wider dark:text-white`}
-            >
-              {nextPrayerTime?.hours} {t("landing.hrs")}{" "}
-              {nextPrayerTime?.minutes} {t("landing.minutes")}
-            </h1>
-          </FooterComponent>
+            {nextPrayerTime?.hours} {t("landing.hrs")} {nextPrayerTime?.minutes}{" "}
+            {t("landing.minutes")}
+          </h1>
+        </FooterComponent>
         {/* )} */}
       </div>
     </div>

@@ -15,9 +15,7 @@ function OrderInfo({ Orders }) {
   const rejectedOrders = Orders?.all_user_orders?.filter(
     (obj) => obj.status?.name_en == "Rejected"
   );
-  const ApprovedOrder = Orders?.all_user_orders?.filter(
-    (obj) => obj.status?.name_en == "Approved"
-  );
+
   const numberOfOrders = NewOrders?.length;
   const numberOfApproved = approvedOrders?.length;
   const numberOfRejected = rejectedOrders?.length;

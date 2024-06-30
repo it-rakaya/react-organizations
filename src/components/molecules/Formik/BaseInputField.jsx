@@ -115,7 +115,7 @@ export default function BaseInputField({
               type="text"
               value={values[name]}
               onChange={type === "custom" ? handleChangeNumber : handleChange}
-              inputMode={type == "custom" ? "numeric" : "text"} 
+              inputMode={type == "custom" ? "numeric" : "text"}
               placeholder={placeholder}
               name={name}
               onFocus={() => setIsFocused(true)}
