@@ -26,5 +26,6 @@ jobs:
           cd /var/www/html/refada/react/organizations/react-organizations
           git restore .
           git pull
+          yarn cache clean
           yarn 
           yarn build
